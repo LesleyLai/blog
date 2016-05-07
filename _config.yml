@@ -62,7 +62,6 @@ github:
 
 # Build settings
 markdown: kramdown
-source: jekyll
 destination: site
 
 sass:
