@@ -13,8 +13,8 @@ title:
   en: Lesley Lai
   zh: 赖思理
 subtitle:
-  en: Blog
-  zh: 博客
+  en: Video game fanatic
+  zh: 游戏狂热爱好者
 description:
   en: Hello, I am Lesley Lai.
   zh: 大家好，我是赖思理。
@@ -30,6 +30,9 @@ about:
 feed:
   en: /feed_en.xml
   zh: /feed_zh.xml
+wiki:
+  en: Wiki
+  zh: 我的维基
 home:
   en: Home 
   zh: 主页
@@ -53,11 +56,8 @@ url: "http://lesleylai.info" # the base hostname & protocol for your site
 # Custom variables:
 disqus: "lesleylaiblog"
 duoshuo: "lesleylaiblog"
-twitter_username: jekyllrb
-github_username:  jekyll
-
 github:
-  repo: https://github.com/LesleyLai/Blog
+  repo: https://github.com/LesleyLai/blog
 
 
 # Build settings
