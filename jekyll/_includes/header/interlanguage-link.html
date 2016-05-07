@@ -1,0 +1,7 @@
+<nav class ="lang-nav">
+    {% assign posts=site.posts | where:"ref", page.ref | sort: 'lang' %}
+    {% for post in posts %} <a href="{{ post.url }}" class="interlanguage-link {{ post.lang }}">{{ site.lang_name[post.lang] }}</a> {% endfor %}
+
+    {% assign pages=site.pages | where:"ref", page.ref | sort: 'lang' %}
+    {% for page in pages %} <a href="{{ page.url }}" class="interlanguage-link {{ page.lang }}">{{ site.lang_name[page.lang] }}</a> {% endfor %}
+</nav>

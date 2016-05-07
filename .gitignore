@@ -1,0 +1,8 @@
+### Jekyll ###
+site/
+.sass-cache/
+.jekyll-metadata
+
+
+### Emacs ###
+*~

@@ -1,0 +1,14 @@
+language: ruby
+rvm:
+  - 2.2
+
+install:
+  - gem install github-pages html-proofer
+
+script:
+  - jekyll build
+  - htmlproof --check-html ./_site --href-ignore "#"
+
+branches:
+  only:
+    - gh-pages

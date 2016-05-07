@@ -1,0 +1,21 @@
+---
+layout: post
+title:  "欢迎使用Jekyll !"
+ref: welcome
+date:   2016-02-29 09:48:44 +0100
+categories: jekyll update
+lang: zh
+---
+实验页面
+
+{% highlight ruby %}
+def print_hi(name)
+  puts "Bonjour, #{name}"
+end
+print_hi('Tom')
+#=> affiche 'Bonjour, Tom' sur STDOUT.
+{% endhighlight %}
+
+[jekyll-docs]: http://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/

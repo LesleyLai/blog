@@ -1,0 +1,6 @@
+{% if page.lang == "en" %}
+{% include comments-providers/disqus.html %}
+{% endif %}
+{% if page.lang == "zh" %}
+{% include comments-providers/duoshuo.html %}
+{% endif %}
