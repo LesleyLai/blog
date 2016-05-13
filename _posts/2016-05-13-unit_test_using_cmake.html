@@ -3,7 +3,7 @@ layout: post
 title:  "How to integrate unit test framework in cmake"
 lang: en
 ref: cmake_catch
-date:   2016-03-25 16:43:29 +0800
+date:   2016-05-13 21:24:29 +0800
 categories: cmake test
 ---
 <p>
@@ -39,15 +39,19 @@ target_link_libraries (MyAwesomeProject CommonSourceCode)
 add_subdirectory (test)
 </pre>
 </div>
+
 <p>
 src/CMakeLists.txt
-Notice the <code>PARENT_SCOPE</code> because I do not build the executable in this folder.
 </p>
 <div class="org-src-container">
 
 <pre class="src src-cmake">set(SRC_LIST ${SRC_LIST} a.hpp a.cpp b.hpp PARENT_SCOPE)
 </pre>
 </div>
+<p>
+Notice the <code>PARENT_SCOPE</code> because I do not build the executable in this folder.
+</p>
+
 <p>
 I then use the script from Catch's <a href="https://github.com/philsquared/Catch/blob/master/docs/build-systems.md">document</a> to automatically fetch it from github and configure it as an <a href="https://cmake.org/cmake/help/v3.4/module/ExternalProject.html">external project</a>:
 </p>
