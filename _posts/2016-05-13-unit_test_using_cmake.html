@@ -7,15 +7,15 @@ date:   2016-05-13 21:24:29 +0800
 categories: cmake test
 ---
 <p>
-I am trying to make my project to include two part: the sources (in <code>src</code> subfolder) and tests (in <code>test</code> subfolder). I am using <a href="https://cmake.org/">CMake</a> to build this, if you have never used cmake before and do not want use it recently, just press <code>Ctrl/Cmd+W</code> and then do whatever not wast your precious time. 
+The source tree of the project will include two parts: the sources (in <code>src</code> subfolder) and tests (in <code>test</code> subfolder). I have used <a href="https://cmake.org/">CMake</a> to build this; if you have never used cmake before and do not wise to use it, just press <code>Ctrl/Cmd+W</code>. 
 </p>
 
 <p>
-The test framework I choose is <a href="https://github.com/philsquared/Catch">Catch</a>. However, the process of using different framework like CppUnit, Boost Test Library or googletest should be very similar.
+The test framework I chose is <a href="https://github.com/philsquared/Catch">Catch</a>. However, the process of using different frameworks like CppUnit, Boost Test Library, or googletest should be very similar.
 </p>
 
 <p>
-Generally, I add all source code except main.cpp into a library called <code>CommonSourceCode</code> and link it both by the production program and the test.
+Firstly, I added all the source code except main.cpp into a library called <code>CommonSourceCode</code> and linked it by both the production program and the test.
 </p>
 
 <p>
@@ -49,11 +49,11 @@ src/CMakeLists.txt
 </pre>
 </div>
 <p>
-Notice the <code>PARENT_SCOPE</code> because I do not build the executable in this folder.
+Notice the inclusion of  <code>PARENT_SCOPE</code> because I did not build the executable in this folder.
 </p>
 
 <p>
-I then use the script from Catch's <a href="https://github.com/philsquared/Catch/blob/master/docs/build-systems.md">document</a> to automatically fetch it from github and configure it as an <a href="https://cmake.org/cmake/help/v3.4/module/ExternalProject.html">external project</a>:
+I then used the script from Catch's <a href="https://github.com/philsquared/Catch/blob/master/docs/build-systems.md">document</a> to automatically fetch it from github and configured it as an <a href="https://cmake.org/cmake/help/v3.4/module/ExternalProject.html">external project</a>:
 </p>
 
 <p>
@@ -90,4 +90,4 @@ add_test (NAME MyTest COMMAND Test)
 </pre>
 </div>
 <p>
-Certainly, I omit part contents in my CMakeFiles like c++11 support. But the idea is here.</p>
+I have omitted part contents, such as c++11 support, in my CMakeFiles since they are irrelevant here.</p>
