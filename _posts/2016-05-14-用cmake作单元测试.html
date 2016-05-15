@@ -1,21 +1,21 @@
 ---
 layout: post
-title:  "How to integrate unit test framework in cmake"
-lang: en
+title:  "如何在cmake中嵌入单元测试框架"
+lang: zh
 ref: cmake_catch
-date:   2016-05-13 21:24:29 +0800
+date:   2016-05-14 09:43:00 +0800
 categories: cmake test
 ---
 <p>
-The directory structure of the project source files will include two parts: the sources (in <code>src</code> subfolder) and tests (in <code>test</code> subfolder). I have used <a href="https://cmake.org/">CMake</a> to build this; if you have never used cmake before and do not wish to use it, just press <code>Ctrl/Cmd+W</code>. 
+工程的目录结构会有两部分：源文件（在 <code>src</code> 子文件夹中）以及测试(在 <code>test</code> 子文件夹中)。我使用<a href="https://cmake.org/">CMake</a>来构建这个工程。如果您从没用使用过cmake并且不打算在近期使用它，请直接按 <code>Ctrl/Cmd+W</code> 。
 </p>
 
 <p>
-The test framework I chose is <a href="https://github.com/philsquared/Catch">Catch</a>. However, the process of using different frameworks like CppUnit, Boost Test Library, or googletest should be very similar.
+我选择的测试框架是<a href="https://github.com/philsquared/Catch">Catch</a>，不过选择其他诸如CppUnit、Boost Test Library、googletest的框架的流程应该差不多。
 </p>
 
 <p>
-Firstly, I added all the source code except <code>main.cpp</code> into a library called <code>CommonSourceCode</code> and linked it by both the production program and the test.
+首先， 我把除了 <code>main.cpp</code> 以外的所有源代码构建到一个叫做 <code>CommonSourceCode</code> 的库中，并且同时在主程序和测试程序中链接这个库。
 </p>
 
 <p>
@@ -49,11 +49,11 @@ src/CMakeLists.txt
 </pre>
 </div>
 <p>
-Notice the inclusion of  <code>PARENT_SCOPE</code> because I did not build the executable in this folder.
+注意这里我加入的 <code>PARENT_SCOPE</code> ，因为我没有打算在这个目录构建可执行程序。
 </p>
 
 <p>
-I then used the script from Catch's <a href="https://github.com/philsquared/Catch/blob/master/docs/build-systems.md">document</a> to automatically fetch it from github and configured it as an <a href="https://cmake.org/cmake/help/v3.4/module/ExternalProject.html">external project</a>:
+我使用Catch的<a href="https://github.com/philsquared/Catch/blob/master/docs/build-systems.md">文档</a>中的脚本来自动从github上获取我使用Catch，并把它设置成一个<a href="https://cmake.org/cmake/help/v3.4/module/ExternalProject.html">external project</a>：
 </p>
 
 <p>
@@ -90,4 +90,4 @@ add_test (NAME MyTest COMMAND Test)
 </pre>
 </div>
 <p>
-I have omitted part contents, such as c++11 support, in my CMakeFiles since they are irrelevant here.</p>
+我省略了我的几个CMakeFile中包括c++11支持在内的部分内容，因为它们和我这里讲的东西没有关系。</p>
