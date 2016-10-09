@@ -83,7 +83,7 @@ set(CATCH_INCLUDE_DIR ${source_dir}/include CACHE INTERNAL "Path to include fold
 add_library(Catch INTERFACE)
 target_include_directories(Catch INTERFACE ${CATCH_INCLUDE_DIR})
 
-add_executable (test testmain.cpp testA.cpp testB.cpp)
+add_executable (Test testmain.cpp testA.cpp testB.cpp)
 target_link_libraries(Test Catch CommonSourceCode)
 
 add_test (NAME MyTest COMMAND Test)
