@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Don't invent your own resource manage routine
+title: Don't invent your own resource manage routines
 lang: en
 ref: RAII
 date: 2016-10-26T14:10:00+0800
@@ -50,6 +50,7 @@ The real class is much bigger. We can critize this snippet in many different way
 <p>
 I want to focus on the "DLL" part today. This class is designed as an interface of customized plug-ins for our software. It was used like this:
 </p>
+
 <div class="org-src-container">
 
 <pre class="src src-c++">void calculate ()
@@ -72,13 +73,13 @@ The problem is that now all parts of our software need to be compiled by the sam
 <h2 id="sec-2"><span class="section-number-2">2</span> More example</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-It is suprised to mt that some otherwise well designed code base suffer similar problem. For instance, the <i>Qt Library</i>'s parent child relationship is essentially a similar resource manage strategy. If you have used QT, you must have written code like this:
+It is suprised to me that some otherwise well designed code bases suffer similar problem. For instance, the <a href="http://www.qt-project.org">Qt Library</a>'s parent child relationship is essentially a similar resource manage strategy. If you have used QT, you must have written code like this:
 </p>
 <div class="org-src-container">
 
 <pre class="src src-c++">void foo(QString name, QFont font)
 {
-    // Not real OT code
+    // Not real Ot code
     QTabWidget parent;
     auto child = new QWidget;
     parent.addTab(child);
@@ -88,11 +89,11 @@ It is suprised to mt that some otherwise well designed code base suffer similar 
 </pre>
 </div>
 <p>
-As a consequence, Qt, unlike most libraries, cannot be linked by different compilers than what itself compiled. For example, QT 5.7.0 for windows 64 binaries have three versions (VS 2015, VS 2013, MinGW). We must use corresponding compilers to develop QT application.
+As a consequence, Qt, unlike most libraries, cannot be linked by different compilers than what itself compiled. For example, QT 5.7.0 for windows 64 binaries have three versions (VS 2015, VS 2013, MinGW) to satisfy different compiler users. We must use corresponding compilers to develop Qt application.
 </p>
 
 <p>
-If you are programmers develop software solely for POSIX platforms, you may think it is not your bussiness. But I have another point relate to you, too. The point is, those customized resource manage strategies are innately exception-unsafe. Consider what will happen if <code>setName</code> or <code>setFont</code> can throw exceptions. An innocuous order change by clients will introduce leak:
+If you are programmers develop software solely for POSIX platforms, you may think it is not your bussiness. But I have another point relate to you, too. The point is, those <i>ad hoc</i> resource manage strategies are innately exception-unsafe. Consider what will happen if <code>setName</code> or <code>setFont</code> can throw exceptions. An innocuous order change by clients will introduce leak:
 </p>
 <div class="org-src-container">
 
@@ -158,6 +159,6 @@ As for the gui example, if you decide to write a new GUI library now, you can de
 </pre>
 </div>
 <p>
-This version is a bit more verbose, but it has the similar usage of QT, and none of QT's problems.</p>
+This version is a bit more verbose, but it has the similar usage of Ot, without Ot's problems.</p>
 </div>
 </div>

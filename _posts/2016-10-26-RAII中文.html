@@ -1,0 +1,170 @@
+---
+layout: post
+title: 不要发明自己的资源管理策略
+lang: zh
+ref: RAII
+date: 2016-10-26T20:55:00+0800
+categories: cpp resource
+---
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 介绍</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+最近，我在工作时遇到了一批旧代码，其中有几个巨大的类是以类似这样的写法写的：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++">class ExtnlOutData
+{
+public:
+    int phase;
+    int* phaseIdx;
+    char** phaseNames;
+    ...
+
+    ExtnlDLLData() : phaseIdx(NULL), phaseNames(NULL) {}
+
+    ~ExtnlDLLData()
+    {
+	if (phaseIdx) {
+	    delete[] phaseIdx;
+	    phaseIdx = NULL;
+	}
+
+	if (phaseNames) {
+	    for (int i = 0; i != phase; ++i) {
+		if (phaseNames[i]) delete[] phaseNames[i];
+	    delete[] phaseNames;
+	    phaseNames = NULL;
+	}
+    }
+}
+</pre>
+</div>
+
+<p>
+这个示范比实际的类小很多，但我们已经可以从不同的角度来批评它了。比如说这个类的复制操作是违反直觉的浅拷贝。
+</p>
+
+<p>
+不过在这里，我想关注“DLL”的部分。这个类是作为我们软件插件的接口而设计的，我们这么用它：
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c++">void calculate ()
+{
+    ExtnlOutData data;
+    extnlDllCalculate(&amp;data);
+
+    // Do something about data
+}
+</pre>
+</div>
+
+<p>
+看出问题了吗？我们现在必须用与当年编译动态库插件同样的编译器来编译这段代码（我们当时用的是Visual Studio 2008，但对现在来说它太老了）。原因是因为我们在DLL内分配内存，却在DLL外销毁内存。不同的编译器可能会调用不同的函数来管理内存，导致data的析构函数崩溃。这个情况和我们混用~malloc()~与~delete~是一样的，无非是难以发现得多罢了。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 更多例子</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+很多设计地很好的代码库也存在同样的问题。<a href="http://www.qt-project.org">Qt库</a>的父子关系和之前展示的代码的内存管理策略事实上是一样的。如果你用过Qt,你肯定写过类似这样的代码：
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c++">void foo(QString name, QFont font)
+{
+    // 这不是真正的Ot代码
+    QTabWidget parent;
+    auto child = new QWidget;
+    parent.addTab(child);
+    child.setName(name);
+    child.setFont(font);
+} // parent的析构函数负责销毁child
+</pre>
+</div>
+<p>
+因此,和多数库不同，Qt不能被链接到不是同一个编译器编译的程序上。比如说QT 5.7.0 for windows 64二进制包就发布了三个不同的版本（VS 2015/VS 2013/MinGW）来对应不同的编译器。我们必须用相应的编译器来开发Qt程序。
+</p>
+
+<p>
+如果你的程序只在POSIX平台下运行，你可能觉得这不关你的事。不过我还有另外与你们也有关的一点要讲:这些混乱的资源管理策略很难做到异常安全。考虑一下如果~setName~或者~setFont~抛出异常会发生什么？外部程序员看似很无辜地顺序改动也会造成泄漏：
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c++">child.setName(name);
+child.setFont(font);
+// 如果上面抛出了异常，child永远不会被释放
+parent.addTab(child);
+</pre>
+</div>
+
+<p>
+难怪类似于Qt这样的设计于很久以前的代码库倾向于全项目禁止使用异常。但库作者仍然无法阻止外部程序员这么做：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++">child.setName(name);
+child.setFont(font);
+if (!child.valid()) throw Exception{"Invalid tab"}; // 可能造成泄漏
+parent.addTab(child);
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> RAII来解决这种问题</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+在标题中，我已经劝阻你们发明自己的资源管理策略，因为c++已经有标准的资源管理方式<a href="https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization">RAII</a>。RAII可以轻易根除上面的泄漏或者不匹配的系统函数这种问题。第一个例子可以被这样从新设计：
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c++">struct PhaseData
+{
+    int ID;
+    std::string name;
+}
+
+class ExternalOutData
+{
+public:
+    ...
+
+private:
+    std::vector&lt;PhaseData&gt; data;
+    ...
+}
+</pre>
+</div>
+
+<p>
+而如果你要设计一个新的GUI库的话，你可以把你的接口设计成这么使用：
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c++">void foo(MyString name, MyFont font)
+{
+    MyTabWidget parent;
+    auto child = std::make_unique(MyWidget);
+    child.setName(name);
+    child.setFont(font);
+    parent.addTab(std::move(child));
+} // The distructor of parent will destory child
+</pre>
+</div>
+
+<p>
+这个版本使用起来略显罗嗦，不过它有和Qt一样的用法而没有Qt的问题。</p>
+</div>
+</div>
