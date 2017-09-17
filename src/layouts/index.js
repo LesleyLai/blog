@@ -8,14 +8,14 @@ import Header from '../components/header.jsx';
 const TemplateWrapper = ({ children }) => (
     <div>
       <Helmet
-      title="Lesley Lai's Website"
+      title="Lesley Lai's Blog"
       meta={[
           { name: 'description', content: 'Sample' },
           { name: 'keywords', content: 'sample, something' },
       ]}
       />
       <Header />
-     1 <div
+      <div
         style={{
             margin: '0 auto',
             maxWidth: 960,

@@ -20,7 +20,6 @@ query ArchiveQuery {
           categories
         }
         excerpt
-        html
       }
     }
   }
