@@ -16,7 +16,7 @@ query ArchiveQuery {
       node {
         frontmatter {
           title
-          create(formatString: "DD MMMM, YYYY")
+          create(formatString: "DD MMMM YYYY")
           categories
         }
         excerpt
@@ -24,7 +24,7 @@ query ArchiveQuery {
     }
   }
 }
-`
+`;
 
 
 const Archive = ({ data })=> (

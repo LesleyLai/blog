@@ -5,6 +5,8 @@ import Helmet from 'react-helmet';
 
 import Header from '../components/header.jsx';
 
+require('../style/highlight.css')
+
 const TemplateWrapper = ({ children }) => (
     <div>
       <Helmet

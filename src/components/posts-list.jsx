@@ -6,8 +6,12 @@ import last from 'lodash/last';
 import { rhythm } from "../utils/typography";
 import TagsList from "./tags-list.jsx";
 
+function splitDate(post) {
+    return post.node.frontmatter.create.split(' ');
+};
+
 const groupPosts = posts => groupBy(posts,
-                                   post => last(post.node.frontmatter.create.split(' ')));
+                                   post => last(splitDate(post)));
 
 const Posts = ({posts}) => {
     console.log(posts);
@@ -22,7 +26,7 @@ const Posts = ({posts}) => {
                   <section style={{marginBottom: '1rem',}}>
                   <h3 marginBottom={rhythm(1 / 4)} style={{marginBottom: '0.3rem',}}>
                     {post.node.frontmatter.title}
-                    <span> — {post.node.frontmatter.create}</span>
+                    <span> — {splitDate(post)[0]} {splitDate(post)[1]}</span>
                   </h3>
                   <p style={{marginBottom: '0.3rem',}}>{post.node.excerpt}</p>
                   <TagsList tags={post.node.frontmatter.categories} />

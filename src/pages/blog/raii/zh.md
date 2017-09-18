@@ -10,7 +10,7 @@ categories:
 
 最近，我在工作时遇到了一批旧代码，其中有几个巨大的类。它们是以类似这样的写法写的：
 
-```c++
+```cpp
 class ExtnlOutData
 {
 public:
@@ -42,7 +42,7 @@ public:
 
 不过在这里，我想关注“DLL”的部分。这个类是作为我们软件插件的接口而设计的，我们这么用它：
 
-```c++
+```cpp
 void calculate ()
 {
     ExtnlOutData data;
@@ -75,7 +75,7 @@ void foo(QString name, QFont font)
 
 如果你的程序只在POSIX平台下运行，你可能觉得这不关你的事。不过我还有另外与你们也有关的一点要讲:这些混乱的资源管理策略很难做到异常安全。考虑一下如果 `setName` 或者 `setFont` 抛出异常会发生什么？外部程序员看似很无辜地顺序改动也会造成泄漏：
 
-```c++
+```cpp
 child.setName(name);
 child.setFont(font);
 // 如果上面抛出了异常，child永远不会被释放
@@ -84,7 +84,7 @@ parent.addTab(child);
 
 难怪类似于Qt这样的设计于很久以前的代码库倾向于全项目禁止使用异常。但库作者仍然无法阻止外部程序员这么做：
 
-```c++
+```cpp
 child.setName(name);
 child.setFont(font);
 if (!child.valid()) throw Exception{"Invalid tab"}; // 可能造成泄漏
@@ -96,7 +96,7 @@ parent.addTab(child);
 
 在标题中，我已经劝阻你们发明自己的资源管理策略，因为c++已经有标准的资源管理方式[RAII](https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization)。RAII可以轻易根除上面的泄漏或者不匹配的系统函数这种问题。第一个例子可以被这样从新设计：
 
-```c++
+```cpp
 struct PhaseData
 {
     int ID;
@@ -116,7 +116,7 @@ private:
 
 而如果你要设计一个新的GUI库的话，你可以把你的接口设计成这么使用：
 
-```c++
+```cpp
 void foo(MyString name, MyFont font)
 {
     MyTabWidget parent;
