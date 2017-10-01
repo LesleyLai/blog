@@ -1,4 +1,5 @@
 ---
+id: raii
 title: "Don't invent your own resource manage idioms in C++" 
 lang: en
 create: '2016-10-26'

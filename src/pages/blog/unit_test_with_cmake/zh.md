@@ -1,4 +1,5 @@
 ---
+id: unit-test-with-cmake
 title: "如何在cmake中嵌入单元测试框架" 
 lang: zh
 create: '2016-05-14'

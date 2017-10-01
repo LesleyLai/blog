@@ -14,7 +14,6 @@ const Archive = ({ data }) => (
     </div>
 );
 
-
 export const archiveQuery = graphql`
     query ArchiveQuery {
         allMarkdownRemark(sort: {fields: [frontmatter___create], order: DESC},
@@ -27,7 +26,9 @@ export const archiveQuery = graphql`
                 edges {
                     node {
                         frontmatter {
+                            id
                             title
+                            lang
                             create(formatString: "DD MMMM YYYY")
                             categories
                         }

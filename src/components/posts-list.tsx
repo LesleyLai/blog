@@ -2,6 +2,7 @@ import * as React from "react";
 import * as PropTypes from 'prop-types';
 import * as groupBy from 'lodash/groupBy';
 import * as last from 'lodash/last';
+import Link from 'gatsby-link';
 
 import { rhythm } from "../utils/typography";
 import TagsList from "./tags-list";
@@ -25,7 +26,9 @@ const Posts = ({ posts }) => {
                     {grouped[year].map(post => (
                         <section style={{ marginBottom: '1rem', }}>
                             <h3 marginBottom={rhythm(1 / 4)} style={{ marginBottom: '0.3rem', }}>
-                                {post.node.frontmatter.title}
+                                <Link to={'/' + post.node.frontmatter.id + '/' + post.node.frontmatter.lang + '/'} >
+                                    {post.node.frontmatter.title}
+                                </Link>
                                 <span> — {splitDate(post)[0]} {splitDate(post)[1]}</span>
                             </h3>
                             <p style={{ marginBottom: '0.3rem', }}>{post.node.excerpt}</p>

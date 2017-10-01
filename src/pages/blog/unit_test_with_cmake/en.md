@@ -1,4 +1,5 @@
 ---
+id: unit-test-with-cmake
 title: "Integrate unit test framework in cmake" 
 lang: en
 create: '2016-05-13'

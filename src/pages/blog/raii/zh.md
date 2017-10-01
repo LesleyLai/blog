@@ -1,4 +1,5 @@
 ---
+id: raii
 title: "不要发明自己的资源管理策略" 
 lang: zh
 create: '2016-10-26'

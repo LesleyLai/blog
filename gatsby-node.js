@@ -43,6 +43,10 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         allMarkdownRemark {
           edges {
             node {
+              frontmatter {
+                id
+                lang
+              }
               fields {
                 relativePath
               }
@@ -53,7 +57,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
     `).then(result => {
         result.data.allMarkdownRemark.edges.map(({ node }) => {
             createPage({
-                path: node.fields.relativePath,
+                path: '/' + node.frontmatter.id + '/' + node.frontmatter.lang + '/',
                 component: path.resolve(`./src/templates/post.tsx`),
                 context: {
                     // Data passed to context is available in page queries as GraphQL variables.
