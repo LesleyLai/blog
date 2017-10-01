@@ -5,7 +5,7 @@ create: '2016-10-26'
 lastmodify: '2016-10-26'
 categories:
 - cpp
-- resource
+- resource management
 ---
 
 

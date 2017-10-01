@@ -1,24 +1,3 @@
-/*
-SOLARIZED HEX
---------- -------
-base03    #002b36
-base02    #073642
-base01    #586e75
-base00    #657b83
-base0     #839496
-base1     #93a1a1
-base2     #eee8d5
-base3     #fdf6e3
-yellow    #b58900
-orange    #cb4b16
-red       #dc322f
-magenta   #d33682
-violet    #6c71c4
-blue      #268bd2
-cyan      #2aa198
-green     #859900
-*/
-
 code[class*="language-"],
 pre[class*="language-"] {
     color: #000000; /* base00 */
@@ -92,7 +71,7 @@ pre[class*="language-"] {
 .token.constant,
 .token.symbol,
 .token.deleted {
-    color: #268bd2; /* blue */
+    color: #000000;
 }
 
 .token.selector,
@@ -110,24 +89,24 @@ pre[class*="language-"] {
 }
 
 .token.entity {
-    color: #657b83; /* base00 */
-    background: #eee8d5; /* base2 */
+    color: #657b83;
+    background: #eee8d5;
 }
 
 .token.atrule,
 .token.attr-value,
 .token.keyword {
-    color: #859900; /* green */
+    color: #808000;
 }
 
 .token.function {
-    color: #b58900; /* yellow */
+    color: #b58900;
 }
 
 .token.regex,
 .token.important,
 .token.variable {
-    color: #cb4b16; /* orange */
+    color: #cb4b16;
 }
 
 .token.important,
