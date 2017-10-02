@@ -9,7 +9,7 @@ const AboutPage = () => (
                 University of Colorado at Boulder</a>. My primary interests include <a href="https://en.wikipedia.org/wiki/Computer_graphics">
                 Computer Graphics</a>, <a href="https://isocpp.org/">C++</a>, and Game development.
         </p>
-        <p>Besides programming, I enjoy triathlons, playing piano, and playing video games.</p>
+        <p>Besides programming, I enjoy triathlons, piano, and video games.</p>
     </div>
 );
 

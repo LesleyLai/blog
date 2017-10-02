@@ -3,7 +3,7 @@ id: raii
 title: "不要发明自己的资源管理策略" 
 lang: zh
 create: '2016-10-26'
-last-modify: '2016-10-26'
+lastModify: '2016-10-26'
 categories:
 - cpp
 - resource management

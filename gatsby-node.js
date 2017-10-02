@@ -19,8 +19,6 @@ exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
     }
 };
 
-
-
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
 exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {

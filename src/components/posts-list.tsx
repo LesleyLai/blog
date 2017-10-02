@@ -4,7 +4,7 @@ import * as groupBy from 'lodash/groupBy';
 import * as last from 'lodash/last';
 import Link from 'gatsby-link';
 
-import { rhythm } from "../utils/typography";
+import { rhythm } from "../utils/typography.js";
 import TagsList from "./tags-list";
 
 function splitDate(post) {

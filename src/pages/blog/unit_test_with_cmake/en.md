@@ -3,7 +3,7 @@ id: unit-test-with-cmake
 title: "Integrate unit test framework in cmake" 
 lang: en
 create: '2016-05-13'
-last-modify: '2016-05-13'
+lastModify: '2016-05-13'
 categories:
 - cmake
 - test

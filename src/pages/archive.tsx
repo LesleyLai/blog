@@ -4,9 +4,26 @@ import Link from 'gatsby-link';
 import Posts from "../components/posts-list";
 
 interface ArchiveProps {
+    data: {
+        allMarkdownRemark: {
+            totalCount: number;
+            edges: {
+                node: {
+                    frontmatter: {
+                        id: number;
+                        title: string;
+                        lang: string;
+                        create: string;
+                        categories: string;
+                    };
+                    excerpt: string;
+                };
+            };
+        };
+    }
 }
 
-const Archive = ({ data }) => (
+const Archive = ({ data }: ArchiveProps) => (
     <div>
         <h1>Blog archive</h1>
         {data.allMarkdownRemark.totalCount} Posts

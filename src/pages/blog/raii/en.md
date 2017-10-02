@@ -3,12 +3,11 @@ id: raii
 title: "Don't invent your own resource manage idioms in C++" 
 lang: en
 create: '2016-10-26'
-lastmodify: '2016-10-26'
+lastModify: '2016-10-26'
 categories:
 - cpp
 - resource management
 ---
-
 
 Recently, I have encountered a legacy code base at work. There are several tremendous class written like this:
 
