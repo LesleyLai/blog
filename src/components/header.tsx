@@ -2,7 +2,7 @@ import * as React from "react";
 import Link from 'gatsby-link';
 
 const NavButton = props => (
-    <li style={{
+    <div style={{
         display: 'inline-block',
         magrin: 0,
         padding: '0 10px'
@@ -10,22 +10,26 @@ const NavButton = props => (
         <Link to={props.to} >
             {props.text}
         </Link>
-    </li>
+    </div>
 );
 
 const NavBar = () => (
     <nav style={{
         listStyle: 'none',
         display: 'inline-block',
-        height: '25px'
+        height: '25px',
+        width: '700px',
     }}>
-        <ul>
+        <div style={{ display: 'inline' }}>
             <NavButton to="/" text="Home" />
             <NavButton to="/archive" text="Archive" />
             <NavButton to="/projects" text="Projects" />
             <NavButton to="/about" text="About" />
-            <NavButton to="/contact" text="Contact" />
-        </ul>
+        </div>
+        <div style={{ display: 'inline', float: 'right' }}>
+            <NavButton to="/" text="English" />
+            <NavButton to="/" text="中文" />
+        </div>
     </nav>
 );
 
