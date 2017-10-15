@@ -6,6 +6,8 @@ import Head from '../components/head';
 import 'semantic-ui-css/semantic.min.css';
 import '../style/responsive.css';
 
+import { MenuProps } from "../components/menu"
+
 try {
     require('../style/highlight.css');
 } catch (e) {
@@ -24,6 +26,12 @@ interface DefaultLayoutStates {
     //sidebarVisible: boolean;
 }
 
+const menuItems = [
+    { name: "Home", path: "/", exact: true, icon: "home", inverted: true },
+    { name: "Blog", path: "/archive/", exact: false, icon: "newspaper" },
+    { name: "Projects", path: "/projects/", exact: false, icon: "newspaper" },
+    { name: "About", path: "/about/", exact: true, icon: "info circle" },
+];
 
 // Use `module.exports` to be compliante with `webpack-require` import method
 export default class DefaultLayout
@@ -35,7 +43,7 @@ export default class DefaultLayout
             <html lang="en">
                 <Head />
                 <body>
-                    <Header />
+                    <Header items={menuItems} pathname={this.props.location.pathname} />
                     <main style={{
                         margin: '0 auto',
                         maxWidth: 960,

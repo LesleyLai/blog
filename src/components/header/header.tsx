@@ -4,40 +4,29 @@ import { Menu, Icon, Container } from "semantic-ui-react";
 
 import { MenuProps } from "../menu"
 
-const menuItems = [
-    { name: "Home", path: "/", exact: true, icon: "home", inverted: true },
-    { name: "Blog", path: "/archive/", exact: false, icon: "newspaper" },
-    { name: "Projects", path: "/projects/", exact: false, icon: "newspaper" },
-    { name: "About", path: "/about/", exact: true, icon: "info circle" },
-];
-
-const NavBar = ({ items }: MenuProps) => (
+const NavBar = ({ items, pathname }: MenuProps) => (
     <nav>
         <Menu.Item as="a" className="mobile only" icon="sidebar" />
 
         <Menu size="large" className="mobile hidden">
 
             {items.map((item) => {
-                //const active = (item.exact) ? pathname === item.path : pathname.startsWith(item.path);
+                const active = (item.exact) ? pathname === item.path : pathname.startsWith(item.path);
                 return <Menu.Item
                     as={Link}
                     name={item.name}
                     to={item.path}
                     key={item.path}
-                    active={true}
+                    active={false}
                 />;
             })}
-
-            <Menu.Item as={Link} name="English" to="/" />
-
-
         </Menu>
 
 
     </nav >
 );
 
-const Header = () => (
+const Header = ({ items, pathname }: MenuProps) => (
     <header
         style={{
             background: 'DarkGrey',
@@ -66,7 +55,7 @@ const Header = () => (
                     Lesley Lai
                 </Link>
             </h1>
-            <NavBar items={menuItems} />
+            <NavBar items={items} pathname={pathname} />
         </div>
     </header>
 );
