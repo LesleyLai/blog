@@ -1,7 +1,10 @@
 import * as React from "react";
 
-import Header from '../components/header';
+import Header from '../components/header/header';
 import Head from '../components/head';
+
+import 'semantic-ui-css/semantic.min.css';
+import '../style/responsive.css';
 
 try {
     require('../style/highlight.css');
