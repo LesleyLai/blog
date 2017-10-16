@@ -35,23 +35,22 @@ const menuItems = [
 
 // Use `module.exports` to be compliante with `webpack-require` import method
 export default class DefaultLayout
-    extends React.PureComponent<DefaultLayoutProps, DefaultLayoutStates> {
+extends React.PureComponent<DefaultLayoutProps, DefaultLayoutStates> {
     render() {
         const children = this.props.children();
 
         return (
-            <html lang="en">
+            <main lang="en">
                 <Head />
-                <body>
-                    <Header items={menuItems} pathname={this.props.location.pathname} />
-                    <main style={{
-                        margin: '0 auto',
-                        maxWidth: 960,
-                    }}>
-                        {children}
-                    </main>
-                </body>
-            </html>
+                <Header items={menuItems} pathname={this.props.location.pathname} />
+                <section style={{
+                    margin: '0 auto',
+                    maxWidth: 960,
+                    padding: '0.3rem 1.0875rem',
+                }}>
+                    {children}
+                </section>
+            </main>
         );
     }
 };
