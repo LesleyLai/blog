@@ -11,18 +11,16 @@ const NavBar = ({ items, pathname }: MenuProps) => (
         <Menu size="large" className="mobile hidden">
 
             {items.map((item) => {
-                const active = (item.exact) ? pathname === item.path : pathname.startsWith(item.path);
+                const active: boolean = (item.exact) ? pathname === item.path : pathname.startsWith(item.path);
                 return <Menu.Item
                     as={Link}
                     name={item.name}
                     to={item.path}
                     key={item.path}
-                    active={false}
+                    active={active}
                 />;
             })}
         </Menu>
-
-
     </nav >
 );
 

@@ -1,20 +1,52 @@
 import * as React from "react";
-import { Icon } from "semantic-ui-react";
+import { Label, Icon } from "semantic-ui-react";
 
-const TagsList = ({ tags }) => (
-    <span>Topics:{' '}
-        {
-            tags.map((tag, index) => (
-                <span>
-                    <a href={`/category/${tag}/`}>
-                        <Icon name="tag" />
-                        {tag}
-                    </a>
-                    {index < tags.length - 1 ? ', ' : ''}
-                </span>
-            ))
-        }
-    </span>
-);
+interface TagsProps {
+    tags: string[]
+};
+
+interface Tag {
+    en: string
+    zh?: string
+    color: string // Color of the tag box
+}
+
+interface TagMap {
+    [id: string]: Tag;
+}
+
+const tag_infos: TagMap = {
+    "cpp": { en: "C++", color: "red" },
+    "cmake": { en: "CMake", color: "green" },
+    "test": { en: "Test", zh: "测试", color: "yellow" },
+    "resource": { en: "Resource Management", zh: "资源管理", color: "white" }
+};
+
+const TagsList = ({ tags }: TagsProps) => {
+
+    return (
+        <nav>Topics:{' '}
+            {
+                tags.map((tag, index) => {
+                    const info: Tag = tag_infos[tag];
+                    const tag_name: string = info ? info.en : tag;
+                    const color: string = info ? info.color : "white";
+                    return (
+                        <span>
+                            <Label as='a'
+                                href={`/category/${tag}/`}
+                                tag
+                                size="mini"
+                                color={color}>
+                                <Icon name="tag" />
+                                {tag_name}
+                            </Label>
+                        </span>
+                    );
+                })
+            }
+        </nav>
+    );
+}
 
 export default TagsList;
