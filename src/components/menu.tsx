@@ -40,7 +40,8 @@ interface NavMenuProp extends React.HTMLProps<HTMLDivElement> {
 }
 
 const NavMenu = (props: NavMenuProp) => {
-    const classes = "mobile hidden";
+    const classes = "";
+    //const classes = "mobile hidden";
     const navMenuItem = (itemName: string) =>
         buildMenuItem(props.pathname, itemName, classes);
 
