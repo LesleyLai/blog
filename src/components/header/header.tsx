@@ -1,39 +1,60 @@
 import * as React from "react";
 import Link from 'gatsby-link';
-import { Menu, Icon, Container } from "semantic-ui-react";
 
-import { MenuProps } from "../menu"
+import NavMenu from "../menu"
 
-const NavBar = ({ items, pathname }: MenuProps) => (
-    <nav>
-        <Menu as="nav" secondary size="large">
+/* 
+ * const NavBar = ({ items, pathname }) => (
+ *     <Menu as="nav" secondary inverted pointing size="large">
+ * 
+ *         <Menu.Item as="a" className="mobile only" icon="sidebar" />
+ * 
+ *         {items.map((item) => {
+ *             const active: boolean = (item.exact) ?
+ *                 pathname === item.path :
+ *                 pathname.startsWith(item.path);
+ * 
+ *             return (<Menu.Item
+ *                 as={Link}
+ *                 name={item.name}
+ *                 to={item.path}
+ *                 key={item.path}
+ *                 active={active}
+ *                 className="mobile hidden"
+ *             />);
+ * 
+ *         })}
+ * 
+ * 
+ *     </Menu>
+ * );
+ * */
 
-            <Menu.Item as="a" className="mobile only" icon="sidebar" />
+interface HeaderProps {
+    pathname: string;
+}
 
-            {items.map((item) => {
-                 const active: boolean = (item.exact) ? pathname === item.path : pathname.startsWith(item.path);
-                 return <Menu.Item
-                     as={Link}
-                     name={item.name}
-                     to={item.path}
-                     key={item.path}
-                     active={active}
-                     className="mobile hidden"
-                 />;
-            })}
-        </Menu>
-    </nav >
+const Logo = () => (
+    <Link
+        to="/"
+        style={{
+            color: 'white',
+            margin: 'auto 15px auto 0',
+        }}
+    >
+        <h1>Lesley Lai</h1>
+    </Link>
 );
 
-const Header = ({ items, pathname }: MenuProps) => (
+const Header = ({ pathname }: HeaderProps) => (
     <header
         style={{
-            background: 'DarkGrey',
+            background: '#1b1c1d',
             marginBottom: '1.45rem',
         }}
     >
 
-        <div
+        <section
             style={{
                 margin: '0 auto',
                 maxWidth: 960,
@@ -41,18 +62,9 @@ const Header = ({ items, pathname }: MenuProps) => (
                 display: 'flex',
             }}
         >
-            <Link
-                to="/"
-                style={{
-                    color: 'white',
-                    textDecoration: 'none',
-                    marginRight: '15px',
-                }}
-            >
-                <h1>Lesley Lai</h1>
-            </Link>
-            <NavBar items={items} pathname={pathname} />
-        </div>
+            <Logo />
+            <NavMenu pathname={pathname} />
+        </section>
     </header>
 );
 

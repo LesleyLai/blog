@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Label, Icon } from "semantic-ui-react";
+import { Label } from "semantic-ui-react";
 
 interface TagsProps {
     tags: string[]
@@ -38,7 +38,6 @@ const TagsList = ({ tags }: TagsProps) => {
                                 tag
                                 size="mini"
                                 color={color}>
-                                <Icon name="tag" />
                                 {tag_name}
                             </Label>
                         </span>
