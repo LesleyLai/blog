@@ -6,8 +6,6 @@ import Head from '../components/head';
 import 'semantic-ui-css/semantic.min.css';
 import '../style/responsive.css';
 
-import { MenuProps } from "../components/menu"
-
 try {
     require('../style/highlight.css');
 } catch (e) {
@@ -33,7 +31,7 @@ export default class DefaultLayout
         const children = this.props.children();
 
         return (
-            <main lang="en">
+            <main>
                 <Head />
                 <Header pathname={this.props.location.pathname} />
                 <section style={{

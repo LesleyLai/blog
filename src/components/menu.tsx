@@ -45,7 +45,12 @@ const NavMenu = (props: NavMenuProp) => {
         buildMenuItem(props.pathname, itemName, classes);
 
     return (
-        <Menu as="nav" secondary inverted pointing size="large" >
+        <Menu as="nav"
+            secondary
+            inverted
+            pointing
+            size="large"
+            style={{ marginTop: '0' }}>
             {navMenuItem("Home")}
             {navMenuItem("Blog")}
 
