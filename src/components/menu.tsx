@@ -11,10 +11,10 @@ interface MenuItem {
 }
 
 const itemsData: { [key: string]: MenuItem } = {
-    Home: { path: "/", exact: true, icon: "home", inverted: true },
-    Blog: { path: "/archive/", exact: false, icon: "newspaper" },
-    Resume: { path: "/about/", exact: true, icon: "info circle" },
-    Portfolio: { path: "/projects", exact: true, icon: "info circle" },
+    home: { en:"Home", path: "/", exact: true, icon: "home", inverted: true },
+    blog: { en:"Blog", path: "/archive/", exact: false, icon: "newspaper" },
+    about: { en:"About me", path: "/about/", exact: true, icon: "info circle" },
+    portfolio: { en:"Portfolio", path: "/projects", exact: true, icon: "info circle" },
 };
 
 function buildMenuItem(pathname: string, itemName: string, classes: string) {
@@ -27,7 +27,7 @@ function buildMenuItem(pathname: string, itemName: string, classes: string) {
         <Menu.Item
             as={Link}
             active={active}
-            name={itemName}
+            name={item.en}
             to={item.path}
             key={item.path}
             className={classes} />
@@ -52,14 +52,13 @@ const NavMenu = (props: NavMenuProp) => {
             pointing
             size="large"
             style={{ marginTop: '0' }}>
-            {navMenuItem("Home")}
-            {navMenuItem("Blog")}
+            {navMenuItem("home")}
+            {navMenuItem("blog")}
 
-            <Dropdown item text='About' active="false">
+            <Dropdown item as="a" text='About' active="false">
                 <Dropdown.Menu>
-                    {navMenuItem("Resume")}
-                    {navMenuItem("Portfolio")}
-                    <Dropdown.Item>Contact</Dropdown.Item>
+                    {navMenuItem("about")}
+                    {navMenuItem("portfolio")}
                 </Dropdown.Menu>
             </Dropdown>
         </Menu>

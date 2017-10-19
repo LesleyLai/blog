@@ -3,33 +3,6 @@ import Link from 'gatsby-link';
 
 import NavMenu from "../menu"
 
-/* 
- * const NavBar = ({ items, pathname }) => (
- *     <Menu as="nav" secondary inverted pointing size="large">
- * 
- *         <Menu.Item as="a" className="mobile only" icon="sidebar" />
- * 
- *         {items.map((item) => {
- *             const active: boolean = (item.exact) ?
- *                 pathname === item.path :
- *                 pathname.startsWith(item.path);
- * 
- *             return (<Menu.Item
- *                 as={Link}
- *                 name={item.name}
- *                 to={item.path}
- *                 key={item.path}
- *                 active={active}
- *                 className="mobile hidden"
- *             />);
- * 
- *         })}
- * 
- * 
- *     </Menu>
- * );
- * */
-
 interface HeaderProps {
     pathname: string;
 }
