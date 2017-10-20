@@ -11,10 +11,10 @@ interface MenuItem {
 }
 
 const itemsData: { [key: string]: MenuItem } = {
-    home: { en:"Home", path: "/", exact: true, icon: "home", inverted: true },
-    blog: { en:"Blog", path: "/archive/", exact: false, icon: "newspaper" },
-    about: { en:"About me", path: "/about/", exact: true, icon: "info circle" },
-    portfolio: { en:"Portfolio", path: "/projects", exact: true, icon: "info circle" },
+    home: { en: "Home", path: "/", exact: true, icon: "home", inverted: true },
+    blog: { en: "Blog", path: "/archive/", exact: false, icon: "newspaper" },
+    about: { en: "About me", path: "/about/", exact: true, icon: "info circle" },
+    portfolio: { en: "Portfolio", path: "/projects", exact: true, icon: "info circle" },
 };
 
 function buildMenuItem(pathname: string, itemName: string, classes: string) {
@@ -55,7 +55,7 @@ const NavMenu = (props: NavMenuProp) => {
             {navMenuItem("home")}
             {navMenuItem("blog")}
 
-            <Dropdown item as="a" text='About' active="false">
+            <Dropdown item text='About'>
                 <Dropdown.Menu>
                     {navMenuItem("about")}
                     {navMenuItem("portfolio")}
