@@ -8,6 +8,15 @@
  * see https://github.com/Semantic-Org/Semantic-UI/issues/1114
  */
 
+/* Fix double scroolbar problem */
+html {
+    overflow-x: hidden;
+}
+
+body {
+    overflow-x: visible;
+}
+
 /* Mobile */
 @media only screen and (max-width: 767px) {
   [class*="mobile hidden"],
