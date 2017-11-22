@@ -2,6 +2,7 @@ import * as React from "react";
 
 import Header from '../components/header/header';
 import Head from '../components/head';
+import Footer from '../components/footer/footer'
 
 import 'semantic-ui-css/semantic.min.css';
 import '../style/responsive.css';
@@ -41,6 +42,7 @@ export default class DefaultLayout
                 }}>
                     {children}
                 </section>
+                <Footer />
             </main>
         );
     }
