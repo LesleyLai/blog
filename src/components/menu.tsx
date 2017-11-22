@@ -4,6 +4,7 @@ import { Menu, Dropdown } from "semantic-ui-react";
 
 
 interface MenuItem {
+    en: string;
     path: string;
     exact: boolean;
     icon?: string;
@@ -13,8 +14,11 @@ interface MenuItem {
 const itemsData: { [key: string]: MenuItem } = {
     home: { en: "Home", path: "/", exact: true, icon: "home", inverted: true },
     blog: { en: "Blog", path: "/archive/", exact: false, icon: "newspaper" },
-    about: { en: "About me", path: "/about/", exact: true, icon: "info circle" },
+
+    cv: { en: "CV", path: "/resume", exact: true, icon: "info circle" },
     portfolio: { en: "Portfolio", path: "/projects", exact: true, icon: "info circle" },
+    mooc: { en: "Learning", path: "/mooc", exact: true, icon: "info circle" },
+    teaching: { en: "Teaching", path: "/teaching", exact: true, icon: "info circle" },
 };
 
 function buildMenuItem(pathname: string, itemName: string, classes: string) {
@@ -40,8 +44,7 @@ interface NavMenuProp extends React.HTMLProps<HTMLDivElement> {
 }
 
 const NavMenu = (props: NavMenuProp) => {
-    const classes = "";
-    //const classes = "mobile hidden";
+    const classes = "mobile hidden";
     const navMenuItem = (itemName: string) =>
         buildMenuItem(props.pathname, itemName, classes);
 
@@ -51,17 +54,14 @@ const NavMenu = (props: NavMenuProp) => {
             inverted
             pointing
             size="large"
-            style={{ marginTop: '0' }}>
-            {navMenuItem("home")}
-            {navMenuItem("blog")}
-
-            <Dropdown item text='About'>
-                <Dropdown.Menu>
-                    {navMenuItem("about")}
-                    {navMenuItem("portfolio")}
-                </Dropdown.Menu>
-            </Dropdown>
-        </Menu>
+            style={{
+                marginTop: '0',
+                marginLeft: '100px'
+            }}>
+            {
+                Object.keys(itemsData).map((key: string) => navMenuItem(key))
+            }
+        </Menu >
     );
 }
 

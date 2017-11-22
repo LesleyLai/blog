@@ -15,7 +15,7 @@ const Logo = () => (
             margin: 'auto 15px auto 0',
         }}
     >
-        <h1>Lesley Lai</h1>
+        <h1>Lesley Lai 赖思理</h1>
     </Link>
 );
 
@@ -30,7 +30,7 @@ const Header = ({ pathname }: HeaderProps) => (
         <section
             style={{
                 margin: '0 auto',
-                maxWidth: 960,
+                maxWidth: 1200,
                 padding: '0.3rem 1.0875rem',
                 display: 'flex',
             }}
