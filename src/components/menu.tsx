@@ -1,6 +1,6 @@
 import * as React from "react";
 import Link from 'gatsby-link';
-import { Menu, Dropdown } from "semantic-ui-react";
+import { Menu } from "semantic-ui-react";
 
 
 interface MenuItem {

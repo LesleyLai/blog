@@ -2,7 +2,7 @@ import * as React from "react";
 
 import Header from '../components/header/header';
 import Head from '../components/head';
-import Footer from '../components/footer/footer'
+import AboutMe from '../components/about/aboutme';
 
 import 'semantic-ui-css/semantic.min.css';
 import '../style/responsive.css';
@@ -37,12 +37,15 @@ export default class DefaultLayout
                 <Header pathname={this.props.location.pathname} />
                 <section style={{
                     margin: '0 auto',
-                    maxWidth: 960,
+                    maxWidth: 1200,
                     padding: '0.3rem 1.0875rem',
+                    display: 'flex',
                 }}>
-                    {children}
+                    <div style={{ width: '1000px', }}>
+                        {children}
+                    </div>
+                    <AboutMe />
                 </section>
-                <Footer />
             </main>
         );
     }
