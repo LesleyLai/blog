@@ -15,7 +15,6 @@ const groupPosts = posts => groupBy(posts,
     post => last(splitDate(post)));
 
 const Posts = ({ posts }) => {
-    console.log(posts);
     const grouped = groupPosts(posts);
     const years = Object.keys(grouped).sort().reverse();
     return (
