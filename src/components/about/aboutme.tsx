@@ -1,12 +1,15 @@
 import * as React from "react";
-import { Sidebar } from "semantic-ui-react";
+import { Container } from "semantic-ui-react";
+
 
 const AboutMe = () => {
     const currentYear = (new Date()).getFullYear();
+    const portrait = require("./portrait.jpg");
 
     return (
-        <div style={{ width: '200px' }}>
-            <img src="http://lorempixel.com/200/200/abstract" alt="Lesley"></img>
+        <Container style={{ width: '200px' }}>
+
+            <img src={portrait} alt="Lesley Lai Protrait"></img>
 
             <article>
                 <p>
@@ -19,8 +22,15 @@ const AboutMe = () => {
                 </p>
             </article>
 
-            <p style={{ textAlign: "center" }}>©2015-{currentYear} Lesley Lai</p>
-        </div>
+            <p style={{
+                textAlign: "center",
+                margin: "10px 10px",
+                fontSize: "12px",
+                fontStyle: "italic",
+            }}>
+                ©2015-{currentYear} Lesley Lai
+            </p>
+        </Container>
     );
 };
 
