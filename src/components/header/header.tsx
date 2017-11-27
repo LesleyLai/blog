@@ -1,7 +1,10 @@
 import * as React from "react";
 import Link from 'gatsby-link';
 
-import NavMenu from "../menu"
+import NavMenu from "../menu";
+
+import { Container } from "semantic-ui-react";
+
 
 interface HeaderProps {
     pathname: string;
@@ -27,7 +30,7 @@ const Header = ({ pathname }: HeaderProps) => (
         }}
     >
 
-        <section
+        <Container
             style={{
                 margin: '0 auto',
                 maxWidth: 1200,
@@ -37,7 +40,7 @@ const Header = ({ pathname }: HeaderProps) => (
         >
             <Logo />
             <NavMenu pathname={pathname} />
-        </section>
+        </Container>
     </header>
 );
 

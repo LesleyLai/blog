@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import { Container } from "semantic-ui-react";
+
 import Header from '../components/header/header';
 import Head from '../components/head';
 import AboutMe from '../components/about/aboutme';
@@ -35,17 +37,16 @@ export default class DefaultLayout
             <main>
                 <Head />
                 <Header pathname={this.props.location.pathname} />
-                <section style={{
+                <Container style={{
                     margin: '0 auto',
-                    maxWidth: 1200,
                     padding: '0.3rem 1.0875rem',
                     display: 'flex',
                 }}>
-                    <div style={{ width: '1000px', }}>
+                    <Container fluid style={{ width: '1000px', fontSize: "16px" }}>
                         {children}
-                    </div>
+                    </Container>
                     <AboutMe />
-                </section>
+                </Container>
             </main>
         );
     }

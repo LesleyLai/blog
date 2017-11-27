@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Container } from "semantic-ui-react";
 
 
 const AboutMe = () => {
@@ -7,7 +6,7 @@ const AboutMe = () => {
     const portrait = require("./portrait.jpg");
 
     return (
-        <Container style={{ width: '200px' }}>
+        <div style={{ width: '200px' }}>
 
             <img src={portrait} alt="Lesley Lai Protrait"></img>
 
@@ -30,7 +29,7 @@ const AboutMe = () => {
             }}>
                 ©2015-{currentYear} Lesley Lai
             </p>
-        </Container>
+        </div>
     );
 };
 

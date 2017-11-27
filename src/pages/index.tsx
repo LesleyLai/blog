@@ -3,7 +3,7 @@ import Link from 'gatsby-link';
 
 const IndexPage = () => (
     <article>
-        Under construction
+        <h1 style={{ fontSize: '50px' }}>Lesley Lai</h1>
     </article>
 );
 

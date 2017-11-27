@@ -24,7 +24,7 @@ const Posts = ({ posts }) => {
                     <h2>{year}</h2>
                     {grouped[year].map(post => (
                         <section style={{ marginBottom: '1rem', }}>
-                            <h3 marginBottom={rhythm(1 / 4)} style={{ marginBottom: '0.3rem', }}>
+                            <h3 style={{ marginBottom: rhythm(1 / 4), }}>
                                 <Link to={'/' + post.node.frontmatter.id + '/' + post.node.frontmatter.lang + '/'} >
                                     {post.node.frontmatter.title}
                                 </Link>
