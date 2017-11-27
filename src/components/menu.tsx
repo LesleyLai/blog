@@ -2,8 +2,7 @@ import * as React from "react";
 import Link from 'gatsby-link';
 import { Menu } from "semantic-ui-react";
 
-
-interface MenuItem {
+interface MenuItemData {
     en: string;
     path: string;
     exact: boolean;
@@ -11,18 +10,18 @@ interface MenuItem {
     inverted?: boolean;
 }
 
-const itemsData: { [key: string]: MenuItem } = {
-    home: { en: "Home", path: "/", exact: true, icon: "home", inverted: true },
+const itemsData: { [key: string]: MenuItemData } = {
+    home: { en: "Home", path: "/", exact: true, icon: "home" },
     blog: { en: "Blog", path: "/archive/", exact: false, icon: "newspaper" },
 
-    cv: { en: "CV", path: "/resume", exact: true, icon: "info circle" },
+    //cv: { en: "CV", path: "/resume", exact: true, icon: "info circle" },
     portfolio: { en: "Portfolio", path: "/projects", exact: true, icon: "info circle" },
     mooc: { en: "Learning", path: "/mooc", exact: true, icon: "info circle" },
-    teaching: { en: "Teaching", path: "/teaching", exact: true, icon: "info circle" },
+    //teaching: { en: "Teaching", path: "/teaching", exact: true, icon: "info circle" },
 };
 
 function buildMenuItem(pathname: string, itemName: string, classes: string) {
-    const item: MenuItem = itemsData[itemName];
+    const item: MenuItemData = itemsData[itemName];
     const active: Boolean = (item.exact) ?
         pathname === item.path :
         pathname.startsWith(item.path);
@@ -38,31 +37,25 @@ function buildMenuItem(pathname: string, itemName: string, classes: string) {
     );
 }
 
-
-interface NavMenuProp extends React.HTMLProps<HTMLDivElement> {
+interface GenericMenuProp extends React.HTMLProps<HTMLDivElement> {
     pathname: string;
+    itemClasses: string;
 }
 
-const NavMenu = (props: NavMenuProp) => {
-    const classes = "mobile hidden";
-    const navMenuItem = (itemName: string) =>
-        buildMenuItem(props.pathname, itemName, classes);
+
+export const GenericMenu = (props: GenericMenuProp) => {
 
     return (
         <Menu as="nav"
             secondary
             inverted
             pointing
-            size="large"
-            style={{
-                marginTop: '0',
-                marginLeft: '100px'
-            }}>
+            size="large">
             {
-                Object.keys(itemsData).map((key: string) => navMenuItem(key))
+                Object.keys(itemsData).map((key: string) =>
+                    buildMenuItem(props.pathname, key, props.itemClasses)
+                )
             }
         </Menu >
     );
 }
-
-export default NavMenu;

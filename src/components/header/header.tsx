@@ -1,7 +1,8 @@
 import * as React from "react";
+import { Dispatch } from "redux";
 import Link from 'gatsby-link';
 
-import NavMenu from "../menu";
+import HeaderMenu from "./headerMenu";
 
 import { Container } from "semantic-ui-react";
 
@@ -33,13 +34,12 @@ const Header = ({ pathname }: HeaderProps) => (
         <Container
             style={{
                 margin: '0 auto',
-                maxWidth: 1200,
                 padding: '0.3rem 1.0875rem',
                 display: 'flex',
             }}
         >
             <Logo />
-            <NavMenu pathname={pathname} />
+            <HeaderMenu pathname={pathname} />
         </Container>
     </header>
 );
