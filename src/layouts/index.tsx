@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Container } from "semantic-ui-react";
+import { Container, Grid } from "semantic-ui-react";
 
 import Header from '../components/header/header';
 import Head from '../components/head';
@@ -12,7 +12,7 @@ import '../style/responsive.css';
 try {
     require('../style/highlight.css');
 } catch (e) {
-    console.log(e)
+    throw Error(e);
 }
 
 interface DefaultLayoutProps extends React.HTMLProps<HTMLDivElement> {
@@ -32,21 +32,21 @@ export default class DefaultLayout
     extends React.PureComponent<DefaultLayoutProps, DefaultLayoutStates> {
     render() {
         const children = this.props.children();
+        const layout = require("./layout.module.css");
 
         return (
             <main>
                 <Head />
                 <Header pathname={this.props.location.pathname} />
-                <Container style={{
-                    margin: '0 auto',
-                    padding: '0.3rem 1.0875rem',
-                    display: 'flex',
-                }}>
-                    <Container fluid style={{ width: '1000px', fontSize: "16px" }}>
+                <Grid container className={layout.grid}>
+                    <Grid.Column mobile={16} tablet={10} computer={12}>
                         {children}
-                    </Container>
-                    <AboutMe />
-                </Container>
+                    </Grid.Column>
+
+                    <Grid.Column mobile={16} tablet={6} computer={4}>
+                        <AboutMe />
+                    </Grid.Column>
+                </Grid>
             </main>
         );
     }

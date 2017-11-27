@@ -1,0 +1,30 @@
+.about {
+    width: 200px;
+    min-width: 200px;
+    font-size: 14px;
+}
+
+/* Mobile */
+@media only screen and (max-width: 767px) {
+  .about {
+      width: 100%;
+      text-align: center;
+  }
+}
+
+#portrait {
+    display: block;
+    margin: 10px auto;
+    width: 100%;
+    max-width: 250px;
+    max-height: 250px;
+    border: solid 8px #fffcf4;
+    border-radius: 4px;
+}
+
+.copyright {
+    text-align: center;
+    margin: 10px 10px;
+    font-size: 12px;
+    font-style: italic;
+}

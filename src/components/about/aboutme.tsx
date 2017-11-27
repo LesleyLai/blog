@@ -5,10 +5,12 @@ const AboutMe = () => {
     const currentYear = (new Date()).getFullYear();
     const portrait = require("./portrait.jpg");
 
-    return (
-        <div style={{ width: '200px' }}>
+    const css = require("./about.module.css");
 
-            <img src={portrait} alt="Lesley Lai Protrait"></img>
+    return (
+        <div className={css.about}>
+
+            <img src={portrait} alt="Lesley Lai Protrait" id={css.portrait}></img>
 
             <article>
                 <p>
@@ -21,12 +23,7 @@ const AboutMe = () => {
                 </p>
             </article>
 
-            <p style={{
-                textAlign: "center",
-                margin: "10px 10px",
-                fontSize: "12px",
-                fontStyle: "italic",
-            }}>
+            <p className={css.copyright}>
                 ©2015-{currentYear} Lesley Lai
             </p>
         </div>
