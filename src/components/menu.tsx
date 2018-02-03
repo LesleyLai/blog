@@ -16,7 +16,6 @@ const itemsData: { [key: string]: MenuItemData } = {
 
     //cv: { en: "CV", path: "/resume", exact: true, icon: "info circle" },
     portfolio: { en: "Portfolio", path: "/projects", exact: true, icon: "info circle" },
-    mooc: { en: "Learning", path: "/mooc", exact: true, icon: "info circle" },
     //teaching: { en: "Teaching", path: "/teaching", exact: true, icon: "info circle" },
 };
 
