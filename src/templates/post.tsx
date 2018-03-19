@@ -2,7 +2,25 @@ import * as React from "react";
 import TagsList from "../components/tags-list";
 // import ReactDisqusComments from "react-disqus-comments";
 
-export default ({ data }) => {
+interface PostData {
+  markdownRemark: {
+    html: string;
+    frontmatter: {
+      id: string,
+      lang: string,
+      title: string,
+      create: string,
+      lastModify: string,
+      categories: string[],
+    }
+  }
+}
+
+interface PostProps {
+  data: PostData;
+}
+
+export default ({ data }: PostProps) => {
   const post = data.markdownRemark;
   const path = '/' + post.frontmatter.id + '/' + post.frontmatter.lang + '/';
   const url = "http://lesleylai.info" + path;
@@ -15,11 +33,11 @@ export default ({ data }) => {
     </ul>
     <div dangerouslySetInnerHTML={{ __html: post.html }} />
     {/*<ReactDisqusComments
-      shortname="lesleylaiblog"
-      identifier={post.frontmatter.id}
-      title={post.frontmatter.title}
-      url={url}
-      onNewComment={this.handleNewComment} />*/}
+        shortname="lesleylaiblog"
+        identifier={post.frontmatter.id}
+        title={post.frontmatter.title}
+        url={url}
+        onNewComment={this.handleNewComment} />*/}
   </div>);
 };
 
