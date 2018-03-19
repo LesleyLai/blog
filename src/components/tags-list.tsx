@@ -1,4 +1,5 @@
 import * as React from "react";
+import Link from "gatsby-link";
 import { Label } from "semantic-ui-react";
 
 interface TagsProps {
@@ -20,19 +21,21 @@ const tag_infos: { [id: string]: Tag } = {
 
 const TagsList = ({ tags }: TagsProps) => {
 
+  const css = require("./tags-list.module.css");
+
   return (
-    <p>Topics:{' '}
+    <p>
       {
         tags.map((tag, index) => {
           const info: Tag = tag_infos[tag];
           const tag_name: string = info ? info.en : tag;
           const color: string = info ? info.color : "white";
           return (
-            <span>
-              <Label as='a'
-                href={`/category/${tag}/`}
-                tag
-                size="mini"
+            <span className={css.tag}>
+              <Label
+                as={Link}
+                to={`/category/${tag}/`}
+                size="small"
                 color={color}>
                 {tag_name}
               </Label>
