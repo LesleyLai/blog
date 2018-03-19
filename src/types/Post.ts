@@ -1,0 +1,10 @@
+interface Post {
+    frontmatter: {
+        id: number;
+        title: string;
+        lang: string;
+        create: string;
+        categories: string;
+    };
+    excerpt: string;
+};
