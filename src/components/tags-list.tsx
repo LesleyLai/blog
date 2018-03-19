@@ -11,11 +11,7 @@ interface Tag {
   color: string // Color of the tag box
 }
 
-interface TagMap {
-  [id: string]: Tag;
-}
-
-const tag_infos: TagMap = {
+const tag_infos: { [id: string]: Tag } = {
   "cpp": { en: "C++", color: "red" },
   "cmake": { en: "CMake", color: "green" },
   "test": { en: "Test", zh: "测试", color: "yellow" },
