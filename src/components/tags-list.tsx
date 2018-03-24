@@ -24,7 +24,7 @@ const TagsList = ({ tags }: TagsProps) => {
   const css = require("./tags-list.module.css");
 
   return (
-    <p>
+    <span>
       {
         tags.map((tag, index) => {
           const info: Tag = tag_infos[tag];
@@ -43,7 +43,7 @@ const TagsList = ({ tags }: TagsProps) => {
           );
         })
       }
-    </p>
+    </span>
   );
 }
 

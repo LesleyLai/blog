@@ -2,22 +2,22 @@ import * as React from "react";
 import TagsList from "../components/tags-list";
 // import ReactDisqusComments from "react-disqus-comments";
 
-interface PostData {
-  markdownRemark: {
-    html: string;
-    frontmatter: {
-      id: string,
-      lang: string,
-      title: string,
-      create: string,
-      lastModify: string,
-      categories: string[],
-    }
+export interface PostData {
+  html: string;
+  frontmatter: {
+    id: string,
+    lang: string,
+    title: string,
+    create: string,
+    lastModify: string,
+    categories: string[],
   }
 }
 
 interface PostProps {
-  data: PostData;
+  data: {
+    markdownRemark: PostData;
+  }
 }
 
 export default ({ data }: PostProps) => {

@@ -8,11 +8,7 @@ import AboutMe from '../components/about/aboutme';
 import 'semantic-ui-css/semantic.min.css';
 import '../style/responsive.css';
 
-try {
-  require('../style/highlight.css');
-} catch (e) {
-  throw Error(e);
-}
+require('../style/highlight.css');
 
 interface DefaultLayoutProps extends React.HTMLProps<HTMLDivElement> {
   location: {

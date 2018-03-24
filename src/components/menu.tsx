@@ -12,7 +12,7 @@ interface MenuItemData {
 
 const itemsData: { [key: string]: MenuItemData } = {
   home: { en: "Home", path: "/", exact: true, icon: "home" },
-  blog: { en: "Blog", path: "/archive/", exact: false, icon: "newspaper" },
+  blog: { en: "Archive", path: "/archive/", exact: false, icon: "newspaper" },
 
   //cv: { en: "CV", path: "/resume", exact: true, icon: "info circle" },
   //portfolio: { en: "Portfolio", path: "/projects", exact: true, icon: "info circle" },
