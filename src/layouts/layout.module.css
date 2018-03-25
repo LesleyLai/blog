@@ -1,4 +1,8 @@
 .grid {
-    margin: 0 auto;
+    margin: 0 auto !important;
     padding: 0.3rem 1.0875rem;
+}
+
+.main {
+    background-color: white;
 }

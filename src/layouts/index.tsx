@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Container, Grid } from "semantic-ui-react";
 
-import Header from '../components/header/header';
+import Header from '../components/header';
 import Head from '../components/head';
 import AboutMe from '../components/about/aboutme';
 
@@ -29,19 +29,19 @@ export default class DefaultLayout
     const layout = require("./layout.module.css");
 
     return (
-      <main>
+      <div>
         <Head />
         <Header pathname={this.props.location.pathname} />
         <Grid container className={layout.grid}>
-          <Grid.Column mobile={16} tablet={10} computer={12}>
+          <Grid.Column as="main" mobile={16} tablet={10} computer={12} largeScreen={13} className={layout.main}>
             {children}
           </Grid.Column>
 
-          <Grid.Column mobile={16} tablet={6} computer={4}>
+          <Grid.Column mobile={16} tablet={6} computer={4} largeScreen={3}>
             <AboutMe />
           </Grid.Column>
         </Grid>
-      </main>
+      </div>
     );
   }
 };
