@@ -2,6 +2,15 @@
     width: 200px;
     min-width: 200px;
     font-size: 14px;
+    color: #8f6d3d;
+}
+
+.about a {
+    color: #c38022;
+}
+
+.about a:hover {
+    color: #f0bd75;
 }
 
 /* Mobile */
@@ -10,6 +19,10 @@
       width: 100%;
       text-align: center;
   }
+}
+
+.about ul li {
+    margin-bottom: 0;
 }
 
 #portrait {
@@ -27,4 +40,13 @@
     margin: 10px 10px;
     font-size: 12px;
     font-style: italic;
+}
+
+.subtitle {
+    font: normal 13px "Open Sans", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    margin: 24px 0 4px 0;
+    color: #8E8D8A;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
