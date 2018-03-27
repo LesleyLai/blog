@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Rail } from "semantic-ui-react";
 
 
 const AboutMe = () => {

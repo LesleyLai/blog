@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Sidebar, Segment, Menu, Container, Grid } from "semantic-ui-react";
+import { Sidebar, Segment, Menu, Grid } from "semantic-ui-react";
 import Helmet from "react-helmet";
 
 import Header from '../components/header';
@@ -55,7 +55,7 @@ export default class DefaultLayout
         <Sidebar.Pushable className={layout.layout}>
           <SideMenu visible={sideMenuVisible} pathname={pathname} />
           <Sidebar.Pusher>
-            <Grid container className={layout.grid}>
+            <Grid className={layout.grid}>
               <Grid.Column as="main" mobile={16} tablet={10} computer={12} largeScreen={13} className={layout.main}>
                 {children}
               </Grid.Column>

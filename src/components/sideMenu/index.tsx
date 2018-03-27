@@ -1,7 +1,7 @@
 import * as React from "react";
 import Link from 'gatsby-link';
 
-import { Sidebar, Menu } from "semantic-ui-react";
+import { Menu, Sidebar } from "semantic-ui-react";
 import { MenuModel, menuModel } from "../menu";
 
 interface SideMenuProp {
@@ -17,19 +17,16 @@ export default class SideMenu extends React.Component<SideMenuProp> {
 
     return (
       <Sidebar as={Menu}
-        className="mobile only"
+        className={"mobile only " + css.sidebar}
         animation='push'
         width='thin'
         visible={visible}
-        icon='labeled'
-        vertical
-        inverted>
-        {
-          Object.keys(menuModel).map((key: string) =>
-            buildMenuItem(this.props.pathname, key)
-          )
-        }
-      </Sidebar>
+        vertical inverted
+      >
+        {Object.keys(menuModel).map((key: string) =>
+          buildMenuItem(this.props.pathname, key)
+        )}
+      </Sidebar >
     );
   }
 }
