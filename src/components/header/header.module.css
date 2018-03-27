@@ -10,6 +10,7 @@
 .logo {
     color: white;
     margin: auto 15px auto 0;
+    white-space: nowrap;
 }
 
 .logo:hover {
