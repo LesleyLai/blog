@@ -3,7 +3,8 @@
 }
 
 /* Stick header on mobile */
-@media (max-width: 767px) {
+/*
+@media (max-width: 767px){
     .header {
         position: fixed;
         top: 0;
@@ -12,6 +13,7 @@
         z-index: 1;
     }
 }
+*/
 
 .container {
     padding: 0.3rem 1.0875rem;

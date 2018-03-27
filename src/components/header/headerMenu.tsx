@@ -1,8 +1,8 @@
 import * as React from "react";
 import Link from 'gatsby-link';
-import { Icon, Menu } from "semantic-ui-react";
+import { Menu } from "semantic-ui-react";
 
-import { MenuModel, menuModel } from "../menu"
+import { MenuModel, menuModel } from "../menu";
 
 interface HeaderMenuProp extends React.HTMLProps<HTMLDivElement> {
   pathname: string;
@@ -44,7 +44,7 @@ const HeaderMenu = (props: HeaderMenuProp) => {
           buildMenuItem(props.pathname, key, itemClasses)
         )
       }
-      <Menu.Item as={Icon}
+      <Menu.Item as="button"
         icon="content"
         className="mobile only"
         position="right"
