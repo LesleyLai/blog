@@ -2,6 +2,18 @@
     background: #1b1c1d;
 }
 
+/* Stick header on mobile */
+@media (max-width: 767px) {
+    .header {
+        background: #1b1c1d;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+    }
+}
+
 .container {
     padding: 0.3rem 1.0875rem;
     display: flex !important;

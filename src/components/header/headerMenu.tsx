@@ -1,6 +1,6 @@
 import * as React from "react";
 import Link from 'gatsby-link';
-import { Menu } from "semantic-ui-react";
+import { Icon, Menu } from "semantic-ui-react";
 
 import { MenuModel, menuModel } from "../menu"
 
@@ -44,7 +44,11 @@ const HeaderMenu = (props: HeaderMenuProp) => {
           buildMenuItem(props.pathname, key, itemClasses)
         )
       }
-      <Menu.Item icon="content" className="mobile only" position="right" />
+      <Menu.Item as={Icon}
+        icon="content"
+        className="mobile only"
+        position="right"
+        size="large" />
     </Menu >
   );
 }

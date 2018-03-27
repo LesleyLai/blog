@@ -3,6 +3,12 @@
     padding: 0.3rem 1.0875rem;
 }
 
+@media (max-width: 767px) {
+    .grid {
+        margin-top: 44px !important;
+    }
+}
+
 .main {
     background-color: white;
     min-height: calc(100vh - 53px);
