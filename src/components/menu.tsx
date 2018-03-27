@@ -48,6 +48,7 @@ export const GenericMenu = (props: GenericMenuProp) => {
       secondary
       inverted
       pointing
+      className={props.className}
       size="large">
       {
         Object.keys(itemsData).map((key: string) =>

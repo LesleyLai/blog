@@ -1,0 +1,21 @@
+.header {
+    background: #1b1c1d;
+}
+
+.container {
+    padding: 0.3rem 1.0875rem;
+    display: flex !important;
+}
+
+.logo {
+    color: white;
+    margin: auto 15px auto 0;
+}
+
+.logo:hover {
+    color: white;
+}
+
+.menu {
+    margin-top: 0 !important;
+}

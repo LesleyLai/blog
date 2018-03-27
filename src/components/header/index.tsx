@@ -6,42 +6,28 @@ import HeaderMenu from "./headerMenu";
 
 import { Container } from "semantic-ui-react";
 
+const style = require("./header.module.css");
 
 interface HeaderProps {
   pathname: string;
 }
 
 const Logo = () => (
-  <Link
-    to="/"
-    style={{
-      color: 'white',
-      margin: 'auto 15px auto 0',
-    }}
-  >
+  <Link to="/" className={style.logo} >
     <h1>Lesley Lai 赖思理</h1>
   </Link>
 );
 
-const Header = ({ pathname }: HeaderProps) => (
-  <header
-    style={{
-      background: '#1b1c1d'
-    }}
-  >
-
-    <Container
-      style={{
-        margin: '0 auto',
-        padding: '0.3rem 1.0875rem',
-        display: 'flex',
-      }}
-    >
-      <Logo />
-      <HeaderMenu pathname={pathname} />
-    </Container>
-  </header>
-);
+const Header = ({ pathname }: HeaderProps) => {
+  return (
+    <header className={style.header} >
+      <Container className={style.container}>
+        <Logo />
+        <HeaderMenu pathname={pathname} />
+      </Container>
+    </header>
+  );
+};
 
 export default Header;
 
