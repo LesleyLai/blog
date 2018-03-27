@@ -20,18 +20,30 @@ interface DefaultLayoutProps extends React.HTMLProps<HTMLDivElement> {
 
 
 interface DefaultLayoutStates {
-  //sidebarVisible: boolean;
+  sideMenuVisible: boolean;
 }
 
 // Use `module.exports` to be compliante with `webpack-require` import method
 export default class DefaultLayout
   extends React.PureComponent<DefaultLayoutProps, DefaultLayoutStates> {
+  constructor(props: DefaultLayoutProps) {
+    super(props);
+    this.state = { sideMenuVisible: false };
+    this.toggleSideBar = this.toggleSideBar.bind(this);
+  }
+
+  toggleSideBar() {
+    this.setState((prevState, props) => ({
+      sideMenuVisible: !prevState.sideMenuVisible
+    }));
+  }
+
   render() {
     const children = this.props.children();
     const layout = require("./layout.module.css");
 
     const pathname = this.props.location.pathname;
-    const visible = true;
+    const sideMenuVisible = this.state.sideMenuVisible;
 
     return (
       <div>
@@ -39,9 +51,9 @@ export default class DefaultLayout
           <title>Lesley Lai</title>
           <html lang="en" />
         </Helmet>
-        <Header pathname={pathname} />
-        <Sidebar.Pushable>
-          <SideMenu visible={visible} pathname={pathname} />
+        <Header pathname={pathname} toggleSideBar={this.toggleSideBar} />
+        <Sidebar.Pushable className={layout.layout}>
+          <SideMenu visible={sideMenuVisible} pathname={pathname} />
           <Sidebar.Pusher>
             <Grid container className={layout.grid}>
               <Grid.Column as="main" mobile={16} tablet={10} computer={12} largeScreen={13} className={layout.main}>

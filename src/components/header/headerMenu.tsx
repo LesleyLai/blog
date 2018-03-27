@@ -6,6 +6,7 @@ import { MenuModel, menuModel } from "../menu";
 
 interface HeaderMenuProp extends React.HTMLProps<HTMLDivElement> {
   pathname: string;
+  toggleSideBar: any;
 }
 
 const style = require("./header.module.css");
@@ -48,7 +49,9 @@ const HeaderMenu = (props: HeaderMenuProp) => {
         icon="content"
         className="mobile only"
         position="right"
-        size="large" />
+        size="large"
+        onClick={props.toggleSideBar}
+      />
     </Menu >
   );
 }

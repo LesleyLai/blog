@@ -4,7 +4,7 @@
 }
 
 @media (max-width: 767px) {
-    .grid {
+    .layout {
         margin-top: 44px !important;
     }
 }

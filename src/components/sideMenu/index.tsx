@@ -9,12 +9,21 @@ interface SideMenuProp {
   pathname: string;
 }
 
+const css = require("./sideMenu.module.css");
+
 export default class SideMenu extends React.Component<SideMenuProp> {
   render() {
     const visible = this.props.visible;
 
     return (
-      <Sidebar as={Menu} animation='push' width='thin' visible={visible} icon='labeled' vertical inverted>
+      <Sidebar as={Menu}
+        className="mobile only"
+        animation='push'
+        width='thin'
+        visible={visible}
+        icon='labeled'
+        vertical
+        inverted>
         {
           Object.keys(menuModel).map((key: string) =>
             buildMenuItem(this.props.pathname, key)
@@ -36,6 +45,8 @@ function buildMenuItem(pathname: string, itemName: string) {
       active={active}
       name={item.en}
       to={item.path}
-      key={item.path} />
+      key={item.path}
+      icon={item.icon}
+    />
   );
 }
