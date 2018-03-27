@@ -11,5 +11,10 @@
 
 .main {
     background-color: white;
-    min-height: calc(100vh - 53px);
+}
+
+@media (min-width: 768px) {
+    .main {
+        min-height: calc(100vh - 53px);
+    }
 }

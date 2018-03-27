@@ -1,21 +1,21 @@
 import * as React from "react";
 
-import RecentPosts from "../components/recentPosts"
+import RecentPosts, { PostMeta } from "../components/recentPosts"
 
 interface IndexProps {
   data: {
     allMarkdownRemark: {
       totalCount: number;
       edges: {
-        node: Post;
-      };
+        node: PostMeta;
+      }[];
     };
   }
 }
 
 const IndexPage = ({ data }: IndexProps) => (
   <div>
-    <h1>Lesley's Blog</h1>
+    <h1>Recent Posts</h1>
     <RecentPosts posts={data.allMarkdownRemark.edges.map((edge) => edge.node)} />
   </div>
 );

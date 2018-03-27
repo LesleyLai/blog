@@ -5,7 +5,6 @@
 /* Stick header on mobile */
 @media (max-width: 767px) {
     .header {
-        background: #1b1c1d;
         position: fixed;
         top: 0;
         left: 0;
@@ -23,6 +22,12 @@
     color: white;
     margin: auto 15px auto 0;
     white-space: nowrap;
+}
+
+@media (max-width: 500px) {
+    .logo h1 {
+        font-size: 1.6em;
+    }
 }
 
 .logo:hover {

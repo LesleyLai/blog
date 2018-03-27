@@ -4,7 +4,7 @@ import Link from 'gatsby-link';
 import TagsList from "../tagsList";
 import { Button, Icon } from 'semantic-ui-react';
 
-interface PostMeta {
+export interface PostMeta {
   frontmatter: {
     id: number,
     title: string,
