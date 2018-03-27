@@ -1,5 +1,7 @@
 import * as React from "react";
 import TagsList from "../components/tagsList";
+import Helmet from "react-helmet";
+
 // import ReactDisqusComments from "react-disqus-comments";
 
 export interface PostData {
@@ -24,7 +26,11 @@ export default ({ data }: PostProps) => {
   const post = data.markdownRemark;
   const path = '/' + post.frontmatter.id + '/' + post.frontmatter.lang + '/';
   const url = "http://lesleylai.info" + path;
+  const title = "Lesley Lai | " + post.frontmatter.title
   return (<div>
+    <Helmet>
+      <title>{title}</title>
+    </Helmet>
     <h1>{post.frontmatter.title}</h1>
     <TagsList tags={post.frontmatter.categories} />
     <ul>
@@ -33,8 +39,8 @@ export default ({ data }: PostProps) => {
     </ul>
     <div dangerouslySetInnerHTML={{ __html: post.html }} />
     {/*<ReactDisqusComments
-        shortname="lesleylaiblog"
-        identifier={post.frontmatter.id}
+      shortname="lesleylaiblog"
+      identifier={post.frontmatter.id}
         title={post.frontmatter.title}
         url={url}
         onNewComment={this.handleNewComment} />*/}

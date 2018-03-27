@@ -1,4 +1,5 @@
 import * as React from "react";
+import Helmet from "react-helmet";
 
 interface ProjectProps extends React.HTMLProps<HTMLDListElement> {
   name: string;
@@ -17,10 +18,14 @@ const Project = (prop: ProjectProps) => {
 }
 
 const ProjectsPage = () => {
-  const rayTracerImg = require("./raytracer.png")
+  const title = "My projects";
+  const rayTracerImg = require("./raytracer.png");
 
   return (<div>
-    <h1>My projects</h1>
+    <Helmet>
+      <title>{"Lesley Lai | " + title}</title>
+    </Helmet>
+    <h1>{title}</h1>
     <ul>
       <Project
         name="Reversi-Elm"

@@ -1,5 +1,6 @@
 import * as React from "react";
 import Link from 'gatsby-link';
+import Helmet from "react-helmet";
 
 import Posts from "../components/posts-list";
 
@@ -14,13 +15,18 @@ interface ArchiveProps {
   }
 }
 
-const Archive = ({ data }: ArchiveProps) => (
-  <div>
-    <h1>Blog archive</h1>
-    {data.allMarkdownRemark.totalCount} Posts
-        <Posts posts={data.allMarkdownRemark.edges} />
-  </div>
-);
+const Archive = ({ data }: ArchiveProps) => {
+  const title = "Blog archive";
+  return (
+    <div>
+      <Helmet>
+        <title>{"Lesley Lai | " + title}</title>
+      </Helmet>
+      <h1>{title}</h1>
+      {data.allMarkdownRemark.totalCount} Posts
+      <Posts posts={data.allMarkdownRemark.edges} />
+    </div>);
+}
 
 export const archiveQuery = graphql`
     query ArchiveQuery {
