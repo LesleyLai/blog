@@ -1,3 +1,8 @@
 .tag {
     margin-right: 0.6em !important;
 }
+
+.tags {
+    margin-left: 0;
+    margin-bottom: 0;
+}

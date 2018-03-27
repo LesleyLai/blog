@@ -3,7 +3,9 @@ import Link from "gatsby-link";
 import { Label } from "semantic-ui-react";
 
 interface TagsProps {
-  tags: string[]
+  tags: string[],
+  className: string
+  tagSize?: string
 };
 
 interface Tag {
@@ -19,27 +21,31 @@ const tag_infos: { [id: string]: Tag } = {
   "resource": { en: "Resource Management", zh: "资源管理", color: "white" }
 };
 
-const TagsList = ({ tags }: TagsProps) => {
+const TagsList = (props: TagsProps) => {
+  const tags = props.tags;
   const css = require("./tags-list.module.css");
+  const tagSize = props.tagSize ? props.tagSize : "small";
+
   return (
-    <span>
+    <ul className={props.className + " " + css.tags}>
       {
         tags.map((tag, index) => {
           const info: Tag = tag_infos[tag];
           const tag_name: string = info ? info.en : tag;
           const color: string = info ? info.color : "white";
-          //
           // as={Link} to={`/category/${tag}/`}
           return (
-            <Label className={css.tag}
-              size="small"
+            <Label
+              as="li"
+              className={css.tag}
+              size={tagSize}
               color={color}>
               {tag_name}
             </Label>
           );
         })
       }
-    </span>
+    </ul>
   );
 }
 

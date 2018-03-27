@@ -1,0 +1,43 @@
+
+.title {
+    font: normal 36px/48px Georgia, serif;
+    margin: 50px 0;
+}
+
+.info {
+    font: 11px "Open Sans", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    padding: 0 0 4px 0;
+    border-bottom: solid 1px #eee;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.info > a {
+    color: #797979;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-right: 10px;
+}
+
+@media (min-width: 1200px) {
+    .tags {
+        right: 8px;
+        position: absolute;
+        margin-top: -5px;
+    }
+}
+
+
+.article > p {
+    font: 16px/24px "PT Serif", Georgia, serif;
+    padding: 8px 0;
+}
+
+.comment {
+    margin: 0 -1rem -48px -1rem;
+    padding: 24px 48px;
+    background: #f1ece4;
+    color: #8f6d3d;
+    font: normal 13px "Open Sans", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}

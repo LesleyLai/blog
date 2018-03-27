@@ -1,8 +1,11 @@
 import * as React from "react";
+import Link from "gatsby-link";
 import TagsList from "../components/tagsList";
 import Helmet from "react-helmet";
 
 import ReactDisqusComments from "react-disqus-comments";
+
+const css = require("./post.module.css");
 
 export interface PostData {
   html: string;
@@ -33,43 +36,45 @@ class PostTemplate extends React.Component<PostProps> {
     const path = '/' + post.frontmatter.id + '/' + post.frontmatter.lang + '/';
     const url = "http://lesleylai.info" + path;
     const title = "Lesley Lai | " + post.frontmatter.title
-    return (<div>
+    return (<div className={css.post}>
       <Helmet>
         <title>{title}</title>
       </Helmet>
-      <h1>{post.frontmatter.title}</h1>
-      <TagsList tags={post.frontmatter.categories} />
-      <ul>
-        <li>Create: {post.frontmatter.create}</li>
-        <li>Last Modify: {post.frontmatter.lastModify}</li>
-      </ul>
-      <div dangerouslySetInnerHTML={{ __html: post.html }} />
-      {<ReactDisqusComments
+      <h1 className={css.title}>{post.frontmatter.title}</h1>
+      <div className={css.info}>
+        <Link to="/archive">
+          Last Modify: {post.frontmatter.lastModify} | Create: {post.frontmatter.create}
+        </Link>
+        <TagsList tags={post.frontmatter.categories} className={css.tags} tagSize="tiny" />
+      </div>
+
+      <article className={css.article} dangerouslySetInnerHTML={{ __html: post.html }} />
+      <ReactDisqusComments
+        className={css.comment}
         shortname="lesleylaiblog"
         identifier={post.frontmatter.id}
         title={post.frontmatter.title}
         url={url}
         onNewComment={this.handleNewComment}
-      />}
+      />
     </div>);
   }
 }
 
 export default PostTemplate;
 
-
 export const query = graphql`
   query BlogPostQuery($relativePath: String!) {
-    markdownRemark(fields: { relativePath: { eq: $relativePath } }) {
-      html
+        markdownRemark(fields: {relativePath: {eq: $relativePath } }) {
+        html
       frontmatter {
         id
         lang
-        title
-        create(formatString: "DD MMMM, YYYY")
-        lastModify(formatString: "DD MMMM, YYYY")
-        categories
-      }
+      title
+      create(formatString: "DD MMMM, YYYY")
+      lastModify(formatString: "DD MMMM, YYYY")
+      categories
     }
   }
-`;
+  }
+  `;

@@ -1,6 +1,6 @@
 ---
 id: raii
-title: "Don't invent your own resource manage idioms in C++" 
+title: "Resource management and RAII in C++" 
 lang: en
 create: '2016-10-26'
 lastModify: '2016-10-26'
@@ -56,7 +56,7 @@ void calculate ()
 The problem is that now all parts of our software need to be compiled by the same compiler which builds legacy shared libraries (In our case, it is Visual Studio 2008, which is quite ancient). The reason is that we destroy memory outside the dll while allocate memory inside the dynamic libraries. Since different compilers may call different memory management functions, the program will crash at the destructor of `data`. This situation is like what happens when we combine `malloc()` and `delete`, but it is a lot more insidious.
 
 
-# Qt library: example
+### Qt library: example
 
 It is surprised to me that some otherwise well-designed code bases suffer similar problem. For instance, the [Qt Library](http://www.qt-project.org)'s parent-child relationship is a similar resource management strategy. If you have used QT, you must have written code like this:
 
@@ -74,7 +74,7 @@ void foo(QString name, QFont font)
 
 As a consequence, Qt, unlike most libraries, cannot be linked by different compilers than what itself compiled. For example, QT 5.7.0 for windows 64 binaries have three versions (VS 2015, VS 2013, MinGW) to satisfy different compiler users. We must use corresponding compilers to develop Qt application.
 
-# Exception safety problem
+### Exception safety problem
 
 If you are programmers develop software solely for POSIX platforms, you may think it is not your business. But I have another point relate to you, too. The point is, those *ad hoc* resource management strategies are innately exception-unsafe. Consider what will happen if `setName` or `setFont` can throw exceptions. An innocuous order change by clients will introduce leak:
 
@@ -95,7 +95,7 @@ parent.addTab(child);
 ```
 
 
-# RAII to rescue
+## RAII to rescue
 
 In the title, I discourage you from inventing your own resource management routine. The reason is c++ already have a standard resource management idiom [RAII](https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization). It can easily eradicate problems about leak and unmatched system functions memtioned above. We can redesign the first example like below:
 
