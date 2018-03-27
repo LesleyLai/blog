@@ -1,7 +1,7 @@
 import * as React from "react";
 import Link from 'gatsby-link';
 
-import TagsList from "../tags-list";
+import TagsList from "../tagsList";
 import { Button, Icon } from 'semantic-ui-react';
 
 interface PostMeta {

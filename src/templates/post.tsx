@@ -1,5 +1,5 @@
 import * as React from "react";
-import TagsList from "../components/tags-list";
+import TagsList from "../components/tagsList";
 // import ReactDisqusComments from "react-disqus-comments";
 
 export interface PostData {

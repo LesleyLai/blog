@@ -5,7 +5,7 @@ import * as last from 'lodash/last';
 import Link from 'gatsby-link';
 
 import { rhythm } from "../utils/typography.js";
-import TagsList from "./tags-list";
+import TagsList from "./tagsList";
 
 function splitDate(post: { node: Post }) {
   return post.node.frontmatter.create.split(' ');

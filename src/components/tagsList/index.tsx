@@ -20,9 +20,7 @@ const tag_infos: { [id: string]: Tag } = {
 };
 
 const TagsList = ({ tags }: TagsProps) => {
-
   const css = require("./tags-list.module.css");
-
   return (
     <span>
       {
@@ -30,16 +28,14 @@ const TagsList = ({ tags }: TagsProps) => {
           const info: Tag = tag_infos[tag];
           const tag_name: string = info ? info.en : tag;
           const color: string = info ? info.color : "white";
+          //
+          // as={Link} to={`/category/${tag}/`}
           return (
-            <span className={css.tag}>
-              <Label
-                as={Link}
-                to={`/category/${tag}/`}
-                size="small"
-                color={color}>
-                {tag_name}
-              </Label>
-            </span>
+            <Label className={css.tag}
+              size="small"
+              color={color}>
+              {tag_name}
+            </Label>
           );
         })
       }

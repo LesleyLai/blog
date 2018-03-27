@@ -13,9 +13,8 @@ interface MenuItemData {
 const itemsData: { [key: string]: MenuItemData } = {
   home: { en: "Home", path: "/", exact: true, icon: "home" },
   blog: { en: "Archive", path: "/archive/", exact: false, icon: "newspaper" },
-
+  portfolio: { en: "Portfolio", path: "/projects", exact: true, icon: "info circle" }
   //cv: { en: "CV", path: "/resume", exact: true, icon: "info circle" },
-  //portfolio: { en: "Portfolio", path: "/projects", exact: true, icon: "info circle" },
   //teaching: { en: "Teaching", path: "/teaching", exact: true, icon: "info circle" },
 };
 

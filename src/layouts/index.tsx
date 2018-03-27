@@ -21,6 +21,7 @@ interface DefaultLayoutProps extends React.HTMLProps<HTMLDivElement> {
 interface DefaultLayoutStates {
   //sidebarVisible: boolean;
 }
+
 // Use `module.exports` to be compliante with `webpack-require` import method
 export default class DefaultLayout
   extends React.PureComponent<DefaultLayoutProps, DefaultLayoutStates> {
