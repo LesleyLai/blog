@@ -1,6 +1,7 @@
 module.exports = {
     siteMetadata: {
-        title: `Lesley Lai's Blog`,
+      title: `Lesley Lai's Blog`,
+      siteUrl: `https://www.lesley.info`,
     },
     plugins: [`gatsby-plugin-react-helmet`,
               {
@@ -37,6 +38,9 @@ module.exports = {
                   },
               },
               `gatsby-plugin-typescript`,
+              {
+                resolve: `gatsby-plugin-sitemap`
+              }
              ],
     
 };
