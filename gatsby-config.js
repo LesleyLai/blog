@@ -40,7 +40,8 @@ module.exports = {
               `gatsby-plugin-typescript`,
               {
                 resolve: `gatsby-plugin-sitemap`
-              }
+              },
+              `gatsby-plugin-react-next`
              ],
     
 };
