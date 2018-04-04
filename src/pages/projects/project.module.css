@@ -1,0 +1,23 @@
+@import "../../style/breakpoints.css";
+
+.project {
+    width: 32%;
+    border: 5px solid #eeeeee;
+    border-radius: 2px;
+    overflow: hidden;
+    margin: 0 2% 25px 0;
+    position: relative;
+    box-shadow: 2px 2px 3px rgba(0,0,0,0.28);
+}
+
+@media (--small-mobile) {
+    .project {
+        width: 100%;
+    }
+}
+
+@media (--tablet-portrait), (--large-mobile) {
+    .project {
+        width: 48%;
+    }
+}
