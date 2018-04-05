@@ -13,6 +13,7 @@
 
 .header {
     height: 218px;
+    display: block;
 }
 
 .content {
