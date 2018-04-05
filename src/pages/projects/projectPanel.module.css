@@ -1,23 +1,40 @@
 @import "../../style/breakpoints.css";
 
-.project {
+.panel {
     width: 32%;
-    border: 5px solid #eeeeee;
+    border: 5px solid #dddddd;
     border-radius: 2px;
     overflow: hidden;
     margin: 0 2% 25px 0;
     position: relative;
     box-shadow: 2px 2px 3px rgba(0,0,0,0.28);
+    border-radius: 10px;
+}
+
+.header {
+    height: 218px;
+}
+
+.content {
+    padding: 30px 10px 10px 10px;
+}
+
+.name {
+    color: rgba(0,0,0,0.78);
+}
+
+.name:hover {
+    color: black;
 }
 
 @media (--small-mobile) {
-    .project {
+    .panel {
         width: 100%;
     }
 }
 
 @media (--tablet-portrait), (--large-mobile) {
-    .project {
+    .panel {
         width: 48%;
     }
 }
