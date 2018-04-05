@@ -1,7 +1,7 @@
 import * as React from "react";
 import Helmet from "react-helmet";
 
-import ProjectPanel from "./projectPanel"
+import ProjectPanel from "../../components/projectPanel";
 
 const ProjectsPage = () => {
   const title = "My projects";

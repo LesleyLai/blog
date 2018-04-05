@@ -13,13 +13,13 @@ const ProjectPanel = (props: ProjectPenalProps) => {
     <article className={css.panel}>
       <ProjectPanelHeader url={props.url} image={props.image} />
 
-      < div className={css.content} >
+      <div className={css.content}>
         <h3><a className={css.name} href={props.url}>{props.name}</a></h3 >
         {props.children}
       </div>
 
     </article >
-  )
+  );
 }
 
 // Header of the project panel (an image of the project or empty)
@@ -29,7 +29,6 @@ interface HeaderProps extends React.HTMLProps<HTMLDListElement> {
 }
 
 const ProjectPanelHeader = (props: HeaderProps) => {
-
   const headerBg = function() {
     if (props.image) {
       const image = require(props.image);
@@ -39,8 +38,7 @@ const ProjectPanelHeader = (props: HeaderProps) => {
         backgroundSize: "cover"
       };
     } else {
-      return {
-      };
+      return {};
     }
   }();
 
