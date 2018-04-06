@@ -6,9 +6,9 @@ interface IndexProps {
   data: {
     allMarkdownRemark: {
       totalCount: number;
-      edges: {
+      edges: Array<{
         node: PostMeta;
-      }[];
+      }>;
     };
   }
 }

@@ -1,8 +1,8 @@
-import * as React from "react";
 import Link from 'gatsby-link';
+import * as React from "react";
 
-import TagsList from "../tagsList";
 import { Button, Icon } from 'semantic-ui-react';
+import TagsList from "../tagsList";
 
 export interface PostMeta {
   frontmatter: {
@@ -17,9 +17,9 @@ export interface PostMeta {
 
 
 export default class RecentPosts extends React.Component {
-  props: { posts: PostMeta[] }
+  public props: { posts: PostMeta[] }
 
-  render() {
+  public render() {
     const posts = this.props.posts;
 
     const style = require("./recentPosts.module.css");

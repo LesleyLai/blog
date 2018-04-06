@@ -1,7 +1,7 @@
-import * as React from "react";
 import Link from "gatsby-link";
-import TagsList from "../components/tagsList";
+import * as React from "react";
 import Helmet from "react-helmet";
+import TagsList from "../components/tagsList";
 
 import ReactDisqusComments from "react-disqus-comments";
 
@@ -27,11 +27,11 @@ interface PostProps {
 
 
 class PostTemplate extends React.Component<PostProps> {
-  handleNewComment() {
+  public handleNewComment() {
 
   }
 
-  render() {
+  public render() {
     const post = this.props.data.markdownRemark;
     const path = '/' + post.frontmatter.id + '/' + post.frontmatter.lang + '/';
     const url = "http://lesleylai.info" + path;

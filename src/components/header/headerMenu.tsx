@@ -1,5 +1,5 @@
-import * as React from "react";
 import Link from 'gatsby-link';
+import * as React from "react";
 import { Menu } from "semantic-ui-react";
 
 import { MenuModel, menuModel } from "../menu";

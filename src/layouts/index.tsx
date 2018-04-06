@@ -1,10 +1,10 @@
 import * as React from "react";
-import { Sidebar, Segment, Menu, Grid } from "semantic-ui-react";
 import Helmet from "react-helmet";
+import { Grid, Menu, Segment, Sidebar } from "semantic-ui-react";
 
+import AboutMe from '../components/about/aboutme';
 import Header from '../components/header';
 import SideMenu from '../components/sideMenu';
-import AboutMe from '../components/about/aboutme';
 
 import 'semantic-ui-css/semantic.min.css';
 import '../style/responsive.css';
@@ -32,13 +32,13 @@ export default class DefaultLayout
     this.toggleSideBar = this.toggleSideBar.bind(this);
   }
 
-  toggleSideBar() {
+  public toggleSideBar() {
     this.setState((prevState, props) => ({
       sideMenuVisible: !prevState.sideMenuVisible
     }));
   }
 
-  render() {
+  public render() {
     const children = this.props.children();
     const layout = require("./layout.module.css");
 

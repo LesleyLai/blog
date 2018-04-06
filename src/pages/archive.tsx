@@ -1,5 +1,5 @@
-import * as React from "react";
 import Link from 'gatsby-link';
+import * as React from "react";
 import Helmet from "react-helmet";
 
 import Posts from "../components/posts-list";

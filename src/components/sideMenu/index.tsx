@@ -1,5 +1,5 @@
-import * as React from "react";
 import Link from 'gatsby-link';
+import * as React from "react";
 
 import { Menu, Sidebar } from "semantic-ui-react";
 import { MenuModel, menuModel } from "../menu";
@@ -12,7 +12,7 @@ interface SideMenuProp {
 const css = require("./sideMenu.module.css");
 
 export default class SideMenu extends React.Component<SideMenuProp> {
-  render() {
+  public render() {
     const visible = this.props.visible;
 
     return (

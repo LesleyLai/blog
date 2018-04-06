@@ -1,8 +1,8 @@
-import * as React from "react";
-import * as PropTypes from 'prop-types';
+import Link from 'gatsby-link';
 import * as groupBy from 'lodash/groupBy';
 import * as last from 'lodash/last';
-import Link from 'gatsby-link';
+import * as PropTypes from 'prop-types';
+import * as React from "react";
 
 import { rhythm } from "../utils/typography.js";
 import TagsList from "./tagsList";
@@ -12,7 +12,7 @@ function splitDate(post: { node: Post }) {
 };
 
 
-const groupPosts = (posts: { node: Post }[]) => groupBy(posts,
+const groupPosts = (posts: Array<{ node: Post }>) => groupBy(posts,
   post => last(splitDate(post)));
 
 const Posts = ({ posts }) => {
