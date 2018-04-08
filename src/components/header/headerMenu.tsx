@@ -1,4 +1,4 @@
-import Link from 'gatsby-link';
+import Link from "gatsby-link";
 import * as React from "react";
 import { Menu } from "semantic-ui-react";
 
@@ -11,12 +11,11 @@ interface HeaderMenuProp extends React.HTMLProps<HTMLDivElement> {
 
 const style = require("./header.module.css");
 
-
 function buildMenuItem(pathname: string, itemName: string, classes: string) {
   const item: MenuModel = menuModel[itemName];
-  const active: boolean = (item.exact) ?
-    pathname === item.path :
-    pathname.startsWith(item.path);
+  const active: boolean = item.exact
+    ? pathname === item.path
+    : pathname.startsWith(item.path);
 
   return (
     <Menu.Item
@@ -25,7 +24,8 @@ function buildMenuItem(pathname: string, itemName: string, classes: string) {
       name={item.en}
       to={item.path}
       key={item.path}
-      className={classes} />
+      className={classes}
+    />
   );
 }
 
@@ -33,27 +33,28 @@ const HeaderMenu = (props: HeaderMenuProp) => {
   const itemClasses = "mobile hidden";
 
   return (
-    <Menu as="nav"
+    <Menu
+      as="nav"
       secondary
       inverted
       pointing
       fluid
       className={style.menu}
-      size="large">
-      {
-        Object.keys(menuModel).map((key: string) =>
-          buildMenuItem(props.pathname, key, itemClasses)
-        )
-      }
-      <Menu.Item as="button"
+      size="large"
+    >
+      {Object.keys(menuModel).map((key: string) =>
+        buildMenuItem(props.pathname, key, itemClasses)
+      )}
+      <Menu.Item
+        as="button"
         icon="content"
         className="mobile only"
         position="right"
         size="large"
         onClick={props.toggleSideBar}
       />
-    </Menu >
+    </Menu>
   );
-}
+};
 
 export default HeaderMenu;

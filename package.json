@@ -37,14 +37,22 @@
   "scripts": {
     "build": "gatsby build",
     "start": "gatsby develop",
-    "format": "prettier --trailing-comma es5 --double-quote --write 'src/**/*.js'",
+    "format": "prettier --write 'src/**/*.{j,t}s{,x}'",
     "lint": "tslint -c tslint.json 'src/**/*.ts{,x}' --fix",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "precommit": "lint-staged"
   },
   "devDependencies": {
+    "husky": "^0.14.3",
+    "lint-staged": "^7.0.4",
     "prettier": "^1.11.1",
     "tslint": "^5.9.1",
     "tslint-config-prettier": "^1.10.0",
     "tslint-react": "^3.5.1"
+  },
+  "lint-staged": {
+    "src/**/*.{j,t}s{,x}": ["prettier --write",
+                            "tslint -c tslint.json --fix",
+                            "git add"]
   }
 }

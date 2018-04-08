@@ -2,14 +2,14 @@ import * as React from "react";
 import Helmet from "react-helmet";
 import { Grid, Menu, Segment, Sidebar } from "semantic-ui-react";
 
-import AboutMe from '../components/about/aboutme';
-import Header from '../components/header';
-import SideMenu from '../components/sideMenu';
+import AboutMe from "../components/about/aboutme";
+import Header from "../components/header";
+import SideMenu from "../components/sideMenu";
 
-import 'semantic-ui-css/semantic.min.css';
-import '../style/responsive.css';
+import "semantic-ui-css/semantic.min.css";
+import "../style/responsive.css";
 
-require('../style/highlight.css');
+require("../style/highlight.css");
 
 interface DefaultLayoutProps extends React.HTMLProps<HTMLDivElement> {
   location: {
@@ -18,14 +18,15 @@ interface DefaultLayoutProps extends React.HTMLProps<HTMLDivElement> {
   children: any;
 }
 
-
 interface DefaultLayoutStates {
   sideMenuVisible: boolean;
 }
 
 // Use `module.exports` to be compliante with `webpack-require` import method
-export default class DefaultLayout
-  extends React.PureComponent<DefaultLayoutProps, DefaultLayoutStates> {
+export default class DefaultLayout extends React.PureComponent<
+  DefaultLayoutProps,
+  DefaultLayoutStates
+> {
   constructor(props: DefaultLayoutProps) {
     super(props);
     this.state = { sideMenuVisible: false };
@@ -56,7 +57,14 @@ export default class DefaultLayout
           <SideMenu visible={sideMenuVisible} pathname={pathname} />
           <Sidebar.Pusher>
             <Grid className={layout.grid}>
-              <Grid.Column as="main" mobile={16} tablet={10} computer={12} largeScreen={13} className={layout.main}>
+              <Grid.Column
+                as="main"
+                mobile={16}
+                tablet={10}
+                computer={12}
+                largeScreen={13}
+                className={layout.main}
+              >
                 {children}
               </Grid.Column>
 
@@ -69,4 +77,4 @@ export default class DefaultLayout
       </div>
     );
   }
-};
+}
