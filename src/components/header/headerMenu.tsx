@@ -14,7 +14,7 @@ const style = require("./header.module.css");
 
 function buildMenuItem(pathname: string, itemName: string, classes: string) {
   const item: MenuModel = menuModel[itemName];
-  const active: Boolean = (item.exact) ?
+  const active: boolean = (item.exact) ?
     pathname === item.path :
     pathname.startsWith(item.path);
 

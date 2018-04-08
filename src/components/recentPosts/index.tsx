@@ -23,12 +23,11 @@ export default class RecentPosts extends React.Component {
     const posts = this.props.posts;
 
     const style = require("./recentPosts.module.css");
-    console.log(style.post);
 
     return (
       <div>
         {posts.map(post =>
-          <article className={style.post}>
+          <article key={post.frontmatter.title} className={style.post}>
             <h3 className={style.header}>
               {post.frontmatter.title}
             </h3>

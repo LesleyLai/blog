@@ -27,9 +27,7 @@ interface PostProps {
 
 
 class PostTemplate extends React.Component<PostProps> {
-  public handleNewComment() {
-
-  }
+  public handleNewComment() { /* noop now */ }
 
   public render() {
     const post = this.props.data.markdownRemark;

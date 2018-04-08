@@ -1,11 +1,11 @@
 import Link from 'gatsby-link';
-import * as groupBy from 'lodash/groupBy';
-import * as last from 'lodash/last';
-import * as PropTypes from 'prop-types';
+import { groupBy, last } from "lodash";
 import * as React from "react";
 
 import { rhythm } from "../utils/typography.js";
 import TagsList from "./tagsList";
+
+import Post from "../types/Post";
 
 function splitDate(post: { node: Post }) {
   return post.node.frontmatter.create.split(' ');

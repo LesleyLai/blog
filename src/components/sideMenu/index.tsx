@@ -33,7 +33,7 @@ export default class SideMenu extends React.Component<SideMenuProp> {
 
 function buildMenuItem(pathname: string, itemName: string) {
   const item: MenuModel = menuModel[itemName];
-  const active: Boolean = (item.exact) ?
+  const active: boolean = (item.exact) ?
     pathname === item.path : pathname.startsWith(item.path);
 
   return (

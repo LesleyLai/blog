@@ -4,17 +4,17 @@ import { Label } from "semantic-ui-react";
 
 interface TagsProps {
   tags: string[],
-  className: string
+  className: string,
   tagSize?: string
 };
 
 interface Tag {
-  en: string
-  zh?: string
+  en: string,
+  zh?: string,
   color: string // Color of the tag box
 }
 
-const tag_infos: { [id: string]: Tag } = {
+const tagInfos: { [id: string]: Tag } = {
   "cpp": { en: "C++", color: "red" },
   "cmake": { en: "CMake", color: "green" },
   "test": { en: "Test", zh: "测试", color: "yellow" },
@@ -30,17 +30,18 @@ const TagsList = (props: TagsProps) => {
     <ul className={props.className + " " + css.tags}>
       {
         tags.map((tag, index) => {
-          const info: Tag = tag_infos[tag];
-          const tag_name: string = info ? info.en : tag;
+          const info: Tag = tagInfos[tag];
+          const tagName: string = info ? info.en : tag;
           const color: string = info ? info.color : "white";
           // as={Link} to={`/category/${tag}/`}
           return (
             <Label
+              key={tag}
               as="li"
               className={css.tag}
               size={tagSize}
               color={color}>
-              {tag_name}
+              {tagName}
             </Label>
           );
         })

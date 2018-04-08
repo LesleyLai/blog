@@ -21,6 +21,7 @@
     "gatsby-remark-prismjs": "^1.2.23",
     "gatsby-source-filesystem": "^1.5.28",
     "gatsby-transformer-remark": "^1.7.39",
+    "lodash": "^4.17.5",
     "react": "^16.3.1",
     "react-disqus-comments": "^1.1.1",
     "react-helmet": "^5.2.0",

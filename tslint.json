@@ -2,7 +2,11 @@
   "defaultSeverity": "error",
   "jsRules": {},
   "rules": {
-    "interface-name": [false]
+    "interface-name": [false],
+    "no-var-requires": false,
+    "only-arrow-functions": false,
+    "object-literal-sort-keys": false,
+    "jsx-boolean-value": false
   },
   "rulesDirectory": [],  
   "extends": [

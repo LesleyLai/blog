@@ -1,4 +1,4 @@
-interface Post {
+export default interface Post {
     frontmatter: {
         id: number;
         title: string;

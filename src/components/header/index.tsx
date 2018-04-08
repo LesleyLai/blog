@@ -1,6 +1,5 @@
 import Link from 'gatsby-link';
 import * as React from "react";
-import { Dispatch } from "redux";
 
 import HeaderMenu from "./headerMenu";
 

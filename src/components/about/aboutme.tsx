@@ -11,7 +11,7 @@ const AboutMe = () => {
   return (
     <div className={css.about}>
 
-      <img src={portrait} alt="Lesley Lai Protrait" id={css.portrait}></img>
+      <img src={portrait} alt="Lesley Lai Protrait" id={css.portrait} />
 
       <article>
         <p>
