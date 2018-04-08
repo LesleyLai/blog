@@ -34,7 +34,7 @@ interface HeaderProps extends React.HTMLProps<HTMLDListElement> {
 const ProjectPanelHeader = (props: HeaderProps) => {
   const headerBg = (function() {
     if (props.image) {
-      const image = require(props.image);
+      const image: string = props.image;
       return {
         backgroundImage: `url(${image})`,
         backgroundPosition: "center",

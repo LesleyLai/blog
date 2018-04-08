@@ -7,9 +7,9 @@ import Header from "../components/header";
 import SideMenu from "../components/sideMenu";
 
 import "semantic-ui-css/semantic.min.css";
-import "../style/responsive.css";
 
-require("../style/highlight.css");
+import "../style/highlight.css";
+import "../style/responsive.css";
 
 interface DefaultLayoutProps extends React.HTMLProps<HTMLDivElement> {
   location: {

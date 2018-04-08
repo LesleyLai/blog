@@ -7,6 +7,9 @@ const ProjectsPage = () => {
   const title = "My projects";
   const css = require("./projects.module.css");
 
+  const reversiImage = require("./reversi.png");
+  const raytracerImage = require("./raytracer.png");
+
   return (
     <div>
       <Helmet>
@@ -17,7 +20,7 @@ const ProjectsPage = () => {
         <ProjectPanel
           name="Reversi-Elm"
           url="https://github.com/LesleyLai/Reversi-Elm"
-          image="./reversi.png"
+          image={reversiImage}
         >
           A purely functional implementation of the classic board game Reversi.
           You can play the game{" "}
@@ -26,7 +29,7 @@ const ProjectsPage = () => {
         <ProjectPanel
           name="Ray tracer"
           url="https://github.com/LesleyLai/RayTracer"
-          image="./raytracer.png"
+          image={raytracerImage}
         >
           A recursive{" "}
           <a href="https://en.wikipedia.org/wiki/Ray_tracing_(graphics)">
