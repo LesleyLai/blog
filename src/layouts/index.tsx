@@ -6,8 +6,6 @@ import AboutMe from "../components/about/aboutme";
 import Header from "../components/header";
 import SideMenu from "../components/sideMenu";
 
-import "semantic-ui-css/semantic.min.css";
-
 import "../style/highlight.css";
 import "../style/responsive.css";
 
@@ -56,22 +54,13 @@ export default class DefaultLayout extends React.PureComponent<
         <Sidebar.Pushable className={layout.layout}>
           <SideMenu visible={sideMenuVisible} pathname={pathname} />
           <Sidebar.Pusher>
-            <Grid className={layout.grid}>
-              <Grid.Column
-                as="main"
-                mobile={16}
-                tablet={10}
-                computer={12}
-                largeScreen={13}
-                className={layout.main}
-              >
-                {children}
-              </Grid.Column>
+            <div className={layout.grid}>
+              <main className={layout.main}>{children}</main>
 
-              <Grid.Column mobile={16} tablet={6} computer={4} largeScreen={3}>
+              <div className={layout.about}>
                 <AboutMe />
-              </Grid.Column>
-            </Grid>
+              </div>
+            </div>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
       </div>
