@@ -1,10 +1,10 @@
 @import "../style/breakpoints.css";
+@import "../style/layout.css";
 
 .grid {
-    margin: 0 auto;
+    composes: container;
+    
     padding: 0 1.0875rem;
-    width: 100%;
-    max-width: 1127px;
     
     display: flex;
 }

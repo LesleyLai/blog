@@ -6,8 +6,8 @@ import AboutMe from "../components/about/aboutme";
 import Header from "../components/header";
 import SideMenu from "../components/sideMenu";
 
+import "../style/global.css";
 import "../style/highlight.css";
-import "../style/responsive.css";
 
 interface DefaultLayoutProps extends React.HTMLProps<HTMLDivElement> {
   location: {
@@ -51,7 +51,6 @@ export default class DefaultLayout extends React.PureComponent<
           <html lang="en" />
         </Helmet>
         <Header pathname={pathname} toggleSideBar={this.toggleSideBar} />
-
         <div className={layout.layout}>
           <SideMenu visible={sideMenuVisible} pathname={pathname} />
           <div className={layout.grid}>

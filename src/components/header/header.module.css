@@ -1,3 +1,5 @@
+@import "../../style/layout.css";
+
 .header {
     background: #1b1c1d;
 }
@@ -13,9 +15,10 @@
     }
 }
 
-.container {
+.header-container {
+    composes: container;
     padding: 0.3rem 1.0875rem;
-    display: flex !important;
+    display: flex;
 }
 
 .logo {

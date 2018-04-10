@@ -1,0 +1,9 @@
+/* Fix double scroolbar problem */
+html {
+    overflow-x: hidden;
+}
+
+body {
+    overflow-x: visible;
+    background: #f8f5f1;
+}

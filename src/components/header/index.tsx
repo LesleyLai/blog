@@ -14,14 +14,14 @@ interface HeaderProps {
 
 const Logo = () => (
   <Link to="/" className={style.logo}>
-    <h1>Lesley Lai 赖思理</h1>
+    <h2>Lesley Lai 赖思理</h2>
   </Link>
 );
 
 const Header = ({ pathname, toggleSideBar }: HeaderProps) => {
   return (
     <header className={style.header}>
-      <Container className={style.container}>
+      <Container className={style["header-container"]}>
         <Logo />
         <HeaderMenu pathname={pathname} toggleSideBar={toggleSideBar} />
       </Container>
