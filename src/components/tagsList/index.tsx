@@ -2,9 +2,11 @@ import Link from "gatsby-link";
 import * as React from "react";
 import { Label } from "semantic-ui-react";
 
+import * as classNames from "classnames";
+
 interface TagsProps {
   tags: string[];
-  className: string;
+  className?: string;
   tagSize?: string;
 }
 
@@ -27,7 +29,7 @@ const TagsList = (props: TagsProps) => {
   const tagSize = props.tagSize ? props.tagSize : "small";
 
   return (
-    <ul className={props.className + " " + css.tags}>
+    <ul className={classNames(props.className, css.tags)}>
       {tags.map((tag, index) => {
         const info: Tag = tagInfos[tag];
         const tagName: string = info ? info.en : tag;

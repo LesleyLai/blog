@@ -51,18 +51,17 @@ export default class DefaultLayout extends React.PureComponent<
           <html lang="en" />
         </Helmet>
         <Header pathname={pathname} toggleSideBar={this.toggleSideBar} />
-        <Sidebar.Pushable className={layout.layout}>
-          <SideMenu visible={sideMenuVisible} pathname={pathname} />
-          <Sidebar.Pusher>
-            <div className={layout.grid}>
-              <main className={layout.main}>{children}</main>
 
-              <div className={layout.about}>
-                <AboutMe />
-              </div>
+        <div className={layout.layout}>
+          <SideMenu visible={sideMenuVisible} pathname={pathname} />
+          <div className={layout.grid}>
+            <main className={layout.main}>{children}</main>
+
+            <div className={layout.about}>
+              <AboutMe />
             </div>
-          </Sidebar.Pusher>
-        </Sidebar.Pushable>
+          </div>
+        </div>
       </div>
     );
   }
