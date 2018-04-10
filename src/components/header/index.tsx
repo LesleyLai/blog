@@ -9,7 +9,6 @@ const style = require("./header.module.css");
 
 interface HeaderProps {
   pathname: string;
-  toggleSideBar: any;
 }
 
 const Logo = () => (
@@ -18,12 +17,12 @@ const Logo = () => (
   </Link>
 );
 
-const Header = ({ pathname, toggleSideBar }: HeaderProps) => {
+const Header = ({ pathname }: HeaderProps) => {
   return (
     <header className={style.header}>
       <Container className={style["header-container"]}>
         <Logo />
-        <HeaderMenu pathname={pathname} toggleSideBar={toggleSideBar} />
+        <HeaderMenu pathname={pathname} />
       </Container>
     </header>
   );

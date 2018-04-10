@@ -25,10 +25,16 @@
     color: white;
     margin: auto 15px auto 0;
     white-space: nowrap;
+    text-decoration: none;
+}
+
+.logo h2 {
+    font-size: 2em;
+    margin-bottom: 0.2rem;
 }
 
 @media (max-width: 500px) {
-    .logo h1 {
+    .logo h2 {
         font-size: 1.6em;
     }
 }
