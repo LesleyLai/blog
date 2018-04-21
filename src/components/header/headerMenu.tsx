@@ -1,6 +1,5 @@
 import Link from "gatsby-link";
 import * as React from "react";
-import { Menu } from "semantic-ui-react";
 
 import { MenuModel, menuModel } from "../menu";
 
@@ -10,48 +9,33 @@ interface HeaderMenuProp extends React.HTMLProps<HTMLDivElement> {
 
 const style = require("./header.module.css");
 
-function buildMenuItem(pathname: string, itemName: string, classes: string) {
+function buildMenuItem(pathname: string, itemName: string) {
   const item: MenuModel = menuModel[itemName];
   const active: boolean = item.exact
     ? pathname === item.path
     : pathname.startsWith(item.path);
 
   return (
-    <Menu.Item
-      as={Link}
-      active={active}
-      name={item.en}
-      to={item.path}
-      key={item.path}
-      className={classes}
-    />
+    <Link to={item.path} key={item.path} className={active ? "active" : ""}>
+      {item.en}
+    </Link>
   );
 }
 
 const HeaderMenu = (props: HeaderMenuProp) => {
-  const itemClasses = "mobile hidden";
-
   return (
-    <Menu
-      as="nav"
-      secondary
-      inverted
-      pointing
-      fluid
-      className={style.menu}
-      size="large"
-    >
+    <nav className={style.menu}>
       {Object.keys(menuModel).map((key: string) =>
-        buildMenuItem(props.pathname, key, itemClasses)
+        buildMenuItem(props.pathname, key)
       )}
-      <Menu.Item
+      {/* <Menu.Item
         as="button"
         icon="content"
         className="mobile only"
         position="right"
         size="large"
-      />
-    </Menu>
+        />*/}
+    </nav>
   );
 };
 

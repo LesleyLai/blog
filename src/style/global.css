@@ -1,6 +1,8 @@
 /* Fix double scroolbar problem */
 html {
     overflow-x: hidden;
+
+    font-family: Lato,Helvetica Neue,Arial,Helvetica,sans-serif;
 }
 
 body {

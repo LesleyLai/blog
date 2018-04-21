@@ -6,6 +6,7 @@ import AboutMe from "../components/about/aboutme";
 import Header from "../components/header";
 import SideMenu from "../components/sideMenu";
 
+import "normalize.css";
 import "../style/global.css";
 import "../style/highlight.css";
 
