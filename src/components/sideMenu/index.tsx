@@ -1,5 +1,5 @@
+import Link from "gatsby-link";
 import * as React from "react";
-import Link from 'gatsby-link';
 
 import { Menu, Sidebar } from "semantic-ui-react";
 import { MenuModel, menuModel } from "../menu";
@@ -12,29 +12,32 @@ interface SideMenuProp {
 const css = require("./sideMenu.module.css");
 
 export default class SideMenu extends React.Component<SideMenuProp> {
-  render() {
+  public render() {
     const visible = this.props.visible;
 
     return (
-      <Sidebar as={Menu}
+      <Sidebar
+        as={Menu}
         className={"mobile only " + css.sidebar}
-        animation='push'
-        width='thin'
+        animation="push"
+        width="thin"
         visible={visible}
-        vertical inverted
+        vertical
+        inverted
       >
         {Object.keys(menuModel).map((key: string) =>
           buildMenuItem(this.props.pathname, key)
         )}
-      </Sidebar >
+      </Sidebar>
     );
   }
 }
 
 function buildMenuItem(pathname: string, itemName: string) {
   const item: MenuModel = menuModel[itemName];
-  const active: Boolean = (item.exact) ?
-    pathname === item.path : pathname.startsWith(item.path);
+  const active: boolean = item.exact
+    ? pathname === item.path
+    : pathname.startsWith(item.path);
 
   return (
     <Menu.Item

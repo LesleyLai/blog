@@ -1,6 +1,5 @@
+import Link from "gatsby-link";
 import * as React from "react";
-import { Dispatch } from "redux";
-import Link from 'gatsby-link';
 
 import HeaderMenu from "./headerMenu";
 
@@ -14,14 +13,14 @@ interface HeaderProps {
 }
 
 const Logo = () => (
-  <Link to="/" className={style.logo} >
+  <Link to="/" className={style.logo}>
     <h1>Lesley Lai 赖思理</h1>
   </Link>
 );
 
 const Header = ({ pathname, toggleSideBar }: HeaderProps) => {
   return (
-    <header className={style.header} >
+    <header className={style.header}>
       <Container className={style.container}>
         <Logo />
         <HeaderMenu pathname={pathname} toggleSideBar={toggleSideBar} />
@@ -31,4 +30,3 @@ const Header = ({ pathname, toggleSideBar }: HeaderProps) => {
 };
 
 export default Header;
-
