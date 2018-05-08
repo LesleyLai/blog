@@ -26,7 +26,7 @@ const colorTable: { [key: string]: TagColor } = {
   red: { bg: "#db2828", fg: "#fff" },
   green: { bg: "#21ba45", fg: "#fff" },
   orange: { bg: "#fbbd08", fg: "#fff" },
-  white: { bg: "#e8e8e8", fg: "#000" }
+  white: { bg: "#e8e8e8", fg: "rgba(0,0,0,.6)" }
 };
 
 const tagInfos: { [id: string]: Tag } = {

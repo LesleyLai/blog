@@ -1,5 +1,5 @@
 .excerpt {
-    margin: 1rem 0;
+    margin: 0.5rem 0;
 }
 
 .header {
@@ -17,4 +17,19 @@
     font-size: 18px;
     opacity: 0.60;
     margin-right: 20px;
+}
+
+.readmore {
+    display: inline-block;
+    color: #2f3032;
+    box-shadow: inset 0 0 0 1px #2f3032;
+    font-weight: 400;
+    border-radius: .28571429rem;
+    text-transform: none;
+    text-shadow: none !important;
+    padding: .78571429em 1.5em;
+}
+
+.readmore:hover {
+    color: #000000;
 }

@@ -1,7 +1,6 @@
 import Link from "gatsby-link";
 import * as React from "react";
 
-import { Button, Icon } from "semantic-ui-react";
 import TagsList from "../tagsList";
 
 export interface PostMeta {
@@ -20,7 +19,6 @@ export default class RecentPosts extends React.Component {
 
   public render() {
     const posts = this.props.posts;
-
     const style = require("./recentPosts.module.css");
 
     return (
@@ -31,14 +29,12 @@ export default class RecentPosts extends React.Component {
             <span className={style.date}>{post.frontmatter.create}</span>
             <TagsList tags={post.frontmatter.categories} />
             <p className={style.excerpt}>{post.excerpt}</p>
-            <Button
-              as={Link}
-              basic
-              color="black"
+            <Link
               to={"/" + post.frontmatter.id + "/" + post.frontmatter.lang + "/"}
+              className={style.readmore}
             >
               READ MORE
-            </Button>
+            </Link>
           </article>
         ))}
       </div>
