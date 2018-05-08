@@ -1,7 +1,6 @@
+import * as classNames from "classnames";
 import Link from "gatsby-link";
 import * as React from "react";
-
-import * as classNames from "classnames";
 
 interface TagsProps {
   tags: string[];
