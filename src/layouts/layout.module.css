@@ -3,10 +3,10 @@
 
 .grid {
     composes: container;
-    
+ 
     padding: 0 1.0875rem;
-    
     display: flex;
+    flex-wrap: wrap;
 }
 
 @media (--small-mobile) {
@@ -18,7 +18,11 @@
 .main {
     background-color: white;
     padding: 1rem;
-    width: 75%;
+    width: calc(100% - 250px);
+}
+
+.about {
+    width: 250px;
 }
 
 @media (--small-mobile) {
@@ -27,6 +31,13 @@
     }
 }
 
-.about {
-    width: 25%;
+@media (--mobile) {
+    .main {
+        width: 100%;
+    }
+
+    .about {
+        width: 100%;
+    }
 }
+
