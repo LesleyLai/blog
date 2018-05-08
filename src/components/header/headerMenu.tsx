@@ -1,33 +1,42 @@
+import * as classNames from "classnames";
 import Link from "gatsby-link";
 import * as React from "react";
 
 import { MenuModel, menuModel } from "../menu";
 
+const css = require("./header.module.css");
+
 interface HeaderMenuProp extends React.HTMLProps<HTMLDivElement> {
   pathname: string;
 }
 
-const style = require("./header.module.css");
+interface MenuItemProp extends React.HTMLProps<HTMLDivElement> {
+  pathname: string;
+  itemName: string;
+}
 
-function buildMenuItem(pathname: string, itemName: string) {
+const MenuItem = ({ pathname, itemName }: MenuItemProp) => {
   const item: MenuModel = menuModel[itemName];
-  const active: boolean = item.exact
-    ? pathname === item.path
-    : pathname.startsWith(item.path);
 
   return (
-    <Link to={item.path} key={item.path} className={active ? "active" : ""}>
+    <Link
+      to={item.path}
+      key={item.path}
+      exact={item.exact}
+      activeClassName={css.active}
+      className={css.menuItem}
+    >
       {item.en}
     </Link>
   );
-}
+};
 
 const HeaderMenu = (props: HeaderMenuProp) => {
   return (
-    <nav className={style.menu}>
-      {Object.keys(menuModel).map((key: string) =>
-        buildMenuItem(props.pathname, key)
-      )}
+    <nav className={css.menu}>
+      {Object.keys(menuModel).map((key: string) => (
+        <MenuItem key={key} pathname={props.pathname} itemName={key} />
+      ))}
       {/* <Menu.Item
         as="button"
         icon="content"
