@@ -56,6 +56,10 @@
     padding: .85714286em 1.14285714em;
 }
 
+.menuItem:hover {
+    color: #fff;
+}
+
 .menuItem.active {
     color: #fff;
     font-weight: 700;
