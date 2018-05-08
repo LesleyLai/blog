@@ -3,8 +3,6 @@ import * as React from "react";
 
 import HeaderMenu from "./headerMenu";
 
-import { Container } from "semantic-ui-react";
-
 const style = require("./header.module.css");
 
 interface HeaderProps {
@@ -20,10 +18,10 @@ const Logo = () => (
 const Header = ({ pathname }: HeaderProps) => {
   return (
     <header className={style.header}>
-      <Container className={style["header-container"]}>
+      <div className={style["header-container"]}>
         <Logo />
         <HeaderMenu pathname={pathname} />
-      </Container>
+      </div>
     </header>
   );
 };

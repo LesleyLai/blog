@@ -1,10 +1,8 @@
 import * as React from "react";
 import Helmet from "react-helmet";
-import { Grid, Menu, Segment, Sidebar } from "semantic-ui-react";
 
 import AboutMe from "../components/about/aboutme";
 import Header from "../components/header";
-import SideMenu from "../components/sideMenu";
 
 import "normalize.css";
 import "../style/global.css";
