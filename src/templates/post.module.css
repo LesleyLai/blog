@@ -11,6 +11,7 @@
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 16px;
+    justify-content: space-between;
 }
 
 .info > a {
@@ -23,11 +24,9 @@
 @media (min-width: 1200px) {
     .tags {
         right: 8px;
-        position: absolute;
         margin-top: -5px;
     }
 }
-
 
 .article > p {
     font: 16px/24px "PT Serif", Georgia, serif;

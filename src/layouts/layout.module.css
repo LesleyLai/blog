@@ -1,22 +1,43 @@
+@import "../style/breakpoints.css";
+@import "../style/layout.css";
+
 .grid {
-    margin: 0 auto !important;
-    padding: 0.3rem 1.0875rem;
-    width: 100%;
-    max-width: 1127px;
+    composes: container;
+ 
+    padding: 0 1.0875rem;
+    display: flex;
+    flex-wrap: wrap;
 }
 
-@media (max-width: 767px) {
+@media (--small-mobile) {
     .layout {
-        margin-top: 53px !important;
+        margin-top: 53px;
     }
 }
 
 .main {
     background-color: white;
+    padding: 1rem;
+    width: calc(100% - 250px);
 }
 
-@media (min-width: 768px) {
+.about {
+    width: 250px;
+}
+
+@media (--small-mobile) {
     .main {
         min-height: calc(100vh - 53px);
     }
 }
+
+@media (--mobile) {
+    .main {
+        width: 100%;
+    }
+
+    .about {
+        width: 100%;
+    }
+}
+

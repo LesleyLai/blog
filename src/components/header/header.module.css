@@ -1,3 +1,5 @@
+@import "../../style/layout.css";
+
 .header {
     background: #1b1c1d;
 }
@@ -13,19 +15,26 @@
     }
 }
 
-.container {
+.header-container {
+    composes: container;
     padding: 0.3rem 1.0875rem;
-    display: flex !important;
+    display: flex;
 }
 
 .logo {
     color: white;
     margin: auto 15px auto 0;
     white-space: nowrap;
+    text-decoration: none;
+}
+
+.logo h2 {
+    font-size: 2em;
+    margin-bottom: 0.2rem;
 }
 
 @media (max-width: 500px) {
-    .logo h1 {
+    .logo h2 {
         font-size: 1.6em;
     }
 }
@@ -35,5 +44,28 @@
 }
 
 .menu {
-    margin-top: 0 !important;
+    display: flex;
+}
+
+.menuItem {
+    flex: 0 0 auto;
+    vertical-align: middle;
+    text-decoration: none;
+    color: hsla(0,0%,100%,.7);
+
+    padding: .85714286em 1.14285714em;
+}
+
+.menuItem:hover {
+    color: #fff;
+}
+
+.menuItem.active {
+    color: #fff;
+    font-weight: 700;
+
+    border-color: #fff;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-radius: 0;
 }
