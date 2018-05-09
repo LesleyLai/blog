@@ -1,7 +1,7 @@
 @import "../../style/breakpoints.css";
 
 .panel {
-    width: 32%;
+    width: 31%;
     border: 5px solid #dddddd;
     border-radius: 2px;
     overflow: hidden;
