@@ -21,7 +21,7 @@ const ProjectsPage = () => {
       <ul className={css.projectsList}>
         <ProjectPanel
           name="Path tracer"
-          github={new URL("https://github.com/LesleyLai/PathTracer")}
+          github="https://github.com/LesleyLai/PathTracer"
           image={pathTracingImage}
           year="2018"
           tags={["cpp", "graphics", "GI"]}
@@ -36,8 +36,8 @@ const ProjectsPage = () => {
 
         <ProjectPanel
           name="Reversi-Elm"
-          github={new URL("https://github.com/LesleyLai/Reversi-Elm")}
-          link={new URL("https://lesleylai.github.io/Reversi-Elm/")}
+          github="https://github.com/LesleyLai/Reversi-Elm"
+          link="https://lesleylai.github.io/Reversi-Elm/"
           image={reversiImage}
           year="2018"
           tags={["elm", "game", "web", "functional"]}
@@ -47,7 +47,7 @@ const ProjectsPage = () => {
 
         <ProjectPanel
           name="Tetris"
-          github={new URL("https://github.com/LesleyLai/Tetris")}
+          github="https://github.com/LesleyLai/Tetris"
           image={tetrisImage}
           imageContain
           year="2017"
@@ -59,7 +59,7 @@ const ProjectsPage = () => {
 
         <ProjectPanel
           name="Ray tracer"
-          github={new URL("https://github.com/LesleyLai/RayTracer")}
+          github="https://github.com/LesleyLai/RayTracer"
           image={raytracerImage}
           year="2016"
           tags={["cpp", "graphics"]}

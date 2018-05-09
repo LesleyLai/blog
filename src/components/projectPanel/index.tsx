@@ -8,8 +8,8 @@ const css = require("./projectPanel.module.css");
 
 interface ProjectPenalProps extends React.HTMLProps<HTMLDListElement> {
   name: string;
-  github?: URL;
-  link?: URL;
+  github?: string;
+  link?: string;
 
   // A reference to image
   image?: string;
@@ -64,13 +64,13 @@ const ProjectPanel = (props: ProjectPenalProps) => {
           <span style={{ flexGrow: 100 }} />
 
           {props.github && (
-            <a href={props.github.toString()}>
+            <a href={props.github}>
               <GithubIcon size={16} className={css.link} />
             </a>
           )}
 
           {props.link && (
-            <a href={props.link.toString()}>
+            <a href={props.link}>
               <LinkIcon size={16} className={css.link} />
             </a>
           )}
