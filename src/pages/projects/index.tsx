@@ -26,8 +26,8 @@ const ProjectsPage = () => {
           year="2018"
           tags={["cpp", "graphics", "GI"]}
         >
-          A Monte-Carlo method based path tracing program for my own learning
-          purpose. Loosely based on Peter Shirley's{" "}
+          A Monte-Carlo Method based path tracing program for my own learning
+          purpose. It is loosely based on Peter Shirley's{" "}
           <a href="http://in1weekend.blogspot.lt/">
             Ray Tracing in One Weekend
           </a>{" "}
@@ -68,7 +68,7 @@ const ProjectsPage = () => {
           <a href="https://en.wikipedia.org/wiki/Ray_tracing_(graphics)">
             ray tracer
           </a>{" "}
-          in C++ for the Edx's{" "}
+          for the Edx's{" "}
           <a href="https://www.edx.org/course/computer-graphics-uc-san-diegox-cse167x-3">
             Computer Graphics
           </a>{" "}
