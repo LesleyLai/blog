@@ -24,6 +24,7 @@ const ProjectsPage = () => {
           github={new URL("https://github.com/LesleyLai/PathTracer")}
           image={pathTracingImage}
           year="2018"
+          tags={["cpp", "graphics", "GI"]}
         >
           A Monte-Carlo method based path tracing program for my own learning
           purpose. Loosely based on Peter Shirley's{" "}
@@ -39,6 +40,7 @@ const ProjectsPage = () => {
           link={new URL("https://lesleylai.github.io/Reversi-Elm/")}
           image={reversiImage}
           year="2018"
+          tags={["functional", "elm", "game", "web"]}
         >
           A browser based clone of the classic board game Reversi.
         </ProjectPanel>
@@ -49,6 +51,7 @@ const ProjectsPage = () => {
           image={tetrisImage}
           imageContain
           year="2017"
+          tags={["python", "game", "GUI"]}
         >
           A simple Tetris clone in Python and{" "}
           <a href="https://en.wikipedia.org/wiki/Tk_(software)">Tk</a> library.
@@ -59,6 +62,7 @@ const ProjectsPage = () => {
           github={new URL("https://github.com/LesleyLai/RayTracer")}
           image={raytracerImage}
           year="2016"
+          tags={["cpp", "graphics"]}
         >
           This is a toy{" "}
           <a href="https://en.wikipedia.org/wiki/Ray_tracing_(graphics)">
