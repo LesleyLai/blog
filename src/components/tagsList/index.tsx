@@ -2,40 +2,27 @@ import * as classNames from "classnames";
 import Link from "gatsby-link";
 import * as React from "react";
 
+import { Color, colors } from "../../utils/colorTable";
+
 interface TagsProps {
   tags: string[];
   className?: string;
 }
 
-interface TagColor {
-  bg: string;
-  fg: string;
-}
-
 interface Tag {
   en: string;
   zh?: string;
-  color: TagColor; // Color of the tag box
+  color: Color; // Color of the tag box
 }
 
-/*
- * A table that transfer from color string to actual color
- */
-const colorTable: { [key: string]: TagColor } = {
-  red: { bg: "#db2828", fg: "#fff" },
-  green: { bg: "#21ba45", fg: "#fff" },
-  orange: { bg: "#fbbd08", fg: "#fff" },
-  white: { bg: "#e8e8e8", fg: "rgba(0,0,0,.6)" }
-};
-
 const tagInfos: { [id: string]: Tag } = {
-  cpp: { en: "C++", color: colorTable.red },
-  cmake: { en: "CMake", color: colorTable.green },
-  test: { en: "Test", zh: "测试", color: colorTable.orange },
+  cpp: { en: "C++", color: colors.red },
+  cmake: { en: "CMake", color: colors.green },
+  test: { en: "Test", zh: "测试", color: colors.orange },
   resource: {
     en: "Resource Management",
     zh: "资源管理",
-    color: colorTable.white
+    color: colors.white
   }
 };
 
@@ -49,7 +36,7 @@ const TagsList = (props: TagsProps) => {
       {tags.map((tag, index) => {
         const info: Tag = tagInfos[tag];
         const tagName: string = info ? info.en : tag;
-        const color: TagColor = info ? info.color : colorTable.white;
+        const color: Color = info ? info.color : colors.white;
         // as={Link} to={`/category/${tag}/`}
         return (
           <li

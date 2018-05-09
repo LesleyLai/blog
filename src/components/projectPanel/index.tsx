@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Color, colors } from "../../utils/colorTable";
 
 const GithubIcon = require("react-icons/lib/fa/github");
 const LinkIcon = require("react-icons/lib/go/link");
@@ -20,7 +21,37 @@ interface ProjectPenalProps extends React.HTMLProps<HTMLDListElement> {
   tags?: string[];
 }
 
+interface ProjectTag {
+  en: string;
+  zh?: string;
+  color: Color; // Color of the tag box
+}
+
+const tagInfos: { [id: string]: ProjectTag } = {
+  cpp: { en: "C++", color: colors.blue },
+  graphics: { en: "Graphics", color: colors.red },
+  GI: { en: "Global Illumination", color: colors.yellow },
+  functional: { en: "Functional", color: colors.black },
+  elm: { en: "Elm", color: colors.teal },
+  game: { en: "Game", color: colors.orange },
+  web: { en: "Web", color: colors.pink },
+  python: { en: "Python", color: colors.blue }
+};
+
+function buildTag(tagId: string) {
+  const tag = tagInfos[tagId];
+  const color: Color = tag ? tag.color : colors.white;
+
+  return (
+    <li className={css.tag} style={{ color: color.fg, background: color.bg }}>
+      {tag ? tag.en : tagId}
+    </li>
+  );
+}
+
 const ProjectPanel = (props: ProjectPenalProps) => {
+  const tags = props.tags;
+
   return (
     <article className={css.panel}>
       <img src={props.image} alt={props.name} className={css.image} />
@@ -45,7 +76,9 @@ const ProjectPanel = (props: ProjectPenalProps) => {
           )}
         </div>
 
-        {props.children}
+        <div className={css.description}>{props.children}</div>
+
+        <ul className={css.tags}>{tags && tags.map(buildTag)}</ul>
       </div>
     </article>
   );

@@ -40,7 +40,7 @@ const ProjectsPage = () => {
           link={new URL("https://lesleylai.github.io/Reversi-Elm/")}
           image={reversiImage}
           year="2018"
-          tags={["functional", "elm", "game", "web"]}
+          tags={["elm", "game", "web", "functional"]}
         >
           A browser based clone of the classic board game Reversi.
         </ProjectPanel>
