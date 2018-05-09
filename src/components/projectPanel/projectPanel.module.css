@@ -11,21 +11,40 @@
     border-radius: 10px;
 }
 
-.header {
+
+.image {
     height: 218px;
     display: block;
+    margin: 0 auto 5px auto;
 }
 
 .content {
-    padding: 30px 10px 10px 10px;
+    padding: 10px;
 }
 
-.name {
+.title {
+    padding: 0 0 10px 0;
+    display: flex;
+}
+
+.title > .name {
+    display: inline;
+    margin-top: -5px;
+    margin-right: 5px;
+}
+
+.title > .year {
+    vertical-align: middle;
+    font-size: 16px;
+}
+
+.link {
+    color: rgba(0,0,0,0.5);
+    margin-right: 5px;
+}
+
+.link:hover {
     color: rgba(0,0,0,0.78);
-}
-
-.name:hover {
-    color: black;
 }
 
 @media (--small-mobile) {

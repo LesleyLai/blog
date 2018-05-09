@@ -21,7 +21,7 @@ const ProjectsPage = () => {
       <ul className={css.projectsList}>
         <ProjectPanel
           name="Path tracer"
-          url="https://github.com/LesleyLai/PathTracer"
+          github={new URL("https://github.com/LesleyLai/PathTracer")}
           image={pathTracingImage}
           year="2018"
         >
@@ -35,18 +35,17 @@ const ProjectsPage = () => {
 
         <ProjectPanel
           name="Reversi-Elm"
-          url="https://github.com/LesleyLai/Reversi-Elm"
+          github={new URL("https://github.com/LesleyLai/Reversi-Elm")}
+          link={new URL("https://lesleylai.github.io/Reversi-Elm/")}
           image={reversiImage}
           year="2018"
         >
-          A purely functional implementation of the classic board game Reversi.
-          You can play the game{" "}
-          <a href="https://lesleylai.github.io/Reversi-Elm/">here</a>.
+          A browser based clone of the classic board game Reversi.
         </ProjectPanel>
 
         <ProjectPanel
           name="Tetris"
-          url="https://github.com/LesleyLai/Tetris"
+          github={new URL("https://github.com/LesleyLai/Tetris")}
           image={tetrisImage}
           imageContain
           year="2017"
@@ -57,7 +56,7 @@ const ProjectsPage = () => {
 
         <ProjectPanel
           name="Ray tracer"
-          url="https://github.com/LesleyLai/RayTracer"
+          github={new URL("https://github.com/LesleyLai/RayTracer")}
           image={raytracerImage}
           year="2016"
         >
