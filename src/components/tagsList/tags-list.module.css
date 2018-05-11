@@ -1,8 +1,22 @@
 .tag {
-    margin-right: 0.6em !important;
+    display: inline-block;
+    line-height: 1;
+    margin-right: 0.6em;
+    padding: .5833em .833em;
+    
+    background-color: #e8e8e8;
+    padding: .5833em .833em;
+    color: rgba(0,0,0,.6);
+
+    text-transform: none;
+    font-weight: 700;
+
+    border-radius: .28571429rem;
 }
 
 .tags {
     margin-left: 0;
     margin-bottom: 0;
+
+    font-size: .78571429rem;
 }

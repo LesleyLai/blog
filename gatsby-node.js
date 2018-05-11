@@ -19,7 +19,7 @@ exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
     }
 };
 
-const { createFilePath } = require(`gatsby-source-filesystem`)
+const { createFilePath } = require(`gatsby-source-filesystem`);
 
 exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
     const { createNodeField } = boundActionCreators;
@@ -29,7 +29,7 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
             node,
             name: `relativePath`,
             value: relativePath,
-        })
+        });
     }
 };
 

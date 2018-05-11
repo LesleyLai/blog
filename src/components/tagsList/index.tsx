@@ -1,48 +1,51 @@
+import * as classNames from "classnames";
 import Link from "gatsby-link";
 import * as React from "react";
-import { Label } from "semantic-ui-react";
+
+import { Color, colors } from "../../utils/colorTable";
 
 interface TagsProps {
   tags: string[];
-  className: string;
-  tagSize?: string;
+  className?: string;
 }
 
 interface Tag {
   en: string;
   zh?: string;
-  color: string; // Color of the tag box
+  color: Color; // Color of the tag box
 }
 
 const tagInfos: { [id: string]: Tag } = {
-  cpp: { en: "C++", color: "red" },
-  cmake: { en: "CMake", color: "green" },
-  test: { en: "Test", zh: "测试", color: "yellow" },
-  resource: { en: "Resource Management", zh: "资源管理", color: "white" }
+  cpp: { en: "C++", color: colors.red },
+  cmake: { en: "CMake", color: colors.green },
+  test: { en: "Test", zh: "测试", color: colors.orange },
+  resource: {
+    en: "Resource Management",
+    zh: "资源管理",
+    color: colors.white
+  }
 };
+
+const css = require("./tags-list.module.css");
 
 const TagsList = (props: TagsProps) => {
   const tags = props.tags;
-  const css = require("./tags-list.module.css");
-  const tagSize = props.tagSize ? props.tagSize : "small";
 
   return (
-    <ul className={props.className + " " + css.tags}>
+    <ul className={classNames(props.className, css.tags)}>
       {tags.map((tag, index) => {
         const info: Tag = tagInfos[tag];
         const tagName: string = info ? info.en : tag;
-        const color: string = info ? info.color : "white";
+        const color: Color = info ? info.color : colors.white;
         // as={Link} to={`/category/${tag}/`}
         return (
-          <Label
+          <li
             key={tag}
-            as="li"
             className={css.tag}
-            size={tagSize}
-            color={color}
+            style={{ color: color.fg, backgroundColor: color.bg }}
           >
             {tagName}
-          </Label>
+          </li>
         );
       })}
     </ul>

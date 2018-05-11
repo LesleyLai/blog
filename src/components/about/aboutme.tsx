@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Rail } from "semantic-ui-react";
 
 const AboutMe = () => {
   const currentYear = new Date().getFullYear();
@@ -8,7 +7,7 @@ const AboutMe = () => {
   const css = require("./about.module.css");
 
   return (
-    <div className={css.about}>
+    <nav className={css.about}>
       <img src={portrait} alt="Lesley Lai Protrait" id={css.portrait} />
 
       <article>
@@ -47,7 +46,7 @@ const AboutMe = () => {
       </p>
 
       <p className={css.copyright}>©2015-{currentYear} Lesley Lai</p>
-    </div>
+    </nav>
   );
 };
 

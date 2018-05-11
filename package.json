@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "author": "Lesley Lai",
   "dependencies": {
+    "@types/classnames": "^2.2.3",
     "@types/lodash": "^4.14.106",
     "@types/node": "^9.6.2",
     "@types/prop-types": "^15.5.2",
@@ -11,22 +12,26 @@
     "@types/react-color": "^2.13.4",
     "@types/react-dom": "^16.0.4",
     "@types/react-helmet": "^5.0.5",
+    "classnames": "^2.2.5",
     "gatsby": "^1.9.246",
+    "gatsby-image": "^1.0.51",
     "gatsby-link": "^1.6.40",
     "gatsby-plugin-react-helmet": "^2.0.10",
     "gatsby-plugin-react-next": "^1.0.11",
+    "gatsby-plugin-sharp": "^1.6.44",
     "gatsby-plugin-sitemap": "^1.2.20",
     "gatsby-plugin-typescript": "^1.4.19",
     "gatsby-plugin-typography": "^1.7.18",
     "gatsby-remark-prismjs": "^1.2.23",
     "gatsby-source-filesystem": "^1.5.28",
     "gatsby-transformer-remark": "^1.7.39",
+    "gatsby-transformer-sharp": "^1.6.24",
     "lodash": "^4.17.5",
+    "normalize.css": "^8.0.0",
     "react": "^16.3.1",
     "react-disqus-comments": "^1.1.1",
     "react-helmet": "^5.2.0",
-    "semantic-ui-css": "^2.3.1",
-    "semantic-ui-react": "^0.79.1",
+    "react-icons": "^2.2.7",
     "typescript": "^2.8.1"
   },
   "keywords": [
@@ -51,8 +56,10 @@
     "tslint-react": "^3.5.1"
   },
   "lint-staged": {
-    "src/**/*.{j,t}s{,x}": ["prettier --write",
-                            "tslint -c tslint.json --fix",
-                            "git add"]
+    "src/**/*.{j,t}s{,x}": [
+      "prettier --write",
+      "tslint -c tslint.json --fix",
+      "git add"
+    ]
   }
 }

@@ -1,8 +1,10 @@
+@import "../../style/breakpoints.css";
+
 .about {
-    width: 200px;
     min-width: 200px;
     font-size: 14px;
     color: #8f6d3d;
+    padding: 1rem;
 }
 
 .about a {
@@ -14,7 +16,7 @@
 }
 
 /* Mobile */
-@media only screen and (max-width: 767px) {
+@media (--small-mobile) {
   .about {
       width: 100%;
       text-align: center;

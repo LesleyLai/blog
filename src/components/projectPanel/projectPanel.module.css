@@ -1,7 +1,10 @@
 @import "../../style/breakpoints.css";
 
 .panel {
-    width: 32%;
+    display: flex;
+    flex-direction: column;
+    
+    width: 31%;
     border: 5px solid #dddddd;
     border-radius: 2px;
     overflow: hidden;
@@ -11,21 +14,42 @@
     border-radius: 10px;
 }
 
-.header {
+
+.image {
     height: 218px;
     display: block;
+    margin: 0 auto 5px auto;
 }
 
 .content {
-    padding: 30px 10px 10px 10px;
+    padding: 10px;
+    display: flex;
+    flex-grow: 100;
+    flex-direction: column;
 }
 
-.name {
+.title {
+    display: flex;
+}
+
+.title > .name {
+    display: inline;
+    margin-top: -5px;
+    margin-right: 5px;
+}
+
+.title > .year {
+    vertical-align: middle;
+    font-size: 16px;
+}
+
+.link {
+    color: rgba(0,0,0,0.5);
+    margin-right: 5px;
+}
+
+.link:hover {
     color: rgba(0,0,0,0.78);
-}
-
-.name:hover {
-    color: black;
 }
 
 @media (--small-mobile) {
@@ -38,4 +62,35 @@
     .panel {
         width: 48%;
     }
+}
+
+.description {
+    flex-grow: 100;
+}
+
+.tags {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 18px 0 0 0;
+}
+
+.tag {
+    display: inline-block;
+    line-height: 1;
+    margin-right: 0.6em;
+    margin-bottom: 0;
+    padding: .5833em .833em;
+    
+    background-color: #e8e8e8;
+    padding: .5833em .833em;
+    color: rgba(0,0,0,.6);
+
+    text-transform: none;
+    font-weight: 700;
+    font-size: 10px;
+
+    border-radius: .28571429rem;
+
+    opacity: 0.8;
 }
