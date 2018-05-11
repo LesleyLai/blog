@@ -58,7 +58,7 @@
     }
 }
 
-@media (--tablet-portrait), (--large-mobile) {
+@media (--tablet-landscape), (--tablet-portrait), (--large-mobile) {
     .panel {
         width: 48%;
     }
