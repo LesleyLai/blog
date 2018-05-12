@@ -3,6 +3,7 @@ import * as React from "react";
 import Helmet from "react-helmet";
 
 import Posts from "../components/posts-list";
+import Post from "../types/Post";
 
 interface ArchiveProps {
   data: {

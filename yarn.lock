@@ -91,6 +91,19 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-icon-base@*":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@types/react-icon-base/-/react-icon-base-2.1.1.tgz#0e15d2e314ca1c0ca64f8b8235d85c4b68f31e0e"
+  dependencies:
+    "@types/react" "*"
+
+"@types/react-icons@^2.2.5":
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/@types/react-icons/-/react-icons-2.2.5.tgz#fc6e78d113415ecc5602f56550a8e3022f5fdf11"
+  dependencies:
+    "@types/react" "*"
+    "@types/react-icon-base" "*"
+
 "@types/react-router-dom@^4.2.2":
   version "4.2.6"
   resolved "https://registry.yarnpkg.com/@types/react-router-dom/-/react-router-dom-4.2.6.tgz#9f7eb3c0e6661a9607d878ff8675cc4ea95cd276"
@@ -104,6 +117,12 @@
   resolved "https://registry.yarnpkg.com/@types/react-router/-/react-router-4.0.23.tgz#d0509dcbdb1c686aed8f3d5cb186f42e5fbe7c2a"
   dependencies:
     "@types/history" "*"
+    "@types/react" "*"
+
+"@types/react-tooltip@^3.3.4":
+  version "3.3.4"
+  resolved "https://registry.yarnpkg.com/@types/react-tooltip/-/react-tooltip-3.3.4.tgz#f7d41fcc032d765e4a2f0e6884681743fce68cfd"
+  dependencies:
     "@types/react" "*"
 
 "@types/react@*", "@types/react@^16.3.5":
@@ -8489,6 +8508,15 @@ react-dom@^16.0.0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
+react-dom@^16.3.2:
+  version "16.3.2"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.3.2.tgz#cb90f107e09536d683d84ed5d4888e9640e0e4df"
+  dependencies:
+    fbjs "^0.8.16"
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.0"
+
 react-error-overlay@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-3.0.0.tgz#c2bc8f4d91f1375b3dad6d75265d51cd5eeaf655"
@@ -8557,6 +8585,13 @@ react-side-effect@^1.1.0:
   dependencies:
     exenv "^1.2.1"
     shallowequal "^1.0.1"
+
+react-tooltip@^3.5.1:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/react-tooltip/-/react-tooltip-3.5.1.tgz#3ef4da70348a0e52c3caa82e626a23d89300f62e"
+  dependencies:
+    classnames "^2.2.5"
+    prop-types "^15.6.0"
 
 react-typography@^0.16.1:
   version "0.16.13"

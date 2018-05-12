@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as ReactTooltip from "react-tooltip";
 import { Color, colors } from "../../utils/colorTable";
 
 const GithubIcon = require("react-icons/lib/fa/github");
@@ -65,13 +66,19 @@ const ProjectPanel = (props: ProjectPenalProps) => {
 
           {props.github && (
             <a href={props.github}>
-              <GithubIcon size={16} className={css.link} />
+              <GithubIcon
+                data-tip="Source repository"
+                size={16}
+                className={css.link}
+              />
+              <ReactTooltip place="right" effect="solid" />
             </a>
           )}
 
           {props.link && (
             <a href={props.link}>
-              <LinkIcon size={16} className={css.link} />
+              <LinkIcon data-tip="Live demo" size={16} className={css.link} />
+              <ReactTooltip place="right" effect="solid" />
             </a>
           )}
         </div>

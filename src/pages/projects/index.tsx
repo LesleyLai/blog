@@ -18,6 +18,7 @@ const ProjectsPage = () => {
         <title>{"Lesley Lai | " + title}</title>
       </Helmet>
       <h1>{title}</h1>
+      <h2>Side projects</h2>
       <ul className={css.projectsList}>
         <ProjectPanel
           name="Path tracer"
