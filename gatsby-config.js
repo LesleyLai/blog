@@ -41,7 +41,6 @@ module.exports = {
               {
                 resolve: `gatsby-plugin-sitemap`
               },
-              `gatsby-plugin-react-next`,
               `gatsby-transformer-sharp`,
               `gatsby-plugin-sharp`
              ],

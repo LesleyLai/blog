@@ -1,4 +1,4 @@
-import React from "react";
+const React = require("react");
 
 let stylesStr;
 if (process.env.NODE_ENV === `production`) {
