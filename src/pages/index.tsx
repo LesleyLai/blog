@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import Layout from "../components/layout";
+
 import RecentPosts, { PostMeta } from "../components/recentPosts";
 
 interface IndexProps {
@@ -11,13 +13,20 @@ interface IndexProps {
       }>;
     };
   };
+  location: {
+    pathname: string;
+  };
 }
 
-const IndexPage = ({ data }: IndexProps) => (
-  <div>
-    <h1>Recent Posts</h1>
-    <RecentPosts posts={data.allMarkdownRemark.edges.map(edge => edge.node)} />
-  </div>
+const IndexPage = (props: IndexProps) => (
+  <Layout location={props.location}>
+    <div>
+      <h1>Recent Posts</h1>
+      <RecentPosts
+        posts={props.data.allMarkdownRemark.edges.map(edge => edge.node)}
+      />
+    </div>
+  </Layout>
 );
 
 export const indexQuery = graphql`

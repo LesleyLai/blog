@@ -1,7 +1,7 @@
-@import "../style/breakpoints.css";
+@import "../../style/breakpoints.css";
 
 .grid {
-    composes: container from "../style/layout.css";
+    composes: container from "../../style/layout.css";
  
     padding: 0 1.0875rem;
     display: flex;

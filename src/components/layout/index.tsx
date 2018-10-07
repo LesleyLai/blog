@@ -1,27 +1,25 @@
 import * as React from "react";
 import Helmet from "react-helmet";
 
-import AboutMe from "../components/about/aboutme";
-import Header from "../components/header";
+import AboutMe from "../about/aboutme";
+import Header from "../header";
 
 import "normalize.css";
-import "../style/global.css";
-import "../style/highlight.css";
+import "../../style/global.css";
+import "../../style/highlight.css";
 
 interface DefaultLayoutProps extends React.HTMLProps<HTMLDivElement> {
   location: {
     pathname: string;
   };
-  children: any;
+  children: React.ReactNode;
 }
 
 // Use `module.exports` to be compliante with `webpack-require` import method
-export default class DefaultLayout extends React.PureComponent<
-  DefaultLayoutProps
-> {
+export default class Layout extends React.PureComponent<DefaultLayoutProps> {
   public render() {
-    const children = this.props.children();
-    const layout = require("./layout.module.css");
+    const children = this.props.children;
+    const style = require("./layout.module.css");
 
     const pathname = this.props.location.pathname;
 
@@ -32,11 +30,11 @@ export default class DefaultLayout extends React.PureComponent<
           <html lang="en" />
         </Helmet>
         <Header pathname={pathname} />
-        <div className={layout.layout}>
-          <div className={layout.grid}>
-            <main className={layout.main}>{children}</main>
+        <div className={style.layout}>
+          <div className={style.grid}>
+            <main className={style.main}>{children}</main>
 
-            <div className={layout.about}>
+            <div className={style.about}>
               <AboutMe />
             </div>
           </div>

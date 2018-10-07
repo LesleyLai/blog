@@ -23,20 +23,21 @@ interface ProjectPenalProps extends React.HTMLProps<HTMLDListElement> {
 }
 
 interface ProjectTag {
+  key: string;
   en: string;
   zh?: string;
   color: Color; // Color of the tag box
 }
 
 const tagInfos: { [id: string]: ProjectTag } = {
-  cpp: { en: "C++", color: colors.blue },
-  graphics: { en: "Graphics", color: colors.red },
-  GI: { en: "Global Illumination", color: colors.yellow },
-  functional: { en: "Functional", color: colors.black },
-  elm: { en: "Elm", color: colors.teal },
-  game: { en: "Game", color: colors.orange },
-  web: { en: "Web", color: colors.pink },
-  python: { en: "Python", color: colors.blue }
+  cpp: { key: "cpp", en: "C++", color: colors.blue },
+  graphics: { key: "graphics", en: "Graphics", color: colors.red },
+  GI: { key: "gi", en: "Global Illumination", color: colors.yellow },
+  functional: { key: "fp", en: "Functional", color: colors.black },
+  elm: { key: "elm", en: "Elm", color: colors.teal },
+  game: { key: "game", en: "Game", color: colors.orange },
+  web: { key: "web", en: "Web", color: colors.pink },
+  python: { key: "python", en: "Python", color: colors.blue }
 };
 
 function buildTag(tagId: string) {

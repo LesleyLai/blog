@@ -22,7 +22,6 @@ const MenuItem = ({ pathname, itemName }: MenuItemProp) => {
     <Link
       to={item.path}
       key={item.path}
-      exact={item.exact}
       activeClassName={css.active}
       className={css.menuItem}
     >
