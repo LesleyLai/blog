@@ -18,7 +18,7 @@ const Logo = () => (
 const Header = ({ pathname }: HeaderProps) => {
   return (
     <header className={style.header}>
-      <div className={style["header-container"]}>
+      <div className={style.headerContainer}>
         <Logo />
         <HeaderMenu pathname={pathname} />
       </div>

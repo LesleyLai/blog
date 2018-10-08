@@ -1,6 +1,7 @@
 import Link from "gatsby-link";
 import * as React from "react";
 import Helmet from "react-helmet";
+import Layout from "../components/layout";
 import TagsList from "../components/tagsList";
 
 import ReactDisqusComments from "react-disqus-comments";
@@ -36,36 +37,38 @@ class PostTemplate extends React.Component<PostProps> {
     const url = "http://lesleylai.info" + path;
     const title = "Lesley Lai | " + post.frontmatter.title;
     return (
-      <div className={css.post}>
-        <Helmet>
-          <title>{title}</title>
-        </Helmet>
-        <h1 className={css.title}>{post.frontmatter.title}</h1>
-        <div className={css.info}>
-          <Link to="/archive">
-            Last Modify: {post.frontmatter.lastModify} | Create:{" "}
-            {post.frontmatter.create}
-          </Link>
-          <TagsList
-            tags={post.frontmatter.categories}
-            className={css.tags}
-            tagSize="tiny"
+      <Layout location={{ pathname: path }}>
+        <div className={css.post}>
+          <Helmet>
+            <title>{title}</title>
+          </Helmet>
+          <h1 className={css.title}>{post.frontmatter.title}</h1>
+          <div className={css.info}>
+            <Link to="/archive">
+              Last Modify: {post.frontmatter.lastModify} | Create:{" "}
+              {post.frontmatter.create}
+            </Link>
+            <TagsList
+              tags={post.frontmatter.categories}
+              className={css.tags}
+              tagSize="tiny"
+            />
+          </div>
+
+          <article
+            className={css.article}
+            dangerouslySetInnerHTML={{ __html: post.html }}
+          />
+          <ReactDisqusComments
+            className={css.comment}
+            shortname="lesleylaiblog"
+            identifier={post.frontmatter.id}
+            title={post.frontmatter.title}
+            url={url}
+            onNewComment={this.handleNewComment}
           />
         </div>
-
-        <article
-          className={css.article}
-          dangerouslySetInnerHTML={{ __html: post.html }}
-        />
-        <ReactDisqusComments
-          className={css.comment}
-          shortname="lesleylaiblog"
-          identifier={post.frontmatter.id}
-          title={post.frontmatter.title}
-          url={url}
-          onNewComment={this.handleNewComment}
-        />
-      </div>
+      </Layout>
     );
   }
 }
