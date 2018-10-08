@@ -2,52 +2,60 @@ import Link from "gatsby-link";
 import { groupBy, last } from "lodash";
 import * as React from "react";
 
-import { rhythm } from "../utils/typography.js";
 import TagsList from "./tagsList";
 
 import Post from "../types/Post";
 
-function splitDate(post: { node: Post }) {
-  return post.node.frontmatter.create.split(" ");
+function splitDate(date: string) {
+  return date.split(" ");
 }
 
 const groupPosts = (posts: Array<{ node: Post }>) =>
-  groupBy(posts, post => last(splitDate(post)));
+  groupBy(posts, post => last(splitDate(post.node.frontmatter.create)));
 
-const Posts = ({ posts }) => {
+interface ArchiveEntryProps {
+  post: Post;
+}
+
+const ArchiveEntry = (props: ArchiveEntryProps) => {
+  const post = props.post;
+  const frontmatter = post.frontmatter;
+  const id = frontmatter.id;
+  const lang = frontmatter.lang;
+  const title = frontmatter.title;
+  const create = frontmatter.create;
+
+  return (
+    <div>
+      <h3>
+        <Link to={"/" + id + "/" + lang + "/"}>
+          {props.post.frontmatter.title}
+        </Link>
+        <span>
+          {" "}
+          — {splitDate(create)[0]} {splitDate(create)[1]}{" "}
+        </span>
+      </h3>
+      <p style={{ marginBottom: "0.3rem" }}>{post.excerpt}</p>
+      <TagsList tags={frontmatter.categories} />
+    </div>
+  );
+};
+
+const Posts = ({ posts }: { posts: Array<{ node: Post }> }) => {
   const grouped = groupPosts(posts);
-  const years = Object.keys(grouped)
+  const years = Object.keys(grouped) // Categorize posts accord to years
     .sort()
     .reverse();
   return (
     <section>
       {years.map(year => (
-        <section key={year}>
+        <article key={year}>
           <h2>{year}</h2>
           {grouped[year].map(post => (
-            <section style={{ marginBottom: "1rem" }}>
-              <h3 style={{ marginBottom: rhythm(1 / 4) }}>
-                <Link
-                  to={
-                    "/" +
-                    post.node.frontmatter.id +
-                    "/" +
-                    post.node.frontmatter.lang +
-                    "/"
-                  }
-                >
-                  {post.node.frontmatter.title}
-                </Link>
-                <span>
-                  {" "}
-                  — {splitDate(post)[0]} {splitDate(post)[1]}
-                </span>
-              </h3>
-              <p style={{ marginBottom: "0.3rem" }}>{post.node.excerpt}</p>
-              <TagsList tags={post.node.frontmatter.categories} />
-            </section>
+            <ArchiveEntry post={post.node} key={post.node.frontmatter.id} />
           ))}
-        </section>
+        </article>
       ))}
     </section>
   );

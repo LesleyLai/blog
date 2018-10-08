@@ -11,9 +11,7 @@ import { graphql, StaticQuery } from "gatsby";
 interface ArchiveData {
   allMarkdownRemark: {
     totalCount: number;
-    edges: {
-      node: Post;
-    };
+    edges: Array<{ node: Post }>;
   };
 }
 
@@ -25,7 +23,7 @@ interface ArchiveProps {
 }
 
 export default (props: ArchiveProps) => {
-  const render = data => {
+  const render = (data: ArchiveData) => {
     const title = "Blog archive";
     return (
       <Layout location={props.location}>
@@ -35,7 +33,7 @@ export default (props: ArchiveProps) => {
           </Helmet>
           <h1>{title}</h1>
           {data.allMarkdownRemark.totalCount} Posts
-          {/* <Posts posts={data.allMarkdownRemark.edges} /> */}
+          <Posts posts={data.allMarkdownRemark.edges} />
         </div>
       </Layout>
     );
