@@ -1,24 +1,4 @@
 const path = require('path');
-
-exports.onCreateNode = ({ node, actions, getNode }) => {
-    const { createNodeField } = actions;
-    let relativePath;
-    if (node.internal.type === `MarkdownRemark`) {
-        const fileNode = getNode(node.parent);
-        const parsedFilePath = path.parse(fileNode.relativePath);
-        if (parsedFilePath.name !== `index` && parsedFilePath.dir !== ``) {
-            relativePath = `/${parsedFilePath.dir}/${parsedFilePath.name}/`;
-        } else if (parsedFilePath.dir === ``) {
-            relativePath = `/${parsedFilePath.name}/`;
-        } else {
-            relativePath = `/${parsedFilePath.dir}/`;
-        }
-
-        // Add relativePath as a field on the node.
-        createNodeField({ node, name: `relativePath`, value: relativePath });
-    }
-};
-
 const { createFilePath } = require(`gatsby-source-filesystem`);
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
