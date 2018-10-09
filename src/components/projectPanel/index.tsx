@@ -60,9 +60,11 @@ const ProjectPanel = (props: ProjectPenalProps) => {
 
       <div className={css.content}>
         <div className={css.title}>
-          <h3 className={css.name}> {props.name} </h3>
-          <span className={css.year}> ({props.year})</span>
-
+          <h3 className={css.name}>
+            {" "}
+            {props.name}
+            <span className={css.year}> ({props.year})</span>
+          </h3>
           <span style={{ flexGrow: 100 }} />
 
           {props.github && (

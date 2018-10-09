@@ -26,11 +26,11 @@ const ProjectsPage = (props: ProjectsPageProps) => {
           <title>{"Lesley Lai | " + title}</title>
         </Helmet>
         <h1>{title}</h1>
-        <h2>Side projects</h2>
+        <h2>Personal projects</h2>
         <ul className={css.projectsList}>
           <ProjectPanel
-            name="Path tracer"
-            github="https://github.com/LesleyLai/PathTracer"
+            name="Bolder Render Engine"
+            github="https://github.com/LesleyLai/Bolder-Render-Engine"
             image={pathTracingImage}
             year="2018"
             tags={["cpp", "graphics", "GI"]}

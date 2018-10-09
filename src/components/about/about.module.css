@@ -1,5 +1,3 @@
-@import "../../style/breakpoints.css";
-
 .about {
     min-width: 200px;
     font-size: 14px;
@@ -16,7 +14,7 @@
 }
 
 /* Mobile */
-@media (--small-mobile) {
+@media only screen and (max-width: 499px) {
   .about {
       width: 100%;
       text-align: center;
