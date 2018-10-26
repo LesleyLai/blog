@@ -54,6 +54,16 @@
     padding: .85714286em 1.14285714em;
 }
 
+@media (max-width: 768px) {
+    .menu {
+        padding: .85714286em 1.14285714em;
+    }
+    
+    .menuItem {
+        display: none;
+    }
+}
+
 .menuItem:hover {
     color: #fff;
 }

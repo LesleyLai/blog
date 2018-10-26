@@ -1,6 +1,7 @@
 import * as classNames from "classnames";
 import Link from "gatsby-link";
 import * as React from "react";
+import { FaBars } from "react-icons/lib/fa";
 
 import { MenuModel, menuModel } from "../menu";
 
@@ -36,13 +37,7 @@ const HeaderMenu = (props: HeaderMenuProp) => {
       {Object.keys(menuModel).map((key: string) => (
         <MenuItem key={key} pathname={props.pathname} itemName={key} />
       ))}
-      {/* <Menu.Item
-        as="button"
-        icon="content"
-        className="mobile only"
-        position="right"
-        size="large"
-        />*/}
+      {<FaBars />}
     </nav>
   );
 };
