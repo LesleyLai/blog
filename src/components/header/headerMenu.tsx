@@ -31,15 +31,37 @@ const MenuItem = ({ pathname, itemName }: MenuItemProp) => {
   );
 };
 
-const HeaderMenu = (props: HeaderMenuProp) => {
-  return (
-    <nav className={css.menu}>
-      {Object.keys(menuModel).map((key: string) => (
-        <MenuItem key={key} pathname={props.pathname} itemName={key} />
-      ))}
-      {<FaBars />}
-    </nav>
-  );
-};
+export default class HeaderMenu extends React.PureComponent<HeaderMenuProp> {
+  public state: { showMobileMenu: boolean };
 
-export default HeaderMenu;
+  constructor(props: HeaderMenuProp) {
+    super(props);
+    this.state = { showMobileMenu: false };
+    this.toggleMobileMenu = this.toggleMobileMenu.bind(this);
+  }
+
+  public render() {
+    return (
+      <>
+        <nav
+          className={classNames(css.menu, {
+            [css.mobileMenu]: this.state.showMobileMenu
+          })}
+        >
+          {Object.keys(menuModel).map((key: string) => (
+            <MenuItem key={key} pathname={this.props.pathname} itemName={key} />
+          ))}
+        </nav>
+        <button className={css.mobileMenuIcon} onClick={this.toggleMobileMenu}>
+          <FaBars />
+        </button>
+      </>
+    );
+  }
+
+  private toggleMobileMenu(e: React.MouseEvent<HTMLInputElement>) {
+    e.preventDefault();
+
+    this.setState({ showMobileMenu: !this.state.showMobileMenu });
+  }
+}
