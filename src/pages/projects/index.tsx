@@ -26,10 +26,10 @@ const ProjectsPage = (props: ProjectsPageProps) => {
           <title>{"Lesley Lai | " + title}</title>
         </Helmet>
         <h1>{title}</h1>
-        <h2>Personal projects</h2>
+        <h2>Graphics</h2>
         <ul className={css.projectsList}>
           <ProjectPanel
-            name="Bolder Render Engine"
+            name="Path Tracer"
             github="https://github.com/LesleyLai/Bolder-Render-Engine"
             image={pathTracingImage}
             year="2018"
@@ -43,6 +43,38 @@ const ProjectsPage = (props: ProjectsPageProps) => {
             mini book and its sequels.
           </ProjectPanel>
 
+          <ProjectPanel
+            name="Ray tracer"
+            github="https://github.com/LesleyLai/RayTracer"
+            image={raytracerImage}
+            year="2016"
+            tags={["cpp", "graphics"]}
+          >
+            This is a toy{" "}
+            <a href="https://en.wikipedia.org/wiki/Ray_tracing_(graphics)">
+              ray tracer
+            </a>{" "}
+            for the Edx's{" "}
+            <a href="https://www.edx.org/course/computer-graphics-uc-san-diegox-cse167x-3">
+              Computer Graphics
+            </a>{" "}
+            Course. It can handle ray-sphere and ray-triangle intersection.
+          </ProjectPanel>
+        </ul>
+        <h2>Programming languages</h2>
+        <ul className={css.projectsList}>
+          <ProjectPanel
+            name="Embedded ML"
+            github="https://github.com/LesleyLai/eml"
+            year="2018"
+            tags={["pl", "functional"]}
+          >
+            Embedded ML is a static-typed scripting language. The project
+            includes a compiler and a bytecode interpreter runtime.
+          </ProjectPanel>
+        </ul>
+        <h2>Toys</h2>
+        <ul className={css.projectsList}>
           <ProjectPanel
             name="Reversi-Elm"
             github="https://github.com/LesleyLai/Reversi-Elm"
@@ -65,24 +97,6 @@ const ProjectsPage = (props: ProjectsPageProps) => {
             A simple Tetris clone in Python and{" "}
             <a href="https://en.wikipedia.org/wiki/Tk_(software)">Tk</a>{" "}
             library.
-          </ProjectPanel>
-
-          <ProjectPanel
-            name="Ray tracer"
-            github="https://github.com/LesleyLai/RayTracer"
-            image={raytracerImage}
-            year="2016"
-            tags={["cpp", "graphics"]}
-          >
-            This is a toy{" "}
-            <a href="https://en.wikipedia.org/wiki/Ray_tracing_(graphics)">
-              ray tracer
-            </a>{" "}
-            for the Edx's{" "}
-            <a href="https://www.edx.org/course/computer-graphics-uc-san-diegox-cse167x-3">
-              Computer Graphics
-            </a>{" "}
-            Course. It can handle ray-sphere and ray-triangle intersection.
           </ProjectPanel>
         </ul>
       </div>

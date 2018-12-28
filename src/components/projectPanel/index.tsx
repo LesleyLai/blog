@@ -37,7 +37,8 @@ const tagInfos: { [id: string]: ProjectTag } = {
   elm: { key: "elm", en: "Elm", color: colors.teal },
   game: { key: "game", en: "Game", color: colors.orange },
   web: { key: "web", en: "Web", color: colors.pink },
-  python: { key: "python", en: "Python", color: colors.blue }
+  python: { key: "python", en: "Python", color: colors.blue },
+  pl: { key: "pl", en: "Programming Language", color: colors.red }
 };
 
 function buildTag(tagId: string) {
