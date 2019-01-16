@@ -19,6 +19,7 @@ interface Tag {
 const tagInfos: { [id: string]: Tag } = {
   cpp: { en: "C++", color: colors.red },
   cmake: { en: "CMake", color: colors.green },
+  books: { en: "Books", zh: "书籍", color: colors.yellow },
   test: { en: "Test", zh: "测试", color: colors.orange },
   resource: {
     en: "Resource Management",
