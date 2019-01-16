@@ -67,9 +67,9 @@ const ProjectsPage = (props: ProjectsPageProps) => {
             name="Embedded ML"
             github="https://github.com/LesleyLai/eml"
             year="2018"
-            tags={["pl", "functional"]}
+            tags={["cpp", "pl", "functional"]}
           >
-            Embedded ML is a static-typed scripting language. The project
+            Embedded ML is a static-typed scripting language. This project
             includes a compiler and a bytecode interpreter runtime.
           </ProjectPanel>
         </ul>
