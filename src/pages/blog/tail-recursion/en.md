@@ -12,6 +12,9 @@ categories:
 
 [Tail-recursion](https://en.wikipedia.org/wiki/Tail_call) is an important concept to understand before we can analyse the behavior of a functional program. I will try to illustrate what tail recursion is with an [Elm](https://elm-lang.org/)-like pseudocode. Though you don't need to know any Elm to understand this post.
 
+
+## From recursion to tail-recursion
+
 Consider the following function:
 
 ``` elm
@@ -21,7 +24,6 @@ factorial n =
     then 1
     else n * factorial(n - 1)
 ```
-
 
 We can expand `factorial(4)` as
 
@@ -41,7 +43,8 @@ Because we multiply numbers to the inner-function call result, we need a place t
 
 Tail recursion is a space optimization for the recursive calls. Unlike must optimizations, it changes the asymptotic behavior of the memory usage from `O(n)` to `O(1)`. The idea is that if a recursive call itself is the last action in another function call, the function's stack frame can be reused. Function calls in the tail position of another function call are called tail call.
 
-A nice trick to transform naive recursive functions to tail recursive counterparts is using accumulators. For example, here is a tail recursive version of `factorial`:
+## Accumulators - Technique for implement tail recursive functions
+A nice technique to transform naive recursive functions to tail recursive counterparts is using accumulators. For example, here is a tail recursive version of `factorial`:
 
 ``` elm
 factorial: Int -> Int
@@ -54,6 +57,27 @@ factorial n =
 
 Using accumulators implies an iterative process that we use all the times with loops. Indeed, tail recursions will always transform into the same kind of low-level code as the loops by a compiler.
 
-Note accumulators are not always working, and there is another technique called [continuous-passing style](https://en.wikipedia.org/wiki/Continuation-passing_style) to transform more complex recursive functions. However, CPS need to dynamically allocates lots of closures for each recursive call, so it does not have performance benefit like the accumulator approach. It do, however, prevent stack overflow. However, writing code in CPS manually is tedious and error-prone, so there are tools to translate normal functions into CPS.
+## Continuation-passing style
+Accumulators are not always working. For example, a common task of recursive functions is walking through a tree where nodes have multiple children, but there is no way to transform such functions into tail-recursion with accumulators.
 
+There is another technique called [continuation-passing style](https://en.wikipedia.org/wiki/Continuation-passing_style) (abbreviate as CPS) to transform more complex recursive functions. However, CPS needs to dynamically allocates lots of closures for each recursive call, so it does not have performance benefit like the accumulator approach. It does, however, prevent stack overflow.
+
+Here is our `factorial()` function in continuation-passing style:
+
+```elm
+factorial_k: Int -> (Int -> a) -> a
+factorial_k n k =
+    if n <= 0 then
+        k(1)
+    else
+        factorial_k (n - 1) (\v -> k(v * n))
+
+factorial: Int -> Int
+factorial n =
+    factorial_k n (\x -> x)
+```
+
+As you see, there is a lot of boilerplate with no apparent benefit. Writing code in CPS manually is tedious and error-prone, so it is probably not worthwhile to code every recursive function in CPS style. Also, there are tools to translate normal functions into CPS.
+
+## Afterthought
 Since tail recursion is an optimization, not all implementations of all programming language will implement them. For example, there is no mandatory tail-call elimination in the C++ Standard at the time of writing, though all the mainstream compilers (MSVC, Clang, and GCC) will do it anyway. The story is different in functional programming languages. Those languages usually will mandate tail-call elimination if you write a tail-recursive function. The reason is that those languages usually discourage loop or have no loop at all, so tail-call elimination is necessary to achieve a decent performance in a lot of cases. To be a good citizen in those languages, you should try to write recursive functions tail-recursive (at least on the easy cases where you can transform them with accumulators.)
