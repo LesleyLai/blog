@@ -1,6 +1,6 @@
 ---
 id: tail-recursion
-title: "Tail Recursion Explaination" 
+title: "Tail Recursion Explanation"
 lang: en
 create: '2019-01-22'
 lastModify: '2019-01-22'
