@@ -7,7 +7,6 @@ import { Color, colors } from "../../utils/colorTable";
 interface TagsProps {
   tags: string[];
   className?: string;
-  tagSize: string;
 }
 
 interface Tag {

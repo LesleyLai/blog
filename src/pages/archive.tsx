@@ -3,7 +3,7 @@ import * as React from "react";
 import Helmet from "react-helmet";
 
 import Layout from "../components/layout";
-import Posts from "../components/posts-list";
+import Posts from "../components/postsList";
 import Post from "../types/Post";
 
 import { graphql, StaticQuery } from "gatsby";
