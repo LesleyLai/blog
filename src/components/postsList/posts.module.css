@@ -1,0 +1,17 @@
+.year {
+    padding-bottom: 5px;
+    border-bottom: solid 1px #eee;
+    margin-bottom: 0.5rem;
+}
+
+.entry {
+    margin-bottom: 1rem;
+}
+
+.entry > h3 {
+    margin-bottom: 5px;
+}
+
+.entry > p {
+    margin-bottom: 0.1rem;
+}

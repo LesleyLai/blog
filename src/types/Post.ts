@@ -4,7 +4,7 @@ export default interface Post {
     title: string;
     lang: string;
     create: string;
-    categories: string;
+    categories: string[];
   };
   excerpt: string;
-};
+}

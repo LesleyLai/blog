@@ -6,6 +6,7 @@ create: '2016-10-26'
 lastModify: '2016-10-26'
 categories:
 - cpp
+- rant
 - resource
 ---
 

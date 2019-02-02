@@ -31,6 +31,10 @@ const tagInfos: { [id: string]: Tag } = {
     color: colors.blue
   },
   test: { en: "Test", zh: "测试", color: colors.orange },
+  rant: {
+    en: "Rant",
+    color: colors.pink
+  },
   resource: {
     en: "Resource Management",
     zh: "资源管理",
