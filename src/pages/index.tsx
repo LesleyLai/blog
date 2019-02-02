@@ -1,8 +1,8 @@
 import { graphql, StaticQuery } from "gatsby";
+import Link from "gatsby-link";
 import * as React from "react";
 
 import Layout from "../components/layout";
-
 import RecentPosts, { PostMeta } from "../components/recentPosts";
 
 interface IndexData {
@@ -25,12 +25,18 @@ class IndexPage extends React.Component<IndexProps> {
   public render() {
     const helper = (data: IndexData) => (
       <Layout location={this.props.location}>
-        <>
-          <h1>Recent Posts</h1>
-          <RecentPosts
-            posts={data.allMarkdownRemark.edges.map(edge => edge.node)}
-          />
-        </>
+        <h1>Recent Posts</h1>
+        <RecentPosts
+          posts={data.allMarkdownRemark.edges
+            .slice(0, 3)
+            .map(edge => edge.node)}
+        />
+        <p style={{ fontSize: 20 }}>
+          See{" "}
+          <Link to="/archive/">
+            all {data.allMarkdownRemark.totalCount} posts
+          </Link>
+        </p>
       </Layout>
     );
     return (
