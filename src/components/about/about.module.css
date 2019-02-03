@@ -15,10 +15,10 @@
 
 /* Mobile */
 @media only screen and (max-width: 499px) {
-  .about {
-      width: 100%;
-      text-align: center;
-  }
+    .about {
+        width: 100%;
+        text-align: center;
+    }
 }
 
 .about ul li {
@@ -49,4 +49,16 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+.tagitem {
+    margin: 3px 0;
+}
+
+.postcount {
+    background: #f2ede8;
+    margin-left: 4px;
+    padding: 0 3px;
+    border-radius: 4px;
+    color: #bda88a;
 }
