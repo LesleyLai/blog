@@ -32,10 +32,7 @@ class IndexPage extends React.Component<IndexProps> {
             .map(edge => edge.node)}
         />
         <p style={{ fontSize: 20 }}>
-          See{" "}
-          <Link to="/archive/">
-            all {data.allMarkdownRemark.totalCount} posts
-          </Link>
+          Older posts are available in the <Link to="/archive/">archive</Link>.
         </p>
       </Layout>
     );
