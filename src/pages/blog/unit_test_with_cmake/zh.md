@@ -6,6 +6,8 @@ create: '2016-05-14'
 lastModify: '2016-05-14'
 categories:
 - cmake
+- code
+- cpp
 - test
 ---
 

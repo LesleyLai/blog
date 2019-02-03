@@ -45,15 +45,11 @@ class PostTemplate extends React.Component<PostProps> {
           </Helmet>
           <h1 className={css.title}>{post.frontmatter.title}</h1>
           <div className={css.info}>
-            <Link to="/archive">
+            <span className={css.date}>
               Last Modify: {post.frontmatter.lastModify} | Create:{" "}
               {post.frontmatter.create}
-            </Link>
-            <TagsList
-              tags={post.frontmatter.categories}
-              className={css.tags}
-              tagSize="tiny"
-            />
+            </span>
+            <TagsList tags={post.frontmatter.categories} className={css.tags} />
           </div>
 
           <article

@@ -16,9 +16,9 @@ export const tagInfos: { [id: string]: Tag } = {
     zh: "函数式编程",
     color: colors.black
   },
-  language_agnostic: {
-    en: "Language Agnostic",
-    zh: "语言无关",
+  code: {
+    en: "Coding",
+    zh: "编程",
     color: colors.blue
   },
   test: { en: "Test", zh: "测试", color: colors.orange },
