@@ -1,18 +1,19 @@
 .tag {
     display: inline-block;
     line-height: 1;
-    margin-right: 0.6em;
-    margin-bottom: 0em;
-    
-    background-color: #e8e8e8;
-    padding: .5833em .833em;
-    color: rgba(0,0,0,.6);
+
+    margin: 0.5em 0.5em 0.8em 0;
+}
+
+.tagName {
+    padding: .4em .6em;
 
     text-transform: none;
     font-weight: 700;
 
     border-radius: .28571429rem;
 }
+
 
 .tags {
     margin-left: 0;

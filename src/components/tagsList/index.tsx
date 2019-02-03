@@ -21,14 +21,18 @@ const TagsList = (props: TagsProps) => {
         const info: Tag = tagInfos[tag];
         const tagName: string = info ? info.en : tag;
         const color: Color = info ? info.color : colors.white;
-        // as={Link} to={`/category/${tag}/`}
         return (
-          <li
-            key={tag}
-            className={css.tag}
-            style={{ color: color.fg, backgroundColor: color.bg }}
-          >
-            {tagName}
+          <li key={tag} className={css.tag}>
+            <Link
+              to={`/tags/${tag}/`}
+              className={css.tagName}
+              style={{
+                color: color.fg,
+                backgroundColor: color.bg
+              }}
+            >
+              {tagName}
+            </Link>
           </li>
         );
       })}
