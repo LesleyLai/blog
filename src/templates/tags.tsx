@@ -33,7 +33,7 @@ class TagsTemplate extends React.Component<ArchiveProps> {
         </Helmet>
         <h1>{title}</h1>
         {data.allMarkdownRemark.totalCount} Posts
-        <Posts posts={data.allMarkdownRemark.edges} />
+        <Posts posts={data.allMarkdownRemark.edges} excludeTag={tag} />
       </Layout>
     );
   }

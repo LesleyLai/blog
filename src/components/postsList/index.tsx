@@ -17,6 +17,7 @@ const groupPosts = (posts: Array<{ node: Post }>) =>
 
 interface ArchiveEntryProps {
   post: Post;
+  excludeTag?: string;
 }
 
 const ArchiveEntry = (props: ArchiveEntryProps) => {
@@ -39,12 +40,18 @@ const ArchiveEntry = (props: ArchiveEntryProps) => {
         </span>
       </h3>
       <p>{post.excerpt}</p>
-      <TagsList tags={frontmatter.categories} />
+      <TagsList tags={frontmatter.categories} exclude={props.excludeTag} />
     </div>
   );
 };
 
-const Posts = ({ posts }: { posts: Array<{ node: Post }> }) => {
+const Posts = (props: {
+  posts: Array<{ node: Post }>;
+  excludeTag?: string;
+}) => {
+  const posts = props.posts;
+  const excludeTag = props.excludeTag;
+
   const grouped = groupPosts(posts);
   const years = Object.keys(grouped) // Categorize posts accord to years
     .sort()
@@ -55,7 +62,11 @@ const Posts = ({ posts }: { posts: Array<{ node: Post }> }) => {
         <article key={year}>
           <h2 className={css.year}>{year}</h2>
           {grouped[year].map(post => (
-            <ArchiveEntry post={post.node} key={post.node.frontmatter.id} />
+            <ArchiveEntry
+              post={post.node}
+              key={post.node.frontmatter.id}
+              excludeTag={excludeTag}
+            />
           ))}
         </article>
       ))}
