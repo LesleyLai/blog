@@ -79,3 +79,10 @@ a:hover {
 a, a:hover {
     text-decoration: none;
 }
+
+/*******************************
+             Icon fonts
+*******************************/
+.material-icons {
+  font-family: 'Material Icons';
+}

@@ -2,6 +2,7 @@ import { graphql, StaticQuery } from "gatsby";
 import Link from "gatsby-link";
 import * as React from "react";
 
+import Footer from "../components/footer";
 import Layout from "../components/layout";
 import RecentPosts, { PostMeta } from "../components/recentPosts";
 
@@ -34,6 +35,7 @@ class IndexPage extends React.Component<IndexProps> {
         <p style={{ fontSize: 20 }}>
           Older posts are available in the <Link to="/archive/">archive</Link>.
         </p>
+        <Footer />
       </Layout>
     );
     return (

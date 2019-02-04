@@ -33,9 +33,9 @@ export default class Layout extends React.PureComponent<DefaultLayoutProps> {
         <div className={style.layout}>
           <div className={style.grid}>
             <main className={style.main}>{children}</main>
-            <div className={style.about}>
+            <nav className={style.about}>
               <AboutMe />
-            </div>
+            </nav>
           </div>
         </div>
       </div>

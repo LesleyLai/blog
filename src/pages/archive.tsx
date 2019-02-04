@@ -2,6 +2,7 @@ import Link from "gatsby-link";
 import * as React from "react";
 import Helmet from "react-helmet";
 
+import Footer from "../components/footer";
 import Layout from "../components/layout";
 import Posts from "../components/postsList";
 import Post from "../types/Post";
@@ -34,6 +35,7 @@ export default (props: ArchiveProps) => {
           <h1>{title}</h1>
           {data.allMarkdownRemark.totalCount} Posts
           <Posts posts={data.allMarkdownRemark.edges} />
+          <Footer />
         </div>
       </Layout>
     );

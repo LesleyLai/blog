@@ -2,6 +2,7 @@ import { graphql } from "gatsby";
 import Link from "gatsby-link";
 import * as React from "react";
 import Helmet from "react-helmet";
+import Footer from "../components/footer";
 import Layout from "../components/layout";
 import TagsList from "../components/tagsList";
 
@@ -51,11 +52,12 @@ class PostTemplate extends React.Component<PostProps> {
             </span>
             <TagsList tags={post.frontmatter.categories} className={css.tags} />
           </div>
-
           <article
             className={css.article}
             dangerouslySetInnerHTML={{ __html: post.html }}
           />
+
+          <Footer />
           <ReactDisqusComments
             className={css.comment}
             shortname="lesleylaiblog"

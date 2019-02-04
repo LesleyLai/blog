@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `Lesley Lai's Blog`,
     description: `A personal website and blog for Lesley Lai`,
-    siteUrl: `https://www.lesleylai.info`
+    siteUrl: `http://www.lesleylai.info`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -65,14 +65,13 @@ module.exports = {
           {
             serialize: ({ query: { site, allMarkdownRemark } }) => {
               return allMarkdownRemark.edges.map(edge => {
+                const url = site.siteMetadata.siteUrl + '/' + edge.node.frontmatter.id + '/' + edge.node.frontmatter.lang;
                 return Object.assign({}, edge.node.frontmatter, {
                   description: edge.node.excerpt,
                   date: edge.node.frontmatter.create,
                   language: edge.node.frontmatter.lang,
-                  url:
-                    site.siteMetadata.siteUrl + edge.node.fields.relativePath,
-                  guid:
-                    site.siteMetadata.siteUrl + edge.node.fields.relativePath,
+                  url: url,
+                  guid: url,
                   custom_elements: [{ "content:encoded": edge.node.html }]
                 });
               });
@@ -85,14 +84,12 @@ module.exports = {
     edges {
       node {
         excerpt
-        fields {
-          relativePath
-        }
         html
         frontmatter {
           title
           create
           lang
+          id
         }
       }
     }
@@ -104,6 +101,15 @@ module.exports = {
           }
         ]
       }
-    }
+    },
+    {
+      resolve: 'gatsby-plugin-google-fonts',
+      options: {
+        fonts: [
+          'material icons',
+          'roboto:300,400,500,700',
+        ],
+      },
+    },
   ]
 };
