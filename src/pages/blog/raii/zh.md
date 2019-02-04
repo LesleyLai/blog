@@ -8,7 +8,6 @@ categories:
 - cpp
 - code
 - rant
-- resource
 ---
 
 最近，我在工作时遇到了一批旧代码，其中有几个巨大的类。它们是以类似这样的写法写的：

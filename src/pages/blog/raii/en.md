@@ -8,7 +8,6 @@ categories:
 - cpp
 - code
 - rant
-- resource
 ---
 
 Recently, I have encountered a legacy code base at work. There are several tremendous class written like this:
