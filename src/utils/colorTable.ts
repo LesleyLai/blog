@@ -51,13 +51,13 @@ export const colors: { [key: string]: Color } = {
     hover: "#e61a8d"
   },
   black: {
-    bg: "#1B1C1D",
+    bg: "#393939",
     fg: "#fff",
-    hover: "#272929"
+    hover: "#1B1C1D"
   },
   white: {
     bg: "#e8e8e8",
     fg: "#666",
-    hover: "#272929"
+    hover: "#e0e0e0"
   }
 };
