@@ -99,6 +99,19 @@ const ProjectsPage = (props: ProjectsPageProps) => {
             library.
           </ProjectPanel>
         </ul>
+
+        <h2>Utilities & Libraries</h2>
+        <ul className={css.projectsList}>
+          <ProjectPanel
+            name="elm-grid"
+            github="https://github.com/LesleyLai/elm-grid"
+            link="https://lesleylai.github.io/Reversi-Elm"
+            year="2019"
+            tags={["elm", "library", "functional"]}
+          >
+            A 2 dimensional Grid library in Elm.
+          </ProjectPanel>
+        </ul>
       </div>
     </Layout>
   );

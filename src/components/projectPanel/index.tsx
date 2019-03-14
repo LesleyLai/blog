@@ -31,6 +31,7 @@ interface ProjectTag {
 
 const tagInfos: { [id: string]: ProjectTag } = {
   cpp: { key: "cpp", en: "C++", color: colors.blue },
+  library: { key: "library", en: "Library", color: colors.white },
   graphics: { key: "graphics", en: "Graphics", color: colors.red },
   GI: { key: "gi", en: "Global Illumination", color: colors.yellow },
   functional: { key: "fp", en: "Functional", color: colors.black },
