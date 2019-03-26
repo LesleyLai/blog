@@ -7,6 +7,7 @@ lastModify: '2019-01-15'
 categories:
 - books
 - cmake
+- code
 ---
 
 [CMake](https://cmake.org/) is the de facto industry standard for the build system generator of the C and C++ this days. Like C++, people seem to love and hate it at the same time. However, it is definitely a better choice compare to writting Makefiles manually.

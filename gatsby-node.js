@@ -72,5 +72,7 @@ exports.createPages = ({ graphql, actions }) => {
       
       resolve();
     });
+  }).catch(error => {
+    console.log(error);
   });
 };
