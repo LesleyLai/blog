@@ -1,7 +1,6 @@
-
 .title {
     font: normal 36px/48px Georgia, serif;
-    margin: 50px 0;
+    margin: 30px 0;
 }
 
 .info {
@@ -28,9 +27,43 @@
     }
 }
 
+@media (max-width: 1199px) {
+    .tags {
+        margin-top: 10px;
+    }
+}
+
+.article > h2 {
+    font: 24px "PT Serif", Georgia, serif;
+    padding: 24px 0 12px 0;
+    font-weight: 700;
+    margin: 0;
+}
+
+.article > h3 {
+    font: italic 19px/24px "PT Serif", Georgia, serif;
+    padding: 24px 0 12px 0;
+    margin: 0;
+}
+
+.article > h4 {
+    font: 11px "Open Sans", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    padding: 0 0 4px 0;
+    margin-bottom: 16px;
+}
+
 .article > p {
     font: 16px/24px "PT Serif", Georgia, serif;
     padding: 8px 0;
+    margin: 0;
+}
+
+.article > p + p {
+    padding: 12px 0;
+}
+
+.article > .footnotes {
+    background-color: red;
 }
 
 .comment {
