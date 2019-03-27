@@ -124,3 +124,12 @@ a, a:hover {
     color:#fff;
     background-color: #8f6d3d;
 }
+
+/*******************************
+             Images
+*******************************/
+.right-image {
+    position: sticky;
+    float: right;
+    padding: 10px;
+}

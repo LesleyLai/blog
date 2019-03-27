@@ -13,6 +13,10 @@ categories:
 
 *[Functional Programming in C++](https://www.manning.com/books/functional-programming-in-c-plus-plus)* by Ivan Čukić is a new book about applying functional programming principles in C++. This book is for people who already have a decent understanding of C++. It is written in an idiomatic style that a C++ programmer should feel welcome.
 
+<div style="width: 250px;" class="right-image">
+  <img src="book_cover.jpg" alt="Functional Programming in C++ Book Cover" />
+</div>
+
 If you just start to learn C++, this book may not be the best starting point. I will recommend [A Tour of C++](http://www.stroustrup.com/tour2.html) instead. On the other hand, the book does not require any functional programming knowledge. The book spends its first six chapters to build basic functional programming concepts like pure functions, higher order functions, partial applications.
 
 As a programmer already familiar with FP, the book does not provide too much major revelation to me. However, I still gain some small insight from each chapter. Though the implementation from this book may not be sophisticated and efficient, they demonstrate concepts pretty well because of their simplicity.

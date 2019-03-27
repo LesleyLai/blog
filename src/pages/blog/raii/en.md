@@ -79,7 +79,7 @@ As a consequence, Qt, unlike most libraries, cannot be linked by different compi
 
 If you are programmers develop software solely for POSIX platforms, you may think it is not your business. But I have another point relate to you, too. The point is, those *ad hoc* resource management strategies are innately exception-unsafe. Consider what will happen if `setName` or `setFont` can throw exceptions. An innocuous order change by clients will introduce leak:
 
-```c++
+```cpp
 child.setName(name);
 child.setFont(font);
 // if the above lines throw, the child will never be freed
@@ -88,7 +88,7 @@ parent.addTab(child);
 
 No wonder old style libraries like QT forbid exceptions for "historical reasons". But the library authors still cannot prohibit clients do something like this:
 
-```c++
+```cpp
 child.setName(name);
 child.setFont(font);
 if (!child.valid()) throw Exception{"Invalid tab"}; // May cause leak
