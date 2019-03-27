@@ -29,7 +29,7 @@ const TagsList = (props: TagsProps) => {
   return (
     <Ul className={props.className}>
       {tags
-        .filter((tag, index) => {
+        .filter(tag => {
           return tag !== props.exclude;
         })
         .map((tag, index) => {
@@ -38,7 +38,7 @@ const TagsList = (props: TagsProps) => {
           const color: Color = info ? info.color : colors.white;
 
           const TagBox = styled.span`
-            padding: 0.4em 0.6em;
+            padding: 0.4em 0.5em;
             text-transform: none;
             font-weight: 700;
             border-radius: 0.28571429rem;

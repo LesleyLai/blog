@@ -9,7 +9,9 @@ categories:
 - code
 ---
 
-C++ lambda expressions are a construct added to C++ back in C++11, and it continues to evolve in each version of the C++ standard. A core part of the language nowadays, lambdas enable programmers of writing [anonymous functions](https://en.wikipedia.org/wiki/Anonymous_function) in C++. In this post, I describe what a lambda is, provide some basic usages, and outline their benefits.
+C++ lambda expressions are a construct added to C++ back in C++11, and it continues to evolve in each version of the C++ standard. A core part of the language nowadays, lambdas enable programmers of writing anonymous functions in C++. In this post, I describe what a lambda is, provide some basic usages, and outline their benefits.
+
+<!-- end -->
 
 ## Basic Usage
 The ISO C++ Standard shows usage of a lambda expression as a comparator of `sort` function. [^1] [^2]

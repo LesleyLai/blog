@@ -29,19 +29,20 @@ const ArchiveEntry = (props: ArchiveEntryProps) => {
   const create = frontmatter.create;
 
   return (
-    <div className={css.entry}>
-      <h3>
-        <Link to={"/" + id + "/" + lang + "/"} className={css.entryTitle}>
-          {props.post.frontmatter.title}
-        </Link>
-        <span>
-          {" "}
-          — {splitDate(create)[0]} {splitDate(create)[1]}{" "}
-        </span>
-      </h3>
-      <p>{post.excerpt}</p>
-      <TagsList tags={frontmatter.categories} exclude={props.excludeTag} />
-    </div>
+    <li className={css.entry}>
+      <Link to={"/" + id + "/" + lang + "/"} className={css.entryTitle}>
+        {props.post.frontmatter.title}
+      </Link>
+      <span>
+        {" "}
+        — {splitDate(create)[0]} {splitDate(create)[1]}{" "}
+      </span>
+      <TagsList
+        className={css.archiveTags}
+        tags={frontmatter.categories}
+        exclude={props.excludeTag}
+      />
+    </li>
   );
 };
 
@@ -61,13 +62,15 @@ const Posts = (props: {
       {years.map(year => (
         <article key={year}>
           <h2 className={css.year}>{year}</h2>
-          {grouped[year].map(post => (
-            <ArchiveEntry
-              post={post.node}
-              key={post.node.frontmatter.id}
-              excludeTag={excludeTag}
-            />
-          ))}
+          <ul>
+            {grouped[year].map(post => (
+              <ArchiveEntry
+                post={post.node}
+                key={post.node.frontmatter.id}
+                excludeTag={excludeTag}
+              />
+            ))}
+          </ul>
         </article>
       ))}
     </section>

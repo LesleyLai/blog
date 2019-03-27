@@ -12,7 +12,6 @@ categories:
 
 [Tail-recursion](https://en.wikipedia.org/wiki/Tail_call) is an important concept to understand before we can analyse the behavior of a functional program. I will try to illustrate what tail recursion is with an [Elm](https://elm-lang.org/)-like pseudocode. Though you don't need to know any Elm to understand this post.
 
-
 ## From recursion to tail-recursion
 
 Consider the following function:

@@ -5,13 +5,15 @@
 }
 
 .entry {
-    margin-bottom: 1rem;
+    margin: 0.2rem;
+    font-size: 18px;
 }
 
-.entry > h3 {
-    margin-bottom: 5px;
+.entry > ul {
+    margin-top: 0;
 }
 
-.entry > p {
-    margin-bottom: 0.1rem;
+.archiveTags {
+    display: inline-block;
+    margin-left: 0.5rem;
 }

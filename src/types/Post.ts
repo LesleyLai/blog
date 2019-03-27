@@ -6,5 +6,4 @@ export default interface Post {
     create: string;
     categories: string[];
   };
-  excerpt: string;
 }
