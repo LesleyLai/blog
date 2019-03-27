@@ -82,7 +82,7 @@ auto greeter() {
 
 The above code is undefined behavior since `name` may be destroyed when we execute the asynchronous operation.
 
-The implicit capture strategy works in garbage-collected languages. Rust can also get away with implicit capture because of its borrow checker. On the contrary, by requiring the programmer to be explicit about ownership, the C++ approach provides more flexibility than the counterparts in other programming languages.
+The implicit capture strategy works in garbage-collected languages. [Rust](https://www.rust-lang.org/) gets away with implicit capture because of its borrow checker. On the contrary, by requiring the programmer to be explicit about ownership, the C++ approach provides more flexibility than the counterparts in other programming languages.
 
 ## What is Lambda
 We discussed quite a lot of usage of Lambda so far. However, curious readers may start to wonder, what *exactly* is a C++ Lambda? Is it a primitive language construct like closures in functional languages? However, before I talk about the internal of Lambda, I will first talk about a construct date back to C++98 era, **function objects**[^3].
@@ -164,4 +164,4 @@ go.run( [ u=move(u) ] { do_something_with( u ); } ); // move the unique_ptr into
 
 ## Conclusion
 
-In the next post, I will talk about generic lambda of C++14, an extension that enables polymorphism to lambdas. Generic lambda combines with the power of the C++17 `if constexpr` significantly simplify a lot of generic codes.
+In the next post, I will talk about generic lambda of C++14, an extension that enables polymorphism to lambdas. Generic lambda combines with the power of the C++17 `if constexpr` will significantly simplify generic codes.

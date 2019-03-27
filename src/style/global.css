@@ -8,7 +8,7 @@ html {
 body {
     overflow-x: visible;
     background: #f8f5f1;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 
@@ -20,31 +20,31 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  line-height: 1.28571429em;
-  font-weight: bold;
-  padding: 0em;
+    font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    line-height: 1.28571429em;
+    font-weight: bold;
+    padding: 0em;
 }
 
 h1 {
-  min-height: 1rem;
-  font-size: 2rem;
+    min-height: 1rem;
+    font-size: 2rem;
 }
 
 h2 {
-  font-size: 1.71428571rem;
+    font-size: 1.71428571rem;
 }
 
 h3 {
-  font-size: 1.28571429rem;
+    font-size: 1.28571429rem;
 }
 
 h4 {
-  font-size: 1.07142857rem;
+    font-size: 1.07142857rem;
 }
 
 h5 {
-  font-size: 1rem;
+    font-size: 1rem;
 }
 
 h1:first-child,
@@ -52,7 +52,7 @@ h2:first-child,
 h3:first-child,
 h4:first-child,
 h5:first-child {
-  margin-top: 0em;
+    margin-top: 0em;
 }
 
 h1:last-child,
@@ -60,7 +60,7 @@ h2:last-child,
 h3:last-child,
 h4:last-child,
 h5:last-child {
-  margin-bottom: 0em;
+    margin-bottom: 0em;
 }
 
 
@@ -72,8 +72,8 @@ a {
 }
 
 a:hover {
-  color: #1e70bf;
-  text-decoration: none;
+    color: #1e70bf;
+    text-decoration: none;
 }
 
 a, a:hover {
@@ -84,5 +84,43 @@ a, a:hover {
              Icon fonts
 *******************************/
 .material-icons {
-  font-family: 'Material Icons';
+    font-family: 'Material Icons';
+}
+
+/*******************************
+             Footnote
+*******************************/
+.footnotes {
+    margin: 1em 0 0;
+    padding: 0 0 0.5em;
+}
+
+.footnotes > ol > li > p {
+    display: inline-block;
+}
+
+.footnote-ref, .footnote-backref {
+    position: relative;
+    font-weight: bold;
+    color: #777;
+    background-color: #e3e3e3;
+}
+
+.footnote-ref {
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    padding: 0.2em 0.5em 0.2em;
+}
+
+.footnote-backref {
+    font-size: 0.8em;
+    border-radius: 0.4em;
+    padding: 0.2em 0.4em 0;
+    border: none;
+}
+
+.footnote-ref:hover, .footnote-backref:hover {
+    color:#fff;
+    background-color: #8f6d3d;
 }
