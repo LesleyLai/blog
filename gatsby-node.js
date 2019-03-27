@@ -54,9 +54,12 @@ exports.createPages = ({ graphql, actions }) => {
 
       const tags = new Set();
       for (const post of posts) {
-        post.node.frontmatter.categories.forEach(tag => {
-          tags.add(tag);
-        });
+        const postTags = post.node.frontmatter.categories;
+        if (postTags) {
+          postTags.forEach(tag => {
+            tags.add(tag);
+          });
+        }
       }
 
       for (const tag of tags) {
