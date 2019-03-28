@@ -24,13 +24,13 @@ int main() {
 }
 ```
 
-The C++ Standard guarantees it to work. The Standard mandates that all temporary objects get destroyed as the last step of evaluating of the **full-expression** that contains the point where the temporaries were created[^1]. The meaning of a "full expression" is an expression that is not sub-expression of other expressions.
+The C++ Standard guarantees it to work. The Standard mandates that all temporary objects get destroyed as the last step of evaluating of the **full-expression** that contains the point where the temporaries were created[^1]. "full expression" means an expression that is not sub-expression of other expressions.
 
-A noteworthy exception to the rule references, which can extend the lifetime of temporaries, but they will be a topic of another post.
+A noteworthy exception of the rule is references, References can extend the lifetime of temporaries, but they will be a topic of another post.
 
 [^1]: [cppreference: lifetime](https://en.cppreference.com/w/cpp/language/lifetime)
 
-In "The Design and Evolution of C++," Bjarne discussed the early design decision of the lifetime of temporaries [^2]. The book refers to an earlier paper that identified several alternative destruction points. For example, in the original CFront implementation, temporaries are destroyed at the end of the block. This approach caused problems when creating large temporaries, and some programmers explicitly avoided the issue by wrapping statements in curly braces.
+In "The Design and Evolution of C++," Bjarne discussed the early design decision of the lifetime of temporaries [^2]. The book refers to an earlier paper that identified several alternative destruction points. For example, in the original CFront implementation of C++, temporaries are destroyed at the end of the blocks. This approach caused problems when creating large temporaries, and some programmers explicitly avoided the issue by wrapping statements in curly braces.
 
 [^2]: D&E, 6.3.2
 
