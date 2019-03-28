@@ -9,7 +9,7 @@ categories:
 - code
 ---
 
-A lot of operations of C++ require temporary values. Using them before their destruction is imperative. However, not all C++ programmers I met have a solid understanding of when a temporary expire. This situation often leads to over-conservative estimations, which will not cause any harm. Nevertheless, sometimes it will cause programmers to assume guarantees that the language does not provide, which causes insidious bugs.
+A lot of operations of C++ require temporary values. Using them before their destruction is imperative. However, not all C++ programmers I met have a solid understanding of when a temporary expire. This situation often leads to over-conservative estimations, which will not cause any harm. Nevertheless, sometimes it will cause programmers to assume guarantees that the language does not provide, which leads to insidious bugs.
 
 One of the common scenarios such problem manifest is when we manipulate a string with `std::string`, but feed the result string back to an API that takes `const char*`. Consider the following code snippet:
 
@@ -34,7 +34,7 @@ In "The Design and Evolution of C++," Bjarne discussed the early design decision
 
 [^2]: D&E, 6.3.2
 
-Another approach is to kill temporaries after the first just. An over-paranoid C++ programmer may suspect that the above code leads to undefined behavior. Having this thought may imply a subconscious assumption of this approach. I perceive this strategy more intuitive than the current way because of its consistency. With the current strategy, changing the above code a little bit will introduce undefined behavior:
+Another approach is to kill temporaries after the first use. An over-paranoid C++ programmer may suspect that the above code leads to undefined behavior. Having this thought may imply a subconscious assumption of this approach. I perceive this strategy more intuitive than the current way because of its consistency. With the current strategy, changing the above code a little bit will introduce undefined behavior:
 
 ```cpp
 [[nodiscard]] auto greet(const std::string& name) -> std::string {
