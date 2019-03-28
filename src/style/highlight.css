@@ -124,3 +124,8 @@ pre[class*="language-"] {
 .token.entity {
     cursor: help;
 }
+
+.gatsby-highlight-code-line {
+    display:block;
+    background-color: #9acfff;
+}
