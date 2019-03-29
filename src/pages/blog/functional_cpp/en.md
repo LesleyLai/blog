@@ -21,7 +21,7 @@ If you just start to learn C++, this book may not be the best starting point. I 
 
 As a programmer already familiar with FP, the book does not provide too much major revelation to me. However, I still gain some small insight from each chapter. Though the implementation from this book may not be sophisticated and efficient, they demonstrate concepts pretty well because of their simplicity.
 
-Chapter 6 discusses lazy evaluations and memorization. I feel like the book's implementation for memorization is too inefficient to be useful, and I cannot come up with a solution myself. Nonetheless, I particularly like the later part of lazy string concatenation by using expression templates.
+Chapter 6 discusses lazy evaluations and memoization. I feel like the book's implementation for memoization is too inefficient to be useful, though I cannot come up with a better solution myself. I fear that a generic yet efficient solution is hard to find, and memoization should more be implemented in a case by case basis. Nonetheless, I particularly like the later part of lazy string concatenation by using expression templates.
 
 Chapter 7 introduces [ranges](https://en.cppreference.com/w/cpp/ranges), which are merged into C++20 already. The introduction is not in depth, but it is necessary since later chapter uses ranges extensively. Chapter 8 discussed persistence data structures. The [immer](https://github.com/arximboldi/immer) C++ library is an robust implementation of those structures. The library's [CppCon talk](https://www.youtube.com/watch?v=sPhpelUfu8Q) and [ICFP paper](https://public.sinusoid.es/misc/immer/immer-icfp17.pdf) are also fantastic resources to learn more.
 
@@ -31,4 +31,4 @@ Chapter 11 talks about template metaprogramming. I find calling type traits "met
 
 Chapter 12 details on concurrent systems and provides a functional reactive solution. It puts all the ideas in the book into a practical, real-world scenario.
 
-Overall, I will recommend all C++ programmers who are curious about terms like "Currying," "Monad," and "Lazy Evaluation" to read this book. Functional programming becomes popular nowadays. Thus, you will find C++ codebases written in various degree of functional style. Reading this book can help you understand, write, and appreciate such codebases.
+Overall, I will recommend all C++ programmers who are curious about terms like "Currying," "Monad," and "Lazy Evaluation" to read this book. Functional programming becomes popular nowadays. Thus, you will find more C++ codebases written in various degree of functional styles. Reading this book can help you understand, write, and appreciate such codebases.

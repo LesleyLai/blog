@@ -11,6 +11,8 @@ categories:
 
 A lot of operations of C++ require temporary values. Using them before their destruction is imperative. However, not all C++ programmers I met have a solid understanding of when a temporary expire. This situation often leads to over-conservative estimations, which will not cause any harm. Nevertheless, sometimes it will cause programmers to assume guarantees that the language does not provide, which leads to insidious bugs.
 
+<!-- end -->
+
 One of the common scenarios such problem manifest is when we manipulate a string with `std::string`, but feed the result string back to an API that takes `const char*`. Consider the following code snippet:
 
 ```cpp
@@ -26,7 +28,7 @@ int main() {
 
 The C++ Standard guarantees it to work. The Standard mandates that all temporary objects get destroyed as the last step of evaluating of the **full-expression** that contains the point where the temporaries were created[^1]. "full expression" means an expression that is not sub-expression of other expressions.
 
-A noteworthy exception of the rule is references, References can extend the lifetime of temporaries, but they will be a topic of another post.
+A noteworthy exception of the rule is references. References can extend the lifetime of temporaries, but they will be a topic of another post.
 
 [^1]: [cppreference: lifetime](https://en.cppreference.com/w/cpp/language/lifetime)
 
