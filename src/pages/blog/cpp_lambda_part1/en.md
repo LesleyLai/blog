@@ -9,18 +9,19 @@ categories:
 - code
 ---
 
-C++ lambda expressions are a construct added to C++ back in C++11, and it continues to evolve in each version of the C++ standard. A core part of the language nowadays, lambdas enable programmers of writing anonymous functions in C++. In this post, I describe what a lambda is, provide some basic usages, and outline their benefits.
+C++ lambda expressions are a construct added to C++ back in C++11, and it continues to evolve in each version of the C++ standard. A core part of the language nowadays, lambda expressions enable programmers of writing anonymous functions in C++. In this post, I describe what a lambda is, provide some basic usages, and outline their benefits.
+
+This post is the start of a series of the posts talking C++ lambdas. This one will be longer compare to the later one since I will introduce lambda holistically. The following posts, by contrast, will focus on individual features, techniques, or idioms of lambda.
 
 <!-- end -->
 
 ## Basic Usage
-The ISO C++ Standard shows usage of a lambda expression as a comparator of `sort` function. [^1] [^2]
+Passing functions as a parameter to customize the behavior of functions is a common task in programming. For example, since the conception of [standard algorithms library](https://en.cppreference.com/w/cpp/algorithm), a lot of the algorithms in the `<algorithm>` can take an invokable entity as a callback. However, before C++11, the only kinds of invokable entities in C++ are function pointers and function objects. Both of them require quite a bit of boilerplate, and this cumbersomeness even impedes the adaption of the standard algorithm library in practice.
+
+On the meantime, lots of programming languages support features of [anonymous functions](https://en.wikipedia.org/wiki/Anonymous_function). Before C++11, such features are achieved by metaprogramming. For example, the Boost C++ library provided its [boost.lambda](http://www.boost.org/libs/lambda) library. Those metaprogramming hacks are slow to compile and not performant; moreover, they require more boilerplate then one want. Thus, in C++11, lambda expressions are added as a language extension. The ISO C++ Standard shows usage of a lambda expression as a comparator of the `sort` algorithm. [^1]
 
 [^1]:
   See [**\[expr.prim.lambda\]**](http://eel.is/c%2B%2Bdraft/expr.prim.lambda#1)
-
-[^2]:
-  Functions that receive other functions as parameter or return function as value are called [higher-order functions](https://en.wikipedia.org/wiki/Higher-order_function). They are widely used in the standard [algorithms](https://en.cppreference.com/w/cpp/algorithm) library in C++. Higher-order functions can be used to customize the behavior of a function in the caller's site.
 
 ```cpp
 #include <algorithm>
@@ -34,7 +35,7 @@ void abssort(float* x, unsigned n) {
 }
 ```
 
-Inside the function `abssort`, we passed lambda into `std::sort` as a comparator. We can actually write a normal function to achieve the same purpose:
+Inside the function `abssort`, we passed lambda into `std::sort` as a comparator. We can write a normal function to achieve the same purpose:
 
 ```cpp
 #include <algorithm>
@@ -87,10 +88,16 @@ The above code is undefined behavior since `name` may be destroyed when we execu
 The implicit capture strategy works in garbage-collected languages. [Rust](https://www.rust-lang.org/) gets away with implicit capture because of its borrow checker. On the contrary, by requiring the programmer to be explicit about ownership, the C++ approach provides more flexibility than the counterparts in other programming languages.
 
 ## What is Lambda
-We discussed quite a lot of usage of Lambda so far. However, curious readers may start to wonder, what *exactly* is a C++ Lambda? Is it a primitive language construct like closures in functional languages? However, before I talk about the internal of Lambda, I will first talk about a construct date back to C++98 era, **function objects**[^3].
+We discussed quite a lot of usage of Lambda so far. However, curious readers may start to wonder, what *exactly* is a C++ Lambda? Is it a primitive language construct like closures in functional languages? However, before I talk about the internal of Lambda, I will first talk about a construct date back to C++98 era, **function objects**.
 
-[^3]:
-  Some C++ programmers call the function objects "functors," though it is a misnomer that we should avoid. The reason is that functional programmers usually define [functor](https://en.wikipedia.org/wiki/Functor) as "mappable" structures that satisfy certain properties. By that definition, C++ ranges, `std::optional`, `std::future`, and `expected` are more close to a real functor than function object. The "functors" definition comes from categories theory. with the arrival of C++ 20 [Concept](https://en.cppreference.com/w/cpp/language/constraints), it is not even hard to imagine implementing a `Functor` Concept in C++.
+<aside style="margin-top: -90px;">
+
+Some C++ programmers call the function objects "functors." It is a misnomer that we should avoid. The reason is that functional programmers usually define [functor](https://en.wikipedia.org/wiki/Functor) as "mappable" structures that satisfy specific "functor laws". This definition of a functor is equally useful in C++. For example, the standard [ranges](https://en.cppreference.com/w/cpp/ranges) are pretty much functors. Also, if the types `std::optional`, `std::future`, and `expected` support chaining operations, then they become functors. Various libraries already implemented that, and some standard proposals are working in this direction [^2].
+
+</aside>
+
+[^2]:
+  See [p0798R3: Monadic operations for std::optional](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p0798r3.html) and [p1054r0: A Unified Futures Proposal for C++](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p1054r0.html)
 
 ### Function Object
 Function objects are normal objects that are able to invoke themselves. They are implemented by overloading a class' `operator()` operator. Below is our `abs_less` example as a function object:
@@ -99,7 +106,7 @@ Function objects are normal objects that are able to invoke themselves. They are
 #include <algorithm>
 #include <cmath>
 class abs_less {
-  bool  operator()(double a, double b) {
+  bool operator()(double a, double b) {
     return (std::abs(a) < std::abs(b));
   }
 };
@@ -109,7 +116,7 @@ void abssort(float* x, unsigned n) {
 }
 ```
 
-Function objects are more flexible than regular functions because they can store data like normal objects.
+Function objects are more flexible than regular functions because they can store data like ordinary objects.
 
 ### Go back to lambda
 Lambdas in C++ are syntactic sugars of function objects. Through the amazing [C++ Insights](https://cppinsights.io/) website, we can see a desugared version of our `abssort` example:
@@ -148,22 +155,51 @@ auto f = [](int a, int b) -> int
 decltype(f) g = f;
 ```
 
-Such types are called "*Voldemort's types*" in the world of C++ and D because they cannot be directly named, but codes can still use this type.
+Such types are called "*Voldemort's types*" in the world of C++ and the [D programming language](https://dlang.org/) because they cannot be directly named, but codes can still use this type.
 
 ##  Capture with an initializer
 Now we understand a Lambda is a function object; we may expect Lambdas to store arbitrary values, not just to capture the values from their local scope. Fortunately, in C++ 14, lambdas can introduce new variables in its body by the mean of capturing with an *initializer*.
 
 ### Move capture
-Rust lambdas can take ownership of the values in the environment. C++ lambdas do not have special support for such *move capture*, but the generalized capture in the C++14 covers such use case[^4]:
+Rust lambdas can take ownership of the values in the environment. C++ lambdas do not have special support for such *move capture*, but the generalized capture in the C++14 covers such use case[^3]:
 
 ```cpp
 auto u = make_unique<some_type>( some, parameters );  // a unique_ptr is move-only
 go.run( [ u=move(u) ] { do_something_with( u ); } ); // move the unique_ptr into the lambda
 ```
 
-[^4]:
+[^3]:
   [C++14 Language Extensions: Generalized lambda captures](https://isocpp.org/wiki/faq/cpp14-language#lambda-captures)
 
-## Conclusion
+## Immediately Invoked Lambda
+You can invoke lambda at the same place where we construct them.
 
-In the next post, I will talk about generic lambda of C++14, an extension that enables polymorphism to lambdas. Generic lambda combines with the power of the C++17 `if constexpr` will significantly simplify generic codes.
+```cpp
+[]() { std::puts("Hello world!"); }(); // Same as what is inside the curly braces
+```
+
+In the world of Javascript, immediately invoked function expressions are all over the place. JavaScript programmers use them to introduce scopes. C++ does not need this kind of trickery. As a result, C++ programmers are more reluctant to use immediately invoked lambda. For example, in her [talk](https://www.youtube.com/watch?v=n0Ak6xtVXno) during CppCon 2018, Kate Gregory concerns about the readability of the immediately invoked lambda for people not familiar with this idiom.
+
+Nevertheless, if you follow the best practice of declaring as more `const` values as possible, immediately invoked lambda does provide an advantage. Some objects require complex construction beyond the constructor's capability. Mutations will only happen during the construction of objects. Once the construction is completed, the objects will never be modified again. If such construction is reusable, then writing builder classes or factory functions is a sane choice. However, if such construction only happens once in the codebase, a lot of the people will drop the `const` qualifier instead. For example, consider that if you want to read several lines from `stdin` into a vector:
+
+```cpp
+std::vector<std::string> lines;
+for (std::string line; std::getline(std::cin, line); ) {
+    lines.push_back(line);
+}
+```
+
+It seems no way to make `lines` constant since we need to modify it in the loop. Immediately invoked lambda solves this dilemma. With it, you can have both `const` and no boilerplates:
+
+```cpp
+const auto lines = [](){
+    std::vector<std::string> lines;
+    for (std::string line; std::getline(std::cin, line); ) {
+        lines.push_back(line);
+    }
+    return lines;
+}
+```
+
+## Conclusion
+We have seen what a lambda is and some of its basic applications and idioms. In the next post, I will talk about storing lambda expressions and invoking them later.
