@@ -11,7 +11,7 @@ interface ProjectsPageProps {
 }
 
 const ProjectsPage = (props: ProjectsPageProps) => {
-  const title = "My projects";
+  const title = "Portfolio";
   const css = require("./projects.module.css");
 
   const reversiImage = require("./reversi.png");
