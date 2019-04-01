@@ -34,7 +34,7 @@ const ProjectsPage = (props: ProjectsPageProps) => {
             github="https://github.com/LesleyLai/GLGrassRenderer"
             image={grassImage}
             year="2019"
-            tags={["cpp", "GL"]}
+            tags={["cpp", "graphics", "GL"]}
           >
             This project is my implementation of the paper{" "}
             <a href="https://www.cg.tuwien.ac.at/research/publications/2017/JAHRMANN-2017-RRTG/JAHRMANN-2017-RRTG-draft.pdf">
@@ -89,7 +89,19 @@ const ProjectsPage = (props: ProjectsPageProps) => {
             includes a compiler and a bytecode interpreter runtime.
           </ProjectPanel>
         </ul>
-        <h2>Toys</h2>
+        <h2>Libraries</h2>
+        <ul className={css.projectsList}>
+          <ProjectPanel
+            name="elm-grid"
+            github="https://github.com/LesleyLai/elm-grid"
+            year="2019"
+            tags={["elm", "library", "functional"]}
+          >
+            A 2 dimensional Grid library in Elm.
+          </ProjectPanel>
+        </ul>
+
+        <h2>Games</h2>
         <ul className={css.projectsList}>
           <ProjectPanel
             name="Reversi-Elm"
@@ -113,18 +125,6 @@ const ProjectsPage = (props: ProjectsPageProps) => {
             A simple Tetris clone in Python and{" "}
             <a href="https://en.wikipedia.org/wiki/Tk_(software)">Tk</a>{" "}
             library.
-          </ProjectPanel>
-        </ul>
-
-        <h2>Utilities & Libraries</h2>
-        <ul className={css.projectsList}>
-          <ProjectPanel
-            name="elm-grid"
-            github="https://github.com/LesleyLai/elm-grid"
-            year="2019"
-            tags={["elm", "library", "functional"]}
-          >
-            A 2 dimensional Grid library in Elm.
           </ProjectPanel>
         </ul>
       </div>
