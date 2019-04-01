@@ -34,6 +34,7 @@ const tagInfos: { [id: string]: ProjectTag } = {
   library: { key: "library", en: "Library", color: colors.white },
   graphics: { key: "graphics", en: "Graphics", color: colors.red },
   GI: { key: "gi", en: "Global Illumination", color: colors.yellow },
+  GL: { key: "gl", en: "OpenGL", color: colors.teal },
   functional: { key: "fp", en: "Functional", color: colors.black },
   elm: { key: "elm", en: "Elm", color: colors.teal },
   game: { key: "game", en: "Game", color: colors.orange },

@@ -18,6 +18,7 @@ const ProjectsPage = (props: ProjectsPageProps) => {
   const raytracerImage = require("./raytracer.png");
   const pathTracingImage = require("./pathtracing.png");
   const tetrisImage = require("./tetris.png");
+  const grassImage = require("./grass.gif");
 
   return (
     <Layout location={props.location}>
@@ -28,6 +29,21 @@ const ProjectsPage = (props: ProjectsPageProps) => {
         <h1>{title}</h1>
         <h2>Graphics</h2>
         <ul className={css.projectsList}>
+          <ProjectPanel
+            name="OpenGL Grass Renderer"
+            github="https://github.com/LesleyLai/GLGrassRenderer"
+            image={grassImage}
+            year="2019"
+            tags={["cpp", "GL"]}
+          >
+            This project is my implementation of the paper{" "}
+            <a href="https://www.cg.tuwien.ac.at/research/publications/2017/JAHRMANN-2017-RRTG/JAHRMANN-2017-RRTG-draft.pdf">
+              Responsive Real-Time Grass Rendering for General 3D Scenes
+            </a>
+            . This project uses a combination of compute and tessellation
+            shaders.
+          </ProjectPanel>
+
           <ProjectPanel
             name="Path Tracer"
             github="https://github.com/LesleyLai/Bolder-Render-Engine"
