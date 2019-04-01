@@ -11,9 +11,10 @@ categories:
 
 C++ lambda expressions are a construct added to C++ back in C++11, and it continues to evolve in each version of the C++ standard. A core part of the language nowadays, lambda expressions enable programmers of writing anonymous functions in C++. In this post, I describe what a lambda is, provide some basic usages, and outline their benefits.
 
+<!-- end -->
+
 This post is the start of a series of the posts talking C++ lambdas. This one will be longer compare to the later one since I will introduce lambda holistically. The following posts, by contrast, will focus on individual features, techniques, or idioms of lambda.
 
-<!-- end -->
 
 ## Basic Usage
 Passing functions as a parameter to customize the behavior of functions is a common task in programming. For example, since the conception of [standard algorithms library](https://en.cppreference.com/w/cpp/algorithm), a lot of the algorithms in the `<algorithm>` can take an invokable entity as a callback. However, before C++11, the only kinds of invokable entities in C++ are function pointers and function objects. Both of them require quite a bit of boilerplate, and this cumbersomeness even impedes the adaption of the standard algorithm library in practice.

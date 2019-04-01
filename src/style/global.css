@@ -92,11 +92,18 @@ a, a:hover {
 *******************************/
 .footnotes {
     margin: 1em 0 0;
+    border-top: 1px solid silver;
     padding: 0 0 0.5em;
+    font-size: 0.9em;
+}
+
+.footnotes > ol > li {
+    margin-bottom: 5px;
 }
 
 .footnotes > ol > li > p {
     display: inline-block;
+    margin-bottom: 0;
 }
 
 .footnote-ref, .footnote-backref {
