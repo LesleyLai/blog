@@ -133,10 +133,24 @@ a, a:hover {
 }
 
 /*******************************
-             Images
+        Images in posts
 *******************************/
-.right-image {
+.right-image-container {
     position: sticky;
     float: right;
     padding: 10px;
+    width: 300px;
+}
+
+@media (max-width: 767px) {
+    .right-image-container {
+        width: 100%;
+    }
+
+    .gatsby-resp-image-link {
+        max-width: 300px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }

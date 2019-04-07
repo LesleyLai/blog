@@ -31,7 +31,7 @@ const ArchiveEntry = (props: ArchiveEntryProps) => {
   return (
     <li className={css.entry}>
       <Link to={"/" + id + "/" + lang + "/"} className={css.entryTitle}>
-        {props.post.frontmatter.title}
+        {title}
       </Link>
       <span>
         {" "}
