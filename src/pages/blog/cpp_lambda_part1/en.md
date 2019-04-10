@@ -9,12 +9,11 @@ categories:
 - code
 ---
 
-C++ lambda expressions are a construct added to C++ back in C++11, and it continues to evolve in each version of the C++ standard. A core part of the language nowadays, lambda expressions enable programmers of writing anonymous functions in C++. In this post, I describe what a lambda is, provide some basic usages, and outline their benefits.
+C++ lambda expressions are a construct added to C++ back in C++11, and it continues to evolve in each version of the C++ standard. A core part of the language nowadays, lambda expressions enable programmers of writing anonymous functions in C++. This post describes what a lambda is, provides some basic usages, and outlines their benefits.
 
 <!-- end -->
 
 This post is the start of a series of the posts talking C++ lambdas. This one will be longer compare to the later one since I will introduce lambda holistically. The following posts, by contrast, will focus on individual features, techniques, or idioms of lambda.
-
 
 ## Basic Usage
 Passing functions as a parameter to customize the behavior of functions is a common task in programming. For example, since the conception of [standard algorithms library](https://en.cppreference.com/w/cpp/algorithm), a lot of the algorithms in the `<algorithm>` can take an invokable entity as a callback. However, before C++11, the only kinds of invokable entities in C++ are function pointers and function objects. Both of them require quite a bit of boilerplate, and this cumbersomeness even impedes the adaption of the standard algorithm library in practice.
@@ -117,9 +116,37 @@ void abssort(float* x, unsigned n) {
 }
 ```
 
-Function objects are more flexible than regular functions because they can store data like ordinary objects.
+Function objects are more flexible than regular functions because they can store data like ordinary objects. Let us implement the previous `filter_above` example with function object:
 
-### Go back to lambda
+```cpp
+template <typename T>
+class GreaterThan {
+public:
+  GreaterThan(T threshold): threshold_{threshold} {
+  }
+
+  bool operator()(const T& other) noexcept {
+    return other > threshold_;
+  }
+
+private:
+  T threshold_;
+};
+
+std::vector<int> filter_above(const std::vector<int>& v, int threshold) {
+    std::vector<int> result;
+    std::copy_if(std::begin(v), std::end(v), std::back_insert_iterator(result), GreaterThan{threshold});
+    return result;
+}
+```
+
+<aside style="margin-top: -140px;">
+
+I am using [Class template argument deduction (CTAD)](https://en.cppreference.com/w/cpp/language/class_template_argument_deduction) in this snippet. CTAD is a C++17 feature. In the previous versions, we need to write `GreaterThan<int>{threshold}` with the template parameter `int` specified.
+
+</aside>
+
+### Going back to lambda
 Lambdas in C++ are syntactic sugars of function objects. Through the amazing [C++ Insights](https://cppinsights.io/) website, we can see a desugared version of our `abssort` example:
 
 ```cpp
