@@ -129,5 +129,13 @@ module.exports = {
       },
     },
     `gatsby-plugin-styled-components`,
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          `gatsby-remark-reading-time`,
+        ],
+      },
+    },
   ]
 };

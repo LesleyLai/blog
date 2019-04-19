@@ -20,6 +20,11 @@ export interface PostData {
     lastModify: string;
     categories: string[];
   };
+  fields: {
+    readingTime: {
+      text: string;
+    };
+  };
 }
 
 interface PostProps {
@@ -48,7 +53,7 @@ class PostTemplate extends React.Component<PostProps> {
           <div className={css.info}>
             <span className={css.date}>
               Last Modify: {post.frontmatter.lastModify} | Create:{" "}
-              {post.frontmatter.create}
+              {post.frontmatter.create} | {post.fields.readingTime.text}
             </span>
             <TagsList tags={post.frontmatter.categories} className={css.tags} />
           </div>
@@ -85,6 +90,11 @@ export const query = graphql`
         create(formatString: "DD MMMM, YYYY")
         lastModify(formatString: "DD MMMM, YYYY")
         categories
+      }
+      fields {
+        readingTime {
+          text
+        }
       }
     }
   }
