@@ -149,6 +149,7 @@ pre[class*="language-"] {
   overflow: initial;
   float: left; /* 1 */
   min-width: 100%; /* 2 */
+  padding-left: 10px;
 }
 
 
