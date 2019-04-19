@@ -34,6 +34,7 @@ module.exports = {
               maxWidth: 590,
             },
           },
+          `gatsby-remark-reading-time`,
         ]
       }
     },
@@ -129,13 +130,5 @@ module.exports = {
       },
     },
     `gatsby-plugin-styled-components`,
-    {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        plugins: [
-          `gatsby-remark-reading-time`,
-        ],
-      },
-    },
   ]
 };
