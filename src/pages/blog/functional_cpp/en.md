@@ -27,7 +27,7 @@ Chapter 7 introduces [ranges](https://en.cppreference.com/w/cpp/ranges), which a
 
 Chapter 10 is about functors and monads. This chapter connects constructs like ranges, `std::future`, `std::optional`, and `expected` into more general concepts. Unlike a lot of "monad tutorial" online, the book takes a more practical approach. A normal imperative programmer should easily understand the material if they followed all the previous chapters. I am; however, not impressed by his usage of the range-based [Pythagorean triple](https://en.wikipedia.org/wiki/Pythagorean_triple) example, especially with the readability and performance concern such code [raises](https://aras-p.info/blog/2018/12/28/Modern-C-Lamentations/).
 
-Chapter 11 talks about template metaprogramming. I find calling type traits "meta-functions" a bit weird. The class template trick to he mentioned to debug metaprogramming is helpful, and I hope that I know it earlier. One of [Ivan's blog posts](https://cukic.co/2019/02/19/tmp-testing-and-debugging-templates/) provides more techniques for debugging template code.
+Chapter 11 talks about template meta-programming. It considers type traits as "meta-functions" operates on the type-level. The class template trick to he mentioned to debug metaprogramming is helpful, and I hope that I know it earlier. One of [Ivan's blog posts](https://cukic.co/2019/02/19/tmp-testing-and-debugging-templates/) provides more techniques for debugging template code.
 
 Chapter 12 details on concurrent systems and provides a functional reactive solution. It puts all the ideas in the book into a practical, real-world scenario.
 
