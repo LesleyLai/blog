@@ -9,6 +9,7 @@ import TagsList from "../components/tagsList";
 import ReactDisqusComments from "react-disqus-comments";
 
 const css = require("./post.module.css");
+require(`katex/dist/katex.min.css`);
 
 export interface PostData {
   html: string;
@@ -19,6 +20,11 @@ export interface PostData {
     create: string;
     lastModify: string;
     categories: string[];
+  };
+  fields: {
+    readingTime: {
+      text: string;
+    };
   };
 }
 
@@ -48,7 +54,7 @@ class PostTemplate extends React.Component<PostProps> {
           <div className={css.info}>
             <span className={css.date}>
               Last Modify: {post.frontmatter.lastModify} | Create:{" "}
-              {post.frontmatter.create}
+              {post.frontmatter.create} | {post.fields.readingTime.text}
             </span>
             <TagsList tags={post.frontmatter.categories} className={css.tags} />
           </div>
