@@ -61,7 +61,7 @@ void calculate ()
 
 很多设计地很好的代码库也存在同样的问题。[Qt库](http://www.qt-project.org)的父子关系和之前展示的代码的内存管理策略事实上是一样的。如果你用过Qt,你肯定写过类似这样的代码：
 
-```c++
+```cpp
 void foo(QString name, QFont font)
 {
     // 这不是真正的Ot代码
