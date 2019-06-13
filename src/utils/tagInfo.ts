@@ -8,6 +8,7 @@ export interface Tag {
 
 export const tagInfos: { [id: string]: Tag } = {
   books: { en: "Books", zh: "书籍", color: colors.yellow },
+  c: { en: "C", color: colors.grey },
   cpp: { en: "C++", color: colors.red },
   cmake: { en: "CMake", color: colors.green },
   cg: { en: "Graphics", color: colors.violet },
@@ -32,5 +33,6 @@ export const tagInfos: { [id: string]: Tag } = {
     en: "Rant",
     color: colors.pink
   },
-  test: { en: "Test", zh: "测试", color: colors.orange }
+  test: { en: "Test", zh: "测试", color: colors.orange },
+  x86: { en: "X86", color: colors.pink }
 };
