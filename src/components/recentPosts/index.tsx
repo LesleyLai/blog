@@ -25,7 +25,15 @@ export default class RecentPosts extends React.Component {
       <div>
         {posts.map(post => (
           <article key={post.frontmatter.title} className={style.post}>
-            <h3 className={style.header}>{post.frontmatter.title}</h3>
+            <h3 className={style.header}>
+              <Link
+                to={
+                  "/" + post.frontmatter.id + "/" + post.frontmatter.lang + "/"
+                }
+              >
+                {post.frontmatter.title}
+              </Link>
+            </h3>
             <span className={style.date}>{post.frontmatter.create}</span>
             <TagsList tags={post.frontmatter.categories} />
             <p className={style.excerpt}>{post.excerpt}</p>

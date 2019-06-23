@@ -4,7 +4,11 @@
 
 .header {
     font-size: 24px;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.12rem;
+}
+
+.header a {
+    color: #000000;
 }
 
 .post {
