@@ -26,20 +26,25 @@ class AboutMe extends React.PureComponent {
 
           <article>
             <p>
-              Hi, I am <strong>Lesley Lai</strong>, a Computer Science
-              undergraduate student at the{" "}
+              Hi, I am <strong>Lesley Lai</strong>, a Software Engineering
+              Intern at <a href="https://www.sketchup.com/">Trimble SketchUp</a>{" "}
+              and a Computer Science undergraduate student at the{" "}
               <a href="http://www.colorado.edu/">
                 {" "}
                 University of Colorado at Boulder
               </a>
+              .
             </p>
             <p>
-              My primary interests are{" "}
+              My primary interests including{" "}
               <a href="https://en.wikipedia.org/wiki/Computer_graphics">
-                Computer Graphics
-              </a>{" "}
-              and the <a href="https://isocpp.org/">C++</a> programming
-              language.
+                computer graphics
+              </a>
+              {", "}
+              <a href="https://en.wikipedia.org/wiki/Programming_language">
+                programming languages
+              </a>
+              {", "} and <a href="https://isocpp.org/">C++</a>.
             </p>
           </article>
 
