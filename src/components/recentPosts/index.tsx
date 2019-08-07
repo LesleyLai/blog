@@ -34,7 +34,7 @@ export default class RecentPosts extends React.Component {
                 {post.frontmatter.title}
               </Link>
             </h3>
-            <span className={style.date}>{post.frontmatter.create}</span>
+            <p className={style.date}>{post.frontmatter.create}</p>
             <TagsList tags={post.frontmatter.categories} />
             <p className={style.excerpt}>{post.excerpt}</p>
             <Link
