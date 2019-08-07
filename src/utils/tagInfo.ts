@@ -29,10 +29,15 @@ export const tagInfos: { [id: string]: Tag } = {
     zh: "四元数",
     color: colors.pink
   },
+  graphics: {
+    en: "Computer Graphics",
+    color: colors.purple
+  },
   rant: {
     en: "Rant",
     color: colors.pink
   },
   test: { en: "Test", zh: "测试", color: colors.orange },
+  event: { en: "Event", color: colors.orange },
   x86: { en: "X86", color: colors.pink }
 };
