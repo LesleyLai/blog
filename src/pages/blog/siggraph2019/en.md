@@ -2,8 +2,8 @@
 id: siggraph2019
 title: "ACM Siggraph 2019 Trip Report"
 lang: en
-create: '2019-08-02'
-lastModify: '2019-08-02'
+create: '2019-08-07'
+lastModify: '2019-08-07'
 categories:
 - graphics
 - event
