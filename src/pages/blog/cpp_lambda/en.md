@@ -218,11 +218,11 @@ for (std::string line; std::getline(std::cin, line); ) {
 It seems no way to make `lines` constant since we need to modify it in the loop. Immediately invoked lambda solves this dilemma. With it, you can have both `const` and no boilerplates:
 
 ```cpp
-const auto lines = [](){
+const auto lines = []{
     std::vector<std::string> lines;
     for (std::string line; std::getline(std::cin, line); ) {
         lines.push_back(line);
     }
     return lines;
-}
+}();
 ```
