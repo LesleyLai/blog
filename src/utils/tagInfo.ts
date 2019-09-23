@@ -13,7 +13,7 @@ export const tagInfos: { [id: string]: Tag } = {
   cmake: { en: "CMake", color: colors.green },
   cg: { en: "Graphics", color: colors.violet },
   elm: { en: "Elm", color: colors.teal },
-  math: { en: "Mathematics", color: colors.purple },
+  math: { en: "Mathematics", color: colors.pink },
   functional: {
     en: "Functional Programming",
     zh: "函数式编程",
