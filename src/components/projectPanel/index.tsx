@@ -40,7 +40,8 @@ const tagInfos: { [id: string]: ProjectTag } = {
   game: { key: "game", en: "Game", color: colors.orange },
   web: { key: "web", en: "Web", color: colors.pink },
   python: { key: "python", en: "Python", color: colors.blue },
-  pl: { key: "pl", en: "Programming Language", color: colors.red }
+  pl: { key: "pl", en: "Programming Language", color: colors.red },
+  "type erasure": { key: "type erasure", en: "Type Erasure", color: colors.red }
 };
 
 function buildTag(tagId: string) {
@@ -59,7 +60,9 @@ const ProjectPanel = (props: ProjectPenalProps) => {
 
   return (
     <article className={css.panel}>
-      <img src={props.image} alt={props.name} className={css.image} />
+      {props.image && (
+        <img src={props.image} alt={props.name} className={css.image} />
+      )}
 
       <div className={css.content}>
         <div className={css.title}>

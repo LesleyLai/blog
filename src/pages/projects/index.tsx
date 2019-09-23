@@ -17,7 +17,6 @@ const ProjectsPage = (props: ProjectsPageProps) => {
   const reversiImage = require("./reversi.png");
   const raytracerImage = require("./raytracer.png");
   const pathTracingImage = require("./pathtracing.png");
-  const tetrisImage = require("./tetris.png");
   const grassImage = require("./grass.gif");
 
   return (
@@ -92,6 +91,18 @@ const ProjectsPage = (props: ProjectsPageProps) => {
         <h2>Libraries</h2>
         <ul className={css.projectsList}>
           <ProjectPanel
+            name="unique_function"
+            github="https://github.com/LesleyLai/unique_function"
+            year="2019"
+            tags={["cpp", "library", "type erasure"]}
+          >
+            a C++17 implementation of the proposed{" "}
+            <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p0228r3.html">
+              unique_function
+            </a>
+          </ProjectPanel>
+
+          <ProjectPanel
             name="elm-grid"
             github="https://github.com/LesleyLai/elm-grid"
             year="2019"
@@ -112,19 +123,6 @@ const ProjectsPage = (props: ProjectsPageProps) => {
             tags={["elm", "game", "web", "functional"]}
           >
             A browser based clone of the classic board game Reversi.
-          </ProjectPanel>
-
-          <ProjectPanel
-            name="Tetris"
-            github="https://github.com/LesleyLai/Tetris"
-            image={tetrisImage}
-            imageContain
-            year="2017"
-            tags={["python", "game", "GUI"]}
-          >
-            A simple Tetris clone in Python and{" "}
-            <a href="https://en.wikipedia.org/wiki/Tk_(software)">Tk</a>{" "}
-            library.
           </ProjectPanel>
         </ul>
       </div>
