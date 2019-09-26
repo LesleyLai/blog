@@ -10,5 +10,6 @@ export interface MenuModel {
 export const menuModel: { [key: string]: MenuModel } = {
   home: { en: "Home", path: "/", exact: true },
   blog: { en: "Archive", path: "/archive/", exact: false },
-  portfolio: { en: "Portfolio", path: "/projects", exact: true }
+  portfolio: { en: "Portfolio", path: "/projects", exact: true },
+  talks: { en: "Talks", path: "/talks", exact: true }
 };
