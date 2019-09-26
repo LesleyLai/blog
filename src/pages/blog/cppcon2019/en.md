@@ -40,7 +40,7 @@ There are so many great talks in this year's CppCon, so I can only mention some 
 
 - Mathieu Ropert's *This Videogame Programmer Used the STL and You Will Never Guess What Happened Next* \[[slides](https://github.com/CppCon/CppCon2019/blob/master/Presentations/this_videogame_programmer_used_the_stl/this_videogame_programmer_used_the_stl__mathieu_ropert__cppcon_2019.pdf)\] demystifies some common myth against C++ standard library, including the common concern of "debugging performance." It also explains when should you (not) use STL.
 
-<aside style="margin-top: -77px;">
+<aside style="margin-top: -77px; margin-left: 1.45rem">
 
 Seriously, this name is tooooo long.
 
