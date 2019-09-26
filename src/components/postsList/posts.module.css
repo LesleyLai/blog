@@ -17,3 +17,8 @@
     display: inline-block;
     margin-left: 0.5rem;
 }
+
+.archiveTags > li {
+    margin-up: 0.4rem;
+    margin-bottom: 0.4rem;
+}
