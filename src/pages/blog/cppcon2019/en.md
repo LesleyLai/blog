@@ -14,7 +14,7 @@ What a week we had! CppCon 2019 is by far the best CppCon that I've ever attende
 ## Pre and post-conference classes
 - [Arthur O'Dwyer](https://quuxplusone.github.io/blog/)'s *[Standard Library From Scratch](https://quuxplusone.github.io/from-scratch/)* teaches us the implementations of type-erased containers (`any` and `function`), synchronization primitives, smart pointers, and a bunch of meta-programming utilities. This course makes me more confident about type erasure, small-object optimization, and meta-programming.
 
-- [Gordon Brown](https://twitter.com/AerialMantis) and [Micheal Wong](https://wongmichael.com/)'s *[Parallelism in Modern C++: From CPU to GPU](https://github.com/Aerialmantis/cppcon-parallelism-class)* talks about general parallel programming principles and [SYCL](https://www.khronos.org/sycl/) programming. I didn't have must experience in GPGPU and never touched SYCL before, but I find that many concepts maps nicely to the [Vulkan](https://www.khronos.org/vulkan/) Graphics API.
+- [Gordon Brown](https://twitter.com/AerialMantis) and [Micheal Wong](https://wongmichael.com/)'s *[Parallelism in Modern C++: From CPU to GPU](https://github.com/Aerialmantis/cppcon-parallelism-class)* talks about general parallel programming principles and [SYCL](https://www.khronos.org/sycl/) programming. I didn't have much experience in GPGPU and never touched SYCL before, but I find that many concepts maps nicely to the [Vulkan](https://www.khronos.org/vulkan/) Graphics API.
 
 ## The keynotes
 CppCon this year have one keynote for each day, and all the keynotes are high quality.
