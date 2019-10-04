@@ -57,6 +57,9 @@ class AboutMe extends React.PureComponent {
               Profile on{" "}
               <a href="https://www.linkedin.com/in/lesley-lai/">LinkedIn</a>
             </li>
+            <li>
+              Tweets at <a href="https://twitter.com/LesleyLai6">Twitter</a>
+            </li>
           </ul>
 
           <h3 className={css.subtitle}>Categories</h3>
