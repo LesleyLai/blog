@@ -1,6 +1,6 @@
 ---
 id: type-of-assignment-operators
-title: "We are defining assignment operators are wrong."
+title: "We are defining assignment operators wrong."
 lang: en
 create: '2019-10-14'
 lastModify: '2019-10-14'
