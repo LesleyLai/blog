@@ -9,6 +9,8 @@ categories:
 - cpp
 ---
 
+Update: Apparently there is a WG21 [paper](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p1906r0.pdf) on this subject that goes in much more detailed than my post. I am surprised that I missed his CppCon talk on this topic and come into the silimar conclusion.
+
 One principle of C++ operator overloading is that the behavior of overloaded operators should be similar to the counterparts on fundamental types. For the most part, we are doing a decent job. However, the way we define assignment operators leaves some surprise.
 
 Consider the following code snippet:
