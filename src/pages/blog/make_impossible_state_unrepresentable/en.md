@@ -12,7 +12,7 @@ categories:
 
 At [CppCon](https://cppcon.org/) 2019, I gave a lightning talk at called [*Make Impossible State Unrepresentable*](https://youtu.be/hYyRrYwfy3k). Due to the nature of a 5 minutes lightning talk, it was handwavy, and I cut a lot of prepared contents to fit the time. This post is a deeper dive into the topic with more detailed explanations and examples.
 
-The same practice in typed-functional programming communities inspires this topic, where a lot of similar discussions rooted. However, I do not consider this theme too "functional," and it can certainly be applied to C++ or any other programming languages with a type system. The topic also have a strong relationship with ["strong typing"](https://en.wikipedia.org/wiki/Strong_and_weak_typing).
+The same practice in typed-functional programming communities inspires this topic, where a lot of similar discussions rooted. However, I do not consider this theme too "functional," and it can certainly be applied to C++ or any other programming languages with a type system. The topic also has a strong relationship with "[strong typing](https://en.wikipedia.org/wiki/Strong_and_weak_typing)."
 
 ## The motivation
 
@@ -260,7 +260,8 @@ One naive forward modification is putting the reference of the graphics pipeline
 struct CommandBuffer {
   CommandBuffer& push_draw_command(GraphicsPipelineHandle pipeline, uint32_t count, 
                                    uint32_t vertex_offset, uint32_t instance_count);
-  CommandBuffer& push_draw_indirect_command(GraphicsPipelineHandle pipeline, void* indirect);
+  CommandBuffer& push_draw_indirect_command(GraphicsPipelineHandle pipeline,
+                                            void* indirect);
   
   // ...
 };
