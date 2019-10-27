@@ -12,7 +12,7 @@ categories:
 
 一些朋友们在之前的[北丹佛地区C++聚会](https://www.meetup.com/North-Denver-Metro-C-Meetup/events/261292867/)上提到X86指令中的 `lea` 并不如其他的指令那么好理解。`lea` 是“load effective address”的缩写，一般来说被解释为“把某个内存地址从放到目标位置”。在Intel汇编语法下，`lea` 被写作
 
-```asm
+```nasm
 lea destination, source
 ```
 
@@ -29,25 +29,25 @@ struct Point
 
 当遇到 `int x = points[i].y;` 时，编译器可以生成如下的汇编：
 
-```asm
+```nasm
 mov  eax, [rbx+rcx*4 + 4]
 ```
 
 在此行，寄存器 `rbx` 储存了数组 `points` 的地址，寄存器 `rcx` 代表 `i` ，而寄存器 `eax` 代表返回值 `x`。同理,编译器可将 `int* x = &points[i].y;` 编译为
 
-```asm
+```nasm
 lea  eax, [rbx+rcx*4 + 4]
 ```
 
 编译器对于 `lea` 的妙用不止步与地址操作，它们也喜欢用 `lea` 进行算术操作。例如 `int y = x * 5;`就更有可能被编译成以下的形式：
 
-```asm
+```nasm
 lea     eax, [rdi + 4*rdi]
 ```
 
 而不是下面的这种直接使用算术指令的形式。
 
-```asm
+```nasm
 imul    eax, [rdi], 5
 ```
 
