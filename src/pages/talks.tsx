@@ -1,4 +1,4 @@
-import { Link } from "gatsby";
+import { Link, StaticQuery } from "gatsby";
 import * as React from "react";
 import Helmet from "react-helmet";
 import styled from "styled-components";
@@ -39,6 +39,14 @@ const Talk = (props: TalkProps) => {
   );
 };
 
+interface TalksData {
+  site: {
+    siteMetadata: {
+      siteUrl: string;
+    };
+  };
+}
+
 const TalksPage = () => {
   const P = styled.p`
     margin: 10px 0 10px 0;
@@ -48,7 +56,7 @@ const TalksPage = () => {
     margin-bottom: 0;
   `;
 
-  return (
+  const helper = (data: TalksData) => (
     <Layout location={{ pathname: "/talks.html" }}>
       <>
         <Helmet>
@@ -69,6 +77,17 @@ const TalksPage = () => {
             <li>
               <a href="https://youtu.be/hYyRrYwfy3k">video</a>
             </li>
+            <li>
+              Slides{" "}
+              <a
+                href={`/talks/make_impossible_state_unrepresentable/index.html`}
+              >
+                [Web]
+              </a>{" "}
+              <a href={`/talks/make_impossible_state_unrepresentable.pdf`}>
+                [PDF]
+              </a>
+            </li>
           </UL>
           <P>
             Update 2019-10-26: I wrote a more detailed{" "}
@@ -80,6 +99,21 @@ const TalksPage = () => {
         </Talk>
       </>
     </Layout>
+  );
+
+  return (
+    <StaticQuery
+      query={graphql`
+        query {
+          site {
+            siteMetadata {
+              siteUrl
+            }
+          }
+        }
+      `}
+      render={helper}
+    />
   );
 };
 

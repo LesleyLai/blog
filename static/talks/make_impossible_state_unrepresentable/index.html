@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+	<html class="sl-root decks export offline loaded">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>make impossible state unrepresentable</title>
+
+
+		<link rel="stylesheet" type="text/css" href="../lib/offline-v2.css">
+
+
+
+	</head>
+	<body class="reveal-viewport theme-font-montserrat theme-color-blue-yellow">
+		<div class="reveal">
+			<div class="slides">
+				<section data-id="3968c25c35a03b690e3905b03b221c9e"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 212px; height: auto;" data-block-id="264363569e57be1315ada0aef6f33771"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" data-gramm_id="86e4b3b4-2122-52a3-1626-ec544874356b" data-gramm="true" data-gramm_editor="true" style="font-size: 70%; z-index: 11;">
+<h1>make impossible state unrepresentable</h1>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 180px; top: 381px;" data-block-id="eea8997ab0ee152e41a480cbf44e4e41"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;" data-gramm_id="5b79dcb4-247b-8287-6900-b2d41e0140c4" data-gramm="true" data-gramm_editor="true">
+<p>Lesley Lai</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 180px; top: 451px;" data-block-id="da54d0d3d9f96e7026ae9a7bb96df087"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;" data-gramm_id="6ce8b156-8c8e-591f-2de1-7cae953eeab2" data-gramm="true" data-gramm_editor="true">
+<p>http://lesleylai.info/</p>
+</div></div></section><section data-id="da849d493f67316e0eff377b2d850d15"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 140px; height: auto;" data-block-id="fed08a08ce45835ecc2fd681c64bb0f5"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 11;" data-gramm_id="0f71fc02-3454-f81f-f186-d4d96d300309" data-gramm="true" data-gramm_editor="true">
+<h1>Motivation</h1>
+</div></div>
+<div class="sl-block" data-block-type="code" style="min-width: 30px; min-height: 30px; width: 640px; height: 264px; left: 162px; top: 261px;" data-block-id="d5cf3ead0bb59ad9c61675bb6699091a"><div class="sl-block-content notranslate" data-highlight-theme="monokai" data-code-frame="none" style="z-index: 12;"><pre><code data-line-numbers="">struct QueueFamilyIndices {
+    std::optional&lt;uint32_t&gt; graphics;
+    std::optional&lt;uint32_t&gt; present;
+    std::optional&lt;uint32_t&gt; compute;
+
+    bool isComplete() const {
+        return graphics.has_value()
+        &amp;&amp; present.has_value()
+        &amp;&amp; compute.has_value();
+    }
+};</code></pre></div></div></section><section data-id="609fde4b83f7c74e748cebc0b5c657cd"><div class="sl-block" data-block-type="text" style="width: 806px; left: 80px; top: 70px; height: auto;" data-block-id="527d65453ee6e95358fe6c20ab7221a0"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 10;" data-gramm_id="0f71fc02-3454-f81f-f186-d4d96d300309" data-gramm="true" data-gramm_editor="true">
+<h1>Motivation</h1>
+</div></div>
+<div class="sl-block" data-block-type="code" style="width: 640px; height: 452px; left: 160px; top: 178px;" data-block-id="0d09ec85b54f0fb87c003c131d35ed3a"><div class="sl-block-content notranslate" data-highlight-theme="monokai" data-code-frame="none" style="z-index: 11;"><pre><code data-line-numbers="">QueueFamilyIndices findQueueFamilies(/*...*/) {
+  // ...
+  QueueFamilyIndices indices;
+  for (const auto&amp; queue: queues) {
+    if (/* queue i support graphics */) {
+        indices.graphics = i;
+    }
+
+    if (/* queue i support present */) {
+        indices.present = i;
+    }
+    
+    if (/* queue i support compute */) {
+        indices.compute = i;
+    }
+
+    if (indices.isComplete()) {
+        break;
+    }
+  }
+  return indices;
+}</code></pre></div></div></section><section data-id="b4940ae6f4a4f850ba12f1a4736ebf4d"><div class="sl-block" data-block-type="text" style="width: 806px; left: 80px; top: 70px; height: auto;" data-block-id="b88864794508a992e2fe00282de3bcfe"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 10;" data-gramm_id="0f71fc02-3454-f81f-f186-d4d96d300309" data-gramm="true" data-gramm_editor="true">
+<h1>Transformation</h1>
+</div></div>
+<div class="sl-block" data-block-type="code" style="width: 640px; height: 107px; left: 163px; top: 251px;" data-block-id="69c6ed07e8cbaaee47091a2a075114bd"><div class="sl-block-content notranslate" data-highlight-theme="monokai" data-code-frame="none" style="z-index: 12;"><pre><code data-line-numbers="">struct QueueFamilyIndices {
+    uint32_t graphics;
+    uint32_t present;
+    uint32_t compute;
+};</code></pre></div></div></section><section data-id="8fd9f4f90e1a0e0ce3bcfad821a846ae"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 21px; height: auto;" data-block-id="c0c56a2d3ec12adcc706fe5b43091386"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 10;" data-gramm_id="0f71fc02-3454-f81f-f186-d4d96d300309" data-gramm="true" data-gramm_editor="true">
+<h1>Transformation</h1>
+</div></div>
+<div class="sl-block" data-block-type="code" style="width: 717px; height: 569px; left: 121px; top: 106px;" data-block-id="f98efed78bb5db84a5176b635387b5a3"><div class="sl-block-content notranslate" data-highlight-theme="monokai" data-code-frame="none" style="z-index: 13;"><pre><code data-line-numbers="">std::optional&lt;QueueFamilyIndices&gt; findQueueFamilies(/*...*/) {
+  // ...
+  std::optional&lt;uint32_t&gt; graphicsFamily = std::nullopt;
+  std::optional&lt;uint32_t&gt; presentFamily = std::nullopt;
+  std::optional&lt;uint32_t&gt; computeFamily = std::nullopt;
+
+  for (const auto&amp; queue: queues) {
+    if (/* queue i support graphics */) {
+        graphicsFamily = i;
+    }
+
+    if (/* queue i support present */) {
+        presentFamily = i;
+    }
+    
+    if (/* queue i support compute */) {
+        computeFamily = i;
+    }
+
+    if (graphicsFamily &amp;&amp; presentFamily &amp;&amp; computeFamily) {
+        return QueueFamilyIndices{*graphicsFamily, *presentFamily,
+                                  *computeFamily};
+    }
+  }
+  
+  return std::nullopt;
+}</code></pre></div></div></section><section data-id="5dda1a34b8da68979666ae781773f479"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 204px; height: auto;" data-block-id="423a66083d3f13e94e999eb812fd79b9"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 10;" data-gramm_id="2a39a916-7f24-d19e-ba68-c38b513bdf4d" data-gramm="true" data-gramm_editor="true">
+<h1>Memory footprint gets reduced</h1>
+</div></div></section><section data-id="acf391bf3c7ff8b8354802f8923411ee"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 266px; height: auto;" data-block-id="570884e6a46c96ffd8c0a3e6ba2db861"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 10;" data-gramm_id="44ba3880-c6c6-7356-4dc6-1b544d2e5bb4" data-gramm="true" data-gramm_editor="true">
+<h1>Less assertion or run-time checking</h1>
+</div></div></section><section data-id="45e8dcfefd78204524218bdc485bbd0a"><div class="sl-block" data-block-type="text" style="width: 806px; left: 74px; top: 252px; height: auto;" data-block-id="387830563c21f48785c1f264518a7eb5"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 10;" data-gramm_id="2a39a916-7f24-d19e-ba68-c38b513bdf4d" data-gramm="true" data-gramm_editor="true">
+<h1>API becomes cleaner</h1>
+</div></div></section><section data-id="b716edf121202b00c9e7c3143b0d4e3d"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 266px; height: auto;" data-block-id="ad3e8bf354ac3b871f7dd91e6e359199"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 11;"><h1>Title Text</h1></div></div>
+<div class="sl-block" data-block-type="code" style="min-width: 30px; min-height: 30px; width: 812px; height: 429px; left: 68px; top: 210px;" data-block-id="1ff0f9cbf38c315bf16927d27b0962bb"><div class="sl-block-content notranslate" data-highlight-theme="monokai" data-code-frame="none" style="z-index: 12;"><pre class="cpp"><code data-line-numbers="">struct DrawCommand {
+  std::uint32_t count;
+  std::uint32_t vertex_offset;
+  std::uint32_t instance_count;
+};
+
+struct DrawIndirectCommand {
+  void* indirect;
+};
+
+struct BindGraphicsPipelineCommand {
+  GraphicsPipelineHandle pipeline;
+};
+
+using Command = std::variant&lt;DrawCommand, DrawIndirectCommand
+                             BindGraphicsPipelineCommand, ...&gt;;
+
+struct CommandBuffer {
+  void push_command(Command command);
+  std::vector&lt;Command&gt; commands;
+};</code></pre></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 181px; top: 62px;" data-block-id="602ead2eae9a7d7acf339fdb40d8fa9e"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;" data-gramm_id="577989a8-eafd-6516-c6cf-b318881641ae" data-gramm="true" data-gramm_editor="true">
+<h2>An example with variant</h2>
+</div></div></section><section data-id="c0bf93ddc071e4ffcda8a70e2bacadf7"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 266px; height: auto;" data-block-id="d005010ba51d4fb27b73c9ad6a4fd226"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 10;"><h1>Title Text</h1></div></div>
+<div class="sl-block" data-block-type="code" style="width: 815px; height: 414px; left: 69px; top: 224px;" data-block-id="748b27be52ffd8e4bd17fb62c95add3d"><div class="sl-block-content notranslate" data-highlight-theme="monokai" data-code-frame="none" style="z-index: 11;"><pre class="cpp"><code data-line-numbers="">struct DrawCommand {
+  std::uint32_t count;
+  std::uint32_t vertex_offset;
+  std::uint32_t instance_count;
+  
+  GraphicsPipelineHandle pipeline;
+};
+
+struct DrawIndirectCommand {
+  void* indirect;
+  
+  GraphicsPipelineHandle pipeline;
+};
+
+using Command = std::variant&lt;DrawCommand, DrawIndirectCommand&gt;;
+
+class CommandBuffer {
+  void push_command(Command command);
+  std::vector&lt;Command&gt; commands;
+};</code></pre></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 600px; left: 181px; top: 62px;" data-block-id="be6d2ac40728d9aaf0a64fbcb3d149b0"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;" data-gramm_id="577989a8-eafd-6516-c6cf-b318881641ae" data-gramm="true" data-gramm_editor="true">
+<h2>An example with variant</h2>
+</div></div></section><section data-id="2bc1837a267c3f342c3ecbb12772c4c8"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 266px; height: auto;" data-block-id="e4e7a95cfcebe3843cee7cb5c938fd25"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 10;"><h1>Title Text</h1></div></div>
+<div class="sl-block" data-block-type="code" style="width: 803px; height: 449px; left: 78px; top: 202px;" data-block-id="5d911bd8c83f568d3a73c2a74f87b894"><div class="sl-block-content notranslate" data-highlight-theme="monokai" data-code-frame="none" style="z-index: 11;"><pre class="cpp"><code data-line-numbers="">struct DrawCommand {
+  std::uint32_t count;
+  std::uint32_t vertex_offset;
+  std::uint32_t instance_count;
+};
+
+struct DrawIndirectCommand {
+  void* indirect;
+};
+
+using Command = std::variant&lt;DrawCommand, DrawIndirectCommand&gt;;
+
+class SecondaryCommandBuffer {
+  void push_command(Command command);
+  std::vector&lt;Command&gt; commands;
+  GraphicsPipelineHandle pipeline;
+};
+
+class CommandBuffer {
+  void push_commands(SecondaryCommandBuffer buffer);
+  std::vector&lt;Command&gt; secondary_buffers;
+};</code></pre></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 600px; left: 181px; top: 62px;" data-block-id="1aa111152f4ec179847deeddba242975"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;" data-gramm_id="577989a8-eafd-6516-c6cf-b318881641ae" data-gramm="true" data-gramm_editor="true">
+<h2>An example with variant</h2>
+</div></div></section><section data-id="254311cdbbdfa41d2ca7df165259759e"><div class="sl-block" data-block-type="text" style="width: 806px; left: 80px; top: 100px; height: auto;" data-block-id="4d8ad230d402c128b15cab88e48ce868"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 11;" data-gramm_id="9cf4c74e-9ba8-5a7e-940d-e84fcc1a34b7" data-gramm="true" data-gramm_editor="true">
+<h1>The pitfall of Move semantics</h1>
+</div></div></section><section data-id="cea53f9ebb818b4c92d14a4e590e80b9"><div class="sl-block" data-block-type="text" style="width: 806px; left: 80px; top: 100px; height: auto;" data-block-id="b710c56df8fd6e2eec95223c6f847f7b"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 10;" data-gramm_id="9cf4c74e-9ba8-5a7e-940d-e84fcc1a34b7" data-gramm="true" data-gramm_editor="true">
+<h1>The pitfall of Move semantics</h1>
+</div></div>
+<div class="sl-block" data-block-type="code" style="width: 640px; height: 307px; left: 161px; top: 295px;" data-block-id="aacadc723f494c3233acc86249a6482e"><div class="sl-block-content notranslate" data-highlight-theme="monokai" data-code-frame="none" style="z-index: 11;"><pre class="cpp"><code data-line-numbers="">class Window {
+  // ...
+  
+  Window(Window&amp;&amp; other) noexcept = delete;
+  Window&amp; operator=(Window&amp;&amp; other) noexcept = delete;
+
+private:
+  std::reference_wrapper&lt;GLFWwindow&gt; window;
+}</code></pre></div></div></section><section data-id="4d91a6665f6c82e2ed3d7d0fbd8a488d"><div class="sl-block" data-block-type="text" style="width: 806px; left: 80px; top: 100px; height: auto;" data-block-id="52249d07300d66154046f5cbd5578efe"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 11;" data-gramm_id="9cf4c74e-9ba8-5a7e-940d-e84fcc1a34b7" data-gramm="true" data-gramm_editor="true">
+<h1>The pitfall of Move semantics</h1>
+</div></div>
+<div class="sl-block" data-block-type="code" style="min-width: 30px; min-height: 30px; width: 640px; height: 307px; left: 160px; top: 296px;" data-block-id="76462812c590564a858a256c698f5e3c"><div class="sl-block-content notranslate" data-highlight-theme="monokai" data-code-frame="none" style="z-index: 12;"><pre class="cpp"><code data-line-numbers="">class Window {
+  // ...
+  
+  Window(Window&amp;&amp; other) noexcept : window{other.window} {
+    other.window = nullptr;
+  }
+
+private:
+  GLFWwindow* window;
+}</code></pre></div></div></section><section data-id="941484c780229ffc876323d7a3baa51a"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 266px; height: auto;" data-block-id="4c86479243ae01dc3d207641bffcc379"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 10;" data-gramm_id="9bd09f8e-247e-c32e-b700-a3309ed2f917" data-gramm="true" data-gramm_editor="true">
+<h1>Thank you</h1>
+</div></div></section>
+			</div>
+		</div>
+
+		<script>
+			var SLConfig = {"deck": {"id":1600274,"slug":"deck-8","title":"deck","description":"","width":960,"height":700,"visibility":"self","published_at":null,"sanitize_messages":null,"thumbnail_url":"https://s3.amazonaws.com/media-p.slid.es/thumbnails/c3dc19c370e8fb3251621ecb576a60d3/thumb.jpg?1568793292","view_count":0,"user":{"id":822113,"username":"lesleylai-1","name":"Lesley Lai","description":null,"thumbnail_url":"https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg?sz=50","paid":true,"pro":true,"lite":false,"team_id":null,"settings":{"id":673619,"present_controls":false,"present_upsizing":true,"present_pointer":false,"present_notes":true,"default_deck_tag_id":null}},"background_transition":"slide","transition":"slide","theme_id":null,"theme_font":"montserrat","theme_color":"blue-yellow","auto_slide_interval":0,"comments_enabled":true,"forking_enabled":false,"rolling_links":false,"center":false,"shuffle":null,"should_loop":false,"share_notes":null,"slide_number":null,"slide_count":15,"rtl":false,"version":2,"collaborative":null,"deck_user_editor_limit":3,"data_updated_at":1569639095293,"font_typekit":null,"font_google":null,"time_limit":null,"upsizing_enabled":null,"notes":{"3968c25c35a03b690e3905b03b221c9e":"Hello all, I am Lesley Lai.\nI am a student at the University of Colorado at Boulder, and I have a blog.\nNow let's start with \"make impossible state unrepresentable.\"\nThis is an idea that comes from typed functional language communities, but it applies to all languages with a type system.\nLet's start by considering a scenario. You tracked down a bug in your codebase, fired a debugger, looked at your application state, and bang your head with \"how is this happening? This shouldn’t even be possible.\"\nSounds familiar? Now is happy debugging session that everyone *absolutely* loves. \nOf course, you make say tests help. I agree. Nonetheless, my assertion is that tests are good, but unrepresentable is better.","da849d493f67316e0eff377b2d850d15":"My motivation for this talk comes from the above example,\nwhere I copied from a tutorial website that apparently a lot of people are coping to their own codebase.\nhere we have a struct of indices for different queues, we queried them, and use it to refer to those queues later.","e206ff71fee1c0275ab89329ddf6318f":"data model cannot hold invalid state","d43d82a9adeaaa2d252f7abe61d2c930":"Consider if you are writing a compiler with an abstract syntax tree.\nFor example, we can model our expressions as AST nodes, and all expressions have types.\nSome expression's types are immediately obvious, for example, literal 1 has a type of int.\nSome other expression's types are not obvious at all, and we need to infer them later.\nHowever, there are other semantic analysis and also code-gen that we want to do after type checking, so we need to do aggressive assertion or spurious error handling.\n","c510ed8e8b81d9e7ba6a82ec88433f91":"","c8e060902c5f156830b362b3afa7cfa7":"","aaa3afb2851cfbc894db3985161ac418":"","609fde4b83f7c74e748cebc0b5c657cd":"We query the indices in a function like above\nwhere we loop through the queues until we find all the queue indices.\nThe function is the only place where we can have uninitialized queue indices.","8fd9f4f90e1a0e0ce3bcfad821a846ae":"We return one optional indices object and only use multiple optional indices as implementation details.\n\n","b4940ae6f4a4f850ba12f1a4736ebf4d":"so why not rewrite our struct like the above.\n","d47956f0bf88ac59f676090e947214bf":"The solution is, have two types of expressions.\nOne maybe has types, and the other one always has types.\nAfter the type checking and inference stage, our Ast Nodes will be represented by Typed expression.\nAnd the assertion goes away.\n","acf391bf3c7ff8b8354802f8923411ee":"Another advantage of utilizing static type system \\\n is reducing assertion or run-time checking. \\\nIn the previous example, notice the `isComplete` function goes away, as we don't need to call this logic multiple times","5dda1a34b8da68979666ae781773f479":"We also eliminated the inefficient alignment \\ because of multiple std::optional \\ from the first struct\nThe size of the QueueFamilyIndices before is 24 bytes, and the size of QueueFamilyIndices is 12 bytes in the second example.","7eb4e768ff8542ea0765e0ca503626c3":"","05571dcdecff9f5e032d64ebbe27801d":"","941484c780229ffc876323d7a3baa51a":"","b97bd809a94e46827ec724929c789e2e":"","4d91a6665f6c82e2ed3d7d0fbd8a488d":"In C++11, we got move semantics.\nHowever, to enable move semantics for our resource handle, we created sometime like a pointer.\nThe after move states must be valid; to have a valid after-move state, we are forced to represent the empty state in our class.\nSo we open a hole in our type system. \\ sign \\\\\nThere is a complicated reason why move semantic is done in this way.\nMy suggestion is \\ that if we can live without moving for those resource handle types, just don't define move for them, and rely on copy elision instead.","cea53f9ebb818b4c92d14a4e590e80b9":"Consider a class that wrap a resource with underlying C-style API.\nIn C++98 area, we have a perfect RAII class.\nThe resource' lifetime is tied with the lifetime of the object.\nThe problem is \\ how to move them around.","b716edf121202b00c9e7c3143b0d4e3d":"Here is another example , which using std::variant. In graphics programming, we have commands to submit to GPU, and we first cache them in a buffer. \nThe graphics pipeline object encapsulates all the logic of drawing, like how to intepret data we sent to the GPU.\nHowever, in the above API, we can happily start to draw without binding a graphics pipeline.","c0bf93ddc071e4ffcda8a70e2bacadf7":"One straight forward modificaion is putting the reference of graphics pipeline inside each command.\nNote we did pay an extra overhead here, as we need to check if the graphics pipeline stays the same. If it is, we don't need to rebind the pipeline again, as rebinding a graphics pipeline is an costly operation in GPU.\n","45e8dcfefd78204524218bdc485bbd0a":"API becomes cleaner following this approach.","2bc1837a267c3f342c3ecbb12772c4c8":"Going a bit further, we can introduce another structure that contains a graphics pipeline and a vector draw commands.\nIn this model, there is no overhead, there is no need for sorting against pipelines.","254311cdbbdfa41d2ca7df165259759e":"before the end, I want to talk about the pitfall of move semantics, a feature we all love."}}};
+
+
+			// Use local fonts
+			SLConfig.fonts_url = '../lib/fonts/';
+		</script>
+
+		<script src="../lib/reveal.min.js"></script>
+		<script src="../lib/offline.js"></script>
+
+		<!-- Initialize the presentation -->
+		<script>
+			Reveal.initialize({
+				width: 960,
+				height: 700,
+				margin: 0.05,
+				maxScale: 1,
+
+				hash: true,
+				controls: true,
+				progress: true,
+				mouseWheel: false,
+				showNotes: false,
+				slideNumber: false,
+
+				autoSlide: 0,
+				autoSlideStoppable: true,
+
+				center: false,
+				shuffle: false,
+				loop: false,
+				rtl: false,
+
+				transition: "slide",
+				backgroundTransition: "slide",
+
+				highlight: {
+					escapeHTML: false
+				},
+
+				dependencies: [
+					{ src: '../lib/reveal-plugins/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../lib/reveal-plugins/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../lib/reveal-plugins/highlight/highlight.js' },
+					{ src: '../lib/reveal-plugins/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: '../lib/reveal-plugins/zoom/zoom.js', async: true }
+				]
+			});
+		</script>
+
+		
+
+	</body>
+</html>
