@@ -44,7 +44,10 @@ class IndexPage extends React.Component<IndexProps> {
           query indexQuery {
             allMarkdownRemark(
               sort: { fields: [frontmatter___create], order: DESC }
-              filter: { frontmatter: { lang: { eq: "en" } } }
+              filter: {
+                fields: { relativePath: { regex: "/blog/" } }
+                frontmatter: { lang: { eq: "en" } }
+              }
             ) {
               totalCount
               edges {

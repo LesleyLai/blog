@@ -99,7 +99,7 @@ module.exports = {
 {
   allMarkdownRemark(limit: 1000,
     sort: {order: DESC, fields: [frontmatter___create]},
-    filter: {frontmatter: {lang: {eq: "en"}}}) {
+    filter: {fields: {relativePath: {regex: "/blog/"}}, frontmatter: {lang: {eq: "en"}}}) {
     edges {
       node {
         excerpt

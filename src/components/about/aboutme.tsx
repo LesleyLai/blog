@@ -112,7 +112,12 @@ class AboutMe extends React.PureComponent {
                 title
               }
             }
-            allMarkdownRemark(filter: { frontmatter: { lang: { eq: "en" } } }) {
+            allMarkdownRemark(
+              filter: {
+                fields: { relativePath: { regex: "/blog/" } }
+                frontmatter: { lang: { eq: "en" } }
+              }
+            ) {
               group(field: frontmatter___categories) {
                 fieldValue
                 totalCount
