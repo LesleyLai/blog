@@ -52,7 +52,11 @@ export default class HeaderMenu extends React.PureComponent<HeaderMenuProp> {
             <MenuItem key={key} pathname={this.props.pathname} itemName={key} />
           ))}
         </nav>
-        <button className={css.mobileMenuIcon} onClick={this.toggleMobileMenu}>
+        <button
+          name="menu"
+          className={css.mobileMenuIcon}
+          onClick={this.toggleMobileMenu}
+        >
           <FaBars />
         </button>
       </>
