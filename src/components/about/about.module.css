@@ -25,11 +25,11 @@
     margin-bottom: 0;
 }
 
-#portrait {
+.portrait {
     display: block;
     margin: 10px auto;
     width: 100%;
-    max-width: 250px;
+    max-width: 300px;
     max-height: 250px;
     border: solid 8px white;
     border-radius: 4px;

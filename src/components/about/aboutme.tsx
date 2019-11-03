@@ -1,4 +1,5 @@
 import { graphql, Link, StaticQuery } from "gatsby";
+import Img, { FluidObject } from "gatsby-image";
 import * as React from "react";
 import { tagInfos } from "../../utils/tagInfo";
 
@@ -7,22 +8,30 @@ interface TagItem {
   totalCount: number;
 }
 
-interface TagsData {
+interface AboutMeData {
   allMarkdownRemark: {
     group: TagItem[];
+  };
+  portrait: {
+    childImageSharp: {
+      fluid: FluidObject;
+    };
   };
 }
 
 class AboutMe extends React.PureComponent {
   public render() {
-    const helper = (data: TagsData) => {
+    const helper = (data: AboutMeData) => {
       const currentYear = new Date().getFullYear();
-      const portrait = require("./portrait.jpg");
 
       const css = require("./about.module.css");
       return (
         <nav className={css.about}>
-          <img src={portrait} alt="Lesley Lai Protrait" id={css.portrait} />
+          <Img
+            className={css.portrait}
+            fluid={data.portrait.childImageSharp.fluid}
+            alt="Lesley Lai Protrait"
+          />
 
           <article>
             <p>
@@ -96,7 +105,7 @@ class AboutMe extends React.PureComponent {
     return (
       <StaticQuery
         query={graphql`
-          query tagsQuery {
+          query AboutMeQuery {
             site {
               siteMetadata {
                 title
@@ -106,6 +115,13 @@ class AboutMe extends React.PureComponent {
               group(field: frontmatter___categories) {
                 fieldValue
                 totalCount
+              }
+            }
+            portrait: file(relativePath: { eq: "imgs/portrait.jpg" }) {
+              childImageSharp {
+                fluid(maxWidth: 700) {
+                  ...GatsbyImageSharpFluid
+                }
               }
             }
           }
