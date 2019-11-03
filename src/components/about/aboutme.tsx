@@ -31,6 +31,7 @@ class AboutMe extends React.PureComponent {
             className={css.portrait}
             fluid={data.portrait.childImageSharp.fluid}
             alt="Lesley Lai Protrait"
+            fadeIn={false}
           />
 
           <article>
