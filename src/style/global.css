@@ -1,8 +1,6 @@
 /* Fix double scroolbar problem */
 html {
     overflow-x: hidden;
-
-    font-family: Lato,Helvetica Neue,Arial,Helvetica,sans-serif;
 }
 
 body {
@@ -20,7 +18,6 @@ h2,
 h3,
 h4,
 h5 {
-    font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
     line-height: 1.28571429em;
     font-weight: bold;
     padding: 0em;

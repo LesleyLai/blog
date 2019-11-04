@@ -36,9 +36,6 @@ pre[class*="language-"] {
     margin: .5em 0;
     overflow: auto;
     border-radius: 0.3em;
-}
-
-pre[class*="language-"] {
     border-left: 10px solid #358ccb;
     box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
     background-image: linear-gradient(transparent 50%,
