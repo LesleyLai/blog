@@ -1,3 +1,4 @@
+import { graphql, StaticQuery } from "gatsby";
 import * as React from "react";
 import Helmet from "react-helmet";
 
@@ -10,123 +11,103 @@ interface ProjectsPageProps {
   };
 }
 
+interface ProjectMeta {
+  frontmatter: {
+    id: number;
+    name: string;
+    lang: string;
+    create: string;
+    lastModify?: string;
+    categories: string[];
+    image?: string;
+    github?: string;
+    demo?: string;
+    website?: string;
+  };
+  html: string;
+}
+
+interface ProjectsData {
+  allMarkdownRemark: {
+    edges: Array<{
+      node: ProjectMeta;
+    }>;
+  };
+}
+
 const ProjectsPage = (props: ProjectsPageProps) => {
   const title = "Portfolio";
   const css = require("./projects.module.css");
 
-  const reversiImage = require("./reversi.png");
-  const raytracerImage = require("./raytracer.png");
-  const pathTracingImage = require("./pathtracing.png");
-  const grassImage = require("./grass.gif");
+  const helper = (data: ProjectsData) => {
+    const projects = data.allMarkdownRemark.edges.map(edge => edge.node);
+
+    return (
+      <Layout location={props.location}>
+        <div>
+          <Helmet>
+            <title>{"Lesley Lai | " + title}</title>
+          </Helmet>
+          <h1>{title}</h1>
+          <ul className={css.projectsList}>
+            {projects.map(project => (
+              <ProjectPanel
+                name={project.frontmatter.name}
+                github={project.frontmatter.github}
+                demo={project.frontmatter.demo}
+                website={project.frontmatter.website}
+                year={
+                  project.frontmatter.lastModify
+                    ? project.frontmatter.create +
+                      "-" +
+                      project.frontmatter.lastModify
+                    : project.frontmatter.create
+                }
+                tags={project.frontmatter.categories}
+                image={project.frontmatter.image}
+              >
+                <div dangerouslySetInnerHTML={{ __html: project.html }} />
+              </ProjectPanel>
+            ))}
+          </ul>
+        </div>
+      </Layout>
+    );
+  };
 
   return (
-    <Layout location={props.location}>
-      <div>
-        <Helmet>
-          <title>{"Lesley Lai | " + title}</title>
-        </Helmet>
-        <h1>{title}</h1>
-        <h2>Graphics</h2>
-        <ul className={css.projectsList}>
-          <ProjectPanel
-            name="OpenGL Grass Renderer"
-            github="https://github.com/LesleyLai/GLGrassRenderer"
-            image={grassImage}
-            year="2019"
-            tags={["cpp", "graphics", "GL"]}
-          >
-            This project is my implementation of the paper{" "}
-            <a href="https://www.cg.tuwien.ac.at/research/publications/2017/JAHRMANN-2017-RRTG/JAHRMANN-2017-RRTG-draft.pdf">
-              Responsive Real-Time Grass Rendering for General 3D Scenes
-            </a>
-            . This project uses a combination of compute and tessellation
-            shaders.
-          </ProjectPanel>
-
-          <ProjectPanel
-            name="Path Tracer"
-            github="https://github.com/LesleyLai/Bolder-Render-Engine"
-            image={pathTracingImage}
-            year="2018"
-            tags={["cpp", "graphics", "GI"]}
-          >
-            A Monte-Carlo Method based path tracing program for my own learning
-            purpose. It is loosely based on Peter Shirley's{" "}
-            <a href="http://in1weekend.blogspot.lt/">
-              Ray Tracing in One Weekend
-            </a>{" "}
-            mini book and its sequels.
-          </ProjectPanel>
-
-          <ProjectPanel
-            name="Ray tracer"
-            github="https://github.com/LesleyLai/RayTracer"
-            image={raytracerImage}
-            year="2016"
-            tags={["cpp", "graphics"]}
-          >
-            This is a toy{" "}
-            <a href="https://en.wikipedia.org/wiki/Ray_tracing_(graphics)">
-              ray tracer
-            </a>{" "}
-            for the Edx's{" "}
-            <a href="https://www.edx.org/course/computer-graphics-uc-san-diegox-cse167x-3">
-              Computer Graphics
-            </a>{" "}
-            Course. It can handle ray-sphere and ray-triangle intersection.
-          </ProjectPanel>
-        </ul>
-        <h2>Programming languages</h2>
-        <ul className={css.projectsList}>
-          <ProjectPanel
-            name="Embedded ML"
-            github="https://github.com/LesleyLai/eml"
-            year="2018"
-            tags={["cpp", "pl", "functional"]}
-          >
-            Embedded ML is a static-typed scripting language. This project
-            includes a compiler and a bytecode interpreter runtime.
-          </ProjectPanel>
-        </ul>
-        <h2>Libraries</h2>
-        <ul className={css.projectsList}>
-          <ProjectPanel
-            name="unique_function"
-            github="https://github.com/LesleyLai/unique_function"
-            year="2019"
-            tags={["cpp", "library", "type erasure"]}
-          >
-            a C++17 implementation of the proposed{" "}
-            <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p0228r3.html">
-              unique_function
-            </a>
-          </ProjectPanel>
-
-          <ProjectPanel
-            name="elm-grid"
-            github="https://github.com/LesleyLai/elm-grid"
-            year="2019"
-            tags={["elm", "library", "functional"]}
-          >
-            A 2 dimensional Grid library in Elm.
-          </ProjectPanel>
-        </ul>
-
-        <h2>Games</h2>
-        <ul className={css.projectsList}>
-          <ProjectPanel
-            name="Reversi-Elm"
-            github="https://github.com/LesleyLai/Reversi-Elm"
-            link="https://lesleylai.github.io/Reversi-Elm/"
-            image={reversiImage}
-            year="2018"
-            tags={["elm", "game", "web", "functional"]}
-          >
-            A browser based clone of the classic board game Reversi.
-          </ProjectPanel>
-        </ul>
-      </div>
-    </Layout>
+    <StaticQuery
+      query={graphql`
+        query projectsQuery {
+          allMarkdownRemark(
+            sort: { fields: [frontmatter___create], order: DESC }
+            filter: {
+              fields: { relativePath: { regex: "/projects/" } }
+              frontmatter: { lang: { eq: "en" } }
+            }
+          ) {
+            edges {
+              node {
+                frontmatter {
+                  id
+                  lang
+                  categories
+                  name
+                  image
+                  create(formatString: "YYYY")
+                  lastModify(formatString: "YYYY")
+                  github
+                  demo
+                  website
+                }
+                html
+              }
+            }
+          }
+        }
+      `}
+      render={helper}
+    />
   );
 };
 

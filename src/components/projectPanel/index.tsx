@@ -2,6 +2,7 @@ import * as React from "react";
 import * as ReactTooltip from "react-tooltip";
 import { Color, colors } from "../../utils/colorTable";
 
+const PlayIcon = require("react-icons/lib/fa/play");
 const GithubIcon = require("react-icons/lib/fa/github");
 const LinkIcon = require("react-icons/lib/go/link");
 
@@ -9,8 +10,9 @@ const css = require("./projectPanel.module.css");
 
 interface ProjectPenalProps extends React.HTMLProps<HTMLDListElement> {
   name: string;
-  github?: string;
-  link?: string;
+  github?: string; // link to github
+  website?: string; // link to website
+  demo?: string; // link to demo
 
   // A reference to image
   image?: string;
@@ -73,6 +75,20 @@ const ProjectPanel = (props: ProjectPenalProps) => {
           </h3>
           <span style={{ flexGrow: 100 }} />
 
+          {props.website && (
+            <a href={props.website}>
+              <LinkIcon data-tip="Website" size={16} className={css.link} />
+              <ReactTooltip place="right" effect="solid" />
+            </a>
+          )}
+
+          {props.demo && (
+            <a href={props.demo}>
+              <PlayIcon data-tip="Live demo" size={16} className={css.link} />
+              <ReactTooltip place="right" effect="solid" />
+            </a>
+          )}
+
           {props.github && (
             <a href={props.github}>
               <GithubIcon
@@ -80,13 +96,6 @@ const ProjectPanel = (props: ProjectPenalProps) => {
                 size={16}
                 className={css.link}
               />
-              <ReactTooltip place="right" effect="solid" />
-            </a>
-          )}
-
-          {props.link && (
-            <a href={props.link}>
-              <LinkIcon data-tip="Live demo" size={16} className={css.link} />
               <ReactTooltip place="right" effect="solid" />
             </a>
           )}

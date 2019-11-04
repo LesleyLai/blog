@@ -43,11 +43,11 @@ class IndexPage extends React.Component<IndexProps> {
         query={graphql`
           query indexQuery {
             allMarkdownRemark(
-              sort: { fields: [frontmatter___create], order: DESC }
               filter: {
                 fields: { relativePath: { regex: "/blog/" } }
                 frontmatter: { lang: { eq: "en" } }
               }
+              sort: { fields: [frontmatter___create], order: DESC }
             ) {
               totalCount
               edges {
