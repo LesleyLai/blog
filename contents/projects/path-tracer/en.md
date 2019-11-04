@@ -2,9 +2,8 @@
 id: path
 name: "Path Tracer"
 lang: en
-image: pathtracing.png
+image: pathtracing
 create: '2018-04-13'
-lastModify: '2018-09-18'
 github: https://github.com/LesleyLai/Path-Tracer
 categories:
 - cpp

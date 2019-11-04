@@ -2,7 +2,7 @@
 id: reversi-elm
 name: "Reversi Elm"
 lang: en
-image: reversi.png
+image: reversi
 create: '2018-02-24'
 lastModify: '2019-04-08'
 github: https://github.com/LesleyLai/Reversi-Elm

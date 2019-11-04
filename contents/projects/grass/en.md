@@ -2,7 +2,7 @@
 id: grass
 name: "OpenGL Grass Renderer"
 lang: en
-image: grass.glf
+image: grass
 create: '2019-04-14'
 github: https://github.com/LesleyLai/GLGrassRenderer
 categories:

@@ -1,4 +1,5 @@
 import { graphql, StaticQuery } from "gatsby";
+import { FluidObject } from "gatsby-image";
 import * as React from "react";
 import Helmet from "react-helmet";
 
@@ -27,12 +28,26 @@ interface ProjectMeta {
   html: string;
 }
 
+interface ImageMeta {
+  childImageSharp: {
+    fluid: FluidObject;
+  };
+  name: string;
+}
+
 interface ProjectsData {
   allMarkdownRemark: {
     edges: Array<{
       node: ProjectMeta;
     }>;
   };
+  allImages: {
+    nodes: ImageMeta[];
+  };
+}
+
+interface ImageMap {
+  [name: string]: FluidObject;
 }
 
 const ProjectsPage = (props: ProjectsPageProps) => {
@@ -42,6 +57,15 @@ const ProjectsPage = (props: ProjectsPageProps) => {
   const helper = (data: ProjectsData) => {
     const projects = data.allMarkdownRemark.edges.map(edge => edge.node);
 
+    const images = data.allImages.nodes.reduce(function(
+      acc: ImageMap,
+      cur: ImageMeta
+    ) {
+      acc[cur.name] = cur.childImageSharp.fluid;
+      return acc;
+    },
+    {});
+
     return (
       <Layout location={props.location}>
         <div>
@@ -50,25 +74,31 @@ const ProjectsPage = (props: ProjectsPageProps) => {
           </Helmet>
           <h1>{title}</h1>
           <ul className={css.projectsList}>
-            {projects.map(project => (
-              <ProjectPanel
-                name={project.frontmatter.name}
-                github={project.frontmatter.github}
-                demo={project.frontmatter.demo}
-                website={project.frontmatter.website}
-                year={
-                  project.frontmatter.lastModify
-                    ? project.frontmatter.create +
-                      "-" +
-                      project.frontmatter.lastModify
-                    : project.frontmatter.create
-                }
-                tags={project.frontmatter.categories}
-                image={project.frontmatter.image}
-              >
-                <div dangerouslySetInnerHTML={{ __html: project.html }} />
-              </ProjectPanel>
-            ))}
+            {projects.map(project => {
+              return (
+                <ProjectPanel
+                  key={project.frontmatter.name}
+                  name={project.frontmatter.name}
+                  github={project.frontmatter.github}
+                  demo={project.frontmatter.demo}
+                  website={project.frontmatter.website}
+                  year={
+                    project.frontmatter.lastModify
+                      ? project.frontmatter.create +
+                        "-" +
+                        project.frontmatter.lastModify
+                      : project.frontmatter.create
+                  }
+                  tags={project.frontmatter.categories}
+                  image={
+                    project.frontmatter.image &&
+                    images[project.frontmatter.image]
+                  }
+                >
+                  <div dangerouslySetInnerHTML={{ __html: project.html }} />
+                </ProjectPanel>
+              );
+            })}
           </ul>
         </div>
       </Layout>
@@ -102,6 +132,16 @@ const ProjectsPage = (props: ProjectsPageProps) => {
                 }
                 html
               }
+            }
+          }
+          allImages: allFile(filter: {relativePath: {regex: "/projects/.*\\.(png|jpg|jpeg)/"}}) {
+            nodes {
+              childImageSharp {
+                fluid(maxWidth: 600, maxHeight: 400) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+              name
             }
           }
         }

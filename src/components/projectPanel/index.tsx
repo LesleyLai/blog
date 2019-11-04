@@ -2,6 +2,8 @@ import * as React from "react";
 import * as ReactTooltip from "react-tooltip";
 import { Color, colors } from "../../utils/colorTable";
 
+import Img, { FluidObject } from "gatsby-image";
+
 const PlayIcon = require("react-icons/lib/fa/play");
 const GithubIcon = require("react-icons/lib/fa/github");
 const LinkIcon = require("react-icons/lib/go/link");
@@ -15,7 +17,7 @@ interface ProjectPenalProps extends React.HTMLProps<HTMLDListElement> {
   demo?: string; // link to demo
 
   // A reference to image
-  image?: string;
+  image?: FluidObject;
   // Prevent the panel to show only part of the image, but the image may not fill the panel this way
   imageContain?: boolean;
 
@@ -62,9 +64,7 @@ const ProjectPanel = (props: ProjectPenalProps) => {
 
   return (
     <article className={css.panel}>
-      {props.image && (
-        <img src={props.image} alt={props.name} className={css.image} />
-      )}
+      {props.image && <Img fluid={props.image} />}
 
       <div className={css.content}>
         <div className={css.title}>

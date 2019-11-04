@@ -2,8 +2,8 @@
 id: raytracer
 name: "Ray Tracer"
 lang: en
-image: raytracer.png
-create: '2016-05-12'
+image: raytracer
+create: '2016-05-12'r
 github: https://github.com/LesleyLai/RayTracer
 categories:
 - cpp
