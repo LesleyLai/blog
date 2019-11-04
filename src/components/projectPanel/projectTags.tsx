@@ -16,13 +16,19 @@ const tagInfos: { [id: string]: ProjectTag } = {
   graphics: { key: "graphics", en: "Graphics", color: colors.red },
   GI: { key: "gi", en: "Global Illumination", color: colors.yellow },
   GL: { key: "gl", en: "OpenGL", color: colors.teal },
-  functional: { key: "fp", en: "Functional", color: colors.black },
+  functional: { key: "fp", en: "Functional Programming", color: colors.black },
   elm: { key: "elm", en: "Elm", color: colors.teal },
   game: { key: "game", en: "Game", color: colors.orange },
   web: { key: "web", en: "Web", color: colors.pink },
   python: { key: "python", en: "Python", color: colors.blue },
   pl: { key: "pl", en: "Programming Language", color: colors.red },
-  "type erasure": { key: "type erasure", en: "Type Erasure", color: colors.red }
+  "type erasure": {
+    key: "type erasure",
+    en: "Type Erasure",
+    color: colors.red
+  },
+  react: { key: "react", en: "React", color: colors.react },
+  typescript: { key: "typescript", en: "Typescript", color: colors.typescript }
 };
 
 function buildTag(tagId: string) {

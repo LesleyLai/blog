@@ -64,5 +64,15 @@ export const colors: { [key: string]: Color } = {
     bg: "#999999",
     fg: "#fff",
     hover: "#888888"
+  },
+  react: {
+    bg: "#61dafb",
+    fg: "#000000",
+    hover: "#ffffff"
+  },
+  typescript: {
+    bg: "#294E80",
+    fg: "#ffffff",
+    hover: "#183d70"
   }
 };
