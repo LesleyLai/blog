@@ -1,14 +1,11 @@
-import * as React from "react";
-import * as ReactTooltip from "react-tooltip";
-import { Color, colors } from "../../utils/colorTable";
-
 import Img, { FluidObject } from "gatsby-image";
+import * as React from "react";
+
+import Tags from "./projectTags";
 
 const PlayIcon = require("react-icons/lib/fa/play");
 const GithubIcon = require("react-icons/lib/fa/github");
 const LinkIcon = require("react-icons/lib/go/link");
-
-const css = require("./projectPanel.module.css");
 
 interface ProjectPenalProps extends React.HTMLProps<HTMLDListElement> {
   name: string;
@@ -26,85 +23,60 @@ interface ProjectPenalProps extends React.HTMLProps<HTMLDListElement> {
   tags?: string[];
 }
 
-interface ProjectTag {
-  key: string;
-  en: string;
-  zh?: string;
-  color: Color; // Color of the tag box
-}
-
-const tagInfos: { [id: string]: ProjectTag } = {
-  cpp: { key: "cpp", en: "C++", color: colors.blue },
-  library: { key: "library", en: "Library", color: colors.white },
-  graphics: { key: "graphics", en: "Graphics", color: colors.red },
-  GI: { key: "gi", en: "Global Illumination", color: colors.yellow },
-  GL: { key: "gl", en: "OpenGL", color: colors.teal },
-  functional: { key: "fp", en: "Functional", color: colors.black },
-  elm: { key: "elm", en: "Elm", color: colors.teal },
-  game: { key: "game", en: "Game", color: colors.orange },
-  web: { key: "web", en: "Web", color: colors.pink },
-  python: { key: "python", en: "Python", color: colors.blue },
-  pl: { key: "pl", en: "Programming Language", color: colors.red },
-  "type erasure": { key: "type erasure", en: "Type Erasure", color: colors.red }
-};
-
-function buildTag(tagId: string) {
-  const tag = tagInfos[tagId];
-  const color: Color = tag ? tag.color : colors.white;
-
-  return (
-    <li className={css.tag} style={{ color: color.fg, background: color.bg }}>
-      {tag ? tag.en : tagId}
-    </li>
-  );
-}
-
 const ProjectPanel = (props: ProjectPenalProps) => {
+  const css = require("./projectPanel.module.css");
+
   const tags = props.tags;
 
   return (
     <article className={css.panel}>
-      {props.image && <Img fluid={props.image} />}
-
       <div className={css.content}>
         <div className={css.title}>
-          <h3 className={css.name}>
+          <h2 className={css.name}>
             {" "}
             {props.name}
             <span className={css.year}> ({props.year})</span>
-          </h3>
+          </h2>
           <span style={{ flexGrow: 100 }} />
+        </div>
 
+        <div>{props.children}</div>
+
+        <ul className={css.links}>
           {props.website && (
-            <a href={props.website}>
-              <LinkIcon data-tip="Website" size={16} className={css.link} />
-              <ReactTooltip place="right" effect="solid" />
-            </a>
+            <li>
+              <a href={props.website}>
+                <span>Website </span>
+                <LinkIcon data-tip="Website" size={16} />
+              </a>
+            </li>
           )}
 
           {props.demo && (
-            <a href={props.demo}>
-              <PlayIcon data-tip="Live demo" size={16} className={css.link} />
-              <ReactTooltip place="right" effect="solid" />
-            </a>
+            <li>
+              <a href={props.demo}>
+                <span>Demo </span>
+                <PlayIcon data-tip="Live demo" size={16} />
+              </a>
+            </li>
           )}
 
           {props.github && (
-            <a href={props.github}>
-              <GithubIcon
-                data-tip="Source repository"
-                size={16}
-                className={css.link}
-              />
-              <ReactTooltip place="right" effect="solid" />
-            </a>
+            <li>
+              <a href={props.github}>
+                <span>Github </span>
+                <GithubIcon data-tip="Source repository" size={16} />
+              </a>
+            </li>
           )}
-        </div>
+        </ul>
 
-        <div className={css.description}>{props.children}</div>
-
-        <ul className={css.tags}>{tags && tags.map(buildTag)}</ul>
+        <Tags tags={tags} />
       </div>
+
+      <span style={{ flexGrow: 100 }} />
+
+      {props.image && <Img fluid={props.image} className={css.image} />}
     </article>
   );
 };

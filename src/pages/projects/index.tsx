@@ -52,8 +52,6 @@ interface ImageMap {
 
 const ProjectsPage = (props: ProjectsPageProps) => {
   const title = "Portfolio";
-  const css = require("./projects.module.css");
-
   const helper = (data: ProjectsData) => {
     const projects = data.allMarkdownRemark.edges.map(edge => edge.node);
 
@@ -73,33 +71,30 @@ const ProjectsPage = (props: ProjectsPageProps) => {
             <title>{"Lesley Lai | " + title}</title>
           </Helmet>
           <h1>{title}</h1>
-          <ul className={css.projectsList}>
-            {projects.map(project => {
-              return (
-                <ProjectPanel
-                  key={project.frontmatter.name}
-                  name={project.frontmatter.name}
-                  github={project.frontmatter.github}
-                  demo={project.frontmatter.demo}
-                  website={project.frontmatter.website}
-                  year={
-                    project.frontmatter.lastModify
-                      ? project.frontmatter.create +
-                        "-" +
-                        project.frontmatter.lastModify
-                      : project.frontmatter.create
-                  }
-                  tags={project.frontmatter.categories}
-                  image={
-                    project.frontmatter.image &&
-                    images[project.frontmatter.image]
-                  }
-                >
-                  <div dangerouslySetInnerHTML={{ __html: project.html }} />
-                </ProjectPanel>
-              );
-            })}
-          </ul>
+          {projects.map(project => {
+            return (
+              <ProjectPanel
+                key={project.frontmatter.name}
+                name={project.frontmatter.name}
+                github={project.frontmatter.github}
+                demo={project.frontmatter.demo}
+                website={project.frontmatter.website}
+                year={
+                  project.frontmatter.lastModify
+                    ? project.frontmatter.create +
+                      "-" +
+                      project.frontmatter.lastModify
+                    : project.frontmatter.create
+                }
+                tags={project.frontmatter.categories}
+                image={
+                  project.frontmatter.image && images[project.frontmatter.image]
+                }
+              >
+                <div dangerouslySetInnerHTML={{ __html: project.html }} />
+              </ProjectPanel>
+            );
+          })}
         </div>
       </Layout>
     );

@@ -3,7 +3,7 @@ id: raytracer
 name: "Ray Tracer"
 lang: en
 image: raytracer
-create: '2016-05-12'r
+create: '2016-05-12'
 github: https://github.com/LesleyLai/RayTracer
 categories:
 - cpp
