@@ -46,6 +46,7 @@ export const query = graphql`
     allMarkdownRemark(
       sort: { fields: [frontmatter___create], order: DESC }
       filter: {
+        fields: { relativePath: { regex: "/blog/" } }
         frontmatter: { lang: { eq: "en" }, categories: { in: [$tag] } }
       }
     ) {
