@@ -45,27 +45,31 @@ const ProjectPanel = (props: ProjectPenalProps) => {
         <ul className={css.links}>
           {props.website && (
             <li>
+              <LinkIcon className={css.icon} data-tip="Website" size={20} />
               <a href={props.website}>
-                <span>Website </span>
-                <LinkIcon data-tip="Website" size={16} />
+                <span>View Website</span>
               </a>
             </li>
           )}
 
           {props.demo && (
             <li>
+              <PlayIcon className={css.icon} data-tip="Live demo" size={20} />
               <a href={props.demo}>
-                <span>Demo </span>
-                <PlayIcon data-tip="Live demo" size={16} />
+                <span>Live Demo</span>
               </a>
             </li>
           )}
 
           {props.github && (
             <li>
+              <GithubIcon
+                className={css.icon}
+                data-tip="Source repository"
+                size={20}
+              />
               <a href={props.github}>
-                <span>Github </span>
-                <GithubIcon data-tip="Source repository" size={16} />
+                <span>View Github</span>
               </a>
             </li>
           )}

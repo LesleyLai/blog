@@ -3,8 +3,8 @@ import { FluidObject } from "gatsby-image";
 import * as React from "react";
 import Helmet from "react-helmet";
 
-import Layout from "../../components/layout";
-import ProjectPanel from "../../components/projectPanel";
+import Layout from "../components/layout";
+import ProjectPanel from "../components/projectPanel";
 
 interface ProjectsPageProps {
   location: {
@@ -51,7 +51,7 @@ interface ImageMap {
 }
 
 const ProjectsPage = (props: ProjectsPageProps) => {
-  const title = "Portfolio";
+  const title = "Projects";
   const helper = (data: ProjectsData) => {
     const projects = data.allMarkdownRemark.edges.map(edge => edge.node);
 
@@ -71,6 +71,7 @@ const ProjectsPage = (props: ProjectsPageProps) => {
             <title>{"Lesley Lai | " + title}</title>
           </Helmet>
           <h1>{title}</h1>
+          <p>Check out my personal projects below.</p>
           {projects.map(project => {
             return (
               <ProjectPanel

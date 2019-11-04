@@ -64,4 +64,10 @@
 
 .links {
     margin-bottom: 0rem;
+    list-style: none;
+    margin-left: 0;
+}
+
+.icon {
+    margin: -5px 5px 0 0;
 }
