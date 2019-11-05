@@ -17,7 +17,7 @@ export const colors: { [key: string]: Color } = {
   },
   yellow: {
     bg: "#fbbd08",
-    fg: "#fff",
+    fg: "#000000",
     hover: "#eaae00"
   },
   teal: {

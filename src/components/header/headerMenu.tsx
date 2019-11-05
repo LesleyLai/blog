@@ -25,6 +25,7 @@ const MenuItem = ({ itemName }: MenuItemProp) => {
       key={item.path}
       activeClassName={css.active}
       className={css.menuItem}
+      partiallyActive={!item.exact}
     >
       {item.en}
     </Link>

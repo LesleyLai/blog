@@ -8,7 +8,6 @@ github: https://github.com/Beyond-Engine/functions
 categories:
 - cpp
 - library
-- "type erasure"
 ---
 
 This library is a C++17 implementation of various type erased callable types.

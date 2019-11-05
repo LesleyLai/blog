@@ -83,7 +83,7 @@ class AboutMe extends React.PureComponent {
               )
               .map((tag: TagItem) => (
                 <li key={tag.fieldValue} className={css.tagitem}>
-                  <Link to={"/tags/" + tag.fieldValue}>
+                  <Link to={"/archive/" + tag.fieldValue}>
                     {tagInfos[tag.fieldValue].en}
                   </Link>
                   <span className={css.postcount}>{tag.totalCount}</span>
