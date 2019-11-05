@@ -12,6 +12,10 @@ function buildTag(tagId: string) {
 
   const tagName = tag ? tag.en : tagId;
 
+  const TagItem = styled.li`
+    margin-bottom: 0.3rem;
+  `;
+
   const TagBox = styled.span`
     color: ${color.fg};
     background-color: ${color.bg};
@@ -36,11 +40,11 @@ function buildTag(tagId: string) {
   `;
 
   return (
-    <li key={tagId}>
+    <TagItem key={tagId}>
       <Link to={tagId ? `/projects/${tagId}/` : `/projects/`}>
         <TagBox>{tagName ? tagName : "Show all"}</TagBox>
       </Link>
-    </li>
+    </TagItem>
   );
 }
 
