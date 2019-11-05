@@ -109,7 +109,6 @@ exports.createPages = ({ graphql, actions }) => {
       }
 
       for (const tag of tags) {
-        console.log(tag);
         createPage({
           path: "/projects/" + tag + '/',
           component: projectsTemplate,

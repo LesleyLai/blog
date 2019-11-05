@@ -57,7 +57,7 @@ export const colors: { [key: string]: Color } = {
   },
   white: {
     bg: "#e8e8e8",
-    fg: "#666",
+    fg: "#333",
     hover: "#e0e0e0"
   },
   grey: {

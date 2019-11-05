@@ -5,9 +5,12 @@ import Link from "gatsby-link";
 import { Color, colors } from "../../utils/colorTable";
 import { projectsTagInfos } from "../../utils/tagInfo";
 
+// If tagId is empty string, it means "show all"
 function buildTag(tagId: string) {
   const tag = projectsTagInfos[tagId];
   const color: Color = tag ? tag.color : colors.white;
+
+  const tagName = tag ? tag.en : tagId;
 
   const TagBox = styled.span`
     color: ${color.fg};
@@ -21,7 +24,7 @@ function buildTag(tagId: string) {
 
     text-transform: none;
     font-weight: 700;
-    font-size: 12px;
+    font-size: 11px;
 
     border-radius: 0.28571429rem;
 
@@ -34,8 +37,8 @@ function buildTag(tagId: string) {
 
   return (
     <li key={tagId}>
-      <Link to={`/projects/${tagId}/`}>
-        <TagBox>{tag ? tag.en : tagId}</TagBox>
+      <Link to={tagId ? `/projects/${tagId}/` : `/projects/`}>
+        <TagBox>{tagName ? tagName : "Show all"}</TagBox>
       </Link>
     </li>
   );
@@ -43,9 +46,10 @@ function buildTag(tagId: string) {
 
 interface TagsProp {
   tags: string[];
+  showAll?: boolean;
 }
 
-const Tags = ({ tags }: TagsProp) => {
+const Tags = ({ tags, showAll }: TagsProp) => {
   const Ul = styled.ul`
     list-style: none;
     display: flex;
@@ -53,7 +57,12 @@ const Tags = ({ tags }: TagsProp) => {
     margin: 18px 0 0 0;
   `;
 
-  return <Ul>{tags && tags.map(buildTag)}</Ul>;
+  return (
+    <Ul>
+      {showAll && buildTag("")}
+      {tags && tags.map(buildTag)}
+    </Ul>
+  );
 };
 
 export default Tags;

@@ -5,6 +5,9 @@ import Helmet from "react-helmet";
 
 import Layout from "../components/layout";
 import ProjectPanel from "../components/projectPanel";
+import Tags from "../components/projectPanel/projectTags";
+
+const css = require("./projects.module.css");
 
 import { projectsTagInfos } from "../utils/tagInfo";
 
@@ -33,6 +36,9 @@ interface ImageMeta {
 
 export interface ProjectsData {
   allMarkdownRemark: {
+    group: Array<{
+      fieldValue: string;
+    }>;
     edges: Array<{
       node: ProjectMeta;
     }>;
@@ -52,15 +58,22 @@ interface ImageMap {
   [name: string]: FluidObject;
 }
 
+function getTagName(tagId: string) {
+  return projectsTagInfos[tagId] ? projectsTagInfos[tagId].en : tagId;
+}
+
 class ProjectsPageTemplate extends React.Component<ProjectsProps> {
   render() {
     const props = this.props;
     const tag = props.pageContext ? props.pageContext.tag : null;
+    const tagName = getTagName(tag);
 
     const helper = (data: ProjectsData) => {
       const projects = data.allMarkdownRemark.edges
         .map(edge => edge.node)
         .filter(node => !tag || node.frontmatter.categories.includes(tag));
+
+      const allTags = data.allMarkdownRemark.group.map(item => item.fieldValue);
 
       const images = data.allImages.nodes.reduce(function(
         acc: ImageMap,
@@ -71,10 +84,6 @@ class ProjectsPageTemplate extends React.Component<ProjectsProps> {
       },
       {});
 
-      const tagName = projectsTagInfos[tag]
-        ? projectsTagInfos[tag].en.toLowerCase()
-        : tag;
-
       return (
         <Layout location={props.location}>
           <div>
@@ -82,7 +91,22 @@ class ProjectsPageTemplate extends React.Component<ProjectsProps> {
               <title>{"Lesley Lai | Projects"}</title>
             </Helmet>
             <h1>Projects</h1>
-            <p>Check out my {tag && tagName} personal projects below.</p>
+            <h3 className={css.subtitle}>
+              Check out my personal projects below.
+            </h3>
+
+            <Tags tags={allTags} showAll></Tags>
+
+            {tag ? (
+              <p className={css.filterHint}>
+                Show {projects.length} projects filtered by <em>{tagName}</em>.
+              </p>
+            ) : (
+              <p className={css.filterHint}>
+                Show all projects. Use the filter to list them by skill or
+                technology.
+              </p>
+            )}
 
             {projects.map(project => {
               return (
@@ -141,6 +165,9 @@ class ProjectsPageTemplate extends React.Component<ProjectsProps> {
                   }
                   html
                 }
+              }
+              group(field: frontmatter___categories) {
+                fieldValue
               }
             }
             allImages: allFile(filter: {relativePath: {regex: "/projects/.*\\.(png|jpg|jpeg)/"}}) {
