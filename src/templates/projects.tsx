@@ -36,8 +36,9 @@ interface ImageMeta {
 
 export interface ProjectsData {
   allMarkdownRemark: {
-    group: Array<{
+    tags: Array<{
       fieldValue: string;
+      totalCount: number;
     }>;
     edges: Array<{
       node: ProjectMeta;
@@ -73,7 +74,9 @@ class ProjectsPageTemplate extends React.Component<ProjectsProps> {
         .map(edge => edge.node)
         .filter(node => !tag || node.frontmatter.categories.includes(tag));
 
-      const allTags = data.allMarkdownRemark.group.map(item => item.fieldValue);
+      const allTags = data.allMarkdownRemark.tags
+        .sort((lhs, rhs) => rhs.totalCount - lhs.totalCount)
+        .map(tag => tag.fieldValue);
 
       const images = data.allImages.nodes.reduce(function(
         acc: ImageMap,
@@ -166,8 +169,9 @@ class ProjectsPageTemplate extends React.Component<ProjectsProps> {
                   html
                 }
               }
-              group(field: frontmatter___categories) {
+              tags: group(field: frontmatter___categories) {
                 fieldValue
+                totalCount
               }
             }
             allImages: allFile(filter: {relativePath: {regex: "/projects/.*\\.(png|jpg|jpeg)/"}}) {
