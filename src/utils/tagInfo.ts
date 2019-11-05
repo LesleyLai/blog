@@ -41,3 +41,20 @@ export const tagInfos: { [id: string]: Tag } = {
   event: { en: "Event", color: colors.orange },
   x86: { en: "X86", color: colors.pink }
 };
+
+export const projectsTagInfos: { [id: string]: Tag } = {
+  cpp: { en: "C++", color: colors.blue },
+  library: { en: "Library", color: colors.white },
+  graphics: { en: "Graphics", color: colors.red },
+  GL: { en: "OpenGL", color: colors.teal },
+  functional: { en: "Functional Programming", color: colors.black },
+  elm: { en: "Elm", color: colors.teal },
+  game: { en: "Game", color: colors.orange },
+  opengl: { en: "OpenGL", color: colors.typescript },
+  python: { en: "Python", color: colors.blue },
+  pl: { en: "Programming Language", color: colors.red },
+  react: { en: "React", color: colors.react },
+  rt: { en: "Ray tracing", color: colors.yellow },
+  typescript: { en: "Typescript", color: colors.typescript },
+  web: { en: "Web", color: colors.pink }
+};

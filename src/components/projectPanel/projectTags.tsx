@@ -1,37 +1,15 @@
 import * as React from "react";
 import styled from "styled-components";
+import Link from "gatsby-link";
 
 import { Color, colors } from "../../utils/colorTable";
-
-interface ProjectTag {
-  key: string;
-  en: string;
-  zh?: string;
-  color: Color; // Color of the tag box
-}
-
-const tagInfos: { [id: string]: ProjectTag } = {
-  cpp: { key: "cpp", en: "C++", color: colors.blue },
-  library: { key: "library", en: "Library", color: colors.white },
-  graphics: { key: "graphics", en: "Graphics", color: colors.red },
-  GL: { key: "gl", en: "OpenGL", color: colors.teal },
-  functional: { key: "fp", en: "Functional Programming", color: colors.black },
-  elm: { key: "elm", en: "Elm", color: colors.teal },
-  game: { key: "game", en: "Game", color: colors.orange },
-  opengl: { key: "opengl", en: "OpenGL", color: colors.typescript },
-  python: { key: "python", en: "Python", color: colors.blue },
-  pl: { key: "pl", en: "Programming Language", color: colors.red },
-  react: { key: "react", en: "React", color: colors.react },
-  rt: { key: "rt", en: "Ray tracing", color: colors.yellow },
-  typescript: { key: "typescript", en: "Typescript", color: colors.typescript },
-  web: { key: "web", en: "Web", color: colors.pink }
-};
+import { projectsTagInfos } from "../../utils/tagInfo";
 
 function buildTag(tagId: string) {
-  const tag = tagInfos[tagId];
+  const tag = projectsTagInfos[tagId];
   const color: Color = tag ? tag.color : colors.white;
 
-  const Tag = styled.li`
+  const TagBox = styled.span`
     color: ${color.fg};
     background-color: ${color.bg};
 
@@ -41,23 +19,25 @@ function buildTag(tagId: string) {
     margin-bottom: 0;
     padding: 0.5833em 0.833em;
 
-    background-color: #e8e8e8;
-    padding: 0.5833em 0.833em;
-    color: rgba(0, 0, 0, 0.6);
-
     text-transform: none;
     font-weight: 700;
-    font-size: 10px;
+    font-size: 12px;
 
     border-radius: 0.28571429rem;
 
     opacity: 0.8;
+
+    &:hover {
+      background-color: ${color.hover};
+    }
   `;
 
   return (
-    <Tag key={tagId} style={{ color: color.fg, background: color.bg }}>
-      {tag ? tag.en : tagId}
-    </Tag>
+    <li key={tagId}>
+      <Link to={`/projects/${tagId}/`}>
+        <TagBox>{tag ? tag.en : tagId}</TagBox>
+      </Link>
+    </li>
   );
 }
 
