@@ -5,8 +5,8 @@ lang: en
 image: reversi
 create: '2018-02-24'
 lastModify: '2019-04-08'
-github: https://github.com/LesleyLai/Reversi-Elm
-demo: https://lesleylai.github.io/Reversi-Elm/
+github: https://github.com/LesleyLai/Reversi-Elm-V2
+demo: https://lesleylai.github.io/Reversi-Elm-V2/
 categories:
 - elm
 - game
