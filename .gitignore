@@ -8,3 +8,5 @@ public/
 yarn-error.log
 # tern
 .tern-port
+# log
+.log

@@ -1,5 +1,4 @@
 import { graphql } from "gatsby";
-import Link from "gatsby-link";
 import * as React from "react";
 import Helmet from "react-helmet";
 import Footer from "../components/footer";
@@ -64,14 +63,15 @@ class PostTemplate extends React.Component<PostProps> {
           />
 
           <Footer />
-          <ReactDisqusComments
-            className={css.comment}
-            shortname="lesleylaiblog"
-            identifier={post.frontmatter.id}
-            title={post.frontmatter.title}
-            url={url}
-            onNewComment={this.handleNewComment}
-          />
+          <div className={css.comment}>
+            <ReactDisqusComments
+              shortname="lesleylaiblog"
+              identifier={post.frontmatter.id}
+              title={post.frontmatter.title}
+              url={url}
+              onNewComment={this.handleNewComment}
+            />
+          </div>
         </div>
       </Layout>
     );

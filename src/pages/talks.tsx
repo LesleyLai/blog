@@ -56,7 +56,7 @@ const TalksPage = () => {
     margin-bottom: 0;
   `;
 
-  const helper = (data: TalksData) => (
+  const helper = (_data: TalksData) => (
     <Layout location={{ pathname: "/talks.html" }}>
       <>
         <Helmet>

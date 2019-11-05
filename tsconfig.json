@@ -5,12 +5,16 @@
     "sourceMap": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
+    "esModuleInterop": true,
     "module": "commonjs",
     "target": "esnext",
+    "noEmit": true,
     "jsx": "react",
-    "lib": ["dom", "es2015", "es2017"]
+    "lib": ["dom", "es2015", "es2017"],
+    "types": ["react", "node"]
   },
   "include": [
     "./src/**/*"
-  ]
+  ],
+  "exclude": ["node_modules", "public", ".cache"]
 }

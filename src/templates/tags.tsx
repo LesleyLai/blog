@@ -1,5 +1,4 @@
 import { graphql } from "gatsby";
-import Link from "gatsby-link";
 import * as React from "react";
 import Helmet from "react-helmet";
 

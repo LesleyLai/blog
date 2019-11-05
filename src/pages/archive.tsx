@@ -22,7 +22,7 @@ interface ArchiveProps {
   };
 }
 
-export default (props: ArchiveProps) => {
+const Archive = (props: ArchiveProps) => {
   const render = (data: ArchiveData) => {
     const title = "Blog archive";
     return (
@@ -71,3 +71,5 @@ export default (props: ArchiveProps) => {
     />
   );
 };
+
+export default Archive;

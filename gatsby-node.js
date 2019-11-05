@@ -23,7 +23,7 @@ exports.createPages = ({ graphql, actions }) => {
   return new Promise((resolve, reject) => {
     graphql(`
       {
-        allMarkdownRemark(filter: {fields: {relativePath: {regex: "/blog/"}}}) {
+        allMarkdownRemark(filter: {fields: {relativePath: {regex: "/\/blog/"}}}) {
           edges {
             node {
               frontmatter {

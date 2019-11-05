@@ -1,4 +1,4 @@
-import * as classNames from "classnames";
+import classNames from "classnames";
 import Link from "gatsby-link";
 import * as React from "react";
 import { FaBars } from "react-icons/lib/fa";
@@ -16,7 +16,7 @@ interface MenuItemProp extends React.HTMLProps<HTMLDivElement> {
   itemName: string;
 }
 
-const MenuItem = ({ pathname, itemName }: MenuItemProp) => {
+const MenuItem = ({ itemName }: MenuItemProp) => {
   const item: MenuModel = menuModel[itemName];
 
   return (

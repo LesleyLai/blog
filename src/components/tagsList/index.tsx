@@ -32,7 +32,7 @@ const TagsList = (props: TagsProps) => {
         .filter(tag => {
           return tag !== props.exclude;
         })
-        .map((tag, index) => {
+        .map(tag => {
           const info: Tag = tagInfos[tag];
           const tagName: string = info ? info.en : tag;
           const color: Color = info ? info.color : colors.white;

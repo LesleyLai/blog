@@ -68,22 +68,27 @@
     "build": "gatsby build",
     "start": "gatsby develop",
     "format": "prettier --write ./gatsby-config.js ./src/**/*.ts{,x}",
-    "lint": "tslint -c tslint.json 'src/**/*.ts{,x}' --fix",
+    "lint": "eslint --ignore-path .gitignore src --ext ts --ext tsx --ext js --ext jsx",
+    "lint:fix": "yarn lint --fix",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "precommit": "lint-staged"
+    "precommit": "yarn type-check && lint-staged",
+    "type-check": "tsc"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.6.1",
+    "@typescript-eslint/parser": "^2.6.1",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.16.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.0.4",
-    "prettier": "^1.11.1",
-    "tslint": "^5.9.1",
-    "tslint-config-prettier": "^1.10.0",
-    "tslint-react": "^3.5.1"
+    "prettier": "^1.11.1"
   },
   "lint-staged": {
     "src/**/*.{j,t}s{,x}": [
       "prettier --write",
-      "tslint -c tslint.json --fix",
+      "yarn lint:fix",
       "git add"
     ]
   }
