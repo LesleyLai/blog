@@ -77,6 +77,7 @@ class AboutMe extends React.PureComponent {
           <h3 className={css.subtitle}>Categories</h3>
           <ul>
             {data.allMarkdownRemark.group
+              .slice()
               .sort(
                 (tag1: TagItem, tag2: TagItem) =>
                   tag2.totalCount - tag1.totalCount // Descends by posts counts

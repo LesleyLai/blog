@@ -74,9 +74,7 @@ class ProjectsPageTemplate extends React.Component<ProjectsProps> {
         .map(edge => edge.node)
         .filter(node => !tag || node.frontmatter.categories.includes(tag));
 
-      const allTags = data.allMarkdownRemark.tags
-        .sort((lhs, rhs) => rhs.totalCount - lhs.totalCount)
-        .map(tag => tag.fieldValue);
+      const allTags = data.allMarkdownRemark.tags.map(tag => tag.fieldValue);
 
       const images = data.allImages.nodes.reduce(function(
         acc: ImageMap,
