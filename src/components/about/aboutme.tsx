@@ -38,7 +38,8 @@ class AboutMe extends React.PureComponent {
             <p>
               Hi, I am <strong>Lesley Lai</strong>, a Software Engineering
               Intern at <a href="https://www.sketchup.com/">Trimble SketchUp</a>{" "}
-              and a Computer Science undergraduate student at the{" "}
+              and a Computer Science and Applied Mathematics undergraduate
+              student at the{" "}
               <a href="http://www.colorado.edu/">
                 {" "}
                 University of Colorado at Boulder
@@ -46,15 +47,16 @@ class AboutMe extends React.PureComponent {
               .
             </p>
             <p>
-              My primary interests including{" "}
+              My primary interests include{" "}
               <a href="https://en.wikipedia.org/wiki/Computer_graphics">
-                computer graphics
+                Computer Graphics
               </a>
-              {", "}
-              <a href="https://en.wikipedia.org/wiki/Programming_language">
-                programming languages
+              {" and "}
+              <a href="https://en.wikipedia.org/wiki/Programming_language_theory">
+                Programming Language theories
               </a>
-              {", "} and <a href="https://isocpp.org/">C++</a>.
+              . I love to code in various programming languages, though I am
+              particularly fond of <a href="https://isocpp.org/">C++</a>.
             </p>
           </article>
 
