@@ -6,7 +6,7 @@
 }
 
 .info {
-    font: 11px "Open Sans", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 11px;
     padding: 0 0 4px 0;
     border-bottom: solid 1px #eee;
     display: flex;
@@ -73,8 +73,8 @@
 
 .article > aside > p {
     margin-bottom: 0;
-    font: normal 13px "Open Sans", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-
+    font-family: normal;
+    font-size: 13px;
 }
 
 @media (max-width: 767px) {
@@ -120,5 +120,6 @@
     padding: 24px 48px;
     background: #f1ece4;
     color: #8f6d3d;
-    font: normal 13px "Open Sans", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-family: normal;
+    font-size: 13px;
 }

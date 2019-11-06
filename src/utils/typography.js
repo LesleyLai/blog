@@ -2,9 +2,9 @@ import Typography from "typography";
 const typography = new Typography({
   baseFontSize: "16px",
   bodyFontFamily: [
+    "Open Sans",
     "Lato",
     "georgia",
-    "serif",
     "Microsoft Yahei",
     "微软雅黑",
     "STXihei",
@@ -12,9 +12,9 @@ const typography = new Typography({
   ],
   headerFontFamily: [
     "Lato",
+    "Avenir Next",
+    "Open Sans",
     "georgia",
-    "serif",
-    "sans-serif",
     "Microsoft Yahei",
     "微软雅黑",
     "STXihei",

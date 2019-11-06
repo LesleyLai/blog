@@ -43,7 +43,8 @@
 }
 
 .subtitle {
-    font: normal 13px "Open Sans", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 13px;
+    font-weight: normal;
     margin: 24px 0 4px 0;
     color: #8E8D8A;
     font-weight: 600;
