@@ -21,7 +21,7 @@ For example, if you have an array `points` of `struct Point`:
 ```c
 struct Point
 {
-    int x;
+    int x;g
     int y;
     int z;
 };
@@ -38,7 +38,7 @@ In this case, the register `rbx` points to the array `points`, `rcx` is the inde
 lea  eax, [rbx+rcx*4 + 4]
 ```
 
-However, besides using it for address operations, compilers seem to prefer using `lea` to other arithmetic instructions as well. For example, `int y = x * 5;` may generate
+However, besides using it for address operations, compilers seem to prefer using `lea` to other arithmetic instructions as well for efficiency reason. For example, `int y = x * 5;` may generate
 
 ```nasm
 lea  eax, [rdi + 4*rdi]
