@@ -70,6 +70,10 @@ class AboutMe extends React.PureComponent {
               <a href="https://www.linkedin.com/in/lesley-lai/">LinkedIn</a>
             </li>
             <li>
+              Shaders on{" "}
+              <a href="https://www.shadertoy.com/user/lesleylai">Shadertoy</a>
+            </li>
+            <li>
               Tweets at <a href="https://twitter.com/LesleyLai6">Twitter</a>
             </li>
           </ul>
