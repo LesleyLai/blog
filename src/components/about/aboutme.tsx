@@ -76,6 +76,10 @@ class AboutMe extends React.PureComponent {
             <li>
               Tweets at <a href="https://twitter.com/LesleyLai6">Twitter</a>
             </li>
+            <li>
+              Wikipedia user page at{" "}
+              <a href="https://en.wikipedia.org/wiki/User:LesleyLai">here</a>
+            </li>
           </ul>
 
           <h3 className={css.subtitle}>Categories</h3>
