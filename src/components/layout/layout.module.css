@@ -6,12 +6,6 @@
     flex-wrap: wrap;
 }
 
-@media only screen and (max-width: 499px) {
-    .layout {
-        margin-top: 53px;
-    }
-}
-
 .main {
     background-color: white;
     padding: 1rem;
@@ -22,22 +16,31 @@
     width: 250px;
 }
 
-@media only screen and (max-width: 499px) {
-    .main {
-        min-height: calc(100vh - 53px);
-    }
-}
-
 @media only screen and (max-width: 767px) {
+    .layout {
+        margin-top: 50px;
+    }
+
     .grid {
         padding: 0;
     }
 
     .main {
         width: 100%;
+        min-height: calc(100vh - 50px);
     }
 
     .about {
         width: 100%;
+    }
+}
+
+@media only screen and (max-width: 499px) {
+    .layout {
+        margin-top: 42px;
+    }
+
+    .main {
+        min-height: calc(100vh - 42px);
     }
 }

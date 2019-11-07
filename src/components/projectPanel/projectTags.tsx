@@ -32,8 +32,6 @@ function buildTag(tagId: string) {
 
     border-radius: 0.28571429rem;
 
-    opacity: 0.8;
-
     &:hover {
       background-color: ${color.hover};
     }

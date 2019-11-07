@@ -14,7 +14,7 @@ interface TagsProps {
 const Li = styled.li`
   display: inline-block;
   line-height: 1;
-  margin: 0.5em 0.5em 0.8em 0;
+  margin: 0.2em 0.5em 0.2em 0;
 `;
 
 const Ul = styled.ul`
@@ -41,6 +41,7 @@ const TagsList = (props: TagsProps) => {
             padding: 0.4em 0.5em;
             text-transform: none;
             font-weight: 700;
+            font-size: 10px;
             border-radius: 0.28571429rem;
             color: ${color.fg};
             background-color: ${color.bg};

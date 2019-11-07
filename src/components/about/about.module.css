@@ -1,6 +1,6 @@
 .about {
     min-width: 200px;
-    font-size: 14px;
+    font-size: 12px;
     color: #8f6d3d;
     padding: 1rem;
 }
@@ -38,7 +38,7 @@
 .copyright {
     text-align: center;
     margin: 10px 10px;
-    font-size: 12px;
+    font-size: 11px;
     font-style: italic;
 }
 

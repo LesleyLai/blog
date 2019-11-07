@@ -17,7 +17,7 @@ export const colors: { [key: string]: Color } = {
   },
   yellow: {
     bg: "#fbbd08",
-    fg: "#000000",
+    fg: "#333",
     hover: "#eaae00"
   },
   teal: {
@@ -67,7 +67,7 @@ export const colors: { [key: string]: Color } = {
   },
   react: {
     bg: "#61dafb",
-    fg: "#000000",
+    fg: "#333",
     hover: "#50c0eb"
   },
   typescript: {
