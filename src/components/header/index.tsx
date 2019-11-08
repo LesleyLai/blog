@@ -7,6 +7,7 @@ const style = require("./header.module.css");
 
 interface HeaderProps {
   pathname: string;
+  lang: string;
 }
 
 const Logo = () => (
@@ -15,12 +16,12 @@ const Logo = () => (
   </Link>
 );
 
-const Header = ({ pathname }: HeaderProps) => {
+const Header = ({ pathname, lang }: HeaderProps) => {
   return (
     <header className={style.header}>
       <div className={style.headerContainer}>
         <Logo />
-        <HeaderMenu pathname={pathname} />
+        <HeaderMenu pathname={pathname} lang={lang} />
       </div>
     </header>
   );

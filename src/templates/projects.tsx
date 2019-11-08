@@ -86,7 +86,7 @@ class ProjectsPageTemplate extends React.Component<ProjectsProps> {
       {});
 
       return (
-        <Layout location={props.location}>
+        <Layout location={props.location} lang="en">
           <div>
             <Helmet>
               <title>{"Lesley Lai | Projects"}</title>

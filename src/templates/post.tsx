@@ -7,6 +7,8 @@ import TagsList from "../components/tagsList";
 
 import ReactDisqusComments from "react-disqus-comments";
 
+import translations from "../utils/translations";
+
 const css = require("./post.module.css");
 require(`katex/dist/katex.min.css`);
 
@@ -40,11 +42,12 @@ class PostTemplate extends React.Component<PostProps> {
 
   public render() {
     const post = this.props.data.markdownRemark;
-    const path = "/" + post.frontmatter.id + "/" + post.frontmatter.lang + "/";
+    const lang = post.frontmatter.lang;
+    const path = "/" + post.frontmatter.id + "/" + lang;
     const url = "http://lesleylai.info" + path;
-    const title = "Lesley Lai | " + post.frontmatter.title;
+    const title = translations["title"][lang] + " | " + post.frontmatter.title;
     return (
-      <Layout location={{ pathname: path }}>
+      <Layout location={{ pathname: path }} lang={lang}>
         <div className={css.post}>
           <Helmet>
             <title>{title}</title>
@@ -52,8 +55,9 @@ class PostTemplate extends React.Component<PostProps> {
           <h1 className={css.title}>{post.frontmatter.title}</h1>
           <div className={css.info}>
             <span className={css.date}>
-              Last Modify: {post.frontmatter.lastModify} | Create:{" "}
-              {post.frontmatter.create} | {post.fields.readingTime.text}
+              {translations["lastModify"][lang]}: {post.frontmatter.lastModify}{" "}
+              | {translations["create"][lang]}: {post.frontmatter.create} |{" "}
+              {post.fields.readingTime.text}
             </span>
             <TagsList tags={post.frontmatter.categories} className={css.tags} />
           </div>

@@ -5,7 +5,7 @@ import Layout from "../components/layout";
 
 const NotFoundPage = () => {
   return (
-    <Layout location={{ pathname: "/404.html" }}>
+    <Layout location={{ pathname: "/404.html" }} lang="en">
       <div>
         <Helmet>
           <title>{"Lesley Lai | 404 NOT FOUND"}</title>

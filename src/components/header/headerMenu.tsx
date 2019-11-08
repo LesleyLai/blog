@@ -14,20 +14,22 @@ interface HeaderMenuProp extends React.HTMLProps<HTMLDivElement> {
 interface MenuItemProp extends React.HTMLProps<HTMLDivElement> {
   pathname: string;
   itemName: string;
+  lang: string;
 }
 
-const MenuItem = ({ itemName }: MenuItemProp) => {
+const MenuItem = ({ itemName, lang }: MenuItemProp) => {
   const item: MenuModel = menuModel[itemName];
+  const langRecord = item.langs[lang];
 
   return (
     <Link
-      to={item.path}
-      key={item.path}
+      to={langRecord.path}
+      key={langRecord.path}
       activeClassName={css.active}
       className={css.menuItem}
       partiallyActive={!item.exact}
     >
-      {item.en}
+      {langRecord.title}
     </Link>
   );
 };
@@ -50,7 +52,12 @@ export default class HeaderMenu extends React.PureComponent<HeaderMenuProp> {
           })}
         >
           {Object.keys(menuModel).map((key: string) => (
-            <MenuItem key={key} pathname={this.props.pathname} itemName={key} />
+            <MenuItem
+              key={key}
+              pathname={this.props.pathname}
+              itemName={key}
+              lang={this.props.lang}
+            />
           ))}
         </nav>
         <button

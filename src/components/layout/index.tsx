@@ -11,6 +11,7 @@ interface DefaultLayoutProps extends React.HTMLProps<HTMLDivElement> {
   location: {
     pathname: string;
   };
+  lang: string;
   children: React.ReactNode;
 }
 
@@ -21,14 +22,15 @@ export default class Layout extends React.PureComponent<DefaultLayoutProps> {
     const style = require("./layout.module.css");
 
     const pathname = this.props.location.pathname;
+    const lang = this.props.lang;
 
     return (
       <div>
         <Helmet>
           <title>Lesley Lai</title>
-          <html lang="en" />
+          <html lang={lang} />
         </Helmet>
-        <Header pathname={pathname} />
+        <Header pathname={pathname} lang={lang} />
         <div className={style.layout}>
           <div className={style.grid}>
             <main className={style.main}>{children}</main>

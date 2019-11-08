@@ -26,7 +26,7 @@ class TagsTemplate extends React.Component<ArchiveProps> {
     const tag = this.props.pageContext.tag;
     const title = "Stuff I Wrote About " + tagInfos[tag].en;
     return (
-      <Layout location={this.props.location}>
+      <Layout location={this.props.location} lang="en">
         <Helmet>
           <title>{"Lesley Lai | " + title}</title>
         </Helmet>

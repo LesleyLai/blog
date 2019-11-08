@@ -25,7 +25,7 @@ interface IndexProps {
 class IndexPage extends React.Component<IndexProps> {
   public render() {
     const helper = (data: IndexData) => (
-      <Layout location={this.props.location}>
+      <Layout location={this.props.location} lang="en">
         <h1>Recent Posts</h1>
         <RecentPosts
           posts={data.allMarkdownRemark.edges

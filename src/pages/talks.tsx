@@ -57,7 +57,7 @@ const TalksPage = () => {
   `;
 
   const helper = (_data: TalksData) => (
-    <Layout location={{ pathname: "/talks.html" }}>
+    <Layout location={{ pathname: "/talks.html" }} lang="en">
       <>
         <Helmet>
           <title>{"Lesley Lai | Talks"}</title>

@@ -26,7 +26,7 @@ const Archive = (props: ArchiveProps) => {
   const render = (data: ArchiveData) => {
     const title = "Blog archive";
     return (
-      <Layout location={props.location}>
+      <Layout location={props.location} lang="en">
         <div>
           <Helmet>
             <title>{"Lesley Lai | " + title}</title>

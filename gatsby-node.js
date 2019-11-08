@@ -20,7 +20,7 @@ exports.createPages = ({ graphql, actions }) => {
   const postTemplate = path.resolve(`src/templates/post.tsx`);
   const tagsTemplate = path.resolve("src/templates/tags.tsx");
   const projectsTemplate = path.resolve("src/templates/projects.tsx");
-  
+
   const posts = new Promise((resolve, _reject) => {
     graphql(`
       {
@@ -44,8 +44,10 @@ exports.createPages = ({ graphql, actions }) => {
 
       // Creates individual pages
       posts.map(({ node }) => {
+        const lang = node.frontmatter.lang;
+
         createPage({
-          path: '/' + node.frontmatter.id + '/' + node.frontmatter.lang + '/',
+          path: '/' + node.frontmatter.id + '/' + lang,
           component: postTemplate,
           context: {
             relativePath: node.fields.relativePath,
@@ -74,7 +76,7 @@ exports.createPages = ({ graphql, actions }) => {
         });
       }
 
-      
+
       resolve();
     });
   }).catch(error => {
@@ -118,7 +120,7 @@ exports.createPages = ({ graphql, actions }) => {
         });
       }
 
-      
+
       resolve();
     });
   }).catch(error => {
