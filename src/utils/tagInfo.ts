@@ -33,11 +33,6 @@ export const tagInfos: { [id: string]: Tag } = {
   typescript: { en: "Typescript", color: colors.typescript },
   web: { en: "Web", color: colors.violet },
   game: { en: "Game", color: colors.orange },
-  quaternion: {
-    en: "Quaternion",
-    zh: "四元数",
-    color: colors.pink
-  },
   graphics: {
     en: "Computer Graphics",
     color: colors.purple
