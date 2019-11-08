@@ -23,7 +23,7 @@ export const tagInfos: { [id: string]: Tag } = {
     zh: "编程",
     color: colors.red
   },
-  library: { en: "Library", color: colors.white },
+  library: { en: "Library", color: colors.grey },
   graphql: { en: "GraphQL", color: colors.pink },
   opengl: { en: "OpenGL", color: colors.typescript },
   python: { en: "Python", color: colors.blue },
