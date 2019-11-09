@@ -12,6 +12,11 @@ const translations: Record<string, Record<string, string>> = {
   lastModify: {
     en: "Last Modify",
     zh: "最近修改时间"
+  },
+
+  lang: {
+    en: "English",
+    zh: "中文"
   }
 };
 

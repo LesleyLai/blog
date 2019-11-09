@@ -4,6 +4,7 @@ import * as React from "react";
 import { FaBars } from "react-icons/lib/fa";
 
 import { MenuModel, menuModel } from "../menu";
+import translations from "../../utils/translations";
 
 const css = require("./header.module.css");
 
@@ -34,6 +35,33 @@ const MenuItem = ({ itemName, lang }: MenuItemProp) => {
   );
 };
 
+interface LanguageLinkProp extends React.HTMLProps<HTMLDivElement> {
+  lang: string;
+}
+
+const oppositeLang = (lang: string) => {
+  if (lang === "en") {
+    return "zh";
+  } else if (lang === "zh") {
+    return "en";
+  }
+
+  throw new Error("Invalid language");
+};
+
+const LanguageLink = ({ lang }: LanguageLinkProp) => {
+  const to = `raii/${lang}`;
+  return (
+    <Link
+      to={to}
+      key={lang}
+      className={classNames(css.menuItem, css.languageLink)}
+    >
+      {translations["lang"][lang]}
+    </Link>
+  );
+};
+
 export default class HeaderMenu extends React.PureComponent<HeaderMenuProp> {
   public state: { showMobileMenu: boolean };
 
@@ -51,14 +79,20 @@ export default class HeaderMenu extends React.PureComponent<HeaderMenuProp> {
             [css.mobileMenu]: this.state.showMobileMenu
           })}
         >
-          {Object.keys(menuModel).map((key: string) => (
-            <MenuItem
-              key={key}
-              pathname={this.props.pathname}
-              itemName={key}
-              lang={this.props.lang}
-            />
-          ))}
+          <div className={css.menuItems}>
+            {Object.keys(menuModel).map((key: string) => (
+              <MenuItem
+                key={key}
+                pathname={this.props.pathname}
+                itemName={key}
+                lang={this.props.lang}
+              />
+            ))}
+          </div>
+
+          <div className={css.languages}>
+            <LanguageLink lang={oppositeLang(this.props.lang)} />
+          </div>
         </nav>
         <button
           name="menu"

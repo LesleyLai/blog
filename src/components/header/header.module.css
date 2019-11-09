@@ -43,12 +43,27 @@
 
 .menu {
     display: flex;
+    justify-content: space-between;
+}
+
+@media (min-width: 769px) {
+    .menu {
+        width: 100%;
+    }
 }
 
 @media (max-width: 768px) {
     .menu {
         display: none;
     }
+}
+
+.menuItems {
+    display: flex;
+}
+
+.languages {
+    display: flex;
 }
 
 .menuItem {
@@ -59,7 +74,6 @@
 
     padding: .85714286em 1.14285714em;
 }
-
 
 .menuItem:hover {
     color: #fff;
@@ -75,6 +89,10 @@
     border-radius: 0;
 }
 
+.languageLink {
+    margin-right: 0;
+}
+
 .mobileMenu {
     float: none;
     position: absolute;
@@ -83,6 +101,15 @@
     top: 38px;
     right: 10px;
     background-color: #333333;
+}
+
+.mobileMenu .menuItems {
+    flex-direction: column;
+}
+
+.mobileMenu .languages {
+    border-top: 1px solid hsla(0,0%,100%,.7);
+    flex-direction: column;
 }
 
 .mobileMenu .menuItem {
