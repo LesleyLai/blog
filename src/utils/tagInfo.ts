@@ -1,53 +1,38 @@
 import { Color, colors } from "./colorTable";
 
+/*eslint sort-keys: "warn"*/
+
 export interface Tag {
-  en: string;
-  zh?: string;
   color: Color; // Color of the tag box
 }
 
-export const tagInfos: { [id: string]: Tag } = {
-  books: { en: "Books", zh: "书籍", color: colors.yellow },
-  c: { en: "C", color: colors.grey },
-  cmake: { en: "CMake", color: colors.green },
-  cpp: { en: "C++", color: colors.blue },
-  elm: { en: "Elm", color: colors.teal },
-  math: { en: "Mathematics", color: colors.pink },
-  functional: {
-    en: "Functional Programming",
-    zh: "函数式编程",
-    color: colors.black
-  },
-  code: {
-    en: "Coding",
-    zh: "编程",
-    color: colors.red
-  },
-  dod: {
-    en: "Data-oriented design",
-    color: colors.orange
-  },
-  library: { en: "Library", color: colors.grey },
-  graphql: { en: "GraphQL", color: colors.pink },
-  opengl: { en: "OpenGL", color: colors.typescript },
-  python: { en: "Python", color: colors.typescript },
-  pl: { en: "Programming Language", color: colors.red },
-  react: { en: "React", color: colors.react },
-  rt: { en: "Ray tracing", color: colors.yellow },
-  typescript: { en: "Typescript", color: colors.typescript },
-  web: { en: "Web", color: colors.violet },
-  game: { en: "Game", color: colors.green },
-  graphics: {
-    en: "Computer Graphics",
-    color: colors.purple
-  },
-  rant: {
-    en: "Rant",
-    color: colors.pink
-  },
-  test: { en: "Test", zh: "测试", color: colors.orange },
-  event: { en: "Event", color: colors.orange },
-  x86: { en: "X86", color: colors.pink }
+export const tagInfos = {
+  books: { color: colors.yellow },
+  c: { color: colors.grey },
+  cmake: { color: colors.green },
+  code: { color: colors.red },
+  cpp: { color: colors.blue },
+  dod: { color: colors.orange },
+  elm: { color: colors.teal },
+  event: { color: colors.orange },
+  functional: { color: colors.black },
+  game: { color: colors.orange },
+  graphics: { color: colors.purple },
+  graphql: { color: colors.pink },
+  library: { color: colors.grey },
+  math: { color: colors.pink },
+  opengl: { color: colors.typescript },
+  pl: { color: colors.red },
+  python: { color: colors.blue },
+  rant: { color: colors.pink },
+  react: { color: colors.react },
+  rt: { color: colors.yellow },
+  test: { color: colors.orange },
+  typescript: { color: colors.typescript },
+  web: { color: colors.violet },
+  x86: { color: colors.pink }
 };
+
+export type TagID = keyof typeof tagInfos;
 
 export const projectsTagInfos = tagInfos;

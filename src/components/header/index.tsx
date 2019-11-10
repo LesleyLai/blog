@@ -3,11 +3,13 @@ import * as React from "react";
 
 import HeaderMenu from "./headerMenu";
 
+import { Language } from "../../utils/translations";
+
 const style = require("./header.module.css");
 
 interface HeaderProps {
   pathname: string;
-  lang: string;
+  lang: Language;
 }
 
 const Logo = () => (

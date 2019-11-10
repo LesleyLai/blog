@@ -41,6 +41,7 @@ const ArchiveEntry = (props: ArchiveEntryProps) => {
         className={css.archiveTags}
         tags={frontmatter.categories}
         exclude={props.excludeTag}
+        lang={lang}
       />
     </li>
   );

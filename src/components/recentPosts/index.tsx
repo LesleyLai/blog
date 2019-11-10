@@ -3,13 +3,16 @@ import * as React from "react";
 
 import TagsList from "../tagsList";
 
+import { TagID } from "../../utils/tagInfo";
+import { Language } from "../../utils/translations";
+
 export interface PostMeta {
   frontmatter: {
     id: number;
     title: string;
-    lang: string;
+    lang: Language;
     create: string;
-    categories: string[];
+    categories: TagID[];
   };
   excerpt: string;
 }
@@ -27,18 +30,19 @@ export default class RecentPosts extends React.Component {
           <article key={post.frontmatter.title} className={style.post}>
             <h3 className={style.header}>
               <Link
-                to={
-                  "/" + post.frontmatter.id + "/" + post.frontmatter.lang + "/"
-                }
+                to={"/" + post.frontmatter.id + "/" + post.frontmatter.lang}
               >
                 {post.frontmatter.title}
               </Link>
             </h3>
             <p className={style.date}>{post.frontmatter.create}</p>
-            <TagsList tags={post.frontmatter.categories} />
+            <TagsList
+              tags={post.frontmatter.categories}
+              lang={post.frontmatter.lang}
+            />
             <p className={style.excerpt}>{post.excerpt}</p>
             <Link
-              to={"/" + post.frontmatter.id + "/" + post.frontmatter.lang + "/"}
+              to={"/" + post.frontmatter.id + "/" + post.frontmatter.lang}
               className={style.readmore}
             >
               READ MORE

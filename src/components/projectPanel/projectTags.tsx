@@ -2,15 +2,26 @@ import * as React from "react";
 import styled from "styled-components";
 import Link from "gatsby-link";
 
-import { Color, colors } from "../../utils/colorTable";
-import { projectsTagInfos } from "../../utils/tagInfo";
+import { colors } from "../../utils/colorTable";
+import { tagInfos, TagID } from "../../utils/tagInfo";
+import { translations } from "../../utils/translations";
 
-// If tagId is empty string, it means "show all"
-function buildTag(tagId: string) {
-  const tag = projectsTagInfos[tagId];
-  const color: Color = tag ? tag.color : colors.white;
-
-  const tagName = tag ? tag.en : tagId;
+// If tagId is null, it means "show all"
+function buildTag(tagId?: TagID) {
+  const { color, tagName } = (() => {
+    if (tagId) {
+      const tag = tagInfos[tagId];
+      return {
+        color: tag.color,
+        tagName: translations["en"][tagId]
+      };
+    } else {
+      return {
+        color: colors.white,
+        tagName: translations["en"]["showall"]
+      };
+    }
+  })();
 
   const TagItem = styled.li`
     margin-bottom: 0.3rem;
@@ -40,7 +51,7 @@ function buildTag(tagId: string) {
   return (
     <TagItem key={tagId}>
       <Link to={tagId ? `/projects/${tagId}/` : `/projects/`}>
-        <TagBox>{tagName ? tagName : "Show all"}</TagBox>
+        <TagBox>{tagName}</TagBox>
       </Link>
     </TagItem>
   );
@@ -61,7 +72,7 @@ const Tags = ({ tags, showAll }: TagsProp) => {
 
   return (
     <Ul>
-      {showAll && buildTag("")}
+      {showAll && buildTag()}
       {tags && tags.map(buildTag)}
     </Ul>
   );

@@ -4,6 +4,8 @@ import Helmet from "react-helmet";
 import AboutMe from "../about/aboutme";
 import Header from "../header";
 
+import { Language } from "../../utils/translations";
+
 import "../../style/global.css";
 import "../../style/highlight.css";
 
@@ -11,7 +13,7 @@ interface DefaultLayoutProps extends React.HTMLProps<HTMLDivElement> {
   location: {
     pathname: string;
   };
-  lang: string;
+  lang: Language;
   children: React.ReactNode;
 }
 

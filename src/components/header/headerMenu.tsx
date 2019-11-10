@@ -4,18 +4,19 @@ import * as React from "react";
 import { FaBars } from "react-icons/lib/fa";
 
 import { MenuModel, menuModel } from "../menu";
-import translations from "../../utils/translations";
+import { Language, translations } from "../../utils/translations";
 
 const css = require("./header.module.css");
 
 interface HeaderMenuProp extends React.HTMLProps<HTMLDivElement> {
   pathname: string;
+  lang: Language;
 }
 
 interface MenuItemProp extends React.HTMLProps<HTMLDivElement> {
   pathname: string;
   itemName: string;
-  lang: string;
+  lang: Language;
 }
 
 const MenuItem = ({ itemName, lang }: MenuItemProp) => {
@@ -36,10 +37,10 @@ const MenuItem = ({ itemName, lang }: MenuItemProp) => {
 };
 
 interface LanguageLinkProp extends React.HTMLProps<HTMLDivElement> {
-  lang: string;
+  lang: Language;
 }
 
-const oppositeLang = (lang: string) => {
+const oppositeLang = (lang: Language) => {
   if (lang === "en") {
     return "zh";
   } else if (lang === "zh") {
@@ -57,7 +58,7 @@ const LanguageLink = ({ lang }: LanguageLinkProp) => {
       key={lang}
       className={classNames(css.menuItem, css.languageLink)}
     >
-      {translations["lang"][lang]}
+      {translations[lang]["lang"]}
     </Link>
   );
 };

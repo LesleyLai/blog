@@ -1,10 +1,11 @@
 import { graphql, Link, StaticQuery } from "gatsby";
 import Img, { FluidObject } from "gatsby-image";
 import * as React from "react";
-import { tagInfos } from "../../utils/tagInfo";
+import { TagID } from "../../utils/tagInfo";
+import { translations } from "../../utils/translations";
 
 interface TagItem {
-  fieldValue: string;
+  id: TagID;
   totalCount: number;
 }
 
@@ -91,9 +92,9 @@ class AboutMe extends React.PureComponent {
                   tag2.totalCount - tag1.totalCount // Descends by posts counts
               )
               .map((tag: TagItem) => (
-                <li key={tag.fieldValue} className={css.tagitem}>
-                  <Link to={"/archive/" + tag.fieldValue}>
-                    {tagInfos[tag.fieldValue].en}
+                <li key={tag.id} className={css.tagitem}>
+                  <Link to={"/archive/" + tag.id + "/en"}>
+                    {translations["en"][tag.id]}
                   </Link>
                   <span className={css.postcount}>{tag.totalCount}</span>
                 </li>
@@ -136,7 +137,7 @@ class AboutMe extends React.PureComponent {
               }
             ) {
               group(field: frontmatter___categories) {
-                fieldValue
+                id: fieldValue
                 totalCount
               }
             }

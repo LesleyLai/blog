@@ -2,11 +2,12 @@ import Link from "gatsby-link";
 import * as React from "react";
 import styled from "styled-components";
 
-import { Color, colors } from "../../utils/colorTable";
-import { Tag, tagInfos } from "../../utils/tagInfo";
+import { Language, translations } from "../../utils/translations";
+import { TagID, tagInfos } from "../../utils/tagInfo";
 
 interface TagsProps {
-  tags: string[];
+  lang: Language;
+  tags: TagID[];
   className?: string;
   exclude?: string;
 }
@@ -25,6 +26,7 @@ const Ul = styled.ul`
 
 const TagsList = (props: TagsProps) => {
   const tags = props.tags;
+  const lang = props.lang;
 
   return (
     <Ul className={props.className}>
@@ -33,9 +35,8 @@ const TagsList = (props: TagsProps) => {
           return tag !== props.exclude;
         })
         .map(tag => {
-          const info: Tag = tagInfos[tag];
-          const tagName: string = info ? info.en : tag;
-          const color: Color = info ? info.color : colors.white;
+          const tagName = translations[lang][tag];
+          const color = tagInfos[tag].color;
 
           const TagBox = styled.span`
             padding: 0.4em 0.5em;
@@ -52,7 +53,7 @@ const TagsList = (props: TagsProps) => {
 
           return (
             <Li key={tag}>
-              <Link to={`/archive/${tag}/`}>
+              <Link to={`/archive/${tag}/${lang}`}>
                 <TagBox>{tagName}</TagBox>
               </Link>
             </Li>

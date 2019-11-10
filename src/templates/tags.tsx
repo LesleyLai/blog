@@ -5,7 +5,8 @@ import Helmet from "react-helmet";
 import Layout from "../components/layout";
 import Posts from "../components/postsList";
 import Post from "../types/Post";
-import { tagInfos } from "../utils/tagInfo";
+import { TagID } from "../utils/tagInfo";
+import { Language, translations } from "../utils/translations";
 
 export interface ArchiveData {
   allMarkdownRemark: {
@@ -16,7 +17,7 @@ export interface ArchiveData {
 
 interface ArchiveProps {
   data: ArchiveData;
-  pageContext: { tag: string };
+  pageContext: { tag: TagID; lang: Language };
   location: { pathname: string };
 }
 
@@ -24,9 +25,11 @@ class TagsTemplate extends React.Component<ArchiveProps> {
   public render() {
     const data = this.props.data;
     const tag = this.props.pageContext.tag;
-    const title = "Stuff I Wrote About " + tagInfos[tag].en;
+    const lang = this.props.pageContext.lang;
+    const title = translations[lang][tag];
+
     return (
-      <Layout location={this.props.location} lang="en">
+      <Layout location={this.props.location} lang={lang}>
         <Helmet>
           <title>{"Lesley Lai | " + title}</title>
         </Helmet>
@@ -41,12 +44,12 @@ class TagsTemplate extends React.Component<ArchiveProps> {
 export default TagsTemplate;
 
 export const query = graphql`
-  query TagsQuery($tag: String!) {
+  query TagsQuery($tag: String!, $lang: String!) {
     allMarkdownRemark(
       sort: { fields: [frontmatter___create], order: DESC }
       filter: {
         fields: { relativePath: { regex: "/blog/" } }
-        frontmatter: { lang: { eq: "en" }, categories: { in: [$tag] } }
+        frontmatter: { lang: { eq: $lang }, categories: { in: [$tag] } }
       }
     ) {
       totalCount

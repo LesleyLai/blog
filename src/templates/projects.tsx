@@ -6,19 +6,19 @@ import Helmet from "react-helmet";
 import Layout from "../components/layout";
 import ProjectPanel from "../components/projectPanel";
 import Tags from "../components/projectPanel/projectTags";
+import { TagID } from "../utils/tagInfo";
+import { Language, translations } from "../utils/translations";
 
 const css = require("./projects.module.css");
-
-import { projectsTagInfos } from "../utils/tagInfo";
 
 interface ProjectMeta {
   frontmatter: {
     id: number;
     name: string;
-    lang: string;
+    lang: Language;
     create: string;
     lastModify?: string;
-    categories: string[];
+    tags: TagID[];
     image?: string;
     github?: string;
     demo?: string;
@@ -51,7 +51,7 @@ export interface ProjectsData {
 
 interface ProjectsProps {
   location: { pathname: string };
-  pageContext?: { tag: string };
+  pageContext?: { tag: TagID };
   data?: ProjectsData;
 }
 
@@ -59,20 +59,16 @@ interface ImageMap {
   [name: string]: FluidObject;
 }
 
-function getTagName(tagId: string) {
-  return projectsTagInfos[tagId] ? projectsTagInfos[tagId].en : tagId;
-}
-
 class ProjectsPageTemplate extends React.Component<ProjectsProps> {
   render() {
     const props = this.props;
     const tag = props.pageContext ? props.pageContext.tag : null;
-    const tagName = getTagName(tag);
+    const tagName = translations["en"][tag];
 
     const helper = (data: ProjectsData) => {
       const projects = data.allMarkdownRemark.edges
         .map(edge => edge.node)
-        .filter(node => !tag || node.frontmatter.categories.includes(tag));
+        .filter(node => !tag || node.frontmatter.tags.includes(tag));
 
       const allTags = data.allMarkdownRemark.tags.map(tag => tag.fieldValue);
 
@@ -124,7 +120,7 @@ class ProjectsPageTemplate extends React.Component<ProjectsProps> {
                         project.frontmatter.lastModify
                       : project.frontmatter.create
                   }
-                  tags={project.frontmatter.categories}
+                  tags={project.frontmatter.tags}
                   image={
                     project.frontmatter.image &&
                     images[project.frontmatter.image]
@@ -155,7 +151,7 @@ class ProjectsPageTemplate extends React.Component<ProjectsProps> {
                   frontmatter {
                     id
                     lang
-                    categories
+                    tags: categories
                     name
                     image
                     create(formatString: "YYYY")

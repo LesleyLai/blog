@@ -14,6 +14,8 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   }
 };
 
+const langs = ["en", "zh"];
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
 
@@ -55,7 +57,6 @@ exports.createPages = ({ graphql, actions }) => {
         });
       });
 
-      // Create tag pages
       const tags = new Set();
       for (const post of posts) {
         const postTags = post.node.frontmatter.categories;
@@ -66,14 +67,19 @@ exports.createPages = ({ graphql, actions }) => {
         }
       }
 
+      const langs = ["en", "zh"];
+
       for (const tag of tags) {
-        createPage({
-          path: "/archive/" + tag + '/',
-          component: tagsTemplate,
-          context: {
-            tag,
-          },
-        });
+        for (const lang of langs) {
+          createPage({
+            path: "/archive/" + tag + '/' + lang,
+            component: tagsTemplate,
+            context: {
+              tag,
+              lang: lang,
+            },
+          });
+        }
       }
 
 

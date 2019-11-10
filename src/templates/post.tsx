@@ -7,7 +7,8 @@ import TagsList from "../components/tagsList";
 
 import ReactDisqusComments from "react-disqus-comments";
 
-import translations from "../utils/translations";
+import { TagID } from "../utils/tagInfo";
+import { Language, translations } from "../utils/translations";
 
 const css = require("./post.module.css");
 require(`katex/dist/katex.min.css`);
@@ -16,11 +17,11 @@ export interface PostData {
   html: string;
   frontmatter: {
     id: string;
-    lang: string;
+    lang: Language;
     title: string;
     create: string;
     lastModify: string;
-    categories: string[];
+    categories: TagID[];
   };
   fields: {
     readingTime: {
@@ -45,7 +46,7 @@ class PostTemplate extends React.Component<PostProps> {
     const lang = post.frontmatter.lang;
     const path = "/" + post.frontmatter.id + "/" + lang;
     const url = "http://lesleylai.info" + path;
-    const title = translations["title"][lang] + " | " + post.frontmatter.title;
+    const title = translations[lang]["title"] + " | " + post.frontmatter.title;
     return (
       <Layout location={{ pathname: path }} lang={lang}>
         <div className={css.post}>
@@ -55,11 +56,15 @@ class PostTemplate extends React.Component<PostProps> {
           <h1 className={css.title}>{post.frontmatter.title}</h1>
           <div className={css.info}>
             <span className={css.date}>
-              {translations["lastModify"][lang]}: {post.frontmatter.lastModify}{" "}
-              | {translations["create"][lang]}: {post.frontmatter.create} |{" "}
+              {translations[lang]["lastModify"]}: {post.frontmatter.lastModify}{" "}
+              | {translations[lang]["create"]}: {post.frontmatter.create} |{" "}
               {post.fields.readingTime.text}
             </span>
-            <TagsList tags={post.frontmatter.categories} className={css.tags} />
+            <TagsList
+              lang={lang}
+              tags={post.frontmatter.categories}
+              className={css.tags}
+            />
           </div>
           <article
             className={css.article}
