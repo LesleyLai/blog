@@ -1,9 +1,10 @@
 import Typography from "typography";
 const typography = new Typography({
   baseFontSize: "16px",
+  baseLineHeight: 1.666,
   bodyFontFamily: [
-    "Open Sans",
     "Lato",
+    "Open Sans",
     "georgia",
     "Microsoft Yahei",
     "微软雅黑",
@@ -19,7 +20,8 @@ const typography = new Typography({
     "微软雅黑",
     "STXihei",
     "华文细黑"
-  ]
+  ],
+  includeNormalize: true
 });
 
 export default typography;

@@ -7,6 +7,7 @@ lastModify: '2019-10-26'
 categories:
 - code
 - cpp
+- dod
 - functional
 ---
 
@@ -72,12 +73,12 @@ std::optional<QueueFamilyIndices> findQueueFamilies(/*...*/) {
     if (/* queue i support present */) {
         presentFamily = i;
     }
-    
+
     if (graphicsFamily && presentFamily) {
         return QueueFamilyIndices{*graphicsFamily, *presentFamily};
     }
   }
-  
+
   return std::nullopt;
 }
 ```
@@ -216,7 +217,7 @@ struct Triangle {
 struct TriangleMesh
 {
   // Triangle operations
-  
+
   std::vector<Triangle> triangles;
   std::unique_ptr<Point3f[]> p;
   // other data
@@ -227,21 +228,17 @@ Since we no longer need to worry about the dangling of indices, we don't need re
 
 ## Transform the API
 
-Sometimes following the guideline of better data modeling means changing the APIs. Such a change would make the API easier to use and harder to misuse, so it is better to start early than later. 
+Sometimes following the guideline of better data modeling means changing the APIs. Such a change would make the API easier to use and harder to misuse, so it is better to start early than later.
 
 Below is another example from graphics programming where we have commands to submit to GPU. We don't directly push the data to GPU, but instead, cache them in a `CommandBuffer` object that we can batch submit later.
 
-The graphics pipeline object encapsulates all the logic of drawing, like how to interpret data we sent to the GPU.
-However, in the above API, we can happily start to draw without binding a graphics pipeline.
-
-
 ```cpp
 struct CommandBuffer {
-  CommandBuffer& push_draw_command(uint32_t count, uint32_t vertex_offset, 
+  CommandBuffer& push_draw_command(uint32_t count, uint32_t vertex_offset,
                                    uint32_t instance_count);
   CommandBuffer& push_draw_indirect_command(void* indirect);
   CommandBuffer& push_bind_graphics_pipeline_command(GraphicsPipelineHandle pipeline);
-  
+
   // ...
 };
 ```
@@ -258,11 +255,11 @@ One naive forward modification is putting the reference of the graphics pipeline
 
 ```cpp
 struct CommandBuffer {
-  CommandBuffer& push_draw_command(GraphicsPipelineHandle pipeline, uint32_t count, 
+  CommandBuffer& push_draw_command(GraphicsPipelineHandle pipeline, uint32_t count,
                                    uint32_t vertex_offset, uint32_t instance_count);
   CommandBuffer& push_draw_indirect_command(GraphicsPipelineHandle pipeline,
                                             void* indirect);
-  
+
   // ...
 };
 ```
@@ -273,7 +270,7 @@ A better fix is to introduce another structure, `DrawingCommandbuffer`, that con
 struct DrawingCommandbuffer {
   DrawingCommandbuffer(GraphicsPipelineHandle pipeline);
 
-  DrawingCommandbuffer& push_draw_command(uint32_t count, uint32_t vertex_offset, 
+  DrawingCommandbuffer& push_draw_command(uint32_t count, uint32_t vertex_offset,
                                    uint32_t instance_count);
   DrawingCommandbuffer& push_draw_indirect_command(void* indirect);
 };
@@ -296,12 +293,13 @@ I love C++11 move semantics. However, despite move semantics solving a lot of pr
 ```cpp
 class Window {
   // ...
-  
-  Window(const Window& other) noexcept = delete;
-  Window& operator=(const Window& other) noexcept = delete;
 
 private:
-  std::reference_wrapper<GLFWwindow> window;
+  // Would never be nullptr
+  GLFWwindow* window;
+
+  Window(const Window& other);
+  Window& operator=(const Window& other);
 }
 ```
 
@@ -328,4 +326,4 @@ private:
 
 # Conclusion
 
-Utilizing the static type system well, we can eradicate the possibility of runtime invariant violations in a group of cases. This approach decreases the possibility of insane debugging sessions and the need for aggressive assertions. It also helps testing because we don't have to test if a particular state of the program can't occur. Moreover, we can see a performance gain sometimes by thinking about how to model data more carefully.
+Utilizing the static type system well, we can eradicate the possibility of runtime invariant violations in a group of cases. This approach decreases the possibility of insane debugging sessions and the need for aggressive assertions. It also helps testing because we don't have to test what a static type system guaranteed. Moreover, we can see a performance gain sometimes by thinking about how to model data more carefully.

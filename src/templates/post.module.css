@@ -73,7 +73,6 @@
 
 .article > aside > p {
     margin-bottom: 0;
-    font-family: normal;
     font-size: 13px;
 }
 
@@ -120,6 +119,5 @@
     padding: 24px 48px;
     background: #f1ece4;
     color: #8f6d3d;
-    font-family: normal;
     font-size: 13px;
 }

@@ -83,7 +83,7 @@ class AboutMe extends React.PureComponent {
           </ul>
 
           <h3 className={css.subtitle}>Categories</h3>
-          <ul>
+          <ul className={css.tags}>
             {data.allMarkdownRemark.group
               .slice()
               .sort(
@@ -99,15 +99,21 @@ class AboutMe extends React.PureComponent {
                 </li>
               ))}
           </ul>
+          <p className={css.archive}>
+            All{" "}
+            <Link to={`archive`}>
+              {data.allMarkdownRemark.group.length} posts
+            </Link>
+          </p>
 
-          <p>
+          <p className={css.info}>
             This blog is built by <a href="https://www.gatsbyjs.org/">Gatsby</a>
             . The source repo for it is{" "}
             <a href="https://github.com/LesleyLai/blog">here</a>.
           </p>
 
           <p className={css.copyright}>
-            ©2015-
+            © 2015-
             {currentYear} Lesley Lai
           </p>
         </nav>

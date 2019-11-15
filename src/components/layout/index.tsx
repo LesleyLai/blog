@@ -4,7 +4,6 @@ import Helmet from "react-helmet";
 import AboutMe from "../about/aboutme";
 import Header from "../header";
 
-import "normalize.css";
 import "../../style/global.css";
 import "../../style/highlight.css";
 

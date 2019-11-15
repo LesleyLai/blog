@@ -23,16 +23,20 @@ export const tagInfos: { [id: string]: Tag } = {
     zh: "编程",
     color: colors.red
   },
+  dod: {
+    en: "Data-oriented design",
+    color: colors.orange
+  },
   library: { en: "Library", color: colors.grey },
   graphql: { en: "GraphQL", color: colors.pink },
   opengl: { en: "OpenGL", color: colors.typescript },
-  python: { en: "Python", color: colors.blue },
+  python: { en: "Python", color: colors.typescript },
   pl: { en: "Programming Language", color: colors.red },
   react: { en: "React", color: colors.react },
   rt: { en: "Ray tracing", color: colors.yellow },
   typescript: { en: "Typescript", color: colors.typescript },
   web: { en: "Web", color: colors.violet },
-  game: { en: "Game", color: colors.orange },
+  game: { en: "Game", color: colors.green },
   graphics: {
     en: "Computer Graphics",
     color: colors.purple

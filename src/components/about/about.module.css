@@ -1,6 +1,6 @@
 .about {
     min-width: 200px;
-    font-size: 12px;
+    font-size: 13px;
     color: #8f6d3d;
     padding: 1rem;
 }
@@ -25,6 +25,12 @@
     margin-bottom: 0;
 }
 
+.archive {
+    margin: 10px 10px;
+    font-style: italic;
+    margin: 0.2rem 0 0.2rem 1.666rem;
+}
+
 .portrait {
     display: block;
     margin: 10px auto;
@@ -38,8 +44,13 @@
 .copyright {
     text-align: center;
     margin: 10px 10px;
-    font-size: 11px;
+    font-size: 12px;
     font-style: italic;
+    color: #bda88a;
+}
+
+.info {
+    margin-bottom: 0.5rem;
 }
 
 .subtitle {
@@ -50,6 +61,11 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+.tags {
+    margin-bottom: 0rem;
+    line-height: 1.3;
 }
 
 .tagitem {
