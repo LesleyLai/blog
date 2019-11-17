@@ -51,7 +51,7 @@ const oppositeLang = (lang: Language) => {
 };
 
 const LanguageLink = ({ lang }: LanguageLinkProp) => {
-  const to = `raii/${lang}`;
+  const to = `/raii/${lang}`;
   return (
     <Link
       to={to}

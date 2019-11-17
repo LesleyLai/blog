@@ -102,7 +102,7 @@ class AboutMe extends React.PureComponent {
           </ul>
           <p className={css.archive}>
             All{" "}
-            <Link to={`archive`}>
+            <Link to={"/archive/en"}>
               {data.allMarkdownRemark.group.length} posts
             </Link>
           </p>

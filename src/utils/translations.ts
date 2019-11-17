@@ -76,4 +76,6 @@ export const translations = {
   zh: zh
 };
 
+export const languages = Object.keys(translations);
+
 export type Language = keyof typeof translations;

@@ -24,22 +24,22 @@ export const menuModel: { [key: string]: MenuModel } = {
   },
   archive: {
     langs: {
-      en: { title: "Archive", path: "/archive" },
-      zh: { title: "博文目录", path: "/zh/archive" }
+      en: { title: "Archive", path: "/archive/en" },
+      zh: { title: "博文目录", path: "/archive/zh" }
     },
     exact: false
   },
   projects: {
     langs: {
-      en: { title: "Projects", path: "/projects" },
-      zh: { title: "个儿项目", path: "/zh/projects" }
+      en: { title: "Projects", path: "/projects/en" },
+      zh: { title: "个儿项目", path: "/projects/zh" }
     },
     exact: false
   },
   talks: {
     langs: {
-      en: { title: "Talks", path: "/talks" },
-      zh: { title: "演讲", path: "/zh/talks" }
+      en: { title: "Talks", path: "/talks/en" },
+      zh: { title: "演讲", path: "/talks/zh" }
     },
     exact: true
   }

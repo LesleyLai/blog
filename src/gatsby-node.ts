@@ -1,11 +1,13 @@
 import { GatsbyNode } from "gatsby";
 import { resolve } from "path";
+import { languages } from "./utils/translations";
+import { TagID } from "./utils/tagInfo";
 
 export const createPages: GatsbyNode["createPages"] = async ({
   graphql,
   actions
-}: any) => {
-  const { createPage } = actions;
+}) => {
+  const { createPage, createRedirect } = actions;
 
   const postTemplate = resolve(`src/templates/post.tsx`);
   const tagsTemplate = resolve("src/templates/tags.tsx");
@@ -47,7 +49,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
         });
       });
 
-      const tags = new Set();
+      const tags: Set<TagID> = new Set();
       for (const post of posts) {
         const postTags = post.node.frontmatter.categories;
         if (postTags) {
@@ -57,12 +59,12 @@ export const createPages: GatsbyNode["createPages"] = async ({
         }
       }
 
-      const langs = ["en", "zh"];
-
       for (const tag of Array.from(tags)) {
-        for (const lang of langs) {
+        for (const lang of languages) {
+          const localizedPath = `/archive/${tag}/${lang}`;
+
           createPage({
-            path: "/archive/" + tag + "/" + lang,
+            path: localizedPath,
             component: tagsTemplate,
             context: {
               tag,
@@ -70,6 +72,18 @@ export const createPages: GatsbyNode["createPages"] = async ({
             }
           });
         }
+
+        createRedirect({
+          fromPath: `/archive/${tag}`,
+          redirectInBrowser: true,
+          toPath: `/archive/${tag}/en`
+        });
+
+        createRedirect({
+          fromPath: `/archive/${tag}/`,
+          redirectInBrowser: true,
+          toPath: `/archive/${tag}/en`
+        });
       }
 
       resolve();
@@ -112,7 +126,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
 
       for (const tag of Array.from(tags)) {
         createPage({
-          path: "/projects/" + tag + "/",
+          path: "/projects/" + tag,
           component: projectsTemplate,
           context: {
             tag
@@ -127,4 +141,55 @@ export const createPages: GatsbyNode["createPages"] = async ({
   return Promise.all([posts, projects]).catch(error => {
     console.log(error);
   });
+};
+
+const removeTrailingSlash = (path: string) =>
+  path === `/` ? path : path.replace(/\/$/, ``);
+
+// Page that with no other language versions
+const specialPages = new Set(["/404", "/dev-404-page", "/404.html"]);
+
+export const onCreatePage: GatsbyNode["onCreatePage"] = async args => {
+  const page: any = args.page;
+  const actions = args.actions;
+  const { createPage, deletePage, createRedirect } = actions;
+
+  deletePage(page);
+  page.path = removeTrailingSlash(page.path);
+
+  if (specialPages.has(page.path)) {
+    createPage(page);
+    return;
+  }
+
+  // Pages with multiple language versions
+  // Homepage is special as it will not have a language postfix
+  languages.forEach(lang => {
+    const localizedPath = page.path === "/" ? `/` : `${page.path}/${lang}`;
+
+    createPage({
+      ...page,
+      path: localizedPath,
+      context: {
+        ...page.context,
+        lang: lang
+      }
+    });
+  });
+
+  // Pages with no language postfixes redirect to English version
+  if (page.path !== "/") {
+    const redirectTo = `${page.path}/en`;
+
+    createRedirect({
+      fromPath: page.path,
+      redirectInBrowser: true,
+      toPath: redirectTo
+    });
+    createRedirect({
+      fromPath: `${page.path}/`,
+      redirectInBrowser: true,
+      toPath: redirectTo
+    });
+  }
 };

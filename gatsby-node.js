@@ -20,4 +20,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   }
 };
 
-exports.createPages = require('./src/createPages').createPages;
+const gatsby = require('./src/gatsby-node');
+
+exports.onCreatePage = gatsby.onCreatePage;
+exports.createPages = gatsby.createPages;
