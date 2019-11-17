@@ -26,9 +26,6 @@ export const createPages: GatsbyNode["createPages"] = async ({
                 lang
                 categories
               }
-              fields {
-                relativePath
-              }
             }
           }
         }
@@ -39,12 +36,14 @@ export const createPages: GatsbyNode["createPages"] = async ({
       // Creates individual pages
       posts.map(({ node }: any) => {
         const lang = node.frontmatter.lang;
+        const id = node.frontmatter.id;
 
         createPage({
-          path: "/" + node.frontmatter.id + "/" + lang,
+          path: `/${id}/${lang}`,
           component: postTemplate,
           context: {
-            relativePath: node.fields.relativePath
+            lang: lang,
+            id: id
           }
         });
       });
@@ -59,8 +58,8 @@ export const createPages: GatsbyNode["createPages"] = async ({
         }
       }
 
-      for (const tag of Array.from(tags)) {
-        for (const lang of languages) {
+      for (const lang of languages) {
+        for (const tag of Array.from(tags)) {
           const localizedPath = `/archive/${tag}/${lang}`;
 
           createPage({
@@ -72,7 +71,9 @@ export const createPages: GatsbyNode["createPages"] = async ({
             }
           });
         }
+      }
 
+      for (const tag of Array.from(tags)) {
         createRedirect({
           fromPath: `/archive/${tag}`,
           redirectInBrowser: true,

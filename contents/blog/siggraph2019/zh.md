@@ -1,6 +1,6 @@
 ---
 id: siggraph2019
-title: "ACM Siggraph 2019 Trip Report"
+title: "ACM Siggraph 2019会议小结"
 lang: zh
 create: '2019-08-08'
 lastModify: '2019-08-08'

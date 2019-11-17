@@ -32,7 +32,16 @@ export interface PostData {
 
 interface PostProps {
   data: {
-    markdownRemark: PostData;
+    post: PostData;
+    otherLangs: {
+      edges: Array<{
+        node: {
+          frontmatter: {
+            lang: Language;
+          };
+        };
+      }>;
+    };
   };
 }
 
@@ -42,13 +51,18 @@ class PostTemplate extends React.Component<PostProps> {
   }
 
   public render() {
-    const post = this.props.data.markdownRemark;
+    const post = this.props.data.post;
     const lang = post.frontmatter.lang;
     const path = "/" + post.frontmatter.id + "/" + lang;
     const url = "http://lesleylai.info" + path;
     const title = translations[lang]["title"] + " | " + post.frontmatter.title;
+
+    const otherLangs = this.props.data.otherLangs.edges.map(
+      edge => edge.node.frontmatter.lang
+    );
+
     return (
-      <Layout location={{ pathname: path }} lang={lang}>
+      <Layout location={{ pathname: path }} lang={lang} otherLangs={otherLangs}>
         <div className={css.post}>
           <Helmet>
             <title>{title}</title>
@@ -90,8 +104,10 @@ class PostTemplate extends React.Component<PostProps> {
 export default PostTemplate;
 
 export const query = graphql`
-  query BlogPostQuery($relativePath: String!) {
-    markdownRemark(fields: { relativePath: { eq: $relativePath } }) {
+  query BlogPostQuery($id: String!, $lang: String!) {
+    post: markdownRemark(
+      frontmatter: { id: { eq: $id }, lang: { eq: $lang } }
+    ) {
       html
       frontmatter {
         id
@@ -104,6 +120,17 @@ export const query = graphql`
       fields {
         readingTime {
           text
+        }
+      }
+    }
+    otherLangs: allMarkdownRemark(
+      filter: { frontmatter: { id: { eq: $id }, lang: { ne: $lang } } }
+    ) {
+      edges {
+        node {
+          frontmatter {
+            lang
+          }
         }
       }
     }

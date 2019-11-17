@@ -4,7 +4,7 @@ import Helmet from "react-helmet";
 import AboutMe from "../about/aboutme";
 import Header from "../header";
 
-import { Language } from "../../utils/translations";
+import { Language, languages } from "../../utils/translations";
 
 import "../../style/global.css";
 import "../../style/highlight.css";
@@ -14,6 +14,7 @@ interface DefaultLayoutProps extends React.HTMLProps<HTMLDivElement> {
     pathname: string;
   };
   lang: Language;
+  otherLangs?: Language[]; // Indicates if other language versions of the same page exist. If not provided, assume all other language pages exist
   children: React.ReactNode;
 }
 
@@ -26,13 +27,19 @@ export default class Layout extends React.PureComponent<DefaultLayoutProps> {
     const pathname = this.props.location.pathname;
     const lang = this.props.lang;
 
+    const otherLangs = (() => {
+      if (this.props.otherLangs) return this.props.otherLangs;
+
+      return languages.filter(otherLang => otherLang !== lang);
+    })();
+
     return (
       <div>
         <Helmet>
           <title>Lesley Lai</title>
           <html lang={lang} />
         </Helmet>
-        <Header pathname={pathname} lang={lang} />
+        <Header pathname={pathname} lang={lang} otherLangs={otherLangs} />
         <div className={style.layout}>
           <div className={style.grid}>
             <main className={style.main}>{children}</main>

@@ -4,6 +4,7 @@
 import { TagID } from "./tagInfo";
 
 const en = {
+  archive_title: "Blog archive",
   books: "Books",
   c: "C",
   cmake: "CMake",
@@ -39,6 +40,7 @@ const en = {
 export type Translations = typeof en;
 
 const zh: Translations = {
+  archive_title: "博文目录",
   books: "书籍",
   c: en.c,
   cmake: en.cmake,
@@ -76,6 +78,6 @@ export const translations = {
   zh: zh
 };
 
-export const languages = Object.keys(translations);
-
 export type Language = keyof typeof translations;
+
+export const languages = Object.keys(translations) as Language[];

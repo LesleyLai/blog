@@ -5,8 +5,9 @@ import Footer from "../components/footer";
 import Layout from "../components/layout";
 import Posts from "../components/postsList";
 import Post from "../types/Post";
+import { Language, translations } from "../utils/translations";
 
-import { graphql, StaticQuery } from "gatsby";
+import { graphql } from "gatsby";
 
 interface ArchiveData {
   allMarkdownRemark: {
@@ -20,56 +21,53 @@ interface ArchiveProps {
   location: {
     pathname: string;
   };
+  pageContext: { lang: Language };
 }
 
 const Archive = (props: ArchiveProps) => {
-  const render = (data: ArchiveData) => {
-    const title = "Blog archive";
-    return (
-      <Layout location={props.location} lang="en">
-        <div>
-          <Helmet>
-            <title>{"Lesley Lai | " + title}</title>
-          </Helmet>
-          <h1>{title}</h1>
-          {data.allMarkdownRemark.totalCount} Posts
-          <Posts posts={data.allMarkdownRemark.edges} />
-          <Footer />
-        </div>
-      </Layout>
-    );
-  };
+  const posts = props.data.allMarkdownRemark;
+  const lang = props.pageContext.lang;
+  const title = translations[lang]["archive_title"];
 
   return (
-    <StaticQuery
-      query={graphql`
-        query ArchiveQuery {
-          allMarkdownRemark(
-            sort: { fields: [frontmatter___create], order: DESC }
-            filter: {
-              fields: { relativePath: { regex: "/blog/" } }
-              frontmatter: { lang: { eq: "en" } }
-            }
-          ) {
-            totalCount
-            edges {
-              node {
-                frontmatter {
-                  id
-                  title
-                  lang
-                  create(formatString: "DD MMMM YYYY")
-                  categories
-                }
-                excerpt
-              }
-            }
-          }
-        }
-      `}
-      render={render}
-    />
+    <Layout location={props.location} lang={lang}>
+      <div>
+        <Helmet>
+          <title>{"Lesley Lai | " + title}</title>
+        </Helmet>
+        <h1>{title}</h1>
+        {posts.totalCount} Posts
+        <Posts posts={posts.edges} />
+        <Footer />
+      </div>
+    </Layout>
   );
 };
 
 export default Archive;
+
+export const query = graphql`
+  query ArchiveQuery($lang: String!) {
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___create], order: DESC }
+      filter: {
+        fields: { relativePath: { regex: "/blog/" } }
+        frontmatter: { lang: { eq: $lang } }
+      }
+    ) {
+      totalCount
+      edges {
+        node {
+          frontmatter {
+            id
+            title
+            lang
+            create(formatString: "DD MMMM YYYY")
+            categories
+          }
+          excerpt
+        }
+      }
+    }
+  }
+`;

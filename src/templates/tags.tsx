@@ -29,9 +29,9 @@ class TagsTemplate extends React.Component<ArchiveProps> {
     const title = translations[lang][tag];
 
     return (
-      <Layout location={this.props.location} lang={lang}>
+      <Layout location={this.props.location} lang={lang} otherLangs={[]}>
         <Helmet>
-          <title>{"Lesley Lai | " + title}</title>
+          <title>{`Lesley Lai | ${title}`}</title>
         </Helmet>
         <h1>{title}</h1>
         {data.allMarkdownRemark.totalCount} Posts

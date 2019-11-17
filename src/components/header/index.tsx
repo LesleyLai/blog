@@ -10,6 +10,7 @@ const style = require("./header.module.css");
 interface HeaderProps {
   pathname: string;
   lang: Language;
+  otherLangs: Language[];
 }
 
 const Logo = () => (
@@ -18,12 +19,12 @@ const Logo = () => (
   </Link>
 );
 
-const Header = ({ pathname, lang }: HeaderProps) => {
+const Header = ({ pathname, lang, otherLangs }: HeaderProps) => {
   return (
     <header className={style.header}>
       <div className={style.headerContainer}>
         <Logo />
-        <HeaderMenu pathname={pathname} lang={lang} />
+        <HeaderMenu pathname={pathname} lang={lang} otherLangs={otherLangs} />
       </div>
     </header>
   );

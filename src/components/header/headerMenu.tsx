@@ -11,6 +11,7 @@ const css = require("./header.module.css");
 interface HeaderMenuProp extends React.HTMLProps<HTMLDivElement> {
   pathname: string;
   lang: Language;
+  otherLangs: Language[];
 }
 
 interface MenuItemProp extends React.HTMLProps<HTMLDivElement> {
@@ -37,28 +38,20 @@ const MenuItem = ({ itemName, lang }: MenuItemProp) => {
 };
 
 interface LanguageLinkProp extends React.HTMLProps<HTMLDivElement> {
-  lang: Language;
+  fromLang: Language;
+  toLang: Language;
+  pathname: string;
 }
 
-const oppositeLang = (lang: Language) => {
-  if (lang === "en") {
-    return "zh";
-  } else if (lang === "zh") {
-    return "en";
-  }
-
-  throw new Error("Invalid language");
-};
-
-const LanguageLink = ({ lang }: LanguageLinkProp) => {
-  const to = `/raii/${lang}`;
+const LanguageLink = ({ fromLang, toLang, pathname }: LanguageLinkProp) => {
+  const to = pathname.replace(fromLang, toLang);
   return (
     <Link
       to={to}
-      key={lang}
+      key={toLang}
       className={classNames(css.menuItem, css.languageLink)}
     >
-      {translations[lang]["lang"]}
+      {translations[toLang]["lang"]}
     </Link>
   );
 };
@@ -73,6 +66,9 @@ export default class HeaderMenu extends React.PureComponent<HeaderMenuProp> {
   }
 
   public render() {
+    const otherLangs = this.props.otherLangs;
+    const pathname = this.props.pathname;
+    const lang = this.props.lang;
     return (
       <>
         <nav
@@ -84,17 +80,25 @@ export default class HeaderMenu extends React.PureComponent<HeaderMenuProp> {
             {Object.keys(menuModel).map((key: string) => (
               <MenuItem
                 key={key}
-                pathname={this.props.pathname}
+                pathname={pathname}
                 itemName={key}
-                lang={this.props.lang}
+                lang={lang}
               />
             ))}
           </div>
 
           <div className={css.languages}>
-            <LanguageLink lang={oppositeLang(this.props.lang)} />
+            {otherLangs.map(otherLang => (
+              <LanguageLink
+                key={otherLang}
+                fromLang={lang}
+                toLang={otherLang}
+                pathname={pathname}
+              />
+            ))}
           </div>
         </nav>
+
         <button
           name="menu"
           className={css.mobileMenuIcon}
