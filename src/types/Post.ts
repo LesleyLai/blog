@@ -1,4 +1,4 @@
-import { TagID } from "../utils/tagInfo";
+import { TagID } from "./tags";
 import { Language } from "../utils/translations";
 
 export default interface Post {

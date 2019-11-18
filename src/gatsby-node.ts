@@ -1,7 +1,7 @@
 import { GatsbyNode } from "gatsby";
 import { resolve } from "path";
-import { languages } from "./utils/translations";
-import { TagID } from "./utils/tagInfo";
+import { languages, Language } from "./utils/translations";
+import { TagID } from "./types/tags";
 
 export const createPages: GatsbyNode["createPages"] = async ({
   graphql,
@@ -150,6 +150,8 @@ const removeTrailingSlash = (path: string) =>
 // Page that with no other language versions
 const specialPages = new Set(["/404", "/dev-404-page", "/404.html"]);
 
+const localizedRoot = (lang: Language) => (lang == "en" ? "/" : "/zh");
+
 export const onCreatePage: GatsbyNode["onCreatePage"] = async args => {
   const page: any = args.page;
   const actions = args.actions;
@@ -166,13 +168,13 @@ export const onCreatePage: GatsbyNode["onCreatePage"] = async args => {
   // Pages with multiple language versions
   // Homepage is special as it will not have a language postfix
   languages.forEach(lang => {
-    const localizedPath = page.path === "/" ? `/` : `${page.path}/${lang}`;
+    const localizedPath =
+      page.path === "/" ? localizedRoot(lang) : `${page.path}/${lang}`;
 
     createPage({
       ...page,
       path: localizedPath,
       context: {
-        ...page.context,
         lang: lang
       }
     });

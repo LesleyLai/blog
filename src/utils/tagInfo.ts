@@ -32,7 +32,3 @@ export const tagInfos = {
   web: { color: colors.violet },
   x86: { color: colors.pink }
 };
-
-export type TagID = keyof typeof tagInfos;
-
-export const projectsTagInfos = tagInfos;

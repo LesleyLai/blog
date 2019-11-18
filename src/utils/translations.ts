@@ -1,7 +1,7 @@
 /*eslint sort-keys: "warn"*/
 /*eslint "@typescript-eslint/camelcase": "off"*/
 
-import { TagID } from "./tagInfo";
+import { TagID } from "../types/tags";
 
 const en = {
   archive_title: "Blog archive",
@@ -27,9 +27,11 @@ const en = {
   python: "Python",
   rant: "Rant",
   react: "React",
+  recent_posts: "Recent Posts",
   rt: "Ray tracing",
   showall: "Show all",
   stuff_I_wrote_about: (tag: TagID) => `Stuff I Wrote About ${en[tag]}`,
+  talks: "Talks",
   test: "Testing",
   title: "Lesley Lai",
   typescript: "Typescript",
@@ -63,9 +65,11 @@ const zh: Translations = {
   python: en.python,
   rant: "抱怨",
   react: en.react,
+  recent_posts: "最新内容",
   rt: "光线追踪",
   showall: "显示所有",
   stuff_I_wrote_about: (tag: TagID) => `关于${zh[tag]}的博文`,
+  talks: "演讲",
   test: "软件测试",
   title: "赖思理的博客",
   typescript: en.typescript,

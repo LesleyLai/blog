@@ -3,7 +3,7 @@ import * as React from "react";
 
 import TagsList from "../tagsList";
 
-import { TagID } from "../../utils/tagInfo";
+import { TagID } from "../../types/tags";
 import { Language } from "../../utils/translations";
 
 export interface PostMeta {

@@ -3,6 +3,7 @@ import Helmet from "react-helmet";
 
 import AboutMe from "../about/aboutme";
 import Header from "../header";
+import { TagItem } from "../../types/tags";
 
 import { Language, languages } from "../../utils/translations";
 
@@ -15,6 +16,7 @@ interface DefaultLayoutProps extends React.HTMLProps<HTMLDivElement> {
   };
   lang: Language;
   otherLangs?: Language[]; // Indicates if other language versions of the same page exist. If not provided, assume all other language pages exist
+  tags: TagItem[];
   children: React.ReactNode;
 }
 
@@ -26,6 +28,7 @@ export default class Layout extends React.PureComponent<DefaultLayoutProps> {
 
     const pathname = this.props.location.pathname;
     const lang = this.props.lang;
+    const tags = this.props.tags;
 
     const otherLangs = (() => {
       if (this.props.otherLangs) return this.props.otherLangs;
@@ -44,7 +47,7 @@ export default class Layout extends React.PureComponent<DefaultLayoutProps> {
           <div className={style.grid}>
             <main className={style.main}>{children}</main>
             <nav className={style.about}>
-              <AboutMe lang={lang} />
+              <AboutMe lang={lang} tags={tags} />
             </nav>
           </div>
         </div>

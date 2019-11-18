@@ -1,6 +1,7 @@
 import * as React from "react";
 import Helmet from "react-helmet";
 
+import { TagItem } from "../types/tags";
 import Footer from "../components/footer";
 import Layout from "../components/layout";
 import Posts from "../components/postsList";
@@ -10,9 +11,10 @@ import { Language, translations } from "../utils/translations";
 import { graphql } from "gatsby";
 
 interface ArchiveData {
-  allMarkdownRemark: {
+  posts: {
     totalCount: number;
     edges: Array<{ node: Post }>;
+    tags: TagItem[];
   };
 }
 
@@ -25,12 +27,12 @@ interface ArchiveProps {
 }
 
 const Archive = (props: ArchiveProps) => {
-  const posts = props.data.allMarkdownRemark;
+  const posts = props.data.posts;
   const lang = props.pageContext.lang;
   const title = translations[lang]["archive_title"];
 
   return (
-    <Layout location={props.location} lang={lang}>
+    <Layout location={props.location} lang={lang} tags={posts.tags}>
       <div>
         <Helmet>
           <title>{"Lesley Lai | " + title}</title>
@@ -48,10 +50,10 @@ export default Archive;
 
 export const query = graphql`
   query ArchiveQuery($lang: String!) {
-    allMarkdownRemark(
+    posts: allMarkdownRemark(
       sort: { fields: [frontmatter___create], order: DESC }
       filter: {
-        fields: { relativePath: { regex: "/blog/" } }
+        fields: { relativePath: { regex: "//blog/" } }
         frontmatter: { lang: { eq: $lang } }
       }
     ) {
@@ -68,6 +70,7 @@ export const query = graphql`
           excerpt
         }
       }
+      ...Tags
     }
   }
 `;

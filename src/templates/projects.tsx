@@ -6,7 +6,7 @@ import Helmet from "react-helmet";
 import Layout from "../components/layout";
 import ProjectPanel from "../components/projectPanel";
 import Tags from "../components/projectPanel/projectTags";
-import { TagID } from "../utils/tagInfo";
+import { TagID } from "../types/tags";
 import { Language, translations } from "../utils/translations";
 
 const css = require("./projects.module.css");
@@ -82,7 +82,7 @@ class ProjectsPageTemplate extends React.Component<ProjectsProps> {
       {});
 
       return (
-        <Layout location={props.location} lang="en">
+        <Layout location={props.location} lang="en" tags={[]} otherLangs={[]}>
           <div>
             <Helmet>
               <title>{"Lesley Lai | Projects"}</title>

@@ -5,13 +5,16 @@ import Helmet from "react-helmet";
 import Layout from "../components/layout";
 import Posts from "../components/postsList";
 import Post from "../types/Post";
-import { TagID } from "../utils/tagInfo";
+import { TagID, TagItem } from "../types/tags";
 import { Language, languages, translations } from "../utils/translations";
 
 export interface ArchiveData {
-  allMarkdownRemark: {
+  posts: {
     totalCount: number;
     edges: Array<{ node: Post }>;
+  };
+  allPosts: {
+    tags: TagItem[];
   };
 }
 
@@ -33,13 +36,14 @@ class TagsTemplate extends React.Component<ArchiveProps> {
         location={this.props.location}
         lang={lang}
         otherLangs={languages.filter(l => l !== lang)}
+        tags={data.allPosts.tags}
       >
         <Helmet>
           <title>{`Lesley Lai | ${title}`}</title>
         </Helmet>
         <h1>{title}</h1>
-        {data.allMarkdownRemark.totalCount} Posts
-        <Posts posts={data.allMarkdownRemark.edges} excludeTag={tag} />
+        {data.posts.totalCount} Posts
+        <Posts posts={data.posts.edges} excludeTag={tag} />
       </Layout>
     );
   }
@@ -49,10 +53,10 @@ export default TagsTemplate;
 
 export const query = graphql`
   query TagsQuery($tag: String!, $lang: String!) {
-    allMarkdownRemark(
+    posts: allMarkdownRemark(
       sort: { fields: [frontmatter___create], order: DESC }
       filter: {
-        fields: { relativePath: { regex: "/blog/" } }
+        fields: { relativePath: { regex: "//blog/" } }
         frontmatter: { lang: { eq: $lang }, categories: { in: [$tag] } }
       }
     ) {
@@ -69,6 +73,14 @@ export const query = graphql`
           excerpt
         }
       }
+    }
+    allPosts: allMarkdownRemark(
+      filter: {
+        fields: { relativePath: { regex: "//blog/" } }
+        frontmatter: { lang: { eq: $lang } }
+      }
+    ) {
+      ...Tags
     }
   }
 `;

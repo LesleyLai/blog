@@ -7,7 +7,7 @@ import TagsList from "../components/tagsList";
 
 import ReactDisqusComments from "react-disqus-comments";
 
-import { TagID } from "../utils/tagInfo";
+import { TagID, TagItem } from "../types/tags";
 import { Language, translations } from "../utils/translations";
 
 const css = require("./post.module.css");
@@ -42,6 +42,9 @@ interface PostProps {
         };
       }>;
     };
+    allPosts: {
+      tags: TagItem[];
+    };
   };
 }
 
@@ -57,12 +60,19 @@ class PostTemplate extends React.Component<PostProps> {
     const url = "http://lesleylai.info" + path;
     const title = translations[lang]["title"] + " | " + post.frontmatter.title;
 
+    const tags = this.props.data.allPosts.tags;
+
     const otherLangs = this.props.data.otherLangs.edges.map(
       edge => edge.node.frontmatter.lang
     );
 
     return (
-      <Layout location={{ pathname: path }} lang={lang} otherLangs={otherLangs}>
+      <Layout
+        location={{ pathname: path }}
+        lang={lang}
+        otherLangs={otherLangs}
+        tags={tags}
+      >
         <div className={css.post}>
           <Helmet>
             <title>{title}</title>
@@ -133,6 +143,14 @@ export const query = graphql`
           }
         }
       }
+    }
+    allPosts: allMarkdownRemark(
+      filter: {
+        fields: { relativePath: { regex: "//blog/" } }
+        frontmatter: { lang: { eq: $lang } }
+      }
+    ) {
+      ...Tags
     }
   }
 `;

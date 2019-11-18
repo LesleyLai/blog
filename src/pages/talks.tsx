@@ -1,9 +1,11 @@
-import { graphql, Link, StaticQuery } from "gatsby";
+import { graphql, Link } from "gatsby";
 import * as React from "react";
 import Helmet from "react-helmet";
 import styled from "styled-components";
 
+import { TagItem } from "../types/tags";
 import Layout from "../components/layout";
+import { Language, translations } from "../utils/translations";
 
 interface TalkProps {
   readonly children: React.ReactNode;
@@ -39,15 +41,19 @@ const Talk = (props: TalkProps) => {
   );
 };
 
-interface TalksData {
-  site: {
-    siteMetadata: {
-      siteUrl: string;
+interface TalksProps {
+  data: {
+    posts: {
+      tags: TagItem[];
     };
   };
+  location: {
+    pathname: string;
+  };
+  pageContext: { lang: Language };
 }
 
-const TalksPage = () => {
+const TalksPage = ({ data, location, pageContext }: TalksProps) => {
   const P = styled.p`
     margin: 10px 0 10px 0;
   `;
@@ -56,13 +62,17 @@ const TalksPage = () => {
     margin-bottom: 0;
   `;
 
-  const helper = (_data: TalksData) => (
-    <Layout location={{ pathname: "/talks.html" }} lang="en">
+  const lang = pageContext.lang;
+
+  const talksLocale = translations[lang]["talks"];
+
+  return (
+    <Layout location={location} lang={lang} tags={data.posts.tags}>
       <>
         <Helmet>
-          <title>{"Lesley Lai | Talks"}</title>
+          <title>{`Lesley Lai | ${talksLocale}`}</title>
         </Helmet>
-        <h1>Talks</h1>
+        <h1>{talksLocale}</h1>
         <P>Here are the talks that I gave in various events.</P>
         <Talk
           title="CppCon 2019: “Make impossible state unrepresentable”"
@@ -100,21 +110,19 @@ const TalksPage = () => {
       </>
     </Layout>
   );
-
-  return (
-    <StaticQuery
-      query={graphql`
-        query {
-          site {
-            siteMetadata {
-              siteUrl
-            }
-          }
-        }
-      `}
-      render={helper}
-    />
-  );
 };
 
 export default TalksPage;
+
+export const query = graphql`
+  query TalksQuery($lang: String!) {
+    posts: allMarkdownRemark(
+      filter: {
+        fields: { relativePath: { regex: "//blog/" } }
+        frontmatter: { lang: { eq: $lang } }
+      }
+    ) {
+      ...Tags
+    }
+  }
+`;

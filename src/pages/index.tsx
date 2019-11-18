@@ -1,10 +1,12 @@
-import { graphql, StaticQuery } from "gatsby";
+import { graphql } from "gatsby";
 import Link from "gatsby-link";
 import * as React from "react";
 
+import { TagItem } from "../types/tags";
 import Footer from "../components/footer";
 import Layout from "../components/layout";
 import RecentPosts, { PostMeta } from "../components/recentPosts";
+import { Language, translations } from "../utils/translations";
 
 interface IndexData {
   allMarkdownRemark: {
@@ -12,6 +14,7 @@ interface IndexData {
     edges: Array<{
       node: PostMeta;
     }>;
+    tags: TagItem[];
   };
 }
 
@@ -20,13 +23,23 @@ interface IndexProps {
   location: {
     pathname: string;
   };
+  pageContext: { lang: Language };
 }
 
 class IndexPage extends React.Component<IndexProps> {
   public render() {
-    const helper = (data: IndexData) => (
-      <Layout location={this.props.location} lang="en">
-        <h1>Recent Posts</h1>
+    const data = this.props.data;
+    const lang = this.props.pageContext.lang;
+
+    console.log(data);
+
+    return (
+      <Layout
+        location={this.props.location}
+        lang={lang}
+        tags={data.allMarkdownRemark.tags}
+      >
+        <h1>{translations[lang]["recent_posts"]}</h1>
         <RecentPosts
           posts={data.allMarkdownRemark.edges
             .slice(0, 3)
@@ -38,37 +51,34 @@ class IndexPage extends React.Component<IndexProps> {
         <Footer />
       </Layout>
     );
-    return (
-      <StaticQuery
-        query={graphql`
-          query indexQuery {
-            allMarkdownRemark(
-              filter: {
-                fields: { relativePath: { regex: "/blog/" } }
-                frontmatter: { lang: { eq: "en" } }
-              }
-              sort: { fields: [frontmatter___create], order: DESC }
-            ) {
-              totalCount
-              edges {
-                node {
-                  frontmatter {
-                    id
-                    title
-                    lang
-                    create(formatString: "DD MMMM YYYY")
-                    categories
-                  }
-                  excerpt
-                }
-              }
-            }
-          }
-        `}
-        render={helper}
-      />
-    );
   }
 }
 
 export default IndexPage;
+
+export const query = graphql`
+  query indexQuery($lang: String!) {
+    allMarkdownRemark(
+      filter: {
+        fields: { relativePath: { regex: "//blog/" } }
+        frontmatter: { lang: { eq: $lang } }
+      }
+      sort: { fields: [frontmatter___create], order: DESC }
+    ) {
+      totalCount
+      edges {
+        node {
+          frontmatter {
+            id
+            title
+            lang
+            create(formatString: "DD MMMM YYYY")
+            categories
+          }
+          excerpt
+        }
+      }
+      ...Tags
+    }
+  }
+`;

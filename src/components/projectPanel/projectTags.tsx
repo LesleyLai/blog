@@ -3,7 +3,8 @@ import styled from "styled-components";
 import Link from "gatsby-link";
 
 import { colors } from "../../utils/colorTable";
-import { tagInfos, TagID } from "../../utils/tagInfo";
+import { TagID } from "../../types/tags";
+import { tagInfos } from "../../utils/tagInfo";
 import { translations } from "../../utils/translations";
 
 // If tagId is null, it means "show all"

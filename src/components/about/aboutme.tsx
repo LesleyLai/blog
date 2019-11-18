@@ -1,18 +1,11 @@
 import { graphql, Link, StaticQuery } from "gatsby";
 import Img, { FluidObject } from "gatsby-image";
 import * as React from "react";
-import { TagID } from "../../utils/tagInfo";
 import { Language, translations } from "../../utils/translations";
 
-interface TagItem {
-  id: TagID;
-  totalCount: number;
-}
+import { TagItem } from "../../types/tags";
 
 interface AboutMeData {
-  allMarkdownRemark: {
-    group: TagItem[];
-  };
   portrait: {
     childImageSharp: {
       fluid: FluidObject;
@@ -22,9 +15,10 @@ interface AboutMeData {
 
 interface AboutMeProp extends React.HTMLProps<HTMLDivElement> {
   lang: Language;
+  tags: TagItem[];
 }
 
-const AboutMe = ({ lang }: AboutMeProp) => {
+const AboutMe = ({ lang, tags }: AboutMeProp) => {
   const helper = (data: AboutMeData) => {
     const currentYear = new Date().getFullYear();
 
@@ -88,7 +82,7 @@ const AboutMe = ({ lang }: AboutMeProp) => {
 
         <h3 className={css.subtitle}>Categories</h3>
         <ul className={css.tags}>
-          {data.allMarkdownRemark.group
+          {tags
             .slice()
             .sort(
               (tag1: TagItem, tag2: TagItem) =>
@@ -96,18 +90,15 @@ const AboutMe = ({ lang }: AboutMeProp) => {
             )
             .map((tag: TagItem) => (
               <li key={tag.id} className={css.tagitem}>
-                <Link to={"/archive/" + tag.id + "/en"}>
-                  {translations["en"][tag.id]}
+                <Link to={`/archive/${tag.id}/${lang}`}>
+                  {translations[lang][tag.id]}
                 </Link>
                 <span className={css.postcount}>{tag.totalCount}</span>
               </li>
             ))}
         </ul>
         <p className={css.archive}>
-          All{" "}
-          <Link to={"/archive/en"}>
-            {data.allMarkdownRemark.group.length} posts
-          </Link>
+          All <Link to={`/archive/${lang}`}>posts</Link>
         </p>
 
         <p className={css.info}>
@@ -128,22 +119,6 @@ const AboutMe = ({ lang }: AboutMeProp) => {
     <StaticQuery
       query={graphql`
         query AboutMeQuery {
-          site {
-            siteMetadata {
-              title
-            }
-          }
-          allMarkdownRemark(
-            filter: {
-              fields: { relativePath: { regex: "/blog/" } }
-              frontmatter: { lang: { eq: "en" } }
-            }
-          ) {
-            group(field: frontmatter___categories) {
-              id: fieldValue
-              totalCount
-            }
-          }
           portrait: file(relativePath: { eq: "imgs/portrait.jpg" }) {
             childImageSharp {
               fluid(maxWidth: 700) {
@@ -157,5 +132,14 @@ const AboutMe = ({ lang }: AboutMeProp) => {
     />
   );
 };
+
+export const query = graphql`
+  fragment Tags on MarkdownRemarkConnection {
+    tags: group(field: frontmatter___categories) {
+      id: fieldValue
+      totalCount
+    }
+  }
+`;
 
 export default AboutMe;

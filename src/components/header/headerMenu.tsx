@@ -44,7 +44,15 @@ interface LanguageLinkProp extends React.HTMLProps<HTMLDivElement> {
 }
 
 const LanguageLink = ({ fromLang, toLang, pathname }: LanguageLinkProp) => {
-  const to = pathname.replace(new RegExp(`/${fromLang}`), `/${toLang}`);
+  const to = (() => {
+    if (pathname === "/zh") {
+      return "/";
+    } else if (pathname === "/") {
+      return "/zh";
+    }
+
+    return pathname.replace(new RegExp(`/${fromLang}`), `/${toLang}`);
+  })();
   return (
     <Link
       to={to}

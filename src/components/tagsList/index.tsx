@@ -3,7 +3,8 @@ import * as React from "react";
 import styled from "styled-components";
 
 import { Language, translations } from "../../utils/translations";
-import { TagID, tagInfos } from "../../utils/tagInfo";
+import { TagID } from "../../types/tags";
+import { tagInfos } from "../../utils/tagInfo";
 
 interface TagsProps {
   lang: Language;
