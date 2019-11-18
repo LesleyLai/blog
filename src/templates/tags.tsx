@@ -6,7 +6,7 @@ import Layout from "../components/layout";
 import Posts from "../components/postsList";
 import Post from "../types/Post";
 import { TagID } from "../utils/tagInfo";
-import { Language, translations } from "../utils/translations";
+import { Language, languages, translations } from "../utils/translations";
 
 export interface ArchiveData {
   allMarkdownRemark: {
@@ -29,7 +29,11 @@ class TagsTemplate extends React.Component<ArchiveProps> {
     const title = translations[lang][tag];
 
     return (
-      <Layout location={this.props.location} lang={lang} otherLangs={[]}>
+      <Layout
+        location={this.props.location}
+        lang={lang}
+        otherLangs={languages.filter(l => l !== lang)}
+      >
         <Helmet>
           <title>{`Lesley Lai | ${title}`}</title>
         </Helmet>
