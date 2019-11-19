@@ -48,44 +48,55 @@ export const createPages: GatsbyNode["createPages"] = async ({
         });
       });
 
-      const tags: Set<TagID> = new Set();
-      for (const post of posts) {
-        const postTags = post.node.frontmatter.categories;
-        if (postTags) {
-          postTags.forEach((tag: any) => {
-            tags.add(tag);
-          });
-        }
-      }
-
-      for (const lang of languages) {
-        for (const tag of Array.from(tags)) {
-          const localizedPath = `/archive/${tag}/${lang}`;
-
-          createPage({
-            path: localizedPath,
-            component: tagsTemplate,
-            context: {
-              tag,
-              lang: lang
+      languages
+        .map(lang => {
+          const tags: Set<TagID> = new Set();
+          for (const post of posts) {
+            if (post.node.frontmatter.lang === lang) {
+              const postTags = post.node.frontmatter.categories;
+              if (postTags) {
+                postTags.forEach((tag: any) => {
+                  tags.add(tag);
+                });
+              }
             }
-          });
-        }
-      }
+          }
 
-      for (const tag of Array.from(tags)) {
-        createRedirect({
-          fromPath: `/archive/${tag}`,
-          redirectInBrowser: true,
-          toPath: `/archive/${tag}/en`
-        });
+          return { lang, tags };
+        })
+        .forEach(({ lang, tags }) => {
+          for (const tag of Array.from(tags)) {
+            const localizedPath = `/archive/${tag}/${lang}`;
 
-        createRedirect({
-          fromPath: `/archive/${tag}/`,
-          redirectInBrowser: true,
-          toPath: `/archive/${tag}/en`
+            const otherLangsRegex = `//archive/${tag}/(?!${lang})/`;
+
+            createPage({
+              path: localizedPath,
+              component: tagsTemplate,
+              context: {
+                tag,
+                lang: lang,
+                otherLangsRegex: otherLangsRegex
+              }
+            });
+          }
+
+          if (lang == "en") {
+            for (const tag of Array.from(tags)) {
+              createRedirect({
+                fromPath: `/archive/${tag}`,
+                redirectInBrowser: true,
+                toPath: `/archive/${tag}/en`
+              });
+
+              createRedirect({
+                fromPath: `/archive/${tag}/`,
+                redirectInBrowser: true,
+                toPath: `/archive/${tag}/en`
+              });
+            }
+          }
         });
-      }
 
       resolve();
     });

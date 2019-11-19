@@ -31,8 +31,6 @@ class IndexPage extends React.Component<IndexProps> {
     const data = this.props.data;
     const lang = this.props.pageContext.lang;
 
-    console.log(data);
-
     return (
       <Layout
         location={this.props.location}

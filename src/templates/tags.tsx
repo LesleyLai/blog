@@ -16,6 +16,15 @@ export interface ArchiveData {
   allPosts: {
     tags: TagItem[];
   };
+  otherLangs: {
+    edges: Array<{
+      node: {
+        context: {
+          lang: Language;
+        };
+      };
+    }>;
+  };
 }
 
 interface ArchiveProps {
@@ -27,15 +36,20 @@ interface ArchiveProps {
 class TagsTemplate extends React.Component<ArchiveProps> {
   public render() {
     const data = this.props.data;
+
     const tag = this.props.pageContext.tag;
     const lang = this.props.pageContext.lang;
     const title = translations[lang][tag];
+
+    const otherLangs = data.otherLangs.edges.map(
+      edge => edge.node.context.lang
+    );
 
     return (
       <Layout
         location={this.props.location}
         lang={lang}
-        otherLangs={languages.filter(l => l !== lang)}
+        otherLangs={otherLangs}
         tags={data.allPosts.tags}
       >
         <Helmet>
@@ -52,7 +66,7 @@ class TagsTemplate extends React.Component<ArchiveProps> {
 export default TagsTemplate;
 
 export const query = graphql`
-  query TagsQuery($tag: String!, $lang: String!) {
+  query TagsQuery($tag: String!, $lang: String!, $otherLangsRegex: String!) {
     posts: allMarkdownRemark(
       sort: { fields: [frontmatter___create], order: DESC }
       filter: {
@@ -71,6 +85,15 @@ export const query = graphql`
             categories
           }
           excerpt
+        }
+      }
+    }
+    otherLangs: allSitePage(filter: { path: { regex: $otherLangsRegex } }) {
+      edges {
+        node {
+          context {
+            lang
+          }
         }
       }
     }

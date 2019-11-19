@@ -58,7 +58,7 @@ const AboutMe = ({ lang, tags }: AboutMeProp) => {
           </p>
         </article>
 
-        <h3 className={css.subtitle}>Elsewhere</h3>
+        <h3 className={css.subtitle}>{translations[lang]["elsewhere"]}</h3>
         <ul>
           <li>
             Code at <a href="https://github.com/LesleyLai">Github</a>
@@ -71,16 +71,20 @@ const AboutMe = ({ lang, tags }: AboutMeProp) => {
             Shaders on{" "}
             <a href="https://www.shadertoy.com/user/lesleylai">Shadertoy</a>
           </li>
-          <li>
-            Tweets at <a href="https://twitter.com/LesleyLai6">Twitter</a>
-          </li>
-          <li>
-            Wikipedia user page at{" "}
-            <a href="https://en.wikipedia.org/wiki/User:LesleyLai">here</a>
-          </li>
+          {lang !== "zh" && (
+            <>
+              <li>
+                Tweets at <a href="https://twitter.com/LesleyLai6">Twitter</a>
+              </li>
+              <li>
+                Wikipedia user page at{" "}
+                <a href="https://en.wikipedia.org/wiki/User:LesleyLai">here</a>
+              </li>
+            </>
+          )}
         </ul>
 
-        <h3 className={css.subtitle}>Categories</h3>
+        <h3 className={css.subtitle}>{translations[lang]["tags"]}</h3>
         <ul className={css.tags}>
           {tags
             .slice()

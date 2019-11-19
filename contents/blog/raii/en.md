@@ -7,7 +7,7 @@ lastModify: '2016-10-26'
 categories:
 - cpp
 - code
-- rant
+- opinion
 ---
 
 Recently, I have encountered a legacy code base at work. There are several tremendous class written like this:
