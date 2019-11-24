@@ -1,5 +1,5 @@
 import { FluidObject } from "gatsby-image";
-import { graphql, StaticQuery } from "gatsby";
+import { graphql } from "gatsby";
 import * as React from "react";
 import Helmet from "react-helmet";
 
@@ -36,10 +36,7 @@ interface ImageMeta {
 
 export interface ProjectsData {
   projects: {
-    tags: Array<{
-      fieldValue: string;
-      totalCount: number;
-    }>;
+    tags: TagItem[];
     edges: Array<{
       node: ProjectMeta;
     }>;
@@ -55,8 +52,8 @@ export interface ProjectsData {
 
 interface ProjectsProps {
   location: { pathname: string };
-  pageContext?: { tag: TagID };
-  data?: ProjectsData;
+  pageContext: { tag?: TagID; lang: Language };
+  data: ProjectsData;
 }
 
 interface ImageMap {
@@ -66,146 +63,141 @@ interface ImageMap {
 class ProjectsPageTemplate extends React.Component<ProjectsProps> {
   render() {
     const props = this.props;
-    const tag = props.pageContext ? props.pageContext.tag : null;
+    const tag = props.pageContext.tag;
     const tagName = translations["en"][tag];
+    const lang = props.pageContext.lang;
 
-    const helper = (data: ProjectsData) => {
-      const projects = data.projects.edges
-        .map(edge => edge.node)
-        .filter(node => !tag || node.frontmatter.tags.includes(tag));
+    const data = props.data;
+    const projects = data.projects.edges
+      .map(edge => edge.node)
+      .filter(node => !tag || node.frontmatter.tags.includes(tag));
 
-      const allTags = data.projects.tags.map(tag => tag.fieldValue);
+    const allTags = data.projects.tags.map(tag => tag.id);
 
-      const postsTags = data.posts.tags;
-      const postsTotalCount = data.posts.totalCount;
+    const postsTags = data.posts.tags;
+    const postsTotalCount = data.posts.totalCount;
 
-      const images = data.allImages.nodes.reduce(function(
-        acc: ImageMap,
-        cur: ImageMeta
-      ) {
-        acc[cur.name] = cur.childImageSharp.fluid;
-        return acc;
-      },
-      {});
-
-      return (
-        <Layout
-          location={props.location}
-          postsTotalCount={postsTotalCount}
-          lang="en"
-          tags={postsTags}
-          otherLangs={[]}
-        >
-          <div>
-            <Helmet>
-              <title>{"Lesley Lai | Projects"}</title>
-            </Helmet>
-            <h1>Projects</h1>
-            <h3 className={css.subtitle}>
-              Check out my personal projects below.
-            </h3>
-
-            <Tags tags={allTags} showAll></Tags>
-
-            {tag ? (
-              <p className={css.filterHint}>
-                Show {projects.length} projects filtered by <em>{tagName}</em>.
-              </p>
-            ) : (
-              <p className={css.filterHint}>
-                Show all projects. Use the filter to list them by skill or
-                technology.
-              </p>
-            )}
-
-            {projects.map(project => {
-              return (
-                <ProjectPanel
-                  key={project.frontmatter.name}
-                  name={project.frontmatter.name}
-                  github={project.frontmatter.github}
-                  demo={project.frontmatter.demo}
-                  website={project.frontmatter.website}
-                  year={
-                    project.frontmatter.lastModify
-                      ? project.frontmatter.create +
-                        "-" +
-                        project.frontmatter.lastModify
-                      : project.frontmatter.create
-                  }
-                  tags={project.frontmatter.tags}
-                  image={
-                    project.frontmatter.image &&
-                    images[project.frontmatter.image]
-                  }
-                >
-                  <div dangerouslySetInnerHTML={{ __html: project.html }} />
-                </ProjectPanel>
-              );
-            })}
-          </div>
-        </Layout>
-      );
-    };
+    const images = data.allImages.nodes.reduce(function(
+      acc: ImageMap,
+      cur: ImageMeta
+    ) {
+      acc[cur.name] = cur.childImageSharp.fluid;
+      return acc;
+    },
+    {});
 
     return (
-      <StaticQuery
-        query={graphql`
-          query projectsQuery {
-            posts: allMarkdownRemark(
-              filter: {
-                fields: { relativePath: { regex: "//blog/" } }
-                frontmatter: { lang: { eq: "en" } }
-              }
-            ) {
-              totalCount
-              ...Tags
-            }
-            projects: allMarkdownRemark(
-              sort: { fields: [frontmatter___create], order: DESC }
-              filter: {
-                fields: { relativePath: { regex: "/projects/" } }
-                frontmatter: { lang: { eq: "en" } }
-              }
-            ) {
-              edges {
-                node {
-                  frontmatter {
-                    id
-                    lang
-                    tags: categories
-                    name
-                    image
-                    create(formatString: "YYYY")
-                    lastModify(formatString: "YYYY")
-                    github
-                    demo
-                    website
-                  }
-                  html
+      <Layout
+        location={props.location}
+        postsTotalCount={postsTotalCount}
+        lang={lang}
+        tags={postsTags}
+        otherLangs={[]}
+      >
+        <div>
+          <Helmet>
+            <title>{`Lesley Lai | {translations[lang]["projects"]}`}</title>
+          </Helmet>
+          <h1>{translations[lang]["projects"]}</h1>
+          <h3 className={css.subtitle}>
+            Check out my personal projects below.
+          </h3>
+
+          <Tags tags={allTags} showAll></Tags>
+
+          {tag ? (
+            <p className={css.filterHint}>
+              Show {projects.length} projects filtered by <em>{tagName}</em>.
+            </p>
+          ) : (
+            <p className={css.filterHint}>
+              Show all projects. Use the filter to list them by skill or
+              technology.
+            </p>
+          )}
+
+          {projects.map(project => {
+            return (
+              <ProjectPanel
+                key={project.frontmatter.name}
+                name={project.frontmatter.name}
+                github={project.frontmatter.github}
+                demo={project.frontmatter.demo}
+                website={project.frontmatter.website}
+                year={
+                  project.frontmatter.lastModify
+                    ? project.frontmatter.create +
+                      "-" +
+                      project.frontmatter.lastModify
+                    : project.frontmatter.create
                 }
-              }
-              tags: group(field: frontmatter___categories) {
-                fieldValue
-                totalCount
-              }
-            }
-            allImages: allFile(filter: {relativePath: {regex: "/projects/.*\\.(png|jpg|jpeg)/"}}) {
-              nodes {
-                childImageSharp {
-                  fluid(maxWidth: 600, maxHeight: 400) {
-                    ...GatsbyImageSharpFluid
-                  }
+                tags={project.frontmatter.tags}
+                image={
+                  project.frontmatter.image && images[project.frontmatter.image]
                 }
-                name
-              }
-            }
-          }
-        `}
-        render={helper}
-      />
+              >
+                <div dangerouslySetInnerHTML={{ __html: project.html }} />
+              </ProjectPanel>
+            );
+          })}
+        </div>
+      </Layout>
     );
   }
 }
 
 export default ProjectsPageTemplate;
+
+export const query = graphql`
+  fragment ProjectsInfo on MarkdownRemarkConnection {
+    edges {
+      node {
+        frontmatter {
+          id
+          lang
+          tags: categories
+          name
+          image
+          create(formatString: "YYYY")
+          lastModify(formatString: "YYYY")
+          github
+          demo
+          website
+        }
+        html
+      }
+    }
+    ...Tags
+  }
+
+  query projectsTagsQuery($lang: String!) {
+    posts: allMarkdownRemark(
+      filter: {
+        fields: { relativePath: { regex: "//blog/" } }
+        frontmatter: { lang: { eq: $lang } }
+      }
+    ) {
+      totalCount
+      ...Tags
+    }
+    projects: allMarkdownRemark(
+      sort: { fields: [frontmatter___create], order: DESC }
+      filter: {
+        fields: { relativePath: { regex: "/projects/" } }
+        frontmatter: { lang: { eq: "en" } }
+      }
+    ) {
+      ...ProjectsInfo
+    }
+    allImages: allFile(filter: {relativePath: {regex: "/projects/.*\\.(png|jpg|jpeg)/"}}) {
+      nodes {
+        childImageSharp {
+          fluid(maxWidth: 600, maxHeight: 400) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+        name
+      }
+    }
+  }
+`;

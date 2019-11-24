@@ -1,15 +1,59 @@
 import * as React from "react";
+import { graphql } from "gatsby";
+import { Language } from "../utils/translations";
+import { TagID } from "../types/tags";
 
-import ProjectsPageTemplate from "../templates/projects";
+import ProjectsPageTemplate, { ProjectsData } from "../templates/projects";
 
 interface ProjectsPageProps {
   location: {
     pathname: string;
   };
+  pageContext: { tag?: TagID; lang: Language };
+  data: ProjectsData;
 }
 
 const ProjectsPage = (props: ProjectsPageProps) => {
-  return <ProjectsPageTemplate location={props.location} />;
+  return (
+    <ProjectsPageTemplate
+      data={props.data}
+      location={props.location}
+      pageContext={props.pageContext}
+    />
+  );
 };
 
 export default ProjectsPage;
+
+export const query = graphql`
+  query projectsQuery($lang: String!) {
+    posts: allMarkdownRemark(
+      filter: {
+        fields: { relativePath: { regex: "//blog/" } }
+        frontmatter: { lang: { eq: $lang } }
+      }
+    ) {
+      totalCount
+      ...Tags
+    }
+    projects: allMarkdownRemark(
+      sort: { fields: [frontmatter___create], order: DESC }
+      filter: {
+        fields: { relativePath: { regex: "/projects/" } }
+        frontmatter: { lang: { eq: $lang } }
+      }
+    ) {
+      ...ProjectsInfo
+    }
+    allImages: allFile(filter: {relativePath: {regex: "/projects/.*\\.(png|jpg|jpeg)/"}}) {
+      nodes {
+        childImageSharp {
+          fluid(maxWidth: 600, maxHeight: 400) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+        name
+      }
+    }
+  }
+`;

@@ -141,7 +141,8 @@ export const createPages: GatsbyNode["createPages"] = async ({
           path: "/projects/" + tag + "/en",
           component: projectsTemplate,
           context: {
-            tag
+            tag,
+            lang: "en"
           }
         });
       }
