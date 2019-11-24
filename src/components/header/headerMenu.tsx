@@ -4,7 +4,7 @@ import * as React from "react";
 import { FaBars } from "react-icons/lib/fa";
 
 import { MenuModel, menuModel } from "../menu";
-import { Language, translations } from "../../utils/translations";
+import { Language, Translations, translations } from "../../utils/translations";
 
 const css = require("./header.module.css");
 
@@ -15,8 +15,7 @@ interface HeaderMenuProp extends React.HTMLProps<HTMLDivElement> {
 }
 
 interface MenuItemProp extends React.HTMLProps<HTMLDivElement> {
-  pathname: string;
-  itemName: string;
+  itemName: keyof Translations;
   lang: Language;
 }
 
@@ -32,7 +31,7 @@ const MenuItem = ({ itemName, lang }: MenuItemProp) => {
       className={css.menuItem}
       partiallyActive={!item.exact}
     >
-      {langRecord.title}
+      {translations[lang][itemName]}
     </Link>
   );
 };
@@ -85,13 +84,8 @@ export default class HeaderMenu extends React.PureComponent<HeaderMenuProp> {
           })}
         >
           <div className={css.menuItems}>
-            {Object.keys(menuModel).map((key: string) => (
-              <MenuItem
-                key={key}
-                pathname={pathname}
-                itemName={key}
-                lang={lang}
-              />
+            {Object.keys(menuModel).map((key: keyof Translations) => (
+              <MenuItem key={key} itemName={key} lang={lang} />
             ))}
           </div>
 

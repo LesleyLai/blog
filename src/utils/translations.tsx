@@ -4,6 +4,7 @@
 import { TagID } from "../types/tags";
 
 const en = {
+  archive: "Archive",
   archive_title: "Blog archive",
   books: "Books",
   c: "C",
@@ -20,6 +21,7 @@ const en = {
   game: "Game",
   graphics: "Computer Graphics",
   graphql: "GraphQL",
+  home: "Home",
   java: "Java",
   lang: "English",
   lastModify: "Last Modify",
@@ -28,6 +30,7 @@ const en = {
   opengl: "OpenGL",
   opinion: "Opinion",
   pl: "Programming Languages",
+  projects: "Projects",
   python: "Python",
   react: "React",
   recent_posts: "Recent Posts",
@@ -46,6 +49,7 @@ const en = {
 export type Translations = typeof en;
 
 const zh: Translations = {
+  archive: "博文目录",
   archive_title: "博文目录",
   books: "书籍",
   c: en.c,
@@ -62,6 +66,7 @@ const zh: Translations = {
   game: "游戏",
   graphics: "图形学",
   graphql: en.graphql,
+  home: "主页",
   java: en.java,
   lang: "中文",
   lastModify: "最近修改时间",
@@ -70,6 +75,7 @@ const zh: Translations = {
   opengl: en.opengl,
   opinion: "观点",
   pl: "编程语言",
+  projects: "个儿项目",
   python: en.python,
   react: en.react,
   recent_posts: "最新内容",

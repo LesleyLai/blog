@@ -44,7 +44,8 @@ class IndexPage extends React.Component<IndexProps> {
             .map(edge => edge.node)}
         />
         <p style={{ fontSize: 20 }}>
-          Older posts are available in the <Link to="/archive/">archive</Link>.
+          Older posts are available in the{" "}
+          <Link to={`/archive/${lang}`}>archive</Link>.
         </p>
         <Footer />
       </Layout>

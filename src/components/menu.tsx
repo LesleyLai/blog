@@ -1,5 +1,4 @@
 interface MenuItemLang {
-  title: string;
   path: string;
 }
 
@@ -17,29 +16,29 @@ export interface MenuModel {
 export const menuModel: { [key: string]: MenuModel } = {
   home: {
     langs: {
-      en: { title: "Home", path: "/" },
-      zh: { title: "主页", path: "/zh" }
+      en: { path: "/" },
+      zh: { path: "/zh" }
     },
     exact: true
   },
   archive: {
     langs: {
-      en: { title: "Archive", path: "/archive/en" },
-      zh: { title: "博文目录", path: "/archive/zh" }
+      en: { path: "/archive/en" },
+      zh: { path: "/archive/zh" }
     },
     exact: false
   },
   projects: {
     langs: {
-      en: { title: "Projects", path: "/projects/en" },
-      zh: { title: "个儿项目", path: "/projects/zh" }
+      en: { path: "/projects/en" },
+      zh: { path: "/projects/zh" }
     },
     exact: false
   },
   talks: {
     langs: {
-      en: { title: "Talks", path: "/talks/en" },
-      zh: { title: "演讲", path: "/talks/zh" }
+      en: { path: "/talks/en" },
+      zh: { path: "/talks/zh" }
     },
     exact: true
   }
