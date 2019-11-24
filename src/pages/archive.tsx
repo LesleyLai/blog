@@ -32,7 +32,12 @@ const Archive = (props: ArchiveProps) => {
   const title = translations[lang]["archive_title"];
 
   return (
-    <Layout location={props.location} lang={lang} tags={posts.tags}>
+    <Layout
+      location={props.location}
+      lang={lang}
+      tags={posts.tags}
+      postsTotalCount={posts.totalCount}
+    >
       <div>
         <Helmet>
           <title>{"Lesley Lai | " + title}</title>

@@ -1,3 +1,7 @@
+.date {
+    margin-right: 0.5rem;
+}
+
 .year {
     padding-bottom: 5px;
     border-bottom: solid 1px #eee;
@@ -15,10 +19,4 @@
 
 .archiveTags {
     display: inline-block;
-    margin-left: 0.5rem;
-}
-
-.archiveTags > li {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
 }

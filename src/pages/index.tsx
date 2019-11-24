@@ -36,6 +36,7 @@ class IndexPage extends React.Component<IndexProps> {
         location={this.props.location}
         lang={lang}
         tags={data.allMarkdownRemark.tags}
+        postsTotalCount={data.allMarkdownRemark.totalCount}
       >
         <h1>{translations[lang]["recent_posts"]}</h1>
         <RecentPosts

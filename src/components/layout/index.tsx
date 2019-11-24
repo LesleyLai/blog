@@ -18,6 +18,7 @@ interface DefaultLayoutProps extends React.HTMLProps<HTMLDivElement> {
   otherLangs?: Language[]; // Indicates if other language versions of the same page exist. If not provided, assume all other language pages exist
   tags: TagItem[];
   children: React.ReactNode;
+  postsTotalCount: number;
 }
 
 // Use `module.exports` to be compliante with `webpack-require` import method
@@ -47,7 +48,11 @@ export default class Layout extends React.PureComponent<DefaultLayoutProps> {
           <div className={style.grid}>
             <main className={style.main}>{children}</main>
             <nav className={style.about}>
-              <AboutMe lang={lang} tags={tags} />
+              <AboutMe
+                lang={lang}
+                tags={tags}
+                postsTotalCount={this.props.postsTotalCount}
+              />
             </nav>
           </div>
         </div>

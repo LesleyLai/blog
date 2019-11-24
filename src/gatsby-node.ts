@@ -138,7 +138,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
 
       for (const tag of Array.from(tags)) {
         createPage({
-          path: "/projects/" + tag,
+          path: "/projects/" + tag + "/en",
           component: projectsTemplate,
           context: {
             tag

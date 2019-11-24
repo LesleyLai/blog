@@ -1,15 +1,62 @@
 /*eslint sort-keys: "warn"*/
 /*eslint "@typescript-eslint/camelcase": "off"*/
 
+import { Link } from "gatsby";
 import { TagID } from "../types/tags";
+import * as React from "react";
 
 const en = {
+  about_content: (
+    <>
+      <article>
+        <p>
+          Hi, I am <strong>Lesley Lai</strong>, a Software Engineering Intern at{" "}
+          <a href="https://www.sketchup.com/">Trimble SketchUp</a> and a
+          Computer Science and Applied Mathematics undergraduate student at the{" "}
+          <a href="http://www.colorado.edu/">
+            {" "}
+            University of Colorado at Boulder
+          </a>
+          .
+        </p>
+        <p>
+          My primary interests include{" "}
+          <a href="https://en.wikipedia.org/wiki/Computer_graphics">
+            Computer Graphics
+          </a>
+          {" and "}
+          <a href="https://en.wikipedia.org/wiki/Programming_language_theory">
+            Programming Language theories
+          </a>
+          . I love to code in various programming languages, though I am
+          particularly fond of <a href="https://isocpp.org/">C++</a>.
+        </p>
+      </article>
+    </>
+  ),
+  all_n_posts: (n: number) => (
+    <>
+      All <Link to={`/archive/en`}>{n} posts</Link>
+    </>
+  ),
   archive: "Archive",
   archive_title: "Blog archive",
   books: "Books",
+  build_using_gatsby: (
+    <>
+      This blog is built using <a href="https://www.gatsbyjs.org/">Gatsby</a>.
+      The source is on the{" "}
+      <a href="https://github.com/LesleyLai/blog">Github repo</a>.
+    </>
+  ),
   c: "C",
   cmake: "CMake",
   code: "Coding",
+  code_at_github: (
+    <>
+      Code at <a href="https://github.com/LesleyLai">Github</a>
+    </>
+  ),
   cpp: "C++",
   create: "Create",
   csharp: "C#",
@@ -26,7 +73,13 @@ const en = {
   lang: "English",
   lastModify: "Last Modify",
   library: "Library",
+  linkedin: (
+    <>
+      Profile on <a href="https://www.linkedin.com/in/lesley-lai/">LinkedIn</a>
+    </>
+  ),
   math: "Mathematics",
+  myname: "Lesley Lai",
   opengl: "OpenGL",
   opinion: "Opinion",
   pl: "Programming Languages",
@@ -49,12 +102,41 @@ const en = {
 export type Translations = typeof en;
 
 const zh: Translations = {
+  about_content: (
+    <>
+      <article>
+        <p>
+          大家好，我叫赖思理，是
+          <a href="https://www.sketchup.com/zh-CN">SketchUp</a>的实习生以及
+          <a href="http://www.colorado.edu/">科罗拉多大学</a>
+          计算机科学以及应用数学的本科生。
+        </p>
+      </article>
+    </>
+  ),
+  all_n_posts: (n: number) => (
+    <>
+      所有<Link to={`/archive/en`}>{n}篇博文</Link>
+    </>
+  ),
   archive: "博文目录",
   archive_title: "博文目录",
   books: "书籍",
+  build_using_gatsby: (
+    <>
+      这个博客使用<a href="https://www.gatsbyjs.org/">Gatsby</a>
+      来搭建，它的源码在<a href="https://github.com/LesleyLai/blog">Github</a>
+      上。
+    </>
+  ),
   c: en.c,
   cmake: en.cmake,
   code: "编程",
+  code_at_github: (
+    <>
+      <a href="https://github.com/LesleyLai">Github</a>
+    </>
+  ),
   cpp: en.cpp,
   create: "创建时间",
   csharp: en.csharp,
@@ -71,7 +153,13 @@ const zh: Translations = {
   lang: "中文",
   lastModify: "最近修改时间",
   library: "软件库",
+  linkedin: (
+    <>
+      <a href="https://www.linkedin.com/in/lesley-lai/?locale=zh_CN">领英</a>
+    </>
+  ),
   math: "数学",
+  myname: "赖思理",
   opengl: en.opengl,
   opinion: "观点",
   pl: "编程语言",

@@ -9,18 +9,23 @@ interface NotFoundProps {
   data: {
     posts: {
       tags: TagItem[];
+      totalCount: number;
     };
+  };
+  location: {
+    pathname: string;
   };
 }
 
-const NotFoundPage = ({ data }: NotFoundProps) => {
+const NotFoundPage = ({ data, location }: NotFoundProps) => {
   const tags = data.posts.tags;
   return (
     <Layout
-      location={{ pathname: "/404.html" }}
+      location={location}
       tags={tags}
       lang="en"
       otherLangs={[]}
+      postsTotalCount={data.posts.totalCount}
     >
       <div>
         <Helmet>
@@ -44,6 +49,7 @@ export const query = graphql`
       }
       sort: { fields: [frontmatter___create], order: DESC }
     ) {
+      totalCount
       ...Tags
     }
   }

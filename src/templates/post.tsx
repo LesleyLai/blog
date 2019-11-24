@@ -43,6 +43,7 @@ interface PostProps {
       }>;
     };
     allPosts: {
+      totalCount: number;
       tags: TagItem[];
     };
   };
@@ -61,6 +62,7 @@ class PostTemplate extends React.Component<PostProps> {
     const title = translations[lang]["title"] + " | " + post.frontmatter.title;
 
     const tags = this.props.data.allPosts.tags;
+    const postsTotalCount = this.props.data.allPosts.totalCount;
 
     const otherLangs = this.props.data.otherLangs.edges.map(
       edge => edge.node.frontmatter.lang
@@ -72,6 +74,7 @@ class PostTemplate extends React.Component<PostProps> {
         lang={lang}
         otherLangs={otherLangs}
         tags={tags}
+        postsTotalCount={postsTotalCount}
       >
         <div className={css.post}>
           <Helmet>
@@ -103,6 +106,7 @@ class PostTemplate extends React.Component<PostProps> {
               title={post.frontmatter.title}
               url={url}
               onNewComment={this.handleNewComment}
+              language={lang}
             />
           </div>
         </div>
@@ -150,6 +154,7 @@ export const query = graphql`
         frontmatter: { lang: { eq: $lang } }
       }
     ) {
+      totalCount
       ...Tags
     }
   }

@@ -16,9 +16,10 @@ interface AboutMeData {
 interface AboutMeProp extends React.HTMLProps<HTMLDivElement> {
   lang: Language;
   tags: TagItem[];
+  postsTotalCount: number;
 }
 
-const AboutMe = ({ lang, tags }: AboutMeProp) => {
+const AboutMe = ({ lang, tags, postsTotalCount }: AboutMeProp) => {
   const helper = (data: AboutMeData) => {
     const currentYear = new Date().getFullYear();
 
@@ -32,47 +33,18 @@ const AboutMe = ({ lang, tags }: AboutMeProp) => {
           fadeIn={false}
         />
 
-        <article>
-          <p>
-            Hi, I am <strong>Lesley Lai</strong>, a Software Engineering Intern
-            at <a href="https://www.sketchup.com/">Trimble SketchUp</a> and a
-            Computer Science and Applied Mathematics undergraduate student at
-            the{" "}
-            <a href="http://www.colorado.edu/">
-              {" "}
-              University of Colorado at Boulder
-            </a>
-            .
-          </p>
-          <p>
-            My primary interests include{" "}
-            <a href="https://en.wikipedia.org/wiki/Computer_graphics">
-              Computer Graphics
-            </a>
-            {" and "}
-            <a href="https://en.wikipedia.org/wiki/Programming_language_theory">
-              Programming Language theories
-            </a>
-            . I love to code in various programming languages, though I am
-            particularly fond of <a href="https://isocpp.org/">C++</a>.
-          </p>
-        </article>
+        <article>{translations[lang]["about_content"]}</article>
 
         <h3 className={css.subtitle}>{translations[lang]["elsewhere"]}</h3>
         <ul>
-          <li>
-            Code at <a href="https://github.com/LesleyLai">Github</a>
-          </li>
-          <li>
-            Profile on{" "}
-            <a href="https://www.linkedin.com/in/lesley-lai/">LinkedIn</a>
-          </li>
-          <li>
-            Shaders on{" "}
-            <a href="https://www.shadertoy.com/user/lesleylai">Shadertoy</a>
-          </li>
+          <li>{translations[lang]["code_at_github"]}</li>
+          <li>{translations[lang]["linkedin"]}</li>
           {lang !== "zh" && (
             <>
+              <li>
+                Shaders on{" "}
+                <a href="https://www.shadertoy.com/user/lesleylai">Shadertoy</a>
+              </li>
               <li>
                 Tweets at <a href="https://twitter.com/LesleyLai6">Twitter</a>
               </li>
@@ -102,18 +74,14 @@ const AboutMe = ({ lang, tags }: AboutMeProp) => {
             ))}
         </ul>
         <p className={css.archive}>
-          All <Link to={`/archive/${lang}`}>posts</Link>
+          {translations[lang]["all_n_posts"](postsTotalCount)}
         </p>
 
-        <p className={css.info}>
-          This blog is built by <a href="https://www.gatsbyjs.org/">Gatsby</a>.
-          The source repo for it is{" "}
-          <a href="https://github.com/LesleyLai/blog">here</a>.
-        </p>
+        <p className={css.info}>{translations[lang]["build_using_gatsby"]}</p>
 
         <p className={css.copyright}>
           © 2015-
-          {currentYear} Lesley Lai
+          {currentYear} {translations[lang]["myname"]}
         </p>
       </nav>
     );

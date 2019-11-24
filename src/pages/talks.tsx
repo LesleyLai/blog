@@ -21,7 +21,7 @@ const Talk = (props: TalkProps) => {
   const H2 = styled.h2`
     display: inline;
     font-size: 20px;
-    margin: 5px 0 5px 0;
+    margin: 5px 0 5px 0
     font-weight: 500;
   `;
 
@@ -45,6 +45,7 @@ interface TalksProps {
   data: {
     posts: {
       tags: TagItem[];
+      totalCount: number;
     };
   };
   location: {
@@ -67,7 +68,12 @@ const TalksPage = ({ data, location, pageContext }: TalksProps) => {
   const talksLocale = translations[lang]["talks"];
 
   return (
-    <Layout location={location} lang={lang} tags={data.posts.tags}>
+    <Layout
+      location={location}
+      lang={lang}
+      tags={data.posts.tags}
+      postsTotalCount={data.posts.totalCount}
+    >
       <>
         <Helmet>
           <title>{`Lesley Lai | ${talksLocale}`}</title>
@@ -122,6 +128,7 @@ export const query = graphql`
         frontmatter: { lang: { eq: $lang } }
       }
     ) {
+      totalCount
       ...Tags
     }
   }

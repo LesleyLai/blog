@@ -33,7 +33,7 @@ const ArchiveEntry = (props: ArchiveEntryProps) => {
       <Link to={"/" + id + "/" + lang + "/"} className={css.entryTitle}>
         {title}
       </Link>
-      <span>
+      <span className={css.date}>
         {" "}
         — {splitDate(create)[0]} {splitDate(create)[1]}{" "}
       </span>

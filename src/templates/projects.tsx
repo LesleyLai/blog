@@ -6,7 +6,7 @@ import Helmet from "react-helmet";
 import Layout from "../components/layout";
 import ProjectPanel from "../components/projectPanel";
 import Tags from "../components/projectPanel/projectTags";
-import { TagID } from "../types/tags";
+import { TagID, TagItem } from "../types/tags";
 import { Language, translations } from "../utils/translations";
 
 const css = require("./projects.module.css");
@@ -35,7 +35,7 @@ interface ImageMeta {
 }
 
 export interface ProjectsData {
-  allMarkdownRemark: {
+  projects: {
     tags: Array<{
       fieldValue: string;
       totalCount: number;
@@ -43,6 +43,10 @@ export interface ProjectsData {
     edges: Array<{
       node: ProjectMeta;
     }>;
+  };
+  posts: {
+    totalCount: number;
+    tags: TagItem[];
   };
   allImages: {
     nodes: ImageMeta[];
@@ -66,11 +70,14 @@ class ProjectsPageTemplate extends React.Component<ProjectsProps> {
     const tagName = translations["en"][tag];
 
     const helper = (data: ProjectsData) => {
-      const projects = data.allMarkdownRemark.edges
+      const projects = data.projects.edges
         .map(edge => edge.node)
         .filter(node => !tag || node.frontmatter.tags.includes(tag));
 
-      const allTags = data.allMarkdownRemark.tags.map(tag => tag.fieldValue);
+      const allTags = data.projects.tags.map(tag => tag.fieldValue);
+
+      const postsTags = data.posts.tags;
+      const postsTotalCount = data.posts.totalCount;
 
       const images = data.allImages.nodes.reduce(function(
         acc: ImageMap,
@@ -82,7 +89,13 @@ class ProjectsPageTemplate extends React.Component<ProjectsProps> {
       {});
 
       return (
-        <Layout location={props.location} lang="en" tags={[]} otherLangs={[]}>
+        <Layout
+          location={props.location}
+          postsTotalCount={postsTotalCount}
+          lang="en"
+          tags={postsTags}
+          otherLangs={[]}
+        >
           <div>
             <Helmet>
               <title>{"Lesley Lai | Projects"}</title>
@@ -139,7 +152,16 @@ class ProjectsPageTemplate extends React.Component<ProjectsProps> {
       <StaticQuery
         query={graphql`
           query projectsQuery {
-            allMarkdownRemark(
+            posts: allMarkdownRemark(
+              filter: {
+                fields: { relativePath: { regex: "//blog/" } }
+                frontmatter: { lang: { eq: "en" } }
+              }
+            ) {
+              totalCount
+              ...Tags
+            }
+            projects: allMarkdownRemark(
               sort: { fields: [frontmatter___create], order: DESC }
               filter: {
                 fields: { relativePath: { regex: "/projects/" } }

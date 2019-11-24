@@ -6,7 +6,7 @@ import Layout from "../components/layout";
 import Posts from "../components/postsList";
 import Post from "../types/Post";
 import { TagID, TagItem } from "../types/tags";
-import { Language, languages, translations } from "../utils/translations";
+import { Language, translations } from "../utils/translations";
 
 export interface ArchiveData {
   posts: {
@@ -14,6 +14,7 @@ export interface ArchiveData {
     edges: Array<{ node: Post }>;
   };
   allPosts: {
+    totalCount: number;
     tags: TagItem[];
   };
   otherLangs: {
@@ -51,6 +52,7 @@ class TagsTemplate extends React.Component<ArchiveProps> {
         lang={lang}
         otherLangs={otherLangs}
         tags={data.allPosts.tags}
+        postsTotalCount={data.allPosts.totalCount}
       >
         <Helmet>
           <title>{`Lesley Lai | ${title}`}</title>
@@ -103,6 +105,7 @@ export const query = graphql`
         frontmatter: { lang: { eq: $lang } }
       }
     ) {
+      totalCount
       ...Tags
     }
   }

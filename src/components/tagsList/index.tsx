@@ -15,7 +15,6 @@ interface TagsProps {
 
 const Li = styled.li`
   display: inline-block;
-  line-height: 1;
   margin: 0.2em 0.5em 0.2em 0;
 `;
 
