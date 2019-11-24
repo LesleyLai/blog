@@ -41,7 +41,7 @@ class IndexPage extends React.Component<IndexProps> {
         <h1>{translations[lang]["recent_posts"]}</h1>
         <RecentPosts
           posts={data.allMarkdownRemark.edges
-            .slice(0, 3)
+            .slice(0, 4)
             .map(edge => edge.node)}
         />
         <p style={{ fontSize: 20 }}>

@@ -48,10 +48,6 @@ const AboutMe = ({ lang, tags, postsTotalCount }: AboutMeProp) => {
               <li>
                 Tweets at <a href="https://twitter.com/LesleyLai6">Twitter</a>
               </li>
-              <li>
-                Wikipedia user page at{" "}
-                <a href="https://en.wikipedia.org/wiki/User:LesleyLai">here</a>
-              </li>
             </>
           )}
         </ul>

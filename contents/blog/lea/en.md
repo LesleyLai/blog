@@ -21,7 +21,7 @@ For example, if you have an array `points` of `struct Point`:
 ```c
 struct Point
 {
-    int x;g
+    int x;
     int y;
     int z;
 };
