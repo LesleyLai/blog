@@ -96,7 +96,11 @@ class ProjectsPageTemplate extends React.Component<ProjectsProps> {
       >
         <div>
           <Helmet>
-            <title>{`Lesley Lai | {translations[lang]["projects"]}`}</title>
+            <title>{`${translations[lang]["projects"]} | ${translations[lang]["title"]}`}</title>
+            <meta
+              name="Description"
+              content="Personal projects of Lesley Lai"
+            />
           </Helmet>
           <h1>{translations[lang]["projects"]}</h1>
           <h3 className={css.subtitle}>

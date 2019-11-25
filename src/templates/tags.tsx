@@ -40,7 +40,7 @@ class TagsTemplate extends React.Component<ArchiveProps> {
 
     const tag = this.props.pageContext.tag;
     const lang = this.props.pageContext.lang;
-    const title = translations[lang][tag];
+    const title = translations[lang]["stuff_I_wrote_about"](tag);
 
     const otherLangs = data.otherLangs.edges.map(
       edge => edge.node.context.lang
@@ -55,10 +55,11 @@ class TagsTemplate extends React.Component<ArchiveProps> {
         postsTotalCount={data.allPosts.totalCount}
       >
         <Helmet>
-          <title>{`Lesley Lai | ${title}`}</title>
+          <title>{`${title} | ${translations[lang]["title"]}`}</title>
+          <meta name="Description" content={title} />
         </Helmet>
         <h1>{title}</h1>
-        {data.posts.totalCount} Posts
+        {translations[lang]["n_posts"](data.posts.totalCount)}
         <Posts posts={data.posts.edges} excludeTag={tag} />
       </Layout>
     );

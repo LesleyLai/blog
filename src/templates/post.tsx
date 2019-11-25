@@ -59,7 +59,6 @@ class PostTemplate extends React.Component<PostProps> {
     const lang = post.frontmatter.lang;
     const path = "/" + post.frontmatter.id + "/" + lang;
     const url = "http://lesleylai.info" + path;
-    const title = translations[lang]["title"] + " | " + post.frontmatter.title;
 
     const tags = this.props.data.allPosts.tags;
     const postsTotalCount = this.props.data.allPosts.totalCount;
@@ -78,7 +77,8 @@ class PostTemplate extends React.Component<PostProps> {
       >
         <div className={css.post}>
           <Helmet>
-            <title>{title}</title>
+            <title>{`${post.frontmatter.title} | ${translations[lang]["title"]}`}</title>
+            <meta name="Description" content={post.frontmatter.title} />
           </Helmet>
           <h1 className={css.title}>{post.frontmatter.title}</h1>
           <div className={css.info}>

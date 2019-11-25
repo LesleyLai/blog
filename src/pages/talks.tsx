@@ -76,7 +76,7 @@ const TalksPage = ({ data, location, pageContext }: TalksProps) => {
     >
       <>
         <Helmet>
-          <title>{`Lesley Lai | ${talksLocale}`}</title>
+          <title>{`${talksLocale} | ${translations[lang]["title"]}`}</title>
         </Helmet>
         <h1>{talksLocale}</h1>
         <P>Here are the talks that I gave in various events.</P>

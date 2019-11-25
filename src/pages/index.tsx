@@ -1,6 +1,7 @@
 import { graphql } from "gatsby";
 import Link from "gatsby-link";
 import * as React from "react";
+import Helmet from "react-helmet";
 
 import { TagItem } from "../types/tags";
 import Footer from "../components/footer";
@@ -40,6 +41,10 @@ class IndexPage extends React.Component<IndexProps> {
         tags={data.allPosts.tags}
         postsTotalCount={data.allPosts.totalCount}
       >
+        <Helmet>
+          <title>{`${translations[lang]["title"]}`}</title>
+          <meta name="Description" content="Personal website of Lesley Lai" />
+        </Helmet>
         <h1>{translations[lang]["recent_posts"]}</h1>
         <RecentPosts posts={data.posts.edges.map(edge => edge.node)} />
         <p style={{ fontSize: 20 }}>

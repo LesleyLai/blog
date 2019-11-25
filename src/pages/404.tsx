@@ -29,7 +29,8 @@ const NotFoundPage = ({ data, location }: NotFoundProps) => {
     >
       <div>
         <Helmet>
-          <title>{"Lesley Lai | 404 NOT FOUND"}</title>
+          <title>{"404 NOT FOUND | Lesley Lai"}</title>
+          <meta name="Description" content="404 NOT FOUND" />
         </Helmet>
         <h1>404 NOT FOUND</h1>
         <p>You just hit a route that doesn&#39;t exist... the sadness.</p>

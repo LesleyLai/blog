@@ -40,10 +40,11 @@ const Archive = (props: ArchiveProps) => {
     >
       <div>
         <Helmet>
-          <title>{"Lesley Lai | " + title}</title>
+          <title>{`${title} | ${translations[lang]["title"]}`}</title>
+          <meta name="Description" content="All blog posts of Lesley Lai" />
         </Helmet>
         <h1>{title}</h1>
-        {posts.totalCount} Posts
+        {translations[lang]["n_posts"](posts.totalCount)}
         <Posts posts={posts.edges} />
         <Footer />
       </div>
