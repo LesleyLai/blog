@@ -9,11 +9,13 @@ import RecentPosts, { PostMeta } from "../components/recentPosts";
 import { Language, translations } from "../utils/translations";
 
 interface IndexData {
-  allMarkdownRemark: {
-    totalCount: number;
+  posts: {
     edges: Array<{
       node: PostMeta;
     }>;
+  };
+  allPosts: {
+    totalCount: number;
     tags: TagItem[];
   };
 }
@@ -35,15 +37,11 @@ class IndexPage extends React.Component<IndexProps> {
       <Layout
         location={this.props.location}
         lang={lang}
-        tags={data.allMarkdownRemark.tags}
-        postsTotalCount={data.allMarkdownRemark.totalCount}
+        tags={data.allPosts.tags}
+        postsTotalCount={data.allPosts.totalCount}
       >
         <h1>{translations[lang]["recent_posts"]}</h1>
-        <RecentPosts
-          posts={data.allMarkdownRemark.edges
-            .slice(0, 4)
-            .map(edge => edge.node)}
-        />
+        <RecentPosts posts={data.posts.edges.map(edge => edge.node)} />
         <p style={{ fontSize: 20 }}>
           Older posts are available in the{" "}
           <Link to={`/archive/${lang}`}>archive</Link>.
@@ -58,12 +56,13 @@ export default IndexPage;
 
 export const query = graphql`
   query indexQuery($lang: String!) {
-    allMarkdownRemark(
+    posts: allMarkdownRemark(
       filter: {
         fields: { relativePath: { regex: "//blog/" } }
         frontmatter: { lang: { eq: $lang } }
       }
       sort: { fields: [frontmatter___create], order: DESC }
+      limit: 4
     ) {
       totalCount
       edges {
@@ -78,6 +77,14 @@ export const query = graphql`
           excerpt
         }
       }
+    }
+    allPosts: allMarkdownRemark(
+      filter: {
+        fields: { relativePath: { regex: "//blog/" } }
+        frontmatter: { lang: { eq: $lang } }
+      }
+      sort: { fields: [frontmatter___create], order: DESC }
+    ) {
       ...Tags
     }
   }
