@@ -6,10 +6,11 @@ image: blog
 create: '2016-05-06'
 lastModify: '2019-11-12'
 categories:
+- i18n
 - typescript
 - react
 - web
 - graphql
 ---
 
-This website is a static site that initially built with [Jekyll](https://jekyllrb.com/). In 2017, it migrated to the current stack of [Typescript](https://www.typescriptlang.org/), [React](https://reactjs.org/), and [GatsbyJs](https://www.gatsbyjs.org/). It initially only served as a blog, and I add more sections to it over time.
+This website is a static site that initially built with [Jekyll](https://jekyllrb.com/). In 2017, I migrated it to the current stack of [Typescript](https://www.typescriptlang.org/), [React](https://reactjs.org/), and [GatsbyJs](https://www.gatsbyjs.org/). It supports both English and Chinese language.

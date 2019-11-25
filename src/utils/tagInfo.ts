@@ -20,6 +20,7 @@ export const tagInfos = {
   game: { color: colors.orange },
   graphics: { color: colors.purple },
   graphql: { color: colors.pink },
+  i18n: { color: colors.black },
   java: { color: colors.red },
   library: { color: colors.grey },
   math: { color: colors.pink },
