@@ -53,7 +53,7 @@ const TagsList = (props: TagsProps) => {
 
           return (
             <Li key={tag}>
-              <Link to={`/archive/${tag}/${lang}`}>
+              <Link to={`/${lang}/archive/${tag}`}>
                 <TagBox>{tagName}</TagBox>
               </Link>
             </Li>

@@ -107,7 +107,7 @@ const TalksPage = ({ data, location, pageContext }: TalksProps) => {
           </UL>
           <P>
             Update 2019-10-26: I wrote a more detailed{" "}
-            <Link to="make-impossible-state-unrepresentable/en/">
+            <Link to="/en/make-impossible-state-unrepresentable/">
               blog post
             </Link>{" "}
             to discuss this issue.

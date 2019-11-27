@@ -30,7 +30,7 @@ const ArchiveEntry = (props: ArchiveEntryProps) => {
 
   return (
     <li className={css.entry}>
-      <Link to={"/" + id + "/" + lang + "/"} className={css.entryTitle}>
+      <Link to={`${lang}/${id}`} className={css.entryTitle}>
         {title}
       </Link>
       <span className={css.date}>

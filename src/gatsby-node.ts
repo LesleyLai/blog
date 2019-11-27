@@ -3,6 +3,106 @@ import { resolve } from "path";
 import { languages, Language } from "./utils/translations";
 import { TagID } from "./types/tags";
 
+// Create redirect from from path to to path
+// Both with or without trailing slash
+// The fromPath should not have trailing slash
+const createRedirectsSlash = (
+  fromPath: string,
+  toPath: string,
+  createRedirect: (redirect: {
+    fromPath: string;
+    redirectInBrowser: boolean;
+    toPath: string;
+  }) => void
+): void => {
+  createRedirect({
+    fromPath: fromPath,
+    redirectInBrowser: true,
+    toPath: toPath
+  });
+  createRedirect({
+    fromPath: `${fromPath}/`,
+    redirectInBrowser: true,
+    toPath: toPath
+  });
+};
+
+const lagacyURLRedirections: Array<{ from: string; to: string }> = [
+  { from: "/cppcon2019/en", to: "/en/cppcon2019" },
+  { from: "/functional-cpp/en", to: "/en/functional-cpp" },
+  { from: "/c++-lambda/en", to: "/en/c++-lambda" },
+  { from: "/lea/zh", to: "/zh/lea" },
+  { from: "/overhead/en", to: "/en/overhead" },
+  { from: "/professional-cmake/en", to: "/en/professional-cmake" },
+  { from: "/siggraph2019/en", to: "/en/siggraph2019" },
+  { from: "/siggraph2019/zh", to: "/zh/siggraph2019" },
+  { from: "/raii/zh", to: "/zh/raii" },
+  { from: "/raii/en", to: "/en/raii" },
+  { from: "/temporaries/en", to: "/en/temporaries" },
+  {
+    from: "/make-impossible-state-unrepresentable/en",
+    to: "/en/make-impossible-state-unrepresentable"
+  },
+  { from: "/tail-recursion/en", to: "/en/tail-recursion" },
+  {
+    from: "/make-impossible-state-unrepresentable/zh",
+    to: "/zh/make-impossible-state-unrepresentable"
+  },
+  {
+    from: "/type-of-assignment-operators/en",
+    to: "/en/type-of-assignment-operators"
+  },
+  { from: "/unit-test-with-cmake/en", to: "/en/unit-test-with-cmake" },
+  { from: "/unit-test-with-cmake/zh", to: "/zh/unit-test-with-cmake" },
+  { from: "/lea/en", to: "/en/lea" },
+  { from: "/archive/cpp/en", to: "/en/archive/cpp" },
+  { from: "/archive/event/en", to: "/en/archive/event" },
+  { from: "/archive/books/en", to: "/en/archive/books" },
+  { from: "/archive/code/en", to: "/en/archive/code" },
+  { from: "/archive/functional/en", to: "/en/archive/functional" },
+  { from: "/archive/c/en", to: "/en/archive/c" },
+  { from: "/archive/csharp/en", to: "/en/archive/csharp" },
+  { from: "/archive/java/en", to: "/en/archive/java" },
+  { from: "/archive/opinion/en", to: "/en/archive/opinion" },
+  { from: "/archive/cmake/en", to: "/en/archive/cmake" },
+  { from: "/archive/graphics/en", to: "/en/archive/graphics" },
+  { from: "/archive/dod/en", to: "/en/archive/dod" },
+  { from: "/archive/elm/en", to: "/en/archive/elm" },
+  { from: "/archive/test/en", to: "/en/archive/test" },
+  { from: "/archive/x86/en", to: "/en/archive/x86" },
+  { from: "/archive/c/zh", to: "/zh/archive/c" },
+  { from: "/archive/code/zh", to: "/zh/archive/code" },
+  { from: "/archive/x86/zh", to: "/zh/archive/x86" },
+  { from: "/archive/graphics/zh", to: "/zh/archive/graphics" },
+  { from: "/archive/event/zh", to: "/zh/archive/event" },
+  { from: "/archive/cpp/zh", to: "/zh/archive/cpp" },
+  { from: "/archive/opinion/zh", to: "/zh/archive/opinion" },
+  { from: "/archive/dod/zh", to: "/zh/archive/dod" },
+  { from: "/archive/functional/zh", to: "/zh/archive/functional" },
+  { from: "/archive/cmake/zh", to: "/zh/archive/cmake" },
+  { from: "/archive/test/zh", to: "/zh/archive/test" },
+  { from: "/projects/elm/en", to: "/en/projects/elm" },
+  { from: "/projects/library/en", to: "/en/projects/library" },
+  { from: "/projects/functional/en", to: "/en/projects/functional" },
+  { from: "/projects/cpp/en", to: "/en/projects/cpp" },
+  { from: "/projects/pl/en", to: "/en/projects/pl" },
+  { from: "/projects/graphics/en", to: "/en/projects/graphics" },
+  { from: "/projects/opengl/en", to: "/en/projects/opengl" },
+  { from: "/projects/rt/en", to: "/en/projects/rt" },
+  { from: "/projects/game/en", to: "/en/projects/game" },
+  { from: "/projects/web/en", to: "/en/projects/web" },
+  { from: "/projects/i18n/en", to: "/en/projects/i18n" },
+  { from: "/projects/typescript/en", to: "/en/projects/typescript" },
+  { from: "/projects/react/en", to: "/en/projects/react" },
+  { from: "/projects/graphql/en", to: "/en/projects/graphql" },
+  { from: "/archive/en", to: "/en/archive" },
+  { from: "/archive/zh", to: "/zh/archive" },
+  { from: "/projects/en", to: "/en/projects" },
+  { from: "/projects/zh", to: "/zh/projects" },
+  { from: "/talks/en", to: "/en/talks" },
+  { from: "/talks/zh", to: "/zh/talks" }
+];
+
 export const createPages: GatsbyNode["createPages"] = async ({
   graphql,
   actions
@@ -12,6 +112,10 @@ export const createPages: GatsbyNode["createPages"] = async ({
   const postTemplate = resolve(`src/templates/post.tsx`);
   const tagsTemplate = resolve("src/templates/tags.tsx");
   const projectsTemplate = resolve("src/templates/projects.tsx");
+
+  lagacyURLRedirections.forEach(({ from, to }) => {
+    createRedirectsSlash(from, to, createRedirect);
+  });
 
   const posts = new Promise((resolve, _reject) => {
     graphql(`
@@ -39,7 +143,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
         const id = node.frontmatter.id;
 
         createPage({
-          path: `/${id}/${lang}`,
+          path: `/${lang}/${id}`,
           component: postTemplate,
           context: {
             lang: lang,
@@ -55,7 +159,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
             if (post.node.frontmatter.lang === lang) {
               const postTags = post.node.frontmatter.categories;
               if (postTags) {
-                postTags.forEach((tag: any) => {
+                postTags.forEach((tag: TagID) => {
                   tags.add(tag);
                 });
               }
@@ -66,9 +170,9 @@ export const createPages: GatsbyNode["createPages"] = async ({
         })
         .forEach(({ lang, tags }) => {
           for (const tag of Array.from(tags)) {
-            const localizedPath = `/archive/${tag}/${lang}`;
+            const localizedPath = `/${lang}/archive/${tag}`;
 
-            const otherLangsRegex = `//archive/${tag}/(?!${lang})/`;
+            const otherLangsRegex = `//(?!${lang})/archive/${tag}/`;
 
             createPage({
               path: localizedPath,
@@ -83,17 +187,11 @@ export const createPages: GatsbyNode["createPages"] = async ({
 
           if (lang == "en") {
             for (const tag of Array.from(tags)) {
-              createRedirect({
-                fromPath: `/archive/${tag}`,
-                redirectInBrowser: true,
-                toPath: `/archive/${tag}/en`
-              });
-
-              createRedirect({
-                fromPath: `/archive/${tag}/`,
-                redirectInBrowser: true,
-                toPath: `/archive/${tag}/en`
-              });
+              createRedirectsSlash(
+                `/archive/${tag}`,
+                `/en/archive/${tag}`,
+                createRedirect
+              );
             }
           }
         });
@@ -138,7 +236,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
 
       for (const tag of Array.from(tags)) {
         createPage({
-          path: "/projects/" + tag + "/en",
+          path: `/en/projects/${tag}`,
           component: projectsTemplate,
           context: {
             tag,
@@ -181,7 +279,7 @@ export const onCreatePage: GatsbyNode["onCreatePage"] = async args => {
   // Homepage is special as it will not have a language postfix
   languages.forEach(lang => {
     const localizedPath =
-      page.path === "/" ? localizedRoot(lang) : `${page.path}/${lang}`;
+      page.path === "/" ? localizedRoot(lang) : `/${lang}${page.path}`;
 
     createPage({
       ...page,
@@ -194,17 +292,8 @@ export const onCreatePage: GatsbyNode["onCreatePage"] = async args => {
 
   // Pages with no language postfixes redirect to English version
   if (page.path !== "/") {
-    const redirectTo = `${page.path}/en`;
+    const redirectTo = `en/${page.path}`;
 
-    createRedirect({
-      fromPath: page.path,
-      redirectInBrowser: true,
-      toPath: redirectTo
-    });
-    createRedirect({
-      fromPath: `${page.path}/`,
-      redirectInBrowser: true,
-      toPath: redirectTo
-    });
+    createRedirectsSlash(page.path, redirectTo, createRedirect);
   }
 };

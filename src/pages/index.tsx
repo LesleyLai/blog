@@ -49,7 +49,7 @@ class IndexPage extends React.Component<IndexProps> {
         <RecentPosts posts={data.posts.edges.map(edge => edge.node)} />
         <p style={{ fontSize: 20 }}>
           Older posts are available in the{" "}
-          <Link to={`/archive/${lang}`}>archive</Link>.
+          <Link to={`/${lang}/archive`}>archive</Link>.
         </p>
         <Footer />
       </Layout>
@@ -90,6 +90,7 @@ export const query = graphql`
       }
       sort: { fields: [frontmatter___create], order: DESC }
     ) {
+      totalCount
       ...Tags
     }
   }

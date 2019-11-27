@@ -62,7 +62,7 @@ const AboutMe = ({ lang, tags, postsTotalCount }: AboutMeProp) => {
             )
             .map((tag: TagItem) => (
               <li key={tag.id} className={css.tagitem}>
-                <Link to={`/archive/${tag.id}/${lang}`}>
+                <Link to={`/${lang}/archive/${tag.id}`}>
                   {translations[lang][tag.id]}
                 </Link>
                 <span className={css.postcount}>{tag.totalCount}</span>

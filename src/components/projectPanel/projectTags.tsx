@@ -51,7 +51,7 @@ function buildTag(tagId?: TagID) {
 
   return (
     <TagItem key={tagId}>
-      <Link to={tagId ? `/projects/${tagId}/en` : `/projects/en`}>
+      <Link to={tagId ? `/en/projects/${tagId}` : `/en/projects`}>
         <TagBox>{tagName}</TagBox>
       </Link>
     </TagItem>

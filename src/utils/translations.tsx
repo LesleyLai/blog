@@ -36,7 +36,7 @@ const en = {
   ),
   all_n_posts: (n: number) => (
     <>
-      All <Link to={`/archive/en`}>{n} posts</Link>
+      All <Link to={`/en/archive`}>{n} posts</Link>
     </>
   ),
   archive: "Archive",
@@ -118,7 +118,7 @@ const zh: Translations = {
   ),
   all_n_posts: (n: number) => (
     <>
-      所有<Link to={`/archive/en`}>{n}篇博文</Link>
+      所有<Link to={`zh/archive`}>{n}篇博文</Link>
     </>
   ),
   archive: "博文目录",

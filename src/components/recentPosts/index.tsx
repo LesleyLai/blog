@@ -30,7 +30,7 @@ export default class RecentPosts extends React.Component {
           <Link
             key={post.frontmatter.title}
             className={style.post}
-            to={"/" + post.frontmatter.id + "/" + post.frontmatter.lang}
+            to={`/${post.frontmatter.lang}/${post.frontmatter.id}`}
           >
             <h3 className={style.header}>{post.frontmatter.title}</h3>
             <p className={style.date}>{post.frontmatter.create}</p>

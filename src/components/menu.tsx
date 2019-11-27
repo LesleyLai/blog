@@ -23,22 +23,22 @@ export const menuModel: { [key: string]: MenuModel } = {
   },
   archive: {
     langs: {
-      en: { path: "/archive/en" },
-      zh: { path: "/archive/zh" }
+      en: { path: "/en/archive" },
+      zh: { path: "/zh/archive" }
     },
     exact: false
   },
   projects: {
     langs: {
-      en: { path: "/projects/en" },
-      zh: { path: "/projects/zh" }
+      en: { path: "/en/projects" },
+      zh: { path: "/zh/projects" }
     },
     exact: false
   },
   talks: {
     langs: {
-      en: { path: "/talks/en" },
-      zh: { path: "/talks/zh" }
+      en: { path: "/en/talks" },
+      zh: { path: "/zh/talks" }
     },
     exact: true
   }
