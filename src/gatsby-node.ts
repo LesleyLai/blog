@@ -172,7 +172,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
           for (const tag of Array.from(tags)) {
             const localizedPath = `/${lang}/archive/${tag}`;
 
-            const otherLangsRegex = `//(?!${lang})/archive/${tag}/`;
+            const otherLangsRegex = `//(?!${lang}).*/archive/${tag}$/`;
 
             createPage({
               path: localizedPath,
@@ -258,7 +258,7 @@ const removeTrailingSlash = (path: string) =>
   path === `/` ? path : path.replace(/\/$/, ``);
 
 // Page that with no other language versions
-const specialPages = new Set(["/404", "/dev-404-page", "/404.html"]);
+const specialPages = new Set(["/dev-404-page", "/404.html"]);
 
 const localizedRoot = (lang: Language) => (lang == "en" ? "/" : "/zh");
 
@@ -272,6 +272,25 @@ export const onCreatePage: GatsbyNode["onCreatePage"] = async args => {
 
   if (specialPages.has(page.path)) {
     createPage(page);
+    return;
+  }
+
+  // 404 page
+  if (page.path === "/404") {
+    languages.forEach(lang => {
+      const localizedPath =
+        page.path === "/" ? localizedRoot(lang) : `/${lang}/404`;
+
+      createPage({
+        ...page,
+        matchPath: `/${lang}/*`,
+        path: localizedPath,
+        context: {
+          lang: lang
+        }
+      });
+    });
+
     return;
   }
 

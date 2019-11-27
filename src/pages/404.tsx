@@ -4,6 +4,7 @@ import Helmet from "react-helmet";
 
 import { TagItem } from "../types/tags";
 import Layout from "../components/layout";
+import { Language, translations } from "../utils/translations";
 
 interface NotFoundProps {
   data: {
@@ -12,28 +13,34 @@ interface NotFoundProps {
       totalCount: number;
     };
   };
+  pageContext: { lang: Language };
   location: {
     pathname: string;
   };
 }
 
-const NotFoundPage = ({ data, location }: NotFoundProps) => {
+const NotFoundPage = ({ data, pageContext, location }: NotFoundProps) => {
   const tags = data.posts.tags;
+  const lang = pageContext.lang;
+
+  const title = translations[lang]["page_not_found"];
+
   return (
     <Layout
       location={location}
       tags={tags}
-      lang="en"
+      lang={lang}
       otherLangs={[]}
       postsTotalCount={data.posts.totalCount}
     >
       <div>
         <Helmet>
-          <title>{"404 NOT FOUND | Lesley Lai"}</title>
-          <meta name="Description" content="404 NOT FOUND" />
+          <title>{`${title} | ${translations[lang]["title"]}`}</title>
+          <meta name="Description" content={title} />
         </Helmet>
-        <h1>404 NOT FOUND</h1>
-        <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+        <h1>{title}</h1>
+        <p>{translations[lang]["page_not_found_text"]}</p>
+        <p>{translations[lang]["return_to_home"]}</p>
       </div>
     </Layout>
   );
@@ -42,13 +49,12 @@ const NotFoundPage = ({ data, location }: NotFoundProps) => {
 export default NotFoundPage;
 
 export const query = graphql`
-  query notFoundQuery {
+  query notFoundQuery($lang: String!) {
     posts: allMarkdownRemark(
       filter: {
         fields: { relativePath: { regex: "//blog/" } }
-        frontmatter: { lang: { eq: "en" } }
+        frontmatter: { lang: { eq: $lang } }
       }
-      sort: { fields: [frontmatter___create], order: DESC }
     ) {
       totalCount
       ...Tags

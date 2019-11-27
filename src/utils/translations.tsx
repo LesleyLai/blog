@@ -84,11 +84,18 @@ const en = {
   n_posts: (n: number) => `${n} Posts`,
   opengl: "OpenGL",
   opinion: "Opinion",
+  page_not_found: "404 NOT FOUND",
+  page_not_found_text: "Sorry, the page you are looking for cannot be found.",
   pl: "Programming Languages",
   projects: "Projects",
   python: "Python",
   react: "React",
   recent_posts: "Recent Posts",
+  return_to_home: (
+    <>
+      Return to the <Link to="/">Home Page</Link>
+    </>
+  ),
   rt: "Ray tracing",
   showall: "Show all",
   stuff_I_wrote_about: (tag: TagID) => `Stuff I Wrote About ${en[tag]}`,
@@ -166,11 +173,18 @@ const zh: Translations = {
   n_posts: (n: number) => `${n}篇博文`,
   opengl: en.opengl,
   opinion: "观点",
+  page_not_found: "找不到该页面",
+  page_not_found_text: "抱歉，您要访问的页面无法被找到。",
   pl: "编程语言",
   projects: "个儿项目",
   python: en.python,
   react: en.react,
   recent_posts: "最新内容",
+  return_to_home: (
+    <>
+      返回<Link to="/zh">主页</Link>
+    </>
+  ),
   rt: "光线追踪",
   showall: "显示所有",
   stuff_I_wrote_about: (tag: TagID) => `关于${zh[tag]}的博文`,
