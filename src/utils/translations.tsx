@@ -98,7 +98,10 @@ const en = {
   ),
   rt: "Ray tracing",
   showall: "Show all",
-  stuff_I_wrote_about: (tag: TagID) => `Stuff I Wrote About ${en[tag]}`,
+  stuff_I_wrote_about: (tag: TagID) =>
+    tag === "opinion"
+      ? "Stuff I Wrote to State My Opinion"
+      : `Stuff I Wrote About ${en[tag]}`,
   tags: "Tags",
   talks: "Talks",
   test: "Testing",
@@ -120,6 +123,7 @@ const zh: Translations = {
           <a href="http://www.colorado.edu/">科罗拉多大学</a>
           计算机科学以及应用数学的本科生。
         </p>
+        我喜欢计算机图形学、编程语言理论，以及C++。
       </article>
     </>
   ),
@@ -187,7 +191,8 @@ const zh: Translations = {
   ),
   rt: "光线追踪",
   showall: "显示所有",
-  stuff_I_wrote_about: (tag: TagID) => `关于${zh[tag]}的博文`,
+  stuff_I_wrote_about: (tag: TagID) =>
+    tag === "opinion" ? `阐述个人观点的博文` : `关于${zh[tag]}的博文`,
   tags: "标签",
   talks: "演讲",
   test: "软件测试",

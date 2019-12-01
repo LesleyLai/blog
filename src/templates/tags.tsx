@@ -5,13 +5,14 @@ import Helmet from "react-helmet";
 import Layout from "../components/layout";
 import Posts from "../components/postsList";
 import Post from "../types/Post";
+import { PostRaw, rawToStructured } from "../types/Post";
 import { TagID, TagItem } from "../types/tags";
 import { Language, translations } from "../utils/translations";
 
 export interface ArchiveData {
   posts: {
     totalCount: number;
-    edges: Array<{ node: Post }>;
+    edges: Array<{ node: PostRaw }>;
   };
   allPosts: {
     totalCount: number;
@@ -37,6 +38,7 @@ interface ArchiveProps {
 class TagsTemplate extends React.Component<ArchiveProps> {
   public render() {
     const data = this.props.data;
+    const posts = this.props.data.posts;
 
     const tag = this.props.pageContext.tag;
     const lang = this.props.pageContext.lang;
@@ -60,7 +62,11 @@ class TagsTemplate extends React.Component<ArchiveProps> {
         </Helmet>
         <h1>{title}</h1>
         {translations[lang]["n_posts"](data.posts.totalCount)}
-        <Posts posts={data.posts.edges} excludeTag={tag} />
+        <Posts
+          lang={lang}
+          posts={posts.edges.map(edge => rawToStructured(edge.node))}
+          excludeTag={tag}
+        />
       </Layout>
     );
   }
@@ -84,7 +90,7 @@ export const query = graphql`
             id
             title
             lang
-            create(formatString: "DD MMMM YYYY")
+            create
             categories
           }
           excerpt

@@ -103,6 +103,8 @@ const lagacyURLRedirections: Array<{ from: string; to: string }> = [
   { from: "/talks/zh", to: "/zh/talks" }
 ];
 
+const dateLocale = (lang: Language) => (lang === "zh" ? "ZH_CN" : lang);
+
 export const createPages: GatsbyNode["createPages"] = async ({
   graphql,
   actions
@@ -147,7 +149,8 @@ export const createPages: GatsbyNode["createPages"] = async ({
           component: postTemplate,
           context: {
             lang: lang,
-            id: id
+            id: id,
+            dateLocale: dateLocale(lang)
           }
         });
       });
@@ -180,6 +183,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
               context: {
                 tag,
                 lang: lang,
+                dateLocale: dateLocale(lang),
                 otherLangsRegex: otherLangsRegex
               }
             });
@@ -314,7 +318,8 @@ export const onCreatePage: GatsbyNode["onCreatePage"] = async args => {
       ...page,
       path: localizedPath,
       context: {
-        lang: lang
+        lang: lang,
+        dateLocale: dateLocale(lang)
       }
     });
   });

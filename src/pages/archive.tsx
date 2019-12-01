@@ -5,7 +5,7 @@ import { TagItem } from "../types/tags";
 import Footer from "../components/footer";
 import Layout from "../components/layout";
 import Posts from "../components/postsList";
-import Post from "../types/Post";
+import { PostRaw, rawToStructured } from "../types/Post";
 import { Language, translations } from "../utils/translations";
 
 import { graphql } from "gatsby";
@@ -13,7 +13,7 @@ import { graphql } from "gatsby";
 interface ArchiveData {
   posts: {
     totalCount: number;
-    edges: Array<{ node: Post }>;
+    edges: Array<{ node: PostRaw }>;
     tags: TagItem[];
   };
 }
@@ -45,7 +45,10 @@ const Archive = (props: ArchiveProps) => {
         </Helmet>
         <h1>{title}</h1>
         {translations[lang]["n_posts"](posts.totalCount)}
-        <Posts posts={posts.edges} />
+        <Posts
+          lang={lang}
+          posts={posts.edges.map(edge => rawToStructured(edge.node))}
+        />
         <Footer />
       </div>
     </Layout>
@@ -70,7 +73,7 @@ export const query = graphql`
             id
             title
             lang
-            create(formatString: "DD MMMM YYYY")
+            create
             categories
           }
           excerpt

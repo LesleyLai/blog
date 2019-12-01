@@ -60,7 +60,7 @@ class IndexPage extends React.Component<IndexProps> {
 export default IndexPage;
 
 export const query = graphql`
-  query indexQuery($lang: String!) {
+  query indexQuery($lang: String!, $dateLocale: String!) {
     posts: allMarkdownRemark(
       filter: {
         fields: { relativePath: { regex: "//blog/" } }
@@ -76,7 +76,7 @@ export const query = graphql`
             id
             title
             lang
-            create(formatString: "DD MMMM YYYY")
+            create(formatString: "LL", locale: $dateLocale)
             categories
           }
           excerpt

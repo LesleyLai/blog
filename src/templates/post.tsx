@@ -25,7 +25,8 @@ export interface PostData {
   };
   fields: {
     readingTime: {
-      text: string;
+      minutes: number;
+      words: number;
     };
   };
 }
@@ -67,6 +68,12 @@ class PostTemplate extends React.Component<PostProps> {
       edge => edge.node.frontmatter.lang
     );
 
+    const readingTimeMinutes = Math.round(post.fields.readingTime.minutes);
+    const words = post.fields.readingTime.words;
+
+    const create = post.frontmatter.create;
+    const lastModify = post.frontmatter.lastModify;
+
     return (
       <Layout
         location={{ pathname: path }}
@@ -83,9 +90,11 @@ class PostTemplate extends React.Component<PostProps> {
           <h1 className={css.title}>{post.frontmatter.title}</h1>
           <div className={css.info}>
             <span className={css.date}>
-              {translations[lang]["lastModify"]}: {post.frontmatter.lastModify}{" "}
-              | {translations[lang]["create"]}: {post.frontmatter.create} |{" "}
-              {post.fields.readingTime.text}
+              {create !== lastModify &&
+                `${translations[lang]["lastModify"]}: ${lastModify} | `}
+              {`${translations[lang]["create"]}: ${create}`}
+              {lang === "en" &&
+                ` | ${words} words | ${readingTimeMinutes} min read`}
             </span>
             <TagsList
               lang={lang}
@@ -118,7 +127,7 @@ class PostTemplate extends React.Component<PostProps> {
 export default PostTemplate;
 
 export const query = graphql`
-  query BlogPostQuery($id: String!, $lang: String!) {
+  query BlogPostQuery($id: String!, $lang: String!, $dateLocale: String!) {
     post: markdownRemark(
       frontmatter: { id: { eq: $id }, lang: { eq: $lang } }
     ) {
@@ -127,13 +136,14 @@ export const query = graphql`
         id
         lang
         title
-        create(formatString: "DD MMMM, YYYY")
-        lastModify(formatString: "DD MMMM, YYYY")
+        create(formatString: "LL", locale: $dateLocale)
+        lastModify(formatString: "LL", locale: $dateLocale)
         categories
       }
       fields {
         readingTime {
-          text
+          minutes
+          words
         }
       }
     }

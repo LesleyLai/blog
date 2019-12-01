@@ -1,22 +1,20 @@
 import Link from "gatsby-link";
-import { groupBy, last } from "lodash";
+import { groupBy } from "lodash";
 import * as React from "react";
 
 import TagsList from "../tagsList";
 
+import { Language } from "../../utils/translations";
 import Post from "../../types/Post";
 
 const css = require("./posts.module.css");
 
-function splitDate(date: string) {
-  return date.split(" ");
-}
-
-const groupPosts = (posts: Array<{ node: Post }>) =>
-  groupBy(posts, post => last(splitDate(post.node.frontmatter.create)));
+const groupPosts = (posts: Post[]) =>
+  groupBy(posts, post => new Date(post.frontmatter.create).getFullYear());
 
 interface ArchiveEntryProps {
   post: Post;
+  lang: Language;
   excludeTag?: string;
 }
 
@@ -28,15 +26,15 @@ const ArchiveEntry = (props: ArchiveEntryProps) => {
   const title = frontmatter.title;
   const create = frontmatter.create;
 
+  const options = { month: "long", day: "numeric" };
+  const createFormated = new Intl.DateTimeFormat(lang, options).format(create);
+
   return (
     <li className={css.entry}>
       <Link to={`${lang}/${id}`} className={css.entryTitle}>
         {title}
       </Link>
-      <span className={css.date}>
-        {" "}
-        — {splitDate(create)[0]} {splitDate(create)[1]}{" "}
-      </span>
+      <span className={css.date}> — {createFormated}</span>
       <TagsList
         className={css.archiveTags}
         tags={frontmatter.categories}
@@ -48,7 +46,8 @@ const ArchiveEntry = (props: ArchiveEntryProps) => {
 };
 
 const Posts = (props: {
-  posts: Array<{ node: Post }>;
+  posts: Post[];
+  lang: Language;
   excludeTag?: string;
 }) => {
   const posts = props.posts;
@@ -66,8 +65,9 @@ const Posts = (props: {
           <ul>
             {grouped[year].map(post => (
               <ArchiveEntry
-                post={post.node}
-                key={post.node.frontmatter.id}
+                post={post}
+                lang={props.lang}
+                key={post.frontmatter.id}
                 excludeTag={excludeTag}
               />
             ))}
