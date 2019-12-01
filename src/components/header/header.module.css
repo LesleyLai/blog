@@ -1,5 +1,6 @@
 .header {
     background: #1b1c1d;
+    z-index: 1;
 }
 
 /* Stick header on mobile */
@@ -9,7 +10,6 @@
         top: 0;
         left: 0;
         right: 0;
-        z-index: 1;
     }
 }
 
@@ -29,9 +29,10 @@
 .logo h2 {
     font-size: 2em;
     margin-bottom: 0.2rem;
+    display: inline;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 350px) {
     .logo h2 {
         font-size: 1.6em;
     }
@@ -44,26 +45,17 @@
 .menu {
     display: flex;
     justify-content: space-between;
-}
-
-@media (min-width: 769px) {
-    .menu {
-        width: 100%;
-    }
-}
-
-@media (max-width: 768px) {
-    .menu {
-        display: none;
-    }
+    width: 100%;
 }
 
 .menuItems {
     display: flex;
+    margin: auto 15px auto 0;
+    list-style: none;
 }
 
-.languages {
-    display: flex;
+.menuItems li {
+    display: contents;
 }
 
 .menuItem {
@@ -89,55 +81,120 @@
     border-radius: 0;
 }
 
-.languageLink {
-    margin-right: 0;
+.mobileMenuIconContainer {
+    display: none;
 }
 
-.mobileMenu {
-    float: none;
-    position: absolute;
-    display: block !important;
-    text-align: left;
-    top: 38px;
-    right: 10px;
-    background-color: #333333;
-}
-
-.mobileMenu .menuItems {
-    flex-direction: column;
-}
-
-.mobileMenu .languages {
-    border-top: 1px solid hsla(0,0%,100%,.7);
-    flex-direction: column;
-}
-
-.mobileMenu .menuItem {
-    float: none;
-    display: block;
-    text-align: left;
-}
-
-.mobileMenu .menuItem.active {
-    border: none;
-}
-
-.mobileMenuIcon {
+.mobileMenuButton {
     display: none;
 }
 
 @media (max-width: 768px) {
-    .mobileMenuIcon {
-        margin-left: auto;
-        margin-right: 10px;
+    .headerContainer {
+        display: block;
+    }
+
+    .mobileMenuIconContainer {
+        position: relative;
         display: inline;
-        font-size: 1.4em;
-        color: #eee;
+        padding: 20px 10px;
+        cursor: pointer;
+
         background-color: #1b1c1d;
+        float: right;
+    }
+
+    .mobileMenuIconContainer:hover .mobileMenuIcon
+    ,.mobileMenuIconContainer:hover .mobileMenuIcon:before
+    ,.mobileMenuIconContainer:hover .mobileMenuIcon:after {
+        background: #fff;
+    }
+
+    .mobileMenuIcon {
+        display: block;
+        height: 2px;
+        width: 22px;
+
+        background: #eee;
+        position: relative;
+        transition: background .2s ease-out;
+    }
+
+    .mobileMenuIcon:before {
+        background: #eee;
+        content: "";
+        display: block;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        transition: all .2s ease-out;
+
+        top: 6px;
+    }
+
+    .mobileMenuIcon:after {
+        background: #eee;
+        content: "";
+        display: block;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        transition: all .2s ease-out;
+
+        bottom: 6px;
+    }
+
+    .mobileMenuIconContainer:hover {
+        color: white;
+    }
+
+    .menu {
+        flex-direction: column;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height .2s ease-out;
+
+        width: 100vw;
+        position: relative;
+        left: calc(-50vw + 50%);
+    }
+
+    .menuItems {
+        flex-direction: column;
+        margin: 0;
+    }
+
+    .menuItems:not(:last-child) {
+        border-bottom: 2px solid #eee;
+    }
+
+    .menuItem:hover {
+        background-color: #333;
+    }
+
+
+    .menuItem.active {
+        color: #fff;
+        font-weight: 700;
+
         border: none;
     }
 
-    .mobileMenuIcon:hover {
-        color: white;
+    .mobileMenuButton:checked ~ .menu {
+        max-height: 300px;
+    }
+
+    .mobileMenuButton:checked ~ .mobileMenuIconContainer .mobileMenuIcon {
+        background: transparent;
+    }
+
+    .mobileMenuButton:checked ~ .mobileMenuIconContainer .mobileMenuIcon:before {
+        transform: rotate(-45deg);
+        top: 0;
+    }
+
+    .mobileMenuButton:checked ~ .mobileMenuIconContainer .mobileMenuIcon:after {
+        transform: rotate(45deg);
+        top: 0;
     }
 }

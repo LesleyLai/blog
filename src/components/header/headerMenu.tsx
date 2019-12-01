@@ -1,7 +1,5 @@
-import classNames from "classnames";
 import Link from "gatsby-link";
 import * as React from "react";
-import { FaBars } from "react-icons/lib/fa";
 
 import { MenuModel, menuModel } from "../menu";
 import { Language, Translations, translations } from "../../utils/translations";
@@ -28,8 +26,8 @@ const MenuItem = ({ itemName, lang }: MenuItemProp) => {
       to={langRecord.path}
       key={langRecord.path}
       activeClassName={css.active}
-      className={css.menuItem}
       partiallyActive={!item.exact}
+      className={css.menuItem}
     >
       {translations[lang][itemName]}
     </Link>
@@ -53,11 +51,7 @@ const LanguageLink = ({ fromLang, toLang, pathname }: LanguageLinkProp) => {
     return pathname.replace(new RegExp(`/${fromLang}`), `/${toLang}`);
   })();
   return (
-    <Link
-      to={to}
-      key={toLang}
-      className={classNames(css.menuItem, css.languageLink)}
-    >
+    <Link to={to} key={toLang} className={css.menuItem}>
       {translations[toLang]["lang"]}
     </Link>
   );
@@ -69,7 +63,6 @@ export default class HeaderMenu extends React.PureComponent<HeaderMenuProp> {
   constructor(props: HeaderMenuProp) {
     super(props);
     this.state = { showMobileMenu: false };
-    this.toggleMobileMenu = this.toggleMobileMenu.bind(this);
   }
 
   public render() {
@@ -78,43 +71,43 @@ export default class HeaderMenu extends React.PureComponent<HeaderMenuProp> {
     const lang = this.props.lang;
     return (
       <>
-        <nav
-          className={classNames(css.menu, {
-            [css.mobileMenu]: this.state.showMobileMenu
-          })}
+        <input
+          className={css.mobileMenuButton}
+          id="mobileMenuButton"
+          type="checkbox"
+        />
+
+        <label
+          className={css.mobileMenuIconContainer}
+          htmlFor="mobileMenuButton"
         >
-          <div className={css.menuItems}>
+          <span className={css.mobileMenuIcon} />
+        </label>
+
+        <nav className={css.menu}>
+          <ul className={css.menuItems}>
             {Object.keys(menuModel).map((key: keyof Translations) => (
-              <MenuItem key={key} itemName={key} lang={lang} />
+              <li key={key}>
+                <MenuItem itemName={key} lang={lang} />
+              </li>
             ))}
-          </div>
+          </ul>
 
-          <div className={css.languages}>
-            {otherLangs.map(otherLang => (
-              <LanguageLink
-                key={otherLang}
-                fromLang={lang}
-                toLang={otherLang}
-                pathname={pathname}
-              />
-            ))}
-          </div>
+          {otherLangs.length !== 0 && (
+            <ul className={css.menuItems}>
+              {otherLangs.map(otherLang => (
+                <li key={otherLang}>
+                  <LanguageLink
+                    fromLang={lang}
+                    toLang={otherLang}
+                    pathname={pathname}
+                  />
+                </li>
+              ))}
+            </ul>
+          )}
         </nav>
-
-        <button
-          name="menu"
-          className={css.mobileMenuIcon}
-          onClick={this.toggleMobileMenu}
-        >
-          <FaBars />
-        </button>
       </>
     );
-  }
-
-  private toggleMobileMenu(e: React.MouseEvent<HTMLInputElement>) {
-    e.preventDefault();
-
-    this.setState({ showMobileMenu: !this.state.showMobileMenu });
   }
 }
