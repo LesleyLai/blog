@@ -258,7 +258,7 @@ const removeTrailingSlash = (path: string) =>
   path === `/` ? path : path.replace(/\/$/, ``);
 
 // Page that with no other language versions
-const specialPages = new Set(["/dev-404-page", "/404.html"]);
+const specialPages = new Set(["/dev-404-page"]);
 
 const localizedRoot = (lang: Language) => (lang == "en" ? "/" : "/zh");
 
@@ -275,7 +275,17 @@ export const onCreatePage: GatsbyNode["onCreatePage"] = async args => {
     return;
   }
 
-  // 404 page
+  // 404 pages
+  if (page.path === "/404.html") {
+    createPage({
+      ...page,
+      context: {
+        lang: "en"
+      }
+    });
+    return;
+  }
+
   if (page.path === "/404") {
     languages.forEach(lang => {
       const localizedPath =
