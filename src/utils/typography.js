@@ -12,7 +12,6 @@ const typography = new Typography({
     "华文细黑"
   ],
   headerFontFamily: [
-    "Lato",
     "Avenir Next",
     "Open Sans",
     "georgia",

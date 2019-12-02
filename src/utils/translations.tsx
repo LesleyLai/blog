@@ -82,6 +82,12 @@ const en = {
   math: "Mathematics",
   myname: "Lesley Lai",
   n_posts: (n: number) => `${n} Posts`,
+  older_posts: () => (
+    <>
+      Older posts are available in the{" "}
+      <Link to={`/en/archive`}>{en.archive}</Link>
+    </>
+  ),
   opengl: "OpenGL",
   opinion: "Opinion",
   page_not_found: "404 NOT FOUND",
@@ -176,6 +182,11 @@ const zh: Translations = {
   math: "数学",
   myname: "赖思理",
   n_posts: (n: number) => `${n}篇博文`,
+  older_posts: () => (
+    <>
+      在<Link to={`/zh/archive`}>{zh.archive}</Link>可以找到所有博文
+    </>
+  ),
   opengl: en.opengl,
   opinion: "观点",
   page_not_found: "找不到该页面",
