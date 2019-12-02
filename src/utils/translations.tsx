@@ -90,6 +90,7 @@ const en = {
   projects: "Projects",
   python: "Python",
   react: "React",
+  readmore: "Read More",
   recent_posts: "Recent Posts",
   return_to_home: (
     <>
@@ -183,6 +184,7 @@ const zh: Translations = {
   projects: "个儿项目",
   python: en.python,
   react: en.react,
+  readmore: "阅读全文",
   recent_posts: "最新内容",
   return_to_home: (
     <>

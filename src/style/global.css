@@ -26,6 +26,7 @@ h5 {
 h1 {
     min-height: 1rem;
     font-size: 2rem;
+    margin-bottom: .5em;
 }
 
 h2 {
@@ -69,7 +70,7 @@ a {
 }
 
 a:hover {
-    color: #1e70bf;
+    color: #00aaff;
     text-decoration: none;
 }
 

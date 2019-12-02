@@ -46,7 +46,10 @@ class IndexPage extends React.Component<IndexProps> {
           <meta name="Description" content="Personal website of Lesley Lai" />
         </Helmet>
         <h1>{translations[lang]["recent_posts"]}</h1>
-        <RecentPosts posts={data.posts.edges.map(edge => edge.node)} />
+        <RecentPosts
+          posts={data.posts.edges.map(edge => edge.node)}
+          lang={lang}
+        />
         <p style={{ fontSize: 20 }}>
           Older posts are available in the{" "}
           <Link to={`/${lang}/archive`}>archive</Link>.
