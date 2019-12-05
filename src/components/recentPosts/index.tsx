@@ -14,6 +14,11 @@ export interface PostMeta {
     create: string;
     categories: TagID[];
   };
+  fields: {
+    readingTime: {
+      minutes: number;
+    };
+  };
   excerpt: string;
 }
 
@@ -28,28 +33,34 @@ export default class RecentPosts extends React.Component {
 
     return (
       <div>
-        {posts.map(post => (
-          <article key={post.frontmatter.title} className={style.post}>
-            <h3 className={style.header}>
-              <Link to={`/${post.frontmatter.lang}/${post.frontmatter.id}`}>
-                {post.frontmatter.title}
-              </Link>
-            </h3>
-            <p className={style.date}>{post.frontmatter.create}</p>
-            <TagsList
-              tags={post.frontmatter.categories}
-              lang={post.frontmatter.lang}
-            />
-            <p className={style.excerpt}>{post.excerpt}</p>
+        {posts.map(post => {
+          const readingTimeMinutes = Math.round(
+            post.fields.readingTime.minutes
+          );
+          return (
+            <article key={post.frontmatter.title} className={style.post}>
+              <h3 className={style.header}>
+                <Link to={`/${post.frontmatter.lang}/${post.frontmatter.id}`}>
+                  {post.frontmatter.title}
+                </Link>
+              </h3>
+              <p className={style.date}>{post.frontmatter.create}</p>
+              <TagsList
+                tags={post.frontmatter.categories}
+                lang={post.frontmatter.lang}
+              />
+              <p className={style.excerpt}>{post.excerpt}</p>
 
-            <Link
-              className={style.readmore}
-              to={`/${post.frontmatter.lang}/${post.frontmatter.id}`}
-            >
-              {translations[lang]["readmore"]}
-            </Link>
-          </article>
-        ))}
+              <Link
+                className={style.readmore}
+                to={`/${post.frontmatter.lang}/${post.frontmatter.id}`}
+              >
+                {translations[lang]["readmore"]}
+                {lang === "en" && ` | ${readingTimeMinutes} minutes`}
+              </Link>
+            </article>
+          );
+        })}
       </div>
     );
   }

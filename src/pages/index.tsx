@@ -79,6 +79,11 @@ export const query = graphql`
             create(formatString: "LL", locale: $dateLocale)
             categories
           }
+          fields {
+            readingTime {
+              minutes
+            }
+          }
           excerpt
         }
       }
