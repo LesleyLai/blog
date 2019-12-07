@@ -1,5 +1,6 @@
 import Link from "gatsby-link";
 import * as React from "react";
+import Helmet from "react-helmet";
 
 import { MenuModel, menuModel } from "../menu";
 import { Language, Translations, translations } from "../../utils/translations";
@@ -52,6 +53,9 @@ const LanguageLink = ({ fromLang, toLang, pathname }: LanguageLinkProp) => {
   })();
   return (
     <Link to={to} key={toLang} className={css.menuItem}>
+      <Helmet>
+        <link rel="alternate" href={to} hrefLang={toLang} />
+      </Helmet>
       {translations[toLang]["lang"]}
     </Link>
   );
