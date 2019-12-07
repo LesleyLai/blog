@@ -20,7 +20,20 @@ const typography = new Typography({
     "STXihei",
     "华文细黑"
   ],
-  includeNormalize: true
+  includeNormalize: true,
+  overrideStyles: ({ adjustFontSizeTo, rhythm }, options, styles) => ({
+    'code[class*="language-"], pre[class*="language-"]': {
+      fontFamily: [
+        "Consolas",
+        "Monaco",
+        "Andale Mono",
+        "Ubuntu Mono",
+        "Microsoft Yahei",
+        "微软雅黑",
+        "monospace"
+      ].join(",")
+    }
+  })
 });
 
 export default typography;
