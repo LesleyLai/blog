@@ -1,6 +1,8 @@
 import { graphql, Link, StaticQuery } from "gatsby";
 import Img, { FluidObject } from "gatsby-image";
 import * as React from "react";
+import { orderBy } from "lodash";
+
 import { Language, translations } from "../../utils/translations";
 
 import { TagItem } from "../../types/tags";
@@ -24,6 +26,9 @@ const AboutMe = ({ lang, tags, postsTotalCount }: AboutMeProp) => {
     const currentYear = new Date().getFullYear();
 
     const css = require("./about.module.css");
+
+    const sortedTags = orderBy(tags, ["totalCount", "id"], ["desc", "asc"]);
+
     return (
       <nav className={css.about}>
         <Img
@@ -54,20 +59,14 @@ const AboutMe = ({ lang, tags, postsTotalCount }: AboutMeProp) => {
 
         <h3 className={css.subtitle}>{translations[lang]["tags"]}</h3>
         <ul className={css.tags}>
-          {tags
-            .slice()
-            .sort(
-              (tag1: TagItem, tag2: TagItem) =>
-                tag2.totalCount - tag1.totalCount // Descends by posts counts
-            )
-            .map((tag: TagItem) => (
-              <li key={tag.id} className={css.tagitem}>
-                <Link to={`/${lang}/archive/${tag.id}`}>
-                  {translations[lang][tag.id]}
-                </Link>
-                <span className={css.postcount}>{tag.totalCount}</span>
-              </li>
-            ))}
+          {sortedTags.map((tag: TagItem) => (
+            <li key={tag.id} className={css.tagitem}>
+              <Link to={`/${lang}/archive/${tag.id}`}>
+                {translations[lang][tag.id]}
+              </Link>
+              <span className={css.postcount}>{tag.totalCount}</span>
+            </li>
+          ))}
         </ul>
         <p className={css.archive}>
           {translations[lang]["all_n_posts"](postsTotalCount)}
@@ -89,7 +88,7 @@ const AboutMe = ({ lang, tags, postsTotalCount }: AboutMeProp) => {
         query AboutMeQuery {
           portrait: file(relativePath: { eq: "imgs/portrait.jpg" }) {
             childImageSharp {
-              fluid(maxWidth: 700) {
+              fluid(maxWidth: 300) {
                 ...GatsbyImageSharpFluid
               }
             }

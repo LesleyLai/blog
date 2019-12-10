@@ -66,7 +66,7 @@ const en = {
   event: "Event",
   functional: "Functional Programming",
   game: "Game",
-  graphics: "Computer Graphics",
+  graphics: "Graphics",
   graphql: "GraphQL",
   home: "Home",
   i18n: "i18n",
