@@ -1,6 +1,6 @@
 const { createFilePath } = require(`gatsby-source-filesystem`);
 
-require('source-map-support').install()
+require('source-map-support').install();
 require('ts-node').register({
   compilerOptions: {
     module: 'commonjs',

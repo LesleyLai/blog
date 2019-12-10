@@ -4,7 +4,6 @@ import Helmet from "react-helmet";
 
 import Layout from "../components/layout";
 import Posts from "../components/postsList";
-import Post from "../types/Post";
 import { PostRaw, rawToStructured } from "../types/Post";
 import { TagID, TagItem } from "../types/tags";
 import { Language, translations } from "../utils/translations";

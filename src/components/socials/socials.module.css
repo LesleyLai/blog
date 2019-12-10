@@ -1,0 +1,14 @@
+.socials {
+    text-align: center;
+    padding: 16px 0;
+}
+
+.icon {
+    color: #ffffff;
+    background-color: #bdbdbd;
+    border-radius: 6px;
+}
+
+.icon:hover {
+    background-color: #00aaff;;
+}

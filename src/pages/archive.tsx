@@ -2,7 +2,7 @@ import * as React from "react";
 import Helmet from "react-helmet";
 
 import { TagItem } from "../types/tags";
-import Footer from "../components/footer";
+import Socials from "../components/socials";
 import Layout from "../components/layout";
 import Posts from "../components/postsList";
 import { PostRaw, rawToStructured } from "../types/Post";
@@ -49,7 +49,7 @@ const Archive = (props: ArchiveProps) => {
           lang={lang}
           posts={posts.edges.map(edge => rawToStructured(edge.node))}
         />
-        <Footer />
+        <Socials lang={lang} />
       </div>
     </Layout>
   );

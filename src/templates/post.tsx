@@ -1,7 +1,7 @@
 import { graphql } from "gatsby";
 import * as React from "react";
 import Helmet from "react-helmet";
-import Footer from "../components/footer";
+import Socials from "../components/socials";
 import Layout from "../components/layout";
 import TagsList from "../components/tagsList";
 
@@ -107,7 +107,7 @@ class PostTemplate extends React.Component<PostProps> {
             dangerouslySetInnerHTML={{ __html: post.html }}
           />
 
-          <Footer />
+          <Socials lang={lang} />
           <div className={css.comment}>
             <ReactDisqusComments
               shortname="lesleylaiblog"

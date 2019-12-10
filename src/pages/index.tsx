@@ -1,10 +1,9 @@
 import { graphql } from "gatsby";
-import Link from "gatsby-link";
 import * as React from "react";
 import Helmet from "react-helmet";
 
 import { TagItem } from "../types/tags";
-import Footer from "../components/footer";
+import Socials from "../components/socials";
 import Layout from "../components/layout";
 import RecentPosts, { PostMeta } from "../components/recentPosts";
 import { Language, translations } from "../utils/translations";
@@ -51,7 +50,7 @@ class IndexPage extends React.Component<IndexProps> {
           posts={data.posts.edges.map(edge => edge.node)}
           lang={lang}
         />
-        <Footer />
+        <Socials lang={lang} />
       </Layout>
     );
   }

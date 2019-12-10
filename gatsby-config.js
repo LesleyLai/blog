@@ -1,9 +1,58 @@
+const siteMetadata = {
+  title: `Lesley Lai's Blog`,
+  description: `A personal website and blog for Lesley Lai`,
+  siteUrl: `http://www.lesleylai.info`
+};
+
+const createFeed = (title, output, lang) => {
+  let siteUrl = siteMetadata.siteUrl;
+  if (lang !== "en") {
+    siteUrl += `/${lang}`;
+  }
+
+  return {
+    serialize: ({ query: { site, allMarkdownRemark } }) => {
+      return allMarkdownRemark.edges.map(edge => {
+        const url = site.siteMetadata.siteUrl + "/" + edge.node.frontmatter.lang + "/" + edge.node.frontmatter.id;
+        return Object.assign({}, edge.node.frontmatter, {
+          description: edge.node.excerpt,
+          date: edge.node.frontmatter.create,
+          language: edge.node.frontmatter.lang,
+          url: url,
+          guid: url,
+          custom_elements: [{ "content:encoded": edge.node.html }]
+        });
+      });
+    },
+    query: `
+{
+  allMarkdownRemark(limit: 1000,
+    sort: {order: DESC, fields: [frontmatter___create]},
+    filter: {fields: {relativePath: {regex: "/blog/"}}, frontmatter: {lang: {eq: "${lang}"}}}) {
+    edges {
+      node {
+        excerpt
+        html
+        frontmatter {
+          title
+          create
+          lang
+          id
+        }
+      }
+    }
+  }
+}
+          `,
+    output: output,
+    title: title,
+    language: lang,
+    site_url: siteUrl,
+  };
+};
+
 module.exports = {
-  siteMetadata: {
-    title: `Lesley Lai's Blog`,
-    description: `A personal website and blog for Lesley Lai`,
-    siteUrl: `http://www.lesleylai.info`
-  },
+  siteMetadata: siteMetadata,
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
@@ -80,60 +129,16 @@ module.exports = {
         }
       `,
         feeds: [
-          {
-            serialize: ({ query: { site, allMarkdownRemark } }) => {
-              return allMarkdownRemark.edges.map(edge => {
-                const url = site.siteMetadata.siteUrl + '/' + edge.node.frontmatter.id + '/' + edge.node.frontmatter.lang;
-                return Object.assign({}, edge.node.frontmatter, {
-                  description: edge.node.excerpt,
-                  date: edge.node.frontmatter.create,
-                  language: edge.node.frontmatter.lang,
-                  url: url,
-                  guid: url,
-                  custom_elements: [{ "content:encoded": edge.node.html }]
-                });
-              });
-            },
-            query: `
-{
-  allMarkdownRemark(limit: 1000,
-    sort: {order: DESC, fields: [frontmatter___create]},
-    filter: {fields: {relativePath: {regex: "/blog/"}}, frontmatter: {lang: {eq: "en"}}}) {
-    edges {
-      node {
-        excerpt
-        html
-        frontmatter {
-          title
-          create
-          lang
-          id
-        }
-      }
-    }
-  }
-}
-          `,
-            output: "/rss.xml",
-            title: "Lesley Lai's Blog Rss Feed"
-          }
+          createFeed("Lesley Lai's Blog", "/rss.xml", "en"),
+          createFeed("赖思理的博客", "/zh/rss.xml", "zh")
         ]
       }
     },
     {
-      resolve: 'gatsby-plugin-google-fonts',
-      options: {
-        fonts: [
-          'material icons',
-          'roboto:300,400,500,700',
-        ],
-      },
-    },
-    {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: "UA-137818218-1",
-      },
+        trackingId: "UA-137818218-1"
+      }
     },
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-netlify`
