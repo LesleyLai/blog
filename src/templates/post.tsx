@@ -33,6 +33,11 @@ export interface PostData {
 
 interface PostProps {
   data: {
+    site: {
+      siteMetadata: {
+        siteUrl: string;
+      };
+    };
     post: PostData;
     otherLangs: {
       edges: Array<{
@@ -74,6 +79,8 @@ class PostTemplate extends React.Component<PostProps> {
     const create = post.frontmatter.create;
     const lastModify = post.frontmatter.lastModify;
 
+    const absolutePath = this.props.data.site.siteMetadata.siteUrl + path;
+
     return (
       <Layout
         location={{ pathname: path }}
@@ -107,7 +114,13 @@ class PostTemplate extends React.Component<PostProps> {
             dangerouslySetInnerHTML={{ __html: post.html }}
           />
 
-          <Socials lang={lang} />
+          <Socials
+            lang={lang}
+            shareInfo={{
+              title: post.frontmatter.title,
+              url: absolutePath
+            }}
+          />
           <div className={css.comment}>
             <ReactDisqusComments
               shortname="lesleylaiblog"
@@ -128,6 +141,11 @@ export default PostTemplate;
 
 export const query = graphql`
   query BlogPostQuery($id: String!, $lang: String!, $dateLocale: String!) {
+    site {
+      siteMetadata {
+        siteUrl
+      }
+    }
     post: markdownRemark(
       frontmatter: { id: { eq: $id }, lang: { eq: $lang } }
     ) {
