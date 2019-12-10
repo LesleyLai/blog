@@ -58,7 +58,7 @@ class PostTemplate extends React.Component<PostProps> {
   public render() {
     const post = this.props.data.post;
     const lang = post.frontmatter.lang;
-    const path = "/" + post.frontmatter.id + "/" + lang;
+    const path = "/" + lang + "/" + post.frontmatter.id;
     const url = "http://lesleylai.info" + path;
 
     const tags = this.props.data.allPosts.tags;
