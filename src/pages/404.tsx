@@ -50,9 +50,9 @@ export default NotFoundPage;
 
 export const query = graphql`
   query notFoundQuery($lang: String!) {
-    posts: allMarkdownRemark(
+    posts: allMdx(
       filter: {
-        fields: { relativePath: { regex: "//blog/" } }
+        fileAbsolutePath: { regex: "//contents/blog//" }
         frontmatter: { lang: { eq: $lang } }
       }
     ) {

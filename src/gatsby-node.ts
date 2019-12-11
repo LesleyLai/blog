@@ -122,9 +122,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
   const posts = new Promise((resolve, _reject) => {
     graphql(`
       {
-        allMarkdownRemark(
-          filter: { fields: { relativePath: { regex: "//blog/" } } }
-        ) {
+        allMdx(filter: { fileAbsolutePath: { regex: "//contents/blog//" } }) {
           edges {
             node {
               frontmatter {
@@ -137,7 +135,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
         }
       }
     `).then((result: any) => {
-      const posts = result.data.allMarkdownRemark.edges;
+      const posts = result.data.allMdx.edges;
 
       // Creates individual pages
       posts.map(({ node }: any) => {
@@ -209,9 +207,9 @@ export const createPages: GatsbyNode["createPages"] = async ({
   const projects = new Promise((resolve, _reject) => {
     graphql(`
       {
-        allMarkdownRemark(
+        allMdx(
           filter: {
-            fields: { relativePath: { regex: "//projects/" } }
+            fileAbsolutePath: { regex: "//contents/projects//" }
             frontmatter: { lang: { eq: "en" } }
           }
         ) {
@@ -225,7 +223,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
         }
       }
     `).then((result: any) => {
-      const projects = result.data.allMarkdownRemark.edges;
+      const projects = result.data.allMdx.edges;
 
       // Create tag pages
       const tags = new Set();

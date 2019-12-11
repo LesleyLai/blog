@@ -75,10 +75,10 @@ export default TagsTemplate;
 
 export const query = graphql`
   query TagsQuery($tag: String!, $lang: String!, $otherLangsRegex: String!) {
-    posts: allMarkdownRemark(
+    posts: allMdx(
       sort: { fields: [frontmatter___create], order: DESC }
       filter: {
-        fields: { relativePath: { regex: "//blog/" } }
+        fileAbsolutePath: { regex: "//contents/blog//" }
         frontmatter: { lang: { eq: $lang }, categories: { in: [$tag] } }
       }
     ) {
@@ -105,9 +105,9 @@ export const query = graphql`
         }
       }
     }
-    allPosts: allMarkdownRemark(
+    allPosts: allMdx(
       filter: {
-        fields: { relativePath: { regex: "//blog/" } }
+        fileAbsolutePath: { regex: "//contents/blog//" }
         frontmatter: { lang: { eq: $lang } }
       }
     ) {

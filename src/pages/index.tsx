@@ -60,9 +60,9 @@ export default IndexPage;
 
 export const query = graphql`
   query indexQuery($lang: String!, $dateLocale: String!) {
-    posts: allMarkdownRemark(
+    posts: allMdx(
       filter: {
-        fields: { relativePath: { regex: "//blog/" } }
+        fileAbsolutePath: { regex: "//contents/blog//" }
         frontmatter: { lang: { eq: $lang } }
       }
       sort: { fields: [frontmatter___create], order: DESC }
@@ -78,18 +78,14 @@ export const query = graphql`
             create(formatString: "LL", locale: $dateLocale)
             categories
           }
-          fields {
-            readingTime {
-              minutes
-            }
-          }
+          timeToRead
           excerpt
         }
       }
     }
-    allPosts: allMarkdownRemark(
+    allPosts: allMdx(
       filter: {
-        fields: { relativePath: { regex: "//blog/" } }
+        fileAbsolutePath: { regex: "//contents/blog//" }
         frontmatter: { lang: { eq: $lang } }
       }
       sort: { fields: [frontmatter___create], order: DESC }

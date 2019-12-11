@@ -27,19 +27,19 @@ export default ProjectsPage;
 
 export const query = graphql`
   query projectsQuery($lang: String!) {
-    posts: allMarkdownRemark(
+    posts: allMdx(
       filter: {
-        fields: { relativePath: { regex: "//blog/" } }
+        fileAbsolutePath: {regex: "//contents/blog//"}
         frontmatter: { lang: { eq: $lang } }
       }
     ) {
       totalCount
       ...Tags
     }
-    projects: allMarkdownRemark(
+    projects: allMdx(
       sort: { fields: [frontmatter___create], order: DESC }
       filter: {
-        fields: { relativePath: { regex: "/projects/" } }
+        fileAbsolutePath: {regex: "//contents/projects//"}
         frontmatter: { lang: { eq: $lang } }
       }
     ) {

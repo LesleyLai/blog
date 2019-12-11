@@ -41,14 +41,14 @@
     }
 }
 
-.article > h2 {
+.post > h2 {
     font-size: 24px;
     padding: 24px 0 12px 0;
     font-weight: 700;
     margin: 0;
 }
 
-.article > h3 {
+.post > h3 {
     font-style: italic;
     font-size:19px;
     font-weight: normal;
@@ -57,33 +57,33 @@
     margin: 0;
 }
 
-.article > h4 {
+.post > h4 {
     padding: 0 0 4px 0;
     margin-bottom: 16px;
 }
 
-.article > p {
+.post > p {
     padding: 8px 0;
     margin: 0;
 }
 
-.article > p + p {
+.post > p + p {
     padding: 12px 0;
 }
 
 
-.article > aside {
+.post > aside {
     color: #868279;
     padding: 10px 10px;
 }
 
-.article > aside > p {
+.post > aside > p {
     margin-bottom: 0;
     font-size: 13px;
 }
 
 @media (max-width: 767px) {
-    .article > aside {
+    .post > aside {
         margin-top: 0 !important;
         margin-bottom: 20px;
         background: #faf8f5;
@@ -97,7 +97,7 @@
 }
 
 @media (min-width: 768px) {
-    .article > aside {
+    .post > aside {
         position: absolute;
         width: 240px;
         right: 30px;
@@ -115,7 +115,7 @@
 }
 
 @media (min-width: 1200px) {
-    .article > aside {
+    .post > aside {
         right: calc((100% - 1200px) / 2 + 30px);
     }
 }

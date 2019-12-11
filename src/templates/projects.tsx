@@ -1,6 +1,7 @@
 import { FluidObject } from "gatsby-image";
 import { graphql } from "gatsby";
 import * as React from "react";
+import { MDXRenderer } from "gatsby-plugin-mdx";
 import Helmet from "react-helmet";
 
 import Layout from "../components/layout";
@@ -24,7 +25,7 @@ interface ProjectMeta {
     demo?: string;
     website?: string;
   };
-  html: string;
+  body: any;
 }
 
 interface ImageMeta {
@@ -77,14 +78,13 @@ class ProjectsPageTemplate extends React.Component<ProjectsProps> {
     const postsTags = data.posts.tags;
     const postsTotalCount = data.posts.totalCount;
 
-    const images = data.allImages.nodes.reduce(function(
-      acc: ImageMap,
-      cur: ImageMeta
-    ) {
-      acc[cur.name] = cur.childImageSharp.fluid;
-      return acc;
-    },
-    {});
+    const images = data.allImages.nodes.reduce(
+      (acc: ImageMap, cur: ImageMeta) => {
+        acc[cur.name] = cur.childImageSharp.fluid;
+        return acc;
+      },
+      {}
+    );
 
     return (
       <Layout
@@ -140,7 +140,7 @@ class ProjectsPageTemplate extends React.Component<ProjectsProps> {
                   project.frontmatter.image && images[project.frontmatter.image]
                 }
               >
-                <div dangerouslySetInnerHTML={{ __html: project.html }} />
+                <MDXRenderer>{project.body}</MDXRenderer>
               </ProjectPanel>
             );
           })}
@@ -153,7 +153,7 @@ class ProjectsPageTemplate extends React.Component<ProjectsProps> {
 export default ProjectsPageTemplate;
 
 export const query = graphql`
-  fragment ProjectsInfo on MarkdownRemarkConnection {
+  fragment ProjectsInfo on MdxConnection {
     edges {
       node {
         frontmatter {
@@ -168,26 +168,26 @@ export const query = graphql`
           demo
           website
         }
-        html
+        body
       }
     }
     ...Tags
   }
 
   query projectsTagsQuery($lang: String!) {
-    posts: allMarkdownRemark(
+    posts: allMdx(
       filter: {
-        fields: { relativePath: { regex: "//blog/" } }
+        fileAbsolutePath: {regex: "//contents/blog//"}
         frontmatter: { lang: { eq: $lang } }
       }
     ) {
       totalCount
       ...Tags
     }
-    projects: allMarkdownRemark(
+    projects: allMdx(
       sort: { fields: [frontmatter___create], order: DESC }
       filter: {
-        fields: { relativePath: { regex: "/projects/" } }
+        fileAbsolutePath: {regex: "//contents/projects//"}
         frontmatter: { lang: { eq: "en" } }
       }
     ) {

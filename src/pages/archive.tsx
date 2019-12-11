@@ -59,10 +59,10 @@ export default Archive;
 
 export const query = graphql`
   query ArchiveQuery($lang: String!) {
-    posts: allMarkdownRemark(
+    posts: allMdx(
       sort: { fields: [frontmatter___create], order: DESC }
       filter: {
-        fields: { relativePath: { regex: "//blog/" } }
+        fileAbsolutePath: { regex: "//contents/blog//" }
         frontmatter: { lang: { eq: $lang } }
       }
     ) {

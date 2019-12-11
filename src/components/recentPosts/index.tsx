@@ -14,11 +14,7 @@ export interface PostMeta {
     create: string;
     categories: TagID[];
   };
-  fields: {
-    readingTime: {
-      minutes: number;
-    };
-  };
+  timeToRead: number;
   excerpt: string;
 }
 
@@ -34,9 +30,6 @@ export default class RecentPosts extends React.Component {
     return (
       <div>
         {posts.map(post => {
-          const readingTimeMinutes = Math.round(
-            post.fields.readingTime.minutes
-          );
           return (
             <article key={post.frontmatter.title} className={style.post}>
               <h3 className={style.header}>
@@ -56,7 +49,7 @@ export default class RecentPosts extends React.Component {
                 to={`/${post.frontmatter.lang}/${post.frontmatter.id}`}
               >
                 {translations[lang]["readmore"]}
-                {lang === "en" && ` | ${readingTimeMinutes} minutes`}
+                {lang === "en" && ` | ${post.timeToRead} minutes`}
               </Link>
             </article>
           );

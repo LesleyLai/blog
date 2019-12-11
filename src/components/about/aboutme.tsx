@@ -101,7 +101,7 @@ const AboutMe = ({ lang, tags, postsTotalCount }: AboutMeProp) => {
 };
 
 export const query = graphql`
-  fragment Tags on MarkdownRemarkConnection {
+  fragment Tags on MdxConnection {
     tags: group(field: frontmatter___categories) {
       id: fieldValue
       totalCount

@@ -1,5 +1,6 @@
 import { graphql } from "gatsby";
 import * as React from "react";
+import { MDXRenderer } from "gatsby-plugin-mdx";
 import Helmet from "react-helmet";
 import Socials from "../components/socials";
 import Layout from "../components/layout";
@@ -14,7 +15,7 @@ const css = require("./post.module.css");
 require(`katex/dist/katex.min.css`);
 
 export interface PostData {
-  html: string;
+  body: any;
   frontmatter: {
     id: string;
     lang: Language;
@@ -23,11 +24,9 @@ export interface PostData {
     lastModify: string;
     categories: TagID[];
   };
-  fields: {
-    readingTime: {
-      minutes: number;
-      words: number;
-    };
+  timeToRead: number;
+  wordCount: {
+    words: number;
   };
 }
 
@@ -73,8 +72,8 @@ class PostTemplate extends React.Component<PostProps> {
       edge => edge.node.frontmatter.lang
     );
 
-    const readingTimeMinutes = Math.round(post.fields.readingTime.minutes);
-    const words = post.fields.readingTime.words;
+    const readingTimeMinutes = post.timeToRead;
+    const words = post.wordCount.words;
 
     const create = post.frontmatter.create;
     const lastModify = post.frontmatter.lastModify;
@@ -109,10 +108,7 @@ class PostTemplate extends React.Component<PostProps> {
               className={css.tags}
             />
           </div>
-          <article
-            className={css.article}
-            dangerouslySetInnerHTML={{ __html: post.html }}
-          />
+          <MDXRenderer>{post.body}</MDXRenderer>
 
           <Socials
             lang={lang}
@@ -146,10 +142,8 @@ export const query = graphql`
         siteUrl
       }
     }
-    post: markdownRemark(
-      frontmatter: { id: { eq: $id }, lang: { eq: $lang } }
-    ) {
-      html
+    post: mdx(frontmatter: { id: { eq: $id }, lang: { eq: $lang } }) {
+      body
       frontmatter {
         id
         lang
@@ -158,14 +152,12 @@ export const query = graphql`
         lastModify(formatString: "LL", locale: $dateLocale)
         categories
       }
-      fields {
-        readingTime {
-          minutes
-          words
-        }
+      timeToRead
+      wordCount {
+        words
       }
     }
-    otherLangs: allMarkdownRemark(
+    otherLangs: allMdx(
       filter: { frontmatter: { id: { eq: $id }, lang: { ne: $lang } } }
     ) {
       edges {
@@ -176,9 +168,9 @@ export const query = graphql`
         }
       }
     }
-    allPosts: allMarkdownRemark(
+    allPosts: allMdx(
       filter: {
-        fields: { relativePath: { regex: "//blog/" } }
+        fileAbsolutePath: { regex: "//contents/blog//" }
         frontmatter: { lang: { eq: $lang } }
       }
     ) {

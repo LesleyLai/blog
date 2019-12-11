@@ -11,9 +11,10 @@ const createFeed = (title, output, lang) => {
   }
 
   return {
-    serialize: ({ query: { site, allMarkdownRemark } }) => {
-      return allMarkdownRemark.edges.map(edge => {
-        const url = site.siteMetadata.siteUrl + "/" + edge.node.frontmatter.lang + "/" + edge.node.frontmatter.id;
+    serialize: ({ query: { site, posts } }) => {
+      return posts.edges.map(edge => {
+        const url = site.siteMetadata.siteUrl + "/"
+              + edge.node.frontmatter.lang + "/" + edge.node.frontmatter.id;
         return Object.assign({}, edge.node.frontmatter, {
           description: edge.node.excerpt,
           date: edge.node.frontmatter.create,
@@ -26,9 +27,12 @@ const createFeed = (title, output, lang) => {
     },
     query: `
 {
-  allMarkdownRemark(limit: 1000,
+  posts: allMdx(
     sort: {order: DESC, fields: [frontmatter___create]},
-    filter: {fields: {relativePath: {regex: "/blog/"}}, frontmatter: {lang: {eq: "${lang}"}}}) {
+    filter: {
+      fileAbsolutePath: { regex: "//contents/blog//" }
+      frontmatter: {lang: {eq: "${lang}"}}
+    }) {
     edges {
       node {
         excerpt
@@ -56,10 +60,11 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: `gatsby-plugin-mdx`,
       options: {
+        extensions: [`.mdx`, `.md`],
         excerpt_separator: `<!-- end -->`,
-        plugins: [
+        gatsbyRemarkPlugins: [
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
@@ -89,7 +94,6 @@ module.exports = {
               strict: `ignore`
             }
           },
-          `gatsby-remark-reading-time`,
         ]
       }
     },
@@ -114,7 +118,7 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-plugin-postcss`,
     {
-      resolve: `gatsby-plugin-feed`,
+      resolve: `gatsby-plugin-feed-mdx`,
       options: {
         query: `
         {
