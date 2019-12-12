@@ -105,6 +105,39 @@ const lagacyURLRedirections: Array<{ from: string; to: string }> = [
 
 const dateLocale = (lang: Language) => (lang === "zh" ? "ZH_CN" : lang);
 
+interface PostMeta {
+  readonly frontmatter: {
+    id: string;
+    lang: Language;
+    tags: TagID[];
+  };
+}
+
+interface ProjectMeta {
+  readonly frontmatter: {
+    tags: TagID[];
+  };
+}
+
+interface MdxWithTags {
+  node: {
+    frontmatter: {
+      tags: TagID[];
+    };
+  };
+}
+
+const uniqueTags = (mdxs: MdxWithTags[]) => {
+  const tagSet: Set<TagID> = new Set();
+  mdxs
+    .map(mdx => mdx.node.frontmatter.tags)
+    .filter(tags => tags.length !== 0)
+    .forEach(tags => {
+      tags.forEach(tag => tagSet.add(tag));
+    });
+  return Array.from(tagSet);
+};
+
 export const createPages: GatsbyNode["createPages"] = async ({
   graphql,
   actions
@@ -119,26 +152,37 @@ export const createPages: GatsbyNode["createPages"] = async ({
     createRedirectsSlash(from, to, createRedirect);
   });
 
-  const posts = new Promise((resolve, _reject) => {
+  const postsPromise = new Promise((resolve, _reject) => {
+    interface Result {
+      data: {
+        posts: {
+          edges: Array<{
+            node: PostMeta;
+          }>;
+        };
+      };
+    }
+
     graphql(`
       {
-        allMdx(filter: { fileAbsolutePath: { regex: "//contents/blog//" } }) {
+        posts: allMdx(
+          filter: { fileAbsolutePath: { regex: "//contents/blog//" } }
+        ) {
           edges {
             node {
               frontmatter {
                 id
                 lang
-                categories
+                tags: categories
               }
             }
           }
         }
       }
-    `).then((result: any) => {
-      const posts = result.data.allMdx.edges;
-
+    `).then((result: Result) => {
+      const posts = result.data.posts.edges;
       // Creates individual pages
-      posts.map(({ node }: any) => {
+      posts.map(({ node }: { node: PostMeta }) => {
         const lang = node.frontmatter.lang;
         const id = node.frontmatter.id;
 
@@ -153,50 +197,28 @@ export const createPages: GatsbyNode["createPages"] = async ({
         });
       });
 
-      languages
-        .map(lang => {
-          const tags: Set<TagID> = new Set();
-          for (const post of posts) {
-            if (post.node.frontmatter.lang === lang) {
-              const postTags = post.node.frontmatter.categories;
-              if (postTags) {
-                postTags.forEach((tag: TagID) => {
-                  tags.add(tag);
-                });
-              }
+      languages.forEach(lang => {
+        const langPosts = posts.filter(
+          post => post.node.frontmatter.lang === lang
+        );
+
+        // Tag pages
+        uniqueTags(langPosts).forEach(tag => {
+          const localizedPath = `/${lang}/archive/${tag}`;
+          const otherLangsRegex = `//(?!${lang}).*/archive/${tag}$/`;
+
+          createPage({
+            path: localizedPath,
+            component: tagsTemplate,
+            context: {
+              tag,
+              lang: lang,
+              dateLocale: dateLocale(lang),
+              otherLangsRegex: otherLangsRegex
             }
-          }
-
-          return { lang, tags };
-        })
-        .forEach(({ lang, tags }) => {
-          for (const tag of Array.from(tags)) {
-            const localizedPath = `/${lang}/archive/${tag}`;
-
-            const otherLangsRegex = `//(?!${lang}).*/archive/${tag}$/`;
-
-            createPage({
-              path: localizedPath,
-              component: tagsTemplate,
-              context: {
-                tag,
-                lang: lang,
-                dateLocale: dateLocale(lang),
-                otherLangsRegex: otherLangsRegex
-              }
-            });
-          }
-
-          if (lang == "en") {
-            for (const tag of Array.from(tags)) {
-              createRedirectsSlash(
-                `/archive/${tag}`,
-                `/en/archive/${tag}`,
-                createRedirect
-              );
-            }
-          }
+          });
         });
+      });
 
       resolve();
     });
@@ -204,10 +226,20 @@ export const createPages: GatsbyNode["createPages"] = async ({
     console.log(error);
   });
 
-  const projects = new Promise((resolve, _reject) => {
+  const projectsPromise = new Promise((resolve, _reject) => {
+    interface Result {
+      readonly data: {
+        projects: {
+          edges: Array<{
+            node: ProjectMeta;
+          }>;
+        };
+      };
+    }
+
     graphql(`
       {
-        allMdx(
+        projects: allMdx(
           filter: {
             fileAbsolutePath: { regex: "//contents/projects//" }
             frontmatter: { lang: { eq: "en" } }
@@ -216,27 +248,17 @@ export const createPages: GatsbyNode["createPages"] = async ({
           edges {
             node {
               frontmatter {
-                categories
+                tags: categories
               }
             }
           }
         }
       }
-    `).then((result: any) => {
-      const projects = result.data.allMdx.edges;
+    `).then((result: Result) => {
+      const projects = result.data.projects.edges;
 
       // Create tag pages
-      const tags = new Set();
-      for (const project of projects) {
-        const projectTags = project.node.frontmatter.categories;
-        if (projectTags) {
-          projectTags.forEach((tag: any) => {
-            tags.add(tag);
-          });
-        }
-      }
-
-      for (const tag of Array.from(tags)) {
+      uniqueTags(projects).map(tag => {
         createPage({
           path: `/en/projects/${tag}`,
           component: projectsTemplate,
@@ -245,13 +267,13 @@ export const createPages: GatsbyNode["createPages"] = async ({
             lang: "en"
           }
         });
-      }
+      });
 
       resolve();
     });
   });
 
-  return Promise.all([posts, projects]).catch(error => {
+  return Promise.all([postsPromise, projectsPromise]).catch(error => {
     console.log(error);
   });
 };
