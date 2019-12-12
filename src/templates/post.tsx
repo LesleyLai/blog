@@ -1,7 +1,9 @@
 import { graphql } from "gatsby";
+import Link from "gatsby-link";
 import * as React from "react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import Helmet from "react-helmet";
+import PrevNextLinks from "../components/prevnextlinks";
 import Socials from "../components/socials";
 import Layout from "../components/layout";
 import TagsList from "../components/tagsList";
@@ -15,7 +17,7 @@ const css = require("./post.module.css");
 require(`katex/dist/katex.min.css`);
 
 export interface PostData {
-  body: any;
+  body: string;
   frontmatter: {
     id: string;
     lang: Language;
@@ -30,7 +32,17 @@ export interface PostData {
   };
 }
 
+interface PostTitleInfo {
+  frontmatter: {
+    title: string;
+  };
+}
+
 interface PostProps {
+  pageContext: {
+    previousId?: string;
+    nextId?: string;
+  };
   data: {
     site: {
       siteMetadata: {
@@ -38,6 +50,8 @@ interface PostProps {
       };
     };
     post: PostData;
+    prevPost: PostTitleInfo;
+    nextPost: PostTitleInfo;
     otherLangs: {
       edges: Array<{
         node: {
@@ -60,15 +74,16 @@ class PostTemplate extends React.Component<PostProps> {
   }
 
   public render() {
-    const post = this.props.data.post;
+    const data = this.props.data;
+    const post = data.post;
     const lang = post.frontmatter.lang;
     const path = "/" + lang + "/" + post.frontmatter.id;
     const url = "http://lesleylai.info" + path;
 
-    const tags = this.props.data.allPosts.tags;
-    const postsTotalCount = this.props.data.allPosts.totalCount;
+    const tags = data.allPosts.tags;
+    const postsTotalCount = data.allPosts.totalCount;
 
-    const otherLangs = this.props.data.otherLangs.edges.map(
+    const otherLangs = data.otherLangs.edges.map(
       edge => edge.node.frontmatter.lang
     );
 
@@ -78,7 +93,17 @@ class PostTemplate extends React.Component<PostProps> {
     const create = post.frontmatter.create;
     const lastModify = post.frontmatter.lastModify;
 
-    const absolutePath = this.props.data.site.siteMetadata.siteUrl + path;
+    const absolutePath = data.site.siteMetadata.siteUrl + path;
+
+    const previousId = this.props.pageContext.previousId;
+    const nextId = this.props.pageContext.nextId;
+
+    const previousInfo = previousId
+      ? { id: previousId, title: data.prevPost.frontmatter.title }
+      : null;
+    const nextInfo = nextId
+      ? { id: nextId, title: data.nextPost.frontmatter.title }
+      : null;
 
     return (
       <Layout
@@ -117,6 +142,13 @@ class PostTemplate extends React.Component<PostProps> {
               url: absolutePath
             }}
           />
+
+          <PrevNextLinks
+            lang={lang}
+            previousInfo={previousInfo}
+            nextInfo={nextInfo}
+          />
+
           <div className={css.comment}>
             <ReactDisqusComments
               shortname="lesleylaiblog"
@@ -136,7 +168,13 @@ class PostTemplate extends React.Component<PostProps> {
 export default PostTemplate;
 
 export const query = graphql`
-  query BlogPostQuery($id: String!, $lang: String!, $dateLocale: String!) {
+  query BlogPostQuery(
+    $id: String!
+    $lang: String!
+    $dateLocale: String!
+    $previousId: String
+    $nextId: String
+  ) {
     site {
       siteMetadata {
         siteUrl
@@ -176,6 +214,18 @@ export const query = graphql`
     ) {
       totalCount
       ...Tags
+    }
+    prevPost: mdx(
+      frontmatter: { id: { eq: $previousId }, lang: { eq: $lang } }
+    ) {
+      frontmatter {
+        title
+      }
+    }
+    nextPost: mdx(frontmatter: { id: { eq: $nextId }, lang: { eq: $lang } }) {
+      frontmatter {
+        title
+      }
     }
   }
 `;

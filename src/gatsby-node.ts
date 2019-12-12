@@ -103,15 +103,7 @@ const lagacyURLRedirections: Array<{ from: string; to: string }> = [
   { from: "/talks/zh", to: "/zh/talks" }
 ];
 
-const dateLocale = (lang: Language) => (lang === "zh" ? "ZH_CN" : lang);
-
-interface PostMeta {
-  readonly frontmatter: {
-    id: string;
-    lang: Language;
-    tags: TagID[];
-  };
-}
+const getDateLocale = (lang: Language) => (lang === "zh" ? "ZH_CN" : lang);
 
 interface ProjectMeta {
   readonly frontmatter: {
@@ -157,7 +149,13 @@ export const createPages: GatsbyNode["createPages"] = async ({
       data: {
         posts: {
           edges: Array<{
-            node: PostMeta;
+            node: {
+              frontmatter: {
+                id: string;
+                lang: Language;
+                tags: TagID[];
+              };
+            };
           }>;
         };
       };
@@ -166,6 +164,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
     graphql(`
       {
         posts: allMdx(
+          sort: { fields: [frontmatter___create] }
           filter: { fileAbsolutePath: { regex: "//contents/blog//" } }
         ) {
           edges {
@@ -181,26 +180,41 @@ export const createPages: GatsbyNode["createPages"] = async ({
       }
     `).then((result: Result) => {
       const posts = result.data.posts.edges;
-      // Creates individual pages
-      posts.map(({ node }: { node: PostMeta }) => {
-        const lang = node.frontmatter.lang;
-        const id = node.frontmatter.id;
-
-        createPage({
-          path: `/${lang}/${id}`,
-          component: postTemplate,
-          context: {
-            lang: lang,
-            id: id,
-            dateLocale: dateLocale(lang)
-          }
-        });
-      });
-
       languages.forEach(lang => {
         const langPosts = posts.filter(
           post => post.node.frontmatter.lang === lang
         );
+        const dateLocale = getDateLocale(lang);
+
+        // Creates individual pages
+        langPosts.forEach(({ node }, index) => {
+          const lang = node.frontmatter.lang;
+          const id = node.frontmatter.id;
+
+          const previousIndex = index - 1;
+          const previousId =
+            previousIndex in langPosts
+              ? langPosts[previousIndex].node.frontmatter.id
+              : null;
+
+          const nextIndex = index + 1;
+          const nextId =
+            nextIndex in langPosts
+              ? langPosts[nextIndex].node.frontmatter.id
+              : null;
+
+          createPage({
+            path: `/${lang}/${id}`,
+            component: postTemplate,
+            context: {
+              lang: lang,
+              id: id,
+              dateLocale: dateLocale,
+              previousId: previousId,
+              nextId: nextId
+            }
+          });
+        });
 
         // Tag pages
         uniqueTags(langPosts).forEach(tag => {
@@ -213,7 +227,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
             context: {
               tag,
               lang: lang,
-              dateLocale: dateLocale(lang),
+              dateLocale: dateLocale,
               otherLangsRegex: otherLangsRegex
             }
           });
@@ -339,7 +353,7 @@ export const onCreatePage: GatsbyNode["onCreatePage"] = async args => {
       path: localizedPath,
       context: {
         lang: lang,
-        dateLocale: dateLocale(lang)
+        dateLocale: getDateLocale(lang)
       }
     });
   });
