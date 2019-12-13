@@ -1,12 +1,73 @@
 import Link from "gatsby-link";
 import * as React from "react";
+import Helmet from "react-helmet";
+import classnames from "classnames";
 
-import HeaderMenu from "./headerMenu";
+import { Language, Translations, translations } from "../../utils/translations";
+import { MenuModel, menuModel } from "../menu";
 
-import { Language } from "../../utils/translations";
-import { menuModel } from "../menu";
+const css = require("./header.module.css");
 
-const style = require("./header.module.css");
+const Logo = ({ lang }: { lang: Language }) => (
+  <Link to={menuModel.home.langs[lang].path} className={css.logo}>
+    <h2>Lesley Lai 赖思理</h2>
+  </Link>
+);
+
+interface MenuItemProp extends React.HTMLProps<HTMLDivElement> {
+  itemName: keyof Translations;
+  lang: Language;
+}
+
+const MenuItem: React.FunctionComponent<MenuItemProp> = ({
+  itemName,
+  lang
+}) => {
+  const item: MenuModel = menuModel[itemName];
+  const langRecord = item.langs[lang];
+
+  return (
+    <Link
+      to={langRecord.path}
+      key={langRecord.path}
+      activeClassName={css.active}
+      partiallyActive={!item.exact}
+      className={css.menuItem}
+    >
+      {translations[lang][itemName]}
+    </Link>
+  );
+};
+
+interface LanguageLinkProp extends React.HTMLProps<HTMLDivElement> {
+  fromLang: Language;
+  toLang: Language;
+  pathname: string;
+}
+
+const LanguageLink: React.FunctionComponent<LanguageLinkProp> = ({
+  fromLang,
+  toLang,
+  pathname
+}) => {
+  const to = (() => {
+    if (pathname === "/zh" || pathname === "/zh/") {
+      return "/";
+    } else if (pathname === "/") {
+      return "/zh";
+    }
+
+    return pathname.replace(new RegExp(`/${fromLang}`), `/${toLang}`);
+  })();
+  return (
+    <Link to={to} key={toLang} className={css.menuItem}>
+      <Helmet>
+        <link rel="alternate" href={to} hrefLang={toLang} />
+      </Helmet>
+      {translations[toLang]["lang"]}
+    </Link>
+  );
+};
 
 interface HeaderProps {
   pathname: string;
@@ -14,21 +75,89 @@ interface HeaderProps {
   otherLangs: Language[];
 }
 
-const Logo = ({ lang }: { lang: Language }) => (
-  <Link to={menuModel.home.langs[lang].path} className={style.logo}>
-    <h2>Lesley Lai 赖思理</h2>
-  </Link>
-);
-
-const Header = ({ pathname, lang, otherLangs }: HeaderProps) => {
-  return (
-    <header className={style.header}>
-      <div className={style.headerContainer}>
-        <Logo lang={lang} />
-        <HeaderMenu pathname={pathname} lang={lang} otherLangs={otherLangs} />
-      </div>
-    </header>
-  );
+type HeaderStates = {
+  prevScrollpos: number;
+  visible: boolean;
 };
 
-export default Header;
+export default class Header extends React.Component<HeaderProps, HeaderStates> {
+  constructor(props: HeaderProps) {
+    super(props);
+
+    this.state = {
+      prevScrollpos: typeof window !== `undefined` ? window.pageYOffset : 0,
+      visible: true
+    };
+  }
+
+  handleScroll = () => {
+    const { prevScrollpos } = this.state;
+
+    const currentScrollPos = window.pageYOffset;
+    const visible = prevScrollpos > currentScrollPos;
+
+    this.setState({
+      prevScrollpos: currentScrollPos,
+      visible
+    });
+  };
+
+  componentDidMount() {
+    window.addEventListener("scroll", this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
+  }
+
+  render() {
+    const { pathname, lang, otherLangs } = this.props;
+    return (
+      <header
+        className={classnames(css.header, {
+          [css.headerHidden]: !this.state.visible
+        })}
+      >
+        <div className={css.headerContainer}>
+          <Logo lang={lang} />
+          <input
+            className={css.mobileMenuButton}
+            id="mobileMenuButton"
+            type="checkbox"
+          />
+
+          <label
+            className={css.mobileMenuIconContainer}
+            htmlFor="mobileMenuButton"
+          >
+            <span className={css.mobileMenuIcon} />
+          </label>
+
+          <nav className={css.menu}>
+            <ul className={css.menuItems}>
+              {Object.keys(menuModel).map((key: keyof Translations) => (
+                <li key={key}>
+                  <MenuItem itemName={key} lang={lang} />
+                </li>
+              ))}
+            </ul>
+
+            {otherLangs.length !== 0 && (
+              <ul className={css.menuItems}>
+                {otherLangs.map(otherLang => (
+                  <li key={otherLang}>
+                    <LanguageLink
+                      fromLang={lang}
+                      toLang={otherLang}
+                      pathname={pathname}
+                    />
+                  </li>
+                ))}
+              </ul>
+            )}
+          </nav>
+        </div>
+      </header>
+    );
+  }
+}

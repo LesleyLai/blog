@@ -10,6 +10,11 @@
         top: 0;
         left: 0;
         right: 0;
+        transition: top .2s ease-out;
+    }
+
+    .headerHidden {
+        top: -60px;
     }
 }
 
@@ -96,7 +101,7 @@
 
     .mobileMenuIconContainer {
         position: relative;
-        display: inline;
+        display: block;
         padding: 20px 10px;
         cursor: pointer;
 
