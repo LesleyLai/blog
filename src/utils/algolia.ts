@@ -1,5 +1,7 @@
 import { TagID } from "../types/tags";
 
+import { languages, Language } from "./translations";
+
 interface PostData {
   objectID: string;
   frontmatter: {
@@ -18,26 +20,12 @@ interface QueryData {
   };
 }
 
-const postQueryEn = `{
-  posts: allMdx(filter: {fileAbsolutePath: {regex: "//contents/blog//"}, frontmatter: {lang: {eq: "en"}}}) {
-    edges {
-      node {
-        objectID: id
-        frontmatter {
-          id
-          title
-          lang
-          create(formatString: "MMM D, YYYY")
-          tags: categories
-        }
-        excerpt(pruneLength: 5000)
-      }
-    }
-  }
-}`;
-
-const postQueryZh = `{
-  posts: allMdx(filter: {fileAbsolutePath: {regex: "//contents/blog//"}, frontmatter: {lang: {eq: "zh"}}}) {
+const postQuery = (lang: Language) => `{
+  posts: allMdx(
+    filter: {
+      frontmatter: { lang: { eq: "${lang}" } }
+      fileAbsolutePath: { regex: "//contents/blog//" }
+    }) {
     edges {
       node {
         objectID: id
@@ -61,19 +49,12 @@ const flatten = (arr: Array<{ node: PostData }>) =>
   }));
 
 const settings = { attributesToSnippet: [`excerpt:20`] };
-const queries = [
-  {
-    query: postQueryEn,
-    transformer: ({ data }: { data: QueryData }) => flatten(data.posts.edges),
-    indexName: `LesleyBlogPostsen`,
-    settings
-  },
-  {
-    query: postQueryZh,
-    transformer: ({ data }: { data: QueryData }) => flatten(data.posts.edges),
-    indexName: `LesleyBlogPostszh`,
-    settings
-  }
-];
+
+const queries = languages.map(lang => ({
+  query: postQuery(lang),
+  transformer: ({ data }: { data: QueryData }) => flatten(data.posts.edges),
+  indexName: `LesleyBlogPosts${lang}`,
+  settings
+}));
 
 export default queries;
