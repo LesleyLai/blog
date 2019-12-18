@@ -60,11 +60,13 @@ const handleRawBody = (node: PostRawData) => {
   // We want to split `rawBody` from the node
   const { rawBody, ...rest } = node;
 
-  const strip = require("strip-markdown");
   const frontmatter = require("remark-frontmatter");
+  const unlink = require("remark-unlink");
+  const strip = require("strip-markdown");
 
   const text = remark()
     .use(frontmatter)
+    .use(unlink)
     .use(strip)
     .processSync(rawBody)
     .toString();
@@ -83,7 +85,12 @@ const handleRawBody = (node: PostRawData) => {
 const queries = languages.map(lang => ({
   query: postQuery(lang),
   transformer: ({ data }: { data: QueryData }) =>
-    flatten(data.posts.edges.map(edge => edge.node).flatMap(handleRawBody)),
+    flatten(
+      data.posts.edges
+        .map(edge => edge.node)
+        .map(handleRawBody)
+        .reduce((x, y) => x.concat(y), [])
+    ),
   indexName: `LesleyBlogPosts${lang}`,
   settings: {
     attributeForDistinct: "id",
