@@ -59,9 +59,7 @@ Using accumulators implies an iterative process that we use all the times with l
 ## Continuation-passing style
 Accumulators are not always working. For example, a common task of recursive functions is walking through a tree where nodes have multiple children, but there is no way to transform such functions into tail-recursion with accumulators.
 
-There is another technique called [continuation-passing style](https://en.wikipedia.org/wiki/Continuation-passing_style) (abbreviate as CPS) to transform more complex recursive functions. However, CPS needs to dynamically allocates lots of closures for each recursive call, so it does not have performance benefit like the accumulator approach. It does, however, prevent stack overflow.
-
-Here is our `factorial()` function in continuation-passing style:
+There is another technique called [continuation-passing style](https://en.wikipedia.org/wiki/Continuation-passing_style) (abbreviate as CPS) to transform more complex recursive functions. Here is our `factorial()` function in continuation-passing style:
 
 ```elm
 factorial_k: Int -> (Int -> a) -> a
@@ -76,7 +74,7 @@ factorial n =
     factorial_k n (\x -> x)
 ```
 
-As you see, there is a lot of boilerplate with no apparent benefit. Writing code in CPS manually is tedious and error-prone, so it is probably not worthwhile to code every recursive function in CPS style. Also, there are tools to translate normal functions into CPS.
+As you see, there is a lot of boilerplate with no apparent benefit. Writing code in CPS manually is tedious and error-prone, so it is probably not worthwhile to code every recursive function in CPS style. On the other hand, there are tools to translate normal functions into CPS.
 
 ## Afterthought
 Since tail recursion is an optimization, not all implementations of all programming language will implement them. For example, there is no mandatory tail-call elimination in the C++ Standard at the time of writing, though all the mainstream compilers (MSVC, Clang, and GCC) will do it anyway. The story is different in functional programming languages. Those languages usually will mandate tail-call elimination if you write a tail-recursive function. The reason is that those languages usually discourage loop or have no loop at all, so tail-call elimination is necessary to achieve a decent performance in a lot of cases. To be a good citizen in those languages, you should try to write recursive functions tail-recursive (at least on the easy cases where you can transform them with accumulators.)

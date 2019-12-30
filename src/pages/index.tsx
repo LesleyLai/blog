@@ -79,7 +79,7 @@ export const query = graphql`
             categories
           }
           timeToRead
-          excerpt
+          excerpt(pruneLength: 200)
         }
       }
     }

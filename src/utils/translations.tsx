@@ -57,6 +57,7 @@ const en = {
       Code at <a href="https://github.com/LesleyLai">Github</a>
     </>
   ),
+  compiler: "Compiler",
   cpp: "C++",
   create: "Create",
   csharp: "C#",
@@ -82,6 +83,7 @@ const en = {
   math: "Mathematics",
   myname: "Lesley Lai",
   n_posts: (n: number) => `${n} Posts`,
+  ocaml: "OCaml",
   older_posts: () => (
     <>
       Older posts are available in the{" "}
@@ -157,6 +159,7 @@ const zh: Translations = {
       <a href="https://github.com/LesleyLai">Github</a>
     </>
   ),
+  compiler: "编译器",
   cpp: en.cpp,
   create: "创建时间",
   csharp: en.csharp,
@@ -182,6 +185,7 @@ const zh: Translations = {
   math: "数学",
   myname: "赖思理",
   n_posts: (n: number) => `${n}篇博文`,
+  ocaml: en.ocaml,
   older_posts: () => (
     <>
       在<Link to={`/zh/archive`}>{zh.archive}</Link>可以找到所有博文

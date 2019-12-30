@@ -120,6 +120,42 @@
     }
 }
 
+.post > blockquote {
+    border-radius: 3px;
+    position: relative;  /*  <--- */
+    font-style: italic;
+    text-align: center;
+    padding: 1rem 1.2rem;
+    width: 80%;  /* create space for the quotes */
+    margin: 1rem auto 2rem;
+    color: #868279;
+    background: #faf8f5;
+}
+/* -- create the quotation marks -- */
+.post > blockquote:before,
+.post > blockquote:after{
+    position: absolute;
+    /* -- inside the relative position of blockquote -- */
+    top: 13px;
+    color: #E8E8E8;
+
+    font-size: 6em;
+    line-height: 1em;
+}
+.post > blockquote:before{
+    content: '\201C';
+    margin-right: 13px;
+    right: 100%;
+}
+
+.post > blockquote:after{
+    content: '\201D';
+    margin-left: 13px;
+    left: 100%;
+    top: auto;
+    bottom: -0.45em;
+}
+
 .comment {
     margin: 0 -1rem -48px -1rem;
     padding: 24px 48px;
