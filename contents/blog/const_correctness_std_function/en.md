@@ -29,7 +29,7 @@ The Document N4348[^1] first formalized this concern. It states that
 [^1]: [Making std::function safe for concurrency](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/n4348.html)
 
 ## The Fix
-Implementations of a `function`-like class should have separate specializations for `const` and none-`const`.
+Implementations of a `function`-like class should have separate specializations for `const` and non-`const`.
 
 ```cpp
 template<class Sig> class function; // not defined
@@ -50,7 +50,7 @@ f1() // ok;
 function<int() const> f2 {[x=0]() mutable { return ++x; }}; // Does not compile
 ```
 
-On the other hand, `operator()` of the none-`const` specialization would not have `const` type signature, so you cannot invoke the `const` version of such functions at all:
+On the other hand, `operator()` of the non-`const` specialization would not have `const` type signature, so you cannot invoke the `const` version of such functions at all:
 
 ```cpp
 function<int()> f1 {[x=0]() mutable { return ++x; }};
@@ -61,6 +61,6 @@ f2(); // Does not compile
 ```
 
 ## The Future
-I don't expect `std::function` itself to have any change that breaks backward-compatibility. As of the time of this writing (December 2019), my bet is on the proposed `std::unique_function` [^2], which is a drop-in replacement of `std::function` that fixes the const-correctness bug among other features. Once we have an alternative in standard, `std::function` can be deprecated just like `std::auto_ptr`. In the meantime, we can always implement `unique_ptr` on our own, and I have a small library to implement that on [Github](https://github.com/Beyond-Engine/functions).
+I don't expect `std::function` itself to have any change that breaks backward-compatibility. As of the time of this writing (December 2019), my bet is on the proposed `std::unique_function` [^2], which is a drop-in replacement of `std::function` that fixes the const-correctness bug among other features. Once we have an alternative in standard, `std::function` can be deprecated just like `std::auto_ptr`. In the meantime, we can always implement `unique_function` on our own, and I have a small library to implement that on [Github](https://github.com/Beyond-Engine/functions).
 
 [^2]: [P0228R3 unique_function: a move-only std::function](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p0228r3.html)
