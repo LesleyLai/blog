@@ -132,7 +132,7 @@ const zh: Translations = {
           <a href="http://www.colorado.edu/">科罗拉多大学</a>
           计算机科学以及应用数学的本科生。
         </p>
-        我喜欢计算机图形学、编程语言理论，以及C++。
+        <p>我喜欢计算机图形学、编程语言理论，以及C++。</p>
       </article>
     </>
   ),
@@ -146,8 +146,8 @@ const zh: Translations = {
   books: "书籍",
   build_using_gatsby: (
     <>
-      这个博客使用<a href="https://www.gatsbyjs.org/">Gatsby</a>
-      来搭建，它的源码在<a href="https://github.com/LesleyLai/blog">Github</a>
+      本博客使用<a href="https://www.gatsbyjs.org/">Gatsby</a>
+      来搭建，源码在<a href="https://github.com/LesleyLai/blog">Github</a>
       上。
     </>
   ),
