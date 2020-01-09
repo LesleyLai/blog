@@ -145,6 +145,16 @@ module.exports = {
       }
     },
     `gatsby-plugin-styled-components`,
-    `gatsby-plugin-netlify`
+    `gatsby-plugin-netlify`,
+    {
+      resolve: `gatsby-plugin-nprogress`,
+      options: {
+        // Setting a color is optional.
+        color: "#8f6d3d",
+        // Disable the loading spinner.
+        showSpinner: false
+      }
+    },
+    'gatsby-plugin-robots-txt'
   ]
 };
