@@ -1,5 +1,4 @@
 import { graphql } from "gatsby";
-import Link from "gatsby-link";
 import * as React from "react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import Helmet from "react-helmet";
@@ -7,8 +6,6 @@ import PrevNextLinks from "../components/prevnextlinks";
 import Socials from "../components/socials";
 import Layout from "../components/layout";
 import TagsList from "../components/tagsList";
-
-import ReactDisqusComments from "react-disqus-comments";
 
 import { TagID, TagItem } from "../types/tags";
 import { Language, translations } from "../utils/translations";
@@ -149,16 +146,7 @@ class PostTemplate extends React.Component<PostProps> {
             nextInfo={nextInfo}
           />
 
-          <div className={css.comment}>
-            <ReactDisqusComments
-              shortname="lesleylaiblog"
-              identifier={post.frontmatter.id}
-              title={post.frontmatter.title}
-              url={url}
-              onNewComment={this.handleNewComment}
-              language={lang}
-            />
-          </div>
+          <div className={css.comment}>{/* For comment */}</div>
         </div>
       </Layout>
     );

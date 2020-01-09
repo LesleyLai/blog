@@ -23,6 +23,7 @@ export const tagInfos = {
   graphql: { color: colors.pink },
   i18n: { color: colors.black },
   java: { color: colors.red },
+  javascript: { color: colors.yellow },
   library: { color: colors.grey },
   math: { color: colors.pink },
   ocaml: { color: colors.orange },

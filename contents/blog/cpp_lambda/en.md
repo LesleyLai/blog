@@ -57,8 +57,10 @@ The above example shows the basic usage of Lambdas, but Lambdas can do more. The
 // Get a new vector<int> with element above a certain number in the old vector
 std::vector<int> filter_above(const std::vector<int>& v, int threshold) {
     std::vector<int> result;
-    std::copy_if(std::begin(v), std::end(v), std::back_insert_iterator(result),
-                           [threshold](int x){return x > threshold;});
+    std::copy_if(
+      std::begin(v), std::end(v),
+      std::back_insert_iterator(result),
+      [threshold](int x){return x > threshold;});
     return result;
 }
 
