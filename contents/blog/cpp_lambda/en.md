@@ -3,7 +3,7 @@ id: c++-lambda
 title: "C++ Lambda Tutorial"
 lang: en
 create: '2019-03-25'
-lastModify: '2019-03-25'
+lastModify: '2020-01-10'
 categories:
 - cpp
 - code
@@ -71,7 +71,7 @@ The above code captures `threshold` by value. The `[]` construct is called a *ca
 
 A function that store an environment is called a [*Closure*](https://en.wikipedia.org/wiki/Closure_(computer_programming)); almost all modern programming languages support closures. However, in all languages that I know except C++, the capture list is implicit. In those languages, a closure captures all the bindings from the current environment.
 
-We can mimic the behaviors in those languages by capturing everything by reference (`[&]`). However, default capture is a poor idea in C++; it leads to potential dangling problems if the lambda lives longer than the captured object. For example, we can pass a callback to asynchronous functions:
+We can mimic the behaviors in those languages by capturing everything by reference (`[&]`), and it captures all the variables in the environment that are used in the lambda. However, default capture can be dangerous in C++; it leads to potential dangling problems if the lambda lives longer than the captured object. For example, we can pass a callback to asynchronous functions:
 
 ```cpp
 auto greeter() {
@@ -83,7 +83,7 @@ auto greeter() {
 }
 ```
 
-The above code is undefined behavior since `name` may be destroyed when we execute the asynchronous operation.
+The above code is undefined behavior since `name` may be destroyed when we execute the asynchronous operation. The rule of thumb is only to use default capture by reference when the lambda is short-lived. For example, when passing a lambda to STL algorithms.
 
 The implicit capture strategy works in garbage-collected languages. [Rust](https://www.rust-lang.org/) gets away with implicit capture because of its borrow checker. On the contrary, by requiring the programmer to be explicit about ownership, the C++ approach provides more flexibility than the counterparts in other programming languages.
 
@@ -100,7 +100,7 @@ Some C++ programmers call the function objects "functors." It is a misnomer that
   See [p0798R3: Monadic operations for std::optional](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p0798r3.html) and [p1054r0: A Unified Futures Proposal for C++](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p1054r0.html)
 
 ### Function Object
-Function objects are normal objects that are able to invoke themselves. They are implemented by overloading a class' `operator()` operator. Below is our `abs_less` example as a function object:
+Function objects are normal objects that are able to be invoked. They are implemented by overloading a class' `operator()` operator. Below is our `abs_less` example as a function object:
 
 ```cpp
 #include <algorithm>
@@ -147,7 +147,7 @@ I am using [Class template argument deduction (CTAD)](https://en.cppreference.co
 </aside>
 
 ### Going back to lambda
-Lambdas in C++ are syntactic sugars of function objects. Through the amazing [C++ Insights](https://cppinsights.io/) website, we can see a desugared version of our `abssort` example:
+Lambdas in C++ are syntactic sugars of function objects. In other word, the compilers translate lambda expressions into function objects. Through the amazing [C++ Insights](https://cppinsights.io/) website, we can see a desugared version of our `abssort` example:
 
 ```cpp
 #include <algorithm>
@@ -170,7 +170,7 @@ void abssort(float * x, unsigned int n)
 }
 ```
 
-Lambda is merely a default constructed object of a [local class](https://en.cppreference.com/w/cpp/language/class#Local_classes). Thus, C++ Lambda can do a lot of stuff anonymous functions in other languages may not allow to do. For example, you can inherit from lambda and have mutable states from lambda. Those will be subjects of later posts. Though I haven't found too much use for either of them.
+Lambda is merely a default constructed object of a [local class](https://en.cppreference.com/w/cpp/language/class#Local_classes). Thus, C++ Lambda can do a lot of stuff anonymous functions in other languages may not allow to do. For example, you can inherit from lambda and have mutable states from lambda. Though I haven't found too much use for either of them.
 
 The compilers generate the types of Lambdas; however, there is no way to use such types by their name through any standard means in a program. Nonetheless, type inferences and template works just normal for those types. Also, we can use those types explicitly by `decltype`. Below is an example from the [cppreference](https://en.cppreference.com/w/cpp/language/decltype):
 
@@ -183,17 +183,27 @@ auto f = [](int a, int b) -> int
 decltype(f) g = f;
 ```
 
-Such types are called "*Voldemort's types*" in the world of C++ and the [D programming language](https://dlang.org/) because they cannot be directly named, but codes can still use this type.
+Such anonymous types are called "*Voldemort's types*" in the world of C++ and the [D programming language](https://dlang.org/) because they cannot be directly named, but codes can still use this type.
 
 ##  Capture with an initializer
-Now we understand a Lambda is a function object; we may expect Lambdas to store arbitrary values, not just to capture the values from their local scope. Fortunately, in C++ 14, lambdas can introduce new variables in its body by the mean of capturing with an *initializer*.
-
-### Move capture
-Rust lambdas can take ownership of the values in the environment. C++ lambdas do not have special support for such *move capture*, but the generalized capture in the C++14 covers such use case[^3]:
+Now you understand a Lambda is a function object; you may expect Lambdas to store arbitrary values, not just to capture the values from their local scope. Fortunately, in C++14, lambdas can introduce new variables in its body by the mean of capturing with an *initializer*[^3].
 
 ```cpp
-auto u = make_unique<some_type>( some, parameters );  // a unique_ptr is move-only
-go.run( [ u=move(u) ] { do_something_with( u ); } ); // move the unique_ptr into the lambda
+[x = 1]{ return x; // 1 }
+```
+
+### Move capture
+[Rust](https://www.rust-lang.org/) lambdas can take ownership of the values in the environment. C++ lambdas do not have special support for such *move capture*, but the generalized capture in the C++14 covers such use case:
+
+```cpp
+// a unique_ptr is move-only
+auto u = make_unique<some_type>(
+  some, parameters
+);
+// move the unique_ptr into the lambda
+go.run( [u=move(u)] {
+  do_something_with(u);
+});
 ```
 
 [^3]:
@@ -212,7 +222,8 @@ Nevertheless, if you follow the best practice of declaring as more `const` value
 
 ```cpp
 std::vector<std::string> lines;
-for (std::string line; std::getline(std::cin, line); ) {
+for (std::string line;
+     std::getline(std::cin, line);) {
     lines.push_back(line);
 }
 ```
@@ -222,7 +233,8 @@ It seems no way to make `lines` constant since we need to modify it in the loop.
 ```cpp
 const auto lines = []{
     std::vector<std::string> lines;
-    for (std::string line; std::getline(std::cin, line); ) {
+    for (std::string line;
+         std::getline(std::cin, line);) {
         lines.push_back(line);
     }
     return lines;
