@@ -26,7 +26,7 @@ const ArchiveEntry = (props: ArchiveEntryProps) => {
   const title = frontmatter.title;
   const create = frontmatter.create;
 
-  const options = { month: "long", day: "numeric" };
+  const options = { month: "long", day: "numeric", timeZone: "UTC" };
   const createFormated = new Intl.DateTimeFormat(lang, options).format(create);
 
   return (
