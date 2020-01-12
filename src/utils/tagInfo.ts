@@ -29,6 +29,7 @@ export const tagInfos = {
   ocaml: { color: colors.orange },
   opengl: { color: colors.typescript },
   opinion: { color: colors.pink },
+  physics: { color: colors.black },
   pl: { color: colors.teal },
   python: { color: colors.blue },
   react: { color: colors.react },
