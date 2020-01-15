@@ -3,7 +3,7 @@ id: c++-lambda
 title: "C++ Lambda Tutorial"
 lang: en
 create: '2019-03-25'
-lastModify: '2020-01-10'
+lastModify: '2020-01-15'
 categories:
 - cpp
 - code
@@ -16,7 +16,7 @@ C++ lambda expressions are a construct added to C++ back in C++11, and it contin
 ## Basic Usage
 Passing functions as a parameter to customize the behavior of functions is a common task in programming. For example, since the conception of [standard algorithms library](https://en.cppreference.com/w/cpp/algorithm), a lot of the algorithms in the `<algorithm>` can take an invokable entity as a callback. However, before C++11, the only kinds of invokable entities in C++ are function pointers and function objects. Both of them require quite a bit of boilerplate, and this cumbersomeness even impedes the adaption of the standard algorithm library in practice.
 
-On the meantime, lots of programming languages support features of [anonymous functions](https://en.wikipedia.org/wiki/Anonymous_function). Before C++11, such features are achieved by metaprogramming. For example, the Boost C++ library provided its [boost.lambda](http://www.boost.org/libs/lambda) library. Those metaprogramming hacks are slow to compile and not performant; moreover, they require more boilerplate then one want. Thus, in C++11, lambda expressions are added as a language extension. The ISO C++ Standard shows usage of a lambda expression as a comparator of the `sort` algorithm. [^1]
+On the meantime, lots of programming languages support features of [anonymous functions](https://en.wikipedia.org/wiki/Anonymous_function). Before C++11, such features are mimicked by metaprogramming. For example, the Boost C++ library provided its [boost.lambda](http://www.boost.org/libs/lambda) library. Those metaprogramming hacks are slow to compile and not performant; moreover, they require more boilerplate then one want. Thus, in C++11, lambda expressions are added as a language extension. The ISO C++ Standard shows usage of a lambda expression as a comparator of the `sort` algorithm. [^1]
 
 [^1]:
   See [**\[expr.prim.lambda\]**](http://eel.is/c%2B%2Bdraft/expr.prim.lambda#1)
@@ -51,7 +51,7 @@ void abssort(float* x, unsigned n) {
 We still do not know what the strange `[]` syntax is for, and that is our topic next.
 
 ## Captures
-The above example shows the basic usage of Lambdas, but Lambdas can do more. The main difference between a lambda and a regular function is that it can "capture" state, and then we can use the captured value inside the lambda body. For example, the below function gets a new vector with the element above a certain number in the old vector.
+The above example shows the basic usage of lambdas, but lambdas can do more. The main difference between a lambda and a regular function is that it can "capture" state, and then we can use the captured value inside the lambda body. For example, the below function gets a new vector with the element above a certain number in the old vector.
 
 ```cpp
 // Get a new vector<int> with element above a certain number in the old vector
@@ -69,7 +69,7 @@ std::vector<int> filter_above(const std::vector<int>& v, int threshold) {
 
 The above code captures `threshold` by value. The `[]` construct is called a *capture clause*. There are two kinds of captures, capture by value or capture by reference (`[&]`). For example, `[x, &y]` - capture `x` by value and `y` by a reference explicitly. You can also have a default capture clause, for example,  `[=]` captures everything in the current environment by value and `[&]` captures everything by reference.
 
-A function that store an environment is called a [*Closure*](https://en.wikipedia.org/wiki/Closure_(computer_programming)); almost all modern programming languages support closures. However, in all languages that I know except C++, the capture list is implicit. In those languages, a closure captures all the bindings from the current environment.
+A function that store an environment is called a [*closure*](https://en.wikipedia.org/wiki/Closure_(computer_programming)); almost all modern programming languages support closures. However, in all languages that I know except C++, the capture list is implicit. In those languages, a closure captures all the bindings from the current environment.
 
 We can mimic the behaviors in those languages by capturing everything by reference (`[&]`), and it captures all the variables in the environment that are used in the lambda. However, default capture can be dangerous in C++; it leads to potential dangling problems if the lambda lives longer than the captured object. For example, we can pass a callback to asynchronous functions:
 
@@ -87,17 +87,20 @@ The above code is undefined behavior since `name` may be destroyed when we execu
 
 The implicit capture strategy works in garbage-collected languages. [Rust](https://www.rust-lang.org/) gets away with implicit capture because of its borrow checker. On the contrary, by requiring the programmer to be explicit about ownership, the C++ approach provides more flexibility than the counterparts in other programming languages.
 
-## What is Lambda
-We discussed quite a lot of usage of Lambda so far. However, curious readers may start to wonder, what *exactly* is a C++ Lambda? Is it a primitive language construct like closures in functional languages? However, before I talk about the internal of Lambda, I will first talk about a construct date back to C++98 era, **function objects**.
+## Lambda expression under the hood
+We discussed quite a lot of usage of lambda so far. However, curious readers may start to wonder, what *exactly* is a C++ lambda? Is it a primitive language construct like closures in functional languages? However, before I talk about the internal of lambda, I will first talk about a construct date back to C++98 era, **function objects**.
 
 <aside style="margin-top: -90px;">
 
-Some C++ programmers call the function objects "functors." It is a misnomer that we should avoid. The reason is that functional programmers usually define [functor](https://en.wikipedia.org/wiki/Functor) as "mappable" structures that satisfy specific "functor laws". This definition of a functor is equally useful in C++. For example, the standard [ranges](https://en.cppreference.com/w/cpp/ranges) are pretty much functors. Also, if the types `std::optional`, `std::future`, and `expected` support chaining operations, then they become functors. Various libraries already implemented that, and some standard proposals are working in this direction [^2].
+Some C++ programmers call the function objects "functors." It is a misnomer that we should avoid. In [category theory](https://en.wikipedia.org/wiki/Category_theory), a functor is a map between categories[^2]" and satisfy specific "functor laws."
+
+Functional programming languages utilized this concept for their language constructs, though they too overloaded this terminology. In [Standard ML](https://en.wikipedia.org/wiki/Standard_ML) and [OCaml](https://en.wikipedia.org/wiki/OCaml), a functor is a higher-order module. You can think of it as a meta-function that maps a module to another module. A more prevalent usage comes from Haskell and various inspired languages and libraries, where functors are mappings on structures. The Haskell definition of a functor is also useful in C++. For example, the standard [range adaptors](https://en.cppreference.com/w/cpp/ranges#Range_adaptors) can be considered functors that map ranges. Also, if the types `std::optional` and`expected` support a "map" operations, then they become functors. Various libraries already implemented that, and some standard proposals are working in this direction [^3].
 
 </aside>
 
-[^2]:
-  See [p0798R3: Monadic operations for std::optional](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p0798r3.html) and [p1054r0: A Unified Futures Proposal for C++](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p1054r0.html)
+[^2]: [Wikipedia: Functor](https://en.wikipedia.org/wiki/Functor)
+[^3]:
+  See [p0798R3: Monadic operations for std::optional](https://wg21.link/p0798)
 
 ### Function Object
 Function objects are normal objects that are able to be invoked. They are implemented by overloading a class' `operator()` operator. Below is our `abs_less` example as a function object:
@@ -170,9 +173,9 @@ void abssort(float * x, unsigned int n)
 }
 ```
 
-Lambda is merely a default constructed object of a [local class](https://en.cppreference.com/w/cpp/language/class#Local_classes). Thus, C++ Lambda can do a lot of stuff anonymous functions in other languages may not allow to do. For example, you can inherit from lambda and have mutable states from lambda. Though I haven't found too much use for either of them.
+As you can see, a lambda expression is merely a default constructed object of a [local class](https://en.cppreference.com/w/cpp/language/class#Local_classes). Thus, C++ lambda can do a lot of stuff anonymous functions in other languages may not allow to do. For example, you can inherit from lambda and have mutable states from lambda. Though I haven't found too much use for either of them.
 
-The compilers generate the types of Lambdas; however, there is no way to use such types by their name through any standard means in a program. Nonetheless, type inferences and template works just normal for those types. Also, we can use those types explicitly by `decltype`. Below is an example from the [cppreference](https://en.cppreference.com/w/cpp/language/decltype):
+The compilers generate the types of lambdas; however, there is no way to use such types by their name through any standard means in a program. Nonetheless, type inferences and template works just normal for those types. Also, we can use those types explicitly by `decltype`. Below is an example from the [cppreference](https://en.cppreference.com/w/cpp/language/decltype):
 
 ```cpp
 auto f = [](int a, int b) -> int
@@ -186,7 +189,7 @@ decltype(f) g = f;
 Such anonymous types are called "*Voldemort's types*" in the world of C++ and the [D programming language](https://dlang.org/) because they cannot be directly named, but codes can still use this type.
 
 ##  Capture with an initializer
-Now you understand a Lambda is a function object; you may expect Lambdas to store arbitrary values, not just to capture the values from their local scope. Fortunately, in C++14, lambdas can introduce new variables in its body by the mean of capturing with an *initializer*[^3].
+Now you understand a lambda is a function object; you may expect lambdas to store arbitrary values, not just to capture the values from their local scope. Fortunately, in C++14, lambdas can introduce new variables in its body by the mean of capturing with an *initializer*[^4].
 
 ```cpp
 [x = 1]{ return x; // 1 }
@@ -206,7 +209,7 @@ go.run( [u=move(u)] {
 });
 ```
 
-[^3]:
+[^4]:
   [C++14 Language Extensions: Generalized lambda captures](https://isocpp.org/wiki/faq/cpp14-language#lambda-captures)
 
 ## Immediately Invoked Lambda
