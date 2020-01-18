@@ -1,3 +1,14 @@
+require('source-map-support').install();
+require('ts-node').register({
+  compilerOptions: {
+    module: 'commonjs',
+    target: 'es2017',
+  },
+});
+
+const queries = require("./src/utils/algolia").default;
+require("dotenv").config();
+
 const siteMetadata = {
   title: `Lesley Lai's Blog`,
   description: `A personal website and blog for Lesley Lai`,
@@ -13,8 +24,8 @@ const createFeed = (title, output, lang) => {
   return {
     serialize: ({ query: { site, posts } }) => {
       return posts.edges.map(edge => {
-        const url = site.siteMetadata.siteUrl + "/"
-              + edge.node.frontmatter.lang + "/" + edge.node.frontmatter.id;
+        const { id, lang } = edge.node.frontmatter;
+        const url = `${site.siteMetadata.siteUrl}/${lang}/${id}`;
         return Object.assign({}, edge.node.frontmatter, {
           description: edge.node.excerpt,
           date: edge.node.frontmatter.create,
@@ -58,6 +69,15 @@ const createFeed = (title, output, lang) => {
 module.exports = {
   siteMetadata: siteMetadata,
   plugins: [
+    {
+      resolve: `gatsby-plugin-algolia`,
+      options: {
+        appId: process.env.GATSBY_ALGOLIA_APP_ID,
+        apiKey: process.env.ALGOLIA_ADMIN_KEY,
+        queries,
+        chunkSize: 10000 // default: 1000
+      },
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-plugin-mdx`,
@@ -86,7 +106,7 @@ module.exports = {
               // the content container as this plugin uses this as the
               // base for generating different widths of each image.
               maxWidth: 590,
-            },
+            }
           },
           {
             resolve: `gatsby-remark-katex`,
@@ -94,7 +114,7 @@ module.exports = {
               // Add any KaTeX options from https://github.com/KaTeX/KaTeX/blob/master/docs/options.md here
               strict: `ignore`
             }
-          },
+          }
         ]
       }
     },
