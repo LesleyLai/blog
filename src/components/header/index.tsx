@@ -10,7 +10,9 @@ const css = require("./header.module.css");
 
 const Logo = ({ lang }: { lang: Language }) => (
   <Link to={menuModel.home.langs[lang].path} className={css.logo}>
-    <h2>Lesley Lai 赖思理</h2>
+    <h2>
+      Lesley Lai <span lang="zh">赖思理</span>
+    </h2>
   </Link>
 );
 
@@ -60,7 +62,7 @@ const LanguageLink: React.FunctionComponent<LanguageLinkProp> = ({
     return pathname.replace(new RegExp(`/${fromLang}`), `/${toLang}`);
   })();
   return (
-    <Link to={to} key={toLang} className={css.menuItem}>
+    <Link lang={toLang} to={to} key={toLang} className={css.menuItem}>
       <Helmet>
         <link rel="alternate" href={to} hrefLang={toLang} />
       </Helmet>
