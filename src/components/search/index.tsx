@@ -8,7 +8,7 @@ import {
   Pagination
 } from "react-instantsearch-dom";
 import algoliasearch from "algoliasearch/lite";
-import styled, { StyledFunction } from "styled-components";
+import styled from "styled-components";
 
 import { Language } from "../../utils/translations";
 import { TagID } from "../../types/tags";
@@ -25,7 +25,7 @@ interface PostHitProps {
     lang: Language;
     create: string;
     tags: TagID[];
-    excerpt: string;
+    content: string;
   };
 }
 
@@ -33,6 +33,8 @@ const PostHit = (clickHandler: ClickHandlerType) => ({ hit }: PostHitProps) => {
   const Div = styled.div`
     border-bottom: 1px solid red;
   `;
+
+  console.log(hit.content);
 
   return (
     <Div>
@@ -43,7 +45,7 @@ const PostHit = (clickHandler: ClickHandlerType) => ({ hit }: PostHitProps) => {
       </Link>
       <Highlight attribute="create" hit={hit} tagName="mark" />
       <TagsList tags={hit.tags} lang={hit.lang} />
-      <Snippet attribute="excerpt" hit={hit} tagName="mark" />
+      <Highlight attribute="content" hit={hit} tagName="mark" />
     </Div>
   );
 };

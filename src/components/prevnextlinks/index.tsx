@@ -2,7 +2,7 @@ import * as React from "react";
 import Link from "gatsby-link";
 import styled from "styled-components";
 
-import { FaAngleDoubleLeft, FaAngleDoubleRight } from "react-icons/lib/fa";
+import { FaAngleDoubleLeft, FaAngleDoubleRight } from "react-icons/fa";
 
 import { Language } from "../../utils/translations";
 

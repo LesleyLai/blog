@@ -10,7 +10,7 @@
     "target": "esnext",
     "noEmit": true,
     "jsx": "react",
-    "lib": ["dom", "esnext"],
+    "lib": ["dom", "es2015", "es2017", "es2019"],
     "types": ["react", "node", "jest"]
   },
   "include": [

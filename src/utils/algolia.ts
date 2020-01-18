@@ -2,21 +2,29 @@ import { TagID } from "../types/tags";
 
 import { languages, Language } from "./translations";
 
-interface PostData {
-  objectID: string;
-  frontmatter: {
-    id: string;
-    title: string;
-    lang: string;
-    create: string;
-    tags: TagID[];
-  };
-  excerpt: string;
+interface PostFrontMatter {
+  id: string;
+  title: string;
+  lang: string;
+  create: string;
+  tags: TagID[];
+}
+
+interface PostDataBase {
+  frontmatter: PostFrontMatter;
+}
+
+interface PostRawData extends PostDataBase {
+  rawBody: string;
+}
+
+interface PostData extends PostDataBase {
+  content: string;
 }
 
 interface QueryData {
   posts: {
-    edges: Array<{ node: PostData }>;
+    edges: Array<{ node: PostRawData }>;
   };
 }
 
@@ -28,7 +36,6 @@ const postQuery = (lang: Language) => `{
     }) {
     edges {
       node {
-        objectID: id
         frontmatter {
           id
           title
@@ -36,25 +43,42 @@ const postQuery = (lang: Language) => `{
           create(formatString: "MMM D, YYYY")
           tags: categories
         }
-        excerpt(pruneLength: 5000)
+        rawBody
       }
     }
   }
 }`;
 
-const flatten = (arr: Array<{ node: PostData }>) =>
-  arr.map(({ node: { frontmatter, ...rest } }) => ({
+const flatten = (arr: PostData[]) =>
+  arr.map(({ frontmatter, ...rest }) => ({
     ...frontmatter,
     ...rest
   }));
 
-const settings = { attributesToSnippet: [`excerpt:20`] };
+const handleRawBody = (node: PostRawData) => {
+  // We want to split `rawBody` from the node
+  const { rawBody, ...rest } = node;
+
+  // Split by two adjacent emptyline (an estimation of paragraph)
+  const sections = rawBody.split("\n\n");
+
+  const records = sections.map(section => ({
+    ...rest,
+    content: section
+  }));
+
+  return records;
+};
 
 const queries = languages.map(lang => ({
   query: postQuery(lang),
-  transformer: ({ data }: { data: QueryData }) => flatten(data.posts.edges),
+  transformer: ({ data }: { data: QueryData }) =>
+    flatten(data.posts.edges.map(edge => edge.node).flatMap(handleRawBody)),
   indexName: `LesleyBlogPosts${lang}`,
-  settings
+  settings: {
+    attributeForDistinct: "id",
+    distinct: true
+  }
 }));
 
 export default queries;

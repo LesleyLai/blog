@@ -5,9 +5,8 @@ import ProjectTags from "./projectTags";
 import { Language, translations } from "../../utils/translations";
 import { TagID } from "../../types/tags";
 
-const PlayIcon = require("react-icons/lib/fa/play");
-const GithubIcon = require("react-icons/lib/fa/github");
-const LinkIcon = require("react-icons/lib/go/link");
+import { FaPlay as PlayIcon, FaGithub as GithubIcon } from "react-icons/fa";
+import { GoLink as LinkIcon } from "react-icons/go";
 
 interface ProjectPenalProps extends React.HTMLProps<HTMLDListElement> {
   name: string;
