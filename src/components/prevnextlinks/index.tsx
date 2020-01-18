@@ -27,9 +27,10 @@ const Container = styled.div`
 
 const LinkBox = styled.div`
   padding: 20px 0;
+  display: block;
 
   svg {
-    margin-top: -5px;
+    vertical-align: text-bottom;
   }
 `;
 

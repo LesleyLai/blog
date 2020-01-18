@@ -2,6 +2,7 @@ import * as React from "react";
 import Link from "gatsby-link";
 import {
   InstantSearch,
+  Configure,
   Hits,
   Highlight,
   Snippet,
@@ -13,6 +14,8 @@ import styled from "styled-components";
 import { Language } from "../../utils/translations";
 import { TagID } from "../../types/tags";
 import TagsList from "../tagsList";
+
+import { MdSearch as SearchIcon } from "react-icons/md";
 
 import SearchBox from "./input";
 
@@ -33,8 +36,6 @@ const PostHit = (clickHandler: ClickHandlerType) => ({ hit }: PostHitProps) => {
   const Div = styled.div`
     border-bottom: 1px solid red;
   `;
-
-  console.log(hit.content);
 
   return (
     <Div>
@@ -79,25 +80,49 @@ const HitWrapper = styled.div<HitWrapperProps>`
   }
 `;
 
-export default function Search({ indices, collapse }: SearchProps) {
-  const [focus, setFocus] = React.useState(false);
-  const [query, setQuery] = React.useState(``);
+const SearchButton = () => {
+  const Style = styled.button`
+    color: hsla(0, 0%, 100%, 0.7);
+    background: transparent;
+    border: none;
+    margin: 0 5px;
+    float: right;
+    :hover {
+      color: #fff;
+    }
 
+    @media (min-width: 769px) {
+      order: 2;
+    }
+  `;
+
+  return (
+    <Style>
+      <SearchIcon size={20} style={{ verticalAlign: "middle" }} />{" "}
+      <span>Search</span>
+    </Style>
+  );
+};
+
+export default function Search({ indices, collapse }: SearchProps) {
   const searchClient = algoliasearch(
     process.env.GATSBY_ALGOLIA_APP_ID,
     process.env.GATSBY_ALGOLIA_SEARCH_KEY
   );
   return (
-    <InstantSearch
-      searchClient={searchClient}
-      indexName={indices[0].name}
-      onSearchStateChange={({ query }) => setQuery(query)}
-    >
-      <HitWrapper show={query.length > 0 && focus}>
-        <Hits hitComponent={PostHit(() => setFocus(false))} />
-      </HitWrapper>
+    <InstantSearch searchClient={searchClient} indexName={indices[0].name}>
+      <Configure distinct />
 
-      <SearchBox onFocus={() => setFocus(true)} {...{ collapse, focus }} />
+      <SearchButton />
+
+      {/* <SearchBox />
+          <Hits /> */}
+
+      {/* <HitWrapper show={query.length > 0 && focus}>
+          <Hits hitComponent={PostHit(() => setFocus(false))} />
+          </HitWrapper> */}
+
+      {/* <SearchBox onFocus={() => setFocus(true)} {...{ collapse, focus }} /> */}
     </InstantSearch>
   );
 }

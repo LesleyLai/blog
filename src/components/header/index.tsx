@@ -139,6 +139,7 @@ export default class Header extends React.Component<HeaderProps, HeaderStates> {
             <span className={css.mobileMenuIcon} />
           </label>
 
+          <Search collapse indices={searchIndices(lang)} />
           <nav className={css.menu}>
             <ul className={css.menuItems}>
               {Object.keys(menuModel).map((key: keyof Translations) => (
@@ -157,7 +158,6 @@ export default class Header extends React.Component<HeaderProps, HeaderStates> {
               </ul>
             )}
           </nav>
-          <Search collapse indices={searchIndices(lang)} />
         </div>
       </header>
     );

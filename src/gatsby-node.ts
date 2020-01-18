@@ -373,7 +373,7 @@ export const onCreatePage: GatsbyNode["onCreatePage"] = async args => {
 
   // Pages with no language postfixes redirect to English version
   if (page.path !== "/") {
-    const redirectTo = `en/${page.path}`;
+    const redirectTo = `/en${page.path}`;
 
     createRedirectsSlash(page.path, redirectTo, createRedirect);
   }
