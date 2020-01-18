@@ -174,7 +174,7 @@ void abssort(float * x, unsigned int n)
 
 As you can see, a lambda expression is merely a default constructed object of a [local class](https://en.cppreference.com/w/cpp/language/class#Local_classes). Thus, C++ lambda can do a lot of stuff anonymous functions in other languages may not allow to do. For example, you can inherit from lambda and have mutable states from lambda. Though I haven't found too much use for either of them.
 
-The compilers generate the types of lambdas; however, there is no way to use such types by their name through any standard means in a program. Nonetheless, type inferences and template works just normal for those types. Also, we can use those types explicitly by `decltype`. Below is an example from the [cppreference](https://en.cppreference.com/w/cpp/language/decltype):
+The compilers generate the types of lambdas; however, there is no way to use such types by their name through any standard means in a program. Nonetheless, type inferences and template works normally for those types. Also, we can use those types explicitly by `decltype`. Below is an example from the [cppreference](https://en.cppreference.com/w/cpp/language/decltype):
 
 ```cpp
 auto f = [](int a, int b) -> int

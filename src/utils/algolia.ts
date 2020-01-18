@@ -1,5 +1,6 @@
-import { TagID } from "../types/tags";
+import remark from "remark";
 
+import { TagID } from "../types/tags";
 import { languages, Language } from "./translations";
 
 interface PostFrontMatter {
@@ -59,8 +60,17 @@ const handleRawBody = (node: PostRawData) => {
   // We want to split `rawBody` from the node
   const { rawBody, ...rest } = node;
 
-  // Split by two adjacent emptyline (an estimation of paragraph)
-  const sections = rawBody.split("\n\n");
+  const strip = require("strip-markdown");
+  const frontmatter = require("remark-frontmatter");
+
+  const text = remark()
+    .use(frontmatter)
+    .use(strip)
+    .processSync(rawBody)
+    .toString();
+
+  // Split by two adjacent empty line (an estimation of paragraph)
+  const sections = text.split("\n\n");
 
   const records = sections.map(section => ({
     ...rest,
