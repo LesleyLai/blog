@@ -78,7 +78,6 @@ export const query = graphql`
             create(formatString: "LL", locale: $dateLocale)
             categories
           }
-          timeToRead
           excerpt(pruneLength: 200)
         }
       }

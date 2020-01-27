@@ -14,7 +14,6 @@ export interface PostMeta {
     create: string;
     categories: TagID[];
   };
-  timeToRead: number;
   excerpt: string;
 }
 
@@ -49,7 +48,6 @@ export default class RecentPosts extends React.Component {
                 to={`/${post.frontmatter.lang}/${post.frontmatter.id}`}
               >
                 {translations[lang]["readmore"]}
-                {lang === "en" && ` | ${post.timeToRead} minutes`}
               </Link>
             </article>
           );

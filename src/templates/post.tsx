@@ -23,10 +23,6 @@ export interface PostData {
     lastModify: string;
     categories: TagID[];
   };
-  timeToRead: number;
-  wordCount: {
-    words: number;
-  };
 }
 
 interface PostTitleInfo {
@@ -75,7 +71,6 @@ class PostTemplate extends React.Component<PostProps> {
     const post = data.post;
     const lang = post.frontmatter.lang;
     const path = "/" + lang + "/" + post.frontmatter.id;
-    const url = "http://lesleylai.info" + path;
 
     const tags = data.allPosts.tags;
     const postsTotalCount = data.allPosts.totalCount;
@@ -83,9 +78,6 @@ class PostTemplate extends React.Component<PostProps> {
     const otherLangs = data.otherLangs.edges.map(
       edge => edge.node.frontmatter.lang
     );
-
-    const readingTimeMinutes = post.timeToRead;
-    const words = post.wordCount.words;
 
     const create = post.frontmatter.create;
     const lastModify = post.frontmatter.lastModify;
@@ -121,8 +113,6 @@ class PostTemplate extends React.Component<PostProps> {
               {create !== lastModify &&
                 `${translations[lang]["lastModify"]}: ${lastModify} | `}
               {`${translations[lang]["create"]}: ${create}`}
-              {lang === "en" &&
-                ` | ${words} words | ${readingTimeMinutes} min read`}
             </span>
             <TagsList
               lang={lang}
@@ -177,10 +167,6 @@ export const query = graphql`
         create(formatString: "LL", locale: $dateLocale)
         lastModify(formatString: "LL", locale: $dateLocale)
         categories
-      }
-      timeToRead
-      wordCount {
-        words
       }
     }
     otherLangs: allMdx(
