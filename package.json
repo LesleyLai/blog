@@ -75,7 +75,6 @@
     "lint": "eslint --ignore-path .gitignore src --ext ts --ext tsx --ext js --ext jsx",
     "lint:fix": "yarn lint --fix",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "precommit": "yarn type-check && lint-staged",
     "type-check": "tsc"
   },
   "devDependencies": {
@@ -97,5 +96,10 @@
       "yarn lint:fix",
       "git add"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn type-check && lint-staged"
+    }
   }
 }
