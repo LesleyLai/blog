@@ -70,7 +70,9 @@
   "main": "n/a",
   "scripts": {
     "build": "gatsby build",
+    "clean": "gatsby clean",
     "start": "gatsby develop",
+    "serve": "gatsby serve",
     "format": "prettier --write ./gatsby-config.js ./src/**/*.ts{,x}",
     "lint": "eslint --ignore-path .gitignore src --ext ts --ext tsx --ext js --ext jsx",
     "lint:fix": "yarn lint --fix",

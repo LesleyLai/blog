@@ -22,7 +22,7 @@ I would cite writing text when apply, but it is impossible to cite in class disc
 Of course, all errors are my own, and please contact me for anything wrong.
 
 A lot of the mathematical concepts in the programming language field comes from the branch of [propositional logic](https://en.wikipedia.org/wiki/Propositional_calculus).
-And This first post focuses on the formal language of *Abstract Syntax*, *Judgements*, and *Inference Rules*.
+And This first post focuses on the formal language of *Judgements*, and *Inference Rules*.
 
 ## Judgements
 
@@ -43,7 +43,7 @@ $$
 
 Notice in the above examples such as $n \ \text{nat}$,
 $n$ is an unknown variable.
-We can those *judgement forms*
+We call those *judgement forms*
 And we can plug in actual values into the variables of judgement forms to get a *judgement*:
 
 $$
