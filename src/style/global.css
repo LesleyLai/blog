@@ -150,3 +150,25 @@ a, a:hover {
         margin-right: auto;
     }
 }
+
+/*******************************
+        Katex responsiveness
+*******************************/
+.katex-display > .katex {
+    display: inline-block;
+    white-space: nowrap;
+    max-width: 100%;
+    text-align: initial;
+  }
+
+@media (max-width: 499px) {
+    .katex-display > .katex {
+        font-size: 0.8em;
+    }
+}
+
+@media (min-width: 500px) and (max-width: 767px) {
+    .katex-display > .katex {
+        font-size: 1em;
+    }
+}
