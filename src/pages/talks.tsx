@@ -81,6 +81,31 @@ const TalksPage = ({ data, location, pageContext }: TalksProps) => {
         <h1>{talksLocale}</h1>
         <P>Here are the talks that I gave in various events.</P>
         <Talk
+          title="Understanding Persistent Data Structures"
+          date="2020-1-28"
+        >
+          <P>
+            An hour long talk on the basic idea of persistent data structures at <a href="https://www.meetup.com/denverfp/">Denver FP</a>.
+            Covers basic principles of persistent data structures
+            with case studies of immutable array, list,
+            <a href="https://dl.acm.org/doi/pdf/10.1145/2784731.2784739?download=true">Relaxed Radix-Balanced Trees</a>
+    , and <a href="https://lampwww.epfl.ch/papers/idealhashtrees.pdf">Hash Array Mapped Tries</a>.
+          </P>
+          <UL>
+            <li>
+              Slides{" "}
+              <a
+                href={`/talks/slides_understanding-persistent-data-structures/`}
+              >
+                [Web]
+              </a>{" "}
+              <a href={`/talks/understanding-persistent-data-structures.pdf`}>
+                [PDF]
+              </a>
+            </li>
+          </UL>
+        </Talk>
+        <Talk
           title="CppCon 2019: “Make impossible state unrepresentable”"
           date="2019-9-18"
         >
