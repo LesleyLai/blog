@@ -9,14 +9,14 @@ categories:
 - code
 ---
 
-C++ lambda expressions are a construct added to C++ back in C++11, and it continues to evolve in each version of the C++ standard. A core part of the language nowadays, lambda expressions enable programmers of writing anonymous functions in C++. This post describes what a lambda is, provides some basic usages, and outlines their benefits.
+C++ lambda expressions are a construct added to C++ back in C++11, and it continues to evolve in each version of the C++ standard. A core part of the language nowadays, lambda expressions enable programmers to write first-class and anonymous functions in C++. This post describes what a lambda is, provides some basic usages, and outlines their benefits.
 
 <!-- end -->
 
 ## Basic Usage
 Passing functions as a parameter to customize the behavior of functions is a common task in programming. For example, since the conception of [standard algorithms library](https://en.cppreference.com/w/cpp/algorithm), a lot of the algorithms in the `<algorithm>` can take an invokable entity as a callback. However, before C++11, the only kinds of invokable entities in C++ are function pointers and function objects. Both of them require quite a bit of boilerplate, and this cumbersomeness even impedes the adaption of the standard algorithm library in practice.
 
-On the meantime, lots of programming languages support features of [anonymous functions](https://en.wikipedia.org/wiki/Anonymous_function). Before C++11, such features are mimicked by metaprogramming. For example, the Boost C++ library provided its [boost.lambda](http://www.boost.org/libs/lambda) library. Those metaprogramming hacks are slow to compile and not performant; moreover, they require more boilerplate then one want. Thus, in C++11, lambda expressions are added as a language extension. The ISO C++ Standard shows usage of a lambda expression as a comparator of the `sort` algorithm. [^1]
+In the meantime, lots of programming languages support features of [anonymous functions](https://en.wikipedia.org/wiki/Anonymous_function). Before C++11, such features are mimicked by metaprogramming. For example, the Boost C++ library provided its [boost.lambda](http://www.boost.org/libs/lambda) library. Those metaprogramming hacks are slow to compile and not performant; moreover, they require more boilerplate then one want. Thus, in C++11, lambda expressions are added as a language extension. As an example, the ISO C++ Standard shows usage of a lambda expression as a comparator of the `sort` algorithm. [^1]
 
 [^1]:
   See [**\[expr.prim.lambda\]**](http://eel.is/c%2B%2Bdraft/expr.prim.lambda#1)
@@ -48,10 +48,10 @@ void abssort(float* x, unsigned n) {
 }
 ```
 
-We still do not know what the strange `[]` syntax is for, and that is our topic next.
+If you are familiar with lambda expressions in other languages, everything should make sense except the mysterious `[]` syntax. And that is our next topic.
 
 ## Captures
-The above example shows the basic usage of lambdas, but lambdas can do more. The main difference between a lambda and a regular function is that it can "capture" state, and then we can use the captured value inside the lambda body. For example, the below function gets a new vector with the element above a certain number in the old vector.
+The above example shows the basic usage of lambdas, but lambdas can do more. The main difference between lambda expression and a regular function is that it can "capture" state, and then we can use the captured value inside the lambda body. For example, the below function copies elements, which are above the threshold, from the old vector to the new vector.
 
 ```cpp
 // Get a new vector<int> with element above a certain number in the old vector
@@ -67,11 +67,11 @@ std::vector<int> filter_above(const std::vector<int>& v, int threshold) {
 // filter_above(std::vector<int>{0, 1, 2, 4, 8, 16, 32}, 5) == std::vector<int>{8, 16, 32}
 ```
 
-The above code captures `threshold` by value. The `[]` construct is called a *capture clause*. There are two kinds of captures, capture by value or capture by reference (`[&]`). For example, `[x, &y]` - capture `x` by value and `y` by a reference explicitly. You can also have a default capture clause, for example,  `[=]` captures everything in the current environment by value and `[&]` captures everything by reference.
+The above code captures `threshold` by value. The `[]` construct is called a *capture clause*. There are two kinds of captures, capture by value or capture by reference (`[&]`). For example, `[x, &y]` - capture `x` by value and `y` by a reference. You can also have a default capture clause:  `[=]` captures everything in the current environment by value and `[&]` captures everything by reference.
 
-A function that store an environment is called a [*closure*](https://en.wikipedia.org/wiki/Closure_(computer_programming)); almost all modern programming languages support closures. However, in all languages that I know except C++, the capture list is implicit. In those languages, a closure captures all the bindings from the current environment.
+We call a function that stores an environment a [*closure*](https://en.wikipedia.org/wiki/Closure_(computer_programming)); almost all modern programming languages support closures. However, in all languages that I know except C++, the capture lists are implicit. In those languages, a closure captures all the bindings from the current environment.
 
-We can mimic the behaviors in those languages by capturing everything by reference (`[&]`), and it captures all the variables in the environment that are used in the lambda. However, default capture can be dangerous in C++; it leads to potential dangling problems if the lambda lives longer than the captured object. For example, we can pass a callback to asynchronous functions:
+We can mimic the behaviors in those languages by capturing everything by reference (`[&]`); it only captures variables in the environment that the lambda uses. However, default capture can be dangerous in C++; if the lambda lives longer than the captured object, then dandling problems occur. For example, we can pass a callback to asynchronous functions and capture resources by reference.
 
 ```cpp
 auto greeter() {
@@ -88,13 +88,13 @@ The above code is undefined behavior since `name` may be destroyed when we execu
 The implicit capture strategy works in garbage-collected languages. [Rust](https://www.rust-lang.org/) gets away with implicit capture because of its borrow checker. On the contrary, by requiring the programmer to be explicit about ownership, the C++ approach provides more flexibility than the counterparts in other programming languages.
 
 ## Lambda expression under the hood
-We discussed quite a lot of usage of lambda so far. However, curious readers may start to wonder, what *exactly* is a C++ lambda? Is it a primitive language construct like closures in functional languages? However, before I talk about the internal of lambda, I will first talk about a construct date back to C++98 era, **function objects**.
+We discussed quite a lot of usage of lambda so far. However, curious readers may start to wonder, what *exactly* is a C++ lambda? Is it a primitive language construct like closures in functional languages? However, before I talk about the internal of lambda, I will first talk about a construct date back to the C++98 era, **function objects**.
 
 <aside style="margin-top: -90px;">
 
 Some C++ programmers call the function objects "functors." It is a misnomer that we should avoid. In [category theory](https://en.wikipedia.org/wiki/Category_theory), a functor is a map between categories[^2]" and satisfy specific "functor laws."
 
-Functional programming languages utilized this concept for their language constructs, though they too overloaded this terminology. In [Standard ML](https://en.wikipedia.org/wiki/Standard_ML) and [OCaml](https://en.wikipedia.org/wiki/OCaml), a functor is a higher-order module. You can think of it as a meta-function that maps a module to another module. A more prevalent usage comes from Haskell and various inspired languages and libraries, where functors are mappings on structures. The Haskell definition of a functor is also useful in C++. For example, the standard [range adaptors](https://en.cppreference.com/w/cpp/ranges#Range_adaptors) can be considered functors that map ranges. Also, if the types `std::optional` and`expected` support a "map" operations, then they become functors. Various libraries already implemented that, and some standard proposals are working in this direction [^3].
+Functional programming languages utilized this concept for their language constructs, though they too overloaded this terminology. In [Standard ML](https://en.wikipedia.org/wiki/Standard_ML) and [OCaml](https://en.wikipedia.org/wiki/OCaml), a functor is a higher-order module. You can think of it as a meta-function that maps a module to another module. A more prevalent usage comes from Haskell and various inspired languages and libraries, where functor is a type class that defines mapping operation. The Haskell definition of a functor is also useful in C++. For example, the standard [range adaptors](https://en.cppreference.com/w/cpp/ranges#Range_adaptors) can be considered functors that map ranges. Also, if the types `std::optional` and`expected` support a "map" operations, then they become functors. Various libraries already implemented that, and some standard proposals are working in this direction [^3].
 
 </aside>
 
@@ -221,7 +221,7 @@ You can invoke lambda at the same place where we construct them.
 
 In the world of Javascript, immediately invoked function expressions are all over the place. JavaScript programmers use them to introduce scopes. C++ does not need this kind of trickery. As a result, C++ programmers are more reluctant to use immediately invoked lambda. For example, in her [talk](https://www.youtube.com/watch?v=n0Ak6xtVXno) during CppCon 2018, Kate Gregory concerns about the readability of the immediately invoked lambda for people not familiar with this idiom.
 
-Nevertheless, if you follow the best practice of declaring as more `const` values as possible, immediately invoked lambda does provide an advantage. Some objects require complex construction beyond the constructor's capability. Mutations will only happen during the construction of objects. Once the construction is completed, the objects will never be modified again. If such construction is reusable, then writing builder classes or factory functions is a sane choice. However, if such construction only happens once in the codebase, a lot of the people will drop the `const` qualifier instead. For example, consider that if you want to read several lines from `stdin` into a vector:
+Nevertheless, if you follow the best practice of declaring as more `const` values as possible, immediately invoked lambda does provide an advantage. Some objects require complex construction beyond the constructor's capability. Mutations will only happen during the construction of objects. Once the construction is completed, the objects will never be modified again. If such construction is reusable, then writing builder classes or factory functions is a sensible choice. However, if such construction only happens once in the codebase, a lot of the people will drop the `const` qualifier instead. For example, consider that if you want to read several lines from `stdin` into a vector:
 
 ```cpp
 std::vector<std::string> lines;
