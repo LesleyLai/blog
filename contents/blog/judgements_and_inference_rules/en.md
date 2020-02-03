@@ -8,26 +8,26 @@ categories:
 - pl
 ---
 
-The field of programming language research seems to be filled with jargon, greek letters, and weird symbols.
-Those common parlances make the programming language papers concise.
-However, to understand them, you need not only mathematical maturity but also domain knowledge.
+From a layman's perspective, the field of programming language research is full of jargon, greek letters, and weird symbols.
+On the one hand, Those common parlances make the programming language papers concise.
+On the other hand, you need not only mathematical maturity but also domain knowledge to understand them.
+
 Since I am taking a [Fundamentals of Programming Languages](https://csci5535.cs.colorado.edu/s20/) course,
-I want to share the key concepts I learned to a series of blog posts.
+I want to share the key concepts I learned in a series of blog posts.
 And I hope to write them in a "mortal-understandable" way to unravel the mysterious field of programming languages.
 
-I would like to thank [Professor Chang](https://www.cs.colorado.edu/~bec/) for offering this fantastic course,
+I want to thank [Professor Chang](https://www.cs.colorado.edu/~bec/) for offering this fantastic course,
 and my classmates for creating a vibrant discussion environment.
 I also need to make a disclaimer that many ideas of those posts come from the classroom.
-I would cite writing text when apply, but it is impossible to cite in class discussions.
+I would cite writing texts when apply, but it is impossible to cite in class discussions.
 Of course, all errors are my own, and please contact me for anything wrong.
 
-A lot of the mathematical concepts in the programming language field comes from the branch of [propositional logic](https://en.wikipedia.org/wiki/Propositional_calculus).
-And This first post focuses on the formal language of *Judgements*, and *Inference Rules*.
+A lot of the mathematical concepts in the programming language field comes from the branch of [propositional logic](https://en.wikipedia.org/wiki/Propositional_calculus). Thus, this first post focuses on the formal language of *Judgements*, and *Inference Rules*.
 
 ## Judgements
 
 A judgment is a statement or an assertion on a given abstract syntax tree.
-Below are some common notations we use for the judgments [^1]:
+Below are some standard notations we use for the judgments [^1]:
 
 [^1]: Robert Harper. *Practical Foundations for Programming Languages*. Cambridge University Press, Cambridge, England, Second edition, 2016.
 
@@ -83,10 +83,10 @@ In this inference rule, we state that a natural number is either zero
 or a succession of another natural number.
 A rule without any premise, such as the first one, is called an *axiom*.
 
-Because using inference rule to describe syntax is a bit verbose,
+Because using inference rule to describe syntax is verbose,
 a common way to describe syntax is by [grammar](https://en.wikipedia.org/wiki/Context-free_grammar) notation
 like the [Backus normal form](https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form) (BNF).
-A grammar of a programming language is usually a set of inductively defined *terms*.
+A grammar of a programming language is a set of inductively defined *terms*.
 For example, for natural numbers, we can describe them as
 
 $$
@@ -103,7 +103,7 @@ $$
 \frac{n_1: \text{\textbf{nat}} \quad n_2: \text{\textbf{nat}} \quad n_1 + n_2 \Downarrow n}{\text{Succ}(n_1) + n_2 \Downarrow \text{Succ}(n)} (\text{Plus-Inductive})
 $$
 
-We can define more operations such as $-$ and $\times$ by the inference rule.
+We can define more operations, such as $-$ and $\times$, by the inference rule.
 Let's look at another example, a singly linked-list of natural numbers:
 
 $$
@@ -116,7 +116,7 @@ A  $\text{Nil}$ is an empty list, and a $\text{Cons}$ is a "node" of the singly 
 <aside style="margin-top: -100px;">
 
 The convention of using the word "cons" comes from the programming language [Lisp](https://en.wikipedia.org/wiki/Lisp_programming_language),
-where `cons` can be interpreted as "construct" or "constructor".
+where `cons` can be interpreted as "construct" or "constructor."
 `cons` in Lisp is much more flexible than our definition because of the dynamic-typing nature of the language.
 
 </aside>
@@ -135,7 +135,7 @@ which means not all the list has a mapping to a natural number through `head`.
 In this particular case, we have not defined the meaning of `head(Nil)`.
 We have several choices of dealing with such partial functions,
 one is to leave the operation as [*undefined*](https://en.wikipedia.org/wiki/Undefined_behavior).
-This approach is what the C programming language takes and it is the best for optimization,
+This approach is what the C programming language takes, and it is the best for optimization,
 though it impairs the [type safety](https://en.wikipedia.org/wiki/Type_safety).
 
 Another approach is to make such a function call "error" or "exception" such as
@@ -153,9 +153,9 @@ $$
 \frac{l = \text{Cons}(\text{hd}, \text{tl})}{\text{head}(l) \Downarrow \text{Something(hd)}} (\text{head-Cons})
 $$
 
-A lot of the modern programming language becomes eclectic on such error-handling strategies.
+A lot of the modern programming language becomes eclectic on error-handling strategies.
 For example, the [Rust](https://www.rust-lang.org/) programming language offers all three approaches in different contexts.
-For certain operations, it would not only offer a default "safe" version either with the second approach (`panic`) or the third approach (`Option` and `Result`),
+For certain operations, it not only offers a default "safe" version either with the second approach (`panic`) or the third approach (`Option` and `Result`),
 but also an "unsafe" version with the first approach.
 
 ## Derivation
@@ -163,7 +163,7 @@ You can easily create nonsense such as $\text{Succ(Zero)} \Downarrow \text{Zero}
 so how to prove a judgment is correct?
 To prove a judgment, you write *derivation* (also called *derivation tree* or *proof tree*).
 
-A derivation always starts from axioms and end at the judgment we want to prove.
+A derivation always starts from axioms and ends at the judgment we want to prove.
 For each step, we apply an inference rule to the previous judgment (s).
 
 For example, to prove "1 + 1 = 2" with our definition of nat, we have
@@ -184,8 +184,8 @@ In other words, `+` is deterministic and side-effect free, at least at the level
 <aside style="margin-top: -60px;">
 
 If you consider the *implementation details* such as the mutation of registers and stack memory,
-then there is really no pure function,
-but that does not help with our discussion.
+then there is no pure function,
+although that does not help with our discussion.
 A certain level of abstraction not only helps you,
 but also the compilers to optimize for pure functions.
 
@@ -254,8 +254,8 @@ $$
 
 It is equally easy to make this kind of mistake when coding a tree-walking interpreter by mixing the abstract syntax and the values.
 If you are using a statically-typed language, the type-checker will catch those kinds of errors.
-On the contrary, when writing judgment and inference rules, you are entirely on your own,
-so building a mental "type checker" helps tremendously in writing those correctly.
+On the contrary, when writing judgment and inference rules, you are on your own,
+so building a mental "type checker" helps tremendously in writing judgments correctly.
 
 ## Summary
 Judgments and inference rules are the fundamental building block of the formal definition of programming languages,
