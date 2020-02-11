@@ -87,7 +87,7 @@
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.16.0",
     "gatsby-plugin-netlify": "^2.1.27",
-    "husky": "^0.14.3",
+    "husky": "^4.2.1",
     "lint-staged": "^7.0.4",
     "prettier": "^1.11.1",
     "ts-node": "^8.5.0"
