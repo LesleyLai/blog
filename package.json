@@ -77,11 +77,21 @@
     "lint": "eslint --ignore-path .gitignore src --ext ts --ext tsx --ext js --ext jsx",
     "lint:fix": "yarn lint --fix",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "type-check": "tsc"
+    "type-check": "tsc",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "devDependencies": {
+    "@storybook/addon-a11y": "^5.3.12",
+    "@storybook/addon-actions": "^5.3.12",
+    "@storybook/addon-knobs": "^5.3.12",
+    "@storybook/addon-links": "^5.3.12",
+    "@storybook/addon-viewport": "^5.3.12",
+    "@storybook/addons": "^5.3.12",
+    "@storybook/react": "^5.3.12",
     "@typescript-eslint/eslint-plugin": "^2.6.1",
     "@typescript-eslint/parser": "^2.6.1",
+    "babel-loader": "^8.0.6",
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.5.0",
     "eslint-plugin-prettier": "^3.1.1",
