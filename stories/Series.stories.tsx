@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { action } from '@storybook/addon-actions';
+import * as React from "react";
+import { action } from "@storybook/addon-actions";
 
 const Series = () => (
   <div>
@@ -11,11 +11,12 @@ const Series = () => (
 
     <div>7) baz</div>
     <div>8) fiz</div>
-  </div>);
+  </div>
+);
 
 export const Eight = () => <Series />;
 
 export default {
-  title: 'Series',
-  component: Series,
+  title: "Series",
+  component: Series
 };

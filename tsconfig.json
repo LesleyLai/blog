@@ -11,7 +11,7 @@
     "noEmit": true,
     "jsx": "react",
     "lib": ["dom", "es2015", "es2017"],
-    "types": ["react", "node"]
+    "types": ["react", "node", "jest"]
   },
   "include": [
     "./src/**/*"
