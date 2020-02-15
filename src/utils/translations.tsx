@@ -61,6 +61,7 @@ const en = {
   cpp: "C++",
   create: "Create",
   csharp: "C#",
+  designpattern: "Design Patterns",
   dod: "Data-oriented design",
   elm: "Elm",
   elsewhere: "Elsewhere",
@@ -91,6 +92,7 @@ const en = {
       <Link to={`/en/archive`}>{en.archive}</Link>
     </>
   ),
+  oop: "OOP",
   opengl: "OpenGL",
   opinion: "Opinion",
   page_not_found: "404 NOT FOUND",
@@ -165,6 +167,7 @@ const zh: Translations = {
   cpp: en.cpp,
   create: "创建时间",
   csharp: en.csharp,
+  designpattern: "设计模式",
   dod: "面向数据设计",
   elm: en.elm,
   elsewhere: "链接",
@@ -194,6 +197,7 @@ const zh: Translations = {
       在<Link to={`/zh/archive`}>{zh.archive}</Link>可以找到所有博文
     </>
   ),
+  oop: "面向对象编程",
   opengl: en.opengl,
   opinion: "观点",
   page_not_found: "找不到该页面",

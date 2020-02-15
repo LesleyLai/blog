@@ -5,7 +5,7 @@ const typography = new Typography({
   bodyFontFamily: ["PT Sans", "Noto Sans SC"],
   headerFontFamily: ["PT Serif", "Noto Serif SC"],
   includeNormalize: true,
-  overrideStyles: ({ adjustFontSizeTo, rhythm }, options, styles) => ({
+  overrideStyles: ({ _adjustFontSizeTo, _rhythm }, _options, _styles) => ({
     'code[class*="language-"], pre[class*="language-"]': {
       fontFamily: ["PT Mono", "Noto Sans SC"].join(",")
     }
