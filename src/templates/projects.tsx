@@ -92,7 +92,6 @@ class ProjectsPageTemplate extends React.Component<ProjectsProps> {
         postsTotalCount={postsTotalCount}
         lang={lang}
         tags={postsTags}
-        otherLangs={[]}
       >
         <div>
           <Helmet>
@@ -104,20 +103,25 @@ class ProjectsPageTemplate extends React.Component<ProjectsProps> {
           </Helmet>
           <h1>{translations[lang]["projects"]}</h1>
           <h3 className={css.subtitle}>
-            Check out my personal projects below.
+            {translations[lang]["projects_page_description"]()}
           </h3>
 
-          <Tags tags={allTags} showAll></Tags>
+          {lang === "en" && (
+            <>
+              <Tags tags={allTags} showAll></Tags>
 
-          {tag ? (
-            <p className={css.filterHint}>
-              Show {projects.length} projects filtered by <em>{tagName}</em>.
-            </p>
-          ) : (
-            <p className={css.filterHint}>
-              Show all projects. Use the filter to list them by skill or
-              technology.
-            </p>
+              {tag ? (
+                <p className={css.filterHint}>
+                  Show {projects.length} projects filtered by <em>{tagName}</em>
+                  .
+                </p>
+              ) : (
+                <p className={css.filterHint}>
+                  Show all projects. Use the filter to list them by skill or
+                  technology.
+                </p>
+              )}
+            </>
           )}
 
           {projects.map(project => {

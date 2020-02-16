@@ -100,6 +100,7 @@ const en = {
   physics: "Physics",
   pl: "Programming Languages",
   projects: "Projects",
+  projects_page_description: () => <>Check out my personal projects below.</>,
   python: "Python",
   react: "React",
   readmore: "Read More",
@@ -117,6 +118,7 @@ const en = {
       : `Stuff I Wrote About ${en[tag]}`,
   tags: "Tags",
   talks: "Talks",
+  talks_page_desc: "Here are the talks that I gave in various events.",
   test: "Testing",
   title: "Lesley Lai",
   typescript: "Typescript",
@@ -205,6 +207,12 @@ const zh: Translations = {
   physics: "物理",
   pl: "编程语言",
   projects: "个儿项目",
+  projects_page_description: () => (
+    <>
+      抱歉，我暂时还没有把我的个人项目放到中文页面。您可以查看
+      <Link to="/en/projects">英文界面</Link>。
+    </>
+  ),
   python: en.python,
   react: en.react,
   readmore: "阅读全文",
@@ -220,6 +228,7 @@ const zh: Translations = {
     tag === "opinion" ? `阐述个人观点的博文` : `关于${zh[tag]}的博文`,
   tags: "标签",
   talks: "演讲",
+  talks_page_desc: "以下为我在不同场所的一些讲话：",
   test: "软件测试",
   title: "赖思理的博客",
   typescript: en.typescript,

@@ -54,6 +54,10 @@ interface TalksProps {
   pageContext: { lang: Language };
 }
 
+const InlineCode: React.FunctionComponent = props => (
+  <code className="language-text">{props.children}</code>
+);
+
 const TalksPage = ({ data, location, pageContext }: TalksProps) => {
   const P = styled.p`
     margin: 10px 0 10px 0;
@@ -79,13 +83,39 @@ const TalksPage = ({ data, location, pageContext }: TalksProps) => {
           <title>{`${talksLocale} | ${translations[lang]["title"]}`}</title>
         </Helmet>
         <h1>{talksLocale}</h1>
-        <P>Here are the talks that I gave in various events.</P>
+        <P>{translations[lang]["talks_page_desc"]}</P>
+        <Talk title="Type Erasure: Concept and Implementation" date="2020-2-13">
+          <P>
+            This talk explains the idea of type erasure in the C++ context and
+            how it gets implemented. It first explores C style type erasure with
+            the cast and <InlineCode>void*</InlineCode> and OOP style
+            type-erasure with inheritance and virtual dispatch. And then, It
+            explains more advanced type erasure techniques used in standard
+            library types such as <InlineCode>std::function</InlineCode>. And
+            the talk then spend the majority of time gave a case study on how to
+            implement the proposed{" "}
+            <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p0228r3.html">
+              <InlineCode>unique_function</InlineCode>
+            </a>{" "}
+            type.
+          </P>
+          <UL>
+            <li>
+              Slides{" "}
+              <a
+                href={`https://type-erasure-talk-north-denver-metro-cpp.netlify.com/`}
+              >
+                [Interactive]
+              </a>
+            </li>
+          </UL>
+        </Talk>
         <Talk title="Understanding Persistent Data Structures" date="2020-1-28">
           <P>
             An hour long talk on the basic idea of persistent data structures at{" "}
             <a href="https://www.meetup.com/denverfp/">Denver FP</a>. Covers
             basic principles of persistent data structures with case studies of
-            immutable array, list,
+            immutable array, list,{" "}
             <a href="https://dl.acm.org/doi/pdf/10.1145/2784731.2784739?download=true">
               Relaxed Radix-Balanced Trees
             </a>
@@ -101,7 +131,7 @@ const TalksPage = ({ data, location, pageContext }: TalksProps) => {
               <a
                 href={`/talks/slides_understanding-persistent-data-structures/`}
               >
-                [Web]
+                [Interactive]
               </a>{" "}
               <a href={`/talks/understanding-persistent-data-structures.pdf`}>
                 [PDF]
@@ -127,7 +157,7 @@ const TalksPage = ({ data, location, pageContext }: TalksProps) => {
               <a
                 href={`/talks/make_impossible_state_unrepresentable/index.html`}
               >
-                [Web]
+                [Interactive]
               </a>{" "}
               <a href={`/talks/make_impossible_state_unrepresentable.pdf`}>
                 [PDF]
