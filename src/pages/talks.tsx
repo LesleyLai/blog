@@ -101,6 +101,9 @@ const TalksPage = ({ data, location, pageContext }: TalksProps) => {
           </P>
           <UL>
             <li>
+              <a href="https://youtu.be/2-QZTVzgAGM">Video</a>
+            </li>
+            <li>
               Slides{" "}
               <a
                 href={`https://type-erasure-talk-north-denver-metro-cpp.netlify.com/`}
@@ -150,7 +153,7 @@ const TalksPage = ({ data, location, pageContext }: TalksProps) => {
           </P>
           <UL>
             <li>
-              <a href="https://youtu.be/hYyRrYwfy3k">video</a>
+              <a href="https://youtu.be/hYyRrYwfy3k">Video</a>
             </li>
             <li>
               Slides{" "}
