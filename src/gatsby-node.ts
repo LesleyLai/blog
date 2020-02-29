@@ -251,40 +251,48 @@ export const createPages: GatsbyNode["createPages"] = async ({
       };
     }
 
-    graphql(`
-      {
-        projects: allMdx(
-          filter: {
-            fileAbsolutePath: { regex: "//contents/projects//" }
-            frontmatter: { lang: { eq: "en" } }
-          }
-        ) {
-          edges {
-            node {
-              frontmatter {
-                tags: categories
-              }
+    const promises = languages.map(lang =>
+      graphql(`
+    {
+      projects: allMdx(
+        filter: {
+          fileAbsolutePath: { regex: "//contents/projects//" }
+          frontmatter: { lang: { eq: "${lang}" } }
+        }
+      ) {
+        edges {
+          node {
+            frontmatter {
+              tags: categories
             }
           }
         }
       }
-    `).then((result: Result) => {
-      const projects = result.data.projects.edges;
+    }
+  `).then((result: Result) => {
+        const projects = result.data.projects.edges;
 
-      // Create tag pages
-      uniqueTags(projects).map(tag => {
-        createPage({
-          path: `/en/projects/${tag}`,
-          component: projectsTemplate,
-          context: {
-            tag,
-            lang: "en"
-          }
+        // Create tag pages
+        uniqueTags(projects).map(tag => {
+          createPage({
+            path: `/${lang}/projects/${tag}`,
+            component: projectsTemplate,
+            context: {
+              tag,
+              lang: lang
+            }
+          });
         });
-      });
+      })
+    );
 
-      resolve();
-    });
+    Promise.all(promises)
+      .catch(error => {
+        console.log(error);
+      })
+      .then(() => {
+        resolve();
+      });
   });
 
   return Promise.all([postsPromise, projectsPromise]).catch(error => {

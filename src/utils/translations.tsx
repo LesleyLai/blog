@@ -100,7 +100,7 @@ const en = {
   physics: "Physics",
   pl: "Programming Languages",
   projects: "Projects",
-  projects_page_description: () => <>Check out my personal projects below.</>,
+  projects_page_description: "Check out my personal projects below",
   python: "Python",
   react: "React",
   readmore: "Read More",
@@ -111,7 +111,14 @@ const en = {
     </>
   ),
   rt: "Ray tracing",
+  show_projects_filtered: (count: number, tag: TagID) => (
+    <>
+      Show {count} projects filtered by <em>{en[tag]}</em>.
+    </>
+  ),
   showall: "Show all",
+  showall_projects:
+    "Show all projects. Use the filter to list them by skill or technology.",
   stuff_I_wrote_about: (tag: TagID) =>
     tag === "opinion"
       ? "Stuff I Wrote to State My Opinion"
@@ -123,6 +130,7 @@ const en = {
   title: "Lesley Lai",
   typescript: "Typescript",
   web: "Web",
+  website: "Website",
   x86: "x86"
 };
 
@@ -207,12 +215,7 @@ const zh: Translations = {
   physics: "物理",
   pl: "编程语言",
   projects: "个儿项目",
-  projects_page_description: () => (
-    <>
-      抱歉，我暂时还没有把我的个人项目放到中文页面。您可以查看
-      <Link to="/en/projects">英文界面</Link>。
-    </>
-  ),
+  projects_page_description: "下列是我的一些个人项目",
   python: en.python,
   react: en.react,
   readmore: "阅读全文",
@@ -223,7 +226,14 @@ const zh: Translations = {
     </>
   ),
   rt: "光线追踪",
+  show_projects_filtered: (count: number, tag: TagID) => (
+    <>
+      显示{count}个关于{zh[tag]}的项目。
+    </>
+  ),
   showall: "显示所有",
+  showall_projects:
+    "显示所有项目。您可以通过标签来限定显示包含指定标签的项目。",
   stuff_I_wrote_about: (tag: TagID) =>
     tag === "opinion" ? `阐述个人观点的博文` : `关于${zh[tag]}的博文`,
   tags: "标签",
@@ -233,6 +243,7 @@ const zh: Translations = {
   title: "赖思理的博客",
   typescript: en.typescript,
   web: en.web,
+  website: "网站",
   x86: en.x86
 };
 

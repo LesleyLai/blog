@@ -2,6 +2,8 @@ import Img, { FluidObject } from "gatsby-image";
 import * as React from "react";
 
 import Tags from "./projectTags";
+import { Language, translations } from "../../utils/translations";
+import { TagID } from "../../types/tags";
 
 const PlayIcon = require("react-icons/lib/fa/play");
 const GithubIcon = require("react-icons/lib/fa/github");
@@ -18,9 +20,11 @@ interface ProjectPenalProps extends React.HTMLProps<HTMLDListElement> {
   // Prevent the panel to show only part of the image, but the image may not fill the panel this way
   imageContain?: boolean;
 
+  lang: Language;
+
   // Year of doing that project
   year: string;
-  tags?: string[];
+  tags?: TagID[];
 }
 
 const ProjectPanel = (props: ProjectPenalProps) => {
@@ -47,7 +51,7 @@ const ProjectPanel = (props: ProjectPenalProps) => {
             <li>
               <LinkIcon className={css.icon} data-tip="Website" size={20} />
               <a href={props.website}>
-                <span>View Website</span>
+                <span>{translations[props.lang]["website"]}</span>
               </a>
             </li>
           )}
@@ -56,7 +60,7 @@ const ProjectPanel = (props: ProjectPenalProps) => {
             <li>
               <PlayIcon className={css.icon} data-tip="Live demo" size={20} />
               <a href={props.demo}>
-                <span>Live Demo</span>
+                <span>Web App</span>
               </a>
             </li>
           )}
@@ -69,13 +73,13 @@ const ProjectPanel = (props: ProjectPenalProps) => {
                 size={20}
               />
               <a href={props.github}>
-                <span>View Github</span>
+                <span>Github</span>
               </a>
             </li>
           )}
         </ul>
 
-        <Tags tags={tags} />
+        <Tags tags={tags} lang={props.lang} />
       </div>
 
       <span style={{ flexGrow: 100 }} />

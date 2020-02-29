@@ -5,21 +5,21 @@ import Link from "gatsby-link";
 import { colors } from "../../utils/colorTable";
 import { TagID } from "../../types/tags";
 import { tagInfos } from "../../utils/tagInfo";
-import { translations } from "../../utils/translations";
+import { Language, translations } from "../../utils/translations";
 
 // If tagId is null, it means "show all"
-function buildTag(tagId?: TagID) {
+function buildTag(lang: Language, tagId?: TagID) {
   const { color, tagName } = (() => {
     if (tagId) {
       const tag = tagInfos[tagId];
       return {
         color: tag.color,
-        tagName: translations["en"][tagId]
+        tagName: translations[lang][tagId]
       };
     } else {
       return {
         color: colors.white,
-        tagName: translations["en"]["showall"]
+        tagName: translations[lang]["showall"]
       };
     }
   })();
@@ -51,7 +51,7 @@ function buildTag(tagId?: TagID) {
 
   return (
     <TagItem key={tagId}>
-      <Link to={tagId ? `/en/projects/${tagId}` : `/en/projects`}>
+      <Link to={tagId ? `/${lang}/projects/${tagId}` : `/${lang}/projects`}>
         <TagBox>{tagName}</TagBox>
       </Link>
     </TagItem>
@@ -59,11 +59,12 @@ function buildTag(tagId?: TagID) {
 }
 
 interface TagsProp {
-  tags: string[];
+  lang: Language;
+  tags: TagID[];
   showAll?: boolean;
 }
 
-const Tags = ({ tags, showAll }: TagsProp) => {
+const Tags = ({ lang, tags, showAll }: TagsProp) => {
   const Ul = styled.ul`
     list-style: none;
     display: flex;
@@ -73,8 +74,8 @@ const Tags = ({ tags, showAll }: TagsProp) => {
 
   return (
     <Ul>
-      {showAll && buildTag()}
-      {tags && tags.map(buildTag)}
+      {showAll && buildTag(lang)}
+      {tags && tags.map(t => buildTag(lang, t))}
     </Ul>
   );
 };

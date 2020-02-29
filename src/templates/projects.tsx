@@ -25,7 +25,7 @@ interface ProjectMeta {
     demo?: string;
     website?: string;
   };
-  body: any;
+  body: string;
 }
 
 interface ImageMeta {
@@ -65,7 +65,6 @@ class ProjectsPageTemplate extends React.Component<ProjectsProps> {
   render() {
     const props = this.props;
     const tag = props.pageContext.tag;
-    const tagName = translations["en"][tag];
     const lang = props.pageContext.lang;
 
     const data = props.data;
@@ -103,25 +102,22 @@ class ProjectsPageTemplate extends React.Component<ProjectsProps> {
           </Helmet>
           <h1>{translations[lang]["projects"]}</h1>
           <h3 className={css.subtitle}>
-            {translations[lang]["projects_page_description"]()}
+            {translations[lang]["projects_page_description"]}
           </h3>
 
-          {lang === "en" && (
-            <>
-              <Tags tags={allTags} showAll></Tags>
+          <Tags tags={allTags} showAll lang={lang}></Tags>
 
-              {tag ? (
-                <p className={css.filterHint}>
-                  Show {projects.length} projects filtered by <em>{tagName}</em>
-                  .
-                </p>
-              ) : (
-                <p className={css.filterHint}>
-                  Show all projects. Use the filter to list them by skill or
-                  technology.
-                </p>
+          {tag ? (
+            <p className={css.filterHint}>
+              {translations[lang]["show_projects_filtered"](
+                projects.length,
+                tag
               )}
-            </>
+            </p>
+          ) : (
+            <p className={css.filterHint}>
+              {translations[lang]["showall_projects"]}
+            </p>
           )}
 
           {projects.map(project => {
@@ -139,6 +135,7 @@ class ProjectsPageTemplate extends React.Component<ProjectsProps> {
                       project.frontmatter.lastModify
                     : project.frontmatter.create
                 }
+                lang={project.frontmatter.lang}
                 tags={project.frontmatter.tags}
                 image={
                   project.frontmatter.image && images[project.frontmatter.image]
@@ -192,7 +189,7 @@ export const query = graphql`
       sort: { fields: [frontmatter___create], order: DESC }
       filter: {
         fileAbsolutePath: {regex: "//contents/projects//"}
-        frontmatter: { lang: { eq: "en" } }
+        frontmatter: { lang: { eq: $lang } }
       }
     ) {
       ...ProjectsInfo

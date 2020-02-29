@@ -1,7 +1,7 @@
 ---
 id: elm-grid
 name: "elm-grid"
-lang: en
+lang: zh
 create: '2019-03-14'
 website: https://package.elm-lang.org/packages/LesleyLai/elm-grid/latest/Grid
 github: https://github.com/LesleyLai/elm-grid
@@ -11,4 +11,4 @@ categories:
 - functional
 ---
 
-A 2 dimensional Grid library in Elm.
+一个Elm语言的二维网格库。
