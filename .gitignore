@@ -11,4 +11,5 @@ yarn-error.log
 # log
 .log
 .env
-contents/blog/draft
+contents/blog/draft/*
+!contents/blog/draft/.gitkeep
