@@ -11,3 +11,4 @@ yarn-error.log
 # log
 .log
 .env
+contents/blog/draft
