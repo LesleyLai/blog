@@ -82,6 +82,7 @@ const en = {
       Profile on <a href="https://www.linkedin.com/in/lesley-lai/">LinkedIn</a>
     </>
   ),
+  logic: "Logic",
   math: "Mathematics",
   myname: "Lesley Lai",
   n_posts: (n: number) => `${n} Posts`,
@@ -198,6 +199,7 @@ const zh: Translations = {
       <a href="https://www.linkedin.com/in/lesley-lai/?locale=zh_CN">领英</a>
     </>
   ),
+  logic: "逻辑学",
   math: "数学",
   myname: "赖思理",
   n_posts: (n: number) => `${n}篇博文`,

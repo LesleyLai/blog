@@ -26,6 +26,7 @@ export const tagInfos = {
   java: { color: colors.red },
   javascript: { color: colors.yellow },
   library: { color: colors.grey },
+  logic: { color: colors.grey },
   math: { color: colors.pink },
   ocaml: { color: colors.orange },
   oop: { color: colors.grey },
