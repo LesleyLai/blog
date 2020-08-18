@@ -95,6 +95,14 @@ public:
 };
 ```
 
+<aside style="margin-top: -210px;">
+
+Making this `const_wrapper` class template more useful,
+for example, by adding a variadic template constructor with type constraint,
+is an exercise left for readers who really want to use this class 😉.
+
+</aside>
+
 Then you can use this template as following:
 
 ```cpp
