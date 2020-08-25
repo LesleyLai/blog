@@ -216,7 +216,7 @@ const zh: Translations = {
   page_not_found_text: "抱歉，您要访问的页面无法被找到。",
   physics: "物理",
   pl: "编程语言",
-  projects: "个儿项目",
+  projects: "个人项目",
   projects_page_description: "下列是我的一些个人项目",
   python: en.python,
   react: en.react,
