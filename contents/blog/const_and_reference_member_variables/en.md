@@ -10,7 +10,7 @@ categories:
 ---
 
 In the conventional wisdom of the C++ community,
-`const` or reference member variables are considered problematic.
+non-static `const` or reference data variables are considered problematic.
 Surprisingly, I cannot find a single resource dedicated to this topic.
 
 I decide to write this post because the same problem raises several time by different people on Twitter and the [#include ＜C++＞ discord server](https://discord.com/invite/ZPErMGW).
@@ -20,15 +20,20 @@ And they can occasionally still find some uses.
 
 ## Const members
 
-If you are familiar with any programming languages, such as Rust, that treat `const` as default and mutable as second class citizens, you may have the temptation to mark fields `const` if you don't need to modify them. Alas, in C++, every best practice has a twist, such as "`const` everything *except* member variables."
+If you are familiar with any programming languages, such as Rust, that treat `const` as default and mutable as second class citizens, you may have the temptation to mark everything `const` if you don't need to modify them.
+This practice provides a lot of benifits even in C++, as countless [Jason Turner](https://twitter.com/lefticus) and [Kate Gregory](https://twitter.com/gregcons) talks show.
+Alas, in C++, every best practice has a twist, such as "`const` everything *except* member variables."
 
-`const` member variables disables *assignment* and *move semantics*.
+`const` member variables disables *assignment* and *move semantics* for a class.
 For assignments, it makes sense, since how can you assign something to a constant?
 For move semantics, even though technically copy is a valid move implementation, the type system cannot guarantee that the after-move state remains the same.
 
 "What is the big deal? I already said that I don't want to mutate the fields ever." you may ask.
 
 Except that `swap` uses both *assignment* and *move semantics*.
+Without move operations, every move fallback to a copy.
+The lack of assignment is more severe,
+as it makes `swap` fail to compile:
 
 ```cpp
 struct BadImmutablePoint {
@@ -55,7 +60,7 @@ std::ranges::sort(points, {}, &BadImmutablePoint::x); // Error
 ## But I don't want to mutate the member variable!
 
 The best thing you can do in C++ is to make the member variable `private` and only expose the getter.
-Accessing control still doesn't prevent the class internals from modifying the members, but at least now everything outside the class can't.
+Access control still doesn't prevent the class internals from modifying the members, but at least now everything outside the class can't.
 
 ```cpp
 class ImmutablePoint {
@@ -76,11 +81,28 @@ int main() {
 }
 ```
 
+<aside style="margin-top: -60px;">
+
+Notice that this line of sorting by getter is exactly the same as the sorting by member variable above.
+C++20 ranges projection is a great feature.
+
+</aside>
+
 It is quite a bit of boilerplate.
 And to be honest, I will stick with aggregate with none-constant fields in this particular case.
-When you create a point variable, you can still mark the whole point as `const`.
+When you create a point variable, you can still mark the whole point as `const`:
 
-If you want to get *really* fancy, you can even create a small template to automate the above process. Though I myself will certainly not go this far.
+```cpp
+struct Point {
+    int x = 0;
+    int y = 0;
+};
+
+const Point immutable_point {42, 55};
+```
+
+If you want to get *really* fancy, you can even create a small template to automate the process of only exposing getters.
+Though I myself will certainly not go this far.
 
 ```cpp
 template <typename T>
@@ -120,7 +142,9 @@ int main() {
 
 ## Reference member variables
 
-Since C++ references cannot rebind, we have a situation very similar to `const` members.
+Unlike pointers or "references" in a lot of other programming languages such as Java and Python,
+C++ references cannot rebind.
+Hence, we have a situation very similar to `const` members.
 A good analogy of references is a `const` pointer that cannot be null.
 For example, the below `struct` subjects to the same problem of the `struct` with `const` fields.
 
@@ -166,13 +190,21 @@ struct ImmutableTriangle {
 };
 ```
 
-`std::reference_wrapper` is especially useful when we try to store something in the container while still maintains reference semantics:
+`std::reference_wrapper` is more useful than my `const_wrapper`.
+As it is essential when we try to store something in the container while still maintains reference semantics:
 
 ```cpp
-std::vector<ImmutableTriangle&> triangles1; // Error
-std::vector<std::reference_wrapper<ImmutableTriangle>> triangles2; // Ok, reference semantic
-std::vector<ImmutableTriangle*> triangles3; // Ok, value semantic of pointers
+std::vector<ImmutablePoint&> triangles1; // Error
+std::vector<std::reference_wrapper<ImmutablePoint>> triangles2; // Ok
+std::vector<ImmutablePoint*> triangles3; // Ok， with caveat
 ```
+
+The code `std::ranges::sort(triangles2);` sorts `triangles2` according to value comparisons.
+And it will fail to compile if you haven't define relevant comparison operators.
+This is the desirable behavior, as there are no clear default ordering for triangles.
+On the other hand, `std::ranges::sort(triangles3)` compiles,
+but it sorts by the addresses of pointers.
+And this kind of nondetermistic behavior is undesirable.
 
 ## Where `const` or reference member variables can still be useful
 
@@ -184,4 +216,4 @@ And in those cases, it is fine to use `const` or reference member variables.
 ## Conclusion
 
 C++, at its core, is an imperative language built on C heritage, and `const` and references are afterthought of the language.
-Also, The core language mechanisms heavily rely on mutation. Like it or not, when writing C++ classes, restricting user's freedom to mutate member variables is not well supported.
+Also, The core language mechanisms heavily rely on assignment. Like it or not, when writing C++ classes, restricting user's freedom to mutate member variables is not well supported.
