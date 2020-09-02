@@ -2,13 +2,14 @@ import { FluidObject } from "gatsby-image";
 import { graphql } from "gatsby";
 import * as React from "react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
-import Helmet from "react-helmet";
 
 import Layout from "../components/layout";
 import ProjectPanel from "../components/projectPanel";
 import Tags from "../components/projectPanel/projectTags";
 import { TagID, TagItem } from "../types/tags";
 import { Language, translations } from "../utils/translations";
+
+import SEO from "../components/seo";
 
 const css = require("./projects.module.css");
 
@@ -93,19 +94,18 @@ class ProjectsPageTemplate extends React.Component<ProjectsProps> {
         tags={postsTags}
       >
         <div>
-          <Helmet>
-            <title>{`${translations[lang]["projects"]} | ${translations[lang]["title"]}`}</title>
-            <meta
-              name="Description"
-              content="Personal projects of Lesley Lai"
-            />
-          </Helmet>
+          <SEO
+            title={translations[lang]["projects"]}
+            description={translations[lang]["projects_page_description"]}
+            lang={lang}
+            path={props.location.pathname}
+          />
           <h1>{translations[lang]["projects"]}</h1>
           <h3 className={css.subtitle}>
             {translations[lang]["projects_page_description"]}
           </h3>
 
-          <Tags tags={allTags} showAll lang={lang}></Tags>
+          <Tags tags={allTags} showAll lang={lang} />
 
           {tag ? (
             <p className={css.filterHint}>

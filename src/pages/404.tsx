@@ -1,10 +1,10 @@
 import { graphql } from "gatsby";
 import * as React from "react";
-import Helmet from "react-helmet";
 
 import { TagItem } from "../types/tags";
 import Layout from "../components/layout";
 import { Language, translations } from "../utils/translations";
+import SEO from "../components/seo";
 
 interface NotFoundProps {
   data: {
@@ -34,10 +34,7 @@ const NotFoundPage = ({ data, pageContext, location }: NotFoundProps) => {
       postsTotalCount={data.posts.totalCount}
     >
       <div>
-        <Helmet>
-          <title>{`${title} | ${translations[lang]["title"]}`}</title>
-          <meta name="Description" content={title} />
-        </Helmet>
+        <SEO title={title} lang={lang} path={location.pathname} />
         <h1>{title}</h1>
         <p>{translations[lang]["page_not_found_text"]}</p>
         <p>{translations[lang]["return_to_home"]}</p>

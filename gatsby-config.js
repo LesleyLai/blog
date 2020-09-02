@@ -1,7 +1,7 @@
 const siteMetadata = {
   title: `Lesley Lai's Blog`,
   description: `A personal website and blog for Lesley Lai`,
-  siteUrl: `http://www.lesleylai.info`
+  siteUrl: `https://www.lesleylai.info`
 };
 
 const createFeed = (title, output, lang) => {
@@ -155,6 +155,13 @@ module.exports = {
         showSpinner: false
       }
     },
-    'gatsby-plugin-robots-txt'
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://lesleylai.info',
+        sitemap: 'https://lesleylai.info/sitemap.xml',
+        policy: [{ userAgent: '*', allow: '/' }]
+      }
+    }
   ]
 };

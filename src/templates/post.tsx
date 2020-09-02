@@ -1,11 +1,12 @@
 import { graphql } from "gatsby";
 import * as React from "react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
-import Helmet from "react-helmet";
 import PrevNextLinks from "../components/prevnextlinks";
 import Socials from "../components/socials";
 import Layout from "../components/layout";
 import TagsList from "../components/tagsList";
+
+import SEO from "../components/seo";
 
 import { TagID, TagItem } from "../types/tags";
 import { Language, translations } from "../utils/translations";
@@ -23,6 +24,7 @@ export interface PostData {
     lastModify: string;
     categories: TagID[];
   };
+  excerpt: string;
 }
 
 interface PostTitleInfo {
@@ -103,10 +105,13 @@ class PostTemplate extends React.Component<PostProps> {
         postsTotalCount={postsTotalCount}
       >
         <div className={css.post}>
-          <Helmet>
-            <title>{`${post.frontmatter.title} | ${translations[lang]["title"]}`}</title>
-            <meta name="Description" content={post.frontmatter.title} />
-          </Helmet>
+          <SEO
+            title={post.frontmatter.title}
+            lang={lang}
+            description={post.excerpt}
+            path={path}
+            ogType="article"
+          />
           <h1 className={css.title}>{post.frontmatter.title}</h1>
           <div className={css.info}>
             <span className={css.date}>
@@ -168,6 +173,7 @@ export const query = graphql`
         lastModify(formatString: "LL", locale: $dateLocale)
         categories
       }
+      excerpt(pruneLength: 200)
     }
     otherLangs: allMdx(
       filter: { frontmatter: { id: { eq: $id }, lang: { ne: $lang } } }

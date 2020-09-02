@@ -309,7 +309,7 @@ const specialPages = new Set(["/dev-404-page"]);
 const localizedRoot = (lang: Language) => (lang == "en" ? "/" : "/zh");
 
 export const onCreatePage: GatsbyNode["onCreatePage"] = async args => {
-  const page: any = args.page;
+  const page = args.page;
   const actions = args.actions;
   const { createPage, deletePage, createRedirect } = actions;
 

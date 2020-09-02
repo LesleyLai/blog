@@ -1,11 +1,10 @@
 import * as React from "react";
-import { graphql } from "gatsby";
 import Link from "gatsby-link";
 import styled from "styled-components";
 
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from "react-icons/lib/fa";
 
-import { Language, translations } from "../../utils/translations";
+import { Language } from "../../utils/translations";
 
 interface PrevNextInfo {
   id: string;

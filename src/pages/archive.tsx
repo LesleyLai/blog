@@ -1,5 +1,4 @@
 import * as React from "react";
-import Helmet from "react-helmet";
 
 import { TagItem } from "../types/tags";
 import Socials from "../components/socials";
@@ -7,6 +6,7 @@ import Layout from "../components/layout";
 import Posts from "../components/postsList";
 import { PostRaw, rawToStructured } from "../types/Post";
 import { Language, translations } from "../utils/translations";
+import SEO from "../components/seo";
 
 import { graphql } from "gatsby";
 
@@ -39,10 +39,12 @@ const Archive = (props: ArchiveProps) => {
       postsTotalCount={posts.totalCount}
     >
       <div>
-        <Helmet>
-          <title>{`${title} | ${translations[lang]["title"]}`}</title>
-          <meta name="Description" content="All blog posts of Lesley Lai" />
-        </Helmet>
+        <SEO
+          title={title}
+          lang={lang}
+          description="All blog posts of Lesley Lai"
+          path={props.location.pathname}
+        />
         <h1>{title}</h1>
         {translations[lang]["n_posts"](posts.totalCount)}
         <Posts

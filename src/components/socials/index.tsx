@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Language, translations } from "../../utils/translations";
+import { Language } from "../../utils/translations";
 
 const RssIcon = require("react-icons/lib/md/rss-feed");
 

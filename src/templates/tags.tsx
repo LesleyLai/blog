@@ -1,6 +1,7 @@
 import { graphql } from "gatsby";
 import * as React from "react";
-import Helmet from "react-helmet";
+
+import SEO from "../components/seo";
 
 import Layout from "../components/layout";
 import Posts from "../components/postsList";
@@ -55,10 +56,7 @@ class TagsTemplate extends React.Component<ArchiveProps> {
         tags={data.allPosts.tags}
         postsTotalCount={data.allPosts.totalCount}
       >
-        <Helmet>
-          <title>{`${title} | ${translations[lang]["title"]}`}</title>
-          <meta name="Description" content={title} />
-        </Helmet>
+        <SEO title={title} lang={lang} path={this.props.location.pathname} />
         <h1>{title}</h1>
         {translations[lang]["n_posts"](data.posts.totalCount)}
         <Posts

@@ -1,11 +1,12 @@
 import { graphql, Link } from "gatsby";
 import * as React from "react";
-import Helmet from "react-helmet";
 import styled from "styled-components";
 
 import { TagItem } from "../types/tags";
 import Layout from "../components/layout";
 import { Language, translations } from "../utils/translations";
+
+import SEO from "../components/seo";
 
 interface TalkProps {
   readonly children: React.ReactNode;
@@ -69,6 +70,7 @@ const TalksPage = ({ data, location, pageContext }: TalksProps) => {
 
   const lang = pageContext.lang;
 
+  const pageDescription = translations[lang]["talks_page_desc"];
   const talksLocale = translations[lang]["talks"];
 
   return (
@@ -79,11 +81,14 @@ const TalksPage = ({ data, location, pageContext }: TalksProps) => {
       postsTotalCount={data.posts.totalCount}
     >
       <>
-        <Helmet>
-          <title>{`${talksLocale} | ${translations[lang]["title"]}`}</title>
-        </Helmet>
+        <SEO
+          title={talksLocale}
+          lang={lang}
+          description={pageDescription}
+          path={location.pathname}
+        />
         <h1>{talksLocale}</h1>
-        <P>{translations[lang]["talks_page_desc"]}</P>
+        <P>{pageDescription}</P>
         <Talk title="Type Erasure: Concept and Implementation" date="2020-2-13">
           <P>
             This talk explains the idea of type erasure in the C++ context and

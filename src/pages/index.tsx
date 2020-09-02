@@ -1,12 +1,12 @@
 import { graphql } from "gatsby";
 import * as React from "react";
-import Helmet from "react-helmet";
 
 import { TagItem } from "../types/tags";
 import Socials from "../components/socials";
 import Layout from "../components/layout";
 import RecentPosts, { PostMeta } from "../components/recentPosts";
 import { Language, translations } from "../utils/translations";
+import SEO from "../components/seo";
 
 interface IndexData {
   posts: {
@@ -40,10 +40,12 @@ class IndexPage extends React.Component<IndexProps> {
         tags={data.allPosts.tags}
         postsTotalCount={data.allPosts.totalCount}
       >
-        <Helmet>
-          <title>{`${translations[lang]["title"]}`}</title>
-          <meta name="Description" content="Personal website of Lesley Lai" />
-        </Helmet>
+        <SEO
+          title={translations[lang]["title"]}
+          lang={lang}
+          description="Personal website of Lesley Lai"
+          path={this.props.location.pathname}
+        />
         <h1>{translations[lang]["recent_posts"]}</h1>
         {translations[lang]["older_posts"]()}
         <RecentPosts
