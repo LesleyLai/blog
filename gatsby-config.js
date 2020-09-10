@@ -156,6 +156,7 @@ module.exports = {
         sitemap: 'https://lesleylai.info/sitemap.xml',
         policy: [{ userAgent: '*', allow: '/' }]
       }
-    }
+    },
+    `gatsby-plugin-twitter`
   ]
 };
