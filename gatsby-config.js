@@ -138,12 +138,6 @@ module.exports = {
         ]
       }
     },
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: "UA-137818218-1"
-      }
-    },
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-netlify`,
     {
