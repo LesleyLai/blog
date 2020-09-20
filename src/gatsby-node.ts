@@ -27,6 +27,8 @@ const createRedirectsSlash = (
   });
 };
 
+const localizedRoot = (lang: Language) => (lang == "en" ? "/" : "/zh");
+
 const lagacyURLRedirections: Array<{ from: string; to: string }> = [
   { from: "/cppcon2019/en", to: "/en/cppcon2019" },
   { from: "/functional-cpp/en", to: "/en/functional-cpp" },
@@ -136,6 +138,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
 }) => {
   const { createPage, createRedirect } = actions;
 
+  const paginationTemplate = resolve(`src/templates/pagination.tsx`);
   const postTemplate = resolve(`src/templates/post.tsx`);
   const tagsTemplate = resolve("src/templates/tags.tsx");
   const projectsTemplate = resolve("src/templates/projects.tsx");
@@ -212,6 +215,27 @@ export const createPages: GatsbyNode["createPages"] = async ({
               dateLocale: dateLocale,
               previousId: previousId,
               nextId: nextId
+            }
+          });
+        });
+
+        // Creates pagenation
+        const postsPerPage = 5;
+        const pagesCount = Math.ceil(langPosts.length / postsPerPage);
+        Array.from({ length: pagesCount }).forEach((_, i) => {
+          // Homepage is special as it will not have a language postfix
+          const localizedPath =
+            i === 0 ? localizedRoot(lang) : `/${lang}/${i + 1}`;
+
+          createPage({
+            path: localizedPath,
+            component: paginationTemplate,
+            context: {
+              lang: lang,
+              dateLocale: dateLocale,
+              skip: i * postsPerPage,
+              pagesCount: pagesCount,
+              currentPage: i + 1
             }
           });
         });
@@ -306,8 +330,6 @@ const removeTrailingSlash = (path: string) =>
 // Page that with no other language versions
 const specialPages = new Set(["/dev-404-page"]);
 
-const localizedRoot = (lang: Language) => (lang == "en" ? "/" : "/zh");
-
 export const onCreatePage: GatsbyNode["onCreatePage"] = async args => {
   const page = args.page;
   const actions = args.actions;
@@ -351,14 +373,10 @@ export const onCreatePage: GatsbyNode["onCreatePage"] = async args => {
   }
 
   // Pages with multiple language versions
-  // Homepage is special as it will not have a language postfix
   languages.forEach(lang => {
-    const localizedPath =
-      page.path === "/" ? localizedRoot(lang) : `/${lang}${page.path}`;
-
     createPage({
       ...page,
-      path: localizedPath,
+      path: `/${lang}${page.path}`,
       context: {
         lang: lang,
         dateLocale: getDateLocale(lang)

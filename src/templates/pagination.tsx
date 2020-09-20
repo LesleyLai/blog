@@ -25,13 +25,17 @@ interface IndexProps {
   location: {
     pathname: string;
   };
-  pageContext: { lang: Language };
+  pageContext: {
+    lang: Language;
+    pagesCount: number;
+    currentPage: number;
+  };
 }
 
-class IndexPage extends React.Component<IndexProps> {
+class PaginationTemplate extends React.Component<IndexProps> {
   public render() {
     const data = this.props.data;
-    const lang = this.props.pageContext.lang;
+    const { lang, pagesCount, currentPage } = this.props.pageContext;
 
     return (
       <Layout
@@ -51,6 +55,8 @@ class IndexPage extends React.Component<IndexProps> {
         <RecentPosts
           posts={data.posts.edges.map(edge => edge.node)}
           lang={lang}
+          pagesCount={pagesCount}
+          currentPage={currentPage}
         />
         <Socials lang={lang} />
       </Layout>
@@ -58,10 +64,10 @@ class IndexPage extends React.Component<IndexProps> {
   }
 }
 
-export default IndexPage;
+export default PaginationTemplate;
 
 export const query = graphql`
-  query indexQuery($lang: String!, $dateLocale: String!) {
+  query paginationQuery($lang: String!, $dateLocale: String!, $skip: Int!) {
     posts: allMdx(
       filter: {
         fileAbsolutePath: { regex: "//contents/blog//" }
@@ -69,6 +75,7 @@ export const query = graphql`
       }
       sort: { fields: [frontmatter___create], order: DESC }
       limit: 4
+      skip: $skip
     ) {
       totalCount
       edges {

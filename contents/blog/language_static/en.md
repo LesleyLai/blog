@@ -20,7 +20,7 @@ We construct a set of rules on the *typing judgments* to state if an expression 
 
 ## Static of a small expression language
 
-Let's consider a pretty dull expression-based language below.
+Let's consider a pretty dull expression-oriented language below.
 
 $$
 \begin{array}{rcll}
@@ -55,7 +55,7 @@ $$
 {\text{plus}(e_1, e_2) : \text{Num}}
 $$
 
-If both the left-hand $e_1$ side and the right-hand $e_2$ side is have the type $\text{Num}$,
+If both the left-hand $e_1$ side and the right-hand $e_2$ side have the type $\text{Num}$,
 the expression $\text{plus}(e_1, e_2)$ have the type $\text{Num}$.
 Otherwise, $\text{plus}(e_1, e_2)$ is ill-formed.
 

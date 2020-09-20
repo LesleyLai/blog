@@ -5,6 +5,7 @@ import TagsList from "../tagsList";
 
 import { TagID } from "../../types/tags";
 import { Language, translations } from "../../utils/translations";
+import Pagination from "../pagination";
 
 export interface PostMeta {
   frontmatter: {
@@ -18,13 +19,17 @@ export interface PostMeta {
 }
 
 export default class RecentPosts extends React.Component {
-  public props: { posts: PostMeta[]; lang: Language };
+  public props: {
+    posts: PostMeta[];
+    lang: Language;
+    currentPage: number;
+    pagesCount: number;
+  };
 
   public render() {
-    const posts = this.props.posts;
-    const style = require("./recentPosts.module.css");
+    const { posts, lang, currentPage, pagesCount } = this.props;
 
-    const lang = this.props.lang;
+    const style = require("./recentPosts.module.css");
 
     return (
       <div>
@@ -52,6 +57,11 @@ export default class RecentPosts extends React.Component {
             </article>
           );
         })}
+        <Pagination
+          lang={lang}
+          currentPage={currentPage}
+          pagesCount={pagesCount}
+        />
       </div>
     );
   }
