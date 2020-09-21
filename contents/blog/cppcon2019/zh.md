@@ -1,7 +1,7 @@
 ---
 id: cppcon2019
 title: "CppCon 2019 Trip Report"
-lang: en
+lang: zh
 create: '2019-09-22'
 lastModify: '2019-09-22'
 categories:

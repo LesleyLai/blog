@@ -85,6 +85,14 @@ __clang_call_terminate:
         call    std::terminate()
 ```
 
+## How to deal with C functions?
+
+Now we know that `noexcept` can cause overhead if we call a non-noexcept function inside, how do we deal with functions that will not throw but are not mark as `noexcept`? Fortunately, the venerable [Hana Dusíková](https://twitter.com/hankadusikova?s=20) came up with a clever solution:
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Did you ever get an suboptimal code, because you were calling external C function in your noexcept code?<br/><br/>Suffer no more:<a href="https://t.co/LA7C76a063">https://t.co/LA7C76a063</a></p>&mdash; Hana Dusíková 🍊 (@hankadusikova) <a href="https://twitter.com/hankadusikova/status/1276828584179642368?ref_src=twsrc%5Etfw">June 27, 2020</a></blockquote>
+
+You can mark the `noexcept_cast` function force inline by compiler-specific extensions so it will not decrease performance in debug mode.
+
 ## Conclusion
 
 Don't spam `noexcept` if you don't have a project-wise "no exception" policy. And be especially careful with higher-order functions that may invoke user-defined functions. All in all, `noexcept` is a part of the type system and the contract of your API. Only add `noexcept` to function that you want to guarantee not to throw.
