@@ -50,7 +50,7 @@ const Pagination = ({ lang, currentPage, pagesCount }: PaginationProps) => {
   const nextPage = linkAt(currentPage + 1);
 
   return (
-    <Container>
+    <Container id="pagination">
       <Li key="pagination-previous">
         {isFirst ? (
           <PaginationDisabled>Previous</PaginationDisabled>

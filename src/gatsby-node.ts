@@ -219,7 +219,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
           });
         });
 
-        // Creates pagenation
+        // Creates pagination
         const postsPerPage = 5;
         const pagesCount = Math.ceil(langPosts.length / postsPerPage);
         Array.from({ length: pagesCount }).forEach((_, i) => {
