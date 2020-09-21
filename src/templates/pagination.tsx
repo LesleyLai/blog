@@ -74,7 +74,7 @@ export const query = graphql`
         frontmatter: { lang: { eq: $lang } }
       }
       sort: { fields: [frontmatter___create], order: DESC }
-      limit: 4
+      limit: 5
       skip: $skip
     ) {
       totalCount
