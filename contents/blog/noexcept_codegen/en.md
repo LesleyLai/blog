@@ -3,7 +3,7 @@ id: noexcept-codegen
 title: "The surprising codegen impact of noexcept"
 lang: en
 create: '2020-03-02'
-lastModify: '2020-03-02'
+lastModify: '2020-09-20'
 categories:
 - code
 - cpp

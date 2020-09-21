@@ -3,7 +3,7 @@ id: noexcept-codegen
 title: "noexcept对代码生成的影响"
 lang: zh
 create: '2020-03-02'
-lastModify: '2020-03-02'
+lastModify: '2020-09-20'
 categories:
 - code
 - cpp
