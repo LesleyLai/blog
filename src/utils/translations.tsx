@@ -103,6 +103,7 @@ const en = {
   projects: "Projects",
   projects_page_description: "Check out my personal projects below",
   python: "Python",
+  racket: "Racket",
   react: "React",
   readmore: "Read More",
   recent_posts: "Recent Posts",
@@ -117,6 +118,7 @@ const en = {
       Show {count} projects filtered by <em>{en[tag]}</em>.
     </>
   ),
+  scheme: "Scheme",
   showall: "Show all",
   showall_projects:
     "Show all projects. Use the filter to list them by skill or technology.",
@@ -219,6 +221,7 @@ const zh: Translations = {
   projects: "个人项目",
   projects_page_description: "下列是我的一些个人项目",
   python: en.python,
+  racket: en.racket,
   react: en.react,
   readmore: "阅读全文",
   recent_posts: "最新内容",
@@ -228,6 +231,7 @@ const zh: Translations = {
     </>
   ),
   rt: "光线追踪",
+  scheme: en.scheme,
   show_projects_filtered: (count: number, tag: TagID) => (
     <>
       显示{count}个关于{zh[tag]}的项目。

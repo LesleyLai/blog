@@ -10,6 +10,11 @@ export const colors: { [key: string]: Color } = {
     fg: "#fff",
     hover: "#d01919"
   },
+  darkRed: {
+    bg: "#9F1D20",
+    fg: "#fff",
+    hover: "#890E11"
+  },
   orange: {
     bg: "#F2711C",
     fg: "#fff",
