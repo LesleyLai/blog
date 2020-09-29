@@ -3,7 +3,7 @@ id: const-and-reference-member-variables
 title: "The implication of const or reference member variables in C++"
 lang: en
 create: '2020-08-18'
-lastModify: '2020-08-18'
+lastModify: '2020-09-29'
 categories:
 - code
 - cpp
@@ -212,6 +212,11 @@ In some cases,
 you already disabled the assignment and move operations, or you need to write your own anyway.
 One of the primary examples is inheritance hierarchies.
 And in those cases, it is fine to use `const` or reference member variables.
+
+Another use case `const` of reference members is in local function objects,
+where you don't care about assignment behavior.
+For example, variables captured by reference in a lambda expression
+are desugared into reference member variables.
 
 ## Conclusion
 

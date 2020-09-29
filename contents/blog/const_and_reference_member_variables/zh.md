@@ -3,7 +3,7 @@ id: const-and-reference-member-variables
 title: "在C++中使用Const或者引用成员变量的后果"
 lang: zh
 create: '2020-08-25'
-lastModify: '2020-08-25'
+lastModify: '2020-09-29'
 categories:
 - code
 - cpp
@@ -196,6 +196,9 @@ std::vector<ImmutablePoint*> triangles3; // Ok
 在某些情况下，某个类对应的默认赋值以及移动语义本来就不可用或者已经被删除了。
 比如继承体系（inheritance hierarchies）就是一个主要的例子。
 在这些情况下，使用`const`或者引用成员变量也不会有什么后果。
+
+在使用本地函数对象时，我们有时候也需要使用到`const`或者引用成员变量。
+lambda表达式中被引用捕获（capture by reference）的变量会被转化为引用成员变量。
 
 ## 结论
 
