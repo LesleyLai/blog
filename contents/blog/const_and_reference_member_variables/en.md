@@ -213,7 +213,7 @@ you already disabled the assignment and move operations, or you need to write yo
 One of the primary examples is inheritance hierarchies.
 And in those cases, it is fine to use `const` or reference member variables.
 
-Another use case `const` of reference members is in local function objects,
+Another use case of `const` or reference members is in local function objects,
 where you don't care about assignment behavior.
 For example, variables captured by reference in a lambda expression
 are desugared into reference member variables.
