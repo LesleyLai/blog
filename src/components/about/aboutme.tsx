@@ -47,8 +47,7 @@ const AboutMe = ({ lang, tags, postsTotalCount }: AboutMeProp) => {
           {lang !== "zh" && (
             <>
               <li>
-                Shaders on{" "}
-                <a href="https://www.shadertoy.com/user/lesleylai">Shadertoy</a>
+                Shaders on <a href="https://www.shadertoy.com/user/lesleylai">Shadertoy</a>
               </li>
               <li>
                 Tweets at <a href="https://twitter.com/LesleyLai6">Twitter</a>
@@ -67,16 +66,12 @@ const AboutMe = ({ lang, tags, postsTotalCount }: AboutMeProp) => {
         <ul className={css.tags}>
           {sortedTags.map((tag: TagItem) => (
             <li key={tag.id} className={css.tagitem}>
-              <Link to={`/${lang}/archive/${tag.id}`}>
-                {translations[lang][tag.id]}
-              </Link>
+              <Link to={`/${lang}/archive/${tag.id}`}>{translations[lang][tag.id]}</Link>
               <span className={css.postcount}>{tag.totalCount}</span>
             </li>
           ))}
         </ul>
-        <p className={css.archive}>
-          {translations[lang]["all_n_posts"](postsTotalCount)}
-        </p>
+        <p className={css.archive}>{translations[lang]["all_n_posts"](postsTotalCount)}</p>
 
         <p className={css.info}>{translations[lang]["build_using_gatsby"]}</p>
 

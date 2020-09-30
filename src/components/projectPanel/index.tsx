@@ -67,11 +67,7 @@ const ProjectPanel = (props: ProjectPenalProps) => {
 
           {props.github && (
             <li>
-              <GithubIcon
-                className={css.icon}
-                data-tip="Source repository"
-                size={20}
-              />
+              <GithubIcon className={css.icon} data-tip="Source repository" size={20} />
               <a href={props.github}>
                 <span>Github</span>
               </a>

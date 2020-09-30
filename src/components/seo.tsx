@@ -25,20 +25,14 @@ const query = graphql`
   }
 `;
 
-const SEO = ({
-  title,
-  description,
-  path,
-  lang,
-  ogType = "website"
-}: SEOProps) => {
+const SEO = ({ title, description, path, lang, ogType = "website" }: SEOProps) => {
   const { site } = useStaticQuery(query);
 
   const seo = {
     title: `${title} | ${translations[lang]["title"]}`,
     description: description,
     url: site.siteMetadata.siteUrl + path,
-    ogType: ogType
+    ogType: ogType,
   };
 
   return (
@@ -47,15 +41,11 @@ const SEO = ({
       <meta property="og:type" content={seo.ogType} />
       <meta property="og:title" content={seo.title} />
       <meta property="og:url" content={seo.url} />
-      {seo.description && (
-        <meta property="og:description" content={seo.description} />
-      )}
+      {seo.description && <meta property="og:description" content={seo.description} />}
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:site" content="@LesleyLai6" />
       <meta name="twitter:title" content={seo.title} />
-      {seo.description && (
-        <meta name="twitter:description" content={seo.description} />
-      )}
+      {seo.description && <meta name="twitter:description" content={seo.description} />}
     </Helmet>
   );
 };

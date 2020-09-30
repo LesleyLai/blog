@@ -22,6 +22,7 @@ const Li = styled.li`
 const Ul = styled.ul`
   margin-left: 0;
   margin-bottom: 0;
+  margin-top: 0;
   font-size: 12px;
 `;
 
@@ -51,9 +52,7 @@ const TagsList = (props: TagsProps) => {
         .map(tag => (
           <Li key={tag}>
             <Link to={`/${lang}/archive/${tag}`}>
-              <TagBox colors={tagInfos[tag].color}>
-                {translations[lang][tag]}
-              </TagBox>
+              <TagBox colors={tagInfos[tag].color}>{translations[lang][tag]}</TagBox>
             </Link>
           </Li>
         ))}

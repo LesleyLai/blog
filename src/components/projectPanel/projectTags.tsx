@@ -41,12 +41,12 @@ function buildTag(lang: Language, tagId?: TagID) {
       const tag = tagInfos[tagId];
       return {
         color: tag.color,
-        tagName: translations[lang][tagId]
+        tagName: translations[lang][tagId],
       };
     } else {
       return {
         color: colors.white,
-        tagName: translations[lang]["showall"]
+        tagName: translations[lang]["showall"],
       };
     }
   })();

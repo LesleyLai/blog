@@ -2,11 +2,11 @@ import * as React from "react";
 
 import { Language } from "../../utils/translations";
 
-const RssIcon = require("react-icons/lib/md/rss-feed");
+import RssIcon from "react-icons/lib/md/rss-feed";
 
 import {
   TiSocialTwitter as TwitterIcon,
-  TiSocialLinkedin as LinkedInIcon
+  TiSocialLinkedin as LinkedInIcon,
 } from "react-icons/lib/ti";
 
 const css = require("./socials.module.css");
@@ -38,11 +38,7 @@ const Socials = ({ lang, shareInfo }: SocialsProps) => {
           title="Share with Twitter"
           href={`https://twitter.com/intent/tweet?url=${shareInfo.url}&text="${shareInfo.title}"&via=LesleyLai6`}
         >
-          <TwitterIcon
-            className={css.icon}
-            data-tip="Share with Twitter"
-            size={25}
-          />
+          <TwitterIcon className={css.icon} data-tip="Share with Twitter" size={25} />
         </a>
       )}
       {shareInfo && (
@@ -52,11 +48,7 @@ const Socials = ({ lang, shareInfo }: SocialsProps) => {
           title="Share with LinkedIn"
           href={`https://www.linkedin.com/shareArticle?mini=true&url=${shareInfo.url}&title=${shareInfo.title}`}
         >
-          <LinkedInIcon
-            className={css.icon}
-            data-tip="Share with LinkedIn"
-            size={25}
-          />
+          <LinkedInIcon className={css.icon} data-tip="Share with LinkedIn" size={25} />
         </a>
       )}
       <a href={link} title="Rss Feed">

@@ -54,19 +54,13 @@ const PostLink = styled(Link)`
   }
 `;
 
-const PrevNextLinks = ({
-  lang,
-  previousInfo,
-  nextInfo
-}: PrevNextLinksProps) => (
+const PrevNextLinks = ({ lang, previousInfo, nextInfo }: PrevNextLinksProps) => (
   <Container>
     <Left>
       {previousInfo && (
         <>
           <FaAngleDoubleLeft size={17} />
-          <PostLink to={`/${lang}/${previousInfo.id}`}>
-            {previousInfo.title}
-          </PostLink>
+          <PostLink to={`/${lang}/${previousInfo.id}`}>{previousInfo.title}</PostLink>
         </>
       )}
     </Left>

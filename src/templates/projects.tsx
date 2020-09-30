@@ -78,13 +78,10 @@ class ProjectsPageTemplate extends React.Component<ProjectsProps> {
     const postsTags = data.posts.tags;
     const postsTotalCount = data.posts.totalCount;
 
-    const images = data.allImages.nodes.reduce(
-      (acc: ImageMap, cur: ImageMeta) => {
-        acc[cur.name] = cur.childImageSharp.fluid;
-        return acc;
-      },
-      {}
-    );
+    const images = data.allImages.nodes.reduce((acc: ImageMap, cur: ImageMeta) => {
+      acc[cur.name] = cur.childImageSharp.fluid;
+      return acc;
+    }, {});
 
     return (
       <Layout
@@ -101,23 +98,16 @@ class ProjectsPageTemplate extends React.Component<ProjectsProps> {
             path={props.location.pathname}
           />
           <h1>{translations[lang]["projects"]}</h1>
-          <h3 className={css.subtitle}>
-            {translations[lang]["projects_page_description"]}
-          </h3>
+          <h3 className={css.subtitle}>{translations[lang]["projects_page_description"]}</h3>
 
           <Tags tags={allTags} showAll lang={lang} />
 
           {tag ? (
             <p className={css.filterHint}>
-              {translations[lang]["show_projects_filtered"](
-                projects.length,
-                tag
-              )}
+              {translations[lang]["show_projects_filtered"](projects.length, tag)}
             </p>
           ) : (
-            <p className={css.filterHint}>
-              {translations[lang]["showall_projects"]}
-            </p>
+            <p className={css.filterHint}>{translations[lang]["showall_projects"]}</p>
           )}
 
           {projects.map(project => {
@@ -130,16 +120,12 @@ class ProjectsPageTemplate extends React.Component<ProjectsProps> {
                 website={project.frontmatter.website}
                 year={
                   project.frontmatter.lastModify
-                    ? project.frontmatter.create +
-                      "-" +
-                      project.frontmatter.lastModify
+                    ? project.frontmatter.create + "-" + project.frontmatter.lastModify
                     : project.frontmatter.create
                 }
                 lang={project.frontmatter.lang}
                 tags={project.frontmatter.tags}
-                image={
-                  project.frontmatter.image && images[project.frontmatter.image]
-                }
+                image={project.frontmatter.image && images[project.frontmatter.image]}
               >
                 <MDXRenderer>{project.body}</MDXRenderer>
               </ProjectPanel>

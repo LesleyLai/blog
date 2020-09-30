@@ -7,6 +7,8 @@ import { TagID } from "../../types/tags";
 import { Language, translations } from "../../utils/translations";
 import Pagination from "../pagination";
 
+import { FaCalendar as Calendar, FaTags as Tags } from "react-icons/lib/fa";
+
 export interface PostMeta {
   frontmatter: {
     id: number;
@@ -18,7 +20,7 @@ export interface PostMeta {
   excerpt: string;
 }
 
-export default class RecentPosts extends React.Component {
+export default class PaginatedPostsList extends React.Component {
   public props: {
     posts: PostMeta[];
     lang: Language;
@@ -29,7 +31,7 @@ export default class RecentPosts extends React.Component {
   public render() {
     const { posts, lang, currentPage, pagesCount } = this.props;
 
-    const style = require("./recentPosts.module.css");
+    const style = require("./paginatedPostsList.module.css");
 
     return (
       <div>
@@ -41,11 +43,16 @@ export default class RecentPosts extends React.Component {
                   {post.frontmatter.title}
                 </Link>
               </h3>
-              <p className={style.date}>{post.frontmatter.create}</p>
-              <TagsList
-                tags={post.frontmatter.categories}
-                lang={post.frontmatter.lang}
-              />
+              <div className={style.postMeta}>
+                <span className={style.date}>
+                  <Calendar className={style.icon} data-tip="Date" size={14} />
+                  {post.frontmatter.create}
+                </span>
+                <span className={style.tags}>
+                  <Tags className={style.icon} data-tip="Tags" size={14} />
+                  <TagsList tags={post.frontmatter.categories} lang={post.frontmatter.lang} />
+                </span>
+              </div>
               <p className={style.excerpt}>{post.excerpt}</p>
 
               <Link
@@ -57,11 +64,7 @@ export default class RecentPosts extends React.Component {
             </article>
           );
         })}
-        <Pagination
-          lang={lang}
-          currentPage={currentPage}
-          pagesCount={pagesCount}
-        />
+        <Pagination lang={lang} currentPage={currentPage} pagesCount={pagesCount} />
       </div>
     );
   }

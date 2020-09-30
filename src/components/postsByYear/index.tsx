@@ -19,13 +19,7 @@ interface ArchiveEntryProps {
 }
 
 const ArchiveEntry = (props: ArchiveEntryProps) => {
-  const post = props.post;
-  const frontmatter = post.frontmatter;
-  const id = frontmatter.id;
-  const lang = frontmatter.lang;
-  const title = frontmatter.title;
-  const create = frontmatter.create;
-
+  const { id, lang, title, create, categories } = props.post.frontmatter;
   const options = { month: "long", day: "numeric", timeZone: "UTC" };
   const createFormated = new Intl.DateTimeFormat(lang, options).format(create);
 
@@ -37,7 +31,7 @@ const ArchiveEntry = (props: ArchiveEntryProps) => {
       <span className={css.date}> — {createFormated}</span>
       <TagsList
         className={css.archiveTags}
-        tags={frontmatter.categories}
+        tags={categories}
         exclude={props.excludeTag}
         lang={lang}
       />
@@ -45,11 +39,7 @@ const ArchiveEntry = (props: ArchiveEntryProps) => {
   );
 };
 
-const Posts = (props: {
-  posts: Post[];
-  lang: Language;
-  excludeTag?: string;
-}) => {
+const PostsByYear = (props: { posts: Post[]; lang: Language; excludeTag?: string }) => {
   const posts = props.posts;
   const excludeTag = props.excludeTag;
 
@@ -78,4 +68,4 @@ const Posts = (props: {
   );
 };
 
-export default Posts;
+export default PostsByYear;

@@ -42,5 +42,5 @@ export const tagInfos = {
   test: { color: colors.orange },
   typescript: { color: colors.typescript },
   web: { color: colors.violet },
-  x86: { color: colors.pink }
+  x86: { color: colors.pink },
 };

@@ -25,6 +25,6 @@ export const rawToStructured = (post: PostRaw) => ({
   ...post,
   frontmatter: {
     ...post.frontmatter,
-    create: new Date(post.frontmatter.create)
-  }
+    create: new Date(post.frontmatter.create),
+  },
 });

@@ -21,10 +21,7 @@ interface MenuItemProp extends React.HTMLProps<HTMLDivElement> {
   lang: Language;
 }
 
-const MenuItem: React.FunctionComponent<MenuItemProp> = ({
-  itemName,
-  lang
-}) => {
+const MenuItem: React.FunctionComponent<MenuItemProp> = ({ itemName, lang }) => {
   const item: MenuModel = menuModel[itemName];
   const langRecord = item.langs[lang];
 
@@ -50,7 +47,7 @@ interface LanguageLinkProp extends React.HTMLProps<HTMLDivElement> {
 const LanguageLink: React.FunctionComponent<LanguageLinkProp> = ({
   fromLang,
   toLang,
-  pathname
+  pathname,
 }) => {
   const to = (() => {
     if (pathname === "/zh" || pathname === "/zh/") {
@@ -88,7 +85,7 @@ export default class Header extends React.Component<HeaderProps, HeaderStates> {
 
     this.state = {
       prevScrollpos: typeof window !== `undefined` ? window.pageYOffset : 0,
-      visible: true
+      visible: true,
     };
   }
 
@@ -100,7 +97,7 @@ export default class Header extends React.Component<HeaderProps, HeaderStates> {
 
     this.setState({
       prevScrollpos: currentScrollPos,
-      visible
+      visible,
     });
   };
 
@@ -117,21 +114,14 @@ export default class Header extends React.Component<HeaderProps, HeaderStates> {
     return (
       <header
         className={classnames(css.header, {
-          [css.headerHidden]: !this.state.visible
+          [css.headerHidden]: !this.state.visible,
         })}
       >
         <div className={css.headerContainer}>
           <Logo lang={lang} />
-          <input
-            className={css.mobileMenuButton}
-            id="mobileMenuButton"
-            type="checkbox"
-          />
+          <input className={css.mobileMenuButton} id="mobileMenuButton" type="checkbox" />
 
-          <label
-            className={css.mobileMenuIconContainer}
-            htmlFor="mobileMenuButton"
-          >
+          <label className={css.mobileMenuIconContainer} htmlFor="mobileMenuButton">
             <span className={css.mobileMenuIcon} />
           </label>
 
@@ -148,11 +138,7 @@ export default class Header extends React.Component<HeaderProps, HeaderStates> {
               <ul className={css.menuItems}>
                 {otherLangs.map(otherLang => (
                   <li key={otherLang}>
-                    <LanguageLink
-                      fromLang={lang}
-                      toLang={otherLang}
-                      pathname={pathname}
-                    />
+                    <LanguageLink fromLang={lang} toLang={otherLang} pathname={pathname} />
                   </li>
                 ))}
               </ul>

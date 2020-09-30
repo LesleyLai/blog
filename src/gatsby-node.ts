@@ -18,12 +18,12 @@ const createRedirectsSlash = (
   createRedirect({
     fromPath: fromPath,
     redirectInBrowser: true,
-    toPath: toPath
+    toPath: toPath,
   });
   createRedirect({
     fromPath: `${fromPath}/`,
     redirectInBrowser: true,
-    toPath: toPath
+    toPath: toPath,
   });
 };
 
@@ -43,16 +43,16 @@ const lagacyURLRedirections: Array<{ from: string; to: string }> = [
   { from: "/temporaries/en", to: "/en/temporaries" },
   {
     from: "/make-impossible-state-unrepresentable/en",
-    to: "/en/make-impossible-state-unrepresentable"
+    to: "/en/make-impossible-state-unrepresentable",
   },
   { from: "/tail-recursion/en", to: "/en/tail-recursion" },
   {
     from: "/make-impossible-state-unrepresentable/zh",
-    to: "/zh/make-impossible-state-unrepresentable"
+    to: "/zh/make-impossible-state-unrepresentable",
   },
   {
     from: "/type-of-assignment-operators/en",
-    to: "/en/type-of-assignment-operators"
+    to: "/en/type-of-assignment-operators",
   },
   { from: "/unit-test-with-cmake/en", to: "/en/unit-test-with-cmake" },
   { from: "/unit-test-with-cmake/zh", to: "/zh/unit-test-with-cmake" },
@@ -102,7 +102,7 @@ const lagacyURLRedirections: Array<{ from: string; to: string }> = [
   { from: "/projects/en", to: "/en/projects" },
   { from: "/projects/zh", to: "/zh/projects" },
   { from: "/talks/en", to: "/en/talks" },
-  { from: "/talks/zh", to: "/zh/talks" }
+  { from: "/talks/zh", to: "/zh/talks" },
 ];
 
 const getDateLocale = (lang: Language) => (lang === "zh" ? "ZH_CN" : lang);
@@ -132,10 +132,7 @@ const uniqueTags = (mdxs: MdxWithTags[]) => {
   return Array.from(tagSet);
 };
 
-export const createPages: GatsbyNode["createPages"] = async ({
-  graphql,
-  actions
-}) => {
+export const createPages: GatsbyNode["createPages"] = async ({ graphql, actions }) => {
   const { createPage, createRedirect } = actions;
 
   const paginationTemplate = resolve(`src/templates/pagination.tsx`);
@@ -184,9 +181,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
     `).then((result: Result) => {
       const posts = result.data.posts.edges;
       languages.forEach(lang => {
-        const langPosts = posts.filter(
-          post => post.node.frontmatter.lang === lang
-        );
+        const langPosts = posts.filter(post => post.node.frontmatter.lang === lang);
         const dateLocale = getDateLocale(lang);
 
         // Creates individual pages
@@ -196,15 +191,10 @@ export const createPages: GatsbyNode["createPages"] = async ({
 
           const previousIndex = index - 1;
           const previousId =
-            previousIndex in langPosts
-              ? langPosts[previousIndex].node.frontmatter.id
-              : null;
+            previousIndex in langPosts ? langPosts[previousIndex].node.frontmatter.id : null;
 
           const nextIndex = index + 1;
-          const nextId =
-            nextIndex in langPosts
-              ? langPosts[nextIndex].node.frontmatter.id
-              : null;
+          const nextId = nextIndex in langPosts ? langPosts[nextIndex].node.frontmatter.id : null;
 
           createPage({
             path: `/${lang}/${id}`,
@@ -214,8 +204,8 @@ export const createPages: GatsbyNode["createPages"] = async ({
               id: id,
               dateLocale: dateLocale,
               previousId: previousId,
-              nextId: nextId
-            }
+              nextId: nextId,
+            },
           });
         });
 
@@ -224,8 +214,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
         const pagesCount = Math.ceil(langPosts.length / postsPerPage);
         Array.from({ length: pagesCount }).forEach((_, i) => {
           // Homepage is special as it will not have a language postfix
-          const localizedPath =
-            i === 0 ? localizedRoot(lang) : `/${lang}/${i + 1}`;
+          const localizedPath = i === 0 ? localizedRoot(lang) : `/${lang}/${i + 1}`;
 
           createPage({
             path: localizedPath,
@@ -235,8 +224,8 @@ export const createPages: GatsbyNode["createPages"] = async ({
               dateLocale: dateLocale,
               skip: i * postsPerPage,
               pagesCount: pagesCount,
-              currentPage: i + 1
-            }
+              currentPage: i + 1,
+            },
           });
         });
 
@@ -252,8 +241,8 @@ export const createPages: GatsbyNode["createPages"] = async ({
               tag,
               lang: lang,
               dateLocale: dateLocale,
-              otherLangsRegex: otherLangsRegex
-            }
+              otherLangsRegex: otherLangsRegex,
+            },
           });
         });
       });
@@ -303,8 +292,8 @@ export const createPages: GatsbyNode["createPages"] = async ({
             component: projectsTemplate,
             context: {
               tag,
-              lang: lang
-            }
+              lang: lang,
+            },
           });
         });
       })
@@ -324,8 +313,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
   });
 };
 
-const removeTrailingSlash = (path: string) =>
-  path === `/` ? path : path.replace(/\/$/, ``);
+const removeTrailingSlash = (path: string) => (path === `/` ? path : path.replace(/\/$/, ``));
 
 // Page that with no other language versions
 const specialPages = new Set(["/dev-404-page"]);
@@ -348,24 +336,23 @@ export const onCreatePage: GatsbyNode["onCreatePage"] = async args => {
     createPage({
       ...page,
       context: {
-        lang: "en"
-      }
+        lang: "en",
+      },
     });
     return;
   }
 
   if (page.path === "/404") {
     languages.forEach(lang => {
-      const localizedPath =
-        page.path === "/" ? localizedRoot(lang) : `/${lang}/404`;
+      const localizedPath = page.path === "/" ? localizedRoot(lang) : `/${lang}/404`;
 
       createPage({
         ...page,
         matchPath: `/${lang}/*`,
         path: localizedPath,
         context: {
-          lang: lang
-        }
+          lang: lang,
+        },
       });
     });
 
@@ -379,8 +366,8 @@ export const onCreatePage: GatsbyNode["onCreatePage"] = async args => {
       path: `/${lang}${page.path}`,
       context: {
         lang: lang,
-        dateLocale: getDateLocale(lang)
-      }
+        dateLocale: getDateLocale(lang),
+      },
     });
   });
 

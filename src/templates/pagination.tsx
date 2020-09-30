@@ -4,7 +4,7 @@ import * as React from "react";
 import { TagItem } from "../types/tags";
 import Socials from "../components/socials";
 import Layout from "../components/layout";
-import RecentPosts, { PostMeta } from "../components/recentPosts";
+import PaginatedPostsList, { PostMeta } from "../components/paginatedPostsList";
 import { Language, translations } from "../utils/translations";
 import SEO from "../components/seo";
 
@@ -50,9 +50,8 @@ class PaginationTemplate extends React.Component<IndexProps> {
           description="Personal website of Lesley Lai"
           path={this.props.location.pathname}
         />
-        <h1>{translations[lang]["recent_posts"]}</h1>
-        {translations[lang]["older_posts"]()}
-        <RecentPosts
+        <h1>{translations[lang]["blog"]}</h1>
+        <PaginatedPostsList
           posts={data.posts.edges.map(edge => edge.node)}
           lang={lang}
           pagesCount={pagesCount}

@@ -11,25 +11,19 @@ const en = {
       <article>
         <p>
           Hi, I am <strong>Lesley Lai</strong>, a Software Engineering Intern at{" "}
-          <a href="https://www.sketchup.com/">Trimble SketchUp</a> and a
-          Computer Science and Applied Mathematics undergraduate student at the{" "}
-          <a href="http://www.colorado.edu/">
-            {" "}
-            University of Colorado at Boulder
-          </a>
-          .
+          <a href="https://www.sketchup.com/">Trimble SketchUp</a> and a Computer Science and
+          Applied Mathematics undergraduate student at the{" "}
+          <a href="http://www.colorado.edu/"> University of Colorado at Boulder</a>.
         </p>
         <p>
           My primary interests include{" "}
-          <a href="https://en.wikipedia.org/wiki/Computer_graphics">
-            Computer Graphics
-          </a>
+          <a href="https://en.wikipedia.org/wiki/Computer_graphics">Computer Graphics</a>
           {" and "}
           <a href="https://en.wikipedia.org/wiki/Programming_language_theory">
             Programming Language theories
           </a>
-          . I love to code in various programming languages, though I am
-          particularly fond of <a href="https://isocpp.org/">C++</a>.
+          . I love to code in various programming languages, though I am particularly fond of{" "}
+          <a href="https://isocpp.org/">C++</a>.
         </p>
       </article>
     </>
@@ -40,12 +34,12 @@ const en = {
     </>
   ),
   archive: "Archive",
-  archive_title: "Blog archive",
+  archive_title: "Blog Archive",
+  blog: "Blog",
   books: "Books",
   build_using_gatsby: (
     <>
-      This blog is built using <a href="https://www.gatsbyjs.org/">Gatsby</a>.
-      The source is on the{" "}
+      This blog is built using <a href="https://www.gatsbyjs.org/">Gatsby</a>. The source is on the{" "}
       <a href="https://github.com/LesleyLai/blog">Github repo</a>.
     </>
   ),
@@ -87,12 +81,6 @@ const en = {
   myname: "Lesley Lai",
   n_posts: (n: number) => `${n} Posts`,
   ocaml: "OCaml",
-  older_posts: () => (
-    <>
-      Older posts are available in the{" "}
-      <Link to={`/en/archive`}>{en.archive}</Link>
-    </>
-  ),
   oop: "OOP",
   opengl: "OpenGL",
   opinion: "Opinion",
@@ -106,26 +94,22 @@ const en = {
   racket: "Racket",
   react: "React",
   readmore: "Read More",
-  recent_posts: "Recent Posts",
   return_to_home: (
     <>
       Return to the <Link to="/">Home Page</Link>
     </>
   ),
   rt: "Ray tracing",
+  scheme: "Scheme",
   show_projects_filtered: (count: number, tag: TagID) => (
     <>
       Show {count} projects filtered by <em>{en[tag]}</em>.
     </>
   ),
-  scheme: "Scheme",
   showall: "Show all",
-  showall_projects:
-    "Show all projects. Use the filter to list them by skill or technology.",
+  showall_projects: "Show all projects. Use the filter to list them by skill or technology.",
   stuff_I_wrote_about: (tag: TagID) =>
-    tag === "opinion"
-      ? "Stuff I Wrote to State My Opinion"
-      : `Stuff I Wrote About ${en[tag]}`,
+    tag === "opinion" ? "Stuff I Wrote to State My Opinion" : `Stuff I Wrote About ${en[tag]}`,
   tags: "Tags",
   talks: "Talks",
   talks_page_desc: "Here are the talks that I gave in various events.",
@@ -134,7 +118,7 @@ const en = {
   typescript: "Typescript",
   web: "Web",
   website: "Website",
-  x86: "x86"
+  x86: "x86",
 };
 
 export type Translations = typeof en;
@@ -160,6 +144,7 @@ const zh: Translations = {
   ),
   archive: "博文目录",
   archive_title: "博文目录",
+  blog: "博客",
   books: "书籍",
   build_using_gatsby: (
     <>
@@ -206,11 +191,6 @@ const zh: Translations = {
   myname: "赖思理",
   n_posts: (n: number) => `${n}篇博文`,
   ocaml: en.ocaml,
-  older_posts: () => (
-    <>
-      在<Link to={`/zh/archive`}>{zh.archive}</Link>可以找到所有博文
-    </>
-  ),
   oop: "面向对象编程",
   opengl: en.opengl,
   opinion: "观点",
@@ -224,7 +204,6 @@ const zh: Translations = {
   racket: en.racket,
   react: en.react,
   readmore: "阅读全文",
-  recent_posts: "最新内容",
   return_to_home: (
     <>
       返回<Link to="/zh">主页</Link>
@@ -238,8 +217,7 @@ const zh: Translations = {
     </>
   ),
   showall: "显示所有",
-  showall_projects:
-    "显示所有项目。您可以通过标签来限定显示包含指定标签的项目。",
+  showall_projects: "显示所有项目。您可以通过标签来限定显示包含指定标签的项目。",
   stuff_I_wrote_about: (tag: TagID) =>
     tag === "opinion" ? `阐述个人观点的博文` : `关于${zh[tag]}的博文`,
   tags: "标签",
@@ -250,12 +228,12 @@ const zh: Translations = {
   typescript: en.typescript,
   web: en.web,
   website: "网站",
-  x86: en.x86
+  x86: en.x86,
 };
 
 export const translations = {
   en: en,
-  zh: zh
+  zh: zh,
 };
 
 export type Language = keyof typeof translations;

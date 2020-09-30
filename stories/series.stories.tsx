@@ -105,7 +105,7 @@ export const Empty = () => <Series seriesTitle="Empty Series" entries={[]} />;
 const eight: SeriesEntry[] = [
   {
     title: "Judgements and Inference Rules",
-    slug: "/judgements-inference-rules"
+    slug: "/judgements-inference-rules",
   },
   { title: "Static", slug: "/static" },
   { title: "Dynamic Semantics", slug: "/dynamic" },
@@ -113,7 +113,7 @@ const eight: SeriesEntry[] = [
   { title: "Lambda Calculus" },
   { title: "Functions and System T" },
   { title: "Product and Sum Types" },
-  { title: "Inductive Types" }
+  { title: "Inductive Types" },
 ];
 
 export const Eight = () => (
@@ -122,5 +122,5 @@ export const Eight = () => (
 
 export default {
   title: "Series",
-  component: Series
+  component: Series,
 };

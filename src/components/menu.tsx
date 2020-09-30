@@ -17,29 +17,29 @@ export const menuModel: { [key: string]: MenuModel } = {
   home: {
     langs: {
       en: { path: "/" },
-      zh: { path: "/zh" }
+      zh: { path: "/zh" },
     },
-    exact: true
+    exact: true,
   },
   archive: {
     langs: {
       en: { path: "/en/archive" },
-      zh: { path: "/zh/archive" }
+      zh: { path: "/zh/archive" },
     },
-    exact: false
+    exact: false,
   },
   projects: {
     langs: {
       en: { path: "/en/projects" },
-      zh: { path: "/zh/projects" }
+      zh: { path: "/zh/projects" },
     },
-    exact: false
+    exact: false,
   },
   talks: {
     langs: {
       en: { path: "/en/talks" },
-      zh: { path: "/zh/talks" }
+      zh: { path: "/zh/talks" },
     },
-    exact: true
-  }
+    exact: true,
+  },
 };

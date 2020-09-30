@@ -4,7 +4,7 @@ import * as React from "react";
 import SEO from "../components/seo";
 
 import Layout from "../components/layout";
-import Posts from "../components/postsList";
+import PostsByYear from "../components/postsByYear";
 import { PostRaw, rawToStructured } from "../types/Post";
 import { TagID, TagItem } from "../types/tags";
 import { Language, translations } from "../utils/translations";
@@ -44,9 +44,7 @@ class TagsTemplate extends React.Component<ArchiveProps> {
     const lang = this.props.pageContext.lang;
     const title = translations[lang]["stuff_I_wrote_about"](tag);
 
-    const otherLangs = data.otherLangs.edges.map(
-      edge => edge.node.context.lang
-    );
+    const otherLangs = data.otherLangs.edges.map(edge => edge.node.context.lang);
 
     return (
       <Layout
@@ -59,7 +57,7 @@ class TagsTemplate extends React.Component<ArchiveProps> {
         <SEO title={title} lang={lang} path={this.props.location.pathname} />
         <h1>{title}</h1>
         {translations[lang]["n_posts"](data.posts.totalCount)}
-        <Posts
+        <PostsByYear
           lang={lang}
           posts={posts.edges.map(edge => rawToStructured(edge.node))}
           excludeTag={tag}

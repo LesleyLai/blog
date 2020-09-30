@@ -69,7 +69,7 @@ const Pagination = ({ lang, currentPage, pagesCount }: PaginationProps) => {
                 to={linkAt(i + 1)}
                 style={{
                   color: isCurrent ? "#ffffff" : "",
-                  background: isCurrent ? "#007acc" : ""
+                  background: isCurrent ? "#007acc" : "",
                 }}
               >
                 {i + 1}

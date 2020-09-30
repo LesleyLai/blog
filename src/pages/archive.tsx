@@ -3,7 +3,7 @@ import * as React from "react";
 import { TagItem } from "../types/tags";
 import Socials from "../components/socials";
 import Layout from "../components/layout";
-import Posts from "../components/postsList";
+import PostsByYear from "../components/postsByYear";
 import { PostRaw, rawToStructured } from "../types/Post";
 import { Language, translations } from "../utils/translations";
 import SEO from "../components/seo";
@@ -47,10 +47,7 @@ const Archive = (props: ArchiveProps) => {
         />
         <h1>{title}</h1>
         {translations[lang]["n_posts"](posts.totalCount)}
-        <Posts
-          lang={lang}
-          posts={posts.edges.map(edge => rawToStructured(edge.node))}
-        />
+        <PostsByYear lang={lang} posts={posts.edges.map(edge => rawToStructured(edge.node))} />
         <Socials lang={lang} />
       </div>
     </Layout>

@@ -77,9 +77,7 @@ class PostTemplate extends React.Component<PostProps> {
     const tags = data.allPosts.tags;
     const postsTotalCount = data.allPosts.totalCount;
 
-    const otherLangs = data.otherLangs.edges.map(
-      edge => edge.node.frontmatter.lang
-    );
+    const otherLangs = data.otherLangs.edges.map(edge => edge.node.frontmatter.lang);
 
     const create = post.frontmatter.create;
     const lastModify = post.frontmatter.lastModify;
@@ -92,9 +90,7 @@ class PostTemplate extends React.Component<PostProps> {
     const previousInfo = previousId
       ? { id: previousId, title: data.prevPost.frontmatter.title }
       : null;
-    const nextInfo = nextId
-      ? { id: nextId, title: data.nextPost.frontmatter.title }
-      : null;
+    const nextInfo = nextId ? { id: nextId, title: data.nextPost.frontmatter.title } : null;
 
     return (
       <Layout
@@ -115,15 +111,10 @@ class PostTemplate extends React.Component<PostProps> {
           <h1 className={css.title}>{post.frontmatter.title}</h1>
           <div className={css.info}>
             <span className={css.date}>
-              {create !== lastModify &&
-                `${translations[lang]["lastModify"]}: ${lastModify} | `}
+              {create !== lastModify && `${translations[lang]["lastModify"]}: ${lastModify} | `}
               {`${translations[lang]["create"]}: ${create}`}
             </span>
-            <TagsList
-              lang={lang}
-              tags={post.frontmatter.categories}
-              className={css.tags}
-            />
+            <TagsList lang={lang} tags={post.frontmatter.categories} className={css.tags} />
           </div>
           <MDXRenderer>{post.body}</MDXRenderer>
 
@@ -131,15 +122,11 @@ class PostTemplate extends React.Component<PostProps> {
             lang={lang}
             shareInfo={{
               title: post.frontmatter.title,
-              url: absolutePath
+              url: absolutePath,
             }}
           />
 
-          <PrevNextLinks
-            lang={lang}
-            previousInfo={previousInfo}
-            nextInfo={nextInfo}
-          />
+          <PrevNextLinks lang={lang} previousInfo={previousInfo} nextInfo={nextInfo} />
 
           <div className={css.comment}>{/* For comment */}</div>
         </div>
@@ -175,9 +162,7 @@ export const query = graphql`
       }
       excerpt(pruneLength: 200)
     }
-    otherLangs: allMdx(
-      filter: { frontmatter: { id: { eq: $id }, lang: { ne: $lang } } }
-    ) {
+    otherLangs: allMdx(filter: { frontmatter: { id: { eq: $id }, lang: { ne: $lang } } }) {
       edges {
         node {
           frontmatter {
@@ -195,9 +180,7 @@ export const query = graphql`
       totalCount
       ...Tags
     }
-    prevPost: mdx(
-      frontmatter: { id: { eq: $previousId }, lang: { eq: $lang } }
-    ) {
+    prevPost: mdx(frontmatter: { id: { eq: $previousId }, lang: { eq: $lang } }) {
       frontmatter {
         title
       }
