@@ -7,6 +7,7 @@ lastModify: '2020-09-30'
 categories:
 - cpp
 - code
+- opinion
 ---
 
 Recently, I have seen some people passing complex mutable lambdas to standard algorithms.
@@ -96,7 +97,7 @@ std::vector<int> twoSum(std::vector<int>& nums, int target) {
     if (iter != nums_map.end()) {
       return {iter->second, i};
     }
-    nums_map.emplace(nums[i], i);
+    nums_map.emplace(item, i);
   }
   throw std::runtime_error{"No solution exist"};
 }
