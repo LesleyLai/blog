@@ -8,24 +8,22 @@ import * as React from "react";
 const en = {
   about_content: (
     <>
-      <article>
-        <p>
-          Hi, I am <strong>Lesley Lai</strong>, a Software Engineering Intern at{" "}
-          <a href="https://www.sketchup.com/">Trimble SketchUp</a> and a Computer Science and
-          Applied Mathematics undergraduate student at the{" "}
-          <a href="http://www.colorado.edu/"> University of Colorado at Boulder</a>.
-        </p>
-        <p>
-          My primary interests include{" "}
-          <a href="https://en.wikipedia.org/wiki/Computer_graphics">Computer Graphics</a>
-          {" and "}
-          <a href="https://en.wikipedia.org/wiki/Programming_language_theory">
-            Programming Language theories
-          </a>
-          . I love to code in various programming languages, though I am particularly fond of{" "}
-          <a href="https://isocpp.org/">C++</a>.
-        </p>
-      </article>
+      <p>
+        Hi, I am <strong>Lesley Lai</strong>, a Software Engineering Intern at{" "}
+        <a href="https://www.sketchup.com/">Trimble SketchUp</a> and a Computer Science and Applied
+        Mathematics undergraduate student at the{" "}
+        <a href="http://www.colorado.edu/"> University of Colorado at Boulder</a>.
+      </p>
+      <p>
+        My primary interests include{" "}
+        <a href="https://en.wikipedia.org/wiki/Computer_graphics">Computer Graphics</a>
+        {" and "}
+        <a href="https://en.wikipedia.org/wiki/Programming_language_theory">
+          Programming Language theories
+        </a>
+        . I love to code in various programming languages, though I am particularly fond of{" "}
+        <a href="https://isocpp.org/">C++</a>.
+      </p>
     </>
   ),
   all_n_posts: (n: number) => (
@@ -126,15 +124,13 @@ export type Translations = typeof en;
 const zh: Translations = {
   about_content: (
     <>
-      <article>
-        <p>
-          大家好，我叫赖思理，是
-          <a href="https://www.sketchup.com/zh-CN">SketchUp</a>的实习生以及
-          <a href="http://www.colorado.edu/">科罗拉多大学</a>
-          计算机科学以及应用数学的本科生。
-        </p>
-        <p>我喜欢计算机图形学、编程语言理论，以及C++。</p>
-      </article>
+      <p>
+        大家好，我叫赖思理，是
+        <a href="https://www.sketchup.com/zh-CN">SketchUp</a>的实习生以及
+        <a href="http://www.colorado.edu/">科罗拉多大学</a>
+        计算机科学以及应用数学的本科生。
+      </p>
+      <p>我喜欢计算机图形学、编程语言理论，以及C++。</p>
     </>
   ),
   all_n_posts: (n: number) => (

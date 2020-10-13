@@ -48,10 +48,10 @@ export default class PaginatedPostsList extends React.Component {
                   <Calendar className={style.icon} data-tip="Date" size={14} />
                   {post.frontmatter.create}
                 </span>
-                <span className={style.tags}>
+                <div className={style.tags}>
                   <Tags className={style.icon} data-tip="Tags" size={14} />
                   <TagsList tags={post.frontmatter.categories} lang={post.frontmatter.lang} />
-                </span>
+                </div>
               </div>
               <p className={style.excerpt}>{post.excerpt}</p>
 

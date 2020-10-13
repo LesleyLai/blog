@@ -26,7 +26,7 @@ const Li = styled.li`
 
 const PaginationLink = styled(Link)`
   padding: 6px 12px;
-  textdecoration: none;
+  text-decoration: none;
   border: 1px solid #ddd;
 
   :hover {
@@ -36,7 +36,7 @@ const PaginationLink = styled(Link)`
 
 const PaginationDisabled = styled.span`
   padding: 6px 12px;
-  textdecoration: none;
+  text-decoration: none;
   border: 1px solid #ddd;
 `;
 
@@ -68,8 +68,8 @@ const Pagination = ({ lang, currentPage, pagesCount }: PaginationProps) => {
               <PaginationLink
                 to={linkAt(i + 1)}
                 style={{
-                  color: isCurrent ? "#ffffff" : "",
-                  background: isCurrent ? "#007acc" : "",
+                  color: isCurrent ? "#ffffff" : undefined,
+                  background: isCurrent ? "#007acc" : undefined,
                 }}
               >
                 {i + 1}

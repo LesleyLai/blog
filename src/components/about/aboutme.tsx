@@ -38,7 +38,7 @@ const AboutMe = ({ lang, tags, postsTotalCount }: AboutMeProp) => {
           fadeIn={false}
         />
 
-        <article>{translations[lang]["about_content"]}</article>
+        <section>{translations[lang]["about_content"]}</section>
 
         <h3 className={css.subtitle}>{translations[lang]["elsewhere"]}</h3>
         <ul>
