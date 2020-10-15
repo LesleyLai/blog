@@ -100,8 +100,8 @@ type t = {
 let rec create (shapes: (module Shape_instance) list) =
   ...
   (* if shapes contain 3 elements *)
-  let left = create first_half
-  and right = create second_half in
+  let left = ...
+  and right = ... in
   let aabb = Aabb.union left.aabb right.aabb in
   { left=(build_shape (module Bvh_node) left);
     right=(build_shape (module Bvh_node) right);
