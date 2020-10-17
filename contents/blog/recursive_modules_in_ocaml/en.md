@@ -9,7 +9,12 @@ categories:
 ---
 
 Recursive module is an interesting feature in OCaml.
-To use it, we need to use the form `module rec module-name : module-signature = module-expr`.
+To use it, we need to use the form
+
+```ocaml
+module rec module-name : module-signature = module-expr`.
+```
+
 Explicit signature is required when using recursive modules,
 as the compiler can no longer deduce the module signature with recursion.
 
