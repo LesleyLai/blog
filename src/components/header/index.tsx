@@ -119,9 +119,18 @@ export default class Header extends React.Component<HeaderProps, HeaderStates> {
       >
         <div className={css.headerContainer}>
           <Logo lang={lang} />
-          <input className={css.mobileMenuButton} id="mobileMenuButton" type="checkbox" />
+          <input
+            className={css.mobileMenuButton}
+            id="mobileMenuButton"
+            type="checkbox"
+            aria-hidden="true"
+          />
 
-          <label className={css.mobileMenuIconContainer} htmlFor="mobileMenuButton">
+          <label
+            className={css.mobileMenuIconContainer}
+            htmlFor="mobileMenuButton"
+            aria-hidden="true"
+          >
             <span className={css.mobileMenuIcon} />
           </label>
 

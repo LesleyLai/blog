@@ -1,16 +1,16 @@
 .about {
     min-width: 200px;
     font-size: 13px;
-    color: #8f6d3d;
+    color: #704303;
     padding: 1rem;
 }
 
 .about a {
-    color: #c38022;
+    color: #a15e00;
 }
 
 .about a:hover {
-    color: #f0bd75;
+    color: #e18e18;
 }
 
 /* Mobile */
@@ -46,7 +46,7 @@
     margin: 10px 10px;
     font-size: 12px;
     font-style: italic;
-    color: #bda88a;
+    color: #7c6545;
 }
 
 .info {
@@ -57,7 +57,7 @@
     font-size: 13px;
     font-weight: normal;
     margin: 24px 0 4px 0;
-    color: #8E8D8A;
+    color: #655e54;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -74,8 +74,8 @@
 
 .postcount {
     background: #f2ede8;
-    margin-left: 4px;
+    margin-left: 6px;
     padding: 0 3px;
     border-radius: 4px;
-    color: #bda88a;
+    color: #826842;
 }
