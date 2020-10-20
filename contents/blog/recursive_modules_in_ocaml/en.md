@@ -12,7 +12,7 @@ Recursive module is an interesting feature in OCaml.
 To use it, we need to use the form
 
 ```ocaml
-module rec module-name : module-signature = module-expr`.
+module rec module-name : module-signature = module-expr
 ```
 
 Explicit signature is required when using recursive modules,
