@@ -38,6 +38,7 @@ export const tagInfos = {
   racket: { color: colors.darkRed },
   react: { color: colors.react },
   rt: { color: colors.yellow },
+  rust: { color: colors.orange },
   scheme: { color: colors.typescript },
   test: { color: colors.orange },
   typescript: { color: colors.typescript },

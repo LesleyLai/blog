@@ -98,6 +98,7 @@ const en = {
     </>
   ),
   rt: "Ray tracing",
+  rust: "Rust",
   scheme: "Scheme",
   show_projects_filtered: (count: number, tag: TagID) => (
     <>
@@ -206,6 +207,7 @@ const zh: Translations = {
     </>
   ),
   rt: "光线追踪",
+  rust: en.rust,
   scheme: en.scheme,
   show_projects_filtered: (count: number, tag: TagID) => (
     <>
