@@ -36,6 +36,7 @@ export const tagInfos = {
   pl: { color: colors.teal },
   python: { color: colors.blue },
   racket: { color: colors.darkRed },
+  rasterizer: { color: colors.darkRed },
   react: { color: colors.react },
   rt: { color: colors.yellow },
   rust: { color: colors.orange },

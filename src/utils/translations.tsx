@@ -90,6 +90,7 @@ const en = {
   projects_page_description: "Check out my personal projects below",
   python: "Python",
   racket: "Racket",
+  rasterizer: "Rasterization",
   react: "React",
   readmore: "Read More",
   return_to_home: (
@@ -199,6 +200,7 @@ const zh: Translations = {
   projects_page_description: "下列是我的一些个人项目",
   python: en.python,
   racket: en.racket,
+  rasterizer: "光栅化",
   react: en.react,
   readmore: "阅读全文",
   return_to_home: (
