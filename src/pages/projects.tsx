@@ -45,7 +45,7 @@ export const query = graphql`
     ) {
       ...ProjectsInfo
     }
-    allImages: allFile(filter: {relativePath: {regex: "/projects/.*\\.(png|jpg|jpeg)/"}}) {
+    allImages: allFile(filter: {relativePath: {regex: "/projects/.*\\.(png|jpg|jpeg|gif)/"}}) {
       nodes {
         childImageSharp {
           fluid(maxWidth: 600, maxHeight: 400) {
@@ -53,6 +53,8 @@ export const query = graphql`
           }
         }
         name
+        extension
+        publicURL
       }
     }
   }

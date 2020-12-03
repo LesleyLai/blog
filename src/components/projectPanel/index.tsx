@@ -16,7 +16,7 @@ interface ProjectPenalProps extends React.HTMLProps<HTMLDListElement> {
   demo?: string; // link to demo
 
   // A reference to image
-  image?: FluidObject;
+  image?: FluidObject | string;
   // Prevent the panel to show only part of the image, but the image may not fill the panel this way
   imageContain?: boolean;
 
@@ -25,6 +25,10 @@ interface ProjectPenalProps extends React.HTMLProps<HTMLDListElement> {
   // Year of doing that project
   year: string;
   tags?: TagID[];
+}
+
+function isString(image: FluidObject | string): image is string {
+  return typeof image === "string";
 }
 
 const ProjectPanel = (props: ProjectPenalProps) => {
@@ -80,7 +84,12 @@ const ProjectPanel = (props: ProjectPenalProps) => {
 
       <span style={{ flexGrow: 100 }} />
 
-      {props.image && <Img fluid={props.image} className={css.image} />}
+      {props.image &&
+        (isString(props.image) ? (
+          <img src={props.image} className={css.image} />
+        ) : (
+          <Img fluid={props.image} className={css.image} />
+        ))}
     </article>
   );
 };

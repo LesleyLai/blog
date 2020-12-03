@@ -30,10 +30,12 @@ interface ProjectMeta {
 }
 
 interface ImageMeta {
-  childImageSharp: {
+  childImageSharp?: {
     fluid: FluidObject;
   };
   name: string;
+  extension: string;
+  publicURL: string;
 }
 
 export interface ProjectsData {
@@ -59,7 +61,7 @@ interface ProjectsProps {
 }
 
 interface ImageMap {
-  [name: string]: FluidObject;
+  [name: string]: FluidObject | string;
 }
 
 class ProjectsPageTemplate extends React.Component<ProjectsProps> {
@@ -79,7 +81,11 @@ class ProjectsPageTemplate extends React.Component<ProjectsProps> {
     const postsTotalCount = data.posts.totalCount;
 
     const images = data.allImages.nodes.reduce((acc: ImageMap, cur: ImageMeta) => {
-      acc[cur.name] = cur.childImageSharp.fluid;
+      if (!cur.childImageSharp && cur.extension === "gif") {
+        acc[cur.name] = cur.publicURL;
+      } else {
+        acc[cur.name] = cur.childImageSharp.fluid;
+      }
       return acc;
     }, {});
 
@@ -111,6 +117,7 @@ class ProjectsPageTemplate extends React.Component<ProjectsProps> {
           )}
 
           {projects.map(project => {
+            const image = project.frontmatter.image && images[project.frontmatter.image];
             return (
               <ProjectPanel
                 key={project.frontmatter.name}
@@ -125,7 +132,7 @@ class ProjectsPageTemplate extends React.Component<ProjectsProps> {
                 }
                 lang={project.frontmatter.lang}
                 tags={project.frontmatter.tags}
-                image={project.frontmatter.image && images[project.frontmatter.image]}
+                image={image}
               >
                 <MDXRenderer>{project.body}</MDXRenderer>
               </ProjectPanel>
@@ -180,7 +187,7 @@ export const query = graphql`
     ) {
       ...ProjectsInfo
     }
-    allImages: allFile(filter: {relativePath: {regex: "/projects/.*\\.(png|jpg|jpeg)/"}}) {
+    allImages: allFile(filter: {relativePath: {regex: "/projects/.*\\.(png|jpg|jpeg|gif)/"}}) {
       nodes {
         childImageSharp {
           fluid(maxWidth: 600, maxHeight: 400) {
@@ -188,6 +195,8 @@ export const query = graphql`
           }
         }
         name
+        extension
+        publicURL
       }
     }
   }
