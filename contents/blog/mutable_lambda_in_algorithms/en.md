@@ -303,7 +303,7 @@ int seq[20];
 {
   int x = 1;
   for (auto& elem: seq) {
-    elem = std::exchange(x, x * 2);
+    elem = std::exchange(x, x * 2 + 1);
   }
 }
 ```
