@@ -17,7 +17,9 @@ In essence, this article tries to promote functional languages and list their ad
 As an FP fanboy myself, I love content that encourages the usage of functional programming.
 However, this article is so biased and full of factual errors, to the degree that it only shows the author's lack of understanding in both the languages they hate and the languages they try to promote. And I am not even surprised to find that the author is behind another notorious medium clickbait, [Object-Oriented Programming - The Trillion Dollar Disaster](https://medium.com/better-programming/object-oriented-programming-the-trillion-dollar-disaster-92a4b666c7c7).
 
-I will not focus on this article's opinions since various Twitter shitposts sometimes have more extreme views than this article.
+I will not focus on this article's opinions.
+Various Twitter shitposts sometimes have more extreme views than this article.
+Also, it is hard to criticize objectively on buzzwords such as "bad" or "a mess."
 Instead, let's focus on the misleading factual errors.
 Though I am sure that there are still many more factual errors in the section I missed or in languages where I don't have experience.
 
