@@ -114,7 +114,7 @@ Dune is not a package manager, but instead a build system. It is often used in c
 
 > The go-to book for learning OCaml is Real World OCaml. The book hasn't been updated since 2013, and many of the examples are outdated.
 
-The [2nd edition](http://dev.realworldocaml.org/) of *Real World OCaml* is up-to-date also available free online.
+The [2nd edition](http://dev.realworldocaml.org/) of *Real World OCaml* is up-to-date and also available free online.
 
 ### Scala
 
