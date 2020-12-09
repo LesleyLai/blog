@@ -10,13 +10,14 @@ categories:
 - opinion
 ---
 
-Today I stumble upon an article [These Modern Programming Languages Will Make You Suffer](https://medium.com/better-programming/modern-languages-suck-ad21cbc8a57c) after Twitter outrage.
+Today I stumble upon an article <a href="https://medium.com/better-programming/modern-languages-suck-ad21cbc8a57c" rel="nofollow" target="_blank">These Modern Programming Languages Will Make You Suffer</a>
+after Twitter outrage.
 The post is absurd and indeed a suffer to read for me.
 However, it also receives 1k+ medium claps at the time of writing, and I think I cannot stay silent.
 
 In essence, this article tries to promote functional languages and list their advantages.
 As an FP fanboy myself, I love content that encourages the usage of functional programming.
-However, this article is so biased and full of factual errors, to the degree that it only shows the author's lack of understanding in both the languages they hate and the languages they try to promote. And I am not even surprised to find that the author was behind another notorious medium clickbait, [Object-Oriented Programming - The Trillion Dollar Disaster](https://medium.com/better-programming/object-oriented-programming-the-trillion-dollar-disaster-92a4b666c7c7).
+However, this article is so biased and full of factual errors, to the degree that it only shows the author's lack of understanding in both the languages they hate and the languages they try to promote. And I am not even surprised to find that the author was behind another notorious medium clickbait, <a href="https://medium.com/better-programming/object-oriented-programming-the-trillion-dollar-disaster-92a4b666c7c7" rel="nofollow" target="_blank">Object-Oriented Programming - The Trillion Dollar Disaster</a>.
 
 I will not focus on this article's opinions.
 Various Twitter shitposts sometimes have more extreme views than this article.
