@@ -1,6 +1,6 @@
 ---
 id: factual-errors-in-modern-language-sucks
-title: "Factual errors \"These Modern Programming Languages Will Make You Suffer\", and why it is a suffer to read"
+title: "Factual errors in \"These Modern Programming Languages Will Make You Suffer\", and why it is a suffer to read"
 lang: en
 create: '2020-12-08'
 lastModify: '2020-12-08'
