@@ -10,8 +10,9 @@ categories:
 - opinion
 ---
 
-Today I stumble upon an article [These Modern Programming Languages Will Make You Suffer
-](https://medium.com/better-programming/modern-languages-suck-ad21cbc8a57c) after Twitter outrage. The post is absurd and indeed a suffer to read for me. However, it also receives 1k+ medium claps at the time of writing, and I think I cannot stay silent.
+Today I stumble upon an article [These Modern Programming Languages Will Make You Suffer](https://medium.com/better-programming/modern-languages-suck-ad21cbc8a57c) after Twitter outrage.
+The post is absurd and indeed a suffer to read for me.
+However, it also receives 1k+ medium claps at the time of writing, and I think I cannot stay silent.
 
 In essence, this article tries to promote functional languages and list their advantages.
 As an FP fanboy myself, I love content that encourages the usage of functional programming.
@@ -68,7 +69,7 @@ again made me wonder whether some part of the post is "borrowed" from elsewhere.
 
 > rudimentary concurrency support
 
-C# is the language that makes the async/await paradigm populer.
+C# is the language that makes the async/await paradigm popular.
 
 > In C#, all references are nullable.
 
@@ -188,7 +189,16 @@ If the author removes all the biased, incorrect, and misleading content, I would
 However, the author chooses a different pass.
 Unfortunately, the Internet always rewards clickbait and sensational articles these days instead of posts with meaningful content.
 
-Also, what worries me is that these kinds of blog posts will push people away from functional languages. It is not the first time I heard people saying, "I will not learn technology X because its community is full of arrogant and ignorant jerks." Rest assume that most people in the functional programming community are friendly and don't have that kind of bias against your favorite language.
+Also, what worries me is that these kinds of blog posts will push people away from functional languages.
+A minority of trolls make people lose faith in the whole community.
+For example, here is one comment on Medium to the article:
+
+> Ooh, you're a functional programmer! That explains why I had that feeling you didn't know what you were talking about.
+>
+> I can stop reading now. I read enough flawed examples, dubious comparisons and more from articles written by your kind."
+
+Rest assure that most people in the functional programming community are friendly and don't have that kind of bias against your favorite language.
+
 
 [^1]: https://docs.microsoft.com/en-us/dotnet/csharp/pattern-matching
 [^2]: https://en.cppreference.com/w/cpp/utility/optional
