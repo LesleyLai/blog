@@ -66,6 +66,14 @@ By the way, C# does support pattern matching. [^1]
 The author seems to acknowledge this fact earlier and forget later,
 again made me wonder whether some part of the post is "borrowed" from elsewhere.
 
+> rudimentary concurrency support
+
+C# is the language that makes the async/await paradigm populer.
+
+> In C#, all references are nullable.
+
+Except that there are [nullable-references](https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references) support and references can be made not-null by default.
+
 ## Python
 > Language family: C
 
@@ -85,7 +93,7 @@ and most language implementations these days are in the middle ground.
 A Python VM usually boots up in less than 100ms.
 
 ## Rust
-Rust also suffers from a lot of unfair criticism for its "low productivity" in this article.
+Rust also suffers from a lot of unfair ranting for its "low productivity" in this article, and to be honest all the criticism for Rust in this article looks like from a quick Google search.
 
 > The runtime performance of Rust programs is a little faster than Go.
 
@@ -96,6 +104,21 @@ and a language that runs faster in one circumstance is possible to run slower in
 > The first language on our list with a modern null alternative
 
 C++ has `std::optional`[^2] and Java has `Optional`[^3].
+
+> Developers have to worry about things like boxing and pinning, which typically are done automatically in a garbage-collected language.
+
+Some garbage collectors move memories in a process called memory compaction,
+and that is why C#, for example, also support pinning.
+
+## Typescript
+
+> Even experimental features can be enabled in JavaScript with the use of Babel, which can’t be done for TypeScript.
+
+Totally not true[^4].
+
+> While JavaScript developers can use libraries that help with immutability, TypeScript developers typically have to rely on the native array/object spread operators
+
+Both immutable.js and Rambda provides typescript type definitions, and they are not harder to use compare to using them in JS.
 
 ## Functional languages
 As a person who tries to promote functional languages,
@@ -139,6 +162,10 @@ There are custom elements[^5] and ports[^6].
 
 You can make a React component a custom element.
 
+> We don’t even know whether or not he’s still working full-time on Elm. The language might actually be dead by now.
+
+Evan is still doing work on Elm and interacts with the community regularly.
+
 ### Reason ML
 > Just like TypeScript, ReasonML has access to the entire JavaScript ecosystem.
 
@@ -164,6 +191,7 @@ Unfortunately, the Internet always rewards clickbait and sensational articles th
 [^1]: https://docs.microsoft.com/en-us/dotnet/csharp/pattern-matching
 [^2]: https://en.cppreference.com/w/cpp/utility/optional
 [^3]: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Optional.html
-[^4]: https://en.wikipedia.org/wiki/Dependent_type
-[^5]: https://guide.elm-lang.org/interop/custom_elements.html
-[^6]: https://guide.elm-lang.org/interop/ports.html
+[^4]: https://babeljs.io/docs/en/babel-preset-typescript
+[^5]: https://en.wikipedia.org/wiki/Dependent_type
+[^6]: https://guide.elm-lang.org/interop/custom_elements.html
+[^7]: https://guide.elm-lang.org/interop/ports.html
