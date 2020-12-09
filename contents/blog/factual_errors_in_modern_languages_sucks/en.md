@@ -188,6 +188,8 @@ If the author removes all the biased, incorrect, and misleading content, I would
 However, the author chooses a different pass.
 Unfortunately, the Internet always rewards clickbait and sensational articles these days instead of posts with meaningful content.
 
+Also, what worries me is that these kinds of blog posts will push people away from functional languages. It is not the first time I heard people saying, "I will not learn technology X because its community is full of arrogant and ignorant jerks." Rest assume that most people in the functional programming community are friendly and don't have that kind of bias against your favorite language.
+
 [^1]: https://docs.microsoft.com/en-us/dotnet/csharp/pattern-matching
 [^2]: https://en.cppreference.com/w/cpp/utility/optional
 [^3]: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Optional.html
