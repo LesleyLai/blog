@@ -2,12 +2,10 @@ import * as React from "react";
 
 import { Language } from "../../utils/translations";
 
-import RssIcon from "react-icons/lib/md/rss-feed";
+import { MdRssFeed as RssIcon } from "@react-icons/all-files/md/MdRssFeed";
 
-import {
-  TiSocialTwitter as TwitterIcon,
-  TiSocialLinkedin as LinkedInIcon,
-} from "react-icons/lib/ti";
+import { TiSocialTwitter as TwitterIcon } from "@react-icons/all-files/ti/TiSocialTwitter";
+import { TiSocialLinkedin as LinkedInIcon } from "@react-icons/all-files/ti/TiSocialLinkedin";
 
 const css = require("./socials.module.css");
 

@@ -7,7 +7,8 @@ import { TagID } from "../../types/tags";
 import { Language, translations } from "../../utils/translations";
 import Pagination from "../pagination";
 
-import { FaCalendar as Calendar, FaTags as Tags } from "react-icons/lib/fa";
+import { FaCalendar as Calendar } from "@react-icons/all-files/fa/FaCalendar";
+import { FaTags as Tags } from "@react-icons/all-files/fa/FaTags";
 
 export interface PostMeta {
   frontmatter: {
