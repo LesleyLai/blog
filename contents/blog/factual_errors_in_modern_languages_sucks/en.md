@@ -13,7 +13,7 @@ categories:
 Today I stumble upon an article <a href="https://medium.com/better-programming/modern-languages-suck-ad21cbc8a57c" rel="nofollow" target="_blank">These Modern Programming Languages Will Make You Suffer</a>
 after Twitter outrage.
 The post is absurd and indeed a suffer to read for me.
-However, it also receives 1k+ medium claps at the time of writing, and I think I cannot stay silent.
+However, it also receives 1k+ medium claps at the time of writing, and I cannot stay silent.
 
 In essence, this article tries to promote functional languages and list their advantages.
 As an FP fanboy myself, I love content that encourages the usage of functional programming.
@@ -64,6 +64,16 @@ C# was an imitation of Java. But it was a new language and never intended as an 
 Those are all great features, but none of them are the essence of functional programming.
 The first functional language, Lisp, supports none of those features.
 
+<aside style="margin-top: -60px;">
+
+[Jonathan Frech](https://www.jfrech.com/blog/) had a great comment about that some do not consider Lisp as a functional language.
+That being said, even in [Standard ML'97](https://en.wikipedia.org/wiki/Standard_ML), a language probably considered more "functional" by some, there is no support for the pipe operator.
+The standard library has only minimum support for persistent data structures (it didn't even have an immutable map/dictionary type).
+Lambda calculus, the holy grail of functional programming, also has none of the above mentioned features.
+
+
+</aside>
+
 By the way, C# does support pattern matching. [^1]
 The author seems to acknowledge this fact earlier and forget later,
 again made me wonder whether some part of the post is "borrowed" from elsewhere.
@@ -81,7 +91,7 @@ Except that there are [nullable-references](https://docs.microsoft.com/en-us/dot
 
 What does "The C family languages" even mean?
 Languages share a syntax resemble C?
-And how does Python suddenly becomes a C-family language?
+And how does Python suddenly become a C-family language?
 
 > Python is an interpreted language
 
@@ -120,7 +130,7 @@ Totally not true[^4].
 
 > While JavaScript developers can use libraries that help with immutability, TypeScript developers typically have to rely on the native array/object spread operators
 
-Both immutable.js and Rambda provides typescript type definitions, and they are not harder to use compare to using them in JS.
+Both immutable.js and Rambda, the Javascript libraries that the author mentioned, provide typescript type definitions, and they are not harder to use compared to using them in JS.
 
 ## Functional languages
 As a person who tries to promote functional languages,
@@ -141,7 +151,7 @@ Dune is not a package manager, but instead a build system. It is often used in c
 
 > The go-to book for learning OCaml is Real World OCaml. The book hasn't been updated since 2013, and many of the examples are outdated.
 
-The [2nd edition](http://dev.realworldocaml.org/) of *Real World OCaml* is up-to-date and also available free online.
+The [2nd edition](http://dev.realworldocaml.org/) of *Real World OCaml* is up-to-date and also available freely online.
 
 ### Scala
 
@@ -187,7 +197,7 @@ Ok, I can stand that you say Haskell or Elm is in the ML family (though I disagr
 
 The article has some good content on pure functions, algebraic data types, pattern matching, and error-handling in FP languages.
 If the author removes all the biased, incorrect, and misleading content, I would recommend it for people to read.
-However, the author chooses a different pass.
+However, the author chooses a different path.
 Unfortunately, the Internet always rewards clickbait and sensational articles these days instead of posts with meaningful content.
 
 Also, what worries me is that these kinds of blog posts will push people away from functional languages.
@@ -198,7 +208,7 @@ For example, here is one comment on Medium to the article:
 >
 > I can stop reading now. I read enough flawed examples, dubious comparisons and more from articles written by your kind."
 
-Rest assure that most people in the functional programming community are friendly and don't have that kind of bias against your favorite language.
+Rest assured that most people in the functional programming community are friendly and don't have that kind of bias against your favorite language.
 
 
 [^1]: https://docs.microsoft.com/en-us/dotnet/csharp/pattern-matching
