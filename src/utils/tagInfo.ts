@@ -32,6 +32,7 @@ export const tagInfos = {
   logic: { color: colors.grey },
   math: { color: colors.pink },
   ocaml: { color: colors.orange },
+  offtopic: { color: colors.grey },
   oop: { color: colors.grey },
   opengl: { color: colors.typescript },
   opinion: { color: colors.pink },
