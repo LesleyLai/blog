@@ -13,6 +13,7 @@ export const tagInfos = {
   code: { color: colors.red },
   compiler: { color: colors.green },
   cpp: { color: colors.blue },
+  cuda: { color: colors.green },
   csharp: { color: colors.green },
   designpattern: { color: colors.teal },
   dod: { color: colors.orange },
