@@ -6,7 +6,7 @@ import {
   Hits,
   Highlight,
   Snippet,
-  Pagination
+  Pagination,
 } from "react-instantsearch-dom";
 import algoliasearch from "algoliasearch/lite";
 import styled from "styled-components";
@@ -80,13 +80,11 @@ const HitWrapper = styled.div<HitWrapperProps>`
   }
 `;
 
-const SearchButton = () => {
-  const Style = styled.button`
+const SearchLabel = ({ htmlFor }: { htmlFor: string }) => {
+  const Style = styled.label`
     color: hsla(0, 0%, 100%, 0.7);
     background: transparent;
-    border: none;
-    margin: 0 5px;
-    float: right;
+    height: 100px;
     :hover {
       color: #fff;
     }
@@ -97,12 +95,44 @@ const SearchButton = () => {
   `;
 
   return (
-    <Style>
-      <SearchIcon size={20} style={{ verticalAlign: "middle" }} />{" "}
-      <span>Search</span>
+    <Style htmlFor={htmlFor}>
+      <SearchIcon size={20} style={{ verticalAlign: "middle" }} /> <span>Search</span>
     </Style>
   );
 };
+
+const SearchArea = styled.div`
+  margin: auto 0;
+  margin-bottom: auto !important;
+
+  @media (max-width: 992px) {
+    margin: 10px 20px;
+  }
+
+  input#search {
+    display: none;
+  }
+
+  .search-overlay {
+    display: none;
+    opacity: 0;
+    position: fixed;
+    overflow-x: hidden;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100vh;
+    padding: 100px 0;
+    background-color: #222;
+    color: #fff;
+  }
+
+  input[type="checkbox"]:checked ~ .search-overlay {
+    display: block;
+    opacity: 0.9;
+  }
+`;
 
 export default function Search({ indices, collapse }: SearchProps) {
   const searchClient = algoliasearch(
@@ -110,19 +140,31 @@ export default function Search({ indices, collapse }: SearchProps) {
     process.env.GATSBY_ALGOLIA_SEARCH_KEY
   );
   return (
-    <InstantSearch searchClient={searchClient} indexName={indices[0].name}>
-      <Configure distinct />
-
-      <SearchButton />
-
-      {/* <SearchBox />
-          <Hits /> */}
-
-      {/* <HitWrapper show={query.length > 0 && focus}>
-          <Hits hitComponent={PostHit(() => setFocus(false))} />
-          </HitWrapper> */}
-
-      {/* <SearchBox onFocus={() => setFocus(true)} {...{ collapse, focus }} /> */}
-    </InstantSearch>
+    <SearchArea>
+      <SearchLabel htmlFor="search" />
+      <input type="checkbox" name="" id="search"></input>
+      <div className="search-overlay">
+        <label htmlFor="search">
+          <p>Back</p>
+        </label>
+      </div>
+    </SearchArea>
   );
 }
+
+/*
+     <InstantSearch searchClient={searchClient} indexName={indices[0].name}>
+        <Configure distinct />
+
+       <SearchButton />
+
+<SearchBox />
+        <Hits />
+
+<HitWrapper show={query.length > 0 && focus}>
+        <Hits hitComponent={PostHit(() => setFocus(false))} />
+        </HitWrapper>
+
+<SearchBox onFocus={() => setFocus(true)} {...{ collapse, focus }} />
+ </InstantSearch>
+*/

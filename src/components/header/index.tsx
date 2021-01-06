@@ -18,7 +18,7 @@ const Logo = ({ lang }: { lang: Language }) => (
 );
 
 const searchIndices = (lang: Language) => [
-  { name: `LesleyBlogPosts${lang}`, title: "Blog Posts", hitComp: "PostHit" }
+  { name: `LesleyBlogPosts${lang}`, title: "Blog Posts", hitComp: "PostHit" },
 ];
 
 interface MenuItemProp extends React.HTMLProps<HTMLDivElement> {
@@ -139,7 +139,6 @@ export default class Header extends React.Component<HeaderProps, HeaderStates> {
             <span className={css.mobileMenuIcon} />
           </label>
 
-          <Search collapse indices={searchIndices(lang)} />
           <nav className={css.menu}>
             <ul className={css.menuItems}>
               {Object.keys(menuModel).map((key: keyof Translations) => (
@@ -148,15 +147,16 @@ export default class Header extends React.Component<HeaderProps, HeaderStates> {
                 </li>
               ))}
             </ul>
-            {otherLangs.length !== 0 && (
-              <ul className={css.menuItems}>
-                {otherLangs.map(otherLang => (
-                  <li key={otherLang}>
-                    <LanguageLink fromLang={lang} toLang={otherLang} pathname={pathname} />
-                  </li>
-                ))}
-              </ul>
-            )}
+            <ul className={css.menuItems}>
+              <li key="search">
+                <Search collapse indices={searchIndices(lang)} />
+              </li>
+              {otherLangs.map(otherLang => (
+                <li key={otherLang}>
+                  <LanguageLink fromLang={lang} toLang={otherLang} pathname={pathname} />
+                </li>
+              ))}
+            </ul>
           </nav>
         </div>
       </header>

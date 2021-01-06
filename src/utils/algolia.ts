@@ -53,7 +53,7 @@ const postQuery = (lang: Language) => `{
 const flatten = (arr: PostData[]) =>
   arr.map(({ frontmatter, ...rest }) => ({
     ...frontmatter,
-    ...rest
+    ...rest,
   }));
 
 const handleRawBody = (node: PostRawData) => {
@@ -76,7 +76,7 @@ const handleRawBody = (node: PostRawData) => {
 
   const records = sections.map(section => ({
     ...rest,
-    content: section
+    content: section,
   }));
 
   return records;
@@ -94,8 +94,8 @@ const queries = languages.map(lang => ({
   indexName: `LesleyBlogPosts${lang}`,
   settings: {
     attributeForDistinct: "id",
-    distinct: true
-  }
+    distinct: true,
+  },
 }));
 
 export default queries;
