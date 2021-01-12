@@ -42,4 +42,11 @@ export const menuModel: { [key: string]: MenuModel } = {
     },
     exact: true,
   },
+  contact: {
+    langs: {
+      en: { path: "/en/contact" },
+      zh: { path: "/zh/contact" },
+    },
+    exact: true,
+  },
 };

@@ -58,6 +58,7 @@ const en = {
     </>
   ),
   compiler: "Compiler",
+  contact: "Contact",
   cpp: "C++",
   create: "Create",
   csharp: "C#",
@@ -170,6 +171,7 @@ const zh: Translations = {
     </>
   ),
   compiler: "编译器",
+  contact: "联系我",
   cpp: en.cpp,
   create: "创建时间",
   csharp: en.csharp,
