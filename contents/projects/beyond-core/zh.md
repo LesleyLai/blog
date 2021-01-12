@@ -11,4 +11,4 @@ categories:
 - graphics
 ---
 
-*beyond::core* is a library with a bunch of utilities that are associated with graphics. It serves as a supplementary of the C++ standard library and is shared in a lot of my graphics projects. The library implements an [ECS](https://en.wikipedia.org/wiki/Entity_component_system), a math library built for 3d graphics, a thread pool, and some customized containers.
+*beyond::core*带有一堆与图形学应用相关联的实用程序的库。我在许多个人的图形学项目中使用了该库。该库包含一个ECS实现，一个用于图形编程的数学库，线程池以及一些自定义容器。

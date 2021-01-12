@@ -11,5 +11,4 @@ categories:
 - rasterizer
 ---
 
-**Yet another software rasterizer** is a software rasterizer
-created following the [tinyrenderer](https://github.com/ssloy/tinyrenderer) tutorial.
+Yet another software rasterizer是根据[tinyrenderer](https://github.com/ssloy/tinyrenderer)教程创建的软件光栅化程序。
