@@ -46,14 +46,21 @@ const Form = styled.form`
 
 const InputMixin = `
   width: 100%;
-  border: 1px solid #ccc;
+  border: 1px solid #aaa;
+  border-radius: 3px;
   background: #FFF;
   margin: 0 0 5px;
   padding: 10px;
 
   :hover {
   transition: border-color 0.3s ease-in-out;
-  border: 1px solid #aaa;
+  border: 1px solid #666;
+  }
+
+  :focus {
+  outline: none;
+  border: 3px solid #2dabf9;
+  box-shadow: 0px 0px 2px #95d5fc inset;
   }
 `;
 
@@ -73,17 +80,31 @@ const Label = styled.label`
   font-size: 0.875em;
   color: #000000;
   line-height: 1.3em;
+  margin: 10px 0 5px 0;
 `;
 
 const SubmitButton = styled.button`
   width: 100%;
+  padding: 15px 40px;
+  color: #fff;
+  border: 0;
+  border-radius: 3px;
+  background: #2dabf9;
+  font-size: 16px;
+  text-transform: uppercase;
+  margin: 7px 0;
+  cursor: pointer;
+
+  :hover {
+    background-color: #0688fa;
+  }
 `;
 
 const StyledErrorMessage = styled(ErrorMessage)`
   color: #ffffff;
   background: #c51244;
   padding: 10px;
-  border-radius: 0;
+  border-radius: 8px;
   position: relative;
   display: inline-block;
   box-shadow: 1px 1px 1px #aaaaaa;
