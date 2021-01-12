@@ -11,5 +11,5 @@ categories:
 - rasterizer
 ---
 
-**Yet another software rasterizer** is a software rasterizer
+*Yet another software rasterizer* is a software rasterizer
 created following the [tinyrenderer](https://github.com/ssloy/tinyrenderer) tutorial.

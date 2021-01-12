@@ -15,6 +15,13 @@ const en = {
         <a href="http://www.colorado.edu/"> University of Colorado at Boulder</a>.
       </p>
       <p>
+        I organize the{" "}
+        <a href="https://www.meetup.com/Graphics-Programming-Virtual-Meetup/">
+          Graphics Programming Virtual Meetup
+        </a>{" "}
+        and <a href="https://cugdc.github.io/">CU Game Dev & Graphcis Club</a>.
+      </p>
+      <p>
         My primary interests include{" "}
         <a href="https://en.wikipedia.org/wiki/Computer_graphics">Computer Graphics</a>
         {" and "}
@@ -26,6 +33,7 @@ const en = {
       </p>
     </>
   ),
+  ai: "AI",
   all_n_posts: (n: number) => (
     <>
       All <Link to={`/en/archive`}>{n} posts</Link>
@@ -136,6 +144,7 @@ const zh: Translations = {
       <p>我喜欢计算机图形学、编程语言理论，以及C++。</p>
     </>
   ),
+  ai: en.ai,
   all_n_posts: (n: number) => (
     <>
       所有<Link to={`zh/archive`}>{n}篇博文</Link>
