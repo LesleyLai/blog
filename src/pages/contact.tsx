@@ -270,8 +270,8 @@ const ContactForm = withFormik<{}, FormValues>({
 const ContactPage = ({ data, location, pageContext }: ContactProps) => {
   const lang = pageContext.lang;
 
-  const pageDescription = translations[lang]["talks_page_desc"];
-  const talksLocale = translations[lang]["talks"];
+  const pageDescription = translations[lang]["contact_page_desc"];
+  const contactLocale = translations[lang]["contact"];
 
   return (
     <Layout
@@ -280,7 +280,12 @@ const ContactPage = ({ data, location, pageContext }: ContactProps) => {
       tags={data.posts.tags}
       postsTotalCount={data.posts.totalCount}
     >
-      <SEO title={talksLocale} lang={lang} description={pageDescription} path={location.pathname} />
+      <SEO
+        title={contactLocale}
+        lang={lang}
+        description={pageDescription}
+        path={location.pathname}
+      />
       <h1>Contact Me</h1>
       <p>
         You can direct message me on <a href="https://twitter.com/LesleyLai6">Twitter</a>. I also
