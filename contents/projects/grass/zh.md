@@ -3,7 +3,7 @@ id: grass
 name: "OpenGL草地渲染器"
 lang: zh
 image: grass
-create: '2019-04-14'
+create: '2019-12-14'
 github: https://github.com/LesleyLai/GLGrassRenderer
 categories:
 - cpp
