@@ -5,7 +5,7 @@ import { MDXRenderer } from "gatsby-plugin-mdx";
 
 import Layout from "../components/layout";
 import ProjectPanel from "../components/projectPanel";
-import Tags from "../components/projectPanel/projectTags";
+import ProjectTags from "../components/projectPanel/projectTags";
 import { TagID, TagItem } from "../types/tags";
 import { Language, translations } from "../utils/translations";
 
@@ -75,7 +75,7 @@ class ProjectsPageTemplate extends React.Component<ProjectsProps> {
       .map(edge => edge.node)
       .filter(node => !tag || node.frontmatter.tags.includes(tag));
 
-    const allTags = data.projects.tags.map(tag => tag.id);
+    const allTags = data.projects.tags;
 
     const postsTags = data.posts.tags;
     const postsTotalCount = data.posts.totalCount;
@@ -106,7 +106,7 @@ class ProjectsPageTemplate extends React.Component<ProjectsProps> {
           <h1>{translations[lang]["projects"]}</h1>
           <h3 className={css.subtitle}>{translations[lang]["projects_page_description"]}</h3>
 
-          <Tags tags={allTags} showAll lang={lang} />
+          <ProjectTags tags={allTags} showAll showCounts lang={lang} />
 
           {tag ? (
             <p className={css.filterHint}>

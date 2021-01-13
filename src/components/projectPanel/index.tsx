@@ -1,7 +1,7 @@
 import Img, { FluidObject } from "gatsby-image";
 import * as React from "react";
 
-import Tags from "./projectTags";
+import ProjectTags from "./projectTags";
 import { Language, translations } from "../../utils/translations";
 import { TagID } from "../../types/tags";
 
@@ -34,7 +34,10 @@ function isString(image: FluidObject | string): image is string {
 const ProjectPanel = (props: ProjectPenalProps) => {
   const css = require("./projectPanel.module.css");
 
-  const tags = props.tags;
+  const tags = props.tags.map(tagID => ({
+    id: tagID,
+    totalCount: 0,
+  }));
 
   return (
     <article className={css.panel}>
@@ -79,7 +82,7 @@ const ProjectPanel = (props: ProjectPenalProps) => {
           )}
         </ul>
 
-        <Tags tags={tags} lang={props.lang} />
+        <ProjectTags tags={tags} lang={props.lang} />
       </div>
 
       <span style={{ flexGrow: 100 }} />

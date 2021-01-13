@@ -117,7 +117,7 @@ const en = {
     </>
   ),
   showall: "Show all",
-  showall_projects: "Show all projects. Use the filter to list them by skill or technology.",
+  showall_projects: "Show all projects. Click tags to list them by topics.",
   stuff_I_wrote_about: (tag: TagID) =>
     tag === "opinion" ? "Stuff I Wrote to State My Opinion" : `Stuff I Wrote About ${en[tag]}`,
   tags: "Tags",
