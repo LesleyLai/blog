@@ -14,10 +14,12 @@ I am no C++ expert,
 but as a person who is doing C++ for years,
 I want to share a bunch of beginner-friendly C++ resources that are known to be of high quality.
 
+<!-- end -->
+
 When anyone asks me for guidance about getting into C++,
-I always first ask about their existing experiences.
-Some people just start learning to program and decide to learn C++ as their first language,
-some people learned a limited amount of C++ and want to learn more,
+I always ask first about their existing experiences.
+Some people just start to learn programing and decide to learn C++ as their first language,
+some people have learned a limited amount of C++ and want to learn more,
 and some of them are already programming veterans in other languages.
 Depend on your experiences,
 you probably want to start with different materials,
@@ -67,7 +69,7 @@ and feel that you have a decent grasp of basic C++ concepts.
 
 <aside style="margin-top: -40px;">
 
-For C++ folks, no, I am not talking about *that [concept](https://en.cppreference.com/w/cpp/language/constraints)* 😃.
+For experienced C++ folks, no, I am not talking about *that [concept](https://en.cppreference.com/w/cpp/language/constraints)* 😃.
 
 </aside>
 
@@ -82,7 +84,8 @@ to name a few:
 - copy and move constructor and assignment
 - move semantics
 - operator overloading
-- lambda and function objects
+- [lambda expressions and function objects](c++-lambda)
+- undefined behavior
 
 Now it is time to put C++ into practical usage.
 C++ is used for diverse purposes,
@@ -106,9 +109,11 @@ If you haven't read ["The C++ Programming Language (4th Edition)"](https://www.s
 
 
 Some books focus on specific areas of the language, such as:
-- ["C++ Templates - The Complete Guide"](http://www.tmplbook.com/) by David Vandevoorde, Nicolai M. Josuttis, and Douglas Gregor
+- ["C++ Templates - The Complete Guide, 2nd Edition"](http://www.tmplbook.com/) by David Vandevoorde, Nicolai M. Josuttis, and Douglas Gregor
 - ["Mastering the C++17 STL"](https://www.amazon.com/Mastering-17-STL-standard-components/dp/178712682X) by Arthur O'Dwyer
 - ["Functional Programming in C++"](https://www.manning.com/books/functional-programming-in-c-plus-plus) by Ivan Čukić
+- ["C++ Concurrency in Action, 2nd edition"](https://www.manning.com/books/c-plus-plus-concurrency-in-action-second-edition) by Anthony Williams
+
 
 ### Conference Videos
 
@@ -172,7 +177,7 @@ There is [a list of conferences](https://isocpp.org/wiki/faq/conferences-worldwi
 
 #### Listening to Podcasts
 
-There are a bunch of C++ podcasts. Especially since 2020, there are quite a few new ones appear:
+There are a bunch of C++ podcasts, including a few new ones appeared in 2020:
 
 - [CppCast](https://www.cppcast.com/)
 - [cpp.chat](https://cpp.chat/)
@@ -184,14 +189,9 @@ There are a bunch of C++ podcasts. Especially since 2020, there are quite a few 
 #### Following Blogs
 
 I use RSS to keep track of the tech blogs,
-which is something I highly recommend.
-I follow hundreds of blogs, and here are some of the best C++ ones that pops into my head:
-
-<aside style="margin-top: -40px;">
-
-This blog also has an [RSS feed](https://lesleylai.info/rss.xml).
-
-</aside>
+and I highly recommend you to try out RSS too.
+I follow hundreds of blogs, including C++ and various other topics.
+Here are some of the best C++ ones that pops into my head:
 
 - [Fluent C++](https://www.fluentcpp.com/)
 - [Arthur O’Dwyer](https://quuxplusone.github.io/blog/)
@@ -201,8 +201,17 @@ This blog also has an [RSS feed](https://lesleylai.info/rss.xml).
 - [foonathan::​blog()](https://foonathan.net/)
 - [Barry Revzin](https://brevzin.github.io/)
 - [artificial::mind](https://artificial-mind.net/)
+- [Bartek's coding blog](https://www.bfilipek.com/)
+- [Simplify C++](https://arne-mertz.de/)
+- [Video Cortex](http://videocortex.io/)
 
-Do notice that some blog tends to take about very advanced topics.
+<aside style="margin-top: -360px;">
+
+This blog also has an [RSS feed](https://lesleylai.info/rss.xml).
+
+</aside>
+
+Do notice that blogs sometimes can talk about very advanced topics.
 
 #### Twitter
 
