@@ -18,7 +18,7 @@ I want to share a bunch of beginner-friendly C++ resources that are known to be 
 
 When anyone asks me for guidance about getting into C++,
 I always ask first about their existing experiences.
-Some people just start to learn programing and decide to learn C++ as their first language,
+Some people just start to learn programming and decide to learn C++ as their first language,
 some people have learned a limited amount of C++ and want to learn more,
 and some of them are already programming veterans in other languages.
 Depend on your experiences,
@@ -53,8 +53,7 @@ And for video tutorials, you can try Kate Gregory's [C++ Fundamentals Including 
 
 ## What if I am a veteran in another language and want to delve into C++?
 
-If you are already a proficient programmer in some other languages,
-and want to delve into C++,
+If you are already a proficient programmer in some other languages and want to delve into C++,
 you will have a faster pace journey than other learners.
 
 As for book recommendations,
@@ -85,7 +84,7 @@ to name a few:
 - move semantics
 - operator overloading
 - [lambda expressions and function objects](c++-lambda)
-- undefined behavior
+- undefined behaviors
 
 Now it is time to put C++ into practical usage.
 C++ is used for diverse purposes,
@@ -153,9 +152,8 @@ you can join [its discord server](https://www.includecpp.org/discord/) to hang o
 #### Local Meetups
 
 Joining [North Denver Metro C++ Meetup](https://www.meetup.com/North-Denver-Metro-C-Meetup/) was one of the best decisions for me during my college years.
-I understand that it is a hard time to pop into meetups as the time of writing,
-as most of them are currently held online.
-Nevertheless, I urge you to try to go to some meetups if you have time.
+I understand that it is a hard time to pop into meetups at the time of writing since most of them are currently held online.
+Nevertheless, I urge you to try to attend some meetups if you have time.
 Online meetings also provide some advantages compare to physical ones.
 For example, they require low commitment, and you can choose from all of those meetups worldwide.
 
@@ -163,7 +161,7 @@ For example, they require low commitment, and you can choose from all of those m
 
 If you are serious about C++, then conferences are great places to meet like-minded people.
 Same as meetups, one difficulty at the time of writing is that most C++ conferences are hosted online, but they are still worthwhile to consider.
-Here are some of recurring C++ conferences I am aware of:
+Here are some of the recurring C++ conferences I am aware of:
 
 - [CppCon](https://cppcon.org/)
 - [C++Now](https://cppnow.org/) (tuned toward a more advanced audience)
@@ -189,7 +187,8 @@ There are a bunch of C++ podcasts, including a few new ones appeared in 2020:
 #### Following Blogs
 
 I use RSS to keep track of the tech blogs,
-and I highly recommend you to try out RSS too.
+and I highly recommend you try out RSS too.
+
 I follow hundreds of blogs, including C++ and various other topics.
 Here are some of the best C++ ones that pops into my head:
 
