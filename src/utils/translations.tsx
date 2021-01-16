@@ -79,6 +79,7 @@ const en = {
   javascript: "Javascript",
   lang: "English",
   lastModify: "Last Modify",
+  learning: "Learning",
   library: "Library",
   linkedin: (
     <>
@@ -193,6 +194,7 @@ const zh: Translations = {
   javascript: en.javascript,
   lang: "中文",
   lastModify: "最近修改时间",
+  learning: "学习",
   library: "软件库",
   linkedin: (
     <>

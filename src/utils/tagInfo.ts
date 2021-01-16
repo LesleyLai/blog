@@ -27,6 +27,7 @@ export const tagInfos = {
   i18n: { color: colors.black },
   java: { color: colors.red },
   javascript: { color: colors.yellow },
+  learning: { color: colors.orange },
   library: { color: colors.grey },
   logic: { color: colors.grey },
   math: { color: colors.pink },
