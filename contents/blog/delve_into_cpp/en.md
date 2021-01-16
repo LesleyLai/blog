@@ -204,6 +204,7 @@ Here are some of the best C++ ones that pops into my head:
 - [Bartek's coding blog](https://www.bfilipek.com/)
 - [Simplify C++](https://arne-mertz.de/)
 - [Video Cortex](http://videocortex.io/)
+- [Shafik Yaghmour](https://shafik.github.io/)
 
 <aside style="margin-top: -360px;">
 
@@ -234,7 +235,8 @@ Some of those are great online tools, while others are video series.
 - [Kate Gregory's STL Algorithms course](https://www.pluralsight.com/courses/beautiful-cplusplus-stl-algorithms) is a great resource to learn more about and appreciate C++ standard algorithms.
 - [C++ Weekly](https://www.youtube.com/channel/UCxHAlbZQNFU2LgEtiqd2Maw) is a Youtube channel on various C++ topics, posted weekly.
 
-## Reference
+## References and further reading
 
-- "SG20 Education And Recommended Videos For Teaching C++". *Christopher Di Bella*, 2021, https://www.cjdb.com.au/sg20-and-videos. Accessed 15 Jan 2021.
-- "References And Links". *#Include ＜C++＞*, 2021, https://www.includecpp.org/resources/references/. Accessed 16 Jan 2021.
+- *"SG20 Education And Recommended Videos For Teaching C++". Christopher Di Bella*, 2021, https://www.cjdb.com.au/sg20-and-videos. Accessed 15 Jan 2021.
+- *"References And Links". #Include ＜C++＞*, 2021, https://www.includecpp.org/resources/references/. Accessed 16 Jan 2021.
+- Yaghmour, Shafik. *"Where To Get Started Learing C++ And What Resources To Use". Shafik Yaghmour's Blog*, 2019, https://shafik.github.io/c++/learning/2019/09/05/getting_started_learning_cpp.html. Accessed 16 Jan 2021.
