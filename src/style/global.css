@@ -61,6 +61,26 @@ h5:last-child {
 }
 
 
+
+a.anchor {
+    display: none;
+    float: left;
+    margin-left: -20px;
+    padding-right: 2px;
+}
+
+:hover > a.anchor {
+    display: inline-block;
+}
+
+@media (max-width: 1199px) {
+    a.anchor {
+        display: none;
+    }
+}
+
+
+
 /*******************************
              Links
 *******************************/

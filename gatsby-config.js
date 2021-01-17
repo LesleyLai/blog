@@ -65,6 +65,7 @@ module.exports = {
         extensions: [`.mdx`, `.md`],
         excerpt_separator: `<!-- end -->`,
         gatsbyRemarkPlugins: [
+          `gatsby-remark-autolink-headers`,
           {
             resolve: `gatsby-remark-prismjs`,
             options: {

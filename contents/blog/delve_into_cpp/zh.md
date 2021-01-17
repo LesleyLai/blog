@@ -60,7 +60,7 @@ C++专家Kate Gregory在Pluralsight网站上提供了不少的视频教程。
 在这种情况下，我同样会推荐Bjarne Stroustrup的《C++程序设计：原理与实践》第二版。
 你可以看书看得比纯粹初学者更快一些，不过使用该书来系统地查漏补缺依然很有好处。
 如果您更喜欢视频教程，
-可以从Kate Gregory的[C++ Fundamentals Including C++ 17](https://www.pluralsight.com/courses/cplusplus-fundamentals-c17)开始。
+可以从Kate Gregory的[C++ Fundamentals Including C++17](https://www.pluralsight.com/courses/cplusplus-fundamentals-c17)开始。
 
 ## 如果我是另一门语言的资深人士并想学习C++，该怎么办？
 
@@ -69,11 +69,9 @@ C++专家Kate Gregory在Pluralsight网站上提供了不少的视频教程。
 
 对于书来说，
 我建议阅读Bjarne Stroustrup的《C++程序设计语言》第四版（The C++ Programming Language (4th Edition)）。
-
-这本书也同样相当得厚。如果您没有时间阅读该书并且想要有一个简短的C++介绍，
+这本书是我读过的最好的技术书籍之一。
+不过这本书也同样相当得厚。如果您没有时间阅读该书并且想要有一个简短的C++介绍，
 您可以购买《A Tour of C++》第二版。
-
-“ C ++编程语言（第4版）”是我读过的最好的书之一，尽管确实注意到这本书是用C ++ 11编写的，但是错过了后来的一些发展。 这本书也很厚，因此，如果您需要简短的介绍，请尝试“ A C ++之旅（第二版）”。
 
 ## 我认为我对C++有一定的了解了。 下一步是什么？
 
@@ -83,7 +81,7 @@ C++专家Kate Gregory在Pluralsight网站上提供了不少的视频教程。
 
 <aside style="margin-top: -40px;">
 
-如果您是资深C++程序员，你可能会注意到我用了“概念”一词。不过我并没有在讨论*C++20的[概念](https://zh.cppreference.com/w/cpp/language/constraints)语言特性* 😃.
+如果您是资深C++程序员，你可能会注意到我用了“概念”一词。不过我并没有在讨论C++20的*[概念](https://zh.cppreference.com/w/cpp/language/constraints)*（concept）语言特性 😃.
 
 </aside>
 
@@ -100,9 +98,6 @@ C++专家Kate Gregory在Pluralsight网站上提供了不少的视频教程。
 - 运算符重载（operator overloading）
 - [lambda表达式以及函数对象](c++-lambda)
 - 未定义行为（undefined behaviors）
-
-
-现在是时候将C ++投入实际使用了。 C ++有多种用途，在特定领域使用C ++可能比C ++语言本身更为关键。 也许现在也是花一些时间在更广泛的C ++生态系统上的好时机，例如Catch2等单元测试库，CMake等构建系统生成器以及Conan等包管理器。
 
 如果你已经到了这个阶段，
 那么为C++找到实际用途或许比学习C++语言本身更重要了。
@@ -160,7 +155,7 @@ C++被用于许多不同的用途，
 
 #### 见面会(Meetups)
 
-加入[North Denver Metro C++ Meetup](https://www.meetup.com/North-Denver-Metro-C-Meetup/)是我大学阶段做出的最好决定之一。如果您有时间的话，参加一些本地的C++见面会是一个非常不错的选择。（因为新冠的原因，现在绝大多数见面会以及大会都在网上召开，这有利有弊，但一个很大的优势是您现在可以参加全球的见面会）
+加入[North Denver Metro C++ Meetup](https://www.meetup.com/North-Denver-Metro-C-Meetup/)是我大学阶段做出的最好决定之一。如果您有时间的话，参加一些本地的C++见面会是一个非常不错的选择。（因为新冠的原因，现在绝大多数见面会以及大会都在网上召开，这有利有弊，但一个很大的优势是您现在可以参加全球的见面会）您可以在[meetup.com](https://www.meetup.com/)网站上搜索本地的见面会。
 
 #### 参加大会
 
