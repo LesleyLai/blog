@@ -13,6 +13,7 @@ During the years, a lot of people ask me for help in learning C++.
 I am no C++ expert,
 but as a person who is doing C++ for years,
 I want to share a bunch of beginner-friendly C++ resources that are known to be of high quality.
+And hopefully this list of resources can help learners who are new to C++.
 
 <!-- end -->
 
@@ -30,6 +31,8 @@ Whatever stage you are in, it is much easier to learn when you apply ideas into 
 so spending time on coding projects helps.
 
 ## What if I just start learning to program and choose C++ as my first language?
+
+For beginners, it is important to only "learn from the best" since it is hard to discern if your tutorial is making mistakes or encouraging bad practices.
 
 For books, I recommend Bjarne Stroustrup (the creator of C++) 's ["Programming: Principles and Practice Using C++ 2nd edition"](https://www.amazon.com/Programming-Principles-Practice-Using-2nd/dp/0321992784) as a starting point.
 The book is thick, so don't feel guilty if you cannot finish the whole book.
@@ -54,7 +57,7 @@ And for video tutorials, you can try Kate Gregory's [C++ Fundamentals Including 
 ## What if I am a veteran in another language and want to delve into C++?
 
 If you are already a proficient programmer in some other languages and want to delve into C++,
-you will have a faster pace journey than other learners.
+you can choose materials with faster pace.
 
 As for book recommendations,
 Bjarne Stroustrup's ["The C++ Programming Language (4th Edition)"](https://www.stroustrup.com/4th.html) was one of the best-written books I ever read,
@@ -78,8 +81,9 @@ to name a few:
 - how to use `const`
 - templates
 - references and pointers
-- usage of the standard library, in particular, iterator and algorithms
+- usage of the standard library, in particular, iterators and algorithms
 - [RAII](https://en.cppreference.com/w/cpp/language/raii)
+- destructor
 - copy and move constructor and assignment
 - move semantics
 - operator overloading
@@ -205,7 +209,7 @@ Here are some of the best C++ ones that pops into my head:
 - [Video Cortex](http://videocortex.io/)
 - [Shafik Yaghmour](https://shafik.github.io/)
 
-<aside style="margin-top: -360px;">
+<aside style="margin-top: -540px;">
 
 This blog also has an [RSS feed](https://lesleylai.info/rss.xml).
 
