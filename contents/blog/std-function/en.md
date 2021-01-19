@@ -83,9 +83,9 @@ struct TaskQueue {
 
 ## Type Erasure
 
-To make `func` accepts both `lambda` and `lambda2`, `std::function` need to perform *type erasure*.
-`std::function` has constructors that take any function object or plain function that satisfies its signature,
-so it is hard.
+To make `func` accepts both `lambda` and `lambda2`,
+`std::function` needs to have constructors that take any function object or plain function that satisfies its signature.
+And we need to perform *type erasure* to achieve this behavior.
 
 There are various techniques to implement type erasure in C++,
 and it is not a topic I can fit into this post.
