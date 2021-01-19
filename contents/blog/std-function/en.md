@@ -33,7 +33,7 @@ struct __Lambda {
   int operator()(int y) const {
     return x + y;
   }
-}
+};
 
 int x = 3;
 auto lambda = __Lambda { .x = x };
