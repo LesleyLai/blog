@@ -5,6 +5,7 @@ lang: en
 create: '2021-01-15'
 lastModify: '2021-01-15'
 categories:
+- code
 - cpp
 - learning
 ---
