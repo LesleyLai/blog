@@ -13,7 +13,7 @@
     border-bottom-width: 0.0625em;
     border-bottom-style: solid;
     background-color: white;
-    margin: 8px 0;
+    margin: 12px 0;
     padding: 1rem 0;
     color: #000000;
     display: block;
@@ -60,14 +60,4 @@
 .tags .icon {
     margin-top: 6px;
     opacity: 0.60;
-}
-
-.readmore {
-    background-color: #fff;
-    border: 1px #000000 solid;
-    border-radius: 10px;
-    color: #363636;
-    cursor: pointer;
-    padding: calc(.375em - 1px) .75em;
-    text-align: center;
 }

@@ -55,14 +55,6 @@ export default class PaginatedPostsList extends React.Component {
                 </div>
               </div>
               <p className={style.excerpt}>{post.excerpt}</p>
-
-              <Link
-                className={style.readmore}
-                to={`/${post.frontmatter.lang}/${post.frontmatter.id}`}
-                aria-label={post.frontmatter.title}
-              >
-                {translations[lang]["readmore"]}
-              </Link>
             </article>
           );
         })}

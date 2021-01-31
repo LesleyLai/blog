@@ -105,7 +105,6 @@ const en = {
   racket: "Racket",
   rasterizer: "Rasterization",
   react: "React",
-  readmore: "Read More",
   return_to_home: (
     <>
       Return to the <Link to="/">Home Page</Link>
@@ -221,7 +220,6 @@ const zh: Translations = {
   racket: en.racket,
   rasterizer: "光栅化",
   react: en.react,
-  readmore: "阅读全文",
   return_to_home: (
     <>
       返回<Link to="/zh">主页</Link>
