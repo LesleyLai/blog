@@ -40,9 +40,12 @@ interface FormValues {
 const Form = styled.form`
   max-width: 600px;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
+  display: block;
 `;
+
+interface InputStyleProps {
+  isError: boolean;
+}
 
 const InputMixin = `
   width: 100%;
@@ -64,14 +67,26 @@ const InputMixin = `
   }
 `;
 
-const Input = styled.input`
-  ${InputMixin}
+const InputErrorMixin = `
+  outline: none;
+  border: 1px solid #DC708F;
+  box-shadow: 0px 0px 2px #EAA9BB inset;
+
+  :hover {
+  border: 1px solid #C51245;
+  }
 `;
 
-const TextArea = styled.textarea`
+const Input = styled.input<InputStyleProps>`
+  ${InputMixin}
+  ${props => props.isError && InputErrorMixin}
+`;
+
+const TextArea = styled.textarea<InputStyleProps>`
   ${InputMixin}
   resize: vertical;
   height: 200px;
+  ${props => props.isError && InputErrorMixin}
 `;
 
 const Label = styled.label`
@@ -100,26 +115,30 @@ const SubmitButton = styled.button`
   }
 `;
 
+const StyledErrorMessageWrapper = styled.div``;
+
 const StyledErrorMessage = styled(ErrorMessage)`
   color: #ffffff;
   background: #c51244;
-  padding: 10px;
-  border-radius: 8px;
+  padding: 3px;
+  border-radius: 4px;
   position: relative;
   display: inline-block;
   box-shadow: 1px 1px 1px #aaaaaa;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  float: right;
+  font-size: 12px;
+  font-weight: 700;
 
   :before {
     content: "";
     width: 0;
     height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid #c51244;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid #c51244;
     position: absolute;
-    top: -10px;
+    top: -5px;
+    left: 10px;
   }
 
   :after {
@@ -128,9 +147,9 @@ const StyledErrorMessage = styled(ErrorMessage)`
 `;
 
 const MyErrorMessage = ({ name }: { name: string }) => (
-  <div>
+  <StyledErrorMessageWrapper>
     <StyledErrorMessage component="div" name={name} />
-  </div>
+  </StyledErrorMessageWrapper>
 );
 
 const InnerForm = (props: FormikProps<FormValues>) => {
@@ -168,6 +187,7 @@ const InnerForm = (props: FormikProps<FormValues>) => {
         value={values.name}
         placeholder="Name"
         required
+        isError={!!(touched.name && errors.name)}
       />
       <MyErrorMessage name="name" />
 
@@ -182,6 +202,7 @@ const InnerForm = (props: FormikProps<FormValues>) => {
         value={values.email}
         placeholder="Email"
         required
+        isError={!!(touched.email && errors.email)}
       />
       <MyErrorMessage name="email" />
 
@@ -195,6 +216,7 @@ const InnerForm = (props: FormikProps<FormValues>) => {
         onBlur={handleBlur}
         value={values.website}
         placeholder="Your website (optional)"
+        isError={!!(touched.website && errors.website)}
       />
       <MyErrorMessage name="website" />
 
@@ -207,6 +229,7 @@ const InnerForm = (props: FormikProps<FormValues>) => {
         value={values.message}
         placeholder="Type your message here..."
         required
+        isError={!!(touched.message && errors.message)}
       />
       <MyErrorMessage name="message" />
 
