@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { Language, translations } from "../../utils/translations";
 import { TagID } from "../../types/tags";
 import { tagInfos } from "../../utils/tagInfo";
-import { Color } from "../../utils/colorTable";
+import { Color, colors } from "../../utils/colorTable";
 
 interface TagsProps {
   lang: Language;
@@ -26,20 +26,18 @@ const Ul = styled.ul`
   font-size: 12px;
 `;
 
-const TagBox = styled.span<{ colors: Color }>(
-  props => `
-            padding: 0.4em 0.5em;
-            text-transform: none;
-            font-weight: 700;
-            font-size: 10px;
-            border-radius: 0.28571429rem;
-            color: ${props.colors.fg};
-            background-color: ${props.colors.bg};
-            &:hover {
-              background-color: ${props.colors.hover};
-            }
-`
-);
+const TagBox = styled.span`
+  padding: 0.4em 0.5em;
+  text-transform: none;
+  font-weight: 700;
+  font-size: 10px;
+  border-radius: 0.28571429rem;
+  color: #fff;
+  background-color: #2dabf9;
+  &:hover {
+    background-color: #0688fa;
+  }
+`;
 
 const TagsList = (props: TagsProps) => {
   const tags = props.tags;
@@ -52,7 +50,7 @@ const TagsList = (props: TagsProps) => {
         .map(tag => (
           <Li key={tag}>
             <Link to={`/${lang}/archive/${tag}`}>
-              <TagBox colors={tagInfos[tag].color}>{translations[lang][tag]}</TagBox>
+              <TagBox>{translations[lang][tag]}</TagBox>
             </Link>
           </Li>
         ))}

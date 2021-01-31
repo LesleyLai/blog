@@ -2,6 +2,7 @@ import * as React from "react";
 import Link from "gatsby-link";
 import {
   InstantSearch,
+  Stats,
   Configure,
   Hits,
   Highlight,
@@ -9,7 +10,7 @@ import {
   Pagination,
 } from "react-instantsearch-dom";
 import algoliasearch from "algoliasearch/lite";
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 import { Language } from "../../utils/translations";
 import { TagID } from "../../types/tags";
@@ -101,14 +102,7 @@ const SearchLabel = ({ htmlFor }: { htmlFor: string }) => {
   );
 };
 
-const SearchArea = styled.div`
-  margin: auto 0;
-  margin-bottom: auto !important;
-
-  @media (max-width: 992px) {
-    margin: 10px 20px;
-  }
-
+const GlobalSearchStyle = createGlobalStyle`
   input#search {
     display: none;
   }
@@ -128,9 +122,20 @@ const SearchArea = styled.div`
     color: #fff;
   }
 
-  input[type="checkbox"]:checked ~ .search-overlay {
+  input#search:checked ~ .search-overlay {
     display: block;
     opacity: 0.9;
+  }
+
+  input#search:checked
+`;
+
+const SearchArea = styled.div`
+  margin: auto 0;
+  margin-bottom: auto !important;
+
+  @media (max-width: 992px) {
+    margin: 10px 20px;
   }
 `;
 
@@ -141,13 +146,19 @@ export default function Search({ indices, collapse }: SearchProps) {
   );
   return (
     <SearchArea>
-      <SearchLabel htmlFor="search" />
-      <input type="checkbox" name="" id="search"></input>
-      <div className="search-overlay">
-        <label htmlFor="search">
+      {/* <GlobalSearchStyle />
+          <SearchLabel htmlFor="search" />
+          <input type="checkbox" name="" id="search"></input>
+          <div className="search-overlay">
+          <label htmlFor="search">
           <p>Back</p>
-        </label>
-      </div>
+          </label>
+          <InstantSearch searchClient={searchClient} indexName={indices[0].name}>
+          <Stats />
+          <SearchBox />
+          <Hits hitComponent={PostHit(() => setFocus(false))} />
+          </InstantSearch>
+          </div> */}
     </SearchArea>
   );
 }

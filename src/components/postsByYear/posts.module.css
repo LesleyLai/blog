@@ -13,6 +13,11 @@
     font-size: 18px;
 }
 
+.entryTitle {
+    color: hsla(0,0%,0%,0.8);
+    font-family: 'PT Serif','Noto Serif SC';
+}
+
 .archiveTags {
     display: inline-block;
 }
