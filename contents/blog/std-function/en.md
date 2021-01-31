@@ -1,6 +1,6 @@
 ---
 id: std-function
-title: "What is std::function in C++, and why we need them?"
+title: "What is std::function in C++, and why do we need them?"
 lang: en
 create: '2021-01-18'
 lastModify: '2021-01-18'
@@ -15,7 +15,7 @@ Yesterday, someone in the [#include<C++>](https://www.includecpp.org/discord/) d
 
 Below was my answer to the question, with some typo-fixes and expansions:
 
-## Invocables can have different types even if their parameter and return type are the same
+## Invocables can have different types even if their parameter and return types are the same
 
 Lambda expressions can be considered syntactic sugar over classes with `operator()` defined. For example:
 

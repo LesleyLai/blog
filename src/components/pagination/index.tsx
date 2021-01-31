@@ -10,18 +10,38 @@ interface PaginationProps {
 }
 
 const Container = styled.ul`
-  display: flex;
+  display: none;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   list-style: none;
   padding: 0;
   width: fit-content;
-  margin: auto;
+  margin: 24px auto 12px;
+
+  li:first-child {
+    margin-right: 12px;
+  }
+
+  li:last-child {
+    margin-left: 12px;
+  }
 `;
 
-const Li = styled.li`
-  margin: 0;
+const ContainerLarge = styled(Container)`
+  li {
+    margin: 0;
+  }
+
+  @media (min-width: 576px) {
+    display: flex;
+  }
+`;
+
+const ContainerXs = styled(Container)`
+  @media (max-width: 576px) {
+    display: flex;
+  }
 `;
 
 const PaginationLink = styled(Link)`
@@ -40,6 +60,30 @@ const PaginationDisabled = styled.span`
   border: 1px solid #ddd;
 `;
 
+const PreviousButton = (props: { previousPage: string; isFirst: boolean }) => (
+  <li key="pagination-previous">
+    {props.isFirst ? (
+      <PaginationDisabled>Previous</PaginationDisabled>
+    ) : (
+      <PaginationLink to={props.previousPage} rel="prev">
+        Previous
+      </PaginationLink>
+    )}
+  </li>
+);
+
+const NextButton = (props: { nextPage: string; isLast: boolean }) => (
+  <li key="pagination-next">
+    {props.isLast ? (
+      <PaginationDisabled>Next</PaginationDisabled>
+    ) : (
+      <PaginationLink to={props.nextPage} rel="next">
+        Next
+      </PaginationLink>
+    )}
+  </li>
+);
+
 const Pagination = ({ lang, currentPage, pagesCount }: PaginationProps) => {
   const isFirst = currentPage == 1;
   const isLast = currentPage == pagesCount;
@@ -50,44 +94,45 @@ const Pagination = ({ lang, currentPage, pagesCount }: PaginationProps) => {
   const nextPage = linkAt(currentPage + 1);
 
   return (
-    <Container id="pagination">
-      <Li key="pagination-previous">
-        {isFirst ? (
-          <PaginationDisabled>Previous</PaginationDisabled>
-        ) : (
-          <PaginationLink to={previousPage} rel="prev">
-            Previous
+    <>
+      <ContainerXs id="pagination-xs">
+        <PreviousButton previousPage={previousPage} isFirst={isFirst} />
+        <li key={`pagination-number${currentPage}`}>
+          <PaginationLink
+            to={linkAt(currentPage)}
+            style={{
+              color: "#ffffff",
+              background: "#007acc",
+            }}
+          >
+            {currentPage}
           </PaginationLink>
-        )}
-      </Li>
-      {Array.from({ length: pagesCount }, (_, i) => (
-        <Li key={`pagination-number${i + 1}`}>
-          {(() => {
-            const isCurrent = i + 1 === currentPage;
-            return (
-              <PaginationLink
-                to={linkAt(i + 1)}
-                style={{
-                  color: isCurrent ? "#ffffff" : undefined,
-                  background: isCurrent ? "#007acc" : undefined,
-                }}
-              >
-                {i + 1}
-              </PaginationLink>
-            );
-          })()}
-        </Li>
-      ))}
-      <Li key="pagination-next">
-        {isLast ? (
-          <PaginationDisabled>Next</PaginationDisabled>
-        ) : (
-          <PaginationLink to={nextPage} rel="next">
-            Next
-          </PaginationLink>
-        )}
-      </Li>
-    </Container>
+        </li>
+        <NextButton nextPage={nextPage} isLast={isLast} />
+      </ContainerXs>
+      <ContainerLarge id="pagination-large">
+        <PreviousButton previousPage={previousPage} isFirst={isFirst} />
+        {Array.from({ length: pagesCount }, (_, i) => (
+          <li key={`pagination-number${i + 1}`}>
+            {(() => {
+              const isCurrent = i + 1 === currentPage;
+              return (
+                <PaginationLink
+                  to={linkAt(i + 1)}
+                  style={{
+                    color: isCurrent ? "#ffffff" : undefined,
+                    background: isCurrent ? "#007acc" : undefined,
+                  }}
+                >
+                  {i + 1}
+                </PaginationLink>
+              );
+            })()}
+          </li>
+        ))}
+        <NextButton nextPage={nextPage} isLast={isLast} />
+      </ContainerLarge>
+    </>
   );
 };
 
