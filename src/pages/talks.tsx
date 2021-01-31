@@ -15,13 +15,17 @@ interface TalkProps {
 }
 
 const Talk = (props: TalkProps) => {
+  const Section = styled.section`
+    padding: 12px 0;
+  `;
+
   const Date = styled.p`
-    margin: 0 0 10px 0;
+    margin: 12px 0;
   `;
 
   const H2 = styled.h2`
     display: inline;
-    font-size: 20px;
+    font-size: 24px;
     margin: 5px 0 5px 0
     font-weight: 500;
   `;
@@ -33,12 +37,12 @@ const Talk = (props: TalkProps) => {
   `;
 
   return (
-    <section>
+    <Section>
       <H2>{props.title}</H2>
       {props.children}
       <Hr />
       <Date>Date: {props.date}</Date>
-    </section>
+    </Section>
   );
 };
 
@@ -89,6 +93,21 @@ const TalksPage = ({ data, location, pageContext }: TalksProps) => {
         />
         <h1>{talksLocale}</h1>
         <P>{pageDescription}</P>
+        <Talk title="CUDA Boid" date="2021-1-6">
+          <P>
+            This talk focuses on flocking simulation in CUDA. It starts with the three rules of boid
+            simulation and then delves into how to optimize such a GPU simulation.
+          </P>
+          <UL>
+            <li>
+              <a href="https://youtu.be/PPsP1unDkSg">Video</a>
+            </li>
+            <li>
+              Slides <a href={`/talks/slides_cuda-boid/`}>[Interactive]</a>{" "}
+              <a href={`/talks/cuda-boid.pdf`}>[PDF]</a>
+            </li>
+          </UL>
+        </Talk>
         <Talk title="Type Erasure: Concept and Implementation" date="2020-2-13">
           <P>
             This talk explains the idea of type erasure in the C++ context and how it gets

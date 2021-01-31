@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html class="sl-root decks export offline loaded">
+
+<head>
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>CUDA Boid</title>
+
+
+  <link rel="stylesheet" type="text/css" href="../lib/offline-v2.css">
+
+
+
+</head>
+
+<body class="reveal-viewport theme-font-montserrat theme-color-sand-blue">
+  <div class="reveal">
+    <div class="slides">
+      <section data-id="865ee01d6e4f0e78c7216d0fe627ee64">
+        <div class="sl-block" data-block-type="text" style="width: 806px; left: 80px; top: 238px; height: auto;"
+          data-block-id="866ec191bfe9d3f052a57e2c67bc9bbe">
+          <div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text">
+            <h1>Graphics Programming Virtual Meetup</h1>
+          </div>
+        </div>
+      </section>
+      <section data-id="7152f48de3df657e43e6470eaff38316">
+        <div class="sl-block" data-block-type="image"
+          style="width: 627.267px; height: 317.118px; left: 166.367px; top: 191.441px; min-width: 1px; min-height: 1px;"
+          data-name="image-73a511" data-block-id="a5d809a3743e0b9d8ac9032bae0b4f26">
+          <div class="sl-block-content" style="z-index: 10;"><img style="" data-natural-width="540"
+              data-natural-height="273" data-lazy-loaded="" data-src="cuda-boid/9ee89628f510f57393e695ff22e6270c.png">
+          </div>
+        </div>
+      </section>
+      <section data-id="83abfac59fa0923b4eb3338f380cff37">
+        <div class="sl-block" data-block-type="image"
+          style="width: 604.034px; height: 317.118px; left: 177.983px; top: 181.885px; min-width: 1px; min-height: 1px;"
+          data-name="image-73a511" data-block-id="2f87641b0b9008fdb50e37e51c9c1662">
+          <div class="sl-block-content" style="z-index: 10;"><img style="" data-natural-width="600"
+              data-natural-height="315" data-lazy-loaded="" data-src="cuda-boid/ff0bf0b9be7a2f851d88b1194a673dac.jpg">
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="text" data-name="text-33ed27"
+          data-block-id="d9b50a512e4fc66c1979f8ce160bb9b0"
+          style="height: auto; width: 600px; left: 180px; top: 91.6104px;">
+          <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+            <h2>Discord</h2>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="text" data-name="text-7d1b5c"
+          data-block-id="cf8ebff6f5a04e336c59e57aede860fb"
+          style="height: auto; width: 600px; left: 177.983px; top: 540.5px;">
+          <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+            <p><a href="https://discord.gg/6TTRA5h" target="_blank">https://discord.gg/6TTRA5h</a></p>
+          </div>
+        </div>
+      </section>
+      <section data-id="e3c2921cf8fb591104d5700f30867af1">
+        <div class="sl-block" data-block-type="image"
+          style="width: 604.034px; height: 316.926px; left: 177.983px; top: 181.981px; min-width: 1px; min-height: 1px;"
+          data-name="image-73a511" data-block-id="a78acfa464064334264209f4a7bb1076">
+          <div class="sl-block-content" style="z-index: 10;"><img
+              style="left: 0px; top: -5px; width: 604px; height: 327px;" data-natural-width="414"
+              data-natural-height="224" data-lazy-loaded="" data-crop-x="-0.000028" data-crop-y="0.01511"
+              data-crop-width="1.000056" data-crop-height="0.96978"
+              data-src="cuda-boid/8aafda1cfa6cf0db503ebae261d4ee10.png"></div>
+        </div>
+        <div class="sl-block" data-block-type="text" data-name="text-33ed27"
+          style="height: auto; width: 600px; left: 180px; top: 91.6104px;"
+          data-block-id="d21ce0fa7727e799667a4354d60f2943">
+          <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+            <h2>Twitter</h2>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="text" data-name="text-7d1b5c"
+          style="height: auto; width: 600px; left: 177.983px; top: 540.5px;"
+          data-block-id="97c07ac50598e1d3025c27b93995802d">
+          <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+            <p><a href="https://twitter.com/GraphicMeetup" target="_blank">https://twitter.com/GraphicMeetup</a><span
+                style="display:none"> </span></p>
+          </div>
+        </div>
+      </section>
+      <section data-id="4e03d683bc414437da7d3955040dd7f3">
+        <div class="sl-block" data-block-type="text" data-name="text-33ed27"
+          style="height: auto; width: 600px; left: 180px; top: 91.6104px;"
+          data-block-id="fa4f1333629cee6e7193aa24099e47c1">
+          <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;"
+            dir="ui">
+            <h2>Youtube Channel</h2>
+          </div>
+          <grammarly-extension style="position: absolute; top: 0px; left: 0px; pointer-events: none; z-index: 11;"
+            class="cGcvT"></grammarly-extension>
+        </div>
+        <div class="sl-block" data-block-type="text" data-name="text-7d1b5c"
+          style="height: auto; width: 600px; left: 177.983px; top: 540.5px;"
+          data-block-id="a2bb191f795b4fdfc9e1b1754c493dff">
+          <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+            <p><a href="https://www.youtube.com/channel/UCbX05PBAE-582PYaRXdjRnw/"
+                target="_blank">https://www.youtube.com/channel/UCbX05PBAE-582PYaRXdjRnw/</a></p>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="image" data-name="image-eb1e98"
+          data-block-id="ab4e6b77e02184cf424762a812363d76"
+          style="width: 649px; height: 316.55px; left: 153.483px; top: 191.725px; min-width: 1px; min-height: 1px;">
+          <div class="sl-block-content" style="z-index: 13;"><img style="" data-natural-width="1347"
+              data-natural-height="657" data-lazy-loaded="" data-src="cuda-boid/3ea12c52441cb349dcffa1ed7b4061f7.png">
+          </div>
+        </div>
+      </section>
+      <section data-id="7b3b37ae6b4e086825c1e09276164674">
+        <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 266px; height: auto;"
+          data-block-id="b9520bd7f19650efc0ea17298f7b0136">
+          <div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text"
+            style="z-index: 10;">
+            <h1>CUDA Flocking Simulation</h1>
+          </div>
+        </div>
+      </section>
+      <section data-id="a4bfe6f211205355bb2af445f56fb307">
+        <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 189px; height: auto;"
+          data-block-id="3bda54d2f604edfdad37a0147149dfb1">
+          <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text"
+            style="z-index: 10;">
+            <h2>Credits</h2>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 263px; height: auto;"
+          data-block-id="8da7833e0d73d4c93355f032245cc94f">
+          <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+            <ul>
+              <li>University of Pennsylvania CIS 565 2020 Project 1</li>
+              <li>"Efficient Neighbor Searching for Agent-based<br>
+                Simulation on GPU"</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section data-id="3f14beb3ca0488ef79475881938321a1">
+        <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 266px; height: auto;"
+          data-block-id="3dd3446f5c4046ca6230ce290fa2a841">
+          <div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text"
+            style="z-index: 10;">
+            <h1>Boid Simulation</h1>
+          </div>
+        </div>
+      </section>
+      <section data-id="b20d0221b32a8d1fcce8010024f78b91">
+        <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 42px; height: auto;"
+          data-block-id="2d28c67edff9ac711e45250dc392d945">
+          <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text"
+            style="z-index: 10;">
+            <h2>Rule 1: Separation</h2>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="image" data-name="image-1ce769"
+          data-block-id="4665a745e6e8ad6149bb40f1d8e4833b"
+          style="width: 755.824px; height: 518px; left: 102.088px; top: 116px; min-width: 1px; min-height: 1px;">
+          <div class="sl-block-content" style="z-index: 12;"><img style="" data-natural-width="232"
+              data-natural-height="159" data-lazy-loaded="" data-src="cuda-boid/f43bda27b8e95080dcd61d8849078670.svg">
+          </div>
+        </div>
+      </section>
+      <section data-id="0ae394b335ad737f9673d1eb7042311c">
+        <div class="sl-block" data-block-type="text" style="width: 413px; left: 33.5px; top: 62px; height: auto;"
+          data-block-id="06a4a568e178d583591b3d12643fa327">
+          <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text"
+            style="text-align: left; z-index: 10;">
+            <h2>Separation Pseudocode</h2>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="image" data-name="image-1ce769"
+          style="width: 433.358px; height: 297px; left: 480px; top: 79px; min-width: 1px; min-height: 1px;"
+          data-block-id="8632b0073bf8781df0b6efccf2555dd6">
+          <div class="sl-block-content" style="z-index: 11;"><img style="" data-natural-width="232"
+              data-natural-height="159" data-lazy-loaded="" data-src="cuda-boid/f43bda27b8e95080dcd61d8849078670.svg">
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="code" data-name="code-c34e66"
+          data-block-id="28aabf8663486d715f3fb7cc55ffe69e"
+          style="width: 723.776px; height: 298.5px; left: 68.679px; top: 350px;">
+          <div class="sl-block-content notranslate" data-highlight-theme="monokai" data-code-frame="none"
+            style="z-index: 12;">
+            <pre style="font-size: 16px; line-height: 19px;" class="cpp"><code data-line-numbers="">def seperation(boid: Boid, boids: Boid[]) {
+  c: Vec3 = 0
+
+  for (b : boids) {
+    if b != boid and distance(b, boid) &lt; seperation_distance
+      c -= (neighbor.position - boid.position)
+  }
+
+  return c * seperation_scale
+}</code></pre>
+          </div>
+        </div>
+      </section>
+      <section data-id="49ba2c20deb23387c79804eec5fecbe0">
+        <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 42px; height: auto;"
+          data-block-id="66f8ea3099fbe20aaecd2be4701a0178">
+          <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text"
+            style="z-index: 10;">
+            <h2>Rule 2: Alignment</h2>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="image" data-name="image-a04e00"
+          data-block-id="1e872881efe660cb20f0f2c02e860c7f"
+          style="width: 755.824px; height: 518px; left: 102.088px; top: 91px; min-width: 1px; min-height: 1px;">
+          <div class="sl-block-content" style="z-index: 11;"><img data-natural-width="232" data-natural-height="159"
+              style="" data-lazy-loaded="" data-crop-x="0" data-crop-y="0" data-crop-width="1" data-crop-height="1"
+              data-src="cuda-boid/bc758ee76f50f86b90026d99f9d82d72.svg"></div>
+        </div>
+      </section>
+      <section data-id="3e69373ba092a5ffbf5ffe85f1653d84">
+        <div class="sl-block" data-block-type="text" style="width: 413px; left: 33.5px; top: 62px; height: auto;"
+          data-block-id="3f8fa54182fd02d30f166101e6aeac25">
+          <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text"
+            style="text-align: left; z-index: 10;">
+            <h2>Alignment Pseudocode</h2>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="image" data-name="image-1ce769"
+          style="width: 433.358px; height: 297px; left: 480px; top: 79px; min-width: 1px; min-height: 1px;"
+          data-block-id="d68e401f6024e67c485cdd9e4d0b800e">
+          <div class="sl-block-content" style="z-index: 11;" data-inline-svg="false"><img
+              style="left: 0px; top: 0px; width: 433px; height: 297px;" data-natural-width="232"
+              data-natural-height="159" data-lazy-loaded="" data-crop-x="0.000001" data-crop-y="0"
+              data-crop-width="0.999999" data-crop-height="1" data-src="cuda-boid/bc758ee76f50f86b90026d99f9d82d72.svg">
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="code" data-name="code-c34e66"
+          style="width: 723.776px; height: 298.5px; left: 68.679px; top: 350px;"
+          data-block-id="463306c1dba78c3bfd8bdf7bda246950">
+          <div class="sl-block-content notranslate" data-highlight-theme="monokai" data-code-frame="none"
+            style="z-index: 12;">
+            <pre style="font-size: 16px; line-height: 19px;" class="cpp"><code data-line-numbers="">def alignment(boid: Boid, boids: Boid[]) {
+  perceived_velocity: Vec3 = 0
+  neighbors_count = 0
+
+  for (b : boids) {
+    if b != boid and distance(b, boid) &lt; alignment_distance
+      perceived_velocity += b.velocity - boid.velocity
+      ++neighbors_count
+  }
+  
+  if (neighbors_count &gt;= 0) perceived_velocity /= neighbors_count
+
+  return perceived_velocity * alignment_scale
+}</code></pre>
+          </div>
+        </div>
+      </section>
+      <section data-id="6c84e2ab013e276ec658c390e3f2d250">
+        <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 42px; height: auto;"
+          data-block-id="a7e1f483d824c1cea99910866f4b94fa">
+          <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text"
+            style="z-index: 10;">
+            <h2>Rule 3: Cohesion</h2>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="image" data-name="image-88502c"
+          data-block-id="24552db49603f7784a2b0ec03a1f8f00"
+          style="width: 755.824px; height: 518px; left: 102.088px; top: 91px; min-width: 1px; min-height: 1px;">
+          <div class="sl-block-content" style="z-index: 11;"><img style="" data-natural-width="232"
+              data-natural-height="159" data-lazy-loaded="" data-crop-x="0" data-crop-y="0" data-crop-width="1"
+              data-crop-height="1" data-src="cuda-boid/4a0df45b0004f547b269f2bfae30f2ef.svg"></div>
+        </div>
+      </section>
+      <section data-id="f618c791ef53a66a003ffe273a6eaacf">
+        <div class="sl-block" data-block-type="text" style="width: 413px; left: 33.5px; top: 62px; height: auto;"
+          data-block-id="29daf9b64107b5acf817b4d6c44300db">
+          <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text"
+            style="text-align: left; z-index: 10;">
+            <h2>Cohesion Pseudocode</h2>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="image" data-name="image-1ce769"
+          style="width: 433.358px; height: 297px; left: 480px; top: 79px; min-width: 1px; min-height: 1px;"
+          data-block-id="2204c6fe919b179f3b131f21a2e28798">
+          <div class="sl-block-content" style="z-index: 11;" data-inline-svg="false"><img
+              style="left: 0px; top: 0px; width: 433px; height: 297px;" data-natural-width="232"
+              data-natural-height="159" data-lazy-loaded="" data-crop-x="0.000001" data-crop-y="0"
+              data-crop-width="0.999999" data-crop-height="1" data-src="cuda-boid/4a0df45b0004f547b269f2bfae30f2ef.svg">
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="code" data-name="code-c34e66"
+          style="width: 719.776px; height: 341.056px; left: 68.679px; top: 340.444px;"
+          data-block-id="a3ca2be84fa06cf918a0e2f8a81dd4ab">
+          <div class="sl-block-content notranslate" data-highlight-theme="monokai" data-code-frame="none"
+            style="z-index: 12;">
+            <pre style="font-size: 16px; line-height: 19px;" class="cpp"><code data-line-numbers="">def cohesion(boid: Boid, boids: Boid[]) {
+  center_of_mass: Vec3 = 0
+  neighbors_count = 0
+
+  for (b : boids) {
+    if b != boid and distance(b, boid) &lt; cohesion_distance
+      center_of_mass += b.position
+      ++neighbors_count
+  }
+  
+  if (neighbors_count &gt; 0) {
+    center_of_mass /= neighbors_count
+    return (center_of_mass - boid.position) * cohesion_scale
+  }
+
+  return 0
+}</code></pre>
+          </div>
+        </div>
+      </section>
+      <section data-id="bd455ae00e41620cf10324f53bb3465d">
+        <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 42px; height: auto;"
+          data-block-id="6e260280d72a7b2d6ffeb447180f9a65">
+          <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text"
+            style="z-index: 10;">
+            <h2>Naive Implementation: Pseudocode</h2>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="code" data-name="code-4b4653"
+          data-block-id="e9855ac0a391a49239655565d77311cd"
+          style="width: 436px; height: 278px; left: 265.5px; top: 245px;">
+          <div class="sl-block-content notranslate" data-highlight-theme="monokai" data-code-frame="none"
+            style="z-index: 12;">
+            <pre class="cpp" style="font-size: 16px; line-height: 19px;"><code data-line-numbers="">def step_naive(pos, vel1, vel2) {
+  for parallel (boid : boids) {
+    new_vel = vel1[boid];
+    for (others : boids) {
+      // Accumulate for new_vel
+    }
+    vel2[boid] = new_vel;
+  }
+
+  update_pos(pos, vel2);
+  
+  swap(vel1, vel2);
+}</code></pre>
+          </div>
+        </div>
+      </section>
+      <section data-id="93374559e3c82c5e3519748caf60ebd3">
+        <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 42px; height: auto;"
+          data-block-id="88de30fc276d2808d583c290e9747912">
+          <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text"
+            style="z-index: 10;">
+            <h2>Naive Implementation: Pseudocode</h2>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="code" data-name="code-4b4653"
+          style="width: 436px; height: 278px; left: 265.5px; top: 245px;"
+          data-block-id="1befbe2e556aa41f92731e94e8aafad4">
+          <div class="sl-block-content notranslate" data-highlight-theme="monokai" data-code-frame="none"
+            style="z-index: 11;">
+            <pre class="cpp" style="font-size: 16px; line-height: 19px;"><code data-line-numbers="">def step_naive(pos, vel1, vel2) {
+  for parallel (boid : boids) {
+    new_vel = vel1[boid];
+    for (others : boids) {
+      // Accumulate for new_vel
+    }
+    vel2[boid] = new_vel;
+  }
+
+  update_pos(pos, vel2);
+  
+  swap(vel1, vel2);
+}</code></pre>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="line" data-name="line-3f5ed5"
+          data-block-id="ac6eb58ce6a49cd773bc35ce0ba2cc83"
+          style="width: auto; height: auto; min-width: 0px; min-height: 0px; left: 196.5px; top: 384px;">
+          <div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="123.5" data-line-y2="42"
+            data-line-color="#ff0000" data-line-start-type="none" data-line-end-type="line-arrow" style="z-index: 12;">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="123.5"
+              height="42" viewbox="0 0 123.5 42">
+              <line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="121.60650124241029"
+                y2="41.356057102682044"></line>
+              <line class="line-element" stroke="#ff0000" stroke-width="2" x1="0" y1="0" x2="121.60650124241029"
+                y2="41.356057102682044"></line>
+              <path style="fill: rgba(0,0,0,0);" stroke="#ff0000" stroke-width="2"
+                transform="translate(121.60650124241029,41.356057102682044) rotate(108.782)" d="M 6 6 L 0 0 L -6 6">
+              </path>
+            </svg></div>
+        </div>
+        <div class="sl-block" data-block-type="text" data-name="text-be2345"
+          data-block-id="d3261612bc2101b31cc205653f7286b8"
+          style="height: auto; width: 217.5px; left: 51.25px; top: 345px;">
+          <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+            <p>Explicit Euler</p>
+          </div>
+        </div>
+      </section>
+      <section data-id="2cd53295f59136852e5c72a7a51b119c">
+        <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 42px; height: auto;"
+          data-block-id="4c4f54ea8722538d6bbac7c9480714c2">
+          <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text"
+            style="z-index: 10;">
+            <h2>Naive Implementation: Pseudocode</h2>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="code" data-name="code-4b4653"
+          style="width: 436px; height: 278px; left: 265.5px; top: 245px;"
+          data-block-id="16e938896d015493d08ce342845e4850">
+          <div class="sl-block-content notranslate" data-highlight-theme="monokai" data-code-frame="none"
+            style="z-index: 11;">
+            <pre class="cpp" style="font-size: 16px; line-height: 19px;"><code data-line-numbers="">def step_naive(pos, vel1, vel2) {
+  for parallel (boid : boids) {
+    new_vel = vel1[boid];
+    for (others : boids) {
+      // Accumulate for new_vel
+    }
+    vel2[boid] = new_vel;
+  }
+
+  update_pos(pos, vel2);
+  
+  swap(vel1, vel2);
+}</code></pre>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="line" data-name="line-3f5ed5"
+          style="width: auto; height: auto; left: 265.5px; top: 469px;"
+          data-block-id="7859706d98c10c7413554dfc302899a0">
+          <div class="sl-block-content" data-line-x1="0" data-line-y1="91" data-line-x2="54.5" data-line-y2="0"
+            data-line-color="#ff0000" data-line-start-type="none" data-line-end-type="line-arrow" style="z-index: 12;">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="54.5"
+              height="91" viewbox="0 0 54.5 91">
+              <line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="91" x2="53.47239523224359"
+                y2="1.715817135152899"></line>
+              <line class="line-element" stroke="#ff0000" stroke-width="2" x1="0" y1="91" x2="53.47239523224359"
+                y2="1.715817135152899"></line>
+              <path style="fill: rgba(0,0,0,0);" stroke="#ff0000" stroke-width="2"
+                transform="translate(53.47239523224359,1.715817135152899) rotate(30.917)" d="M 6 6 L 0 0 L -6 6"></path>
+            </svg></div>
+        </div>
+        <div class="sl-block" data-block-type="text" data-name="text-be2345"
+          style="height: auto; width: 324px; left: 80px; top: 560px;" data-block-id="892e7ab9bd2cc959fb3541329eade953">
+          <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+            <p>Buffer Ping-Ponging</p>
+          </div>
+        </div>
+      </section>
+      <section data-id="e916f337b3fc36c63bfc55de1045381c">
+        <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 266px; height: auto;"
+          data-block-id="00b29fc4c6089164c6206432b864de8f">
+          <div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text"
+            style="z-index: 10;">
+            <h1>Uniform Grid</h1>
+          </div>
+        </div>
+      </section>
+      <section data-id="51fb6c6f60d4d40a362c2ce6cb287944">
+        <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 42px; height: auto;"
+          data-block-id="df528755b191f91f8ad9262cd8d136b7">
+          <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text"
+            style="z-index: 10;">
+            <h2>Uniform Grid</h2>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="image"
+          style="width: 518px; height: 518px; left: 221px; top: 130px; min-width: 1px; min-height: 1px;"
+          data-name="image-7f49ac" data-block-id="7bcaa34965cc632b7c0483a7ecaafd22">
+          <div class="sl-block-content" style="z-index: 11;" data-inline-svg="false"><img style=""
+              data-natural-width="480" data-natural-height="480" data-lazy-loaded=""
+              data-src="cuda-boid/ab9d6e1a05c240494850117ff8da3c1a.svg"></div>
+        </div>
+      </section>
+      <section data-id="2703230c781d1cd3aa23cac55669c3b1">
+        <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 42px; height: auto;"
+          data-block-id="32ac358ee5842a550b0e106db6315940">
+          <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text"
+            style="z-index: 10;">
+            <h2>Grid Search</h2>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="image"
+          style="width: 518px; height: 518px; left: 221px; top: 130px; min-width: 1px; min-height: 1px;"
+          data-name="image-7f49ac" data-block-id="d372dbeff046b725dc80524c2e476be8">
+          <div class="sl-block-content" style="z-index: 11;" data-inline-svg="false"><img style=""
+              data-natural-width="480" data-natural-height="480" data-lazy-loaded="" data-crop-x="0" data-crop-y="0"
+              data-crop-width="1" data-crop-height="1" data-src="cuda-boid/8f3c302697553fd2486ea4f14c72cb41.svg"></div>
+        </div>
+      </section>
+      <section data-id="fca30c09551f0580067dcc8c156b38ac">
+        <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 42px; height: auto;"
+          data-block-id="d4b9bedd14ac23c69e7cd5c33bdd74eb">
+          <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text"
+            style="z-index: 10;">
+            <h2>How to store the grid?</h2>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="image"
+          style="width: 518px; height: 518px; left: 221px; top: 130px; min-width: 1px; min-height: 1px;"
+          data-name="image-7f49ac" data-block-id="9285b55d14a145de60a8f5da3a494dbf">
+          <div class="sl-block-content" style="z-index: 11;" data-inline-svg="false"><img style=""
+              data-natural-width="480" data-natural-height="480" data-lazy-loaded=""
+              data-src="cuda-boid/ab9d6e1a05c240494850117ff8da3c1a.svg"></div>
+        </div>
+      </section>
+      <section data-id="4a1d46c257e33040ce7db89601dfbf9f">
+        <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 42px; height: auto;"
+          data-block-id="7a55abbfe0d2232870250cd6827ac0df">
+          <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text"
+            style="z-index: 10;">
+            <h2>Sort boids according to grid</h2>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="image"
+          style="width: 251px; height: 251px; left: 629px; top: 247px; min-width: 1px; min-height: 1px;"
+          data-name="image-7f49ac" data-block-id="485b978fb3cad83460eba790bf94a2dc">
+          <div class="sl-block-content" style="z-index: 11;" data-inline-svg="false"><img style=""
+              data-natural-width="480" data-natural-height="480" data-lazy-loaded=""
+              data-src="cuda-boid/ab9d6e1a05c240494850117ff8da3c1a.svg"></div>
+        </div>
+        <div class="sl-block" data-block-type="image"
+          style="width: 480px; height: 215.247px; left: 80px; top: 140px; min-width: 1px; min-height: 1px;"
+          data-name="image-f785e7" data-block-id="06662946a63b7c91730a72f80f4d000d">
+          <div class="sl-block-content" style="z-index: 12;"><img data-natural-width="223" data-natural-height="100"
+              style="" data-lazy-loaded="" data-src="cuda-boid/b61a669f67e87d8e3bdda25e9bd5058d.svg"></div>
+        </div>
+        <div class="sl-block" data-block-type="text" data-name="text-01813a"
+          data-block-id="751fcf7c6671d72af7d782aa05ad35be"
+          style="height: auto; width: 89px; left: 12px; top: 228.841px;">
+          <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14;">
+            <p>Sort:</p>
+          </div>
+        </div>
+      </section>
+      <section data-id="0294d4068184aec4ede0f5763aa02f61">
+        <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 42px; height: auto;"
+          data-block-id="61add03afab6c9fbce666c972acfd1f2">
+          <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text"
+            style="z-index: 10;">
+            <h2>Thrust Library to Rescue</h2>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="image"
+          style="width: 251px; height: 251px; left: 629px; top: 247px; min-width: 1px; min-height: 1px;"
+          data-name="image-7f49ac" data-block-id="5903bae58d452912296391ec7a162217">
+          <div class="sl-block-content" style="z-index: 11;" data-inline-svg="false"><img style=""
+              data-natural-width="480" data-natural-height="480" data-lazy-loaded=""
+              data-src="cuda-boid/ab9d6e1a05c240494850117ff8da3c1a.svg"></div>
+        </div>
+        <div class="sl-block" data-block-type="image"
+          style="width: 480px; height: 215.247px; left: 80px; top: 140px; min-width: 1px; min-height: 1px;"
+          data-name="image-f785e7" data-block-id="c151536f0d34c114a43a24cbdf8922d0">
+          <div class="sl-block-content" style="z-index: 12;"><img data-natural-width="223" data-natural-height="100"
+              style="" data-lazy-loaded="" data-src="cuda-boid/b61a669f67e87d8e3bdda25e9bd5058d.svg"></div>
+        </div>
+        <div class="sl-block" data-block-type="code" data-name="code-9f6a97"
+          style="width: 515px; height: 90px; left: 62.5px; top: 420px;"
+          data-block-id="d19f26903f98f974a94290d6744ebc22">
+          <div class="sl-block-content notranslate" data-highlight-theme="monokai" data-code-frame="none"
+            style="z-index: 13;">
+            <pre class="cpp" style="font-size: 16px; line-height: 19px;"><code data-line-numbers="">thrust::sort_by_key(grid_indices,
+                    grid_indices + objects_count,
+                    boid_indices);</code></pre>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="text" data-name="text-01813a"
+          style="height: auto; width: 89px; left: 12px; top: 228.841px;"
+          data-block-id="b89c742f059841fdfdff408a8cb3b377">
+          <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14;">
+            <p>Sort:</p>
+          </div>
+        </div>
+      </section>
+      <section data-id="b23d7f4e6dbb4467930f92a269a0a1bc">
+        <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 42px; height: auto;"
+          data-block-id="b4f4d7d5b457c5d07281d77ce883e808">
+          <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text"
+            style="z-index: 10;">
+            <h2>Note: Data not sorted</h2>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="image"
+          style="width: 251px; height: 251px; left: 629px; top: 247px; min-width: 1px; min-height: 1px;"
+          data-name="image-7f49ac" data-block-id="8ec2ff53e43dd06c27be882670eb3271">
+          <div class="sl-block-content" style="z-index: 11;" data-inline-svg="false"><img style=""
+              data-natural-width="480" data-natural-height="480" data-lazy-loaded=""
+              data-src="cuda-boid/ab9d6e1a05c240494850117ff8da3c1a.svg"></div>
+        </div>
+        <div class="sl-block" data-block-type="image" data-name="image-f96fb3"
+          data-block-id="8b94677d170ff0f29867f1da71eda2b5"
+          style="width: 480px; height: 380.987px; left: 80px; top: 140px; min-width: 1px; min-height: 1px;">
+          <div class="sl-block-content" style="z-index: 12;"><img
+              style="left: 0px; top: 0px; width: 480px; height: 381px;" data-natural-width="223"
+              data-natural-height="177" data-lazy-loaded="" data-crop-x="0.000001" data-crop-y="0"
+              data-crop-width="0.999999" data-crop-height="1" data-src="cuda-boid/fb27468bd2ee602f9722b3a10b623bab.svg">
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="text" data-name="text-01813a"
+          style="height: auto; width: 89px; left: 12px; top: 228.841px;"
+          data-block-id="5a8414e9118a015bb3fa2ea577141429">
+          <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+            <p>Sort:</p>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="text" style="height: auto; width: 174px; left: 3px; top: 366.5px;"
+          data-block-id="74df920d2380d17c7d3380509fc227ad" data-name="text-6449fd">
+          <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14;">
+            <p>Indirection:</p>
+          </div>
+        </div>
+      </section>
+      <section data-id="30f0cdccba136015756796039a450474">
+        <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 42px; height: auto;"
+          data-block-id="5c8afd4964e949af04af936cf39d443c">
+          <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text"
+            style="z-index: 10;">
+            <h3>The first and last boid of each grid</h3>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="image"
+          style="width: 251px; height: 251px; left: 629px; top: 247px; min-width: 1px; min-height: 1px;"
+          data-name="image-7f49ac" data-block-id="30e04b8fea1062ce8adac090fbee5d5f">
+          <div class="sl-block-content" style="z-index: 11;" data-inline-svg="false"><img style=""
+              data-natural-width="480" data-natural-height="480" data-lazy-loaded=""
+              data-src="cuda-boid/ab9d6e1a05c240494850117ff8da3c1a.svg"></div>
+        </div>
+        <div class="sl-block" data-block-type="image"
+          style="width: 572.89px; height: 188.91px; left: 33.555px; top: 255.545px; min-width: 1px; min-height: 1px;"
+          data-name="image-424be1" data-block-id="95bbde11f6526da38f8aa57ea5182b0d">
+          <div class="sl-block-content" style="z-index: 12;" data-inline-svg="false"><img style=""
+              data-natural-width="279" data-natural-height="92" data-lazy-loaded=""
+              data-src="cuda-boid/fb12f6bbeb8daf9700ea9a3ae7a75b28.svg"></div>
+        </div>
+      </section>
+      <section data-id="59a819a07c013a2d3f456f6a1f11ce29">
+        <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 42px; height: auto;"
+          data-block-id="44f32f639e50b439ec36eb74c509e2e7">
+          <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text"
+            style="z-index: 10;">
+            <h2>Uniform Grid: Pseudocode</h2>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="code" data-name="code-4b4653"
+          style="width: 828px; height: 490px; left: 69.5px; top: 175px;"
+          data-block-id="e998132a0ed187016925d6ce15506c7e">
+          <div class="sl-block-content notranslate" data-highlight-theme="monokai" data-code-frame="none"
+            style="z-index: 11;">
+            <pre class="cpp" style="font-size: 16px; line-height: 19px;"><code data-line-numbers="">def step_uniform_grid(pos, vel1, vel2) {
+  indices, grid_indices = compute_indices();
+  
+  sort_by_key(grid_indices, indices);
+  
+  grid_first, grid_last = identify_first_last(grid_indices);
+
+  
+  for parallel (boid : boids) {
+	neighbor_grid_cells = calculate_neighbor_grid_cells(boid);
+
+    new_vel = vel1[boid];
+    for (cell : neighbor_grid_cells) {
+      for (neighbor from grid_first[cell] to grid_last[cell]) {
+        neighbor_pos = pos[indices[neighbor]];
+        neighbor_vel = vel[indices[neighbor]];
+        // Accumulate for new_vel
+      }
+    }
+    vel2[boid] = new_vel;
+  }
+
+  update_pos(pos, vel2);
+  swap(vel1, vel2);
+}</code></pre>
+          </div>
+        </div>
+      </section>
+      <section data-id="0b803fca227d20aa4e4a3ed3d15da4f5">
+        <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 42px; height: auto;"
+          data-block-id="7c0d4bf320ce705488e0c44f8db39b92">
+          <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text"
+            style="z-index: 10;">
+            <h2>Cutting the middleman</h2>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="image"
+          style="width: 518px; height: 518px; left: 221px; top: 130px; min-width: 1px; min-height: 1px;"
+          data-name="image-7f49ac" data-block-id="79edb88b58dec63bc5e5c8853e11e0f4">
+          <div class="sl-block-content" style="z-index: 11;" data-inline-svg="false"><img style=""
+              data-natural-width="480" data-natural-height="480" data-lazy-loaded="" data-crop-x="0" data-crop-y="0"
+              data-crop-width="1" data-crop-height="1" data-src="cuda-boid/880a0f9755e69daafa74785d3b73af07.svg"></div>
+        </div>
+      </section>
+      <section data-id="1901c83c1745c5e9404a49cabd16272d">
+        <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 42px; height: auto;"
+          data-block-id="35cdd91c04851dd0152dcbadf2f55e36">
+          <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text"
+            style="z-index: 10;">
+            <h2>Cutting the middleman</h2>
+          </div>
+        </div>
+
+        <div class="sl-block" data-block-type="code" data-name="code-9f6a97"
+          style="width: 550px; height: 141px; left: 77px; top: 429px;" data-block-id="9180fadab15527391d2a46cf8f85fa86">
+          <div class="sl-block-content notranslate" data-highlight-theme="monokai" data-code-frame="none"
+            style="z-index: 11;">
+            <pre class="cpp" style="font-size: 16px; line-height: 19px;"><code data-line-numbers="">thrust::copy(pos, pos + objects_count, pos_sorted);
+thrust::copy(vel, vel + objects_count, vel_sorted);
+thrust::sort_by_key(grid_indices,
+                    grid_indices + objects_count,
+                    pos_sorted,
+                    vel_sorted);</code></pre>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="image"
+          style="width: 265px; height: 265px; left: 347.5px; top: 134px; min-width: 1px; min-height: 1px;"
+          data-name="image-7f49ac" data-block-id="63cc870b970123c11c9b0a17dd759642">
+          <div class="sl-block-content" style="z-index: 12;" data-inline-svg="false"><img style=""
+              data-natural-width="480" data-natural-height="480" data-lazy-loaded="" data-crop-x="0" data-crop-y="0"
+              data-crop-width="1" data-crop-height="1" data-src="cuda-boid/880a0f9755e69daafa74785d3b73af07.svg"></div>
+        </div>
+      </section>
+      <section data-id="67122b772fd6190a3dc73d8f5827da51">
+        <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 42px; height: auto;"
+          data-block-id="c043d3c5e7c20c1883f21ae258c1f8bf">
+          <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text"
+            style="z-index: 11;">
+            <h2>Cutting the middleman</h2>
+          </div>
+        </div>
+
+        <div class="sl-block" data-block-type="shape" data-name="shape-c0b714"
+          data-block-id="13ff6e14a18447dd340069c64567b275"
+          style="width: 198px; height: 198px; left: 221px; top: 405.91px;">
+          <div class="sl-block-content" data-shape-type="symbol-x-circle" data-shape-fill-color="rgb(255, 0, 0)"
+            data-shape-stretch="true" style="z-index: 12;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+              width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 32 32">
+              <g class="shape-element" fill="rgb(255, 0, 0)" data-viewbox="0 0 32 32">
+                <path
+                  d="M16 0c-8.836 0-16 7.164-16 16s7.164 16 16 16 16-7.164 16-16-7.164-16-16-16zM23.914 21.086l-2.828 2.828-5.086-5.086-5.086 5.086-2.828-2.828 5.086-5.086-5.086-5.086 2.828-2.828 5.086 5.086 5.086-5.086 2.828 2.828-5.086 5.086 5.086 5.086z">
+                </path>
+              </g>
+            </svg></div>
+        </div>
+        <div class="sl-block" data-block-type="code" data-name="code-9f6a97"
+          style="width: 550px; height: 141px; left: 77px; top: 429px;" data-block-id="427778ad37d6143eddc62c64fedf2f95">
+          <div class="sl-block-content notranslate" data-highlight-theme="monokai" data-code-frame="none"
+            style="z-index: 10;">
+            <pre class="cpp" style="font-size: 16px; line-height: 19px;"><code data-line-numbers="">thrust::copy(pos, pos + objects_count, pos_sorted);
+thrust::copy(vel, vel + objects_count, vel_sorted);
+thrust::sort_by_key(grid_indices,
+                    grid_indices + objects_count,
+                    pos_sorted,
+                    vel_sorted);</code></pre>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="image"
+          style="width: 265px; height: 265px; left: 347.5px; top: 134px; min-width: 1px; min-height: 1px;"
+          data-name="image-7f49ac" data-block-id="b16eeba20ac21978c0704f608697ff1e">
+          <div class="sl-block-content" style="z-index: 13;" data-inline-svg="false"><img style=""
+              data-natural-width="480" data-natural-height="480" data-lazy-loaded="" data-crop-x="0" data-crop-y="0"
+              data-crop-width="1" data-crop-height="1" data-src="cuda-boid/880a0f9755e69daafa74785d3b73af07.svg"></div>
+        </div>
+      </section>
+      <section data-id="28964d763e6ee126ba61eed827e2cd67">
+        <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 42px; height: auto;"
+          data-block-id="236814879bfa9d49c9c486bd0084691f">
+          <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text"
+            style="z-index: 10;">
+            <h2>Cutting the middleman</h2>
+          </div>
+        </div>
+
+        <div class="sl-block" data-block-type="code" data-name="code-9f6a97"
+          style="width: 723px; height: 131px; left: 77px; top: 429px;" data-block-id="03d415d22a4e86a393dfccf29c0b7249">
+          <div class="sl-block-content notranslate" data-highlight-theme="monokai" data-code-frame="none"
+            style="z-index: 11;">
+            <pre class="cpp" style="font-size: 16px; line-height: 19px;"><code data-line-numbers="">thrust::sort_by_key(grid_indices,
+                    grid_indices + objects_count,
+                    indices);
+thrust::gather(indices, indices + objects_count, pos, pos_sorted);
+thrust::gather(indices, indices + objects_count, vel, vel_sorted);</code></pre>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="image"
+          style="width: 265px; height: 265px; left: 347.5px; top: 134px; min-width: 1px; min-height: 1px;"
+          data-name="image-7f49ac" data-block-id="17360c06e3a483fcaa32f05d111fc0c1">
+          <div class="sl-block-content" style="z-index: 12;" data-inline-svg="false"><img style=""
+              data-natural-width="480" data-natural-height="480" data-lazy-loaded="" data-crop-x="0" data-crop-y="0"
+              data-crop-width="1" data-crop-height="1" data-src="cuda-boid/880a0f9755e69daafa74785d3b73af07.svg"></div>
+        </div>
+      </section>
+      <section data-id="cb223f7d60dcfb31aaec124f24af1303">
+        <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 42px; height: auto;"
+          data-block-id="9a230049a2eff14da44909aa1527f4fa">
+          <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text"
+            style="z-index: 10;">
+            <h2>Coherent Grid: Pseudocode</h2>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="code" data-name="code-4b4653"
+          style="width: 813.5px; height: 528px; left: 69.5px; top: 122px;"
+          data-block-id="14e227d0adf17c879e5c56d3cab17789">
+          <div class="sl-block-content notranslate" data-highlight-theme="monokai" data-code-frame="none"
+            style="z-index: 11;">
+            <pre class="cpp" style="font-size: 16px; line-height: 19px;"><code data-line-numbers="">def step_coherent_grid(pos, vel1, vel2) {
+  indices, grid_indices = compute_indices();
+  
+  pos_sorted, vel_sorted = pos, vel1
+  sort_by_key(grid_indices, pos_sorted, vel_sorted);
+  
+  grid_first, grid_last = identify_first_last(grid_indices);
+
+  
+  for parallel (boid : boids) {
+	neighbor_grid_cells = calculate_neighbor_grid_cells(boid);
+
+    new_vel = vel1[boid];
+    for (cell : neighbor_grid_cells) {
+      for (neighbor from grid_first[cell] to grid_last[cell]) {
+        neighbor_pos = pos_sorted[neighbor];
+        neighbor_vel = vel_sorted[neighbor];
+        // Accumulate for new_vel
+      }
+    }
+    vel2[boid] = new_vel;
+  }
+
+  update_pos(pos, vel2);
+  swap(vel1, vel2);
+  swap(pos, pos_sorted);
+}</code></pre>
+          </div>
+        </div>
+      </section>
+      <section data-id="9c93e911f4e6e01f29d7bca7900c8e51">
+        <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 266px; height: auto;"
+          data-block-id="200bc0c60701b036834c7c6d8349e205">
+          <div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text"
+            style="z-index: 10;">
+            <h1>Shared-memory Optimization</h1>
+          </div>
+        </div>
+      </section>
+      <section data-id="d10f2d994e3279134178cfbb1dd07802">
+        <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 42px; height: auto;"
+          data-block-id="1e51978587d2a9faeffc4c0399835ee4">
+          <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text"
+            style="z-index: 10;">
+            <h2>CUDA Thread Hierarchy</h2>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="text" data-name="text-b08823"
+          data-block-id="3b59a79b7d5c2b7170f2328355d0bbb7" style="height: auto; width: 780px; left: 90px; top: 591px;">
+          <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+            <p>Credit: <a
+                href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/graphics/grid-of-thread-blocks.png"
+                target="_blank">docs.nvidia.com/cuda/cuda-c-programming-guide/graphics/grid-of-thread-blocks.png</a></p>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="image"
+          style="width: 480.71px; height: 417.135px; left: 240px; top: 166.383px; min-width: 1px; min-height: 1px;"
+          data-name="image-0b1f8d" data-block-id="56b64fbb5ec65e060dac00d48deaa703">
+          <div class="sl-block-content" style="z-index: 12;"><img data-natural-width="431" data-natural-height="374"
+              style="" data-lazy-loaded="" data-src="cuda-boid/7fd0afa0aeb4ee0505204405ad7529df.png"></div>
+        </div>
+      </section>
+      <section data-id="bb219a6310cded45547747bea9026a45">
+        <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 42px; height: auto;"
+          data-block-id="7510bd5a258ee27cf5e120ce28c68eae">
+          <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text"
+            style="z-index: 10;">
+            <h2>CUDA Memory</h2>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="image"
+          style="width: 467.897px; height: 518px; left: 252.103px; top: 140px; min-width: 1px; min-height: 1px;"
+          data-name="image-d1eac9" data-block-id="bb46c15465e27bf4cff516e0232dc361">
+          <div class="sl-block-content" style="z-index: 11;"><img style="" data-natural-width="579"
+              data-natural-height="641" data-lazy-loaded="" data-src="cuda-boid/9f5a33ac5cfbc7e97f0c51d1505268a5.gif">
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="text" data-name="text-b08823"
+          style="height: auto; width: 780px; left: 100px; top: 646.897px;"
+          data-block-id="76b711d9d9e4a46717a38c10751b9b3b">
+          <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+            <p>Credit: <a href="https://www.3dgep.com/cuda-memory-model/"
+                target="_blank">https://www.3dgep.com/cuda-memory-model/</a></p>
+          </div>
+        </div>
+      </section>
+      <section data-id="8cc68cb74082569b7f14eeb03b2f0de6">
+        <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 42px; height: auto;"
+          data-block-id="ae5f31afe0d296445f3e612c683f5e3f">
+          <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text"
+            style="z-index: 10;">
+            <h2>CUDA Memory</h2>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="image"
+          style="width: 467.897px; height: 518px; left: 252.103px; top: 140px; min-width: 1px; min-height: 1px;"
+          data-name="image-d1eac9" data-block-id="00637288ac27eb41c0991509ecbc1f7f">
+          <div class="sl-block-content" style="z-index: 11;"><img style="" data-natural-width="579"
+              data-natural-height="641" data-lazy-loaded="" data-src="cuda-boid/9f5a33ac5cfbc7e97f0c51d1505268a5.gif">
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="text" data-name="text-7140f7"
+          style="height: auto; width: 82.9364px; left: 797.064px; top: 480.013px;"
+          data-block-id="6875ae7226199e32cc7c0c2c4460e20f">
+          <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+            <p>Slow</p>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="line" data-name="line-465bab"
+          style="width: auto; height: auto; left: 677.679px; top: 450px;"
+          data-block-id="9955e813547e0e58e50309a5c303d534">
+          <div class="sl-block-content" data-line-x1="122.38499999999999" data-line-y1="52.024874867283486"
+            data-line-x2="0" data-line-y2="0" data-line-color="#000000" data-line-start-type="none"
+            data-line-end-type="line-arrow" style="z-index: 13;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+              preserveaspectratio="xMidYMid" width="122.38499999999999" height="52.024874867283486"
+              viewbox="0 0 122.38499999999999 52.024874867283486">
+              <line stroke="rgba(0,0,0,0)" stroke-width="15" x1="122.38499999999999" y1="52.024874867283486"
+                x2="1.8406009259385707" y2="0.7824245851416454"></line>
+              <line class="line-element" stroke="#000000" stroke-width="2" x1="122.38499999999999"
+                y1="52.024874867283486" x2="1.8406009259385707" y2="0.7824245851416454"></line>
+              <path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="2"
+                transform="translate(1.8406009259385707,0.7824245851416454) rotate(-66.97)" d="M 6 6 L 0 0 L -6 6">
+              </path>
+            </svg></div>
+        </div>
+        <div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 677.679px; top: 502.025px;"
+          data-name="line-56a194" data-block-id="2ab8197884e00fe94dd88c7a3e8ab839">
+          <div class="sl-block-content" data-line-x1="122.38499999999999" data-line-y1="0" data-line-x2="0"
+            data-line-y2="16.987714242378274" data-line-color="#000000" data-line-start-type="none"
+            data-line-end-type="line-arrow" style="z-index: 14;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+              preserveaspectratio="xMidYMid" width="122.38499999999999" height="16.987714242378274"
+              viewbox="0 0 122.38499999999999 16.987714242378274">
+              <line stroke="rgba(0,0,0,0)" stroke-width="15" x1="122.38499999999999" y1="0" x2="1.981007042236521"
+                y2="16.712739518795704"></line>
+              <line class="line-element" stroke="#000000" stroke-width="2" x1="122.38499999999999" y1="0"
+                x2="1.981007042236521" y2="16.712739518795704"></line>
+              <path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="2"
+                transform="translate(1.981007042236521,16.712739518795704) rotate(262.098)" d="M 6 6 L 0 0 L -6 6">
+              </path>
+            </svg></div>
+        </div>
+        <div class="sl-block" data-block-type="text" data-name="text-b08823"
+          style="height: auto; width: 780px; left: 100px; top: 646.897px;"
+          data-block-id="4150cf96955b1b5cefcf8e323f189bdc">
+          <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 15;">
+            <p>Credit: <a href="https://www.3dgep.com/cuda-memory-model/"
+                target="_blank">https://www.3dgep.com/cuda-memory-model/</a></p>
+          </div>
+        </div>
+      </section>
+      <section data-id="9658f7b6b983a07e852f0184fb6191b9">
+        <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 42px; height: auto;"
+          data-block-id="e7d15e676cc3205d46b7b0797c6774cd">
+          <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text"
+            style="z-index: 10;">
+            <h2>CUDA Memory</h2>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="image"
+          style="width: 467.897px; height: 518px; left: 252.103px; top: 140px; min-width: 1px; min-height: 1px;"
+          data-name="image-d1eac9" data-block-id="475221dd2b55b88cafba17d1ec1c8a78">
+          <div class="sl-block-content" style="z-index: 11;"><img style="" data-natural-width="579"
+              data-natural-height="641" data-lazy-loaded="" data-src="cuda-boid/9f5a33ac5cfbc7e97f0c51d1505268a5.gif">
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="text" data-name="text-7140f7"
+          style="height: auto; width: 82.9364px; left: 797.064px; top: 480.013px;"
+          data-block-id="b6f2a51e6f2ce9b5ae92c8dee0e70daa">
+          <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+            <p>Slow</p>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="line" data-name="line-465bab"
+          style="width: auto; height: auto; left: 677.679px; top: 450px;"
+          data-block-id="9b687365c1d6e1621fe6af7ca8cf1b59">
+          <div class="sl-block-content" data-line-x1="122.38499999999999" data-line-y1="52.024874867283486"
+            data-line-x2="0" data-line-y2="0" data-line-color="#000000" data-line-start-type="none"
+            data-line-end-type="line-arrow" style="z-index: 13;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+              preserveaspectratio="xMidYMid" width="122.38499999999999" height="52.024874867283486"
+              viewbox="0 0 122.38499999999999 52.024874867283486">
+              <line stroke="rgba(0,0,0,0)" stroke-width="15" x1="122.38499999999999" y1="52.024874867283486"
+                x2="1.8406009259385707" y2="0.7824245851416454"></line>
+              <line class="line-element" stroke="#000000" stroke-width="2" x1="122.38499999999999"
+                y1="52.024874867283486" x2="1.8406009259385707" y2="0.7824245851416454"></line>
+              <path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="2"
+                transform="translate(1.8406009259385707,0.7824245851416454) rotate(-66.97)" d="M 6 6 L 0 0 L -6 6">
+              </path>
+            </svg></div>
+        </div>
+        <div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 677.679px; top: 502.025px;"
+          data-name="line-56a194" data-block-id="eb682b2b5874f33ba6b92c85b4d5120b">
+          <div class="sl-block-content" data-line-x1="122.38499999999999" data-line-y1="0" data-line-x2="0"
+            data-line-y2="16.987714242378274" data-line-color="#000000" data-line-start-type="none"
+            data-line-end-type="line-arrow" style="z-index: 14;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+              preserveaspectratio="xMidYMid" width="122.38499999999999" height="16.987714242378274"
+              viewbox="0 0 122.38499999999999 16.987714242378274">
+              <line stroke="rgba(0,0,0,0)" stroke-width="15" x1="122.38499999999999" y1="0" x2="1.981007042236521"
+                y2="16.712739518795704"></line>
+              <line class="line-element" stroke="#000000" stroke-width="2" x1="122.38499999999999" y1="0"
+                x2="1.981007042236521" y2="16.712739518795704"></line>
+              <path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="2"
+                transform="translate(1.981007042236521,16.712739518795704) rotate(262.098)" d="M 6 6 L 0 0 L -6 6">
+              </path>
+            </svg></div>
+        </div>
+        <div class="sl-block" data-block-type="text" data-name="text-b08823"
+          style="height: auto; width: 780px; left: 100px; top: 646.897px;"
+          data-block-id="456b8af7cb114faaadc5e88a8ce87b80">
+          <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 15;">
+            <p>Credit: <a href="https://www.3dgep.com/cuda-memory-model/"
+                target="_blank">https://www.3dgep.com/cuda-memory-model/</a></p>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="text" data-name="text-f5a25c"
+          data-block-id="d1caf466a5bc072a19040834e99b3e8b"
+          style="height: auto; width: 272.987px; left: 687.013px; top: 544.971px;">
+          <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 16;">
+            <p>Faster (Read-Only on Device)</p>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 640px; top: 576.539px;"
+          data-block-id="40605e8ff979f0986fbc44557ce1a01d" data-name="line-c736b6">
+          <div class="sl-block-content" data-line-x1="99.06396435613533" data-line-y1="7.432124981040502"
+            data-line-x2="0" data-line-y2="0" data-line-color="#000000" data-line-start-type="none"
+            data-line-end-type="line-arrow" style="z-index: 17;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+              preserveaspectratio="xMidYMid" width="99.06396435613533" height="7.432124981040502"
+              viewbox="0 0 99.06396435613533 7.432124981040502">
+              <line stroke="rgba(0,0,0,0)" stroke-width="15" x1="99.06396435613533" y1="7.432124981040502"
+                x2="1.9943951242968367" y2="0.14962649558485885"></line>
+              <line class="line-element" stroke="#000000" stroke-width="2" x1="99.06396435613533" y1="7.432124981040502"
+                x2="1.9943951242968367" y2="0.14962649558485885"></line>
+              <path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="2"
+                transform="translate(1.9943951242968367,0.14962649558485885) rotate(-85.71)" d="M 6 6 L 0 0 L -6 6">
+              </path>
+            </svg></div>
+        </div>
+      </section>
+      <section data-id="e55a1eb271fdf660c6a880e3e1415e4a">
+        <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 42px; height: auto;"
+          data-block-id="87a43e0a1e749e59742947e3df22d7d4">
+          <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text"
+            style="z-index: 10;">
+            <h2>CUDA Memory</h2>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="image"
+          style="width: 467.897px; height: 518px; left: 252.103px; top: 140px; min-width: 1px; min-height: 1px;"
+          data-name="image-d1eac9" data-block-id="cd6a7690abc8e8b0869d681f60b5e301">
+          <div class="sl-block-content" style="z-index: 11;"><img style="" data-natural-width="579"
+              data-natural-height="641" data-lazy-loaded="" data-src="cuda-boid/9f5a33ac5cfbc7e97f0c51d1505268a5.gif">
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="text" data-name="text-7140f7"
+          style="height: auto; width: 82.9364px; left: 797.064px; top: 480.013px;"
+          data-block-id="73059383a7ed37f1d22996e308a3c06c">
+          <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+            <p>Slow</p>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="line" data-name="line-465bab"
+          style="width: auto; height: auto; left: 677.679px; top: 450px;"
+          data-block-id="e7078f1df9c948a56577e35002abfeb0">
+          <div class="sl-block-content" data-line-x1="122.38499999999999" data-line-y1="52.024874867283486"
+            data-line-x2="0" data-line-y2="0" data-line-color="#000000" data-line-start-type="none"
+            data-line-end-type="line-arrow" style="z-index: 13;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+              preserveaspectratio="xMidYMid" width="122.38499999999999" height="52.024874867283486"
+              viewbox="0 0 122.38499999999999 52.024874867283486">
+              <line stroke="rgba(0,0,0,0)" stroke-width="15" x1="122.38499999999999" y1="52.024874867283486"
+                x2="1.8406009259385707" y2="0.7824245851416454"></line>
+              <line class="line-element" stroke="#000000" stroke-width="2" x1="122.38499999999999"
+                y1="52.024874867283486" x2="1.8406009259385707" y2="0.7824245851416454"></line>
+              <path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="2"
+                transform="translate(1.8406009259385707,0.7824245851416454) rotate(-66.97)" d="M 6 6 L 0 0 L -6 6">
+              </path>
+            </svg></div>
+        </div>
+        <div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 677.679px; top: 502.025px;"
+          data-name="line-56a194" data-block-id="2e52a84b0773f3c33264e342f15cdba7">
+          <div class="sl-block-content" data-line-x1="122.38499999999999" data-line-y1="0" data-line-x2="0"
+            data-line-y2="16.987714242378274" data-line-color="#000000" data-line-start-type="none"
+            data-line-end-type="line-arrow" style="z-index: 14;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+              preserveaspectratio="xMidYMid" width="122.38499999999999" height="16.987714242378274"
+              viewbox="0 0 122.38499999999999 16.987714242378274">
+              <line stroke="rgba(0,0,0,0)" stroke-width="15" x1="122.38499999999999" y1="0" x2="1.981007042236521"
+                y2="16.712739518795704"></line>
+              <line class="line-element" stroke="#000000" stroke-width="2" x1="122.38499999999999" y1="0"
+                x2="1.981007042236521" y2="16.712739518795704"></line>
+              <path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="2"
+                transform="translate(1.981007042236521,16.712739518795704) rotate(262.098)" d="M 6 6 L 0 0 L -6 6">
+              </path>
+            </svg></div>
+        </div>
+        <div class="sl-block" data-block-type="text" data-name="text-b08823"
+          style="height: auto; width: 780px; left: 100px; top: 646.897px;"
+          data-block-id="5e1d0fa6f5448d69f43fcad8a36037fa">
+          <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 15;">
+            <p>Credit: <a href="https://www.3dgep.com/cuda-memory-model/"
+                target="_blank">https://www.3dgep.com/cuda-memory-model/</a></p>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="text" data-name="text-f5a25c"
+          style="height: auto; width: 272.987px; left: 687.013px; top: 544.971px;"
+          data-block-id="a06b4d92a2827ae2e9f490b790509ee6">
+          <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 16;">
+            <p>Faster (Read-Only on Device)</p>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 640px; top: 576.539px;"
+          data-name="line-c736b6" data-block-id="78817b1ec217c31ad456e1ee8bf29dbc">
+          <div class="sl-block-content" data-line-x1="99.06396435613533" data-line-y1="7.432124981040502"
+            data-line-x2="0" data-line-y2="0" data-line-color="#000000" data-line-start-type="none"
+            data-line-end-type="line-arrow" style="z-index: 17;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+              preserveaspectratio="xMidYMid" width="99.06396435613533" height="7.432124981040502"
+              viewbox="0 0 99.06396435613533 7.432124981040502">
+              <line stroke="rgba(0,0,0,0)" stroke-width="15" x1="99.06396435613533" y1="7.432124981040502"
+                x2="1.9943951242968367" y2="0.14962649558485885"></line>
+              <line class="line-element" stroke="#000000" stroke-width="2" x1="99.06396435613533" y1="7.432124981040502"
+                x2="1.9943951242968367" y2="0.14962649558485885"></line>
+              <path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="2"
+                transform="translate(1.9943951242968367,0.14962649558485885) rotate(-85.71)" d="M 6 6 L 0 0 L -6 6">
+              </path>
+            </svg></div>
+        </div>
+        <div class="sl-block" data-block-type="text"
+          style="height: auto; width: 92.4925px; left: 859.014px; top: 260.5px;"
+          data-block-id="4dffb85b31c49999832e50586e4dc963" data-name="text-611d0d">
+          <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 18;">
+            <p>Fast</p>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 701.507px; top: 260.5px;"
+          data-block-id="0a179117dc3081f61e90004d786bc430" data-name="line-678ce6">
+          <div class="sl-block-content" data-line-x1="168.03973198847268" data-line-y1="26.012999999999977"
+            data-line-x2="0" data-line-y2="0" data-line-color="#000000" data-line-start-type="none"
+            data-line-end-type="line-arrow" style="z-index: 19;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+              preserveaspectratio="xMidYMid" width="168.03973198847268" height="26.012999999999977"
+              viewbox="0 0 168.03973198847268 26.012999999999977">
+              <line stroke="rgba(0,0,0,0)" stroke-width="15" x1="168.03973198847268" y1="26.012999999999977"
+                x2="1.9764584075862663" y2="0.30596104830772053"></line>
+              <line class="line-element" stroke="#000000" stroke-width="2" x1="168.03973198847268"
+                y1="26.012999999999977" x2="1.9764584075862663" y2="0.30596104830772053"></line>
+              <path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="2"
+                transform="translate(1.9764584075862663,0.30596104830772053) rotate(-81.2)" d="M 6 6 L 0 0 L -6 6">
+              </path>
+            </svg></div>
+        </div>
+        <div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 687.013px; top: 286.513px;"
+          data-block-id="f50a0f51247a214234c6e6b1fa037bf8" data-name="line-b1636b">
+          <div class="sl-block-content" data-line-x1="182.5337319884726" data-line-y1="0" data-line-x2="0"
+            data-line-y2="26.01213392992571" data-line-color="#000000" data-line-start-type="none"
+            data-line-end-type="line-arrow" style="z-index: 20;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+              preserveaspectratio="xMidYMid" width="182.5337319884726" height="26.01213392992571"
+              viewbox="0 0 182.5337319884726 26.01213392992571">
+              <line stroke="rgba(0,0,0,0)" stroke-width="15" x1="182.5337319884726" y1="0" x2="1.9799962340890294"
+                y2="25.729972782718548"></line>
+              <line class="line-element" stroke="#000000" stroke-width="2" x1="182.5337319884726" y1="0"
+                x2="1.9799962340890294" y2="25.729972782718548"></line>
+              <path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="2"
+                transform="translate(1.9799962340890294,25.729972782718548) rotate(261.89)" d="M 6 6 L 0 0 L -6 6">
+              </path>
+            </svg></div>
+        </div>
+      </section>
+      <section data-id="90e314b1f7ab9400e04adae6cca649e8">
+        <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 42px; height: auto;"
+          data-block-id="add4ca6fc3189d0d7aa3ebd833d87dce">
+          <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text"
+            style="z-index: 10;">
+            <h2>shovel all neighbor grids of a warp to shared memory</h2>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="image"
+          style="width: 459.605px; height: 459.605px; left: 250.197px; top: 210px; min-width: 1px; min-height: 1px;"
+          data-name="image-8125c1" data-block-id="1d34a10f349f46e8a3a9d3c078730dfa">
+          <div class="sl-block-content" style="z-index: 11;" data-inline-svg="false"><img style=""
+              data-natural-width="480" data-natural-height="480" data-lazy-loaded=""
+              data-src="cuda-boid/6282a4e83834e4d97df4b7f27361b927.svg"></div>
+        </div>
+      </section>
+      <section data-id="45b4497a95403db27dcdf762083fd3d7">
+        <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 42px; height: auto;"
+          data-block-id="11bb0e0a753943c4222513eccf070254">
+          <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text"
+            style="z-index: 10;">
+            <h2>Shared Grid Pseudocode</h2>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="code" data-name="code-4b4653"
+          style="width: 813.5px; height: 528px; left: 39.7715px; top: 122px;"
+          data-block-id="d3fc0a909f73e837637fcb11c121d11a">
+          <div class="sl-block-content notranslate" data-highlight-theme="monokai" data-code-frame="none"
+            style="z-index: 11;">
+            <pre class="cpp" style="font-size: 16px; line-height: 19px;"><code data-line-numbers="">def step_shared_grid(pos, vel1, vel2) {
+  // same
+
+  for parallel (warp: warps) {
+    while (not process all neighbors) {
+    
+      // calculate all neighbor grid cells in a wrap
+      
+      // copy some boids in neighbor cells to shared memory based on capacity
+
+      for parallel boids in wrap {
+        for (neighbor from shared_first to shared_last) {
+          // Accumulate for new_vel
+        }
+        vel2[boid] = new_vel;
+      }
+    }
+ }
+  
+  // same
+}</code></pre>
+          </div>
+        </div>
+      </section>
+      <section data-id="1e755e0a14bc60e0bdbb455a49e3ee84">
+        <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 238px; height: auto;"
+          data-block-id="ba3d44f0cd3bd2b718daf3ed64f2d340">
+          <div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text"
+            style="z-index: 10;">
+            <h1>Live Demo</h1>
+          </div>
+        </div>
+      </section>
+      <section data-id="4eecd0cb6b3bfa5cd05f1f1151c5421f">
+        <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 238px; height: auto;"
+          data-block-id="8015c85654a773679303198015299e7f">
+          <div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text"
+            style="z-index: 10;">
+            <h1>Graphics Programming Virtual Meetup</h1>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    var SLConfig = { "deck": { "id": 2010835, "slug": "cuda-boid", "title": "CUDA Boid", "description": "", "width": 960, "height": 700, "margin": 0.05, "visibility": "self", "published_at": null, "sanitize_messages": null, "thumbnail_url": "https://s3.amazonaws.com/media-p.slid.es/thumbnails/0f1401d9f444fabb2bcb302ea7dcab10/thumb.jpg?1609825074", "view_count": 3, "user": { "id": 822113, "username": "lesleylai-1", "name": "Lesley Lai", "description": null, "thumbnail_url": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg?sz=50", "account_type": "pro", "team_id": null, "settings": { "id": 673619, "present_controls": false, "present_upsizing": true, "present_pointer": true, "present_notes": true, "default_deck_tag_id": null } }, "background_transition": "slide", "transition": "none", "theme_id": null, "theme_font": "montserrat", "theme_color": "sand-blue", "auto_slide_interval": 0, "comments_enabled": true, "forking_enabled": false, "rolling_links": false, "center": false, "shuffle": false, "should_loop": false, "share_notes": false, "slide_number": false, "slide_count": 41, "rtl": false, "version": 2, "collaborative": false, "deck_user_editor_limit": 3, "data_updated_at": 1609982845331, "font_typekit": null, "font_google": null, "time_limit": null, "navigation_mode": "default", "upsizing_enabled": true, "notes": { "865ee01d6e4f0e78c7216d0fe627ee64": "", "d9dcdb4c66b435bc193dc3b38390887c": "", "2dc87711891f24d27a5783b61f8915dc": "", "daeb4ede81b5b65cdf6433193a296a36": "", "55d60260841dc64db92ae5ae23ccd890": "", "14bf706352d570a41e1d84e4f00ba3cc": "", "e76404ec13baa5308bae326f0fec465d": "", "6c8df73ccdea365fcc4ac093e7a71733": "", "edeffb0f08dee599ed26de47ab27c0a4": "", "9930ba0d2ed411e202c22f4a01d0c7c9": "", "a41010c5d83126b7c36507e5c5445aeb": "", "8f08a7e2cd043f1b6ccd722bdee40085": "", "1a2556c16badbec2adfa4d2eb0685ad1": "", "75f0394dcb5ea4ecd943aba40907b9b9": "", "0b315807fd031bd80692447cd894ea74": "", "220c613a7162dc8d31c2c9481778a1c0": "", "862ea49fb7a15d392b2448db83ed5af5": "", "6d091c73a6090c793147d93222613d68": "", "143d638155fa2fae1ddfa7ffa398ec9a": "", "26d70b2e5ca04ac92d1043212a519c03": "", "200fca13e3c68d32aba8ddae0cf66df2": "", "4eecd0cb6b3bfa5cd05f1f1151c5421f": "", "90865ab0fc536c3e4dab902ae142c6cc": "", "1126f48c34868d314540f7224a2dc1e1": "", "ad8bbf85e7f754fb12af5b0eee7960ce": "", "ca24b58a27e0af488aa562b9688fa1f4": "", "f233491b0b04307bee26cca7990a64b2": "", "7152f48de3df657e43e6470eaff38316": "", "4aece1e0ea9e67e0167374d064c122f9": "", "f41b7d74f30785b59d33a7c492aad626": "", "5a8f6611b377f4c9a7083a834782b47a": "", "29a02cb78be9e9c0b41041524b0c1ae0": "", "4eda5c794d260799aaa39801a62d1220": "", "e1162da355e6f23f3b24ddb57dc2a227": "", "12cf4a1c645da16e9cc76f1b98f2a0c1": "", "1f903f4b5d49dd6c1762f1af11a9f58f": "", "5ad14b6f298861bd8bfbc05901f293c2": "", "a4a8fa2efc788282d9e3d91cfe7eaded": "", "275d37ebbda2ee381b9a44988a390472": "", "cdcbb9b490b468a5c0cf2d26127f935c": "", "105016fb58820d2064c6749cbf18abb7": "", "0c217da11b969ad28cfa5ff7e15e4a9f": "", "0979d54c9201f47f0e6674741df9df38": "", "bfa3c74ac9823348517e548884127c0e": "", "d1812a1ef78ab54a93c6e910c4fbf31d": "", "4f9b2b6a16918cef82abecfc9a5272e7": "", "6c91bc2308a1cef60136336bdd9b057d": "", "b48af4d001b3e1a551432a254a579441": "", "284d8250dcce530e3f1e0566288b9dcd": "", "536d2d9be251022c911cbf422f30fe76": "", "3a746a232e71fea8d6bb23449ee2cb76": "", "ad586478c14f239b360ee6a690a6461e": "", "2b809bd9c3bf74ac377fa8c202b773ce": "", "8bbc1b103bab25236c98f24db09322da": "", "b860ac4deb763145b96e76545f62873d": "", "799140b869891ada42f36f1e348e7a29": "", "12f1ba5514bfcb7e5006826d2a852f33": "", "97d1e3f34c019dde00e90fe41b0f40c6": "", "71b70b1f7c4e30662034231c0d87b1ba": "", "0e4718701b954a10dd3eedf325f46015": "", "061e668ee3d860e98cca579b46af1b3d": "", "079a3557b630320775861c787f0fc9ec": "", "047fbdbf049633873b645f645a6835f3": "", "c1ed42e88abeebb06248fb6ea8fd7177": "", "8c6d150f89b09f77bd58946cd7116376": "", "ebc4c935964cfaa47dfaf66a9e0154c0": "", "12ea82db5dac3b467a6054124f834818": "", "3ef1dcc268407535cd8d892d1aeb52f7": "", "edb9d1d1bd0d15fb514b2bf1cc918886": "", "ee8356dd0b7642344a517f947cc2da0f": "", "b216aa31d2b10adc07ee881c20123ccc": "", "bae95eb016c547b3086ddcf421e0588c": "", "51301d0f8b0e0a3ef51bae5e10e79a82": "", "2fa7801fe5f63c28619924aa8c589f1d": "", "eef3f8e3faec93f2c8f974d2c337efb5": "", "03fe912d2ee8471a8bad01118053a1dc": "", "a9cb4fbd5ea711f246a9d5c662494cb9": "", "d25ee3327f3bb503a1813f5c05a7aa05": "", "3f5f8e965364be916b699d163fe3730d": "", "de829663d19ee7161811bc79726d317e": "", "9e84d8442db2ac18a210144245f7a12b": "", "bfaa4f24cd748da872a0f42b24b701a5": "", "d9315a850ab60b238ffe32df0fa46e6e": "", "0ca70aa25248f9d6971f0acf0eccafdf": "", "d8c5996f5242aad1711c3b13a7a311aa": "", "89277d716fdb835d7c9969fd290a4fce": "", "dd9e3a0b2346abd9006584d5bd7c30b5": "", "c61c4b5d77764b4e7cacdb4a6a068559": "", "5cf1e52609c1aef9e69a577bfb59e017": "", "a440aa7f3429db651f9efee780ebda9b": "", "2a8265061c64cc8939107cef9cb842e3": "", "6bd5c6111a532b909b5c049938c03ff4": "", "bfbea3d774a12e6cb90229a3332af9e8": "", "f9c4425ef018518e150d1d3df7c4b523": "", "111716a3863622aa662284cc7fb0b31b": "", "8e4dd752717615be4940a29e543305cf": "", "d19671c6cad6dd4edb07cccad56fabc1": "", "94207ff6f90259d5b24d6ffda436d221": "", "d4f7df66788fe221d0eea9e51ea9bcab": "", "028b36192bcf6088527b498c3363d1c0": "", "83c26da295471e5411a1a990093809de": "", "ff1b87ac5ea8b86d8cb205f9140be2ea": "", "bc51ea115e0c49ae89b4eb0fe547a5df": "", "f347aca52b6dd27fa8d94d12b04f2fab": "", "a18c7aa74f15fae963e78e394046d1b9": "", "4810b39b8f57b52a9bb6fbe9ff22d631": "", "08799796df13a859a11f09e60d56135c": "", "2db0da22a917790b8a1c71d3a64072bd": "", "b6fd011ac79e70b98abc6d4640c5cc2a": "", "1fca1e54559b2f30fea35c4057cdff31": "", "017a9008607c92d4574268db9744ee27": "", "9fafca93e297abde070092e1f9b10e9d": "", "16e956398f076c1f1949959c77174f1b": "", "93e9a06d472571f55f4e13d16cac1533": "", "2922135bab5971cb0b469839910086f9": "", "e5a613885406a629fc409111c2383d7d": "", "d778209e4dbe49da6366eeb4593f2500": "", "893f45723e6b0ea9ad03948967cf7071": "", "c3c19770bdc4a70f8a5e2ee091aef42e": "", "2312afdc3ee950708f3746232f4aa2d5": "", "e508d8f5f9ced943b9444424e7845182": "", "d136830a7ce77f04529dd1a6a4d5480f": "", "e4db9063976a0fd5fe8cf6fc40929de6": "", "cc709f4b2e46de6826a8038a6f86027c": "", "cc80e67da04a390a47b58f94a42df1fe": "", "ba062920f8e4ee776d490e367ba8eb33": "", "76de9bf5c490b00f213231e2e2d22828": "", "090f4415600e46518bca710abdf6907e": "", "169fb2563ffc885ac300210df4601b46": "", "cc772bb1153671058e8c3ee1f8cf59bc": "", "ffbb9fe970c4188220af6181030da20b": "", "2755fe65d2eab0c4225828dea0d5d8bc": "", "e7057c3707b35c190c8adec7ececc538": "", "df98581391414b6feaae9a15da6c3dda": "", "6f1897d31f96223eda83d048c5d8471f": "", "2fdf661059357ad76c0a97a608e7d33f": "", "45aca5a838aed46ea28c646c7525d365": "", "bdadc792fa1dbbddd1a44570cd1681ad": "", "ca9705162517ef65b6b5a09b20115caf": "", "d9d4844af0397b7a8b443d8f43544001": "", "37b4cf1fb8f1c2c3978b0df89c8993f0": "", "cf54d156e76c7c0a4df5241cc7f23fe2": "", "29f289be4b0084469297b07534808487": "", "7574a44e99177241bb3bc6206f0d5414": "", "97b013d9c32e6d7af9bce22dc73a69d2": "", "d4fd44db2c3a29f9a5e4358903871920": "", "4ae09ae878bd19a635ffd6b4f881798d": "", "58d9a587b281831ec9fc13a4f236c70d": "", "02e286901cfc43b09dabf960e806532c": "", "dfb1803bba2cddc2a2742710e53171b0": "", "4b6fd0cc5c0cf2e8727000415815cd03": "", "fc7641c087faf0ca2107a01cda6d5e81": "", "9b10d0c65291580abe3bfe79888a6862": "", "d156f9f3973a3a061fe6bb38f427a950": "", "e72a0f7d9b228903a9961ff5a1afacd8": "", "514e725f67982850b1d10cc5818c7e66": "", "23f5ceac19bca40df6fbbe4d44238e4e": "", "fd715ca88c0084ae5711aee62438ccb0": "", "c4855a4ccc61f8803f54c0e9a91636ee": "", "14aa64d6e792676a56d5ff973bd603b7": "", "48ccc4fb6be30efab749f0f5ab8691ed": "", "46520762b7a9a5503e85e84f87c6cbc8": "", "dd1146f69f2a282a1b5f326b9b4f67c7": "", "653c2eb3449a90c008fde7d0bc136aaf": "", "d9fc07d58527d2f882b9fefee3694509": "", "0ad5f7db9216e834c09571f419f0b08f": "", "bce53322e1c760e06159c392e68e64d6": "", "5ae33da109786dcea4bf883cecaccab9": "", "499160b9e9d948b9cdc5bfe50b46e4a7": "", "744a50e9eef90f9ef9b785fa570a1325": "", "e9f20ffa5348725bb7b67c11d1b78e51": "", "8f498cedfbc7eb5c9b241e8f36a897c7": "", "1b4819be3ec80ec6d571dcf85cae84bd": "", "696c03b1961ab9dd5ecaf1d68bd6f940": "", "d11ee180b52813cc94a77d0fee3def4d": "", "510a86e0c4979f20deb43d1f5d7b8a36": "", "cd1512a932ce40c45bde60a7eb4220c5": "", "964cc6b47d20717bf44b70603eff3b20": "", "9da53e39280501e9b480a299183912ed": "", "3ed4bdc2ffc0a18c0ca3f794c0638496": "", "9303d704d3ab5363a72907d9a6ba412b": "", "5d69c2721575f9eb3607c3a2493ff24f": "", "d6158736dda0dca687848954ded0cfe8": "", "b8a382b05b2a8977719c748b30e0ec21": "", "e42737bf9736a605866ba9d1023e3e66": "", "4c770a38476efb1f4c6236af909ed766": "", "d0217aa05908e9fff607771366383ef4": "", "12b0681c9d25bad680c70878e7fb30ba": "", "861bb60ec8984c7f98063c64b81adda2": "", "5c56d8260c94aaad9b327dedfd5313e2": "", "364a14411e12d47a8534d7c911ad88bd": "", "146a42b3135628ae2f7d194d2d4c89be": "", "b51dd5da76fb616284febc7639090c9f": "", "87efc03956201aa8fedd8b5bf96b2190": "", "86de6f4a08524199a6c0e50a198b7eb7": "", "d6f88a2f1b1f8b0ab6cdef8618168dec": "", "7ae5adc078e83fd820de522a4b0347fd": "", "dec0ec0879879d90d9334197dbb396d2": "", "b3eb0e6cb79bce629f412f59dc6a6ca1": "", "63f070b228d974a35625b85eac33b4ea": "", "9e12c84f1341c7abefec50595df27e91": "", "f69028f42751a8e34a7e9c28fa074b5b": "", "a77c64ed3364345373524c06292e4a38": "", "38bb992d236c655f5600d1365eec7cd0": "", "7eedb65527314eccb27c0435b0ff827d": "", "532627d93e0b63c9041f7b1910e3f0b2": "", "1aac892231e25d8b97144eb0204caaa8": "", "1fbb195082903c55bd8a54b465d54caf": "", "50cee3691f1aed5f605e958cc279b886": "", "f1a80053ad9b02064920433dcdbb8a63": "", "ade4c8cfaac4405017821b982db0060c": "", "d79ea0e5d66c2f1a7e52bd0d2613d164": "", "8f97dc863432ac242dbf75642a49e505": "", "3a41187b098eff06fcdb6961e5a735d6": "", "591ee9130f8e7b55181771ab6faaed16": "", "2ad3d1cc22de6f938be94bff61ea4414": "", "db67469551541aa49e5311008b32fa97": "", "107072615ad094fda031eb98395af7a7": "", "f344fd2b702f12bcd10da47bfd86fac0": "", "ec9eb734df06c84b7e47765d53ed2890": "", "268795f060904f66acb9180eec067109": "", "2d9a9aaea92df6309e5cd444ac3bc8db": "", "d997d6b1aea91bae8f6b05ab40af76b1": "", "b53ef0d9fa3ace8006bd3cae5b0e35c2": "", "089770e225696e12ea27a121a05c8c6f": "", "4b2dc2bc77a4c63d156e60d439d56a78": "", "6b22a38ce4b5512ed24fbe9ba2443f83": "", "f7e07b9e7c4ec9380a001e4a9f631f49": "", "ed44c794d7720a7ea8dc07092220f0fd": "", "2aab66847996caed0afa781b6a41d4e2": "", "55283d96e1db9055980aabd503eef008": "", "a777f578d093feec11ef215e28363252": "", "72ef1d49b4e576d87f90bcbb2f2a2861": "", "79e14572fec4803dfaf7e8f3a3955692": "", "270714b3011558dea749283dfb818f91": "", "c08febbe5fc18fd7f9d859670d98018a": "", "7658de98553b3143a606e616d1eeaf04": "", "f18924269d1e640c5b95bfa9c627a665": "", "ea3e2e466b51e99a510e14fe3684b2f1": "", "ecbef29ccbc0a83d3a9ca639a75eecb2": "", "2a8fef623d1f853e56320a9d100cd4b3": "", "d9a96f9304632b5f5a79690add8f6475": "", "f6a43fe68cba052e1614891918e50f72": "", "3550090c75bece9899010dc2d9e85e73": "", "49fb1cc1e29a61cc1fd5787da8d860ea": "We get very quickly near π, and then more slowly zero in on it. This is an example of the Law of Diminishing Returns, where each sample helps less than the last. This is the worst part of MC. We can mitigate this diminishing return by stratifying the samples (often called jittering), where instead of taking random samples, we take a grid and take one sample within each:", "1f7f9b244493f4126132a4c572732301": "This changes the sample generation, but we need to know how many samples we are taking in advance because we need to know the grid. Let’s take a hundred million and try it both ways:", "83f992e2472eea9ea4ce69cf08f02aee": "Interestingly, the stratified method is not only better, it converges with a better asymptotic rate! Unfortunately, this advantage decreases with the dimension of the problem (so for example, with the 3D sphere volume version the gap would be less). This is called the Curse of Dimensionality. We are going to be very high dimensional (each reflection adds two dimensions), so I won't stratify in this book, but if you are ever doing single-reflection or shadowing or some strictly 2D problem, you definitely want to stratify.", "3c33a9f200b3bdfb60036fbec59efed6": "Integration is all about computing areas and volumes, so we could have framed chapter 2 in an integral form if we wanted to make it maximally confusing. But sometimes integration is the most natural and clean way to formulate things. Rendering is often such a problem.", "b34b9b222dbd9e64bcb8df85384925b9": "In graphics, we often have functions we can evaluate but can’t write down explicitly, or functions we can only probabilistically evaluate. That is in fact what the ray tracing ray_color() function of the last two books is — we don’t know what color is seen in every direction, but we can statistically estimate it in any given dimension.\n\nOne problem with the random program we wrote in the first two books is that small light sources create too much noise. This is because our uniform sampling doesn’t sample these light sources often enough. Light sources are only sampled if a ray scatters toward them, but this can be unlikely for a small light, or a light that is far away. We could lessen this problem if we sent more random samples toward this light, but this will cause the scene to be inaccurately bright. We can remove this inaccuracy by downweighting these samples to adjust for the over-sampling. How we do that adjustment? To do that, we will need the concept of a probability density function.\n\nLook at the code\n\nThis, as expected, produces approximately the exact answer we get with algebra, I=8/3. We could also do it for functions that we can’t analytically integrate like log(sin(x)). In graphics, we often have functions we can evaluate but can’t write down explicitly, or functions we can only probabilistically evaluate. That is in fact what the ray tracing ray_color() function of the last two books is — we don’t know what color is seen in every direction, but we can statistically estimate it in any given dimension.\n\nOne problem with the random program we wrote in the first two books is that small light sources create too much noise. This is because our uniform sampling doesn’t sample these light sources often enough. Light sources are only sampled if a ray scatters toward them, but this can be unlikely for a small light, or a light that is far away. We could lessen this problem if we sent more random samples toward this light, but this will cause the scene to be inaccurately bright. We can remove this inaccuracy by downweighting these samples to adjust for the over-sampling. How we do that adjustment? To do that, we will need the concept of a probability density function.", "6bfbced6c26f196c8a8c0feb73d34dfb": "One problem with the random program we wrote in the first two books is that small light sources create too much noise. This is because our uniform sampling doesn’t sample these light sources often enough. Light sources are only sampled if a ray scatters toward them, but this can be unlikely for a small light, or a light that is far away. We could lessen this problem if we sent more random samples toward this light, but this will cause the scene to be inaccurately bright. We can remove this inaccuracy by down weighting these samples to adjust for the over-sampling. How we do that adjustment? To do that, we will need the concept of a probability density function.\n\n", "2ca9922eaefd598e17a41c8255a8786b": "First, what is a density function? It’s just a continuous form of a histogram. Here’s an example from the histogram Wikipedia page:\n\nIf you took a probability course before, then you know that the discrete form of a density function is more commonly called a mass function.\n\nA discrete density function differs from a histogram in that it normalizes the frequency y-axis to a fraction.\n\nA continuous histogram, where we take the number of bins to infinity, can’t be a fraction because the height of all the bins would drop to zero. A density function is one where we take the bins and adjust them so they don’t get shorter as we add more bins.", "f2ed584e9c09827f4c32412648d92310": "In our ray tracer, we pick random directions, and directions can be represented as points on the unit sphere. The same methodology as before applies, but now we need to have a PDF defined over 2D.\n\nSuppose we have this integral over all directions:\n\nWe can sample:\n\nbut what is the direction in that context? We could make it based on polar coordinates, so p would be in terms of the pair theta/phi. \nHowever you do it, remember that a PDF has to integrate to 1 and represent the relative probability of that direction being sampled.", "0ac39cc5085a710be894c14b9ae9a283": "We have a method from the last books to take uniform random samples in or on a unit sphere:\n", "93cab1c5c47fac776293c0d8aba4d6de": "Now what is the PDF of these uniform points?\n\nAs a density on the unit sphere, it is 1/area of the sphere or 1/(4π). If the integrand is cos2(θ), and θ is the angle with the z axis.\n\nThe analytic answer is 4/3π, and the code above produces that.", "b0bc5863c93b5ade1f88f3b4d98c58ed": "The key point here is that all the integrals and probability and all that are over the unit sphere. The area on the unit sphere is how you measure the directions. Solid angle is the term usually used. The solid angle ω and the projected area A on the unit sphere are the same thing.", "125320f0fd048d4c7fe783bc0c726c71": "", "2b544fb7b56d756c696913f33a80d20f": "Let’s make a PDF and use it a bit to understand it more. Suppose I want a random number r between 0 and 2 whose probability is proportional to itself: r. We would expect the PDF p(r) to look something like the figure below, but how high should it be?", "da4a0223165a46ffc42a2ca404cac76f": "The height is just p(2). What should that be? We could reasonably make it anything by convention, and we should pick something that is convenient. Just as with histograms we can sum up (integrate) the region to figure out the probability that r is in some interval (x0,x1):\n\nwhere C is a scaling constant. We may as well make C=1 for cleanliness, and that is exactly what is done in probability. We also know the probability r has the value 1 somewhere, so for this case", "1a8046fbb87a9f94511793b9512dfc82": "where C is a scaling constant. We may as well make C=1 for cleanliness, and that is exactly what is done in probability. We also know the probability r has the value 1 somewhere, so for this case", "87ff10852a0103c0219d63ba2e7c413c": "So p(r)=r/2.", "977efc8aea716bb6e636d7908d9c41cd": "How do we generate a random number with that PDF p(r)? \n\n\n\nWe need the cumulative probability distribution function P(x):", "f289c5ca9851f5447d36b81789127243": "We need to account for the non-uniformity of the PDF of x. Where we sample too much we should down-weight. The PDF is a perfect measure of how much or little sampling is being done. So the weighting function is 1/pdf:", "f89b739525f40ce5cc4d98033ef2ba60": "Since we are sampling more where the integrand is big, we might expect less noise and thus faster convergence. In effect, we are steering our samples toward the parts of the distribution that are more important. This is why using a carefully chosen non-uniform PDF is usually called *importance sampling*.", "d315eed010a1a189de38043d12f589b3": "One problem with the random program we wrote in the first two books is that small light sources create too much noise. This is because our uniform sampling doesn’t sample these light sources often enough. Light sources are only sampled if a ray scatters toward them, but this can be unlikely for a small light, or a light that is far away. We could lessen this problem if we sent more random samples toward this light, but this will cause the scene to be inaccurately bright. We can remove this inaccuracy by down weighting these samples to adjust for the over-sampling. How we do that adjustment? To do that, we will need the concept of a probability density function.\n", "2bceceae491eca9e666816c493bd5d2f": "", "4e0657a536daaa4070dafaeaea379853": "", "3a44f73761612c90af47b6a8a0912e7a": "", "c79d11e287f1ef2029172fb7f1f94db7": "If the light scatters, it will have a directional distribution that we can describe as a PDF over a solid angle. The book refer to this as its scattering PDF: s(direction). The scattering PDF can also vary with incident direction, which is the direction of the incoming ray. \n\nYou can see this varying with incident direction when you look at reflections off a road — they become mirror-like as your viewing angle (incident angle) approaches grazing.\n\nThe color of a surface in terms of these quantities is:\n\nNote that A and s() may depend on the view direction or the scattering position (position on a surface or position within a volume). Therefore, the output color may also vary with view direction or scattering position.", "edcb97a8a616f178ec469d5935cf7266": "If we apply the MC basic formula we get the following statistical estimate:\n\nwhere p(direction) is the PDF of whatever direction we randomly generate.", "382212582f451c8451001ddd9b37893e": "For a Lambertian surface we already implicitly implemented this formula for the special case where p() is a cosine density. The s() of a Lambertian surface is proportional to cos(θ), where θ is the angle relative to the surface normal. Remember that all PDF need to integrate to one. For cos(θ)\u003c0 we have s(direction)=0, and the integral of cos over the hemisphere is π.", "7f40b1d4a27c2f1f80868d632af67fb5": "To see that, in spherical coordinates:\n\n\n\nSo for a Lambertian surface the scattering PDF is:\n\nThe numerator and denominator cancel out\n", "573f3a43f9fb500a1f175bb07bd23aab": "", "9a87bbfd83c1743b959a847dfc524e50": "Our goal is to instrument our program to send a bunch of extra rays toward light sources so that our picture is less noisy. Let’s assume we can send a bunch of rays toward the light source using a PDF pLight(direction). Let’s also assume we have a PDF related to s, and let’s call that pSurface(direction).", "eacd8801873605c98b0f25ac32f8b06a": "A great thing about PDFs is that you can just use linear mixtures of them to form mixture densities that are also PDFs. For example, the simplest would be:\n\nAs long as the weights are positive and add up to one, any such mixture of PDFs is a PDF. And all PDFs eventually converge to the correct answer. So, the game is to figure out how to make the PDF larger where the product s(direction)⋅color(direction) is large. For diffuse surfaces, this is mainly a matter of guessing where color(direction) is high.\n\nFor a mirror, s() is huge only near one direction, so it matters a lot more. Most renderers in fact make mirrors a special case, and just make the s/p implicit — our code currently does that.", "112f380d2123f050c4f0c995d5c144c2": "", "7fc18f41612afac8b7af27c5fc36298f": "Reducing that noise is our goal. We’ll do that by constructing a PDF that sends more rays to the light.\n\nFirst, let’s instrument the code so that it explicitly samples some PDF and then normalizes for that. Remember MC basics: ∫f(x)≈f(r)/p(r). For the Lambertian material, let’s sample like we do now: p(direction)=cos(θ)/π.\n\nWe modify the base-class material to enable this importance sampling:", "58b141aeca340a52e1fe233777f8e17e": "And Lambertian material becomes:\n", "ff5902514183de4035a62d1828b86fa2": "And the ray_color function gets a minor modification:\n\nYou should get exactly the same picture.", "cc99362788b4f8cf54ea5511de3d667a": "Now, just for the experience, try a different sampling strategy. As in the first book, Let’s choose randomly from the hemisphere above the surface. This would be p(direction)=1 / 2π.", "fe99ceec99257d70ac5fa0d87579685c": "", "699012416f9d0e6d38409bd7917f1710": "", "3378dfca3d9002745fe796227c492fcf": "", "ca6e622990dd6364087070ff67da99c7": "", "f9701c92f7b05cc010c4e406c4ba2a89": "", "566f9e8de6ccd92d6b529f4dac632c2d": "An orthonormal basis (ONB) is a collection of three mutually orthogonal unit vectors. The Cartesian XYZ axes are one such ONB.", "aebefbc7fb939906d5a77deeb650546e": "", "ce19191eeed339a4089b19151aa6c1da": "", "fad17b1d0bd5cb6aa592485396eb6b13": "", "d51544dfc283875d2a957d9f1b3d315f": "", "94bf83b557eb4f12d4075740e8e22c6a": "We can rewrite our Lambertian material using this to get:\n", "ec94bf62dcb4e9b7abd7da4a5339f1d8": "", "05a0997bf1800c88c6ad3d548d0b0031": "", "71dffd40d1af337f31d2d1d190377ebe": "", "9e26963ec1a991dc446f55fcb6044319": "For a light of area A, if we sample uniformly on that light, the PDF on the surface of the light is 1/A. What is it on the area of the unit sphere that defines directions?", "79590877642fac835f35be501c13e17a": "", "e2547c0608a96c8da0455f306bbc2302": "If we hack our ray_color() function to sample the light in a very hard-coded fashion just to check that math and get the concept, we can add it (see the highlighted region):\n", "79f6ebf6cb8ffdf8c7afc6273ee17854": "", "c35de92b4a725d5da6afae6171d05e82": "The noisy pops around the light on the ceiling are because the light is two-sided and there is a small space between light and ceiling. We probably want to have the light just emit down. We can do that by letting the emitted member function of hittable take extra information:", "280023750d41bc81f83f309d27da555e": "We also need to flip the light so its normals point in the −y direction:", "e3b3fdb23fedbf197958fdd07d8deacb": "", "2549c933b36397898eabf7f25650ade6": "", "5b95f9129445aa5b66f78f38d3e31f6e": "", "db8801af9d8a4363244a2ee3a1a8e338": "", "66ea3a3a59fe2667156be1fde529a972": "", "83abfac59fa0923b4eb3338f380cff37": "", "a9a4e3ff3a7f2ed1c8b5a2d9ee2ed699": "We have used a PDF related to cos(θ), and a PDF related to sampling the light. We would like a PDF that combines these.", "5940d02fbc92069d435029fb448897e4": "1000 samples per pixel yields:", "197caa61c8a583ef7daeae6f0a4d1e47": "", "9ef797a07325ec7f41295c41d300fe09": "So far I have the ray_color() function create two hard-coded PDFs:\np0() related to the shape of the light\np1() related to the normal vector and type of surface\nWe can pass information about the light (or whatever hittable we want to sample) into the ray_color() function, and we can ask the material function for a PDF (we would have to instrument it to do that). We can also either ask hit function or the material class to supply whether there is a specular vector.", "072c5f541ec41d40ec67d71036fb6dbf": "A common tool in probability is to mix the densities to form a mixture density. Any weighted average of PDFs is a PDF. For example, we could just average the two densities:", "22e9b3277f116c7e64157702d910fb86": "How would we instrument our code to do that? Choosing the random direction is simple:\n\nBut evaluating mixture pdf is slightly more subtle. We need to evaluate both reflection pdf and light pdf because there are some directions where either PDF could have generated the direction. For example, we might generate a direction toward the light using reflection pdf.", "1c81062a8047d776642bc6351fc7e8f6": "If we step back a bit, we see that there are two functions a PDF needs to support:\nWhat is the value at this location?\nReturn a random number that is distributed appropriately.", "09769169197cad2e5a0bd70640f75128": "", "e2f23dbde02953caf986a799fca2eab7": "", "752df7f9549dbf80cff11f403ba21a96": "", "30e29ee3d37b811cee5f08228aeb96d6": "Now we can try sampling directions toward a hittable, like the light.\n", "857146fd83769008071cbe2033c1b0f4": "", "83e7e63e0ae6fbc10db6e65238d31e20": "", "d8e15f42faa4d216d49caec36a3792a1": "", "e410c984b9baa4030ceb067223737c19": "", "09337774b06ee80f7a2a1e77321dd3ec": "", "f306a025bc9089d78e0c2a7e6f271978": "", "c5f19d2928053ccff24003163c1555c5": "The math would work out if we just made their scattering function a delta function. But that would be floating point disaster. We could either separate out specular reflections, or have surface roughness never be zero and have almost-mirrors that look perfectly smooth but don’t generate NaNs.", "d8594d8ea0a2463bcce03ff0901fec0b": "", "69af606ce439273796ffc6477be2d797": "", "7561c310618a7a3bafcc77e44bcb2a0a": "", "5210163d9ea5b18a614196c2de079490": "", "1858affaaa1eb75830d21f116d876cdf": "", "b5a73d26aea91c042efd01609b519365": "", "eef0b119c3b561298ec2a312b5d3f7ba": "", "d47c759548bf8185864a3493572786db": "", "a5307f64e94ef398be55913926ca3624": "The resulting image has a noisy reflection on the ceiling because the directions toward the box are not sampled with more density.\n", "60c813d373e9cb448b55e69514a251e6": "", "72070c4e2d97a23e72e7d5a4b6aff8ea": "", "ef383cd460d98870599607bc18309941": "", "f907b55085b5f8f9b08faf9692a50cde": "", "27f67f874d952cce5c394fae968178f9": "", "fc22fcea3a51ffff43c7575a5ac5281a": "", "98cf8b4d44965cb2f6921c3b72bfb0e1": "", "c8b12f13ceadf1c90183331acf46ffc2": "", "0d60d26aea17b23e7aded991e42f490c": "", "75c6509573d760af7da9535440915ab2": "", "eeca278d44391b141d80d3197f6e31e1": "The rendering equation sums up how light comes to the eye.", "52790d3a49ee352cfb076cf79374336a": "", "55baf440cdb746030d09f65252ba5355": "", "b225a8798daa3962ac78570361b7035d": "", "6cf04009017a0268aac4014e95b0731b": "", "1ade0e38cf6c5910f40e4b673d824d39": "", "593fc49c88d39f065e15d5df6da4d760": "", "3ddf61cda7f7b0d3d6d460cc6598f8e8": "", "f5be4fc15d0f6523fabf6855be78bb95": "", "d756b45811f8cc6e8830f4ff0ce21541": "", "bf24f9c1b4e9db101e9b554e258164d9": "", "671b9d1a26695cdc7766573fc85b5770": "", "36d0c68a60c10124e20826c9932fbcb7": "", "8b37a58f2d39359f1b93ad0676d85726": "", "e3c2921cf8fb591104d5700f30867af1": "", "4e03d683bc414437da7d3955040dd7f3": "", "66dd07cfab7ce2bb77f1d2fa91809372": "", "7b3b37ae6b4e086825c1e09276164674": "", "b20d0221b32a8d1fcce8010024f78b91": "Boids try to keep a small distance away from other objects (including other boids)", "49ba2c20deb23387c79804eec5fecbe0": "", "6c84e2ab013e276ec658c390e3f2d250": "", "0ae394b335ad737f9673d1eb7042311c": "", "3e69373ba092a5ffbf5ffe85f1653d84": "", "f618c791ef53a66a003ffe273a6eaacf": "", "e916f337b3fc36c63bfc55de1045381c": "", "51fb6c6f60d4d40a362c2ce6cb287944": "", "2703230c781d1cd3aa23cac55669c3b1": "", "bd455ae00e41620cf10324f53bb3465d": "", "fca30c09551f0580067dcc8c156b38ac": "", "0b803fca227d20aa4e4a3ed3d15da4f5": "", "4a1d46c257e33040ce7db89601dfbf9f": "", "b23d7f4e6dbb4467930f92a269a0a1bc": "", "0294d4068184aec4ede0f5763aa02f61": "", "30f0cdccba136015756796039a450474": "", "59a819a07c013a2d3f456f6a1f11ce29": "", "deaeae3910a80f67892284021a8f0dab": "", "1901c83c1745c5e9404a49cabd16272d": "", "67122b772fd6190a3dc73d8f5827da51": "", "28964d763e6ee126ba61eed827e2cd67": "", "cb223f7d60dcfb31aaec124f24af1303": "", "1e755e0a14bc60e0bdbb455a49e3ee84": "", "93374559e3c82c5e3519748caf60ebd3": "", "2cd53295f59136852e5c72a7a51b119c": "", "45b4497a95403db27dcdf762083fd3d7": "", "9c93e911f4e6e01f29d7bca7900c8e51": "", "a4bfe6f211205355bb2af445f56fb307": "", "3f14beb3ca0488ef79475881938321a1": "", "d10f2d994e3279134178cfbb1dd07802": "", "8cc68cb74082569b7f14eeb03b2f0de6": "", "9658f7b6b983a07e852f0184fb6191b9": "", "e55a1eb271fdf660c6a880e3e1415e4a": "", "90e314b1f7ab9400e04adae6cca649e8": "", "bb219a6310cded45547747bea9026a45": "" } } };
+
+
+    // Use local fonts
+    SLConfig.fonts_url = '../lib/fonts/';
+  </script>
+
+  <script src="../lib/reveal.min.js"></script>
+  <script src="../lib/reveal-plugins.js"></script>
+  <script src="../lib/offline.js"></script>
+
+  <!-- Initialize the presentation -->
+  <script>
+    Reveal.initialize({
+      width: 960,
+      height: 700,
+      margin: 0.05,
+
+
+      hash: true,
+      controls: true,
+      progress: true,
+      mouseWheel: false,
+      showNotes: false,
+      slideNumber: false,
+      fragmentInURL: true,
+
+      autoSlide: 0,
+      autoSlideStoppable: true,
+
+
+      center: false,
+      shuffle: false,
+      loop: false,
+      rtl: false,
+      navigationMode: "default",
+
+      transition: "none",
+      backgroundTransition: "slide",
+
+      highlight: {
+        escapeHTML: false
+      },
+
+      plugins: [RevealZoom, RevealNotes, RevealMarkdown, RevealHighlight]
+    });
+  </script>
+
+
+
+</body>
+
+</html>
