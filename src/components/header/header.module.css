@@ -60,7 +60,7 @@
   list-style: none;
 }
 
-.menuItems li {
+.menuItems > li {
   display: contents;
 }
 
@@ -186,7 +186,7 @@
   }
 
   .mobileMenuButton:checked ~ .menu {
-    max-height: 300px;
+    max-height: 400px;
   }
 
   .mobileMenuButton:checked ~ .mobileMenuIconContainer .mobileMenuIcon {

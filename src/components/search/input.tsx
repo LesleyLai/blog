@@ -6,7 +6,7 @@ import { MdSearch } from "react-icons/md";
 
 const Input = styled.input`
   outline: none;
-  border: none;
+  border: 1px solid black;
   font-size: 1em;
   background: white;
   /* background: transparent; */
@@ -29,7 +29,6 @@ const SearchIcon = styled(MdSearch)`
 
 interface SearchBoxProps {
   refine: (...args: any[]) => any;
-  onFocus: () => void;
 }
 
 const SearchBox = ({ refine, ...rest }: SearchBoxProps) => (

@@ -149,7 +149,7 @@ export default class Header extends React.Component<HeaderProps, HeaderStates> {
             </ul>
             <ul className={css.menuItems}>
               <li key="search">
-                <Search collapse indices={searchIndices(lang)} />
+                <Search indices={searchIndices(lang)} />
               </li>
               {otherLangs.map(otherLang => (
                 <li key={otherLang}>
