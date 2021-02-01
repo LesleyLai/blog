@@ -2,27 +2,27 @@
 id: delve_into_cpp
 title: "这些资源帮助你深入学习C++"
 lang: zh
-create: '2021-01-15'
-lastModify: '2021-01-15'
+create: "2021-01-15"
+lastModify: "2021-01-15"
 categories:
-_ code
-- cpp
-- learning
+  - code
+  - cpp
+  - learning
 ---
 
-这些年来，很多人都向我寻求学习C++的帮助。
-我算不上什么C++专家，
-但是作为一个从事C++多年的人，
-我想在这分享一些高质量并且同时适合初学者的C++资源。
+这些年来，很多人都向我寻求学习 C++的帮助。
+我算不上什么 C++专家，
+但是作为一个从事 C++多年的人，
+我想在这分享一些高质量并且同时适合初学者的 C++资源。
 希望这些资源对您有所帮助。
 
 <!-- end -->
 
-当有人问我有关使用C++的指导时，
+当有人问我有关使用 C++的指导时，
 我总是首先问他们已有的编程经验经验。
-有些人刚开始学习编程，并决定学习C++作为他们的第一门编程语言；
-有些人已经掌握了少量的C++，并且想要学习更多；
-而有些人已经使用了其他语言编程多年，然后尝试学习一些C++。
+有些人刚开始学习编程，并决定学习 C++作为他们的第一门编程语言；
+有些人已经掌握了少量的 C++，并且想要学习更多；
+而有些人已经使用了其他语言编程多年，然后尝试学习一些 C++。
 因为不同的人有不同的背景以及不同的学习目标，
 所以我会推荐一些不同的材料。
 
@@ -35,54 +35,54 @@ _ code
 因为您只通过中文来学习编程，
 那么您将失去使用绝大多是好的学习资料的机会。
 
-## 如果我刚刚开始学习编程并选择C++作为我的第一门编程语言，我该怎么做？
+## 如果我刚刚开始学习编程并选择 C++作为我的第一门编程语言，我该怎么做？
 
-对于编程初学者来说，我推荐Bjarne Stroustrup（C++之父）的《C++程序设计：原理与实践》第二版（Programming: Principles and Practice Using C++ 2nd edition）。
+对于编程初学者来说，我推荐 Bjarne Stroustrup（C++之父）的《C++程序设计：原理与实践》第二版（Programming: Principles and Practice Using C++ 2nd edition）。
 这本书有中文翻译，不过就像我之前说的，如果您有一点的英文阅读能力，我建议您阅读原版。
 因为这本书很厚，所以您不一定能够坚持看完整本，但是无论您看了多少页你都能学到东西。
 
 如果您不想要看书，
-C++专家Kate Gregory在Pluralsight网站上提供了不少的视频教程。
+C++专家 Kate Gregory 在 Pluralsight 网站上提供了不少的视频教程。
 其中她的入门教程是[Learn to Program with C++](https://www.pluralsight.com/courses/learn-program-cplusplus)。
-如果你加入[#include<c++> discord服务器](https://www.includecpp.org/discord/)，
+如果你加入[#include<c++> discord 服务器](https://www.includecpp.org/discord/)，
 你可以在服务器内直接为她要一份试用码。
 
-## 如果我以前已经学习过一些C++并且想更深入地学习，我该怎么做？
+## 如果我以前已经学习过一些 C++并且想更深入地学习，我该怎么做？
 
-也许您已经从大学数据结构课程中使用过一些C++，
-又或者您学习了一些使用C++的在线教程，
+也许您已经从大学数据结构课程中使用过一些 C++，
+又或者您学习了一些使用 C++的在线教程，
 接下来该做什么？
 
 根据我的个人经历以及我所听闻的，
-大多数大学编程课程或那些在线教程的质量都偏低，而且讲师通常对C++一知半解。
+大多数大学编程课程或那些在线教程的质量都偏低，而且讲师通常对 C++一知半解。
 您可能会被之前的学习资源所误导，并且学习到了一些错误的实践或者是对概念的误解。
 因此，选择正确的学习资料是对高效学习十分重要的一点。
 
-在这种情况下，我同样会推荐Bjarne Stroustrup的《C++程序设计：原理与实践》第二版。
+在这种情况下，我同样会推荐 Bjarne Stroustrup 的《C++程序设计：原理与实践》第二版。
 你可以看书看得比纯粹初学者更快一些，不过使用该书来系统地查漏补缺依然很有好处。
 如果您更喜欢视频教程，
-可以从Kate Gregory的[C++ Fundamentals Including C++17](https://www.pluralsight.com/courses/cplusplus-fundamentals-c17)开始。
+可以从 Kate Gregory 的[C++ Fundamentals Including C++17](https://www.pluralsight.com/courses/cplusplus-fundamentals-c17)开始。
 
-## 如果我是另一门语言的资深人士并想学习C++，该怎么办？
+## 如果我是另一门语言的资深人士并想学习 C++，该怎么办？
 
-如果您已经精通了某个其他的编程语言，并且想开始学习一些C++，
+如果您已经精通了某个其他的编程语言，并且想开始学习一些 C++，
 您可以直接选择更加进阶的材料。
 
 对于书来说，
-我建议阅读Bjarne Stroustrup的《C++程序设计语言》第四版（The C++ Programming Language (4th Edition)）。
+我建议阅读 Bjarne Stroustrup 的《C++程序设计语言》第四版（The C++ Programming Language (4th Edition)）。
 这本书是我读过的最好的技术书籍之一。
-不过这本书也同样相当得厚。如果您没有时间阅读该书并且想要有一个简短的C++介绍，
+不过这本书也同样相当得厚。如果您没有时间阅读该书并且想要有一个简短的 C++介绍，
 您可以购买《A Tour of C++》第二版。
 
-## 我认为我对C++有一定的了解了。 下一步是什么？
+## 我认为我对 C++有一定的了解了。 下一步是什么？
 
 如果您花了数月的时间学习上述资料，
-并觉得您对C++基本概念有相当的了解。
+并觉得您对 C++基本概念有相当的了解。
 接下来该做什么？
 
 <aside style="margin-top: -40px;">
 
-如果您是资深C++程序员，你可能会注意到我用了“概念”一词。不过我并没有在讨论C++20的*[概念](https://zh.cppreference.com/w/cpp/language/constraints)*（concept）语言特性 😃.
+如果您是资深 C++程序员，你可能会注意到我用了“概念”一词。不过我并没有在讨论 C++20 的*[概念](https://zh.cppreference.com/w/cpp/language/constraints)*（concept）语言特性 😃.
 
 </aside>
 
@@ -97,21 +97,21 @@ C++专家Kate Gregory在Pluralsight网站上提供了不少的视频教程。
 - 复制/移动构造函数以及复制/移动赋值运算符
 - 移动语义(move semantics)
 - 运算符重载（operator overloading）
-- [lambda表达式以及函数对象](c++-lambda)
+- [lambda 表达式以及函数对象](c++-lambda)
 - 未定义行为（undefined behaviors）
 
 如果你已经到了这个阶段，
-那么为C++找到实际用途或许比学习C++语言本身更重要了。
+那么为 C++找到实际用途或许比学习 C++语言本身更重要了。
 C++被用于许多不同的用途，
-而您也可以开始考虑如何把C++应用在您感兴趣的领域上。
+而您也可以开始考虑如何把 C++应用在您感兴趣的领域上。
 
-同样，现在是学习C++生态系统的好时机，您可以花一些时间来深入学习例如[Catch2](https://github.com/catchorg/Catch2)等单元测试库，[CMake](https://cmake.org/)等构建系统, 以及[Conan](https://conan.io/)等包管理器。
+同样，现在是学习 C++生态系统的好时机，您可以花一些时间来深入学习例如[Catch2](https://github.com/catchorg/Catch2)等单元测试库，[CMake](https://cmake.org/)等构建系统, 以及[Conan](https://conan.io/)等包管理器。
 
 另外一个可以考虑的事是开始学习另一门编程语言，
-尤其是如果您目前仅了解C++一门语言。
-下一个不错的选择是与C++截然不同的语言，例如Javascript，Python或Lisp等动态类型的语言。
+尤其是如果您目前仅了解 C++一门语言。
+下一个不错的选择是与 C++截然不同的语言，例如 Javascript，Python 或 Lisp 等动态类型的语言。
 
-话虽这么说，仍然有无尽得关于C++语言本身的知识可以学习。
+话虽这么说，仍然有无尽得关于 C++语言本身的知识可以学习。
 我将尝试在以下列出一些我喜欢的资源：
 
 ### 书籍
@@ -119,20 +119,20 @@ C++被用于许多不同的用途，
 如果你仍然没有阅读《C++程序设计语言》第四版（The C++ Programming Language (4th Edition)的话，
 这本书仍然是一个非常好的选择。除此之外，我还有一些其他的书可以推荐：
 
-- Scott Mayer的《Effective Modern C++》
-- Jason Turner的《C++ Best Practices》
-- Nicolai M. Josuttis的《C++17 - The Complete Guide》
+- Scott Mayer 的《Effective Modern C++》
+- Jason Turner 的《C++ Best Practices》
+- Nicolai M. Josuttis 的《C++17 - The Complete Guide》
 
 还有一些书籍会关注于某些特定的方向，例如：
-- David Vandevoorde、Nicolai M. Josuttis、以及Douglas Gregor的《C++ Templates - The Complete Guide, 2nd Edition》
-- Arthur O'Dwyer的《Mastering the C++17 STL》
-- Ivan Čukić的《Functional Programming in C++》
-- Anthony Williams的《C++ Concurrency in Action, 2nd edition》
 
+- David Vandevoorde、Nicolai M. Josuttis、以及 Douglas Gregor 的《C++ Templates - The Complete Guide, 2nd Edition》
+- Arthur O'Dwyer 的《Mastering the C++17 STL》
+- Ivan Čukić 的《Functional Programming in C++》
+- Anthony Williams 的《C++ Concurrency in Action, 2nd edition》
 
 ### 大会讲话视频
 
-大会讲话同样是学习C++的绝佳资源。下列是一些我个人喜欢并且适合初学者的讲话：
+大会讲话同样是学习 C++的绝佳资源。下列是一些我个人喜欢并且适合初学者的讲话：
 
 - [CppCon 2019: Kate Gregory "Naming is Hard: Let's Do Better"](https://www.youtube.com/watch?v=MBRoCdtZOYg)
 - [CppCon 2018: Kate Gregory "Simplicity: Not Just For Beginners"](https://www.youtube.com/watch?v=n0Ak6xtVXno)
@@ -150,18 +150,18 @@ C++被用于许多不同的用途，
 
 #### #include<C++>
 
-[#include<C++>](https://www.includecpp.org/)是一个非常不错的C++社群，
-它提供了一个友好的讨论环境，并且你在里面可以找到多个在C++界知名的人物。
-您可以加入[它的discord服务器](https://www.includecpp.org/discord/)并且和大家一起讨论C++。
+[#include<C++>](https://www.includecpp.org/)是一个非常不错的 C++社群，
+它提供了一个友好的讨论环境，并且你在里面可以找到多个在 C++界知名的人物。
+您可以加入[它的 discord 服务器](https://www.includecpp.org/discord/)并且和大家一起讨论 C++。
 
 #### 见面会(Meetups)
 
-加入[North Denver Metro C++ Meetup](https://www.meetup.com/North-Denver-Metro-C-Meetup/)是我大学阶段做出的最好决定之一。如果您有时间的话，参加一些本地的C++见面会是一个非常不错的选择。（因为新冠的原因，现在绝大多数见面会以及大会都在网上召开，这有利有弊，但一个很大的优势是您现在可以参加全球的见面会）您可以在[meetup.com](https://www.meetup.com/)网站上搜索本地的见面会。
+加入[North Denver Metro C++ Meetup](https://www.meetup.com/North-Denver-Metro-C-Meetup/)是我大学阶段做出的最好决定之一。如果您有时间的话，参加一些本地的 C++见面会是一个非常不错的选择。（因为新冠的原因，现在绝大多数见面会以及大会都在网上召开，这有利有弊，但一个很大的优势是您现在可以参加全球的见面会）您可以在[meetup.com](https://www.meetup.com/)网站上搜索本地的见面会。
 
 #### 参加大会
 
-如果您认真对待C++，那么大会是结识志趣相投的人的好地方。
-这是我知道的一些重复举办的C++会议：
+如果您认真对待 C++，那么大会是结识志趣相投的人的好地方。
+这是我知道的一些重复举办的 C++会议：
 
 - [CppCon](https://cppcon.org/)
 - [C++Now](https://cppnow.org/) (tuned toward a more advanced audience)
@@ -175,7 +175,7 @@ C++被用于许多不同的用途，
 
 #### 播客
 
-网上有不少C++的播客，尤其是2020年有不少新的播客涌现。当然，所有的这些播客都需要较好的英语听力水平：
+网上有不少 C++的播客，尤其是 2020 年有不少新的播客涌现。当然，所有的这些播客都需要较好的英语听力水平：
 
 - [CppCast](https://www.cppcast.com/)
 - [cpp.chat](https://cpp.chat/)
@@ -186,9 +186,9 @@ C++被用于许多不同的用途，
 
 #### 博客
 
-我推荐使用RSS来关注各种技术博客。
-我个人关注超过200个关于C++或者其他技术话题的博客，
-下列是一些我个人认为最好的C++博客：
+我推荐使用 RSS 来关注各种技术博客。
+我个人关注超过 200 个关于 C++或者其他技术话题的博客，
+下列是一些我个人认为最好的 C++博客：
 
 - [Fluent C++](https://www.fluentcpp.com/)
 - [Arthur O’Dwyer](https://quuxplusone.github.io/blog/)
@@ -205,7 +205,7 @@ C++被用于许多不同的用途，
 
 <aside style="margin-top: -540px;">
 
-这个博客同样有一个[RSS源](https://lesleylai.info/zh/rss.xml).
+这个博客同样有一个[RSS 源](https://lesleylai.info/zh/rss.xml).
 
 </aside>
 
@@ -213,14 +213,14 @@ C++被用于许多不同的用途，
 
 ### 其他资料
 
-下面是一些其他有用的C++资源：
+下面是一些其他有用的 C++资源：
 
-- [cppreference](http://zh.cppreference.com/w/)是最好的C++语言以及标准库API文档网站
+- [cppreference](http://zh.cppreference.com/w/)是最好的 C++语言以及标准库 API 文档网站
 - [Compiler Explorer](https://compiler-explorer.com/)一个在线编码环境，支持 ++和许多其他语言。 它可以编译后的汇编码以及运行程序。
-- [Quick C++ benchmark](https://quick-bench.com/)是一个可以快速对C++代码进行测速的网站。
+- [Quick C++ benchmark](https://quick-bench.com/)是一个可以快速对 C++代码进行测速的网站。
 
 ## 引用以及扩展阅读
 
-- *"SG20 Education And Recommended Videos For Teaching C++". Christopher Di Bella*, 2021, https://www.cjdb.com.au/sg20-and-videos. Accessed 15 Jan 2021.
-- *"References And Links". #Include ＜C++＞*, 2021, https://www.includecpp.org/resources/references/. Accessed 16 Jan 2021.
-- Yaghmour, Shafik. *"Where To Get Started Learing C++ And What Resources To Use". Shafik Yaghmour's Blog*, 2019, https://shafik.github.io/c++/learning/2019/09/05/getting_started_learning_cpp.html. Accessed 16 Jan 2021.
+- _"SG20 Education And Recommended Videos For Teaching C++". Christopher Di Bella_, 2021, https://www.cjdb.com.au/sg20-and-videos. Accessed 15 Jan 2021.
+- _"References And Links". #Include ＜ C++＞_, 2021, https://www.includecpp.org/resources/references/. Accessed 16 Jan 2021.
+- Yaghmour, Shafik. _"Where To Get Started Learing C++ And What Resources To Use". Shafik Yaghmour's Blog_, 2019, https://shafik.github.io/c++/learning/2019/09/05/getting_started_learning_cpp.html. Accessed 16 Jan 2021.
