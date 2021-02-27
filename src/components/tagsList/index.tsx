@@ -4,8 +4,6 @@ import styled from "styled-components";
 
 import { Language, translations } from "../../utils/translations";
 import { TagID } from "../../types/tags";
-import { tagInfos } from "../../utils/tagInfo";
-import { Color, colors } from "../../utils/colorTable";
 
 interface TagsProps {
   lang: Language;

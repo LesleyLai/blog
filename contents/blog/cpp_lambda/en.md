@@ -32,7 +32,7 @@ void abssort(float* x, unsigned n) {
 }
 ```
 
-Inside the function `abssort`, we passed a instance of a lambda expression into `std::sort` as a comparator. We can write a normal function to achieve the same purpose:
+Inside the function `abssort`, we passed an instance of a lambda expression into `std::sort` as a comparator. We can write a normal function to achieve the same purpose:
 
 ```cpp
 #include <algorithm>
@@ -50,7 +50,7 @@ void abssort(float* x, unsigned n) {
 If you are familiar with lambda expressions in other languages, everything should make sense except the mysterious `[]` syntax. And that is our next topic.
 
 ## Captures
-The above example shows the basic usage of lambdas, but lambdas can do more. The main difference between a lambda expression and a regular function is that it can "capture" state, and then we can use the captured value inside the lambda body. For example, the below function copies elements, which are above the threshold, from the old vector to the new vector.
+The above example shows the basic usage of lambda expressions, but lambda expressions can do more. The main difference between a lambda expression and a regular function is that it can "capture" state, and then we can use the captured value inside the lambda body. For example, the below function copies elements, which are above the threshold, from the old vector to the new vector.
 
 ```cpp
 // Get a new vector<int> with element above a certain number in the old vector
@@ -172,9 +172,9 @@ void abssort(float * x, unsigned int n)
 }
 ```
 
-As you can see, a lambda expression is merely a default constructed object of a [local class](https://en.cppreference.com/w/cpp/language/class#Local_classes). Thus, C++ lambda can do a lot of stuff anonymous functions in other languages may not allow to do. For example, you can inherit from lambda and have mutable states from lambda. Though I haven't found too much use for either of them.
+As you can see, a lambda expression is merely a default constructed object of a [local class](https://en.cppreference.com/w/cpp/language/class#Local_classes). Thus, C++ lambda expressions can do a lot of stuff anonymous functions in other languages may not allow to do. For example, you can inherit from lambda and have mutable states from lambda. Though I haven't found too much use for either of them.
 
-The compilers generate the types of lambdas; however, there is no way to use such types by their name through any standard means in a program. Nonetheless, type inferences and template works normally for those types. Also, we can use those types explicitly by `decltype`. Below is an example from the [cppreference](https://en.cppreference.com/w/cpp/language/decltype):
+The compilers generate the types of lambdas expressions; however, there is no way to use such types by their name through any standard means in a program. Nonetheless, type inferences and template works normally for those types. Also, we can use those types explicitly by `decltype`. Below is an example from the [cppreference](https://en.cppreference.com/w/cpp/language/decltype):
 
 ```cpp
 auto f = [](int a, int b) -> int
@@ -210,7 +210,7 @@ go.run( [u=std::move(u)] {
 
 [^4]:  [C++14 Language Extensions: Generalized lambda captures](https://isocpp.org/wiki/faq/cpp14-language#lambda-captures)
 
-## Immediately Invoked Lambda Expression (IIFE)
+## Immediately Invoked Lambda Expression
 You can invoke a lambda expressions at the same place where we construct them.
 
 ```cpp
