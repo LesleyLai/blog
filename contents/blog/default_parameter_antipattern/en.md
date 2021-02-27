@@ -8,6 +8,7 @@ categories:
 - code
 - java
 - oop
+- opinion
 ---
 
 I am doing some peer programming for a university course project today.
