@@ -69,9 +69,9 @@ even in places where writing `auto` doesn't save keystrokes much or at all:
 ```cpp
 const std::vector<int> v1 = ...;
 const std::vector<int> v2 = ...;
-std::vector<int> smaller_one;
+std::vector<int> smaller_ones;
 
-std::ranges::transform(v1, v2, std::back_inserter(results),
+std::ranges::transform(v1, v2, std::back_inserter(smaller_ones),
   [](auto x, auto y) { return std::min(x, y); });
 ```
 
