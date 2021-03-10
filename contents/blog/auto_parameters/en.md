@@ -1,6 +1,6 @@
 ---
 id: auto-parameters
-title: "Don't blindly use auto parameters in C++"
+title: "Don't automatically use auto parameters in C++"
 lang: en
 create: '2021-03-09'
 lastModify: '2021-03-09'
