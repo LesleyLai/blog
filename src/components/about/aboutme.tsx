@@ -54,9 +54,7 @@ const AboutMe = ({ lang, tags, postsTotalCount }: AboutMeProp) => {
               </li>
               <li>
                 Live Stream and talks at{" "}
-                <a href="https://www.youtube.com/channel/UCw6w2apOo7DuUoDz0vHAVxQ">
-                  Youtube Channel
-                </a>
+                <a href="https://www.youtube.com/c/LesleyLai">Youtube Channel</a>
               </li>
             </>
           )}

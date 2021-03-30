@@ -3,12 +3,18 @@ id: delve_into_cpp
 title: "Resources that help you to delve into C++"
 lang: en
 create: '2021-01-15'
-lastModify: '2021-01-15'
+lastModify: '2021-03-29'
 categories:
 - code
 - cpp
 - learning
 ---
+
+*I already received some great feedback [^1] for this post, and any further feedbacks, error-correction, and resource recommendation are welcome. One way to contact me is to direct message me ([@Lesleylai6](https://twitter.com/LesleyLai6)) on Twitter*.
+
+[^1]: Thanks to [Shafik Yaghmour](https://twitter.com/shafikyaghmour), [Kate Greogory](https://twitter.com/gregcons), and [Dwight Browne](https://twitter.com/dwightb2).
+
+*Update 2021-03-29: Add a bunch of resources.*
 
 During the years, a lot of people ask me for help in learning C++.
 I am no C++ expert,
@@ -94,7 +100,7 @@ to name a few:
 Now it is time to put C++ into practical usage.
 C++ is used for diverse purposes,
 and using C++ in specific areas is probably more critical than the C++ language itself.
-It is perhaps also a good time to spend some time on the broader C++ ecosystems, like unit test libraries such as [Catch2](https://github.com/catchorg/Catch2), build system generators such as [CMake](https://cmake.org/), and package managers such as [Conan](https://conan.io/).
+It is perhaps also a good time to spend some time on the broader C++ ecosystems, like testing libraries such as [Catch2](https://github.com/catchorg/Catch2), build system generators such as [CMake](https://cmake.org/), and package managers such as [Conan](https://conan.io/) or [vcpkg](https://github.com/microsoft/vcpkg).
 
 Another thing to consider is to start learning another programming language,
 especially for folks who only know C++ at this point.
@@ -141,9 +147,9 @@ Many people in the C++ community, and I am always willing to answer direct messa
 
 To utilize the best wisdom of people,
 you need to join programming communities,
-and then you can ask questions in public and get a response from multiple people. [^1]
+and then you can ask questions in public and get a response from multiple people. [^2]
 
-[^1]: Asking questions online is an art, and a poorly phrased question makes people don't know how to respond. Further, people are often too polite to point out that a question is poorly phrased. Kate Gregory's [How to ask for C++ coding help](http://www.gregcons.com/KateBlog/HowToAskForCCodingHelp.aspx) is an excellent read on how to ask for help online.
+[^2]: Asking questions online is an art, and a poorly phrased question makes people don't know how to respond. Further, people are often too polite to point out that a question is poorly phrased. Kate Gregory's [How to ask for C++ coding help](http://www.gregcons.com/KateBlog/HowToAskForCCodingHelp.aspx) is an excellent read on how to ask for help online.
 
 Being active in programming communities also has numerous other benefits, including getting job information and having more social support.
 
@@ -165,16 +171,24 @@ For example, they require low commitment, and you can choose from all of those m
 #### Attending Conferences
 
 If you are serious about C++, then conferences are great places to meet like-minded people.
-Same as meetups, one difficulty at the time of writing is that most C++ conferences are hosted online, but they are still worthwhile to consider.
-Here are some of the recurring C++ conferences I am aware of:
+There are C++ conferences around the globe.
 
-- [CppCon](https://cppcon.org/)
-- [C++Now](https://cppnow.org/) (tuned toward a more advanced audience)
-- [ACCU](https://accu.org/conf-main/main/)
-- [Meeting C++](https://meetingcpp.com/)
-- [Pacific++](https://pacificplusplus.com/)
-- [C++ on Sea](https://cpponsea.uk/)
-- [Core C++](https://corecpp.org/)
+Same as meetups, one difficulty at the time of writing is that most C++ conferences are hosted online, but they are still worthwhile to consider.
+Here are some of the recurring C++ conferences or conferences that heavily feature C++, with their Twitter handle and Youtube Channel:
+
+- [CppCon](https://cppcon.org/) ([@CppCon](https://twitter.com/CppCon)) [[Youtube](https://www.youtube.com/user/CppCon)] (U.S.-based)
+- [C++Now](https://cppnow.org/) ([@cppnow](https://twitter.com/cppnow)) [[Youtube]( https://www.youtube.com/user/BoostCon)] (U.S.-based, tuned toward a more advanced audience)
+- [ACCU](https://accu.org/conf-main/main/) ([@ACCUConf](https://twitter.com/ACCUConf)) [[Youtube](https://www.youtube.com/channel/UCJhay24LTpO1s4bIZxuIqKw)] (UK-based, different programming languages, but has a lot of C++ contents)
+- [Meeting C++](https://meetingcpp.com/) ([@meetingcpp](https://twitter.com/meetingcpp)) [[Youtube](https://www.youtube.com/user/MeetingCPP)] (German-based)
+- [emBO++](https://www.embo.io) ([@emBO++](https://twitter.com/emboconference)) [[Youtube](https://www.youtube.com/channel/UCg2JbpJ-PGdFUEZEiNr0GWg)] (German-based)
+- [Pacific++](https://pacificplusplus.com/) ([@pacificplusplus](https://twitter.com/pacificplusplus)) [[Youtube](https://www.youtube.com/channel/UCrRR5mU5aqvtZAuEGYfdTjw)] (Australia-based)
+- [C++ on Sea](https://cpponsea.uk/) ([@cpponsea](https://twitter.com/cpponsea)) [[Youtube](https://www.youtube.com/channel/UCAczr0j6ZuiVaiGFZ4qxApw)] (UK-based)
+- [Core C++](https://corecpp.org/) ([@corecpp](https://twitter.com/corecpp)) [[Youtube](https://www.youtube.com/channel/UCE14XYFaK1fDTnOTqlOFrrQ)] (Israel-based)
+- [Code::Dive](http://www.codedive.pl) ([@code_dive_pl](https://twitter.com/code_dive_pl)) [[Youtube](https://www.youtube.com/channel/UCU0Rt8VHO5-YNQXwIjkf-1g/videos)] (Poland-based)
+- [Code Europe](https://www.codeeurope.pl/) ([@code_europe](https://twitter.com/code_europe)) [[Youtube](https://www.youtube.com/channel/UChdVVEAilVHULlycMbqRpdg/)] (Poland-based, different programming languages)
+- [NDC Conferences](http://ndcconferences.com/) ([@NDC_Conferences](https://twitter.com/ndc_conferences)) [[Youtube](https://www.youtube.com/channel/UCTdw38Cw6jcm0atBPA39a0Q/)] (Multiple locations, different programming languages) [^3]
+
+[^3]: Some of the links above are collected from [shafik/cpp_youtube_channels](https://github.com/shafik/cpp_youtube_channels/blob/master/README.md)
 
 There is [a list of conferences](https://isocpp.org/wiki/faq/conferences-worldwide) on the ISO C++ website.
 
@@ -194,7 +208,7 @@ There are a bunch of C++ podcasts, including a few new ones appeared in 2020:
 I use RSS to keep track of the tech blogs,
 and I highly recommend you try out RSS too.
 
-I follow hundreds of blogs, including C++ and various other topics.
+I follow hundreds of blogs [^4], including C++ and various other topics.
 Here are some of the best C++ ones that pops into my head:
 
 - [Fluent C++](https://www.fluentcpp.com/)
@@ -216,6 +230,8 @@ This blog also has an [RSS feed](https://lesleylai.info/rss.xml).
 
 </aside>
 
+[^4]: If you want to see all the blogs I follow, visit [this gist](https://gist.github.com/LesleyLai/549f45fb0dfdf6ab31e6ffadaeaddb10).
+
 Do notice that blogs sometimes can talk about very advanced topics.
 
 #### Twitter
@@ -227,6 +243,8 @@ On the other hand, Twitter has its downside with all the procrastinating and doo
 Some tweets you see can also make you upset.
 My suggestion is to try Twitter out at least, and you can quit if it doesn't work for you.
 
+If you are new to the C++ Twitterverse, [Shafik Yaghmour](https://twitter.com/shafikyaghmour) has a [list of C++ developers](https://twitter.com/i/lists/866902696053231616) and you can use it as a starting point to find people to follow.
+
 ### Misc resources
 
 Here are some misc resources that are also worth mentioning.
@@ -235,6 +253,7 @@ Some of those are great online tools, while others are video series.
 - [cppreference](http://en.cppreference.com/w/) should be your go-to site for C++ language and standard library reference, and it is usually a lot more accurate and up-to-date than its alternatives.
 - [Compiler Explorer](https://compiler-explorer.com/) is an online coding environment that supports C++ and a dozen other languages. It can show the compiled assembly of your program and run your program. Unlike most online C++ coding environments, which often ship with an outdated compiler, there are many compilers to choose from in compiler explorer, including the most cutting-edge ones.
 - [Quick C++ benchmark](https://quick-bench.com/) is an online tool to perform quick benchmarks on C++.
+- [C++ Insights](https://cppinsights.io/) is an invaluable tool to show how compilers translation "syntactic sugar" such as lambda expressions and range-based for-loop behind the scenes. I used it in my [C++ lambda tutorial](/en/c++-lambda) post.
 - [C++ Tips of the week](https://abseil.io/tips/)
 - [Kate Gregory's STL Algorithms course](https://www.pluralsight.com/courses/beautiful-cplusplus-stl-algorithms) is a great resource to learn more about and appreciate C++ standard algorithms.
 - [C++ Weekly](https://www.youtube.com/channel/UCxHAlbZQNFU2LgEtiqd2Maw) is a Youtube channel on various C++ topics, posted weekly.
