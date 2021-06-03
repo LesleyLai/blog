@@ -132,10 +132,11 @@ const uniqueTags = (mdxs: MdxWithTags[]) => {
   return Array.from(tagSet);
 };
 
-export const createPages: GatsbyNode["createPages"] = async ({ graphql, actions }) => {
-  const { createPage, createRedirect } = actions;
+//export const createPages: GatsbyNode["createPages"] = async ({ graphql, actions }) => {
+export const createPages: any = async ({ graphql, actions }: any) => {
+    const { createPage, createRedirect } = actions;
 
-  const paginationTemplate = resolve(`src/templates/pagination.tsx`);
+    const paginationTemplate = resolve(`src/templates/pagination.tsx`);
   const postTemplate = resolve(`src/templates/post.tsx`);
   const tagsTemplate = resolve("src/templates/tags.tsx");
   const projectsTemplate = resolve("src/templates/projects.tsx");
@@ -144,7 +145,7 @@ export const createPages: GatsbyNode["createPages"] = async ({ graphql, actions 
     createRedirectsSlash(from, to, createRedirect);
   });
 
-  const postsPromise = new Promise((resolve, _reject) => {
+  const postsPromise = new Promise<void>((resolve, _reject) => {
     interface Result {
       data: {
         posts: {
@@ -253,7 +254,7 @@ export const createPages: GatsbyNode["createPages"] = async ({ graphql, actions 
     console.log(error);
   });
 
-  const projectsPromise = new Promise((resolve, _reject) => {
+  const projectsPromise = new Promise<void>((resolve, _reject) => {
     interface Result {
       readonly data: {
         projects: {
