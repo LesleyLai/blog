@@ -9,8 +9,7 @@ const en = {
   about_content: (
     <>
       <p>
-        Hi, I am <strong>Lesley Lai</strong>, a Software Engineering Intern at{" "}
-        <a href="https://www.sketchup.com/">Trimble SketchUp</a> and a Computer Science and Applied
+        Hi, I am <strong>Lesley Lai</strong>, a Computer Science and Applied
         Mathematics undergraduate student at the{" "}
         <a href="http://www.colorado.edu/"> University of Colorado at Boulder</a>.
       </p>
@@ -18,8 +17,7 @@ const en = {
         I organize the{" "}
         <a href="https://www.meetup.com/Graphics-Programming-Virtual-Meetup/">
           Graphics Programming Virtual Meetup
-        </a>{" "}
-        and <a href="https://cugdc.github.io/">CU Game Dev & Graphcis Club</a>.
+        </a>.
       </p>
       <p>
         My primary interests include{" "}
@@ -140,7 +138,6 @@ const zh: Translations = {
     <>
       <p>
         大家好，我叫赖思理，是
-        <a href="https://www.sketchup.com/zh-CN">SketchUp</a>的实习生以及
         <a href="http://www.colorado.edu/">科罗拉多大学</a>
         计算机科学以及应用数学的本科生。
       </p>
