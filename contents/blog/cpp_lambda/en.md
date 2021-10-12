@@ -3,20 +3,20 @@ id: c++-lambda
 title: "C++ Lambda Tutorial"
 lang: en
 create: '2019-03-25'
-lastModify: '2020-01-15'
+lastModify: '2021-10-12'
 categories:
 - cpp
 - code
 ---
 
-C++ lambda expression is a construct added to C++ back in C++11, and it continues to evolve in each version of the C++ standard. A core part of the language nowadays, lambda expressions enable programmers to write first-class and anonymous functions in C++. This post describes what a lambda expression is, provides some basic usages, and outlines their benefits.
+C++ lambda expression is a construct added to C++ back in C++11, and it continues to evolve in each version of the C++ standard. A core part of the language nowadays, lambda expressions enable programmers to express anonymous functions and closures in C++. This post describes what a lambda expression is, provides some basic usages, and outlines their benefits.
 
 <!-- end -->
 
 ## Basic Usage
 Passing functions as a parameter to customize the behavior of functions is a common task in programming. For example, since the conception of [standard algorithms library](https://en.cppreference.com/w/cpp/algorithm), a lot of the algorithms in the `<algorithm>` can take an invokable entity as a callback. However, before C++11, the only kinds of invokable entities in C++ are function pointers and function objects. Both of them require quite a bit of boilerplate, and this cumbersomeness even impedes the adaption of the standard algorithm library in practice.
 
-In the meantime, lots of programming languages support features of [anonymous functions](https://en.wikipedia.org/wiki/Anonymous_function). Before C++11, such features are mimicked by metaprogramming. For example, the Boost C++ library provided its [boost.lambda](http://www.boost.org/libs/lambda) library. Those metaprogramming hacks are slow to compile and some of the has performance implications at runtime; moreover, they require more boilerplate then one want. Thus, in C++11, lambda expressions are added as a language extension. As an example, the ISO C++ Standard shows usage of a lambda expression as a comparator of the `sort` algorithm. [^1]
+In the meantime, lots of programming languages support features of [anonymous functions](https://en.wikipedia.org/wiki/Anonymous_function). Before C++11, such features are mimicked by metaprogramming. For example, the Boost C++ library provided its [boost.lambda](http://www.boost.org/libs/lambda) library. Those metaprogramming hacks are slow to compile and some of the has performance implications at runtime; moreover, they require more boilerplate then one want. Thus, in C++11, lambda expressions are added as a language extension. As an example, the ISO C++ Standard shows usage of a lambda expression as a comparator of the `sort` algorithm: [^1]
 
 [^1]:  See [**\[expr.prim.lambda\]**](http://eel.is/c%2B%2Bdraft/expr.prim.lambda#1)
 
@@ -87,7 +87,7 @@ The above code is undefined behavior since `name` may be destroyed when we execu
 The implicit capture strategy works in garbage-collected languages. [Rust](https://www.rust-lang.org/) gets away with implicit capture because of its borrow checker. On the contrary, by requiring the programmer to be explicit about ownership, the C++ approach provides more flexibility than the counterparts in other programming languages.
 
 ## Lambda expression under the hood
-We discussed quite a lot of usage of lambda so far. However, curious readers may start to wonder, what *exactly* is a C++ lambda expression? Is it a primitive language construct like closures in functional languages? However, before I talk about the internal of lambda, I will first talk about a construct date back to the C++98 era, **function objects**.
+We discussed quite a lot of usage of lambda so far. However, curious readers may start to wonder, what *exactly* is a C++ lambda expression? Is it a primitive language construct like closures in functional languages? Before I talk about the internal of lambda, I will first talk about a construct date back to the C++98 era, **function objects**.
 
 <aside style="margin-top: -90px;">
 
@@ -101,7 +101,7 @@ Functional programming languages utilized this concept for their language constr
 [^3]: See [p0798R3: Monadic operations for std::optional](https://wg21.link/p0798)
 
 ### Function Object
-Function objects are normal objects that are able to be invoked. They are implemented by overloading a class' `operator()` operator. Below is our `abs_less` example as a function object:
+Function objects are normal objects that are able to be invoked. They are implemented by overloading a class's `operator()` operator. Below is our `abs_less` example as a function object:
 
 ```cpp
 #include <algorithm>
@@ -123,7 +123,7 @@ Function objects are more flexible than regular functions because they can store
 template <typename T>
 class GreaterThan {
 public:
-  GreaterThan(T threshold): threshold_{threshold} {
+  explicit GreaterThan(T threshold): threshold_{threshold} {
   }
 
   bool operator()(const T& other) noexcept {
@@ -172,7 +172,7 @@ void abssort(float * x, unsigned int n)
 }
 ```
 
-As you can see, a lambda expression is merely a default constructed object of a [local class](https://en.cppreference.com/w/cpp/language/class#Local_classes). Thus, C++ lambda expressions can do a lot of stuff anonymous functions in other languages may not allow to do. For example, you can inherit from lambda and have mutable states from lambda. Though I haven't found too much use for either of them.
+As you can see, a lambda expression creates a default constructed object of a [local class](https://en.cppreference.com/w/cpp/language/class#Local_classes). Thus, C++ lambda expressions can do a lot of stuff anonymous functions in other languages may not allow to do. For example, you can inherit from lambda and have mutable states from lambda. Though I haven't found too much use for either of them.
 
 The compilers generate the types of lambdas expressions; however, there is no way to use such types by their name through any standard means in a program. Nonetheless, type inferences and template works normally for those types. Also, we can use those types explicitly by `decltype`. Below is an example from the [cppreference](https://en.cppreference.com/w/cpp/language/decltype):
 
@@ -191,11 +191,11 @@ Such anonymous types are called "*Voldemort's types*" in the world of C++ and th
 Now you understand a lambda expression is a syntactic sugar over classes; you may expect lambda expressions to store arbitrary values, not just to capture the values from their local scope. Fortunately, in C++14, lambda expressions can introduce new variables in its body by the mean of capturing with an *initializer*[^4].
 
 ```cpp
-[x = 1]{ return x; // 1 }
+[x = 1]{ return x; /* 1 */ }
 ```
 
 ### Move capture
-[Rust](https://www.rust-lang.org/) lambdas can take ownership of the values in the environment. C++ lambdas do not have special support for such *move capture*, but the generalized capture in the C++14 covers such use case:
+[Rust](https://www.rust-lang.org/) closures can take ownership of the values in the environment. C++ lambda expressions do not have special support for such *move capture*, but the generalized capture in the C++14 covers such use case:
 
 ```cpp
 // a unique_ptr is move-only
@@ -217,7 +217,7 @@ You can invoke a lambda expressions at the same place where we construct them.
 []() { std::puts("Hello world!"); }(); // Same as what is inside the curly braces
 ```
 
-In the world of Javascript, immediately invoked function expressions are all over the place since JavaScript programmers sometimes use them to introduce scopes. C++ does not need this kind of trickery. As a result, C++ programmers are more reluctant to use immediately invoked lambda. For example, in her [talk](https://www.youtube.com/watch?v=n0Ak6xtVXno) during CppCon 2018, Kate Gregory concerns about the readability of the immediately invoked lambda for people not familiar with this idiom.
+In the world of Javascript, immediately invoked function expressions are all over the place since JavaScript programmers sometimes use them to introduce scopes. C++ does not need this kind of trickery. As a result, C++ programmers are more reluctant to use immediately invoked lambda. For example, in her [talk](https://www.youtube.com/watch?v=n0Ak6xtVXno) during CppCon 2018, Kate Gregory concerns about the readability of the immediately invoked lambda expressions for people not familiar with this idiom.
 
 Nevertheless, if you follow the best practice of declaring as more `const` values as possible, immediately invoked lambda expression does provide an advantage. Some objects require complex construction beyond the constructor's capability. Mutations will only happen during the construction of objects. Once the construction is completed, the objects will never be modified again. If such construction is reusable, then writing builder classes or factory functions is a sensible choice. However, if such construction only happens once in the codebase, a lot of the people will drop the `const` qualifier instead. For example, consider that if you want to read several lines from `stdin` into a vector:
 
