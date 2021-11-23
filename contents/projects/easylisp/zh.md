@@ -11,4 +11,4 @@ categories:
 - functional
 ---
 
-这是一个玩具Lisp解释器。
+这是一个eavl/apply风格的Lisp解释器。

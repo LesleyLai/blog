@@ -11,4 +11,4 @@ categories:
 - functional
 ---
 
-This is a eavl/apply style lisp interpreter my friends and I mob-programmed as a course project.
+This is an eavl/apply style lisp interpreter my friends and I mob-programmed as a course project.
