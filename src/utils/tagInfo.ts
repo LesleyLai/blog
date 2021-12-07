@@ -8,6 +8,7 @@ export interface Tag {
 
 export const tagInfos = {
   ai: { color: colors.red },
+  algorithms: { color: colors.darkRed },
   books: { color: colors.yellow },
   c: { color: colors.grey },
   cmake: { color: colors.green },

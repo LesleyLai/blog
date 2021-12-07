@@ -9,15 +9,16 @@ const en = {
   about_content: (
     <>
       <p>
-        Hi, I am <strong>Lesley Lai</strong>, a Computer Science and Applied
-        Mathematics undergraduate student at the{" "}
+        Hi, I am <strong>Lesley Lai</strong>, a Computer Science and Applied Mathematics
+        undergraduate student at the{" "}
         <a href="http://www.colorado.edu/"> University of Colorado at Boulder</a>.
       </p>
       <p>
         I organize the{" "}
         <a href="https://www.meetup.com/Graphics-Programming-Virtual-Meetup/">
           Graphics Programming Virtual Meetup
-        </a>.
+        </a>
+        .
       </p>
       <p>
         My primary interests include{" "}
@@ -37,6 +38,7 @@ const en = {
       All <Link to={`/en/archive`}>{n} posts</Link>
     </>
   ),
+  algorithms: "Algorithms",
   archive: "Archive",
   archive_title: "Blog Archive",
   blog: "Blog",
@@ -150,6 +152,7 @@ const zh: Translations = {
       所有<Link to={`zh/archive`}>{n}篇博文</Link>
     </>
   ),
+  algorithms: "算法",
   archive: "博文目录",
   archive_title: "博文目录",
   blog: "博客",
