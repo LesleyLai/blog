@@ -31,7 +31,7 @@ Afterward, we allocate memory from that chunk by bumping a pointer offset.
 </figure>
 
 <figure>
-  <img style="max-width: 500px;" class="center-image" src="arena_2.svg" alt="Arena after allocation" />
+  <img style="width: 500px;" class="center-image" src="arena_2.svg" alt="Arena after allocation" />
   <figcaption style="text-align: center">Figure.2 - Arena after allocation</figcaption>
 </figure>
 
@@ -84,7 +84,10 @@ To use our arena, we first construct the arena from a pre-allocated buffer. Then
 
 ```cpp
 std::byte buffer[1000];
-Arena arena {.ptr = buffer, .size_remain = std::size(buffer)};
+Arena arena {
+  .ptr = buffer, 
+  .size_remain = std::size(buffer)
+};
 
 auto* ptr = static_cast<std::uint8_t*>(arena.alloc(sizeof(std::uint8_t)));
 ptr = new(ptr) std::uint8_t{42};
@@ -146,15 +149,16 @@ we first need to have this helper function `align_forward` that bump a given poi
 
 We first cast our pointer into an integer and then round up our (integer) address to the alignment boundary with that expression `(addr + (alignment - 1)) & -alignment`.
 
-To understand what this expression is doing exactly, you need to think about the meaning of the `-` on integers in a bit-wise setting: it flips all the bits and then adds one to the result. For example, let's say our `alignment` is `4`, on a 64-bit machine, it is represented as 
+To understand what this expression is doing exactly, you need to think about the meaning of the `-` on integers in a bit-wise setting: it flips all the bits and then adds one to the result. For example, let's say our `alignment` is `4`, it is represented as 
 
-`0b0000000000000000000000000000000000000000000000000000000000000100`,
+`0b00000100`,
 
 and when we apply negation, we get `-4`, which is represented as 
 
-`0b1111111111111111111111111111111111111111111111111111111111111100`,
+`0b11111100`. 
 
-with all leading `1`s and lowest 2 bits `0`s. The negation of an alignment is precisely the bit-mask we want to mask out the lower bits.
+I omit all the leading bytes, but you should be able to see the pattern:
+the negation of an alignment is precisely the bit-mask we want to mask out the lower bits.
 
 Finally, we just need to cast our `aligned_addr` back into a pointer. I choose to do some pointer arithmetics instead of doing another bit cast (`std::bit_cast<std::byte*>(aligned_addr)`).
 
