@@ -153,6 +153,11 @@ a:hover {
 /*******************************
         Images in posts
 *******************************/
+.center-image {
+  display: block;
+  margin: 20px auto;
+}
+
 .right-image-container {
   position: sticky;
   float: right;
