@@ -35,7 +35,7 @@ Afterward, we allocate memory from that chunk by bumping a pointer offset.
   <figcaption style="text-align: center">Figure.2 - Arena after allocation</figcaption>
 </figure>
 
-Arena allocation has outstanding performance characteristics, especially compared to complicated beasts like `malloc`.
+Arena allocator has outstanding performance characteristics, especially compared to complicated beasts like `malloc`.
 Each allocation only needs to bump a pointer, and the deallocation is almost free if the objects allocated are trivially destructible.
 If we need to call destructors, the situation gets much more complicated since we need to maintain a list of objects to destroy, but that is out-of-scope of this post.
 
@@ -96,7 +96,7 @@ auto* ptr2 = static_cast<std::uint32_t*>(arena.alloc(sizeof(std::uint32_t)));
 ptr2 = new(ptr2) std::uint32_t{1729};
 ```
 
-The placement new here are no-op since our types are integers,
+The [placement new](https://en.cppreference.com/w/cpp/language/new#Placement_new) here are no-op since our types are integers,
 but they are required to start the object lifetime.
 Without placement new, if we do assignments like `*ptr = 42` directly,
 it is technically undefined behavior in C++.
@@ -119,7 +119,7 @@ However, when we start to play with custom memory allocation strategies, alignme
 
 Consider what our previous usage of the arena will does. Initially, our arena is empty.
 Then we allocate a byte of memory and construct a `std::uint8_t` on it, and everything is still well so far.
-However, when we allocate 4 bytes now, we will allocate it at the place off by one byte of the 4-bytes alignment boundary:
+However, when we allocate 4 bytes now, we will allocate it at the place off by one byte of the 4-bytes alignment boundary that required by `std::uint32_t`:
 
 
 <figure>
@@ -153,7 +153,7 @@ To understand what this expression is doing exactly, you need to think about the
 
 `0b00000100`,
 
-and when we apply negation, we get `-4`, which is represented as 
+and when we apply negation, we get `-4`, which is represented in two's complement as 
 
 `0b11111100`. 
 
@@ -186,7 +186,7 @@ struct Arena {
 
 Notice that I changed the function name from `alloc` to `aligned_alloc` since we must explicitly pass an `alignment` argument to this function. We call `align_forward` to adjust our pointer to the alignment boundary in the function. And then, we calculate how many bytes we need for the allocation (which is the number of bytes used for alignment plus the actual size we need to allocate). And finally, if we have enough size to allocate, we need to bump our pointer, decrease the remaining size, and return the adjusted pointer.
 
-With this implementation, we can explicitly pass alignment to our arena:
+To use this implementation, we need to explicitly pass alignment to our arena:
 
 ```cpp
 auto* ptr = static_cast<std::uint8_t*>(
@@ -223,13 +223,13 @@ similar to `std::malloc`.
 This way also guarantees to have a correct alignment for each allocation,
 though it can waste space if we have a lot of allocations for small objects.
 
+## Enter `std::align`
+
 The above implementation of the arena is reliable.
 In fact, I use an essentially identical version of the arena in a bunch of C projects.
 However, with a little bit of help from the standard library, we can do better in C++.
 
-## Enter `std::align`
-
-`std::align` is a standard function with the following interface:
+`std::align` is a standard function defined in `<memory>`. It has the following interface:
 
 ```cpp
 namespace std {
@@ -247,7 +247,7 @@ It does the following:
 The interface of `std::align` is certainly not easy to grasp,
 mainly because it has two in-out parameters passed by reference.
 But it serves a similar purpose as our `align_forward` function.
-The first two parameters, `alignment` and `size`, are the same parameters we passed to the arena allocator.
+The first two parameters, `alignment` and `size`, are the same parameters we passed to `aligned_alloc`.
 And `ptr` and `space` is the state of our arena.
 
 with `std::align`, our code can be greatly simplified:
