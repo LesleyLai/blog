@@ -12,7 +12,7 @@ categories:
 Recently, I learned about `std::align`,
 which is one of the lesser-known functions in the C++ standard library because of its limited use cases.
 Since it is hard to describe without a specific use case,
-I will use a simple implementation of an *arena allocator* as a motivational example.
+I will use a simple implementation of an *arena allocator* as a motivating example.
 
 <!-- end -->
 
