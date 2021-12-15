@@ -12,7 +12,7 @@ categories:
 Recently, I learned about `std::align`,
 which is one of the lesser-known functions in the C++ standard library because of its limited use cases.
 Since it is hard to describe without a specific use case,
-I will use a simple implementation of an *arena allocator* as a motivational example.
+I will use a simple implementation of an *arena allocator* as a motivating example.
 
 <!-- end -->
 
@@ -114,10 +114,10 @@ If you try to access the said object, depending on different architectures,
 you may get either slow memory access or even a mysterious crash.
 
 We usually don't care about alignment too much since the compiler can figure it out for us,
-and standard library functions such as `malloc` automatically do the right thing for us.
+and standard library functions such as `malloc` automatically do the right thing.
 However, when we start to play with custom memory allocation strategies, alignment suddenly becomes essential to understand.
 
-Consider what our previous usage of the arena will does. Initially, our arena is empty.
+Consider what our previous usage of the arena does. Initially, our arena is empty.
 Then we allocate a byte of memory and construct a `std::uint8_t` on it, and everything is still well so far.
 However, when we allocate 4 bytes now, we will allocate it at the place off by one byte of the 4-bytes alignment boundary that required by `std::uint32_t`:
 
@@ -198,7 +198,7 @@ auto* ptr2 = static_cast<std::uint32_t*>(
 ptr2 = new(ptr2) std::uint32_t{1729};
 ```
 
-You can see that our client-side code becomes a bit more nuisance to write,
+You can see that our client-side code becomes a bit more nuisance to write.
 but in practice, we can hide calls to `aligned_alloc` behind a templated function.
 The important thing is that our allocations will be properly aligned:
 
@@ -249,6 +249,9 @@ mainly because it has two in-out parameters passed by reference.
 But it serves a similar purpose as our `align_forward` function.
 The first two parameters, `alignment` and `size`, are the same parameters we passed to `aligned_alloc`.
 And `ptr` and `space` is the state of our arena.
+
+`std::align` first check whether we have enough `space` to allocate `size` bytes after the alignment adjestment.
+If so, it adjusts our pointer `ptr` and decreases `space` by the number of bytes used for alignment and returns the aligned pointer.
 
 with `std::align`, our code can be greatly simplified:
 
