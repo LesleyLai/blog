@@ -112,7 +112,7 @@ ptr2 = new(ptr2) std::uint32_t{1729};
 
 <figure>
   <img style="width: 500px;" class="center-image" src="arena_3.svg" alt="Arena after allocating one uint8_t and one uint32_t" />
-  <figcaption style="text-align: center">图3 - Arena在</figcaption>
+  <figcaption style="text-align: center">图3 - Arena 在分配两块内存后的状态</figcaption>
 </figure>
 
 
@@ -200,7 +200,7 @@ ptr2 = new(ptr2) std::uint32_t{1729};
 
 <figure>
   <img style="width: 500px;" class="center-image" src="arena_4.svg" alt="Alignment-aware arena after allocating one uint8_t and one uint32_t" />
-  <figcaption style="text-align: center">图4 - 考虑对齐的Arena在分配两块内存</figcaption>
+  <figcaption style="text-align: center">图4 - 考虑对齐的 Arena 在分配两块内存后的状态</figcaption>
 </figure>
 
 如果你仍然想要之前不需要显式提供对齐要求的 `alloc` 成员函数，
