@@ -17,34 +17,34 @@ categories:
 
 ## Arena allocator
 
-Arena allocator可能是最简单的自定义内存管理策略。在一些文献中arena allocator也被叫为bump allocator或者region-based allocator。
-尽管简单，arena allocator是一种经常被使用的内存管理策略，以至于C++标准库中都有一个arena allocator的实现，虽然标准库叫它[std::pmr::monotonic_buffer_resource](https://zh.cppreference.com/w/cpp/memory/monotonic_buffer_resource)。
+Arena allocator 可能是最简单的自定义内存管理策略。在一些文献中 arena allocator 也被叫为 bump allocator 或者 region-based allocator。
+尽管它简单，arena allocator 是一种经常被使用的内存管理策略，以至于C++标准库中都有一个 arena allocator 的实现，虽然标准库叫它[std::pmr::monotonic_buffer_resource](https://zh.cppreference.com/w/cpp/memory/monotonic_buffer_resource)。
 
-Arena allocator的原理是我们先预分配一块很大的内存。
+Arena allocator 的原理是我们先预分配一块很大的内存。
 这一块内存既可以来自栈中，也可以是在堆中被 `malloc` 一次性分配。
 之后当我们每次需要内存时，我们都从这块内存中分配一小块内存，而每次分配时我们所需要做的工作仅仅是增加一个指针的值。
 
 <figure>
   <img style="width: 500px;" class="center-image" src="arena_1.svg" alt="Arena before allocation" />
-  <figcaption style="text-align: center">Figure.1 - Arena before allocation</figcaption>
+  <figcaption style="text-align: center">图1 - 分配内存前的 Arena</figcaption>
 </figure>
 
 <figure>
   <img style="width: 500px;" class="center-image" src="arena_2.svg" alt="Arena after allocation" />
-  <figcaption style="text-align: center">Figure.2 - Arena after allocation</figcaption>
+  <figcaption style="text-align: center">图2 - 分配内存后的 Arena</figcaption>
 </figure>
 
-Arena allocator的速度非常快，尤其是和 `malloc` 这种原理复杂的函数相比较。
+Arena allocator 的速度非常快，尤其是和 `malloc` 这种原理复杂的函数相比较。
 每次分配内存时我们只需要修改一个指针的值，而如果我们只分配可被平凡析构（trivially destructible）的对象，那么释放内存几乎是免费的。
 如果我们释放内存时需要调用析构函数，情况会变得更加复杂，因为我们需要维护一个要销毁的对象列表，但我不会在本文中对此进行阐述。
 
 Arena allocator 的缺点在于所有的内存只能被一齐释放，因为 arena allocator 不会记录每块单独的内存分配。
-尽管如此，当我们有许多不同的对象需要分配时arena allocator仍然非常有用，
+尽管如此，当我们有许多不同的对象需要分配时 arena allocator 仍然非常有用，
 它在从编译器到游戏引擎的不同领域都有广泛应用。
 
 ## 一个arena allocator的精简实现
 
-一下是一个对arena allocator的最简单的实现：
+一下是一个对 arena allocator 的最简单的实现：
 
 ```cpp
 struct Arena {
@@ -70,7 +70,7 @@ struct Arena {
 例如，我们不能重置我们的arena allocator并重用里面的内存。
 但是在本文中我不会对这些功能进行进一步的展开讨论。
 
-为了使用我们的arena allocator，我们首先从一个预先分配的缓冲区构建我们的arena allocator。 然后我们可以从 arena allocator中分配内存并在分配的内存之上创建对象：
+为了使用我们的 arena allocator ，我们首先从一个预先分配的缓冲区构建我们的 arena allocator 。 然后我们可以从 arena allocator 中分配内存并在分配的内存之上创建对象：
 
 ```cpp
 std::byte buffer[1000];
@@ -92,7 +92,7 @@ ptr2 = new(ptr2) std::uint32_t{1729};
 
 ## 对齐（Alignment）
 
-不幸的是，如上所示的arena allocator的实现是有问题的，因为我们现在的 `alloc` 所返回的指针并不一定符合我们所想要创建的对象的对齐要求。
+不幸的是，如上所示的 arena allocator 的实现是有问题的，因为我们现在的 `alloc` 所返回的指针并不一定符合我们所想要创建的对象的对齐要求。
 
 在C++中，所有的类型以及对象都有对齐要求。
 我们可以通过关键字 `alignas` 来手工设置一个对象的对齐要求，或者用关键字 `alignof` 来得到一个类型的对齐要求。
@@ -103,8 +103,8 @@ ptr2 = new(ptr2) std::uint32_t{1729};
 一般情况下我们C++程序员并不太关心对齐的问题，因为编译器自动会帮我们解决这些这些问题，同时类似于 `malloc` 的标准库函数也会自己妥善处理对齐问题。
 但是当我们需要自定义内存管理策略时，对齐就突然间变得非常地重要了。
 
-让我们来考虑一下之前的arena allocator。
-一开始我们的arena allocator是空的。
+让我们来考虑一下之前的 arena allocator。
+一开始我们的 arena allocator 是空的。
 然后我们分配1个字节的内存并在其上构造一个 `std::uint8_t`，到目前为止一切都顺利。
 但是接着我们再分配了4个字节，然后构造了 `std::uint32_t`。
 `std::uint32_t` 需要4个字节的对齐要求，但是我们分配这4个字节的位置正好离对齐点有1个字节的错位：
@@ -112,13 +112,13 @@ ptr2 = new(ptr2) std::uint32_t{1729};
 
 <figure>
   <img style="width: 500px;" class="center-image" src="arena_3.svg" alt="Arena after allocating one uint8_t and one uint32_t" />
-  <figcaption style="text-align: center">Figure.3 - Arena after two allocations</figcaption>
+  <figcaption style="text-align: center">图3 - Arena在</figcaption>
 </figure>
 
 
 ## 改进的Arena allocator
 
-在写把对齐要求也放进考虑的arena allocator之前，
+在写把对齐要求也放进考虑的 arena allocator 之前，
 我们先写一个辅助函数 `align_forward`。
 它可以将给定的指针 `ptr` 向前移动到一个满足特定对齐要求 `alignment` 的地址：
 
@@ -180,7 +180,7 @@ struct Arena {
 因为我们必须显式地将对齐要求 `alignment` 参数传递给该函数。
 我们调用 `align_forward` 来使得我们的指针 `ptr` 能够正确对齐。 
 然后，我们计算一共需要多少字节（即用于对齐的字节数加上我们实际需要分配的大小 `size`）。
-最后，如果我们有足够的空间来分配内存，我们即增加我们的指针`ptr`到分配后的位置，减少arena allocator中剩余的大小，并返回对齐后的指针。
+最后，如果我们有足够的空间来分配内存，我们即增加我们的指针`ptr`到分配后的位置，减少 arena allocator 中剩余的大小，并返回对齐后的指针。
 
 当使用  `aligned_alloc` 时，我们需要传递对齐方式：
 
@@ -200,7 +200,7 @@ ptr2 = new(ptr2) std::uint32_t{1729};
 
 <figure>
   <img style="width: 500px;" class="center-image" src="arena_4.svg" alt="Alignment-aware arena after allocating one uint8_t and one uint32_t" />
-  <figcaption style="text-align: center">Figure.4 - Alignment-aware arena after two allocations</figcaption>
+  <figcaption style="text-align: center">图4 - 考虑对齐的Arena在分配两块内存</figcaption>
 </figure>
 
 如果你仍然想要之前不需要显式提供对齐要求的 `alloc` 成员函数，
