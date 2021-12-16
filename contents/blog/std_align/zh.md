@@ -276,5 +276,5 @@ struct Arena {
 ## 结论
 
 我不确定在自定义内存管理策略之外，`std::align` 还有多大的应用。
-也许它还可以被用来模拟类似于[灵活数组类型](https://zh.wikipedia.org/wiki/%E7%81%B5%E6%B4%BB%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B)的功能。
+也许它还可以被用来模拟类似于[灵活数组类型](https://zh.wikipedia.org/wiki/%E7%81%B5%E6%B4%BB%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B)（flexible array member）的功能。
 但是不管怎么说，我很感谢C++标准库提供了这个小小的工具函数。
