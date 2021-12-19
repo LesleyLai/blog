@@ -1,6 +1,6 @@
 ---
 id: mutable-lambda-in-algorithms
-title: "Beware passing mutable lambda to STL algorithms."
+title: "Beware passing mutable lambda to STL algorithms.（暂未翻译）"
 lang: zh
 create: '2020-09-30'
 lastModify: '2020-09-30'

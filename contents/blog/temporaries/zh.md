@@ -1,6 +1,6 @@
 ---
 id: temporaries
-title: "When does a C++ temporary object die?"
+title: "When does a C++ temporary object die?（暂未翻译）"
 lang: zh
 create: '2019-03-28'
 lastModify: '2019-03-28'

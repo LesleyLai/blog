@@ -1,6 +1,6 @@
 ---
 id: make-impossible-state-unrepresentable
-title: "Make Impossible State Unrepresentable, in C++"
+title: "Make Impossible State Unrepresentable, in C++（暂未翻译）"
 lang: zh
 create: '2019-10-26'
 lastModify: '2019-10-26'

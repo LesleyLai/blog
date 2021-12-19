@@ -1,6 +1,6 @@
 ---
 id: type-of-assignment-operators
-title: "We are defining assignment operators wrong. "
+title: "We are defining assignment operators wrong.（暂未翻译）"
 lang: zh
 create: '2019-10-14'
 lastModify: '2019-10-14'

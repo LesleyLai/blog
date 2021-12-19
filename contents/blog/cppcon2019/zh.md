@@ -1,6 +1,6 @@
 ---
 id: cppcon2019
-title: "CppCon 2019 Trip Report"
+title: "CppCon 2019 Trip Report（暂未翻译）"
 lang: zh
 create: '2019-09-22'
 lastModify: '2019-09-22'

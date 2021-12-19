@@ -1,6 +1,6 @@
 ---
 id: zero-is-the-devil
-title: "Zero is the Devil: Common ways to construct bogus proofs."
+title: "Zero is the Devil: Common ways to construct bogus proofs. （暂未翻译）"
 lang: zh
 create: '2020-05-10'
 lastModify: '2020-05-10'

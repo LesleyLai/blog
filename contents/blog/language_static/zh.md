@@ -1,6 +1,6 @@
 ---
 id: statics
-title: "Concepts in Programming Languages, Part II: Statics"
+title: "Concepts in Programming Languages, Part II: Statics（暂未翻译）"
 lang: zh
 create: '2020-03-02'
 lastModify: '2020-03-02'

@@ -1,6 +1,6 @@
 ---
 id: functional-cpp
-title: "Book Review: \"Functional Programming in C++\""
+title: "Book Review: \"Functional Programming in C++\"（暂未翻译）"
 lang: zh
 create: '2019-03-22'
 lastModify: '2019-03-22'
