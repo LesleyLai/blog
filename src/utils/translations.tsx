@@ -60,6 +60,31 @@ const en = {
   compiler: "Compiler",
   contact: "Contact",
   contact_page_desc: "Contact me",
+  contact_page_text: (
+    <>
+      <p>
+        You can direct message me on <a href="https://twitter.com/LesleyLai6">Twitter</a>. I also{" "}
+        hang out a lot in{" "}
+        <a href="https://discord.gg/TsTDb4uYfR">Graphics Programming Virtual Meetup</a> and{" "}
+        <a href="https://www.includecpp.org/discord/">#include ＜C++＞</a> Discord servers. You can
+        direct message me on Discord if you are a member of either of those servers.
+      </p>
+      <p>
+        You can also send an email to{" "}
+        <a href="mailto:lesley@lesleylai.info?subject=Hello Lesley">lesley@lesleylai.info</a> or use
+        the following contact form:
+      </p>
+    </>
+  ),
+  contact_form_message: "Message",
+  contact_form_message_placeholder: "Type your message here...",
+  contact_form_website_placeholder: "Your website (optional)",
+  contact_submitted_message: "Thank you for getting in touch! I will contact you back via Email.",
+  contact_validation_invalid_email: "Please enter a valid Email",
+  contact_validation_invalid_website: "Please enter a valid url (or leave this field blank)",
+  contact_validation_require_email: "Please enter your Email",
+  contact_validation_require_message: "Please enter your message",
+  contact_validation_require_name: "Please enter your name",
   cpp: "C++",
   create: "Create",
   csharp: "C#",
@@ -68,6 +93,7 @@ const en = {
   dod: "Data-oriented design",
   elm: "Elm",
   elsewhere: "Elsewhere",
+  email: "Email",
   event: "Event",
   functional: "Functional Programming",
   game: "Game",
@@ -89,6 +115,7 @@ const en = {
   logic: "Logic",
   math: "Mathematics",
   myname: "Lesley Lai",
+  name: "Name",
   n_posts: (n: number) => `${n} Posts`,
   ocaml: "OCaml",
   offtopic: "Off Topic",
@@ -122,6 +149,7 @@ const en = {
   showall_projects: "Show all projects. Click tags to list them by topics.",
   stuff_I_wrote_about: (tag: TagID) =>
     tag === "opinion" ? "Stuff I Wrote to State My Opinion" : `Stuff I Wrote About ${en[tag]}`,
+  submit: "Submit",
   tags: "Tags",
   talks: "Talks",
   talks_page_desc: "Here are the talks that I gave in various events.",
@@ -175,6 +203,23 @@ const zh: Translations = {
   compiler: "编译器",
   contact: "联系我",
   contact_page_desc: "联系我",
+  contact_page_text: (
+    <>
+      <p>
+        您可以向<a href="mailto:lesley@lesleylai.info?subject=赖思理你好">lesley@lesleylai.info</a>
+        发送邮件， 或者使用以下的联系表单：
+      </p>
+    </>
+  ),
+  contact_form_message: "留言",
+  contact_form_message_placeholder: "请在这里留下留言……",
+  contact_form_website_placeholder: "您的个人网站 （选填）",
+  contact_submitted_message: "感谢您联系我。我会通过电子邮件来回复您。",
+  contact_validation_invalid_email: "请输入一个合法的电子邮箱地址",
+  contact_validation_invalid_website: "请输入一个合法的网址 （或者将这一栏留空）",
+  contact_validation_require_email: "请输入您的电子邮箱地址",
+  contact_validation_require_message: "请输入您的留言",
+  contact_validation_require_name: "请输入您的姓名",
   cpp: en.cpp,
   create: "创建时间",
   csharp: en.csharp,
@@ -183,6 +228,7 @@ const zh: Translations = {
   dod: "面向数据设计",
   elm: en.elm,
   elsewhere: "链接",
+  email: "电子邮箱",
   event: "活动",
   functional: "函数式编程",
   game: "游戏",
@@ -204,6 +250,7 @@ const zh: Translations = {
   logic: "逻辑学",
   math: "数学",
   myname: "赖思理",
+  name: "姓名",
   n_posts: (n: number) => `${n}篇博文`,
   ocaml: en.ocaml,
   offtopic: "非技术",
@@ -237,6 +284,7 @@ const zh: Translations = {
   showall_projects: "显示所有项目。您可以通过标签来限定显示包含指定标签的项目。",
   stuff_I_wrote_about: (tag: TagID) =>
     tag === "opinion" ? `阐述个人观点的博文` : `关于${zh[tag]}的博文`,
+  submit: "提交",
   tags: "标签",
   talks: "演讲",
   talks_page_desc: "以下为我在不同场所的一些讲话：",

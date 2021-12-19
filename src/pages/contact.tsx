@@ -8,7 +8,7 @@ import { Language, translations } from "../utils/translations";
 
 import SEO from "../components/seo";
 
-import { withFormik, FormikProps, ErrorMessage } from "formik";
+import { withFormik, FormikProps, ErrorMessage, Formik, FormikHelpers } from "formik";
 import * as Yup from "yup";
 
 interface ContactProps {
@@ -152,8 +152,9 @@ const MyErrorMessage = ({ name }: { name: string }) => (
   </StyledErrorMessageWrapper>
 );
 
-const InnerForm = (props: FormikProps<FormValues>) => {
+const InnerForm = (props: FormikProps<FormValues> & { lang: Language }) => {
   const {
+    lang,
     values,
     errors,
     touched,
@@ -163,6 +164,8 @@ const InnerForm = (props: FormikProps<FormValues>) => {
     handleReset,
     isSubmitting,
   } = props;
+
+  const translated = translations[lang];
 
   return (
     <Form
@@ -175,7 +178,7 @@ const InnerForm = (props: FormikProps<FormValues>) => {
       <input type="hidden" name="bot-field" />
       <input type="hidden" name="form-name" value="contact" />
 
-      <Label htmlFor="name">Name (*)</Label>
+      <Label htmlFor="name">{translated["name"]} (*)</Label>
 
       <Input
         width={50}
@@ -185,13 +188,13 @@ const InnerForm = (props: FormikProps<FormValues>) => {
         onChange={handleChange}
         onBlur={handleBlur}
         value={values.name}
-        placeholder="Name"
+        placeholder={translated["name"]}
         required
         isError={!!(touched.name && errors.name)}
       />
       <MyErrorMessage name="name" />
 
-      <Label htmlFor="email">Email (*)</Label>
+      <Label htmlFor="email">{translated["email"]} (*)</Label>
       <Input
         width={50}
         id="email"
@@ -200,13 +203,13 @@ const InnerForm = (props: FormikProps<FormValues>) => {
         onChange={handleChange}
         onBlur={handleBlur}
         value={values.email}
-        placeholder="Email"
+        placeholder={translated["email"]}
         required
         isError={!!(touched.email && errors.email)}
       />
       <MyErrorMessage name="email" />
 
-      <Label htmlFor="website">Website</Label>
+      <Label htmlFor="website">{translated["website"]}</Label>
       <Input
         width={50}
         id="website"
@@ -215,19 +218,19 @@ const InnerForm = (props: FormikProps<FormValues>) => {
         onChange={handleChange}
         onBlur={handleBlur}
         value={values.website}
-        placeholder="Your website (optional)"
+        placeholder={translated["contact_form_website_placeholder"]}
         isError={!!(touched.website && errors.website)}
       />
       <MyErrorMessage name="website" />
 
-      <Label htmlFor="message">Message (*)</Label>
+      <Label htmlFor="message">{translated["contact_form_message"]} (*)</Label>
       <TextArea
         name="message"
         id="message"
         onChange={handleChange}
         onBlur={handleBlur}
         value={values.message}
-        placeholder="Type your message here..."
+        placeholder={translated["contact_form_message_placeholder"]}
         required
         isError={!!(touched.message && errors.message)}
       />
@@ -243,7 +246,7 @@ const InnerForm = (props: FormikProps<FormValues>) => {
           !!(errors.message && touched.message)
         }
       >
-        Submit
+        {translated["submit"]}
       </SubmitButton>
     </Form>
   );
@@ -255,24 +258,30 @@ const encode = (data: object) => {
     .join("&");
 };
 
-const ContactForm = withFormik<{}, FormValues>({
-  mapPropsToValues: _ => ({
+const ContactForm = (props: { lang: Language }) => {
+  const lang = props.lang;
+  const translated = translations[lang];
+
+  const initialValues = {
     name: "",
     email: "",
     website: "",
     message: "",
-  }),
+  };
 
-  validationSchema: Yup.object().shape({
-    name: Yup.string().required("Please enter your name"),
+  const validationSchema = Yup.object().shape({
+    name: Yup.string().required(translated["contact_validation_require_name"]),
     email: Yup.string()
-      .email("Please enter a valid Email")
-      .required("Please enter an email"),
-    website: Yup.string().url("Please enter a valid url (or leave this field blank)"),
-    message: Yup.string().required("Please enter your message"),
-  }),
+      .email(translated["contact_validation_invalid_email"])
+      .required(translated["contact_validation_require_email"]),
+    website: Yup.string().url(translated["contact_validation_invalid_website"]),
+    message: Yup.string().required(translated["contact_validation_require_message"]),
+  });
 
-  handleSubmit(data: FormValues, { setSubmitting }) {
+  const handleSubmit = (
+    data: FormValues,
+    { resetForm, setSubmitting }: FormikHelpers<FormValues>
+  ) => {
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -283,13 +292,24 @@ const ContactForm = withFormik<{}, FormValues>({
     })
       .then(() => {
         setSubmitting(false);
-        alert("Thank you for getting in touch! I will contact you back via Email.");
+        resetForm();
+        alert(translated["contact_submitted_message"]);
       })
       .catch(err => {
         alert(err);
       });
-  },
-})(InnerForm);
+  };
+
+  return (
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={handleSubmit}
+    >
+      {formikProps => <InnerForm {...formikProps} lang={lang} />}
+    </Formik>
+  );
+};
 
 const ContactPage = ({ data, location, pageContext }: ContactProps) => {
   const lang = pageContext.lang;
@@ -310,20 +330,9 @@ const ContactPage = ({ data, location, pageContext }: ContactProps) => {
         description={pageDescription}
         path={location.pathname}
       />
-      <h1>Contact Me</h1>
-      <p>
-        You can direct message me on <a href="https://twitter.com/LesleyLai6">Twitter</a>. I also
-        hang out a lot in{" "}
-        <a href="https://discord.gg/TsTDb4uYfR">Graphics Programming Virtual Meetup</a>
-        and <a href="https://www.includecpp.org/discord/">#include ＜C++＞</a> Discord servers. You
-        can direct message me on Discord if you are a member of either of those servers.
-      </p>
-      <p>
-        You can also send an email to{" "}
-        <a href="mailto:lesley@lesleylai.info?subject=Hello Lesley">lesley@lesleylai.info</a> or use
-        the following contact form:
-      </p>
-      <ContactForm />
+      <h1>{pageDescription}</h1>
+      {translations[lang]["contact_page_text"]}
+      <ContactForm lang={lang} />
     </Layout>
   );
 };
