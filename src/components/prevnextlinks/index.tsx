@@ -2,6 +2,7 @@ import * as React from "react";
 import Link from "gatsby-link";
 import styled from "styled-components";
 
+import { IconContext } from "react-icons";
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from "react-icons/fa";
 
 import { Language } from "../../utils/translations";
@@ -49,6 +50,8 @@ const Right = styled(LinkBox)`
 const PostLink = styled(Link)`
   font-size: 15px;
   font-weight: 600;
+  margin: 0 4px;
+  vertical-align: middle;
 
   @media (min-width: 500px) {
     font-size: 17px;
@@ -57,22 +60,24 @@ const PostLink = styled(Link)`
 
 const PrevNextLinks = ({ lang, previousInfo, nextInfo }: PrevNextLinksProps) => (
   <Container>
-    <Left>
-      {previousInfo && (
-        <>
-          <FaAngleDoubleLeft size={17} />
-          <PostLink to={`/${lang}/${previousInfo.id}`}>{previousInfo.title}</PostLink>
-        </>
-      )}
-    </Left>
-    <Right>
-      {nextInfo && (
-        <>
-          <PostLink to={`/${lang}/${nextInfo.id}`}>{nextInfo.title}</PostLink>
-          <FaAngleDoubleRight size={17} />
-        </>
-      )}
-    </Right>
+    <IconContext.Provider value={{ style: { verticalAlign: "middle" } }}>
+      <Left>
+        {previousInfo && (
+          <>
+            <FaAngleDoubleLeft size={17} />
+            <PostLink to={`/${lang}/${previousInfo.id}`}>{previousInfo.title}</PostLink>
+          </>
+        )}
+      </Left>
+      <Right>
+        {nextInfo && (
+          <>
+            <PostLink to={`/${lang}/${nextInfo.id}`}>{nextInfo.title}</PostLink>
+            <FaAngleDoubleRight size={17} />
+          </>
+        )}
+      </Right>
+    </IconContext.Provider>
   </Container>
 );
 
