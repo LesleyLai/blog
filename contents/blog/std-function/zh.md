@@ -1,30 +1,27 @@
 ---
 id: std-function
-title: "What is std::function in C++, and why do we need them?（暂未翻译）"
+title: "C++中的std::function到底是什么,为什么我们需要它？"
 lang: zh
 create: '2021-01-18'
-lastModify: '2021-01-18'
+lastModify: '2021-12-19'
 categories:
 - cpp
 - code
 ---
 
-Yesterday, someone in the [#include<C++>](https://www.includecpp.org/discord/) discord server asked the following question:
+昨天，有人在[#include<C++>](https://www.includecpp.org/discord/)的discord服务器上问了关于为社么我们需要`std::function`的问题。
+下面是我对这个问题的回答。
 
-> how `std::function` works with lambda captures and functions handling I still don't understand
+## 即使参数类型以及返回类型都完全相同，C++中的可以被当作函数一样被调用的对象也可以有不同的类型
 
-Below was my answer to the question, with some typo-fixes and expansions:
-
-## Invocables can have different types even if their parameter and return types are the same
-
-Lambda expressions can be considered syntactic sugar over classes with `operator()` defined. For example:
+Lambda表达式可以被认为是定义有`operator()`的类的语法糖。比如说
 
 ```cpp
 int x = 3;
 auto lambda = [x](int y) { return x + y; };
 ```
 
-is roughly equivalent to
+大体上等同于
 
 ```cpp
 struct __Lambda {
@@ -39,7 +36,7 @@ int x = 3;
 auto lambda = __Lambda { .x = x };
 ```
 
-One consequence is that every lambda expression has a distinct type. For example, in the below snippet,
+因此，每个lambda表达式都有一个独特的类型。例如，在下面的片段中，
 
 ```cpp
 int x, z;
@@ -48,16 +45,18 @@ auto lambda = [x](int y) { return x + y; };
 auto lambda2 = [x, z](int y) { return x + y + z; };
 ```
 
-`lambda` and `lambda2` have different types, even though they both take an `int` and return an `int`.
+尽管`lambda`和`lambda2`都接收一个`int`并返回一个`int`，它们有着不一样的类型。
 
-C++ also have functions,
-which are distinct from classes with `operator()`.
+C++还有普通的函数，
+它们又和实现了`operator()`的类不同。
 
-## The motivation for `std::function`
+## 对`std::function`的需求
 
-Then, how do we store such an invocable object that takes an int and returns an int disregard of its types?
+被当作函数一样被调用的对象
 
-We need `std::function` to accomplish such a task. For example:
+那么，我们如何存储一个接收一个`int`并返回一个`int`的一个可调用的对象，并且不考虑它的具体类型？
+
+我们需要`std::function`来完成这样的任务。比如说：
 
 ```cpp
 struct S {
@@ -65,31 +64,29 @@ struct S {
 };
 ```
 
-A canonical use case for storing an invocable in this fashion is a task system,
-where you probably want to store callbacks in a container to execute later:
+以这种方式存储可调用程序的典型用例是一个task system。
+你可能想在一个容器中存储回调，以便于以后执行：
 
 ```cpp
-
 struct TaskQueue {
   std::queue<std::function<void()>> queue;
   std::mutex mutex;
   std::condition_variable ready;
 
-  // member functions
+  // 我省略了各个成员函数的实现
   ...
 };
 
 ```
 
-## Type Erasure
+## 类型擦除（Type Erasure）
 
-To make `func` accepts both `lambda` and `lambda2`,
-`std::function` needs to have constructors that take any function object or plain function that satisfies its signature.
-And we need to perform *type erasure* to achieve this behavior.
+为了使`func`同时接受`lambda`和`lambda2`,
+`std::function`需要有可以接受任何符合要求的函数对象或普通函数的构造函数。
+我们需要使用*类型擦除*来实现这种行为。
 
-There are various techniques to implement type erasure in C++,
-and it is not a topic I can fit into this post.
-But the high-level idea is that `std::function` needs some function pointer that can invoke the lambda and some storage space to store lambda captures.
-The data need to be allocated on the heap since lambda expressions (or invocable classes) can have arbitrary sized capture.
-However, all major `std::function` implementations also perform *small buffer optimization* if your lambda is small enough to fit into a predefined capacity.
-In that case, all data can be allocated directly inside the `std::function` object itself, and no additional heap allocation is performed.
+在C++中实现类型擦除的方法有很多，不过这对于这篇文章来说有些超纲。
+大体上的想法是,`std::function`需要储存一个函数指针以及另外一些用于存放lambda捕获的空间。
+因为lambda表达式（或函数对象）可以有任意大小的捕获，这些额外的数据需要在堆上分配。
+不过，所有主要的`std::function`实现都会进行*小缓冲区优化*（small buffer optimization），如果你的lambda小到可以装入预定义的容量。
+在这种情况下，所有的数据都可以直接在`std::function`对象本身内部分配，而不需要进行额外的堆分配。

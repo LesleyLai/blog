@@ -3,7 +3,7 @@ id: std-function
 title: "What is std::function in C++, and why do we need them?"
 lang: en
 create: '2021-01-18'
-lastModify: '2021-01-18'
+lastModify: '2021-12-19'
 categories:
 - cpp
 - code
@@ -17,7 +17,7 @@ Below was my answer to the question, with some typo-fixes and expansions:
 
 ## Invocables can have different types even if their parameter and return types are the same
 
-Lambda expressions can be considered syntactic sugar over classes with `operator()` defined. For example:
+In C++, lambda expressions can be considered syntactic sugar over classes with `operator()` defined. For example:
 
 ```cpp
 int x = 3;
@@ -89,7 +89,7 @@ And we need to perform *type erasure* to achieve this behavior.
 
 There are various techniques to implement type erasure in C++,
 and it is not a topic I can fit into this post.
-But the high-level idea is that `std::function` needs some function pointer that can invoke the lambda and some storage space to store lambda captures.
+But the high-level idea is that `std::function` needs some function pointer that can invoke the invocable and some storage space to store lambda captures (or data members of a function object).
 The data need to be allocated on the heap since lambda expressions (or invocable classes) can have arbitrary sized capture.
 However, all major `std::function` implementations also perform *small buffer optimization* if your lambda is small enough to fit into a predefined capacity.
 In that case, all data can be allocated directly inside the `std::function` object itself, and no additional heap allocation is performed.
