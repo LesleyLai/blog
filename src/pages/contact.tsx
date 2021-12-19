@@ -283,6 +283,7 @@ const ContactForm = withFormik<{}, FormValues>({
     })
       .then(() => {
         setSubmitting(false);
+        alert("Thank you for getting in touch! I will contact you back via Email.");
       })
       .catch(err => {
         alert(err);
@@ -312,9 +313,10 @@ const ContactPage = ({ data, location, pageContext }: ContactProps) => {
       <h1>Contact Me</h1>
       <p>
         You can direct message me on <a href="https://twitter.com/LesleyLai6">Twitter</a>. I also
-        hang out a lot in <a href="https://discord.gg/TsTDb4uYfR">Graphics Programming Virtual Meetup</a>
-        and <a href="https://www.includecpp.org/discord/">#include ＜C++＞</a> Discord servers.
-        You can direct message me on Discord if you are a member of either of those servers.
+        hang out a lot in{" "}
+        <a href="https://discord.gg/TsTDb4uYfR">Graphics Programming Virtual Meetup</a>
+        and <a href="https://www.includecpp.org/discord/">#include ＜C++＞</a> Discord servers. You
+        can direct message me on Discord if you are a member of either of those servers.
       </p>
       <p>
         You can also send an email to{" "}
