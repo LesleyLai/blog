@@ -14,21 +14,16 @@ const en = {
         <a href="http://www.colorado.edu/"> University of Colorado at Boulder</a>.
       </p>
       <p>
-        I organize the{" "}
+        I am the founder and one of the organizers of the{" "}
         <a href="https://www.meetup.com/Graphics-Programming-Virtual-Meetup/">
           Graphics Programming Virtual Meetup
         </a>
-        .
+        , and I also help organize <a href="https://www.includecpp.org/">#include &lt;C++&gt;</a>.
       </p>
       <p>
         My primary interests include{" "}
         <a href="https://en.wikipedia.org/wiki/Computer_graphics">Computer Graphics</a>
-        {" and "}
-        <a href="https://en.wikipedia.org/wiki/Programming_language_theory">
-          Programming Language theories
-        </a>
-        . I love to code in various programming languages, though I am particularly fond of{" "}
-        <a href="https://isocpp.org/">C++</a>.
+        {" and "} Programming Languages.
       </p>
     </>
   ),
