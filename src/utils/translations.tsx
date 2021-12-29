@@ -162,11 +162,19 @@ const zh: Translations = {
   about_content: (
     <>
       <p>
-        大家好，我叫赖思理，是
+        大家好，我是赖思理，
         <a href="http://www.colorado.edu/">科罗拉多大学</a>
         计算机科学以及应用数学的本科生。
       </p>
-      <p>我喜欢计算机图形学、编程语言理论，以及C++。</p>
+      <p>
+        我是
+        <a href="https://www.meetup.com/Graphics-Programming-Virtual-Meetup/">
+          计算机图形学线上聚会（Graphics Programming Virtual Meetup）
+        </a>
+        的发起人以及组织者， 我同时也帮助组织
+        <a href="https://www.includecpp.org/">#include &lt;C++&gt;</a>。
+      </p>
+      <p>个人兴趣包括计算机图形学以及编程语言。</p>
     </>
   ),
   ai: en.ai,
