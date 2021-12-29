@@ -1,8 +1,8 @@
 ---
 id: auto-parameters
-title: "Don't automatically use auto parameters in C++（暂未翻译）"
+title: "在C++中，不要不假思索地使用auto参数"
 lang: zh
-create: '2021-03-09'
+create: '2021-03-09' 
 lastModify: '2021-03-09'
 categories:
 - code
@@ -10,25 +10,24 @@ categories:
 - opinion
 ---
 
-Since C++14, we can create lambda expressions that take `auto` parameters.
-C++20 generalizes this idea by allowing us to do the same thing for regular functions.
-With this feature's advent,
-the programming style where all parameters are auto becomes popular among some C++ programmers.
-However, I think we should not use it if we had to. The more specific the type of the parameter is, the better.
-
+从C++14开始，我们可以创建带`auto`参数的lambda表达式。
+到了C++20，我们甚至可以在正常的函数中使用`auto`参数。
+随着这一特性的出现，
+在一些C++程序员开始流行了把所有的参数都使用`auto`的风气。
+然而，我认为除非我们不得已，我们不应该使用`auto`参数。
 
 <!-- end -->
 
-## Why do people like it?
+## 为什么人们会喜欢它？
 
-I posit that people start to use this style
-because sometimes it is annoying to write out the explicit type.
-This can be a valid excuse when doing template-heavy generic programming,
-but in a lot of the time, the "annoying to write" type is avoidable with some refactoring,
-and we will even have higher quality code by doing so.
+在某些时候写出具体的类型确实比较烦人，因此人们就会开始使用`auto`参数的风格。
+当我们写拥有大量模板的泛型编程时，这可能确实是一个合理的理由。
+但在很多时候，通过重构我们可以避免写很多"写得很烦"的类型。
+我们甚至可以通过这样做获得更高的代码质量。
 
-For example, the following is a modified version of some code I found online,
-and I agree that it is annoying to write out about the explicit type of `pair`.
+例如，我在网上找到了如下的代码。因为隐私因素，我对它略进行了一些修改。
+的确，在如下代码中显式写出`pair`类型的参数确实过于扰人。
+
 ```cpp
 std::vector<std::pair<double, double>> pairs;
 
@@ -39,11 +38,8 @@ return std::accumulate(
 });
 ```
 
-
-I would also be clueless about this code's meaning by reading this particular snippet
-since there is no meaning attached to a pair's values.
-
-What if we change the element of `pairs` into a named structure?
+同时，如果只阅读这一小段，我也完全不知道这段代码到底做了些什么因为一个`pair`的`first`以及`second`值完全没有任何含义。
+假如是我们把`pairs`的元素变为一个有名字的结构体呢？
 
 ```cpp
 struct Outcome {
@@ -60,11 +56,11 @@ return std::accumulate(
 });
 ```
 
-Suddenly, it is clear that this code tries to calculate a discrete random variable's [expectation](https://en.wikipedia.org/wiki/Expected_value)!
+突然间，我们很容易就可以看出这段代码在计算一个离散随机变量的期望值！
 
-Unfortunately, instead of trying to give their code better types,
-some people become so adapted to the `auto` parameter style that they start to use this style everywhere,
-even in places where writing `auto` doesn't save keystrokes much or at all:
+不幸的是，有些人不仅没有想办法给他们的变量更具体的类型，
+而反而变得如此适应`auto`参数风格，
+以至于他们即使在`auto`并不能使得代码更加简洁的地方也开始到处使用`auto`参数。
 
 ```cpp
 const std::vector<int> v1 = ...;
@@ -75,18 +71,15 @@ std::ranges::transform(v1, v2, std::back_inserter(smaller_ones),
   [](auto x, auto y) { return std::min(x, y); });
 ```
 
-## Auto parameters generate templates
+## `auto`参数会生成模板
 
-In some programming languages such as ML or Rust,
-the type system can infer the exact type of a function or lambda by its definition.
-Those languages also have different type annotation syntax, which makes type annotation in parameters optional.
-Thus, it becomes ergonomic to writing lambda expressions without parameter types in those languages.
-After writing those languages, some people come back to C++ with the same kind of coding style.
-
-However, In C++, template, overloading, and [ADL](https://en.cppreference.com/w/cpp/language/adl) (Argument-dependent lookup) all make such type inferences impossible.
-As a result, `auto` parameter results in unconstrained templates.
-For example, we can use the amazing [cppinsights](https://cppinsights.io/) website to see
-what `[](auto x, auto y) { return x * y + 42; });` desuger into:
+在如[ML](https://zh.wikipedia.org/wiki/ML%E8%AF%AD%E8%A8%80)或Rust的一些一些编程语言中，
+类型系统可以通过定义推断出一个函数或lambda表达式的确切类型。
+这些语言也有不同的类型注释（type annotation）语法从而使得这些语言的程序员习惯省略lambda表达式具体的参数类型。
+在写过这些语言后，这些人回到了C++并且开始使用相同的代码规范。
+但是，因为C++拥有模板、重载（overloading）、以及[实参依赖查找](https://zh.cppreference.com/w/cpp/language/adl)（argument-dependent lookup）这些复杂特性，C++编译器无法实现这样的类型推断。
+因此，当我们使用`auto`参数时，编译器会生成不受约束的模板。
+例如，我们可以使用[cppinsights](https://cppinsights.io/)网站来看编译器对`[](auto x, auto y) { return x * y + 42; });`表达式所做的变换：
 
 ```cpp
 class __lambda_5_2
@@ -107,22 +100,24 @@ class __lambda_5_2
   } __lambda_5_2{};
 ```
 
-The issue is that template programming does not have the same experience as "normal" programming.
-Type errors are caught later than we want,
-and we have worse IDE auto-completion/error detection support in template contexts.
-This problem becomes more prominent when we start to write lambda expressions that are more than a one-liner
-and even more when we start to use auto parameters for normal functions in C++20.
+当我们开始写超过单行的lambda表达式时，这个问题就变得更加突出了
+甚至当我们开始在C++20中为普通函数使用自动参数时，这个问题就更加突出了。
 
-## Unconstrained template can be dangerous
+问题是，模板编程与平常编程的体验并不相同。
+在模板编程中，类型错误比我们想要的更晚被发现。
+而且我们的IDE自动补全以及错误检测功能在模板中一般都没有办法发挥最好的效果。
+当我们开始写较长的lambda表达式时或者甚至我们开始把`auto`参数应用到普通函数时，这个问题就变得更加突出。
 
-Even when we do need templates, constraining them is a better idea.
-In one of his talks, Bjarne Stroustrup mentioned that we can consider `auto` as a [concept](https://en.cppreference.com/w/cpp/language/constraints)— the least constraint one.[^1]
+## 不受约束的模板是危险的
+
+即使当我们需要模板时，通常对模板进行约束是一个更好的做法。
+在一次讲话中，Bjarne Stroustrup（C++创始者）提到`auto`是最没用被约束的[概念](https://zh.cppreference.com/w/cpp/language/constraints)[^1]
 
 [^1]: [CppCon 2018: Bjarne Stroustrup “Concepts: The Future of Generic Programming (the future is here)”](https://youtu.be/HddFGPTAmtU)
 
-Unconstrained, it is easy to have types that accidentally match an interface.
-Let's say that we have a 3-dimensional vector structure,
-and it is natural for us to want to perform dot product on them:
+在没有约束的情况下，我们很容易错误得把不小心与接口相匹配的类型传给模板函数。
+比方说，我们有一个三维的向量结构，
+我们很自然地会想对它们进行点积（dot product）：
 
 ```cpp
 struct Vec3 {
@@ -136,7 +131,7 @@ auto dot(auto v1, auto v2) {
 }
 ```
 
-Later, if we decide to add another 4-dimensional vector, we can invoke the same version of `dot` that are prepared for three-dimensional vectors:
+之后当我们想要增加四维的向量结构时，C++并不会阻止我们同样对这个向量结构使用之前为三维向量准备的`dot`函数：
 
 ```cpp
 struct Vec4 {
@@ -146,32 +141,32 @@ struct Vec4 {
   float w = 0;
 };
 
-dot(Vec4{1, 2, 3, 4}, Vec4{1, 2, 3, 4}); // expects 30, gets 14
+dot(Vec4{1, 2, 3, 4}, Vec4{1, 2, 3, 4}); // 我们想要30，但结果我们得到了14
 ```
 
-The C++ Core Guidelines also mentioned the danger of unconstrained template in a highly visible scope,
-especially in combination with ADL. [^2]
+The C++ Core Guidelines也提到了在高度可见的范围内使用不受约束的模板是非常危险的，尤其是考虑到实参依赖查找。[^2]
 
 [^2]: [T.47: Avoid highly visible unconstrained templates with common names](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md#Rt-visible)
 
-## Explicit type annotation provide documentation value
+## 明确的类型注释提供了文档价值
 
-Even in languages without all the C++ specific problems,
-explicit parameter types provide documentation purpose and can serve as "type-checking barriers" during refactoring.
-That is why in ML dialects and Haskell,
-toplevel functions without explicit type annotation are considered bad style,
-and Rust does not even allow it.
+即使在上述的C++特有问题的其它语言中，
+显式的参数类型同时起到了文档的目的。
+并且，在重构过程中，显式的参数类型可以使得类型检查的工作更加得轻松。
+这就是为什么在各种ML变种和以及Haskell中，
+没有显式类型注释的顶级函数被认为是不好的风格。
+而Rust规定所有的顶级函数都必须提供显式类型。
 
-When using an unfamiliar API in any static-typed language,
-the type annotation is probably the first hint on what a particular function call does.
-By using `auto` parameters,
-we give other people and our future selves no hint about the nature of those parameters.
+当我们在任何静态类型的编程语言中使用一个不熟悉的API时，
+我们通常会通过类型注解来帮助理解一个函数做了些什么。
+如果我们使用`auto`参数的话，
+我们将不会给其他人或者未来的自己留下关于这些参数性质的提示。
 
-## Conclusions
+## 结论
 
-It is not always possible to avoid `auto` parameters.
-Before C++20, there is no way to use concepts or explicit template annotation for lambda expressions.
-Also, in some cases, the convenience and productivity gain of using `auto` parameters probably outweigh its drawbacks.
-However, I think the downside is severe enough to consider auto parameters a code smell.
-When meeting code with auto parameters, we should always ask, "is it possible to use a concrete type here?"
-And if it is not the case, then the next question is, "is it possible to use a concept here?"
+我们并不是总是能避免`auto`参数。
+在C++20之前，没有办法可以为lambda表达式使用[概念](https://zh.cppreference.com/w/cpp/language/constraints)（Concept）或显式模板。
+另外，在某些情况下，使用`auto`参数的便利性和生产力的提高可能超过了它的缺点。
+然而，我认为其弊端严重到足以将自动参数视为一种代码异味（code smell）。
+当遇到带有`auto`参数的代码时，我们应该总是问："这里有可能使用一个具体的类型吗？"
+如果不是这样的话，那么下一个问题就是，"这里有可能使用一个概念吗？"

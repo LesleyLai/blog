@@ -41,7 +41,7 @@ return std::accumulate(
 
 
 I would also be clueless about this code's meaning by reading this particular snippet
-since there is no meaning attached to a pair's values.
+since there is no meaning attached to a pair's `first` and `second` values.
 
 What if we change the element of `pairs` into a named structure?
 
@@ -77,7 +77,7 @@ std::ranges::transform(v1, v2, std::back_inserter(smaller_ones),
 
 ## Auto parameters generate templates
 
-In some programming languages such as ML or Rust,
+In some programming languages such as [ML](https://en.wikipedia.org/wiki/ML_(programming_language)) or Rust,
 the type system can infer the exact type of a function or lambda by its definition.
 Those languages also have different type annotation syntax, which makes type annotation in parameters optional.
 Thus, it becomes ergonomic to writing lambda expressions without parameter types in those languages.
