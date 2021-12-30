@@ -169,7 +169,7 @@ const zh: Translations = {
       <p>
         我是
         <a href="https://www.meetup.com/Graphics-Programming-Virtual-Meetup/">
-          计算机图形学线上聚会（Graphics Programming Virtual Meetup）
+          图形编程线上聚会（Graphics Programming Virtual Meetup）
         </a>
         的发起人以及组织者， 我同时也帮助组织
         <a href="https://www.includecpp.org/">#include &lt;C++&gt;</a>。
