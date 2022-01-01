@@ -1,7 +1,7 @@
 ---
 id: bilingual-blog
-title: "How I create bilingual functionality of this blog in plain Typescript"
-lang: en
+title: "How I create bilingual functionality of this blog in plain Typescript（暂未翻译）"
+lang: zh
 create: '2022-01-01'
 lastModify: '2022-01-01'
 categories:
