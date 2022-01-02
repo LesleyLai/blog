@@ -27,6 +27,9 @@ const Socials = ({ lang, shareInfo }: SocialsProps) => {
     }
   })();
 
+  const encodedUrl = encodeURIComponent(shareInfo.url);
+  const encodedTitle = encodeURIComponent(shareInfo.title);
+
   return (
     <div className={css.socials}>
       {shareInfo && lang !== "zh" && (
@@ -34,7 +37,7 @@ const Socials = ({ lang, shareInfo }: SocialsProps) => {
           target="_blank"
           rel="noopener noreferrer"
           title="Share with Twitter"
-          href={`https://twitter.com/intent/tweet?url=${shareInfo.url}&text="${shareInfo.title}"&via=LesleyLai6`}
+          href={`https://twitter.com/intent/tweet?url=${encodedUrl}&text="${encodedTitle}"&via=LesleyLai6`}
         >
           <TwitterIcon className={css.icon} data-tip="Share with Twitter" size={25} />
         </a>
@@ -44,7 +47,7 @@ const Socials = ({ lang, shareInfo }: SocialsProps) => {
           target="_blank"
           rel="noopener noreferrer"
           title="Share with LinkedIn"
-          href={`https://www.linkedin.com/shareArticle?mini=true&url=${shareInfo.url}&title=${shareInfo.title}`}
+          href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${encodedTitle}`}
         >
           <LinkedInIcon className={css.icon} data-tip="Share with LinkedIn" size={25} />
         </a>
