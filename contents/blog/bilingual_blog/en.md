@@ -18,14 +18,15 @@ Since I created this blog in 2015, I always wanted to make it bilingual,
 and I finally implemented it at the end of 2019.
 My implementation of internationalization was probably different from most people,
 as I use plain Typescript without any third-party libraries such as [i18next](https://www.i18next.com/).
-I heavily rely on Typescript's remarkable features in its type system for my implementation.
+And I heavily rely on Typescript's remarkable features in its type system for my implementation.
 
-It is probably not the most "proper" and scalable solution,
+My solution is probably not the most "proper" and scalable,
 but I think it fits the particular use case of a personal blog well.
-My approach provides several important advantages:
+It provides several important advantages:
 - The type system guarantees that it is impossible to forget to translate any entry
 - It is very flexible as I can have arbitrarily different Javascript for different languages (Since this website is implemented in React, I can have arbitrary JSX [^1]). This is a useful property when I only want to render certain UI elements in a selected language (for example, Twitter is banned in China, so I removed my Twitter link on the Chinese version of this site.)
 - I don't need to learn an i18n library just for my blog
+
 And thus, I recommend you use a similar approach if you want to create a multilingual personal website.
 
 [^1]: For people not familiar with JSX, it is a syntax extension of Javascript that enables us to write HTML-like UI code easily. It is designed to work together with React.js, but people also use it with other technologies such as Vue.js. [Here](https://reactjs.org/docs/introducing-jsx.html) is an introduction to JSX.
@@ -38,7 +39,7 @@ with the help of a "template." [^2]
 [^2]: In the particular case of GatsbyJS, the actual situation is more complicated, but you can visit their website to learn more.
 
 For blog posts,
-I can have separate markdown files for different languages.
+I have separate markdown files for different languages.
 On the other hand, there is still a lot of text in the "template" which need translations.
 Examples include my bio at the right sidebar, different menu items, and blog post tags.
 
@@ -117,7 +118,7 @@ export const languages = Object.keys(translations) as Language[];
 
 This website is only bilingual, and I don't know how to write any other languages,
 but there is no hard-coding of particular languages on my implementation, except I treat English as the "default" language.
-Thus, it is trivial to extend this implementation to support more languages:
+Thus, it is trivial to extend this implementation to support more languages.
 The only thing need to do is to define another object with the `Translations` type and add it as an entry to `translations`.
 
 To use translation, we first need to pass the current language of the page to its components,
@@ -125,7 +126,7 @@ and then we can use `translations[lang]["entry"]` at the place where I need the 
 This works for functions too, as I can just call the function like `translations[lang]["all_n_posts"](n)`.
 
 That's it! I implemented the whole internationalization logic!
-We just need to add translations to the `en` and `zh` object to add new entries.
-However, the most challenging part of maintaining a bilingual blog is always translating the blog posts.
+To add new entries, we just need to add translations to the `en` and `zh` object.
+However, the most challenging part of maintaining a bilingual blog is always translating actual blog posts.
 And I can't say I did a really good job considering how many posts on this site only have an English version.
 But I hope at least the technical aspect of my approach can provide some inspirations.
