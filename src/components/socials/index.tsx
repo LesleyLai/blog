@@ -27,8 +27,8 @@ const Socials = ({ lang, shareInfo }: SocialsProps) => {
     }
   })();
 
-  const encodedUrl = encodeURIComponent(shareInfo.url);
-  const encodedTitle = encodeURIComponent(shareInfo.title);
+  const encodedUrl = shareInfo && encodeURIComponent(shareInfo.url);
+  const encodedTitle = shareInfo && encodeURIComponent(shareInfo.title);
 
   return (
     <div className={css.socials}>

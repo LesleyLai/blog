@@ -3,7 +3,7 @@ id: bilingual-blog
 title: "How I create bilingual functionality of this blog in plain Typescript"
 lang: en
 create: '2022-01-01'
-lastModify: '2022-01-01'
+lastModify: '2022-01-02'
 categories:
 - code
 - i18n
@@ -40,16 +40,18 @@ with the help of a "template." [^2]
 
 For blog posts,
 I have separate markdown files for different languages.
-On the other hand, there is still a lot of text in the "template" which need translations.
+For example, the Chinese version of this post and the text you are currently reading are stored in different markdown files.
+On the other hand, there is still a lot of text in the "template" which needs translations.
 Examples include my bio at the right sidebar, different menu items, and blog post tags.
 
 The "template" of GatsbyJS is in Javascript (and I decided to use Typescript, which transpiles to JS), and in particular, React components.
-As a result, it is natural for me to try to develop a Typescript solution for the internationalization problem.
-Suppose you use a static-site generator using Python. In that case, ideally, you should implement internationalization in Python so the translation can be done at build time to avoid the overhead for people who use your website.
+As a result, it is natural for me to try to develop a Typescript solution for the internationalization problem,
+and all those React components and translations will be built into static HTML.
+On the other hand, suppose you use a static-site generator using Python. In that case, ideally, you should implement internationalization in Python so the translation can be done at build time to avoid the overhead for people who use your website.
 
 Most of my internationalization implementations are in the [translation.tsx](https://github.com/LesleyLai/blog/blob/9500c49f22e886fe5aa706967e5dc4391a20ea15/src/utils/translations.tsx) file:
 
-First, I have an `en` object that store every translation entries in English:
+First, I have an `en` object that store every translation entry in English:
 
 ```typescript
 const en = {
@@ -70,7 +72,7 @@ Since `en` is just a plain object, I can also store more interesting data such a
   ),
 ```
 
-With `en` as an object defined, we can query its type by the `typeof` operator::
+With `en` as an object defined, we can query its type by the `typeof` operator:
 
 ```typescript
 export type Translations = typeof en;
@@ -91,6 +93,8 @@ const zh: Translations = {
 
 This way, the type system ensures that I don't forget to translate any entries.
 
+And then, we can assemble translations of all languages into a single object. This object will be the main entry point in our template when we need to query specific translation entries:
+
 ```typescript
 export const translations = {
   en: en,
@@ -107,7 +111,7 @@ But since it expects a type rather than an object, we need to apply another `typ
 export type Language = keyof typeof translations;
 ```
 
-The above type is useful when passing the current language as a parameter.
+I use the above union type whenever I need explicit type annotation for languages, for example, when passing the current language as a parameter.
 
 And finally, we use `Object.keys` to get a list of languages,
 so we can loop through all languages.
