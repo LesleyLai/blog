@@ -48,6 +48,7 @@ export const tagInfos = {
   scheme: { color: colors.typescript },
   test: { color: colors.orange },
   typescript: { color: colors.typescript },
+  vulkan: { color: colors.red },
   web: { color: colors.violet },
   x86: { color: colors.pink },
 };
