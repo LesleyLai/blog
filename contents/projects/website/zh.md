@@ -4,7 +4,7 @@ name: "个人网站"
 lang: zh
 image: blog
 create: '2016-05-06'
-lastModify: '2019-11-12'
+lastModify: '2022-01-15'
 categories:
 - i18n
 - typescript

@@ -4,7 +4,7 @@ name: "Personal website"
 lang: en
 image: blog
 create: '2016-05-06'
-lastModify: '2019-11-12'
+lastModify: '2022-01-07'
 categories:
 - i18n
 - typescript
