@@ -256,4 +256,4 @@ Accompanied by the fact that it still requires a beta driver on Nvidia devices a
 Though I can see that dynamic rendering becomes more valuable when doing multi-pass rendering.
 Khronos may improve the ergonomics of dynamic rendering somehow in the future.
 
-Thanks my friend [Charles Giessen](https://twitter.com/charlesgiessen) for proofreading this post!
+Thanks my friend [Charles Giessen](https://twitter.com/charlesgiessen) for proofreading and editing this post!
