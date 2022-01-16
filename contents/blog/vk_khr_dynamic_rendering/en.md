@@ -272,9 +272,8 @@ In this simple case, the dynamic rendering extension seems almost as verbose as 
 Though I can see that dynamic rendering becomes more valuable in multi-pass rendering, whereas synchronization becomes complicated with the traditional render pass approach.
 Khronos may also improve the ergonomics of dynamic rendering somehow in the future.
 
-
 ## Acknowledgements
-Special thanks my friend [Charles Giessen](https://twitter.com/charlesgiessen) for proofreading this post!
+Special thanks my friend [Charles Giessen](https://twitter.com/charlesgiessen) for proofreading and editing this post!
 
 After this post was initially released, many experienced graphics programmers provided valuable insight and feedback.
 [Jeremy Ong](https://www.jeremyong.com/) provides insightful [Twitter](https://twitter.com/m_ninepoints/status/1482620618549776389) feedback on this post that I very much recommend reading.
