@@ -3,7 +3,7 @@ id: vk-khr-dynamic-rendering
 title: "VK_KHR_dynamic_rendering tutorial"
 lang: en
 create: '2022-01-16'
-lastModify: '2022-01-16'
+lastModify: '2022-01-17'
 categories:
 - code
 - graphics
@@ -39,9 +39,8 @@ It is good that the bindings in the `ash` crate are a straightforward mapping to
 
 Like all other extensions, we can check whether our physical device supports `VK_KHR_dynamic_rendering` via `vkEnumerateDeviceExtensionProperties`. If the result we get from `vkEnumerateDeviceExtensionProperties` doesn't contain `VK_KHR_dynamic_rendering`, we will need to update the driver and [Vulkan SDK and runtime](https://vulkan.lunarg.com/sdk/home).
 
-**Note**: `VK_KHR_dynamic_rendering` is still young at the time of this writing (January 2021).
-If you read this article just after it gets released, you likely need to update your Vulkan SDK and runtime to use this extension.
-I also needed to install a ["Vulkan Beta Driver"](https://developer.nvidia.com/vulkan-driver) for my Nvidia card.
+**Note**: `VK_KHR_dynamic_rendering` is young at the time of this writing (January 2021), so there is a possibility that the latest driver on your hardware still doesn't support it.
+When I wrote this article, I needed to install a ["Vulkan Beta Driver"](https://developer.nvidia.com/vulkan-driver) for my Nvidia card, though this is no longer the case now.
 
 ### Load the extension
 
@@ -156,7 +155,25 @@ vkCmdEndRenderingKHR(command_buffer);
 VK_CHECK(vkEndCommandBuffer(command_buffer));
 ```
 
-Now we are at the point that we can scrape out all of the code initializing render pass and framebuffer objects!
+## Pipeline creation
+
+Now we are at the point where we can scrape out all of the code initializing render pass and framebuffer objects! And when creating pipeline objects, we no longer need to specify a render pass, but instead, we need to create a `VkPipelineRenderingCreateInfoKHR` object to specify attachment formats:
+
+```cpp
+const VkPipelineRenderingCreateInfoKHR pipeline_rendering_create_info {
+    .sType = VK_STRUCTURE_TYPE_PIPELINE_RENDERING_CREATE_INFO_KHR
+    .colorAttachmentCount = 1,
+    .pColorAttachmentFormats = &swapchain_image_format_,
+};
+
+const VkGraphicsPipelineCreateInfo pipeline_create_info {
+  // ...
+  .pNext = &pipeline_rendering_create_info,
+  // ...
+  .renderPass = nullptr, // We no longer need a render pass
+  // ...
+};
+```
 
 ## Image layout transition
 
@@ -247,13 +264,20 @@ vkCmdPipelineBarrier(
 
 Almost all Vulkan renderers have helper functions for these image layout transition functions to reduce verbosity,
 but it is still quite a hassle to specify all the parameters.
-And we also need to do similar layout transition dance for the depth buffer and stencil buffer.
+And we also need to do similar layout transition dance for the depth buffer and stencil buffer, with access masks, pipeline stage masks, and layout changing accordingly.
 
 ## Final word
 
 In this simple case, the dynamic rendering extension seems almost as verbose as creating render passes and framebuffer objects.
-Accompanied by the fact that it still requires a beta driver on Nvidia devices at the time of the writing, it almost feels not worth using this extension.
-Though I can see that dynamic rendering becomes more valuable when doing multi-pass rendering.
-Khronos may improve the ergonomics of dynamic rendering somehow in the future.
+Though I can see that dynamic rendering becomes more valuable in multi-pass rendering, whereas synchronization becomes complicated with the traditional render pass approach.
+Khronos may also improve the ergonomics of dynamic rendering somehow in the future.
 
-Thanks my friend [Charles Giessen](https://twitter.com/charlesgiessen) for proofreading this post!
+
+## Acknowledgements
+Special thanks my friend [Charles Giessen](https://twitter.com/charlesgiessen) for proofreading this post!
+
+After this post was initially released, many experienced graphics programmers provided valuable insight and feedback.
+[Jeremy Ong](https://www.jeremyong.com/) provides insightful [Twitter](https://twitter.com/m_ninepoints/status/1482620618549776389) feedback on this post that I very much recommend reading.
+[Karn Kaul](https://github.com/karnkaul) mentioned that it is more precise if I said that image layout transition for depth buffer is slightly different from color buffers. And he also noted that on some hardware and drivers, using the automatic image layout transition provided by render pass causes artifact, and manual image layout transition is the only way anyway.
+[Leon Brands](https://leonbrands.software/) points out that the initial post didn't talk about pipelines, so I added a section about the change in pipeline creation.
+And [Timmy](https://twitter.com/rex_timmy) on Twitter noted that Nvidia is now shipping VK_KHR_dynamic_rendering in their game-ready drivers.
