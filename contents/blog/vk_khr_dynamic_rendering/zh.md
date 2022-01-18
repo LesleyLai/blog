@@ -2,8 +2,8 @@
 id: vk-khr-dynamic-rendering
 title: "Vulkan动态渲染（dynamic rendering）教程"
 lang: zh
-create: '2022-01-17'
-lastModify: '2022-01-17'
+create: '2022-01-18'
+lastModify: '2022-01-18'
 categories:
 - code
 - graphics
@@ -54,16 +54,26 @@ std::vector<const char*> device_extensions = {
   // ...,
   "VK_KHR_dynamic_rendering"
 };
+```
+
+此外，动态渲染被藏在一个特性切换后面，所以我们需要创建一个`VkPhysicalDeviceDynamicRenderingFeaturesKHR`结构，然后在创建逻辑设备时将其传递给`pNext`链表：
+
+```cpp
+constexpr VkPhysicalDeviceDynamicRenderingFeaturesKHR dynamic_rendering_feature {
+    .sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES_KHR,
+    .dynamicRendering = VK_TRUE,
+};
 
 const VkDeviceCreateInfo device_create_info = {
+    .sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO,
+    .pNext = &dynamic_rendering_feature,
     // ...
     .enabledExtensionCount = static_cast<unsigned int>(device_extensions.size()),
     .ppEnabledExtensionNames = device_extensions.data(),
 };
 ```
 
-
-<aside style="margin-top: -90px;">
+<aside style="margin-top: -70px;">
 
 如果你使用C++来学习Vulkan的话，你可以试试使用[vk-bootstrap](https://github.com/charles-lunarg/vk-bootstrap)库。
 它会让Vulkan初始化的过程简单许多。

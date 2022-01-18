@@ -3,7 +3,7 @@ id: vk-khr-dynamic-rendering
 title: "VK_KHR_dynamic_rendering tutorial"
 lang: en
 create: '2022-01-16'
-lastModify: '2022-01-17'
+lastModify: '2022-01-18'
 categories:
 - code
 - graphics
@@ -35,30 +35,40 @@ It is good that the bindings in the `ash` crate are a straightforward mapping to
 
 `VK_KHR_dynamic_rendering` is a device extension, so when we create our logical device, we need to enable it with other device extensions such as `VK_KHR_swapchain`.
 
-### Check extension avalibility
+### Check extension availability
 
 Like all other extensions, we can check whether our physical device supports `VK_KHR_dynamic_rendering` via `vkEnumerateDeviceExtensionProperties`. If the result we get from `vkEnumerateDeviceExtensionProperties` doesn't contain `VK_KHR_dynamic_rendering`, we will need to update the driver and [Vulkan SDK and runtime](https://vulkan.lunarg.com/sdk/home).
 
 **Note**: `VK_KHR_dynamic_rendering` is young at the time of this writing (January 2021), so there is a possibility that the latest driver on your hardware still doesn't support it.
 When I wrote this article, I needed to install a ["Vulkan Beta Driver"](https://developer.nvidia.com/vulkan-driver) for my Nvidia card, though this is no longer the case now.
 
-### Load the extension
+### Enable feature and load the extension
 
-Now before we create our logical device, we need to add `VK_KHR_dynamic_rendering` to our extension lists:
+Before we create our logical device, we also need to add `VK_KHR_dynamic_rendering` to our extension lists:
 
 ```cpp
 std::vector<const char*> device_extensions = {
   // ...,
   "VK_KHR_dynamic_rendering"
 };
+```
+
+Additionally, dynamic rendering is hidden behind a feature flag, and we need to create a `VkPhysicalDeviceDynamicRenderingFeaturesKHR` structure and then pass it to the `pNext` chain when we create the logical device:
+
+```cpp
+constexpr VkPhysicalDeviceDynamicRenderingFeaturesKHR dynamic_rendering_feature {
+    .sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES_KHR,
+    .dynamicRendering = VK_TRUE,
+};
 
 const VkDeviceCreateInfo device_create_info = {
+    .sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO,
+    .pNext = &dynamic_rendering_feature,
     // ...
     .enabledExtensionCount = static_cast<unsigned int>(device_extensions.size()),
     .ppEnabledExtensionNames = device_extensions.data(),
 };
 ```
-
 
 <aside style="margin-top: -90px;">
 
