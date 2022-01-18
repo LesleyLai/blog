@@ -106,7 +106,7 @@ typedef struct VkRenderingInfoKHR {
 
 You can see that some fields, like `renderArea`, were previously provided to `VkRenderPassBeginInfo`.
 Still, the majority of the information of this structure would of been provided as a part of render pass creation.
-In particular, we have this new `VkRenderingAttachmentInfoKHR` structure instead of [`VkAttachmentDescription`](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentDescription.html) to describe attachments:
+In particular, we have this new [`VkRenderingAttachmentInfoKHR`](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderingAttachmentInfoKHR.html) structure instead of [`VkAttachmentDescription`](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentDescription.html) to describe attachments:
 
 ```cpp
 typedef struct VkRenderingAttachmentInfoKHR {
@@ -157,7 +157,7 @@ VK_CHECK(vkEndCommandBuffer(command_buffer));
 
 ## Pipeline creation
 
-Now we are at the point where we can scrape out all of the code initializing render pass and framebuffer objects! And when creating pipeline objects, we no longer need to specify a render pass, but instead, we need to create a `VkPipelineRenderingCreateInfoKHR` object to specify attachment formats:
+Now we are at the point where we can scrape out all of the code initializing render pass and framebuffer objects! And when creating pipeline objects, we no longer need to specify a render pass, but instead, we need to create a [`VkPipelineRenderingCreateInfoKHR`](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkPipelineRenderingCreateInfoKHR.html) object to specify attachment formats:
 
 ```cpp
 const VkPipelineRenderingCreateInfoKHR pipeline_rendering_create_info {
