@@ -3,7 +3,7 @@ id: bilingual-blog
 title: "How I create bilingual functionality of this blog in plain Typescript"
 lang: en
 create: '2022-01-01'
-lastModify: '2022-01-02'
+lastModify: '2022-01-24'
 categories:
 - code
 - i18n
@@ -14,17 +14,17 @@ categories:
 Happy new year 2022, everyone!
 Today I want to talk about something different from most of my blog posts: how I implement my bilingual blog in pure Typescript.
 
-Since I created this blog in 2015, I always wanted to make it bilingual,
+Since I created this blog in 2015, I have always wanted to make it bilingual to reach a broader audience,
 and I finally implemented it at the end of 2019.
 My implementation of internationalization was probably different from most people,
 as I use plain Typescript without any third-party libraries such as [i18next](https://www.i18next.com/).
 And I heavily rely on Typescript's remarkable features in its type system for my implementation.
 
-My solution is probably not the most "proper" and scalable,
+My solution is probably not the most "proper" or scalable by professional standard,
 but I think it fits the particular use case of a personal blog well.
-It provides several important advantages:
-- The type system guarantees that it is impossible to forget to translate any entry
-- It is very flexible as I can have arbitrarily different Javascript for different languages (Since this website is implemented in React, I can have arbitrary JSX [^1]). This is a useful property when I only want to render certain UI elements in a selected language (for example, Twitter is banned in China, so I removed my Twitter link on the Chinese version of this site.)
+It provides several significant advantages:
+- The type system guarantees that it is impossible to forget to translate an entry
+- It is very flexible as I can have arbitrarily different Javascript for different languages (Since this website is implemented in React, I can use arbitrary JSX [^1]). This is a useful property when I only want to render certain UI elements in a selected language (for example, Twitter is banned in China, so I removed my Twitter link on the Chinese version of this site.)
 - I don't need to learn an i18n library just for my blog
 
 And thus, I recommend you use a similar approach if you want to create a multilingual personal website.
@@ -41,17 +41,17 @@ with the help of a "template." [^2]
 For blog posts,
 I have separate markdown files for different languages.
 For example, the Chinese version of this post and the text you are currently reading are stored in different markdown files.
-On the other hand, there is still a lot of text in the "template" which needs translations.
+However, there is still a lot of text in the "template" that needs to be translated.
 Examples include my bio at the right sidebar, different menu items, and blog post tags.
 
-The "template" of GatsbyJS is in Javascript (and I decided to use Typescript, which transpiles to JS), and in particular, React components.
+The "template" of GatsbyJS is in Javascript (and I decided to use Typescript, which transpiles to JS), particular React components.
 As a result, it is natural for me to try to develop a Typescript solution for the internationalization problem,
 and all those React components and translations will be built into static HTML.
-On the other hand, suppose you use a static-site generator using Python. In that case, ideally, you should implement internationalization in Python so the translation can be done at build time to avoid the overhead for people who use your website.
+On the other hand, suppose you use a static-site generator using Python. In that case, ideally, you should implement internationalization in Python so the translation can be done at build time to avoid the overhead of dynamically loading translation for your website.
 
 Most of my internationalization implementations are in the [translation.tsx](https://github.com/LesleyLai/blog/blob/9500c49f22e886fe5aa706967e5dc4391a20ea15/src/utils/translations.tsx) file:
 
-First, I have an `en` object that store every translation entry in English:
+First, I have an `en` object that stores every translation entry in English:
 
 ```typescript
 const en = {
@@ -62,7 +62,7 @@ const en = {
 };
 ```
 
-Since `en` is just a plain object, I can also store more interesting data such as jsx objects or even functions as entries:
+Since `en` is just a plain object, I can also store more exciting data such as jsx objects or even functions as entries:
 
 ```typescript
   all_n_posts: (n: number) => (
@@ -78,7 +78,7 @@ With `en` as an object defined, we can query its type by the `typeof` operator:
 export type Translations = typeof en;
 ```
 
-This kind of reflection ability is something that most programming languages don't have. It saves us from defining the type ourselves.
+This reflection ability is handy, and most programming languages don't have it. Specifically, it saves us from defining the type ourselves. And it is a nice example of how a language feature helps us achieve [the DRY principle](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
 
 Now with the `Translations` type, we can create another object that mirrors the structure of `en` object, but with an explicit type requirement:
 
@@ -93,7 +93,7 @@ const zh: Translations = {
 
 This way, the type system ensures that I don't forget to translate any entries.
 
-And then, we can assemble translations of all languages into a single object. This object will be the main entry point in our template when we need to query specific translation entries:
+And then, we can assemble translations of all languages into a single object. This object serves as the main entry point in our template to query specific translation entries:
 
 ```typescript
 export const translations = {
@@ -104,7 +104,7 @@ export const translations = {
 
 Then we use the `keyof` operator to get a union type of the keys of translation:
 in this case, `"en" | "zh"`.
-`keyof` is yet another great reflection feature of Typescript.
+`keyof` is yet another excellent reflection feature of Typescript.
 But since it expects a type rather than an object, we need to apply another `typeof` operator before applying `keyof`:
 
 ```typescript
@@ -120,17 +120,17 @@ so we can loop through all languages.
 export const languages = Object.keys(translations) as Language[];
 ```
 
-This website is only bilingual, and I don't know how to write any other languages,
-but there is no hard-coding of particular languages on my implementation, except I treat English as the "default" language.
+This website is only bilingual, and I don't know how to write in other languages.
+Still, there is no hard-coding of particular languages on my implementation, except I treat English as the "default" language.
 Thus, it is trivial to extend this implementation to support more languages.
 The only thing need to do is to define another object with the `Translations` type and add it as an entry to `translations`.
 
-To use translation, we first need to pass the current language of the page to its components,
-and then we can use `translations[lang]["entry"]` at the place where I need the translation (replace `"entry"` with the entry I need).
-This works for functions too, as I can just call the function like `translations[lang]["all_n_posts"](n)`.
+To use translation, we first need to pass the current language of the page to its components.
+Then we can use `translations[lang]["entry"]` exactly where I need the translation (replace `"entry"` with the entry I need).
+This scheme works for functions too, as I can just call the function like `translations[lang]["all_n_posts"](n)`.
 
 That's it! I implemented the whole internationalization logic!
 To add new entries, we just need to add translations to the `en` and `zh` object.
 However, the most challenging part of maintaining a bilingual blog is always translating actual blog posts.
-And I can't say I did a really good job considering how many posts on this site only have an English version.
-But I hope at least the technical aspect of my approach can provide some inspirations.
+And I can't say I did a perfect job, as indicated by the large number of English-only versions of posts on this site.
+But, I’m going to keep working on it, and I hope that the technical aspect of my approach will inspire you to give it a try too!
