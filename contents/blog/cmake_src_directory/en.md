@@ -16,5 +16,5 @@ In short, there are two predefined variables in CMake: `CMAKE_SOURCE_DIR` and `P
 while `PROJECT_SOURCE_DIR` refers to the source directory of the most recent `project()` command.
 
 They are often the same, but a common workflow when using CMake is to use `add_subdirectory` to add libraries.
-And in that case, any `PROJECT_SOURCE_DIR` in that inner library will refer to the outer project's root rather than the library's own root directory!
+And in that case, any `CMAKE_SOURCE_DIR` in that inner library will refer to the outer project's root rather than the library's own root directory!
 This behavior is wrong in the majority of cases, and thus we should use `PROJECT_SOURCE_DIR` instead.
