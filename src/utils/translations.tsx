@@ -153,7 +153,9 @@ const en = {
   typescript: "Typescript",
   vulkan: "Vulkan",
   web: "Web",
+  webgpu: "WebGPU",
   website: "Website",
+  wgpu: "wgpu",
   x86: "x86",
 };
 
@@ -297,7 +299,9 @@ const zh: Translations = {
   typescript: en.typescript,
   vulkan: en.vulkan,
   web: en.web,
+  webgpu: en.webgpu,
   website: "网站",
+  wgpu: en.wgpu,
   x86: en.x86,
 };
 

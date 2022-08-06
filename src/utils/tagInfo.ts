@@ -50,5 +50,7 @@ export const tagInfos = {
   typescript: { color: colors.typescript },
   vulkan: { color: colors.red },
   web: { color: colors.violet },
+  webgpu: { color: colors.blue },
+  wgpu: { color: colors.pink },
   x86: { color: colors.pink },
 };
