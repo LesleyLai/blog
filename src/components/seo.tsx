@@ -45,6 +45,7 @@ const SEO = ({ title, description, path, lang, ogType = "website" }: SEOProps) =
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:site" content="@LesleyLai6" />
       <meta name="twitter:title" content={seo.title} />
+      <a rel="me" href="https://mastodon.gamedev.place/@lesley">Mastodon</a>
       {seo.description && <meta name="twitter:description" content={seo.description} />}
     </Helmet>
   );
