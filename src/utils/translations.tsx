@@ -14,16 +14,23 @@ const en = {
         <a href="http://www.colorado.edu/"> University of Colorado at Boulder</a>.
       </p>
       <p>
-        I am the founder and one of the organizers of the{" "}
+        I organize two weekly online meetups.
+        I founded {" "}
         <a href="https://www.meetup.com/Graphics-Programming-Virtual-Meetup/">
           Graphics Programming Virtual Meetup
-        </a>
-        , and I also help organize <a href="https://www.includecpp.org/">#include &lt;C++&gt;</a>.
+        </a>{" "} in 2020 and also co-organize{" "}
+        <a href="https://www.meetup.com/programming-languages-toronto-meetup/">
+          Programming Language Virtual Meetup
+        </a>{" "} since 2022.
+        In extra, I also help organizing <a href="https://www.includecpp.org/">#include &lt;C++&gt;</a>.
       </p>
       <p>
         My primary interests include{" "}
         <a href="https://en.wikipedia.org/wiki/Computer_graphics">Computer Graphics</a>
         {" and "} Programming Languages.
+      </p>
+      <p>
+      I am pretty tech stack agnostic and like to work with and appreciate different programming languages and APIs. Nevertheless, I have been active in the C++ community for a long time.
       </p>
     </>
   ),
@@ -170,14 +177,17 @@ const zh: Translations = {
         计算机科学以及应用数学的本科生。
       </p>
       <p>
-        我是
+        我在是两个线上计算机俱乐部的组织者：
+        我在2020年发起了
         <a href="https://www.meetup.com/Graphics-Programming-Virtual-Meetup/">
-          图形编程线上聚会（Graphics Programming Virtual Meetup）
-        </a>
-        的发起人以及组织者， 我同时也帮助组织
-        <a href="https://www.includecpp.org/">#include &lt;C++&gt;</a>。
+          图形编程线上俱乐部
+        </a>，而从2022年开始我也同时负责组织<a href="https://www.meetup.com/programming-languages-toronto-meetup/">
+        编程语言线上俱乐部
+        </a>的活动。
+        这两个俱乐部都是每周举办、面向全世界的兴趣研讨小组。
+        除此之外，我同时也帮助组织<a href="https://www.includecpp.org/">#include &lt;C++&gt;</a>社群。
       </p>
-      <p>个人兴趣包括计算机图形学以及编程语言。</p>
+      <p>我的个人兴趣包括计算机图形学以及编程语言。</p>
     </>
   ),
   ai: en.ai,
