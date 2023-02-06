@@ -9,7 +9,7 @@ categories:
   - rust
 ---
 
-> First, for some context: I wrote this blog post more than a year ago but have yet to make it public since my mental health greatly degraded while I was still editing it. Now that I want to go back into blogging, I decide to release this post in its current form, though I lost interest in editing it.
+_First, for some context: I wrote this blog post more than a year ago but have yet to make it public since my mental health greatly degraded while I was still editing it. Now that I want to go back into blogging, I decide to release this post in its current form, though I lost interest in editing it._
 
 As programmers, "clean-up" always feels like the boring part of our code. Fortunately, in Rust, we destructors that help us to automatically write correct, ergonomic clean-up code. However, in the rare case where the order of destruction matters, compiler-generated destructor calls can be a hindrance.
 
