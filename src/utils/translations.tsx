@@ -9,12 +9,7 @@ const en = {
   about_content: (
     <>
       <p>
-        Hi, I am <strong>Lesley Lai</strong>, a Computer Science and Applied Mathematics
-        undergraduate student at the{" "}
-        <a href="http://www.colorado.edu/"> University of Colorado at Boulder</a>.
-      </p>
-      <p>
-        I organize two weekly online meetups.
+        Hi, I am <strong>Lesley Lai</strong>. I organize two weekly online meetups.
         I founded {" "}
         <a href="https://www.meetup.com/Graphics-Programming-Virtual-Meetup/">
           Graphics Programming Virtual Meetup
@@ -172,12 +167,7 @@ const zh: Translations = {
   about_content: (
     <>
       <p>
-        大家好，我是赖思理，
-        <a href="http://www.colorado.edu/">科罗拉多大学</a>
-        计算机科学以及应用数学的本科生。
-      </p>
-      <p>
-        我在是两个线上计算机俱乐部的组织者：
+        大家好，我是赖思理，我是两个线上计算机俱乐部的组织者：
         我在2020年发起了
         <a href="https://www.meetup.com/Graphics-Programming-Virtual-Meetup/">
           图形编程线上俱乐部
