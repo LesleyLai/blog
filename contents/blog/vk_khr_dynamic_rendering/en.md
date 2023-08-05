@@ -3,7 +3,7 @@ id: vk-khr-dynamic-rendering
 title: "VK_KHR_dynamic_rendering tutorial"
 lang: en
 create: '2022-01-16'
-lastModify: '2022-01-18'
+lastModify: '2023-08-05'
 categories:
 - code
 - graphics
@@ -19,10 +19,10 @@ categories:
 </div>
 
 To write a Vulkan renderer before the advent of dynamic rendering, we always needed to write a lot of boilerplate renderpass code.
-It is not an ergonomic API nor is it often that we need the flexibility of multiple subpasses or input attachments.
+It is not an ergonomic API, nor is it often that we need the flexibility of multiple subpasses or input attachments.
 By contrast, the DirectX 12 API has render passes as an optional thing that is only used to "improve performance if the renderer is Tile-Based Deferred Rendering."
 
-Recently, I start writing a new Vulkan Renderer from scratch in Rust using the [ash crate](https://github.com/MaikKlein/ash) and it was natural for me to try this shiny new dynamic rendering extension.
+Recently, I started writing a new Vulkan Renderer from scratch in Rust using the [ash crate](https://github.com/MaikKlein/ash), and it was natural for me to try this shiny new dynamic rendering extension.
 The resources on this extension are still sparse, and there is no tutorial on using it.
 There is [Sascha Willems' example](https://github.com/SaschaWillems/Vulkan/blob/313ac10de4a765997ddf5202c599e4a0ca32c8ca/examples/dynamicrendering/dynamicrendering.cpp), though I only found it after I implemented dynamic rendering myself.
 
@@ -115,7 +115,7 @@ typedef struct VkRenderingInfoKHR {
 ```
 
 You can see that some fields, like `renderArea`, were previously provided to `VkRenderPassBeginInfo`.
-Still, the majority of the information of this structure would of been provided as a part of render pass creation.
+Still, the majority of the information of this structure would be provided as a part of render pass creation.
 In particular, we have this new [`VkRenderingAttachmentInfoKHR`](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkRenderingAttachmentInfoKHR.html) structure instead of [`VkAttachmentDescription`](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VkAttachmentDescription.html) to describe attachments:
 
 ```cpp
@@ -151,7 +151,7 @@ const VkRenderingAttachmentInfoKHR color_attachment_info {
 const VkRenderingInfoKHR render_info {
     .sType = VK_STRUCTURE_TYPE_RENDERING_INFO_KHR,
     .renderArea = render_area,
-    .layer_count = 1,
+    .layerCount = 1,
     .colorAttachmentCount = 1,
     .pColorAttachments = &color_attachment_info,
 };
@@ -171,7 +171,7 @@ Now we are at the point where we can scrape out all of the code initializing ren
 
 ```cpp
 const VkPipelineRenderingCreateInfoKHR pipeline_rendering_create_info {
-    .sType = VK_STRUCTURE_TYPE_PIPELINE_RENDERING_CREATE_INFO_KHR
+    .sType = VK_STRUCTURE_TYPE_PIPELINE_RENDERING_CREATE_INFO_KHR,
     .colorAttachmentCount = 1,
     .pColorAttachmentFormats = &swapchain_image_format_,
 };
@@ -187,7 +187,7 @@ const VkGraphicsPipelineCreateInfo pipeline_create_info {
 
 ## Image layout transition
 
-If everything was that simple, I would of been very pleased with this extension.
+If everything were that simple, I would be very pleased with this extension.
 However, it turns out that the render pass object was doing something useful. 
 
 With our current code, the validation layer produces this warning every frame:
@@ -274,7 +274,7 @@ vkCmdPipelineBarrier(
 
 Almost all Vulkan renderers have helper functions for these image layout transition functions to reduce verbosity,
 but it is still quite a hassle to specify all the parameters.
-And we also need to do similar layout transition dance for the depth buffer and stencil buffer, with access masks, pipeline stage masks, and layout changing accordingly.
+And we also need to do a similar layout transition dance for the depth buffer and stencil buffer, with access masks, pipeline stage masks, and layout changes accordingly.
 
 ## Final word
 
@@ -283,10 +283,10 @@ Though I can see that dynamic rendering becomes more valuable in multi-pass rend
 Khronos may also improve the ergonomics of dynamic rendering somehow in the future.
 
 ## Acknowledgements
-Special thanks my friend [Charles Giessen](https://twitter.com/charlesgiessen) for proofreading and editing this post!
+Special thanks to my friend [Charles Giessen](https://twitter.com/charlesgiessen) for proofreading and editing this post!
 
 After this post was initially released, many experienced graphics programmers provided valuable insight and feedback.
 [Jeremy Ong](https://www.jeremyong.com/) provides insightful [Twitter](https://twitter.com/m_ninepoints/status/1482620618549776389) feedback on this post that I very much recommend reading.
-[Karn Kaul](https://github.com/karnkaul) mentioned that it is more precise if I said that image layout transition for depth buffer is slightly different from color buffers. And he also noted that on some hardware and drivers, using the automatic image layout transition provided by render pass causes artifact, and manual image layout transition is the only way anyway.
+[Karn Kaul](https://github.com/karnkaul) mentioned that it would be more precise if I said that image layout transition for depth buffer is slightly different from color buffers. And he also noted that on some hardware and drivers, using the automatic image layout transition provided by render pass causes artifacts, and manual image layout transition is the only way anyway.
 [Leon Brands](https://leonbrands.software/) points out that the initial post didn't talk about pipelines, so I added a section about the change in pipeline creation.
 And [Timmy](https://twitter.com/rex_timmy) on Twitter noted that Nvidia is now shipping VK_KHR_dynamic_rendering in their game-ready drivers.
