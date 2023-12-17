@@ -42,7 +42,7 @@ Upon receiving my I-20 in June, I discovered it only covered half a year, and my
 
 ## Restart Application Process
 
-I was uncertain about my next steps and only vaguely entertained the idea of "transferring to another university to obtain a degree," a process that could potentially take years. So after a lot of goading from my family and partner, in October I reluctantly chose to give my current university another chance and pleaded with them to readmit me. The process went suprising smoothly and I got a new I-20 with _four years_ duration in a short period. During the whole process, I didn't communicate with the university's international student office directly.
+I was uncertain about my next steps and only vaguely entertained the idea of "transferring to another university to obtain a degree," a process that could potentially take years. In October I reluctantly chose to give my current university another chance and pleaded with them to readmit me. The process went suprising smoothly and I got a new I-20 with _four years_ duration in a short period. During the whole process, I didn't communicate with the university's international student office directly.
 
 ## US Visa Application
 
