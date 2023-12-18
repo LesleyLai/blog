@@ -3,12 +3,14 @@ id: 2023-life-update
 title: "What happened to Lesley in the last couple of years"
 lang: en
 create: "2023-12-17"
-lastModify: "2023-12-17"
+lastModify: "2023-12-18"
 categories:
 - offtopic
 ---
 
 TL;DR: I was forced to leave university without completing my degree due to unfortunate circumstances, and returning has proven unexpectedly challenging.
+
+Update 2023/12/18: If you are reading this now, please refrain from DMing me and providing suggestions. While I appreciate your willingness to help, I find myself a bit overwhelmed at the moment.
 
 If you're looking for tech-related content, this article is not what you're seeking. There's no tech information here, so feel free to stop reading. I just share my pain here because it's too painful to bear the weight alone.
 
