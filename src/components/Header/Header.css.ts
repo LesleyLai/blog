@@ -6,7 +6,7 @@ export const header = style({
 });
 
 export const headerContainer = style({
-  maxWidth: "1024px",
+  maxWidth: "1280px",
   display: "flex",
   padding: ".3rem 1.0875rem",
   margin: "0 auto",
