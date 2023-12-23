@@ -40,7 +40,7 @@ const headerMenuItems: Array<HeaderMenuItem> = [
   },
 ];
 
-export default () => {
+export default function Header() {
   return (
     <header className={header}>
       <div className={headerContainer}>
@@ -50,12 +50,8 @@ export default () => {
         <nav>
           <ul className={menuUL}>
             {headerMenuItems.map((item) => (
-              <li className={menuItem}>
-                <Link
-                  className={menuItemLink}
-                  to={item.to}
-                  activeClassName={menuItemLinkActive}
-                >
+              <li key={item.name} className={menuItem}>
+                <Link className={menuItemLink} to={item.to} activeClassName={menuItemLinkActive}>
                   {item.name}
                 </Link>
               </li>
@@ -65,4 +61,4 @@ export default () => {
       </div>
     </header>
   );
-};
+}
