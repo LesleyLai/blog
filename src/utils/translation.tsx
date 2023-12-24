@@ -4,6 +4,7 @@ const en = {
   about: "About",
   blog: "Blog",
   home: "Home",
+  langName: "English",
   portfolio: "Portfolio",
   talks: "Talks",
 };
@@ -16,6 +17,7 @@ const zh: Translations = {
   about: "关于",
   blog: "博客",
   home: "主页",
+  langName: "简体中文",
   portfolio: "个人项目",
   talks: "演讲",
 };

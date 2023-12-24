@@ -22,6 +22,10 @@ export const titleLink = style({
   textDecoration: "none",
 });
 
+export const nav = style({
+  display: "flex",
+});
+
 export const menuUL = style({
   listStyle: "none",
   display: "flex",

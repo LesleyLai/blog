@@ -4,6 +4,7 @@ import {
   headerContainer,
   title,
   titleLink,
+  nav,
   header,
   menuUL,
   menuItem,
@@ -11,7 +12,7 @@ import {
   menuItemLinkActive,
 } from "./Header.css";
 import { Link } from "gatsby";
-import { Language, TranslationKey, translations } from "../../utils/translation";
+import { Language, TranslationKey, languages, translations } from "../../utils/translation";
 
 type HeaderMenuItem = {
   key: TranslationKey;
@@ -43,10 +44,13 @@ const headerMenuItems: Array<HeaderMenuItem> = [
 ];
 
 type HeaderProp = {
+  path: string;
   lang: Language;
 };
 
-export default function Header(props: HeaderProp) {
+export default function Header({ path, lang }: HeaderProp) {
+  const otherLanguages = languages.filter((otherLang) => otherLang != lang);
+
   return (
     <header className={header}>
       <div className={headerContainer}>
@@ -55,15 +59,40 @@ export default function Header(props: HeaderProp) {
             Lesley Lai <span lang="zh">赖思理</span>
           </Link>
         </h2>
-        <nav>
+        <nav className={nav}>
           <ul className={menuUL}>
             {headerMenuItems.map((item) => (
               <li key={item.key} className={menuItem}>
                 <Link className={menuItemLink} to={item.to} activeClassName={menuItemLinkActive}>
-                  {translations[props.lang][item.key]}
+                  {translations[lang][item.key]}
                 </Link>
               </li>
             ))}
+          </ul>
+
+          <ul className={menuUL}>
+            {otherLanguages.map((otherLang) => {
+              const localizedPath = (() => {
+                if (path === "/") {
+                  // main page of English
+                  return `/${otherLang}`;
+                }
+                if (path === `/${lang}/` && otherLang === `en`) {
+                  // main page of other languages
+                  return "/";
+                }
+
+                return path.replace(new RegExp(`/${lang}`), `/${otherLang}`);
+              })();
+
+              return (
+                <li key={otherLang}>
+                  <Link className={menuItemLink} to={localizedPath}>
+                    {translations[otherLang].langName}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
       </div>
