@@ -17,6 +17,11 @@ export const title = style({
   fontSize: "2em",
 });
 
+export const titleLink = style({
+  color: "#fff",
+  textDecoration: "none",
+});
+
 export const menuUL = style({
   listStyle: "none",
   display: "flex",

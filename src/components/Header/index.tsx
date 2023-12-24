@@ -3,6 +3,7 @@ import * as React from "react";
 import {
   headerContainer,
   title,
+  titleLink,
   header,
   menuUL,
   menuItem,
@@ -10,49 +11,56 @@ import {
   menuItemLinkActive,
 } from "./Header.css";
 import { Link } from "gatsby";
+import { Language, TranslationKey, translations } from "../../utils/translation";
 
 type HeaderMenuItem = {
-  name: string;
+  key: TranslationKey;
   // The URL to link to
   to: string;
 };
 
 const headerMenuItems: Array<HeaderMenuItem> = [
   {
-    name: "Home",
+    key: "home",
     to: "/",
   },
   {
-    name: "Writing",
-    to: "/writing",
+    key: "blog",
+    to: "/blog",
   },
   {
-    name: "Portfolio",
+    key: "portfolio",
     to: "/portfolio",
   },
   {
-    name: "Talks",
+    key: "talks",
     to: "/talks",
   },
   {
-    name: "About",
+    key: "about",
     to: "/about",
   },
 ];
 
-export default function Header() {
+type HeaderProp = {
+  lang: Language;
+};
+
+export default function Header(props: HeaderProp) {
   return (
     <header className={header}>
       <div className={headerContainer}>
         <h2 className={title}>
-          Lesley Lai <span lang="zh">赖思理</span>
+          <Link to={"/"} className={titleLink}>
+            Lesley Lai <span lang="zh">赖思理</span>
+          </Link>
         </h2>
         <nav>
           <ul className={menuUL}>
             {headerMenuItems.map((item) => (
-              <li key={item.name} className={menuItem}>
+              <li key={item.key} className={menuItem}>
                 <Link className={menuItemLink} to={item.to} activeClassName={menuItemLinkActive}>
-                  {item.name}
+                  {translations[props.lang][item.key]}
                 </Link>
               </li>
             ))}
