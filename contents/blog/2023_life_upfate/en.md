@@ -70,4 +70,6 @@ Another university personnel from its International Student and Scholar Service 
 
 I have decided not to respond to the email.
 
-It has become increasingly evident to me that this country and university do not welcome me. Worry not; I don't plan to linger. At this point, I don't even intend to finish my Computer Science degree anymore. I will just get my Apply Math degree done and yeet myself out of their sacred country ASAP.
+It has become increasingly evident that this country and university do not welcome me. Worry not; I don't plan to linger. At this point, even if I get a U.S. visa, I don't intend to finish my Computer Science degree anymore[^4]. I will just get my Apply Math degree done and yeet myself out of their sacred country ASAP.
+
+[^4]: I used to have a Computer Science and Applied Math double degree. The university canceled my CS degree and said that I could pursue it again after I graduate from the Applied Math one
