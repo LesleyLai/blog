@@ -19,7 +19,7 @@ const paragraphStyles = {
 
 const NotFoundPage: React.FC<PageProps> = () => {
   return (
-    <Layout lang="en">
+    <Layout lang="en" path={"/404"}>
       <main style={pageStyles}>
         <h1 style={headingStyles}>Page not found</h1>
         <p style={paragraphStyles}>

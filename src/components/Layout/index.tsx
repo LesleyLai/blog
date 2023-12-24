@@ -7,13 +7,14 @@ import { Language } from "../../utils/translation";
 
 type LayoutProps = {
   lang: Language;
+  path: string;
   children?: React.ReactNode;
 };
 
-export default function Layout({ lang, children }: LayoutProps) {
+export default function Layout({ lang, path, children }: LayoutProps) {
   return (
     <>
-      <Header lang={lang} />
+      <Header lang={lang} path={path} />
       {children}
     </>
   );
