@@ -3,7 +3,7 @@ id: 2023-life-update
 title: "What happened to Lesley in the last couple of years"
 lang: en
 create: "2023-12-17"
-lastModify: "2023-12-18"
+lastModify: "2023-12-24"
 categories:
 - offtopic
 ---
@@ -63,3 +63,11 @@ I plan to reapply for a U.S. visa shortly. However, if I face rejection again, I
 ## What's next
 
 Obviously, my next course of action depends on the outcome of the visa application. But there are also long-term concerns. I lack confidence in the university's commitment to providing proper support. I would be thankful if they at least refrain from intentionally causing troubles that could lead to my deportation. Consequently, [pursuing employment in the US after graduating on my student visa](https://en.wikipedia.org/wiki/Optional_Practical_Training) sounds like a precarious option with an uncooperative university international student office.
+
+## 2023/13/24 Update: University's Follow-Up
+
+Another university personnel from its International Student and Scholar Service sent another email to me today after "come to my attention that you are frustrated with what you perceive as disinterest of the ISSS office at CU Boulder in helping you solve your visa challenges." Someone probably forwarded this blog post to them. They "recommend that you focus on providing additional, new documents including a comprehensive explanation of your ties to home (e.g. family remaining in home country, bank accounts there, job prospects, etc.) and your intent to return there once you have completed your degree in the U.S."
+
+I have decided not to respond to the email.
+
+It has become increasingly evident to me that this country and university do not welcome me. Worry not; I don't plan to linger. At this point, I don't even intend to finish my Computer Science degree anymore. I will just get my Apply Math degree done and yeet myself out of their sacred country ASAP.
