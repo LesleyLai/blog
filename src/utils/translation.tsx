@@ -17,7 +17,7 @@ const zh: Translations = {
   about: "关于",
   blog: "博客",
   home: "主页",
-  langName: "简体中文",
+  langName: "中文",
   portfolio: "个人项目",
   talks: "演讲",
 };

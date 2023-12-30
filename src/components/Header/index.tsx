@@ -17,35 +17,63 @@ import { Language, TranslationKey, languages, translations } from "../../utils/t
 type HeaderMenuItem = {
   key: TranslationKey;
   // The URL to link to
-  to: string;
+  to: Record<Language, string>;
 };
 
 const headerMenuItems: Array<HeaderMenuItem> = [
   {
     key: "home",
-    to: "/",
+    to: {
+      en: "/",
+      zh: "/zh",
+    },
   },
   {
     key: "blog",
-    to: "/blog",
+    to: {
+      en: "/en/blog",
+      zh: "/zh/blog",
+    },
   },
   {
     key: "portfolio",
-    to: "/portfolio",
+    to: {
+      en: "/en/portfolio",
+      zh: "/zh/portfolio",
+    },
   },
   {
     key: "talks",
-    to: "/talks",
+    to: {
+      en: "/en/talks",
+      zh: "/zh/talks",
+    },
   },
   {
     key: "about",
-    to: "/about",
+    to: {
+      en: "/en/about",
+      zh: "/zh/about",
+    },
   },
 ];
 
 type HeaderProp = {
   path: string;
   lang: Language;
+};
+
+const localizePath = (path: string, fromLang: Language, toLang: Language) => {
+  if (path === "/") {
+    // main page of English
+    return `/${toLang}`;
+  }
+  if (path === `/${fromLang}/` && toLang === `en`) {
+    // main page of other languages
+    return "/";
+  }
+
+  return path.replace(new RegExp(`/${fromLang}`), `/${toLang}`);
 };
 
 export default function Header({ path, lang }: HeaderProp) {
@@ -63,7 +91,11 @@ export default function Header({ path, lang }: HeaderProp) {
           <ul className={menuUL}>
             {headerMenuItems.map((item) => (
               <li key={item.key} className={menuItem}>
-                <Link className={menuItemLink} to={item.to} activeClassName={menuItemLinkActive}>
+                <Link
+                  className={menuItemLink}
+                  to={item.to[lang]}
+                  activeClassName={menuItemLinkActive}
+                >
                   {translations[lang][item.key]}
                 </Link>
               </li>
@@ -72,22 +104,9 @@ export default function Header({ path, lang }: HeaderProp) {
 
           <ul className={menuUL}>
             {otherLanguages.map((otherLang) => {
-              const localizedPath = (() => {
-                if (path === "/") {
-                  // main page of English
-                  return `/${otherLang}`;
-                }
-                if (path === `/${lang}/` && otherLang === `en`) {
-                  // main page of other languages
-                  return "/";
-                }
-
-                return path.replace(new RegExp(`/${lang}`), `/${otherLang}`);
-              })();
-
               return (
                 <li key={otherLang}>
-                  <Link className={menuItemLink} to={localizedPath}>
+                  <Link className={menuItemLink} to={localizePath(path, lang, otherLang)}>
                     {translations[otherLang].langName}
                   </Link>
                 </li>
