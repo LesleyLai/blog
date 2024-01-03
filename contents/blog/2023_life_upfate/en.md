@@ -72,4 +72,4 @@ It has become increasingly evident that this country and university do not welco
 
 ## 2024/1/3 Update: Second Visa application
 
-My second visa application was swiftly denied, indicating the likelihood of a negative record associated with my profile. To be honest, I couldn't care less about setting foot in that country ever again. Nevertheless, I must reconsider my options for pursuing a degree elsewhere.
+My second visa application was swiftly denied, indicating the likelihood of a negative record associated with my profile. To be honest, I couldn't care less if I can't set foot in that country ever again. Nevertheless, I must reconsider my options for pursuing a degree elsewhere.
