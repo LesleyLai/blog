@@ -3,7 +3,7 @@ id: 2023-life-update
 title: "What happened to Lesley in the last couple of years"
 lang: en
 create: "2023-12-17"
-lastModify: "2023-12-24"
+lastModify: "2023-01-03"
 categories:
 - offtopic
 ---
@@ -12,7 +12,7 @@ TL;DR: I was forced to leave university without completing my degree due to unfo
 
 Update 2023/12/18: If you are reading this now, please refrain from DMing me and providing suggestions. While I appreciate your willingness to help, I find myself a bit overwhelmed at the moment.
 
-If you're looking for tech-related content, this article is not what you're seeking. There's no tech information here, so feel free to stop reading. I just share my pain here because it's too painful to bear the weight alone.
+If you're looking for tech-related content, this article is not what you seek. There's no tech information here, so feel free to stop reading. I just share my pain here because it's too painful to bear the weight alone.
 
 ## 2021 Summer Fiasco
 
@@ -30,9 +30,9 @@ The situation got much worse when I realized that my passport had expired. As I 
 
 ## After I went back to China
 
-I was still optimistic when I went back to China. My COVID-induced mental health condition immediately improved as I reunited with my family. I also swiftly found a job (though officially an _intern_). I still wanted to stay connected with the programming community, so I tried my best to attend meetups and conferences. I even gave a [lightning talk](https://youtu.be/EwC8JIJqlMc?si=Rc19yOBfGRVz4gHE) at CppCon 2021. I also continue to organize my weekly [Graphics Programming Virtual Meetup](https://www.meetup.com/graphics-programming-virtual-meetup/) till this day.
+I was still optimistic when I went back to China. My COVID-induced mental health condition immediately improved as I reunited with my family. I also swiftly found a job (though officially an _intern_). I still wanted to stay connected with the programming community, so I tried my best to attend meetups and conferences. I even gave a [lightning talk](https://youtu.be/EwC8JIJqlMc?si=Rc19yOBfGRVz4gHE) at CppCon 2021 despite the time difference. I also continue to organize my weekly [Graphics Programming Virtual Meetup](https://www.meetup.com/graphics-programming-virtual-meetup/) to this day.
 
-Originally, I intended to return to the university in the summer of 2022. However, unforeseen family circumstances have compelled me to postpone my plans once again. At that time, I pondered the idea of not getting back at all. However, the university degree still needs to be solved. With the degree gatekeeping everywhere in China, it is hard for me to find any job other than "internships."
+Originally, I intended to return to the university in the summer of 2022. However, unforeseen family circumstances have compelled me to postpone my plans once again. At that time, I pondered the idea of not getting back at all. However, the university degree still needs to be solved. With the degree gatekeeping everywhere in China, it is hard for me to find any job besides "internships."
 
 ## First Half of 2023
 
@@ -44,13 +44,13 @@ Upon receiving my I-20 in June, I discovered it only covered half a year, and my
 
 ## Restart Application Process
 
-I was uncertain about my next steps and only vaguely entertained the idea of "transferring to another university to obtain a degree," a process that could potentially take years. In October I reluctantly chose to give my current university another chance and pleaded with them to readmit me. The process went suprising smoothly and I got a new I-20 with _four years_ duration in a short period. During the whole process, I didn't communicate with the university's international student office directly.
+I was uncertain about my next steps and only vaguely entertained the idea of "transferring to another university to obtain a degree," a process that could potentially take years. In October, I reluctantly chose to give my current university another chance and pleaded with them to readmit me. The process went surprisingly smoothly, and I got a new I-20 with _four years_ of duration in a short period. During the whole process, I didn't communicate with the university's international student office directly.
 
 ## US Visa Application
 
 After receiving my new I-20 form, I applied for a US visa in early December. Upon hearing my condition, the visa officer said that they would check my application and decide later. I received a rejection based on section "214(b)" in a few days.
 
-I am ready for the rejection of my visa application. After all, the entire visa application procedure operates on the ["presumption of guilt"](https://en.wikipedia.org/wiki/Presumption_of_guilt), requiring me to persuade them that I am _rich_ and definitely _harboring no immigrant intentions_. [^2] My relatively older age compared to typical students and the overstaying history certainly do not work in my favor.
+I am ready for the rejection of my visa application. After all, the entire visa application procedure operates on the ["presumption of guilt"](https://en.wikipedia.org/wiki/Presumption_of_guilt), requiring me to persuade them that I am _rich_ and definitely _harboring no immigrant intentions_. [^2] My relatively older age compared to typical students and the overstaying history certainly does not work in my favor.
 
 [^2]: Admittedly, a couple of years ago, I did want to stay in the U.S. I had a strong attachment to Boulder, having lived here for an extended period. However, my perspective has since shifted. Without a rose-colored glass, I now see institutional racism and injustices a lot clearer.
 
@@ -62,9 +62,9 @@ I plan to reapply for a U.S. visa shortly. However, if I face rejection again, I
 
 ## What's next
 
-Obviously, my next course of action depends on the outcome of the visa application. But there are also long-term concerns. I lack confidence in the university's commitment to providing proper support. I would be thankful if they at least refrain from intentionally causing troubles that could lead to my deportation. Consequently, [pursuing employment in the US after graduating on my student visa](https://en.wikipedia.org/wiki/Optional_Practical_Training) sounds like a precarious option with an uncooperative university international student office.
+Obviously, my next course of action depends on the outcome of the visa application. But there are also long-term concerns. I lack confidence in the university's commitment to providing proper support. I would be thankful if they at least refrain from intentionally causing trouble that could lead to my deportation. Consequently, [pursuing employment in the US after graduating on my student visa](https://en.wikipedia.org/wiki/Optional_Practical_Training) sounds like a precarious option with an uncooperative university international student office.
 
-## 2023/13/24 Update: University's Follow-Up
+## 2023/12/24 Update: University's Follow-Up
 
 Another university personnel from its International Student and Scholar Service sent another email to me today after "come to my attention that you are frustrated with what you perceive as disinterest of the ISSS office at CU Boulder in helping you solve your visa challenges." Someone probably forwarded this blog post to them. They "recommend that you focus on providing additional, new documents including a comprehensive explanation of your ties to home (e.g. family remaining in home country, bank accounts there, job prospects, etc.) and your intent to return there once you have completed your degree in the U.S."
 
@@ -72,4 +72,8 @@ I have decided not to respond to the email.
 
 It has become increasingly evident that this country and university do not welcome me. Worry not; I don't plan to linger. At this point, even if I get a U.S. visa, I don't intend to finish my Computer Science degree anymore[^4]. I will just get my Apply Math degree done and yeet myself out of their sacred country ASAP.
 
-[^4]: I used to have a Computer Science and Applied Math double degree. The university canceled my CS degree and said that I could pursue it again after I graduate from the Applied Math one
+[^4]: I used to have a Computer Science and Applied Math double major. The university canceled my CS major and said that I could pursue it again after I graduate from the Applied Math one.
+
+## 2024/1/3 Update: Second Visa application
+
+My second visa application was swiftly denied, indicating the likelihood of a negative record associated with my profile. To be honest, I couldn't care less about setting foot in that country ever again. Nevertheless, I must reconsider my options for pursuing a degree elsewhere.
