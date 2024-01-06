@@ -38,3 +38,65 @@ export const onCreatePage: GatsbyNode["onCreatePage"] = async ({ page, actions }
     });
   }
 };
+
+type PostNode = {
+  readonly frontmatter: {
+    readonly id: string;
+    readonly title: string;
+    readonly lang: string;
+    readonly tags: readonly string[] | null;
+  };
+};
+
+type AllPostsQuery = {
+  readonly allMdx: {
+    readonly nodes: readonly PostNode[];
+  };
+};
+
+const groupPostById = (nodes: readonly PostNode[]) => {
+  const idToNodes: Map<string, unknown> = new Map();
+  for (const node of nodes) {
+    const id = node.frontmatter.id;
+    if (idToNodes.has(id)) {
+      (idToNodes.get(id) as PostNode[]).push(node);
+    } else {
+      idToNodes.set(id, [node]);
+    }
+  }
+
+  idToNodes.forEach((translations, id) => {
+    const translationMap: { [P in Language]?: PostNode } = {};
+    for (const node of translations as PostNode[]) {
+      translationMap[node.frontmatter.lang as Language] = node;
+    }
+    idToNodes.set(id, translationMap);
+  });
+
+  return idToNodes as Map<string, { [P in Language]?: PostNode }>;
+};
+
+export const createPages: GatsbyNode["createPages"] = async ({ graphql }) => {
+  await graphql(`
+    query CreatePagesAllPosts {
+      allMdx(filter: { internal: { contentFilePath: { regex: "//contents/blog//" } } }) {
+        nodes {
+          frontmatter {
+            id
+            title
+            lang
+            tags: categories
+          }
+        }
+      }
+    }
+  `).then((posts) => {
+    const nodes = (posts.data as AllPostsQuery).allMdx.nodes;
+
+    const groupedPosts = groupPostById(nodes);
+
+    groupedPosts.forEach((translations, id) => {
+      console.log(`${id} => ${JSON.stringify(translations, null, 2)}`);
+    });
+  });
+};
