@@ -30,8 +30,11 @@
     "gatsby-plugin-sharp": "^5.13.0",
     "gatsby-plugin-sitemap": "^6.13.0",
     "gatsby-plugin-vanilla-extract": "^4.0.1",
+    "gatsby-remark-katex": "^7.13.0",
     "gatsby-source-filesystem": "^5.13.0",
+    "gatsby-transformer-remark": "^6.13.0",
     "gatsby-transformer-sharp": "^5.13.0",
+    "katex": "^0.13.24",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

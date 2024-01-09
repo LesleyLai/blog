@@ -2,12 +2,12 @@
 id: auto-parameters
 title: "在C++中，不要不假思索地使用auto参数"
 lang: zh
-create: '2021-03-09' 
-lastModify: '2021-03-09'
+create: "2021-03-09"
+lastModify: "2021-03-09"
 categories:
-- code
-- cpp
-- opinion
+  - code
+  - cpp
+  - opinion
 ---
 
 从C++14开始，我们可以创建带`auto`参数的lambda表达式。
@@ -15,8 +15,6 @@ categories:
 随着这一特性的出现，
 在一些C++程序员开始流行了把所有的参数都使用`auto`的风气。
 然而，我认为除非我们不得已，我们不应该使用`auto`参数。
-
-<!-- end -->
 
 ## 为什么人们会喜欢它？
 

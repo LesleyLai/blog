@@ -2,17 +2,15 @@
 id: vk-khr-dynamic-rendering
 title: "VK_KHR_dynamic_rendering tutorial"
 lang: en
-create: '2022-01-16'
-lastModify: '2023-08-05'
+create: "2022-01-16"
+lastModify: "2023-08-05"
 categories:
-- code
-- graphics
-- vulkan
+  - code
+  - graphics
+  - vulkan
 ---
 
 [Announced two months ago](https://www.khronos.org/blog/streamlining-render-passes), the [dynamic rendering](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VK_KHR_dynamic_rendering.html) Vulkan extension promises to get rid of the `VkRenderPass` and `VkFramebuffer` objects, which were parts of Vulkan that I "don't understand and don't really care about."
-
-<!-- end -->
 
 <div class="right-image-container">
   <img src="renderpass_in_trash.jpg" alt="A trashbin that contains VkRenderPass and VkFramebuffer" />
@@ -70,7 +68,7 @@ const VkDeviceCreateInfo device_create_info = {
 };
 ```
 
-<aside style="margin-top: -90px;">
+<aside style={{marginTop: "-90px"}}>
 
 If you are using C++, I recommend giving [vk-bootstrap](https://github.com/charles-lunarg/vk-bootstrap) library a try.
 It will make the initialization process a bit smoother.
@@ -78,6 +76,7 @@ It will make the initialization process a bit smoother.
 </aside>
 
 ## Use dynamic rendering in command buffer
+
 In your Vulkan renderer, you are likely to have code that looks like the following in your command buffer recording:
 
 ```cpp
@@ -188,7 +187,7 @@ const VkGraphicsPipelineCreateInfo pipeline_create_info {
 ## Image layout transition
 
 If everything were that simple, I would be very pleased with this extension.
-However, it turns out that the render pass object was doing something useful. 
+However, it turns out that the render pass object was doing something useful.
 
 With our current code, the validation layer produces this warning every frame:
 
@@ -283,6 +282,7 @@ Though I can see that dynamic rendering becomes more valuable in multi-pass rend
 Khronos may also improve the ergonomics of dynamic rendering somehow in the future.
 
 ## Acknowledgements
+
 Special thanks to my friend [Charles Giessen](https://twitter.com/charlesgiessen) for proofreading and editing this post!
 
 After this post was initially released, many experienced graphics programmers provided valuable insight and feedback.

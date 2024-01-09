@@ -7,6 +7,7 @@ const en = {
   langName: "English",
   portfolio: "Portfolio",
   talks: "Talks",
+  untranslated: "(untranslated)",
 };
 
 export type Translations = typeof en;
@@ -20,6 +21,7 @@ const zh: Translations = {
   langName: "中文",
   portfolio: "个人项目",
   talks: "演讲",
+  untranslated: "（未翻译）",
 };
 
 export const translations = {

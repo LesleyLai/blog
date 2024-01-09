@@ -2,11 +2,11 @@
 id: const-and-reference-member-variables
 title: "在C++中使用Const或者引用成员变量的后果"
 lang: zh
-create: '2020-08-25'
-lastModify: '2020-09-29'
+create: "2020-08-25"
+lastModify: "2020-09-29"
 categories:
-- code
-- cpp
+  - code
+  - cpp
 ---
 
 在C++中，使用`const`或者引用非静态成员变量会造成一些问题。
@@ -106,7 +106,7 @@ public:
 };
 ```
 
-<aside style="margin-top: -210px;">
+<aside style={{marginTop: "-210px"}}>
 
 如果你想的话，也可以给这个`const_wrapper`类模板加上一个变参模板（variadic template）的构造函数。
 这样使用起这个模板会更加方便。
