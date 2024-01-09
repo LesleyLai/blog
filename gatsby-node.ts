@@ -1,13 +1,19 @@
-import type { GatsbyNode } from "gatsby";
+import type { GatsbyNode, Reporter } from "gatsby";
 
 import { Language, languages } from "./src/utils/translation";
+import { resolve } from "path";
 
 const removeTrailingSlash = (path: string) => (path === `/` ? path : path.replace(/\/$/, ``));
+
+const getDateLocale = (lang: Language) => (lang === "zh" ? "ZH_CN" : lang);
 
 export const onCreatePage: GatsbyNode["onCreatePage"] = async ({ page, actions }) => {
   const { createPage, deletePage } = actions;
 
-  //console.log(page.path);
+  // Is a generated page
+  if (page.context?.isGenerated) {
+    return;
+  }
 
   const path = removeTrailingSlash(page.path);
 
@@ -24,7 +30,6 @@ export const onCreatePage: GatsbyNode["onCreatePage"] = async ({ page, actions }
   deletePage(page);
 
   const localizedRoot = (lang: Language) => (lang == "en" ? "/" : `/${lang}`);
-  const getDateLocale = (lang: Language) => (lang === "zh" ? "ZH_CN" : lang);
   for (const lang of languages) {
     const localizedPath = page.path === "/" ? localizedRoot(lang) : `/${lang}${page.path}`;
 
@@ -46,6 +51,9 @@ type PostNode = {
     readonly lang: string;
     readonly tags: readonly string[] | null;
   };
+  readonly internal: {
+    readonly contentFilePath: string;
+  };
 };
 
 type AllPostsQuery = {
@@ -54,7 +62,7 @@ type AllPostsQuery = {
   };
 };
 
-const groupPostById = (nodes: readonly PostNode[]) => {
+const groupPostById = (nodes: readonly PostNode[], reporter: Reporter) => {
   const idToNodes: Map<string, unknown> = new Map();
   for (const node of nodes) {
     const id = node.frontmatter.id;
@@ -65,19 +73,34 @@ const groupPostById = (nodes: readonly PostNode[]) => {
     }
   }
 
-  idToNodes.forEach((translations, id) => {
+  idToNodes.forEach((nodeLanguageVariants, id) => {
     const translationMap: { [P in Language]?: PostNode } = {};
-    for (const node of translations as PostNode[]) {
+    for (const node of nodeLanguageVariants as PostNode[]) {
       translationMap[node.frontmatter.lang as Language] = node;
     }
     idToNodes.set(id, translationMap);
   });
 
-  return idToNodes as Map<string, { [P in Language]?: PostNode }>;
+  // Generate untranslated posts
+  idToNodes.forEach((nodeLanguageVariants) => {
+    const langToNode = nodeLanguageVariants as { [P in Language]?: PostNode };
+    for (const lang of languages) {
+      if (!langToNode[lang]) {
+        langToNode[lang] = langToNode["en"];
+      }
+    }
+    if (!langToNode["en"]) {
+      reporter.panicOnBuild("Post miss the english version!");
+    }
+  });
+
+  return idToNodes as Map<string, { [P in Language]: PostNode }>;
 };
 
-export const createPages: GatsbyNode["createPages"] = async ({ graphql }) => {
-  await graphql(`
+export const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, reporter }) => {
+  const { createPage } = actions;
+
+  const result = await graphql<AllPostsQuery>(`
     query CreatePagesAllPosts {
       allMdx(filter: { internal: { contentFilePath: { regex: "//contents/blog//" } } }) {
         nodes {
@@ -87,16 +110,40 @@ export const createPages: GatsbyNode["createPages"] = async ({ graphql }) => {
             lang
             tags: categories
           }
+          internal {
+            contentFilePath
+          }
         }
       }
     }
-  `).then((posts) => {
-    const nodes = (posts.data as AllPostsQuery).allMdx.nodes;
+  `);
 
-    const groupedPosts = groupPostById(nodes);
+  if (result.errors) {
+    reporter.panicOnBuild("Error querying blog posts", result.errors);
+  }
 
-    groupedPosts.forEach((translations, id) => {
-      console.log(`${id} => ${JSON.stringify(translations, null, 2)}`);
-    });
+  const nodes = result.data!.allMdx.nodes;
+
+  const groupedPosts = groupPostById(nodes, reporter);
+
+  const postTemplate = resolve(`src/templates/post.jsx`);
+  groupedPosts.forEach((nodeLanguageVariants, id) => {
+    for (const lang of languages) {
+      const node = nodeLanguageVariants[lang];
+      const contentFilePath = node.internal.contentFilePath;
+      //console.log(contentFilePath);
+
+      createPage({
+        path: `/${lang}/${id}`,
+        component: `${postTemplate}?__contentFilePath=${contentFilePath}`,
+        context: {
+          lang: lang,
+          isGenerated: true,
+          bodyLang: node.frontmatter.lang, // in case of untranslated post, the bodyLang may be different from page's langauge
+          id: id,
+          dateLocale: getDateLocale(lang),
+        },
+      });
+    }
   });
 };

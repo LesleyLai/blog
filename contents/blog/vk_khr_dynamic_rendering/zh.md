@@ -2,18 +2,16 @@
 id: vk-khr-dynamic-rendering
 title: "Vulkan动态渲染（dynamic rendering）教程"
 lang: zh
-create: '2022-01-18'
-lastModify: '2022-01-18'
+create: "2022-01-18"
+lastModify: "2022-01-18"
 categories:
-- code
-- graphics
-- vulkan
+  - code
+  - graphics
+  - vulkan
 ---
 
 [动态渲染（dynamic rendering）](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VK_KHR_dynamic_rendering.html)是[两个月前被刚刚推出](https://www.khronos.org/blog/streamlining-render-passes)的一个新的Vulkan扩展。
 有了它，我们在Vulkan中可以省去创建渲染通道对象（`VkRenderPass`）以及帧缓冲存储器对象（`VkFramebuffer`）的代码。
-
-<!-- end -->
 
 <div class="right-image-container">
   <img src="renderpass_in_trash.jpg" alt="A trashbin that contains VkRenderPass and VkFramebuffer" />
@@ -73,7 +71,7 @@ const VkDeviceCreateInfo device_create_info = {
 };
 ```
 
-<aside style="margin-top: -70px;">
+<aside style={{marginTop: "-70px"}}>
 
 如果你使用C++来学习Vulkan的话，你可以试试使用[vk-bootstrap](https://github.com/charles-lunarg/vk-bootstrap)库。
 它会让Vulkan初始化的过程简单许多。
@@ -287,6 +285,7 @@ vkCmdPipelineBarrier(
 Khronos也可能在未来将动态渲染扩展改善地更容易使用。
 
 ## 致谢
+
 特别感谢我的朋友[Charles Giessen](https://github.com/cdgiessen)对这篇文章的校对和编辑!
 
 除此之外，在这篇文章发布后，许多资深图形程序员也提供了宝贵的见解和反馈。

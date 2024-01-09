@@ -2,27 +2,25 @@
 id: delve_into_cpp
 title: "Resources that help you to delve into C++"
 lang: en
-create: '2021-01-15'
-lastModify: '2021-03-29'
+create: "2021-01-15"
+lastModify: "2021-03-29"
 categories:
-- code
-- cpp
-- learning
+  - code
+  - cpp
+  - learning
 ---
 
-*I already received some great feedback [^1] for this post, and any further feedbacks, error-correction, and resource recommendation are welcome. One way to contact me is to direct message me ([@Lesleylai6](https://twitter.com/LesleyLai6)) on Twitter*.
+_I already received some great feedback [^1] for this post, and any further feedbacks, error-correction, and resource recommendation are welcome. One way to contact me is to direct message me ([@Lesleylai6](https://twitter.com/LesleyLai6)) on Twitter_.
 
 [^1]: Thanks to [Shafik Yaghmour](https://twitter.com/shafikyaghmour), [Kate Greogory](https://twitter.com/gregcons), and [Dwight Browne](https://twitter.com/dwightb2).
 
-*Update 2021-03-29: Add a bunch of resources.*
+_Update 2021-03-29: Add a bunch of resources._
 
 During the years, a lot of people ask me for help in learning C++.
 I am no C++ expert,
 but as a person who is doing C++ for years,
 I want to share a bunch of beginner-friendly C++ resources that are known to be of high quality.
 And hopefully this list of resources can help learners who are new to C++.
-
-<!-- end -->
 
 When anyone asks me for guidance about getting into C++,
 I always ask first about their existing experiences.
@@ -46,7 +44,7 @@ The book is thick, so don't feel guilty if you cannot finish the whole book.
 
 If you are more inclined toward tutorial videos,
 look at Kate Gregory's [Learn to Program with C++](https://www.pluralsight.com/courses/learn-program-cplusplus).
-If you join the [#include<c++> discord server](https://www.includecpp.org/discord/),
+If you join the [#include{'<'}c++{'>'} discord server](https://www.includecpp.org/discord/),
 You can also message her there to get a trial code.
 
 ## What if I already learned some C++ before and want to delve in deeper?
@@ -76,9 +74,9 @@ The book is also very thick, so if you want a shorter introduction, try ["A Tour
 So you spend months with the above materials,
 and feel that you have a decent grasp of basic C++ concepts.
 
-<aside style="margin-top: -40px;">
+<aside style={{marginTop: "-40px"}}>
 
-For experienced C++ folks, no, I am not talking about *that [concept](https://en.cppreference.com/w/cpp/language/constraints)* 😃.
+For experienced C++ folks, no, I am not talking about _that [concept](https://en.cppreference.com/w/cpp/language/constraints)_ 😃.
 
 </aside>
 
@@ -108,22 +106,22 @@ Good next languages to pick are those very different from C++,
 for example,
 dynamically-typed languages such as Javascript, Python, or a Lisp dialect.
 
-That being said, there is still *a lot* to learn about the C++ language itself. And I will try to list some resources that are still relative up-to-date and I enjoyed:
+That being said, there is still _a lot_ to learn about the C++ language itself. And I will try to list some resources that are still relative up-to-date and I enjoyed:
 
 ### Books
+
 If you haven't read ["The C++ Programming Language (4th Edition)"](https://www.stroustrup.com/4th.html), I would still recommend it. And here is a bunch of other books I would like to recommend:
 
-- ["Effective Modern C++"](https://www.amazon.com/Effective-Modern-Specific-Ways-Improve/dp/1491903996)  by Scott Mayer
+- ["Effective Modern C++"](https://www.amazon.com/Effective-Modern-Specific-Ways-Improve/dp/1491903996) by Scott Mayer
 - ["C++ Best Practices"](https://leanpub.com/cppbestpractices) by Jason Turner
 - ["C++17 - The Complete Guide"](http://www.cppstd17.com/) by Nicolai M. Josuttis
 
-
 Some books focus on specific areas of the language, such as:
+
 - ["C++ Templates - The Complete Guide, 2nd Edition"](http://www.tmplbook.com/) by David Vandevoorde, Nicolai M. Josuttis, and Douglas Gregor
 - ["Mastering the C++17 STL"](https://www.amazon.com/Mastering-17-STL-standard-components/dp/178712682X) by Arthur O'Dwyer
 - ["Functional Programming in C++"](https://www.manning.com/books/functional-programming-in-c-plus-plus) by Ivan Čukić
 - ["C++ Concurrency in Action, 2nd edition"](https://www.manning.com/books/c-plus-plus-concurrency-in-action-second-edition) by Anthony Williams
-
 
 ### Conference Videos
 
@@ -153,9 +151,9 @@ and then you can ask questions in public and get a response from multiple people
 
 Being active in programming communities also has numerous other benefits, including getting job information and having more social support.
 
-#### #include<C++>
+#### #include{'<'}C++{'>'}
 
-[#include<C++>](https://www.includecpp.org/) is a wonderful community to join.
+[#include{'<'}C++{'>'}](https://www.includecpp.org/) is a wonderful community to join.
 Its mission includes providing conference scholarship to people in need,
 but for most people,
 you can join [its discord server](https://www.includecpp.org/discord/) to hang out and talk about C++.
@@ -177,7 +175,7 @@ Same as meetups, one difficulty at the time of writing is that most C++ conferen
 Here are some of the recurring C++ conferences or conferences that heavily feature C++, with their Twitter handle and Youtube Channel:
 
 - [CppCon](https://cppcon.org/) ([@CppCon](https://twitter.com/CppCon)) [[Youtube](https://www.youtube.com/user/CppCon)] (U.S.-based)
-- [C++Now](https://cppnow.org/) ([@cppnow](https://twitter.com/cppnow)) [[Youtube]( https://www.youtube.com/user/BoostCon)] (U.S.-based, tuned toward a more advanced audience)
+- [C++Now](https://cppnow.org/) ([@cppnow](https://twitter.com/cppnow)) [[Youtube](https://www.youtube.com/user/BoostCon)] (U.S.-based, tuned toward a more advanced audience)
 - [ACCU](https://accu.org/conf-main/main/) ([@ACCUConf](https://twitter.com/ACCUConf)) [[Youtube](https://www.youtube.com/channel/UCJhay24LTpO1s4bIZxuIqKw)] (UK-based, different programming languages, but has a lot of C++ contents)
 - [Meeting C++](https://meetingcpp.com/) ([@meetingcpp](https://twitter.com/meetingcpp)) [[Youtube](https://www.youtube.com/user/MeetingCPP)] (German-based)
 - [emBO++](https://www.embo.io) ([@emBO++](https://twitter.com/emboconference)) [[Youtube](https://www.youtube.com/channel/UCg2JbpJ-PGdFUEZEiNr0GWg)] (German-based)
@@ -224,7 +222,7 @@ Here are some of the best C++ ones that pops into my head:
 - [Video Cortex](http://videocortex.io/)
 - [Shafik Yaghmour](https://shafik.github.io/)
 
-<aside style="margin-top: -540px;">
+<aside style={{marginTop: "-540px"}}>
 
 This blog also has an [RSS feed](https://lesleylai.info/rss.xml).
 
@@ -260,6 +258,6 @@ Some of those are great online tools, while others are video series.
 
 ## References and further reading
 
-- *"SG20 Education And Recommended Videos For Teaching C++". Christopher Di Bella*, 2021, https://www.cjdb.com.au/sg20-and-videos. Accessed 15 Jan 2021.
-- *"References And Links". #Include ＜C++＞*, 2021, https://www.includecpp.org/resources/references/. Accessed 16 Jan 2021.
-- Yaghmour, Shafik. *"Where To Get Started Learing C++ And What Resources To Use". Shafik Yaghmour's Blog*, 2019, https://shafik.github.io/c++/learning/2019/09/05/getting_started_learning_cpp.html. Accessed 16 Jan 2021.
+- _"SG20 Education And Recommended Videos For Teaching C++". Christopher Di Bella_, 2021, https://www.cjdb.com.au/sg20-and-videos. Accessed 15 Jan 2021.
+- _"References And Links". #Include {'<'}C++{'>'}_, 2021, https://www.includecpp.org/resources/references/. Accessed 16 Jan 2021.
+- Yaghmour, Shafik. _"Where To Get Started Learing C++ And What Resources To Use". Shafik Yaghmour's Blog_, 2019, https://shafik.github.io/c++/learning/2019/09/05/getting_started_learning_cpp.html. Accessed 16 Jan 2021.

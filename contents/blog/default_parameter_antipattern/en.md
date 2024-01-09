@@ -2,19 +2,17 @@
 id: default-parameter-antipattern
 title: "Using default parameters to circumvent the type system is an anti-pattern"
 lang: en
-create: '2021-02-26'
-lastModify: '2021-02-26'
+create: "2021-02-26"
+lastModify: "2021-02-26"
 categories:
-- code
-- java
-- oop
-- opinion
+  - code
+  - java
+  - oop
+  - opinion
 ---
 
 I am doing some peer programming for a university course project today.
 In our codebase, we have a `Ship` class like the following:
-
-<!-- end -->
 
 ```java
 public class Ship {

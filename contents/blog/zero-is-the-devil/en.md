@@ -2,11 +2,11 @@
 id: zero-is-the-devil
 title: "Zero is the Devil: Common ways to construct bogus proofs"
 lang: en
-create: '2020-05-10'
-lastModify: '2020-05-10'
+create: "2020-05-10"
+lastModify: "2020-05-10"
 categories:
-- math
-- logic
+  - math
+  - logic
 ---
 
 It is easy to make mistakes when conducting mathematical proofs.
@@ -52,7 +52,7 @@ $$
 
 where $\text{Pow}(S)$ is the power set of the set $S$, which is defined by all subsets of $S$, and $|X|$ means the cardinality (elements count) of $X$.
 
-<aside style="margin-top: -100px;">
+<aside style={{marginTop: "-100px"}}>
 Pause for a moment and understand what this definition means, as we will use it in the following "proof."
 </aside>
 
@@ -82,7 +82,7 @@ $|Y \cup Y'|$ can well be zero, so we cannot just "pick" an element from it.
 If you are from a more programming background,
 it is no coincidence that dividing by zero or getting an element from a collection of zero-elements will cause horrible run-time errors.
 
-<aside style="margin-top: -60px;">
+<aside style={{marginTop: "-60px"}}>
 And most type systems will not save you (except dependent-typed ones, which have their own limitations.)
 </aside>
 

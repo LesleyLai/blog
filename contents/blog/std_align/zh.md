@@ -2,18 +2,16 @@
 id: std-align
 title: "C++标准库的小工具： std::align"
 lang: zh
-create: '2021-12-15'
-lastModify: '2021-12-15'
+create: "2021-12-15"
+lastModify: "2021-12-15"
 categories:
-- code
-- cpp
+  - code
+  - cpp
 ---
 
 今天我想来讲述一下C++标准库中的 `std::align`函数。
 因其用途有限，它可能是C++标准库中最鲜为人知的函数之一。
 在下文中，我将用*arena allocator*来作为使用 `std::align` 的例子。
-
-<!-- end -->
 
 ## Arena allocator
 
@@ -24,15 +22,17 @@ Arena allocator 的原理是我们先预分配一块很大的内存。
 这一块内存既可以来自栈中，也可以是在堆中被 `malloc` 一次性分配。
 之后当我们每次需要内存时，我们都从这块内存中分配一小块内存，而每次分配时我们所需要做的工作仅仅是增加一个指针的值。
 
+```
 <figure>
-  <img style="width: 500px;" class="center-image" src="arena_1.svg" alt="Arena before allocation" />
-  <figcaption style="text-align: center">图1 - 分配内存前的 Arena</figcaption>
+<img style="width: 500px;" class="center-image" src="arena_1.svg" alt="Arena before allocation" />
+<figcaption style="text-align: center">图1 - 分配内存前的 Arena</figcaption>
 </figure>
 
 <figure>
-  <img style="width: 500px;" class="center-image" src="arena_2.svg" alt="Arena after allocation" />
-  <figcaption style="text-align: center">图2 - 分配内存后的 Arena</figcaption>
+<img style="width: 500px;" class="center-image" src="arena_2.svg" alt="Arena after allocation" />
+<figcaption style="text-align: center">图2 - 分配内存后的 Arena</figcaption>
 </figure>
+```
 
 Arena allocator 的速度非常快，尤其是和 `malloc` 这种原理复杂的函数相比较。
 每次分配内存时我们只需要修改一个指针的值，而如果我们只分配可被平凡析构（trivially destructible）的对象，那么释放内存几乎是免费的。
@@ -54,7 +54,7 @@ struct Arena {
   [[nodiscard]] auto alloc(std::size_t size) noexcept -> void*
   {
     if (size_remain < size) return nullptr;
-    
+
     auto* alloc_ptr = ptr;
     ptr += size;
     size_remain -= size;
@@ -75,13 +75,13 @@ struct Arena {
 ```cpp
 std::byte buffer[1000];
 Arena arena {
-  .ptr = buffer, 
+  .ptr = buffer,
   .size_remain = std::size(buffer)
 };
 
 auto* ptr = static_cast<std::uint8_t*>(arena.alloc(sizeof(std::uint8_t)));
 ptr = new(ptr) std::uint8_t{42};
-  
+
 auto* ptr2 = static_cast<std::uint32_t*>(arena.alloc(sizeof(std::uint32_t)));
 ptr2 = new(ptr2) std::uint32_t{1729};
 ```
@@ -109,12 +109,12 @@ ptr2 = new(ptr2) std::uint32_t{1729};
 但是接着我们再分配了4个字节，然后构造了 `std::uint32_t`。
 `std::uint32_t` 需要4个字节的对齐要求，但是我们分配这4个字节的位置正好离对齐点有1个字节的错位：
 
-
+```
 <figure>
-  <img style="width: 500px;" class="center-image" src="arena_3.svg" alt="Arena after allocating one uint8_t and one uint32_t" />
-  <figcaption style="text-align: center">图3 - Arena 在分配两块内存后的状态</figcaption>
+<img style="width: 500px;" class="center-image" src="arena_3.svg" alt="Arena after allocating one uint8_t and one uint32_t" />
+<figcaption style="text-align: center">图3 - Arena 在分配两块内存后的状态</figcaption>
 </figure>
-
+```
 
 ## 改进的Arena allocator
 
@@ -132,7 +132,7 @@ ptr2 = new(ptr2) std::uint32_t{1729};
 }
 ```
 
-<aside style="margin-top: -110px">
+<aside style={{marginTop: "-110px"}}>
 <a href="https://en.cppreference.com/w/cpp/numeric/bit_cast"><code>std::bit_cast</code></a>是一个C++20的特性。在C++20之前，在这里需要使用<code>reinterpret_cast</code>.
 </aside>
 
@@ -146,7 +146,7 @@ ptr2 = new(ptr2) std::uint32_t{1729};
 
 当我们加上负号时我们会获得`-4`，它在补码（two's complement）中会把表示为
 
-`0b11111100`. 
+`0b11111100`.
 
 我省略了更高位的字节，但是你应该可以看出规律：
 `-alignment`正好是可以用于剔除未对齐地址的低位的位掩码（bit-mask）。
@@ -178,17 +178,17 @@ struct Arena {
 
 请注意，我将函数名称从 `alloc` 更改为 `aligned_alloc`，
 因为我们必须显式地将对齐要求 `alignment` 参数传递给该函数。
-我们调用 `align_forward` 来使得我们的指针 `ptr` 能够正确对齐。 
+我们调用 `align_forward` 来使得我们的指针 `ptr` 能够正确对齐。
 然后，我们计算一共需要多少字节（即用于对齐的字节数加上我们实际需要分配的大小 `size`）。
 最后，如果我们有足够的空间来分配内存，我们即增加我们的指针`ptr`到分配后的位置，减少 arena allocator 中剩余的大小，并返回对齐后的指针。
 
-当使用  `aligned_alloc` 时，我们需要传递对齐方式：
+当使用 `aligned_alloc` 时，我们需要传递对齐方式：
 
 ```cpp
 auto* ptr = static_cast<std::uint8_t*>(
   arena.aligned_alloc(alignof(std::uint8_t), sizeof(std::uint8_t)));
 ptr = new(ptr) std::uint8_t{42};
-  
+
 auto* ptr2 = static_cast<std::uint32_t*>(
   arena.aligned_alloc(alignof(std::uint32_t), sizeof(std::uint32_t)));
 ptr2 = new(ptr2) std::uint32_t{1729};
@@ -198,10 +198,12 @@ ptr2 = new(ptr2) std::uint32_t{1729};
 但在实际应用中，我们可以用模板函数来封装对 `aligned_alloc` 的调用。
 重要的是，我们分配的内存将正确对齐：
 
+```
 <figure>
-  <img style="width: 500px;" class="center-image" src="arena_4.svg" alt="Alignment-aware arena after allocating one uint8_t and one uint32_t" />
-  <figcaption style="text-align: center">图4 - 考虑对齐的 Arena 在分配两块内存后的状态</figcaption>
+<img style="width: 500px;" class="center-image" src="arena_4.svg" alt="Alignment-aware arena after allocating one uint8_t and one uint32_t" />
+<figcaption style="text-align: center">图4 - 考虑对齐的 Arena 在分配两块内存后的状态</figcaption>
 </figure>
+```
 
 如果你仍然想要之前不需要显式提供对齐要求的 `alloc` 成员函数，
 我们可以在其中调用 `aligned_alloc`并把对齐要求设置为`std::max_align_t`（一个平台上所以类型最大可能的对齐要求）：
@@ -249,7 +251,7 @@ namespace std {
 struct Arena {
   void* ptr = 0;
   std::size_t size_remain = 0;
-  
+
   [[nodiscard]]
   auto aligned_alloc(std::size_t alignment, std::size_t size) noexcept -> void*
   {

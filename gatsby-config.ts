@@ -19,12 +19,6 @@ const config: GatsbyConfig = {
         icon: "src/images/icon.png",
       },
     },
-    {
-      resolve: "gatsby-plugin-mdx",
-      options: {
-        extensions: [`.mdx`, `.md`],
-      },
-    },
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     {
@@ -46,8 +40,23 @@ const config: GatsbyConfig = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `contents`,
-        path: `${__dirname}/contents/`,
+        name: `posts`,
+        path: `./contents/blog/`,
+      },
+    },
+    {
+      resolve: "gatsby-plugin-mdx",
+      options: {
+        extensions: [`.md`, `.mdx`],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-katex`,
+            options: {
+              // Add any KaTeX options from https://github.com/KaTeX/KaTeX/blob/master/docs/options.md here
+              strict: `ignore`,
+            },
+          },
+        ],
       },
     },
   ],

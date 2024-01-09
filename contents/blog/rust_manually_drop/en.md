@@ -73,7 +73,7 @@ Even though non-idiomatic in Rust, ash's approach is fine with me. RAII combines
 
 [^3]: In Vulkan, we don't deleting an object until we are sure that the GPU is not using it. Deleting objects out-of-order is a big issue, and it may even crash your driver.
 
-<aside style="margin-top: -100px;">
+<aside style={{marginTop: "-100px"}}>
 
 All examples that `gpu_allocator` provides write all code in the `main` function.
 
