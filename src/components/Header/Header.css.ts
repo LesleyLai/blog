@@ -24,6 +24,8 @@ export const titleLink = style({
 
 export const nav = style({
   display: "flex",
+  flexGrow: "1",
+  justifyContent: "space-between",
 });
 
 export const menuUL = style({
