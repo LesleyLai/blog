@@ -4,24 +4,16 @@
 import * as React from "react";
 import { graphql } from "gatsby";
 import Layout from "../components/Layout";
-import { translations } from "../utils/translation";
-//import { MDXProvider } from "@mdx-js/react";
+import BlogPostLayout from "../components/BlogPostLayout";
 
 const PostTemplate = ({ data, path, pageContext, children }) => {
-  const mdx = data.mdx;
-  console.log(mdx.frontmatter);
-
   const notTranslated = pageContext.bodyLang != pageContext.lang;
 
   return (
     <Layout lang={pageContext.lang} path={path}>
-      <main style={{ maxWidth: "1200px", margin: "auto" }}>
-        <h1>
-          {mdx.frontmatter.title}{" "}
-          <span>{notTranslated && translations[pageContext.lang].untranslated}</span>
-        </h1>
+      <BlogPostLayout notTranslated={notTranslated} mdx={data.mdx} lang={pageContext.lang}>
         {children}
-      </main>
+      </BlogPostLayout>
     </Layout>
   );
 };
@@ -35,7 +27,7 @@ export const pageQuery = graphql`
         title
         create
         lastModify
-        categories
+        tags: categories
       }
     }
   }

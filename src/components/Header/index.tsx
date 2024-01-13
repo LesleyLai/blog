@@ -105,7 +105,7 @@ export default function Header({ path, lang }: HeaderProp) {
           <ul className={menuUL}>
             {otherLanguages.map((otherLang) => {
               return (
-                <li key={otherLang}>
+                <li key={otherLang} className={menuItemLink}>
                   <Link className={menuItemLink} to={localizePath(path, lang, otherLang)}>
                     {translations[otherLang].langName}
                   </Link>
