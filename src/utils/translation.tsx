@@ -6,6 +6,7 @@ const en = {
   home: "Home",
   langName: "English",
   portfolio: "Portfolio",
+  tags: "Tags",
   talks: "Talks",
   untranslated: "(untranslated)",
 };
@@ -20,6 +21,7 @@ const zh: Translations = {
   home: "主页",
   langName: "中文",
   portfolio: "个人项目",
+  tags: "标签",
   talks: "演讲",
   untranslated: "（未翻译）",
 };

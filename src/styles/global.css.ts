@@ -43,3 +43,8 @@ globalStyle(`p, h1, h2, h3, h4, h5, h6`, {
 globalStyle(`#___gatsby`, {
   isolation: `isolate`,
 });
+
+// Global style
+globalStyle(`body`, {
+  backgroundColor: "#fbfaf7",
+});
