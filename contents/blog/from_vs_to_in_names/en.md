@@ -25,7 +25,7 @@ let canonical_variable = num_to_canonical_var[var_to_num.get(var).unwrap()];
 ```
 
 As you can observe, the sequence isn't particularly intuitive. The code executes a transformation from "variable -> number -> canonical variable," but understanding it requires reading from the inside out, akin to unraveling a spiral.
-Reading inside out can be challenging. Despite my nearly decade-long experience with C and C++, I still struggle at times to decipher the inside-out syntax of C declarations. Others [share this sentiment](https://fuckingfunctionpointers.com/) as well.
+Reading inside out can be challenging. For example, despite my nearly decade-long experience with C and C++, I still struggle at times to decipher the inside-out syntax of C declarations. Others [share this sentiment](https://fuckingfunctionpointers.com/) as well.
 
 What if I change all the `to` to `from`?
 
@@ -44,3 +44,5 @@ let canonical_variable = canonical_var_from_num[num_from_var.get(var).unwrap()];
 This code is much easier to comprehend, as related names share physical proximity. The transformation it performs is also readily apparent just by reading from right to left.
 
 The same idea can also be applied to functions. For instance, `let shader = shader_from_file(file)` reads better than `let shader = file_to_shader(file)`. It isn't a coincidence, considering that both functions (at least the pure ones) and a map data structure aim to create a mapping between data.
+
+Update: *Several users on Mastodon have noted that they prefer to name their map variables as `x_by_y`, which is similar to `x_from_y`*
