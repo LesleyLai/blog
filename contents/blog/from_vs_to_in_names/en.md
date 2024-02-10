@@ -1,5 +1,5 @@
 ---
-id: enum-traits
+id: from-vs-to
 title: "Small Naming Tip: Use \"from\" Instead of \"to\" in Function and Variable Names"
 lang: en
 create: "2024-02-10"
