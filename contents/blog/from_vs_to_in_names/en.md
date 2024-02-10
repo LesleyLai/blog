@@ -43,4 +43,4 @@ let canonical_variable = canonical_var_from_num[num_from_var.get(var).unwrap()];
 
 This code is much easier to comprehend, as related names share physical proximity. The transformation it performs is also readily apparent just by reading from right to left.
 
-The same idea can also be applied to functions. For instance, let shader = shader_from_file(file) reads better than let shader = file_to_shader(file). It isn't a coincidence, considering that both functions (at least the pure ones) and a map data structure aim to create a mapping between data.
+The same idea can also be applied to functions. For instance, `let shader = shader_from_file(file)` reads better than `let shader = file_to_shader(file)`. It isn't a coincidence, considering that both functions (at least the pure ones) and a map data structure aim to create a mapping between data.
