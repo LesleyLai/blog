@@ -3,7 +3,7 @@ id: from-vs-to
 title: "Small Naming Tip: Use \"from\" Instead of \"to\" in Function and Variable Names"
 lang: en
 create: "2024-02-10"
-lastModify: "2024-02-10"
+lastModify: "2024-02-11"
 categories:
   - code
   - opinion
@@ -45,4 +45,6 @@ This code is much easier to comprehend, as related names share physical proximit
 
 The same idea can also be applied to functions. For instance, `let shader = shader_from_file(file)` reads better than `let shader = file_to_shader(file)`. It isn't a coincidence, considering that both functions (at least the pure ones) and a map data structure aim to create a mapping between data.
 
-Update: *Several users on Mastodon have noted that they prefer to name their map variables as `x_by_y`, which is similar to `x_from_y`*
+Update 2024-02-10: Several users on Mastodon have noted that they prefer to name their map variables as `x_by_y`, which shares similarity to the `x_from_y` I present here.
+
+Update 2024-02-11: Another user on Mastodon mentioned that [Joel Spolsky wrote about the exact same suggestion](https://www.joelonsoftware.com/2005/05/11/making-wrong-code-look-wrong/). The article also provides an excellent description of the "Apps Hungarian" notation and how it differs from the more cumbersome "Systems Hungarian" notation that most people are familiar with. Personally, I question the relevance of even Apps Hungarian in modern languages with expressive type systems. If something possesses unique semantics and is utilized frequently enough to warrant a naming convention, we should create a strongly typed wrapper for it.
