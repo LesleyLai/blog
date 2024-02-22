@@ -50,6 +50,13 @@ const headerMenuItems: Array<HeaderMenuItem> = [
     },
   },
   {
+    key: "notes",
+    to: {
+      en: "/notes",
+      zh: "/notes",
+    },
+  },
+  {
     key: "about",
     to: {
       en: "/en/about",
