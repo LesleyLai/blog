@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Language, translations } from "../../utils/translation";
+import { Language, TranslationKey, translations } from "../../utils/translation";
 import {
   blogContainer,
   postMain,
@@ -46,13 +46,13 @@ export default function BlogPostLayout({
         </h1>
         <div className={postInfo}>
           <span>
-            last modify: {lastModify} | create: {create}
+            {translations[lang].lastModify} {lastModify} | {translations[lang].createTime}: {create}
           </span>
           <ul className={tagList}>
             {" "}
             {tags?.map((tag) => (
               <li className={tagListItem} key={tag}>
-                <span className={tagBox}>{tag}</span>
+                <span className={tagBox}>{translations[lang][tag as TranslationKey]}</span>
               </li>
             ))}
           </ul>

@@ -3,7 +3,7 @@ import { blogNav, heading, link, postCount, ul } from "./BlogNav.css";
 
 import { useStaticQuery, graphql } from "gatsby";
 
-import { Language, translations } from "../../utils/translation";
+import { Language, TranslationKey, translations } from "../../utils/translation";
 
 type BlogNavProps = {
   readonly lang: Language;
@@ -35,7 +35,7 @@ export default function BlogNav({ lang }: BlogNavProps) {
         {tags.map((tag) => (
           <li key={tag.id}>
             <a href="#" className={link}>
-              {tag.id}
+              {translations[lang][tag.id as TranslationKey]}
             </a>{" "}
             <span className={postCount}>{tag.totalCount}</span>
           </li>
