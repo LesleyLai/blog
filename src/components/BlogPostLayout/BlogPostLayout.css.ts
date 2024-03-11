@@ -26,6 +26,14 @@ export const postInfo = style({
   paddingBottom: "4px",
 });
 
+export const postDate = style({
+  color: "#797979",
+  textTransform: "uppercase",
+  letterSpacing: ".5px",
+  fontSize: "11px",
+  lineHeight: 3,
+});
+
 export const tagList = style({
   display: "flex",
   listStyle: "none",
@@ -46,5 +54,35 @@ export const tagBox = style({
   backgroundColor: "#2dabf9",
   ":hover": {
     backgroundColor: "#0688fa",
+  },
+});
+
+export const blogPostH2 = style({
+  fontSize: "24px",
+  padding: "24px 0 12px",
+  fontWeight: 700,
+  margin: 0,
+});
+
+export const blogPostH3 = style({
+  fontStyle: "italic",
+  fontSize: "19px",
+  fontWeight: "normal",
+  padding: "24px 0 12px 0",
+  margin: 0,
+});
+
+export const blogPostH4 = style({
+  padding: "8px 0 4px 0",
+  margin: 0,
+});
+
+export const blogPostParagraph = style({
+  padding: "8px 0",
+  margin: 0,
+  selectors: {
+    "p + &": {
+      padding: "12px 0",
+    },
   },
 });
