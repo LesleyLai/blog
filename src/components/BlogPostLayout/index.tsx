@@ -3,8 +3,6 @@ import { MDXProvider } from "@mdx-js/react";
 
 import { Language, TranslationKey, translations } from "../../utils/translation";
 import {
-  blogContainer,
-  postMain,
   postInfo,
   postTitle,
   postDate,
@@ -16,7 +14,7 @@ import {
   blogPostH4,
   blogPostParagraph,
 } from "./BlogPostLayout.css";
-import BlogNav from "../BlogNav";
+import { BlogPageLayout } from "../BlogPageLayout";
 
 type Frontmatter = {
   readonly title: string;
@@ -52,29 +50,26 @@ export default function BlogPostLayout({
   const { title, create, lastModify, tags } = mdx.frontmatter;
 
   return (
-    <div className={blogContainer}>
-      <main className={postMain}>
-        <h1 className={postTitle}>
-          {title} <span>{notTranslated && translations[lang].untranslated}</span>
-        </h1>
-        <div className={postInfo}>
-          <span className={postDate}>
-            {translations[lang].lastModify}
-            {lastModify} | {translations[lang].createTime}
-            {create}
-          </span>
-          <ul className={tagList}>
-            {" "}
-            {tags?.map((tag) => (
-              <li className={tagListItem} key={tag}>
-                <span className={tagBox}>{translations[lang][tag as TranslationKey]}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <MDXProvider components={components}>{children}</MDXProvider>
-      </main>
-      <BlogNav lang={lang} />
-    </div>
+    <BlogPageLayout lang={lang}>
+      <h1 className={postTitle}>
+        {title} <span>{notTranslated && translations[lang].untranslated}</span>
+      </h1>
+      <div className={postInfo}>
+        <span className={postDate}>
+          {translations[lang].lastModify}
+          {lastModify} | {translations[lang].createTime}
+          {create}
+        </span>
+        <ul className={tagList}>
+          {" "}
+          {tags?.map((tag) => (
+            <li className={tagListItem} key={tag}>
+              <span className={tagBox}>{translations[lang][tag as TranslationKey]}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <MDXProvider components={components}>{children}</MDXProvider>
+    </BlogPageLayout>
   );
 }

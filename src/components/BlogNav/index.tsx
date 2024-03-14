@@ -1,7 +1,7 @@
 import * as React from "react";
-import { blogNav, heading, link, postCount, ul } from "./BlogNav.css";
+import { archive, blogNav, heading, link, postCount, ul } from "./BlogNav.css";
 
-import { useStaticQuery, graphql } from "gatsby";
+import { useStaticQuery, graphql, Link } from "gatsby";
 
 import { Language, TranslationKey, translations } from "../../utils/translation";
 
@@ -22,6 +22,7 @@ export default function BlogNav({ lang }: BlogNavProps) {
           id: fieldValue
           totalCount
         }
+        totalCount
       }
     }
   `);
@@ -35,12 +36,19 @@ export default function BlogNav({ lang }: BlogNavProps) {
         {tags.map((tag) => (
           <li key={tag.id}>
             <a href="#" className={link}>
-              {translations[lang][tag.id as TranslationKey]}
+              {translations[lang][tag.id as TranslationKey] as string}
             </a>{" "}
             <span className={postCount}>{tag.totalCount}</span>
           </li>
         ))}
       </ul>
+      <p className={archive}>
+        {translations[lang].all}{" "}
+        <Link to={`/${lang}/blog/archive`} className={link}>
+          {data.allMdx.totalCount}
+        </Link>{" "}
+        {translations[lang].posts}
+      </p>
     </nav>
   );
 }
