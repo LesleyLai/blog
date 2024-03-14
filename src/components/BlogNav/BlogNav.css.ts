@@ -1,11 +1,13 @@
 import { style } from "@vanilla-extract/css";
+import { vars } from "../../styles/theme.css";
 
 export const blogNav = style({
-  marginTop: "48px",
   width: "250px",
   minWidth: "250px",
   padding: "1rem",
   fontSize: "13px",
+  color: vars.colors.blogSidebar.color,
+  backgroundColor: vars.colors.blogSidebar.background,
 });
 
 export const heading = style({
@@ -23,7 +25,7 @@ export const ul = style({
 });
 
 export const link = style({
-  color: "#a15e00",
+  color: vars.colors.blogSidebar.link,
   textDecoration: "none",
   ":hover": {
     color: "#e18e18",
@@ -35,5 +37,10 @@ export const postCount = style({
   marginLeft: "6px",
   padding: "0 3px",
   borderRadius: "4px",
-  color: "#826842",
+});
+
+export const archive = style({
+  fontStyle: "italic",
+  paddingTop: "6px",
+  paddingLeft: "24px",
 });

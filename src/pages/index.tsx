@@ -2,12 +2,16 @@ import * as React from "react";
 import type { HeadFC, PageProps } from "gatsby";
 
 import Layout from "../components/Layout";
-import { Language } from "../utils/translation";
+import { Language, translations } from "../utils/translation";
+import { PageTitle } from "../components/PageTitle";
+import { pageContainer } from "../styles/container.css";
 
 const pageStyles = {
   color: "#232129",
   padding: 96,
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
+  backgroundColor: "#ffffff",
+  maxWidth: "1200px",
+  margin: "auto",
 };
 const headingStyles = {
   marginTop: 0,
@@ -130,7 +134,7 @@ type PageContext = {
 const IndexPage: React.FC<PageProps<object, PageContext>> = ({ path, pageContext }) => {
   return (
     <Layout lang={pageContext.lang} path={path}>
-      <main style={pageStyles}>
+      <main style={pageStyles} className={pageContainer}>
         <h1 style={headingStyles}>
           Congratulations
           <br />
@@ -174,4 +178,6 @@ const IndexPage: React.FC<PageProps<object, PageContext>> = ({ path, pageContext
 
 export default IndexPage;
 
-export const Head: HeadFC = () => <title>Lesley Lai</title>;
+export const Head: HeadFC<object, PageContext> = ({ pageContext: { lang } }) => (
+  <PageTitle title={translations[lang].home} lang={lang} />
+);

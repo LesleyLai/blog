@@ -1,16 +1,5 @@
 import { style } from "@vanilla-extract/css";
 
-export const blogContainer = style({
-  maxWidth: "1200px",
-  display: "flex",
-  margin: "0 auto",
-});
-
-export const postMain = style({
-  backgroundColor: "#fff",
-  padding: "1rem",
-});
-
 export const postTitle = style({
   fontSize: "36px",
   lineHeight: "48px",
