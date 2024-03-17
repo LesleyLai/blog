@@ -37,6 +37,7 @@ export const tagInfos = {
   oop: { color: colors.grey },
   opengl: { color: colors.typescript },
   opinion: { color: colors.pink },
+  personal: { color: colors.grey },
   physics: { color: colors.black },
   pl: { color: colors.teal },
   python: { color: colors.blue },

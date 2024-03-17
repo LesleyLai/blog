@@ -5,7 +5,7 @@ lang: en
 create: "2023-12-17"
 lastModify: "2023-01-03"
 categories:
-- offtopic
+- personal
 ---
 
 TL;DR: I was forced to leave university without completing my degree due to unfortunate circumstances, and returning has proven unexpectedly challenging.

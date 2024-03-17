@@ -9,15 +9,16 @@ const en = {
   about_content: (
     <>
       <p>
-        Hi, I am <strong>Lesley Lai</strong>. I organize two weekly online meetups.
-        I founded {" "}
+        Hi, I am <strong>Lesley Lai</strong>. I organize two weekly online meetups. I founded{" "}
         <a href="https://www.meetup.com/Graphics-Programming-Virtual-Meetup/">
           Graphics Programming Virtual Meetup
-        </a>{" "} in 2020 and also co-organize{" "}
+        </a>{" "}
+        in 2020 and also co-organize{" "}
         <a href="https://www.meetup.com/programming-languages-toronto-meetup/">
           Programming Language Virtual Meetup
-        </a>{" "} since 2022.
-        In extra, I also help organizing <a href="https://www.includecpp.org/">#include &lt;C++&gt;</a>.
+        </a>{" "}
+        since 2022. In extra, I also help organizing{" "}
+        <a href="https://www.includecpp.org/">#include &lt;C++&gt;</a>.
       </p>
       <p>
         My primary interests include{" "}
@@ -25,7 +26,8 @@ const en = {
         {" and "} Programming Languages.
       </p>
       <p>
-      I am pretty tech stack agnostic and like to work with and appreciate different programming languages and APIs. Nevertheless, I have been active in the C++ community for a long time.
+        I am pretty tech stack agnostic and like to work with and appreciate different programming
+        languages and APIs. Nevertheless, I have been active in the C++ community for a long time.
       </p>
     </>
   ),
@@ -121,6 +123,7 @@ const en = {
   opinion: "Opinion",
   page_not_found: "404 NOT FOUND",
   page_not_found_text: "Sorry, the page you are looking for cannot be found.",
+  personal: "Personal",
   physics: "Physics",
   pl: "Programming Languages",
   projects: "Projects",
@@ -167,15 +170,14 @@ const zh: Translations = {
   about_content: (
     <>
       <p>
-        大家好，我是赖思理，我是两个线上计算机俱乐部的组织者：
-        我在2020年发起了
-        <a href="https://www.meetup.com/Graphics-Programming-Virtual-Meetup/">
-          图形编程线上俱乐部
-        </a>，而从2022年开始我也同时负责组织<a href="https://www.meetup.com/programming-languages-toronto-meetup/">
-        编程语言线上俱乐部
-        </a>的活动。
-        这两个俱乐部都是每周举办、面向全世界的兴趣研讨小组。
-        除此之外，我同时也帮助组织<a href="https://www.includecpp.org/">#include &lt;C++&gt;</a>社群。
+        大家好，我是赖思理，我是两个线上计算机俱乐部的组织者： 我在2020年发起了
+        <a href="https://www.meetup.com/Graphics-Programming-Virtual-Meetup/">图形编程线上俱乐部</a>
+        ，而从2022年开始我也同时负责组织
+        <a href="https://www.meetup.com/programming-languages-toronto-meetup/">
+          编程语言线上俱乐部
+        </a>
+        的活动。 这两个俱乐部都是每周举办、面向全世界的兴趣研讨小组。 除此之外，我同时也帮助组织
+        <a href="https://www.includecpp.org/">#include &lt;C++&gt;</a>社群。
       </p>
       <p>我的个人兴趣包括计算机图形学以及编程语言。</p>
     </>
@@ -265,6 +267,7 @@ const zh: Translations = {
   opinion: "观点",
   page_not_found: "找不到该页面",
   page_not_found_text: "抱歉，您要访问的页面无法被找到。",
+  personal: "个人相关",
   physics: "物理",
   pl: "编程语言",
   projects: "个人项目",
