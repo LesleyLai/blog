@@ -1,6 +1,6 @@
 ---
 id: moocs
-title: "Online Course that I recommend"
+title: "Online Courses that I Recommend"
 lang: en
 create: "2024-03-17"
 lastModify: "2024-03-17"
@@ -9,11 +9,11 @@ categories:
   - personal
 ---
 
-My journey of learning from online courses probably start from 2013, and over the years I took a lot of them, abandoning even more along the way. Nevertheless, I've found online courses to be far more accommodating for self-study compared to traditional books.
+My journey of learning from online courses started from 2013, and over the years I took a lot of them, abandoning even more along the way. Nevertheless, I've found online courses to be far more accommodating for self-study compared to traditional books.
 
 In this post, I've compiled a list of courses that I found memorable, enjoyable, and, in retrospection, actually convey high-quality information. While the selection is undoubtedly biased towards my personal interests, I hope you find them useful as well.
 
-Do note that some courses that I recommended below are not [MOOCs](https://en.wikipedia.org/wiki/Massive_open_online_course), but instead university courses that happened to have lecture recordings, assignments, and other course material freely available from past offerings. As a result, you may need to do some extra digging to locate the course material.
+Do note that some courses that I recommend below are not [MOOCs](https://en.wikipedia.org/wiki/Massive_open_online_course), but instead university courses that happened to have lecture recordings, assignments, and other course material freely available from past offerings. As a result, you may need to do some extra digging to locate the course material.
 
 ## Meta-Learning
 
@@ -36,10 +36,6 @@ Do note that some courses that I recommended below are not [MOOCs](https://en.wi
 ### Discrete Math
 
 - MIT OCW [Mathematics for Computer Science](https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/)
-
-## Meta-Learning
-
-- [Learning How to Learn](https://www.coursera.org/learn/learning-how-to-learn) — "Learning how to learn" is an essential skill that I find people, including myself, quite lacking. Some people may consider this one offer pretty "obvious" advices. It is true that most actionable advices taught in this course are not new. However, I don't think it is right to dismiss the course as "common sense," for common senses are often contradictionary with each other. This course, instead, offers scientific validation for effective learning practices.
 
 ## Computer Science and Programming
 

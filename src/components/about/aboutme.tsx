@@ -50,13 +50,10 @@ const AboutMe = ({ lang, tags, postsTotalCount }: AboutMeProp) => {
                 Shaders on <a href="https://www.shadertoy.com/user/lesleylai">Shadertoy</a>
               </li>
               <li>
-                Mastodon: <a rel="me" href="https://mastodon.gamedev.place/@lesley">@lesley@mastodon.gamedev.place</a>
-              </li>
-              <li>
-                Cohost: <a href="https://cohost.org/lesleylai">@lesleylai</a>
-              </li>
-              <li>
-                Tweets: <a href="https://twitter.com/LesleyLai6">@LesleyLai6</a>
+                Mastodon:{" "}
+                <a rel="me" href="https://mastodon.gamedev.place/@lesley">
+                  @lesley@mastodon.gamedev.place
+                </a>
               </li>
               <li>
                 Live Stream and talks at{" "}
