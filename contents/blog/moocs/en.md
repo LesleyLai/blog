@@ -52,14 +52,14 @@ Do note that some courses that I recommend below are not [MOOCs](https://en.wiki
 ### Programming Languages and Compilers
 
 - Programming Languages by University of Washington [[Part A](https://www.coursera.org/learn/programming-languages)] [[Part B](https://www.coursera.org/learn/programming-languages-part-b)] [[Part C](https://www.coursera.org/learn/programming-languages-part-c)] — A three part courses on programming languages. I find the content quite shallow compare to the undergrad PL course I took at university, but it serves a good introduction and Prof. Dan Grossman is enthuastic about the topics.
-- [CS 6120: Advanced Compilers](https://www.cs.cornell.edu/courses/cs6120/2023fa/self-guided/) by Cornell university - mainly talks about compiler optimization
+- [CS 6120: Advanced Compilers](https://www.cs.cornell.edu/courses/cs6120/2023fa/self-guided/) by Cornell university — mainly talks about compiler optimization
 
 ### System Programming
 
 - CMU [15-213/15-513 Introduction to Computer Systems](https://www.cs.cmu.edu/~213/)
   - The [CSAPP](http://csapp.cs.cmu.edu/3e/labs.html) textbook used by this course is a classic. Though do note that there are [some serious misinfo regarding C](https://blog.regehr.org/archives/1393)
     - For years I thought signed-integer overflow has wrapping behavior in C because of this book
-- [Nand2Tetris](https://www.nand2tetris.org/) - If you want a single survey course that covers from logic gate, computer architecture, assembly, and OS, then this is a course for you. Of course, it covers none of the topics in depth, but still an awesome course nonetheless.
+- [Nand2Tetris](https://www.nand2tetris.org/) — If you want a single survey course that covers from logic gate, computer architecture, assembly, and OS, then this is a course for you. Of course, it covers none of the topics in depth, but still an awesome course nonetheless.
 
 ## Psychology
 
@@ -79,6 +79,6 @@ Another tip: for courses on platforms with reviews, take a moment to read the 1-
 
 Similar to university courses, the majority of online courses I've enrolled in have left much to be desired. Most were forgettable, filled with platitude and lacking information density. Below are a few that were particularly problematic that I can still remember now.
 
-- [Social Psychology](https://www.coursera.org/learn/social-psychology) by Wesleyan University — Presented lots of exaggerated claims and falsified theories such as "video game causes violence." Also quoating controversial studies such as [Stanford Prison](https://en.wikipedia.org/wiki/Stanford_prison_experiment) and [Milgram experiments](https://en.wikipedia.org/wiki/Milgram_experiment). I guess this course can serve as a cautious tale of scientific [progress](https://en.wikipedia.org/wiki/Replication_crisis) and not everything your learn is true. Also, since I took it in 2015, I am not sure if this course adjust now.
+- [Social Psychology](https://www.coursera.org/learn/social-psychology) by Wesleyan University — Presented lots of exaggerated claims and falsified theories such as "video game causes violence." Also quoating controversial studies such as [Stanford Prison](https://en.wikipedia.org/wiki/Stanford_prison_experiment) and [Milgram experiments](https://en.wikipedia.org/wiki/Milgram_experiment). I guess this course can serve as a cautious tale of scientific [progress](https://en.wikipedia.org/wiki/Replication_crisis) and not everything your learn is true. Though since I took it in 2015, I am not sure if this course changes now.
 
 - [Fundamentals of Music Theory](https://www.coursera.org/learn/edinburgh-music-theory) By the University of Edinburgh — Rudimentary lectures followed by extremely hard quizzes that are impossible to complete without a lot of extra googling
