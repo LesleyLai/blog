@@ -61,6 +61,9 @@ Do note that some courses that I recommend below are not [MOOCs](https://en.wiki
     - For years I thought signed-integer overflow has wrapping behavior in C because of this book
 - [Nand2Tetris](https://www.nand2tetris.org/) — If you want a single survey course that covers from logic gate, computer architecture, assembly, and OS, then this is a course for you. Of course, it covers none of the topics in depth, but still an awesome course nonetheless.
 
+### Miscs
+- [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/) — talks about the usage of various important tools for software engineering
+
 ## Psychology
 
 - Yale [Introduction to Psychology](https://oyc.yale.edu/introduction-psychology/psyc-110) — There is a [new version](https://www.coursera.org/learn/introduction-psychology) by the same professor on Coursera

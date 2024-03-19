@@ -65,6 +65,9 @@ categories:
     - 很长一段时间我因为这本书的关系一直以为在 C 语言中 signed integer 溢出会保证 wrapping 行为。
 - [Nand2Tetris](https://www.nand2tetris.org/) — 如果你想要一门从逻辑门一路讲到汇编语言和操作系统的导论课程，那么这门课程就是为你而设的。
 
+### 其他
+- [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/) — 教授软件工程中各种实用工具的使用
+
 ## 心理学
 
 - 耶鲁大学的[心理学导论](https://oyc.yale.edu/introduction-psychology/psyc-110) — Coursera 上面有一个[新版](https://www.coursera.org/learn/introduction-psychology)
