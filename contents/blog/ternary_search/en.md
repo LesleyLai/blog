@@ -2,9 +2,9 @@
 id: ternary-search
 title: "Fun with Ternary Search"
 lang: en
-create: "2021-12-07"
-lastModify: "2021-12-07"
-categories:
+created: "2021-12-07"
+modified: "2021-12-07"
+tags:
   - algorithms
 ---
 

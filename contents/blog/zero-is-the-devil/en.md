@@ -2,9 +2,9 @@
 id: zero-is-the-devil
 title: "Zero is the Devil: Common ways to construct bogus proofs"
 lang: en
-create: "2020-05-10"
-lastModify: "2020-05-10"
-categories:
+created: "2020-05-10"
+modified: "2020-05-10"
+tags:
   - math
   - logic
 ---

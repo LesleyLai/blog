@@ -18,8 +18,8 @@ import { BlogPageLayout } from "../BlogPageLayout";
 
 type Frontmatter = {
   readonly title: string;
-  readonly create: string;
-  readonly lastModify: string;
+  readonly created: string;
+  readonly modified: string;
   readonly tags: readonly string[] | null;
 };
 
@@ -41,13 +41,38 @@ const components = {
   p: (props: object) => <p className={blogPostParagraph} {...props} />,
 };
 
+type PostDataProps = {
+  lang: Language;
+  created: string;
+  modified: string;
+};
+const PostDate = ({ lang, created, modified }: PostDataProps) => {
+  const createDate = new Date(created);
+  const modifiedDate = new Date(modified);
+  const modifiedAfterCreation = createDate.getTime() < modifiedDate.getTime();
+
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
+
+  return (
+    <span className={postDate}>
+      {modifiedAfterCreation && `${translations[lang].lastModified}${formatDate(modifiedDate)} | `}
+      {`${translations[lang].createTime}${formatDate(createDate)}`}
+    </span>
+  );
+};
+
 export default function BlogPostLayout({
   mdx,
   lang,
   notTranslated,
   children,
 }: BlogPostLayoutProps) {
-  const { title, create, lastModify, tags } = mdx.frontmatter;
+  const { title, created, modified, tags } = mdx.frontmatter;
 
   return (
     <BlogPageLayout lang={lang}>
@@ -55,11 +80,7 @@ export default function BlogPostLayout({
         {title} <span>{notTranslated && translations[lang].untranslated}</span>
       </h1>
       <div className={postInfo}>
-        <span className={postDate}>
-          {translations[lang].lastModify}
-          {lastModify} | {translations[lang].createTime}
-          {create}
-        </span>
+        <PostDate lang={lang} created={created} modified={modified} />
         <ul className={tagList}>
           {" "}
           {tags?.map((tag) => (

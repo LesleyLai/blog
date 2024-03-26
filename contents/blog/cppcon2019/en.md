@@ -2,9 +2,9 @@
 id: cppcon2019
 title: "CppCon 2019 Trip Report"
 lang: en
-create: "2019-09-22"
-lastModify: "2019-09-22"
-categories:
+created: "2019-09-22"
+modified: "2019-09-22"
+tags:
   - cpp
   - event
 ---

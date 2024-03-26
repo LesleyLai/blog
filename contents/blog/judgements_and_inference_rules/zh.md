@@ -2,9 +2,9 @@
 id: judgement-inference-rules
 title: "编程语言基础概念（1）：判断(Judgement）与推理规则(Inference Rules)"
 lang: zh
-create: "2020-01-27"
-lastModify: "2020-01-27"
-categories:
+created: "2020-01-27"
+modified: "2020-01-27"
+tags:
   - pl
 ---
 

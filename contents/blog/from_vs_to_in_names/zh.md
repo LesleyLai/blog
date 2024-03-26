@@ -2,9 +2,9 @@
 id: from-vs-to
 title: "小提示：在函数和变量名称中使用 from 而非 to"
 lang: zh
-create: "2024-02-25"
-lastModify: "2024-02-25"
-categories:
+created: "2024-02-25"
+modified: "2024-02-25"
+tags:
   - code
   - opinion
 ---
@@ -22,6 +22,7 @@ let mut num_to_canonical_var = vec![];
 ```rust
 let canonical_variable = num_to_canonical_var[var_to_num.get(var).unwrap()];
 ```
+
 正如你所见，这个顺序并不特别直观。这段代码执行了从 variable 到 number 再到 canonical var 的转换，但理解它需要从内到外阅读，类似于解开螺旋一样。
 
 从内到外阅读很具有挑战性。例如，尽管我有将近十年的 C 和 C++ 经验，但有时我仍然很难解读 C 声明语法。其他人也[经常有类似的感受](https://fuckingfunctionpointers.com/)。

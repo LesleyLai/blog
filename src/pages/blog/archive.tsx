@@ -28,16 +28,16 @@ const BlogArchivePage: React.FC<PageProps<Queries.BlogArchiveQuery, PageContext>
 
     return {
       id: post.id!,
-      create: singleLangPost.node.frontmatter!.create!,
+      created: singleLangPost.node.frontmatter!.created!,
       title: singleLangPost.node.frontmatter!.title!,
       isUntranslated,
     };
   });
 
   // sort by descending order of time
-  singleLanguagePosts.sort((p1, p2) => Date.parse(p2.create) - Date.parse(p1.create));
+  singleLanguagePosts.sort((p1, p2) => Date.parse(p2.created) - Date.parse(p1.created));
   // group posts by years
-  const postsByYear = groupBy(singleLanguagePosts, (post) => new Date(post.create).getFullYear());
+  const postsByYear = groupBy(singleLanguagePosts, (post) => new Date(post.created).getFullYear());
 
   const years = Object.keys(postsByYear).sort().reverse();
 
@@ -50,12 +50,12 @@ const BlogArchivePage: React.FC<PageProps<Queries.BlogArchiveQuery, PageContext>
           <article key={year}>
             <h2>{year}</h2>
             <ul>
-              {postsByYear[year].map(({ id, create, title, isUntranslated }) => {
+              {postsByYear[year].map(({ id, created, title, isUntranslated }) => {
                 const createFormated = new Intl.DateTimeFormat(lang, {
                   month: "long",
                   day: "numeric",
                   timeZone: "UTC",
-                }).format(new Date(create));
+                }).format(new Date(created));
 
                 return (
                   <li key={id}>
@@ -89,7 +89,7 @@ export const query = graphql`
         edges {
           node {
             frontmatter {
-              create
+              created
               title
               lang
             }

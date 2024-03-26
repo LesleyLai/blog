@@ -2,9 +2,9 @@
 id: const-correcness-std-function
 title: "std::function的Const正确性问题"
 lang: zh
-create: "2019-12-31"
-lastModify: "2019-12-31"
-categories:
+created: "2019-12-31"
+modified: "2019-12-31"
+tags:
   - code
   - cpp
 ---

@@ -108,7 +108,7 @@ export const createPages: GatsbyNode["createPages"] = async ({ graphql, actions,
             id
             title
             lang
-            tags: categories
+            tags
           }
           internal {
             contentFilePath

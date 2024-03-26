@@ -2,11 +2,11 @@
 id: noexcept-codegen
 title: "noexcept对代码生成的影响"
 lang: zh
-create: '2020-03-02'
-lastModify: '2020-09-20'
-categories:
-- code
-- cpp
+created: "2020-03-02"
+modified: "2020-09-20"
+tags:
+  - code
+  - cpp
 ---
 
 在C++代码中，如果我们把每个函数声明都加上`noexcept`，我们的代码会变得更高效吗？

@@ -18,7 +18,7 @@ export default function BlogNav({ lang }: BlogNavProps) {
           frontmatter: { lang: { eq: "en" } }
         }
       ) {
-        tags: group(field: { frontmatter: { categories: SELECT } }) {
+        tags: group(field: { frontmatter: { tags: SELECT } }) {
           id: fieldValue
           totalCount
         }

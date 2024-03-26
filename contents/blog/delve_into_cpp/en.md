@@ -2,9 +2,9 @@
 id: delve_into_cpp
 title: "Resources that help you to delve into C++"
 lang: en
-create: "2021-01-15"
-lastModify: "2021-03-29"
-categories:
+created: "2021-01-15"
+modified: "2021-03-29"
+tags:
   - code
   - cpp
   - learning

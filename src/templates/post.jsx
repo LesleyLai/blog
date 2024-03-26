@@ -25,9 +25,9 @@ export const pageQuery = graphql`
     mdx(frontmatter: { id: { eq: $id }, lang: { eq: $bodyLang } }) {
       frontmatter {
         title
-        create
-        lastModify
-        tags: categories
+        created
+        modified
+        tags
       }
     }
   }

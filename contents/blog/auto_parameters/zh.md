@@ -2,9 +2,9 @@
 id: auto-parameters
 title: "在C++中，不要不假思索地使用auto参数"
 lang: zh
-create: "2021-03-09"
-lastModify: "2021-03-09"
-categories:
+created: "2021-03-09"
+modified: "2021-03-09"
+tags:
   - code
   - cpp
   - opinion

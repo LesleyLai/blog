@@ -2,9 +2,9 @@
 id: std-function
 title: "What is std::function in C++, and why do we need them?"
 lang: en
-create: "2021-01-18"
-lastModify: "2021-12-19"
-categories:
+created: "2021-01-18"
+modified: "2021-12-19"
+tags:
   - cpp
   - code
 ---

@@ -1,13 +1,13 @@
 ---
 id: lea
-title: "X86 \"lea\" 指令背后的直觉"
+title: 'X86 "lea" 指令背后的直觉'
 lang: zh
-create: '2019-06-11'
-lastModify: '2019-06-11'
-categories:
-- c
-- code
-- x86
+created: "2019-06-11"
+modified: "2019-06-11"
+tags:
+  - c
+  - code
+  - x86
 ---
 
 一些朋友们在之前的[北丹佛地区C++聚会](https://www.meetup.com/North-Denver-Metro-C-Meetup/events/261292867/)上提到X86指令中的 `lea` 并不如其他的指令那么好理解。`lea` 是“load effective address”的缩写，一般来说被解释为“把某个内存地址从放到目标位置”。在Intel汇编语法下，`lea` 被写作

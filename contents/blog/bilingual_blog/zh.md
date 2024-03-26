@@ -2,13 +2,13 @@
 id: bilingual-blog
 title: "用Typescript来实现中英文博客"
 lang: zh
-create: '2022-01-02'
-lastModify: '2022-01-24'
-categories:
-- code
-- i18n
-- typescript
-- react
+created: "2022-01-02"
+modified: "2022-01-24"
+tags:
+  - code
+  - i18n
+  - typescript
+  - react
 ---
 
 各位2022年新年快乐！
@@ -21,6 +21,7 @@ categories:
 我的方法可能不是最“正确”与可扩展的方式，
 但是我认为对于个人博客网站来说，我的方法是一个非常合适的方案。
 它提供了几个重要的优势：
+
 - Typescript的类型系统保证了我不会忘记翻译任何一个条目
 - 我可以简单地对不同语言的界面采用不同的排版
 - 我不需要单单为了我的博客网站而学习使用一个国际化库

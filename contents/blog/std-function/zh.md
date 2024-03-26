@@ -2,9 +2,9 @@
 id: std-function
 title: "C++中的std::function到底是什么,为什么我们需要它？"
 lang: zh
-create: "2021-01-18"
-lastModify: "2021-12-19"
-categories:
+created: "2021-01-18"
+modified: "2021-12-19"
+tags:
   - cpp
   - code
 ---

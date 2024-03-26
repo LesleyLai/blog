@@ -2,9 +2,9 @@
 id: default-parameter-antipattern
 title: "Using default parameters to circumvent the type system is an anti-pattern"
 lang: en
-create: "2021-02-26"
-lastModify: "2021-02-26"
-categories:
+created: "2021-02-26"
+modified: "2021-02-26"
+tags:
   - code
   - java
   - oop

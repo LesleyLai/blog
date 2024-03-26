@@ -2,9 +2,9 @@
 id: temporaries
 title: "When does a C++ temporary object die?"
 lang: en
-create: "2019-03-28"
-lastModify: "2019-03-28"
-categories:
+created: "2019-03-28"
+modified: "2019-03-28"
+tags:
   - cpp
   - code
 ---

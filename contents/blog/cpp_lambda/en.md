@@ -2,9 +2,9 @@
 id: c++-lambda
 title: "C++ Lambda Tutorial"
 lang: en
-create: "2019-03-25"
-lastModify: "2021-10-12"
-categories:
+created: "2019-03-25"
+modified: "2021-10-12"
+tags:
   - cpp
   - code
 ---

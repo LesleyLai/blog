@@ -1,14 +1,14 @@
 ---
 id: unit-test-with-cmake
-title: "如何在cmake中嵌入单元测试框架" 
+title: "如何在cmake中嵌入单元测试框架"
 lang: zh
-create: '2016-05-14'
-lastModify: '2016-05-14'
-categories:
-- cmake
-- code
-- cpp
-- test
+created: "2016-05-14"
+modified: "2016-05-14"
+tags:
+  - cmake
+  - code
+  - cpp
+  - test
 ---
 
 工程的目录结构会有两部分：源文件（在 `src` 子文件夹中）以及测试(在 `test` 子文件夹中)。我使用[CMake](https://cmake.org/)来构建这个工程。如果您从没用使用过cmake并且不打算在近期使用它，请直接按 `Ctrl/Cmd+W` 。
@@ -20,8 +20,8 @@ categories:
 CMakeLists.txt
 
 ```cmake
-cmake_minimum_required (VERSION 2.8) 
-project (MyAwesomeProject) 
+cmake_minimum_required (VERSION 2.8)
+project (MyAwesomeProject)
 
 ...
 
@@ -33,7 +33,7 @@ add_library (CommonSourceCode ${SRC_LIST})
 add_executable(MyAwesomeProject src/main.cpp)
 target_link_libraries (MyAwesomeProject CommonSourceCode)
 
-add_subdirectory (test) 
+add_subdirectory (test)
 ```
 
 src/CMakeLists.txt

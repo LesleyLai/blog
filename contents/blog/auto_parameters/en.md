@@ -2,9 +2,9 @@
 id: auto-parameters
 title: "Don't automatically use auto parameters in C++"
 lang: en
-create: "2021-03-09"
-lastModify: "2021-03-09"
-categories:
+created: "2021-03-09"
+modified: "2024-03-25"
+tags:
   - code
   - cpp
   - opinion
@@ -15,16 +15,15 @@ And in C++20, we can even do the same thing for regular functions.
 With this feature's advent,
 the programming style where all parameters are `auto` becomes popular among some C++ programmers.
 However, the feature is not always optimal, and, frankly, I don’t think we should use it more often than it needs to.
-In general, the more specific we make the type of a parameter is, the better.
+In general, the more specific we make the type of a parameter, the better.
 
 ## Why do people like it?
 
-It is easier, right!
-Not everyone want to write out the explicit parameter type.
+It is easier, right? Not everyone wants to write out the explicit parameter type.
 
 This can be a valid excuse when doing template-heavy generic programming,
-but in a lot of the time, the "annoying to write" type is avoidable with some refactoring,
-and we will even have higher quality code by doing so.
+but a lot of the time the "annoying to write" type is avoidable with some refactoring,
+and we will even have higher-quality code by doing so.
 
 For example, the following is a modified version of some code I found online,
 and I agree that it is annoying to write out about the explicit type of `pair`:
@@ -77,10 +76,10 @@ std::ranges::transform(v1, v2, std::back_inserter(smaller_ones),
 ## Auto parameters generate templates
 
 In some programming languages such as [ML](<https://en.wikipedia.org/wiki/ML_(programming_language)>) or Rust,
-the type system can infer the exact type of a function or a lambda expression based by their definitions.
+the type system can infer the exact type of a function or a lambda expression based on their definitions.
 Those languages also have different type annotation syntax, which makes type annotations in parameters optional.
 Thus, writing lambda expressions without parameter types in those languages is ergonomic and idiomatic.
-Once users become accustom to those langauges, they often come back to C++ with the same coding style.
+Once users become accustomed to those languages, they often come back to C++ with the same coding style.
 
 However, in C++, unlike in those languages, the "type inference" of parameter types is just an illusion.
 Template, overloading, and [ADL](https://en.cppreference.com/w/cpp/language/adl) (Argument-dependent lookup) all make such type inferences impossible.
@@ -108,7 +107,7 @@ class __lambda_5_2
 ```
 
 The issue is that template programming does not have the same experience as "normal" programming.
-Therefore, compilers often catch type errors way later than we want,
+Compilers often detect type errors later than desired,
 and we have worse IDE auto-completion/error detection support in template contexts.
 This problem becomes more prominent when we start to write lambda expressions that are more than a one-liner
 and even more so when we use `auto` parameters for normal functions in C++20.
@@ -149,20 +148,20 @@ struct Vec4 {
 dot(Vec4{1, 2, 3, 4}, Vec4{1, 2, 3, 4}); // expects 30, gets 14
 ```
 
-The C++ Core Guidelines also mentioned the danger of unconstrained template in a highly visible scope,
+The C++ Core Guidelines also mentioned the danger of unconstrained templates in a highly visible scope,
 especially in combination with ADL. [^2]
 
 [^2]: [T.47: Avoid highly visible unconstrained templates with common names](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md#Rt-visible)
 
-## Explicit type annotation provide documentation value
+## Explicit type annotation provides documentation value
 
-Even in languages without C++ specific problems,
-explicit parameter types provide documentation purpose and can serve as "type-checking barriers" during refactoring.
+Even in languages without C++-specific problems,
+explicit parameter types provide documentation purposes and act as "type-checking barriers" during refactoring.
 That is why in ML dialects and Haskell,
-toplevel functions without explicit type annotation are considered bad style,
+top-level functions without explicit type annotation are considered bad style,
 and Rust does not even allow it!
 
-When using an unfamiliar API in any statically-typed language,
+When using an unfamiliar API in any statically typed language,
 the type annotation is probably the first hint of what a particular function call does.
 By using `auto` parameters,
 we give other people and our future selves no hint about the nature of those parameters.
@@ -170,10 +169,10 @@ we give other people and our future selves no hint about the nature of those par
 ## Conclusions
 
 It is not always possible to avoid `auto` parameters.
-However, you should think about avoiding them, especially when your rationale of using them is nothing but convenience.
+However, you should think about avoiding them, especially when your rationale for using them is nothing but convenience.
 
 Before C++20, there was no way to use concepts or explicit template annotation for lambda expressions.
-Also, in some cases, the convenience and productivity gain of using `auto` parameters probably outweighs its drawbacks.
+Also, in some cases, the convenience and productivity gain of using `auto` parameters outweigh its drawbacks.
 However, I think the downside is severe enough to consider auto parameters a code smell.
-When meeting code with auto parameters, we should always ask, "is it possible to use a concrete type here?"
-And if it is not the case, then the next question is, "is it possible to use a concept here?"
+When meeting code with auto parameters, we should always ask, "Is it possible to use a concrete type here?"
+And if it is not the case, then the next question is, "Is it possible to use a concept here?"

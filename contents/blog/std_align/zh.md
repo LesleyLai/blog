@@ -2,9 +2,9 @@
 id: std-align
 title: "C++标准库的小工具： std::align"
 lang: zh
-create: "2021-12-15"
-lastModify: "2021-12-15"
-categories:
+created: "2021-12-15"
+modified: "2021-12-15"
+tags:
   - code
   - cpp
 ---

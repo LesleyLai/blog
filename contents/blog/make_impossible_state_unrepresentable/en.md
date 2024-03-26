@@ -2,9 +2,9 @@
 id: make-impossible-state-unrepresentable
 title: "Make Impossible State Unrepresentable, in C++"
 lang: en
-create: "2019-10-26"
-lastModify: "2019-10-26"
-categories:
+created: "2019-10-26"
+modified: "2019-10-26"
+tags:
   - code
   - cpp
   - dod

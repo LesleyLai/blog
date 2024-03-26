@@ -2,9 +2,9 @@
 id: const-correcness-std-function
 title: "Const Correctness Issue of std::function"
 lang: en
-create: "2019-12-30"
-lastModify: "2019-12-30"
-categories:
+created: "2019-12-30"
+modified: "2019-12-30"
+tags:
   - code
   - cpp
 ---

@@ -2,9 +2,9 @@
 id: vk-khr-dynamic-rendering
 title: "Vulkan动态渲染（dynamic rendering）教程"
 lang: zh
-create: "2022-01-18"
-lastModify: "2022-01-18"
-categories:
+created: "2022-01-18"
+modified: "2022-01-18"
+tags:
   - code
   - graphics
   - vulkan

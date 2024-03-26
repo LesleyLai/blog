@@ -2,9 +2,9 @@
 id: const-and-reference-member-variables
 title: "The implication of const or reference member variables in C++"
 lang: en
-create: "2020-08-18"
-lastModify: "2020-09-29"
-categories:
+created: "2020-08-18"
+modified: "2020-09-29"
+tags:
   - code
   - cpp
 ---

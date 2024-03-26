@@ -2,9 +2,9 @@
 id: moocs
 title: "我推荐的在线公开课"
 lang: zh
-create: "2024-03-18"
-lastModify: "2024-03-18"
-categories:
+created: "2024-03-18"
+modified: "2024-03-26"
+tags:
   - learning
   - personal
 ---
@@ -25,7 +25,7 @@ categories:
 
 ### 微积分
 
-- 由 Robert Ghrist 教授的单变量微积分 [[第一部分](https://www.coursera.org/learn/single-variable-calculus)] [[第二部分](https://www.coursera.org/learn/differentiation-calculus)] [[第三部分](https://www.coursera.org/learn/integration-calculus)] [[第四部分](https://www.coursera.org/learn/applications-calculus)]
+- 由 Robert Ghrist 教授的单变量微积分 [[第一部分](https://www.coursera.org/learn/single-variable-calculus)] [[第二部分](https://www.coursera.org/learn/differentiation-calculus)] [[第三部分](https://www.coursera.org/learn/integration-calculus)] [[第四部分](https://www.coursera.org/learn/applications-calculus)] [[第五部分](https://www.coursera.org/learn/discrete-calculus)]
 - MIT OCW [多变量微积分](https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/)作为学习多变量微积分的主要资源，下列的资源可以作为辅助
   - [Calculus Blue](https://www2.math.upenn.edu/~ghrist/BLUE.html) — 同样由 Ghrist 教授编写。矩阵微积分的视角令人耳目一新，但课程节奏过快，不适合作为单独学习材料
   - [可汗学院](https://www.khanacademy.org/math/multivariable-calculus)
@@ -66,6 +66,7 @@ categories:
 - [Nand2Tetris](https://www.nand2tetris.org/) — 如果你想要一门从逻辑门一路讲到汇编语言和操作系统的导论课程，那么这门课程就是为你而设的。
 
 ### 其他
+
 - [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/) — 教授软件工程中各种实用工具的使用
 
 ## 心理学
@@ -88,6 +89,6 @@ categories:
 
 与大学课程类似，我参加过的大多数在线课程都让人感到失望。绝大多数平庸的课程我都不大有印象了，以下是一些我至今仍然记忆犹新的一些我认为特别有问题的课程。
 
-- 卫斯理安大学的[社会心里学](https://www.coursera.org/learn/social-psychology) — 这门课讲了许多许多夸大其次的说法和现在被证明错误的理论，例如“电子游戏导致暴力”。它还引用了诸如斯坦福监狱实验和米尔格拉姆实验之类的具有争议的研究。
+- 卫斯理安大学的[社会心理学](https://www.coursera.org/learn/social-psychology) — 这门课讲了许多许多夸大其次的说法和现在被证明错误的理论，例如“电子游戏导致暴力”。它还引用了诸如斯坦福监狱实验和米尔格拉姆实验之类的具有争议的研究。
 
 - 爱丁堡大学的[乐理基础](https://www.coursera.org/learn/edinburgh-music-theory) — 课程简单过头，然后考试完全超纲。

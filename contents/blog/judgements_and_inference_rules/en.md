@@ -2,9 +2,9 @@
 id: judgement-inference-rules
 title: "Concepts in Programming Languages, Part I: Judgements and Inference Rules"
 lang: en
-create: "2020-01-26"
-lastModify: "2020-01-26"
-categories:
+created: "2020-01-26"
+modified: "2020-01-26"
+tags:
   - pl
 ---
 

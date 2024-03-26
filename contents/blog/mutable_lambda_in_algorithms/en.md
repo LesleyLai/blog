@@ -2,9 +2,9 @@
 id: mutable-lambda-in-algorithms
 title: "Beware passing mutable lambda to STL algorithms."
 lang: en
-create: "2020-09-30"
-lastModify: "2020-09-30"
-categories:
+created: "2020-09-30"
+modified: "2020-09-30"
+tags:
   - cpp
   - code
   - opinion

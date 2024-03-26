@@ -2,9 +2,9 @@
 id: std-align
 title: "Little C++ Standard Library Utility: std::align"
 lang: en
-create: "2021-12-13"
-lastModify: "2021-12-28"
-categories:
+created: "2021-12-13"
+modified: "2021-12-28"
+tags:
   - code
   - cpp
 ---

@@ -2,9 +2,9 @@
 id: c++-lambda
 title: "C++ lambda表达式教程"
 lang: zh
-create: "2019-03-25"
-lastModify: "2020-01-10"
-categories:
+created: "2019-03-25"
+modified: "2020-01-10"
+tags:
   - cpp
   - code
 ---

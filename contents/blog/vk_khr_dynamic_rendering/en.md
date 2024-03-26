@@ -2,9 +2,9 @@
 id: vk-khr-dynamic-rendering
 title: "VK_KHR_dynamic_rendering tutorial"
 lang: en
-create: "2022-01-16"
-lastModify: "2023-08-05"
-categories:
+created: "2022-01-16"
+modified: "2023-08-05"
+tags:
   - code
   - graphics
   - vulkan

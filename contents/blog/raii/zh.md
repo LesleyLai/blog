@@ -1,13 +1,13 @@
 ---
 id: raii
-title: "不要发明自己的资源管理策略" 
+title: "不要发明自己的资源管理策略"
 lang: zh
-create: '2016-10-26'
-lastModify: '2016-10-26'
-categories:
-- cpp
-- code
-- opinion
+created: "2016-10-26"
+modified: "2016-10-26"
+tags:
+  - cpp
+  - code
+  - opinion
 ---
 
 最近，我在工作时遇到了一批旧代码，其中有几个巨大的类。它们是以类似这样的写法写的：
@@ -56,7 +56,6 @@ void calculate ()
 
 看出问题了吗？我们现在必须用与当年编译动态库插件同样的编译器来编译这段代码（我们当时用的是Visual Studio 2008，但对现在来说它太老了）。原因是因为我们在DLL内分配内存，却在DLL外销毁内存。不同的编译器可能会调用不同的函数来管理内存，导致data的析构函数崩溃。这个情况和我们混用`malloc()`与`delete`是一样的，无非是难以发现得多罢了。
 
-
 # 更多例子
 
 很多设计地很好的代码库也存在同样的问题。[Qt库](http://www.qt-project.org)的父子关系和之前展示的代码的内存管理策略事实上是一样的。如果你用过Qt,你肯定写过类似这样的代码：
@@ -92,7 +91,6 @@ child.setFont(font);
 if (!child.valid()) throw Exception{"Invalid tab"}; // 可能造成泄漏
 parent.addTab(child);
 ```
-
 
 # RAII来解决这种问题
 
