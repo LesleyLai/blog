@@ -62,6 +62,14 @@ type AllPostsQuery = {
   };
 };
 
+type BlogTagsQuery = {
+  readonly allMdx: {
+    readonly tags: {
+      readonly id: string;
+    }[];
+  };
+};
+
 const groupPostById = (nodes: readonly PostNode[], reporter: Reporter) => {
   const idToNodes: Map<string, unknown> = new Map();
   for (const node of nodes) {
@@ -100,7 +108,7 @@ const groupPostById = (nodes: readonly PostNode[], reporter: Reporter) => {
 export const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
 
-  const result = await graphql<AllPostsQuery>(`
+  const createBlogPosts = graphql<AllPostsQuery>(`
     query CreatePagesAllPosts {
       allMdx(filter: { internal: { contentFilePath: { regex: "//contents/blog//" } } }) {
         nodes {
@@ -116,34 +124,66 @@ export const createPages: GatsbyNode["createPages"] = async ({ graphql, actions,
         }
       }
     }
-  `);
+  `).then((result) => {
+    const nodes = result.data!.allMdx.nodes;
 
-  if (result.errors) {
-    reporter.panicOnBuild("Error querying blog posts", result.errors);
-  }
+    const groupedPosts = groupPostById(nodes, reporter);
 
-  const nodes = result.data!.allMdx.nodes;
+    const postTemplate = resolve(`src/templates/post.jsx`);
+    groupedPosts.forEach((nodeLanguageVariants, id) => {
+      for (const lang of languages) {
+        const node = nodeLanguageVariants[lang];
+        const contentFilePath = node.internal.contentFilePath;
+        //console.log(contentFilePath);
 
-  const groupedPosts = groupPostById(nodes, reporter);
+        createPage({
+          path: `/${lang}/${id}`,
+          component: `${postTemplate}?__contentFilePath=${contentFilePath}`,
+          context: {
+            lang: lang,
+            isGenerated: true,
+            bodyLang: node.frontmatter.lang, // in case of untranslated post, the bodyLang may be different from page's langauge
+            id: id,
+            dateLocale: getDateLocale(lang),
+          },
+        });
+      }
+    });
+  });
 
-  const postTemplate = resolve(`src/templates/post.jsx`);
-  groupedPosts.forEach((nodeLanguageVariants, id) => {
-    for (const lang of languages) {
-      const node = nodeLanguageVariants[lang];
-      const contentFilePath = node.internal.contentFilePath;
-      //console.log(contentFilePath);
-
-      createPage({
-        path: `/${lang}/${id}`,
-        component: `${postTemplate}?__contentFilePath=${contentFilePath}`,
-        context: {
-          lang: lang,
-          isGenerated: true,
-          bodyLang: node.frontmatter.lang, // in case of untranslated post, the bodyLang may be different from page's langauge
-          id: id,
-          dateLocale: getDateLocale(lang),
-        },
-      });
+  const createBlogTagArchives = await graphql<BlogTagsQuery>(`
+    query BlogTags {
+      allMdx(
+        filter: {
+          internal: { contentFilePath: { regex: "//contents/blog//" } }
+          frontmatter: { lang: { eq: "en" } }
+        }
+      ) {
+        tags: group(field: { frontmatter: { tags: SELECT } }) {
+          id: fieldValue
+        }
+      }
+    }
+  `).then((result) => {
+    if (result.errors) {
+      reporter.panicOnBuild("Error querying blog tags", result.errors);
+    }
+    const blogTags = result.data!.allMdx.tags.map((obj) => obj.id);
+    const blogTagArchiveTemplate = resolve(`src/templates/blogTag.jsx`);
+    for (const tag of blogTags) {
+      for (const lang of languages) {
+        createPage({
+          path: `/${lang}/archive/${tag}`,
+          component: blogTagArchiveTemplate,
+          context: {
+            lang: lang,
+            isGenerated: true,
+            tag: tag,
+          },
+        });
+      }
     }
   });
+
+  await Promise.all([createBlogPosts, createBlogTagArchives]);
 };

@@ -35,9 +35,9 @@ export default function BlogNav({ lang }: BlogNavProps) {
       <ul className={ul}>
         {tags.map((tag) => (
           <li key={tag.id}>
-            <a href="#" className={link}>
+            <Link to={`/${lang}/archive/${tag.id}`} className={link}>
               {translations[lang][tag.id as TranslationKey] as string}
-            </a>{" "}
+            </Link>
             <span className={postCount}>{tag.totalCount}</span>
           </li>
         ))}
@@ -49,6 +49,7 @@ export default function BlogNav({ lang }: BlogNavProps) {
         </Link>{" "}
         {translations[lang].posts}
       </p>
+      <p>© 2015-{new Date().getFullYear()} Lesley Lai</p>
     </nav>
   );
 }

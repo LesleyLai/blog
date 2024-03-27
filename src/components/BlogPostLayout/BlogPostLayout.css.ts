@@ -33,6 +33,10 @@ export const tagListItem = style({
   margin: "0.2em 0.5em 0.2em 0",
 });
 
+export const tagBoxLink = style({
+  textDecoration: "none",
+});
+
 export const tagBox = style({
   padding: "0.4em 0.5em",
   textTransform: "none",

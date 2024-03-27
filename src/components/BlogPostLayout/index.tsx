@@ -8,6 +8,7 @@ import {
   postDate,
   tagList,
   tagListItem,
+  tagBoxLink,
   tagBox,
   blogPostH2,
   blogPostH3,
@@ -15,6 +16,7 @@ import {
   blogPostParagraph,
 } from "./BlogPostLayout.css";
 import { BlogPageLayout } from "../BlogPageLayout";
+import { Link } from "gatsby";
 
 type Frontmatter = {
   readonly title: string;
@@ -85,7 +87,9 @@ export default function BlogPostLayout({
           {" "}
           {tags?.map((tag) => (
             <li className={tagListItem} key={tag}>
-              <span className={tagBox}>{translations[lang][tag as TranslationKey]}</span>
+              <Link className={tagBoxLink} to={`/${lang}/archive/${tag}`}>
+                <span className={tagBox}>{translations[lang][tag as TranslationKey]}</span>
+              </Link>
             </li>
           ))}
         </ul>
