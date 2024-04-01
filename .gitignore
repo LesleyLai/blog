@@ -6,11 +6,16 @@ node_modules
 public/
 .DS_Store
 yarn-error.log
+dist
 # tern
 .tern-port
 # log
 .log
 .env
 .env.local
-contents/blog/draft/*
-!contents/blog/draft/.gitkeep
+
+# astro
+.astro
+
+# vscode
+.vscode
