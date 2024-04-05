@@ -1,6 +1,6 @@
 ---
 id: default-parameter-antipattern
-title: "Using default parameters to circumvent the type system is an anti-pattern（暂未翻译）"
+title: "Using default parameters to circumvent the type system is an anti-pattern（）"
 lang: zh
 created: "2021-02-26"
 modified: "2021-02-26"
