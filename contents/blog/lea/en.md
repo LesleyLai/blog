@@ -1,16 +1,16 @@
 ---
 id: lea
-title: "Intuition Behind X86 \"lea\" Instruction"
+title: 'Intuition Behind X86 "lea" Instruction'
 lang: en
-create: '2019-06-11'
-lastModify: '2019-06-11'
-categories:
-- c
-- code
-- x86
+created: "2019-06-11"
+modified: "2019-06-11"
+tags:
+  - c
+  - code
+  - x86
 ---
 
-During the [last meeting](https://www.meetup.com/North-Denver-Metro-C-Meetup/events/261292867/) of the North Denver C++ Meetup, some people mentioned that `lea` is more confusing than other instructions.  `lea` is an acronym for "load effective address." The usual explanation is "to put a memory address from the source into the destination." The syntax of `lea` in the Intel Syntax is the following:
+During the [last meeting](https://www.meetup.com/North-Denver-Metro-C-Meetup/events/261292867/) of the North Denver C++ Meetup, some people mentioned that `lea` is more confusing than other instructions. `lea` is an acronym for "load effective address." The usual explanation is "to put a memory address from the source into the destination." The syntax of `lea` in the Intel Syntax is the following:
 
 ```nasm
 lea destination, source
@@ -33,7 +33,8 @@ The compiler may generate the following line for `int x = points[i].y;`
 mov  eax, [rbx+rcx*4 + 4]
 ```
 
-In this case, the register `rbx` points to the array `points`, `rcx` is the index variable `i`, and `eax` is the register that holds `x`. Similarly, for `int* x = &points[i].y;`, compilers can generate 
+In this case, the register `rbx` points to the array `points`, `rcx` is the index variable `i`, and `eax` is the register that holds `x`. Similarly, for `int* x = &points[i].y;`, compilers can generate
+
 ```nasm
 lea  eax, [rbx+rcx*4 + 4]
 ```
@@ -51,6 +52,7 @@ imul  eax, [rdi], 5
 ```
 
 `lea` is, in my point of view, a process of pointer arithmetic sandwiched with casts. For the previous example, the equivalent c code is
+
 ```c
 int y = (int)(&((int*)x)[x]);
 ```

@@ -2,23 +2,23 @@
 id: std-align
 title: "Little C++ Standard Library Utility: std::align"
 lang: en
-create: '2021-12-13'
-lastModify: '2021-12-28'
-categories:
-- code
-- cpp
+created: "2021-12-13"
+modified: "2021-12-28"
+tags:
+  - code
+  - cpp
 ---
 
 I recently learned about `std::align`,
 one of the lesser-known functions in the C++ standard library due to its limited use cases.
 Since it is hard to describe without a specific use case,
-I will use a simple implementation of an *arena allocator* as a motivating example.
+I will use a simple implementation of an _arena allocator_ as a motivating example.
 
 <!-- end -->
 
 ## Arena allocator
 
-Arena, also called *bump allocator* or *region-based allocator*, is probably the most straightforward allocation strategy.
+Arena, also called _bump allocator_ or _region-based allocator_, is probably the most straightforward allocation strategy.
 It is so widely used that even the C++ standard library has an arena implementation called [std::pmr::monotonic_buffer_resource](https://en.cppreference.com/w/cpp/memory/monotonic_buffer_resource).
 
 With arena, we start with a large chunk of pre-allocated memory coming from either the stack or another allocator such as `malloc`.
@@ -35,11 +35,11 @@ Afterward, we allocate memory from that chunk by bumping a pointer offset.
 </figure>
 
 Arena allocator has exceptional performance characteristics, especially when compared to complicated beasts like `malloc`.
-Each allocation only requires a pointer bump, and the deallocation is almost free as long as the objects allocated are *trivially destructible*[^1].
+Each allocation only requires a pointer bump, and the deallocation is almost free as long as the objects allocated are _trivially destructible_[^1].
 If we need to call destructors, we must maintain a list of objects to destroy.
 Supporting destructors complicates arena implementation considerably and is beyond the scope of this post.
 
-[^1]: In C++, a type is *trivially destructible* if it doesn't have a destructor that performs actions. For example, `std::string` and `std::vector` are not trivially destructible since their destructors free memory. Everything that contains non-trivially destructible types are also not trivially destructible.
+[^1]: In C++, a type is _trivially destructible_ if it doesn't have a destructor that performs actions. For example, `std::string` and `std::vector` are not trivially destructible since their destructors free memory. Everything that contains non-trivially destructible types are also not trivially destructible.
 
 The downside of the arena is that you can only free all the allocated memory at once since the arena doesn't track each individual allocation.
 Nevertheless, it is helpful in situations where we have a lot of heterogeneous allocations that only need to be freed together,
@@ -47,7 +47,7 @@ and is widely used in application domains from compilers to video games.
 
 <aside style="margin-top: -120px">
 
-There are some confusions between an arena allocator and a *stack allocator*.
+There are some confusions between an arena allocator and a _stack allocator_.
 Stack allocator is a natural evolution of the arena allocator,
 where allocation in a stack allocator can be freed in a LIFO (last in, first out) order.
 
@@ -65,7 +65,7 @@ struct Arena {
   [[nodiscard]] auto alloc(std::size_t size) noexcept -> void*
   {
     if (size_remain < size) return nullptr;
-    
+
     auto* alloc_ptr = ptr;
     ptr += size;
     size_remain -= size;
@@ -82,13 +82,13 @@ To use our arena, we first construct the arena from a pre-allocated buffer. Then
 ```cpp
 std::byte buffer[1000];
 Arena arena {
-  .ptr = buffer, 
+  .ptr = buffer,
   .size_remain = std::size(buffer)
 };
 
 auto* ptr = static_cast<std::uint8_t*>(arena.alloc(sizeof(std::uint8_t)));
 ptr = new(ptr) std::uint8_t{42};
-  
+
 auto* ptr2 = static_cast<std::uint32_t*>(arena.alloc(sizeof(std::uint32_t)));
 ptr2 = new(ptr2) std::uint32_t{1729};
 ```
@@ -99,7 +99,7 @@ Without placement new, doing assignments like `*ptr = 42` directly is technicall
 
 ## Alignment
 
-The simple solution above would be perfect if we don't forget about *alignment*.
+The simple solution above would be perfect if we don't forget about _alignment_.
 However, in the real world,
 the pointer returned by `alloc` may not be appropriately aligned for the object we want to create at that memory location.
 
@@ -123,7 +123,6 @@ However, when we start to play with custom memory allocation strategies, alignme
 Consider what our previous usage of the arena does. At first, our arena is empty.
 Then we allocate a byte of memory and construct a `std::uint8_t` on it, and everything seems totally fine.
 However, when we allocate 4 bytes now, we will allocate it at the place off by one byte of the 4-bytes alignment boundary that required by `std::uint32_t`:
-
 
 <figure>
   <img style="width: 500px;" class="center-image" src="arena_3.svg" alt="Arena after allocating one uint8_t and one uint32_t" />
@@ -153,13 +152,13 @@ we first need to have a helper function `align_forward` that bump a given pointe
 
 We first cast our pointer into an integer and then round up our (integer) address to the alignment boundary with the expression `(addr + (alignment - 1)) & -alignment`.
 
-To understand what this expression is doing exactly, you need to think about the meaning of the `-` on integers in a bit-wise setting: it flips all the bits and then adds one to the result. For example, let's say our `alignment` is `4`, it is represented as 
+To understand what this expression is doing exactly, you need to think about the meaning of the `-` on integers in a bit-wise setting: it flips all the bits and then adds one to the result. For example, let's say our `alignment` is `4`, it is represented as
 
 `0b00000100`,
 
-and when we apply negation, we get `-4`, which is represented in [two's complement](https://en.wikipedia.org/wiki/Two%27s_complement) as 
+and when we apply negation, we get `-4`, which is represented in [two's complement](https://en.wikipedia.org/wiki/Two%27s_complement) as
 
-`0b11111100`. 
+`0b11111100`.
 
 I omitted all the leading bytes, but you should be able to see the pattern:
 the negation of an alignment is precisely the bit-mask we want to mask out the lower bits.
@@ -196,7 +195,7 @@ To use this implementation, we need to explicitly pass alignment to our arena:
 auto* ptr = static_cast<std::uint8_t*>(
   arena.aligned_alloc(alignof(std::uint8_t), sizeof(std::uint8_t)));
 ptr = new(ptr) std::uint8_t{42};
-  
+
 auto* ptr2 = static_cast<std::uint32_t*>(
   arena.aligned_alloc(alignof(std::uint32_t), sizeof(std::uint32_t)));
 ptr2 = new(ptr2) std::uint32_t{1729};
@@ -246,6 +245,7 @@ namespace std {
 ```
 
 It does the following:
+
 > Given a pointer `ptr` to a buffer of size `space`, returns a pointer aligned by the specified `alignment` for `size` number of bytes and decreases `space` argument by the number of bytes used for alignment. The first aligned address is returned. — [cppreference](https://en.cppreference.com/w/cpp/memory/align).
 
 The interface of `std::align` is undoubtedly not easy to grasp,
@@ -263,7 +263,7 @@ with `std::align`, our code can be greatly simplified:
 struct Arena {
   void* ptr = 0;
   std::size_t size_remain = 0;
-  
+
   [[nodiscard]]
   auto aligned_alloc(std::size_t alignment, std::size_t size) noexcept -> void*
   {

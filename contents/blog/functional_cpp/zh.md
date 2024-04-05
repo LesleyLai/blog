@@ -1,17 +1,17 @@
 ---
 id: functional-cpp
-title: "Book Review: \"Functional Programming in C++\"（暂未翻译）"
+title: 'Book Review: "Functional Programming in C++"（暂未翻译）'
 lang: zh
-create: '2019-03-22'
-lastModify: '2019-03-22'
-categories:
-- books
-- code
-- cpp
-- functional
+created: "2019-03-22"
+modified: "2019-03-22"
+tags:
+  - books
+  - code
+  - cpp
+  - functional
 ---
 
-*[Functional Programming in C++](https://www.manning.com/books/functional-programming-in-c-plus-plus)* by Ivan Čukić is a new book about applying functional programming principles in C++. This book is for people who already have a decent understanding of C++. It is written in an idiomatic style that a C++ programmer should feel welcome.
+_[Functional Programming in C++](https://www.manning.com/books/functional-programming-in-c-plus-plus)_ by Ivan Čukić is a new book about applying functional programming principles in C++. This book is for people who already have a decent understanding of C++. It is written in an idiomatic style that a C++ programmer should feel welcome.
 
 <div class="right-image-container">
   <img src="book_cover.jpg" alt="Functional Programming in C++ Book Cover" />

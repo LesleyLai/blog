@@ -2,13 +2,13 @@
 id: default-parameter-antipattern
 title: "Using default parameters to circumvent the type system is an anti-pattern（暂未翻译）"
 lang: zh
-create: '2021-02-26'
-lastModify: '2021-02-26'
-categories:
-- code
-- java
-- oop
-- opinion
+created: "2021-02-26"
+modified: "2021-02-26"
+tags:
+  - code
+  - java
+  - oop
+  - opinion
 ---
 
 I am doing some peer programming for a university course project today.

@@ -2,11 +2,11 @@
 id: recursive_modules_in_ocaml
 title: "Recursive Modules in OCaml"
 lang: en
-create: '2020-10-15'
-lastModify: '2020-10-15'
-categories:
-- code
-- ocaml
+created: "2020-10-15"
+modified: "2020-10-15"
+tags:
+  - code
+  - ocaml
 ---
 
 Recursive module is an interesting feature in OCaml.

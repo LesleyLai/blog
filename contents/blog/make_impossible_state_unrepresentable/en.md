@@ -2,16 +2,16 @@
 id: make-impossible-state-unrepresentable
 title: "Make Impossible State Unrepresentable, in C++"
 lang: en
-create: '2019-10-26'
-lastModify: '2019-10-26'
-categories:
-- code
-- cpp
-- dod
-- functional
+created: "2019-10-26"
+modified: "2019-10-26"
+tags:
+  - code
+  - cpp
+  - dod
+  - functional
 ---
 
-At [CppCon](https://cppcon.org/) 2019, I gave a lightning talk at called [*Make Impossible State Unrepresentable*](https://youtu.be/hYyRrYwfy3k). Due to the nature of a 5 minutes lightning talk, it was handwavy, and I cut a lot of prepared contents to fit the time. This post is a deeper dive into the topic with more detailed explanations and examples.
+At [CppCon](https://cppcon.org/) 2019, I gave a lightning talk at called [_Make Impossible State Unrepresentable_](https://youtu.be/hYyRrYwfy3k). Due to the nature of a 5 minutes lightning talk, it was handwavy, and I cut a lot of prepared contents to fit the time. This post is a deeper dive into the topic with more detailed explanations and examples.
 
 The same practice in typed-functional programming communities inspires this topic. However, I do not consider this theme too "functional," and it can certainly be applied to C++ or any other programming languages with a type system. The topic also has a strong relationship with "[strong typing](https://en.wikipedia.org/wiki/Strong_and_weak_typing)."
 
@@ -102,11 +102,13 @@ struct B {
 ```
 
 In the above snippet, the `sizeof(A)` is 16 bytes while the `sizeof(B)` is only 12 bytes.
+
 </aside>
 
 We also reduced the need for assertions or runtime checking. Notice the `isComplete` function goes away for the second case, as we don't need to call this logic multiple times. In the first case, we would no be that confident, since we can have a bug that left `QueueFamilyIndices` uninitialized.
 
 ## Algebraic Data Types
+
 The above example demonstrates the usage of algebraic sum types (`optional` or `variant`), albeit in an inefficient way at first. Those types belong to the new addition of the "vocabulary types" in C++17, though they have a long history in other programming languages and third-party C++ libraries. The name "sum type" comes from the [cardinality](https://en.wikipedia.org/wiki/Cardinality) of the set of the possible state of those types. Similarly, the more familiar `struct` or tuple are called "product type" because their cardinality is the product of the cardinality of all of their fields. Sum types are sometimes also called "tagged union" or "variant type".
 
 Algebraic sum type has an advantage on [building state machines](https://www.bfilipek.com/2019/06/fsm-variant-game.html). A textbook example of such use case is network connection:
@@ -130,7 +132,7 @@ This implementation faithfully represents the data used by each state. For examp
 
 ### Inheritance Hierarchy vs. Sum Type
 
-Both sum types and inheritance are used for *runtime polymorphism*. In other words, only use them when you need runtime polymorphism. Sum types add one major constraint over inheritance. Virtual inheritance is [open to extension](https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle), while sum types are closed. The constraint is not necessarily a bad thing. For example, because as the compiler knows maximum size information statically, it can put the whole `variant` object on the stack.
+Both sum types and inheritance are used for _runtime polymorphism_. In other words, only use them when you need runtime polymorphism. Sum types add one major constraint over inheritance. Virtual inheritance is [open to extension](https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle), while sum types are closed. The constraint is not necessarily a bad thing. For example, because as the compiler knows maximum size information statically, it can put the whole `variant` object on the stack.
 
 <aside style="margin-top: -100px">
 
@@ -141,9 +143,11 @@ When I talk about "inheritance hierarchy" here, the only focus is the virtual-di
 In theory, dispatch over `variant` can be faster than the virtual dispatch, though none of the current implementations of `std::visit` are faster than virtual. However, in a potential future C++ version with language variant and pattern matching, there is evidence [^1] that variant would provide an advantage.
 
 [^1]:
-  [Mach7: Pattern Matching for C++](https://github.com/solodon4/Mach7)
+
+[Mach7: Pattern Matching for C++](https://github.com/solodon4/Mach7)
 
 However, the "open to extension" property of inheritance does prove useful from time to time. For example, consider that you are working on a compiler, you may represent your expression in a traditional OO-way like this:
+
 ```cpp
 struct Expr { ... };
 
@@ -153,28 +157,31 @@ struct ApplyExpr : Expr { ... };
 ```
 
 Adding compilation errors is as simple as adding derived classes like `SyntaxErrorExpr` and `TypeErrorExpr` into the corresponding stages, and those errors are completely hidden between stages. By contrast, with sum type, one option is to create a mess like:
+
 ```cpp
 using Expr = std::variant<ConstExpr, LambdaExpr, ApplyExpr,
                           SyntaxErrorExpr, TypeErrorExpr>;
 ```
-This approach forces us to handle `TypeErrorExpr` in the *parser*. Another option is to pay extra overhead and to wrap every `Expr` into an [expected](http://www7.open-std.org/JTC1/SC22/WG21/docs/papers/2018/p0323r7.html). Both alternatives are less than ideal, and the problem becomes even bigger if the abstract syntax tree becomes more complex and contains a hierarchy.
 
-Another type of polymorphism is [row polymorphism](https://en.wikipedia.org/wiki/Polymorphism_(computer_science)#Row_polymorphism). Row polymorphism only considers features and structures of a type. Like inheritance, row polymorphism is also open to extension, so it shares many advantages as inheritance. Row polymorphism is arguably a better alternative to virtual inheritance [^2][^3][^4][^5][^6]. Though row polymorphism is exactly what C++ [concept](https://en.cppreference.com/w/cpp/language/constraints) achieves, C++ lacks support build-in support of it for runtime polymorphism. [Go](https://gobyexample.com/interfaces) and [Typescript](https://www.typescriptlang.org/docs/handbook/interfaces.html) interfaces and [Rust trait](https://doc.rust-lang.org/rust-by-example/trait.html) are examples of such language features. In C++, runtime row polymorphism can be implemented by doing [type-erasure](https://quuxplusone.github.io/blog/2019/03/18/what-is-type-erasure/) manually.
+This approach forces us to handle `TypeErrorExpr` in the _parser_. Another option is to pay extra overhead and to wrap every `Expr` into an [expected](http://www7.open-std.org/JTC1/SC22/WG21/docs/papers/2018/p0323r7.html). Both alternatives are less than ideal, and the problem becomes even bigger if the abstract syntax tree becomes more complex and contains a hierarchy.
+
+Another type of polymorphism is [row polymorphism](<https://en.wikipedia.org/wiki/Polymorphism_(computer_science)#Row_polymorphism>). Row polymorphism only considers features and structures of a type. Like inheritance, row polymorphism is also open to extension, so it shares many advantages as inheritance. Row polymorphism is arguably a better alternative to virtual inheritance [^2][^3][^4][^5][^6]. Though row polymorphism is exactly what C++ [concept](https://en.cppreference.com/w/cpp/language/constraints) achieves, C++ lacks support build-in support of it for runtime polymorphism. [Go](https://gobyexample.com/interfaces) and [Typescript](https://www.typescriptlang.org/docs/handbook/interfaces.html) interfaces and [Rust trait](https://doc.rust-lang.org/rust-by-example/trait.html) are examples of such language features. In C++, runtime row polymorphism can be implemented by doing [type-erasure](https://quuxplusone.github.io/blog/2019/03/18/what-is-type-erasure/) manually.
 
 [^2]:
-  [Better Code: Runtime Polymorphism - Sean Parent](https://www.youtube.com/watch?v=QGcVXgEVMJg&feature=youtu.be)
-[^3]:
-  [Simon Brand: "How Rust gets polymorphism right"](https://www.youtube.com/watch?v=VSlBhAOLtFA)
-[^4]:
-  [CppCon 2017: Louis Dionne “Runtime Polymorphism: Back to the Basics”](https://www.youtube.com/watch?v=gVGtNFg4ay0)
-[^5]:
-  [Mathieu Ropert: Polymorphic ducks](https://mropert.github.io/2017/11/30/polymorphic_ducks/)
-[^6]:
-  [CppCon 2018: Borislav Stanimirov “DynaMix: A New Take on Polymorphism”](https://www.youtube.com/watch?v=ckY7Pc-A9Xc)
 
+[Better Code: Runtime Polymorphism - Sean Parent](https://www.youtube.com/watch?v=QGcVXgEVMJg&feature=youtu.be)
+[^3]:
+[Simon Brand: "How Rust gets polymorphism right"](https://www.youtube.com/watch?v=VSlBhAOLtFA)
+[^4]:
+[CppCon 2017: Louis Dionne “Runtime Polymorphism: Back to the Basics”](https://www.youtube.com/watch?v=gVGtNFg4ay0)
+[^5]:
+[Mathieu Ropert: Polymorphic ducks](https://mropert.github.io/2017/11/30/polymorphic_ducks/)
+[^6]:
+[CppCon 2018: Borislav Stanimirov “DynaMix: A New Take on Polymorphism”](https://www.youtube.com/watch?v=ckY7Pc-A9Xc)
 
 ## Data Modeling
-All of the above discussions lead to [data modeling](https://en.wikipedia.org/wiki/Data_modeling) -- defining and analyzing data requirements and define data models accordingly.  Both [data-oriented design](https://en.wikipedia.org/wiki/Data-oriented_design) and functional programming people like to talk about Data modeling.
+
+All of the above discussions lead to [data modeling](https://en.wikipedia.org/wiki/Data_modeling) -- defining and analyzing data requirements and define data models accordingly. Both [data-oriented design](https://en.wikipedia.org/wiki/Data-oriented_design) and functional programming people like to talk about Data modeling.
 
 From the point of view of an object-oriented developer, data modeling is similar to class design. Classes often work as self-contained entities that know how to do operations on themselves. However, such an approach requires packing all "logical related" data into one structure, and it often does not make sense. For example, below is how [pbrt-v3](https://github.com/mmp/pbrt-v3) implements triangles:
 
@@ -282,8 +289,8 @@ struct CommandBuffer {
 
 Note that we can implement `DrawingCommandbuffer` in terms of Secondary Command Buffers of Vulkan, but there are no restrictions on how it must be implemented. Thus, implementations of different lower-level graphics APIs can use completely different approaches.
 
-
 ## Limitations
+
 Not all invariant can be checked at compile-time, and that is why many programming languages support [contract](https://en.wikipedia.org/wiki/Design_by_contract) or at least runtime assertion. However, even counting all the "compile-time known state," there are limitations of applying "make impossible state unrepresentable" in C++. Some of them are due to the design of the C++ type system, and others are due to the performance requirements for C++ applications faces.
 
 ### The curious case of Move semantics
@@ -303,11 +310,11 @@ private:
 }
 ```
 
-We introduced move semantics to make it movable. However, to enable move semantics for our resource handle, we created a pointer-like object. The reason is that the after move states must be valid; to have a valid after-move state, we are forced to represent the empty state in our class. That is why we have `unique_ptr` but no `unique_reference` in the C++ standard library. And it is also partly why people repeatedly propose *[destructive move](http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2014/n4034.pdf)*.
+We introduced move semantics to make it movable. However, to enable move semantics for our resource handle, we created a pointer-like object. The reason is that the after move states must be valid; to have a valid after-move state, we are forced to represent the empty state in our class. That is why we have `unique_ptr` but no `unique_reference` in the C++ standard library. And it is also partly why people repeatedly propose _[destructive move](http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2014/n4034.pdf)_.
 
 <aside style="margin-top: -30px">
 
-Another reason for *destructive move* is performance. The performance improvements of move can be accomplished by [Arthur O'Dwyer](https://quuxplusone.github.io/blog/) 's great but less ambitious *trivially relocatable* \[[P1144](https://rawgit.com/Quuxplusone/draft/gh-pages/d1144-object-relocation.html)\] proposal.
+Another reason for _destructive move_ is performance. The performance improvements of move can be accomplished by [Arthur O'Dwyer](https://quuxplusone.github.io/blog/) 's great but less ambitious _trivially relocatable_ \[[P1144](https://rawgit.com/Quuxplusone/draft/gh-pages/d1144-object-relocation.html)\] proposal.
 
 </aside>
 

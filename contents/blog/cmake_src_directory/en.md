@@ -2,12 +2,12 @@
 id: cmake_src_directory
 title: "CMAKE_SOURCE_DIR is probably not what you want"
 lang: en
-create: '2022-02-17'
-lastModify: '2022-02-17'
-categories:
-- cmake
-- cpp
-- code
+created: "2022-02-17"
+modified: "2022-02-17"
+tags:
+  - cmake
+  - cpp
+  - code
 ---
 
 Today is the nth time I got bitten by `CMAKE_SOURCE_DIR`, so I will write it here.

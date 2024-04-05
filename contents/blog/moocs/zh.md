@@ -2,9 +2,9 @@
 id: moocs
 title: "我推荐的在线公开课"
 lang: zh
-create: "2024-03-18"
-lastModify: "2024-03-18"
-categories:
+created: "2024-03-18"
+modified: "2024-03-18"
+tags:
   - learning
   - personal
 ---
@@ -66,6 +66,7 @@ categories:
 - [Nand2Tetris](https://www.nand2tetris.org/) — 如果你想要一门从逻辑门一路讲到汇编语言和操作系统的导论课程，那么这门课程就是为你而设的。
 
 ### 其他
+
 - [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/) — 教授软件工程中各种实用工具的使用
 
 ## 心理学

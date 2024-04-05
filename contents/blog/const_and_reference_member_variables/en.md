@@ -2,18 +2,18 @@
 id: const-and-reference-member-variables
 title: "The implication of const or reference member variables in C++"
 lang: en
-create: '2020-08-18'
-lastModify: '2020-09-29'
-categories:
-- code
-- cpp
+created: "2020-08-18"
+modified: "2020-09-29"
+tags:
+  - code
+  - cpp
 ---
 
 In the conventional wisdom of the C++ community,
 non-static `const` or reference data variables are considered problematic.
 Surprisingly, I cannot find a single resource dedicated to this topic.
 
-I decide to write this post because the same problem raises several time by different people on Twitter and the [#include ＜C++＞ discord server](https://discord.com/invite/ZPErMGW).
+I decide to write this post because the same problem raises several time by different people on Twitter and the [#include ＜ C++＞ discord server](https://discord.com/invite/ZPErMGW).
 There are solid reasons on why you should avoid `const` or reference member variables in C++.
 Nevertheless, like many things in C++, "avoid" does not mean "never use."
 And they can occasionally still find some uses.
@@ -22,15 +22,15 @@ And they can occasionally still find some uses.
 
 If you are familiar with any programming languages, such as Rust, that treat `const` as default and mutable as second class citizens, you may have the temptation to mark everything `const` if you don't need to modify them.
 This practice provides a lot of benifits even in C++, as countless [Jason Turner](https://twitter.com/lefticus) and [Kate Gregory](https://twitter.com/gregcons) talks show.
-Alas, in C++, every best practice has a twist, such as "`const` everything *except* member variables."
+Alas, in C++, every best practice has a twist, such as "`const` everything _except_ member variables."
 
-`const` member variables disables *assignment* and *move semantics* for a class.
+`const` member variables disables _assignment_ and _move semantics_ for a class.
 For assignments, it makes sense, since how can you assign something to a constant?
 For move semantics, even though technically copy is a valid move implementation, the type system cannot guarantee that the after-move state remains the same.
 
 "What is the big deal? I already said that I don't want to mutate the fields ever." you may ask.
 
-Except that `swap` uses both *assignment* and *move semantics*.
+Except that `swap` uses both _assignment_ and _move semantics_.
 Without move operations, every move fallback to a copy.
 The lack of assignment is more severe,
 as it makes `swap` fail to compile:
@@ -101,7 +101,7 @@ struct Point {
 const Point immutable_point {42, 55};
 ```
 
-If you want to get *really* fancy, you can even create a small template to automate the process of only exposing getters.
+If you want to get _really_ fancy, you can even create a small template to automate the process of only exposing getters.
 Though I myself will certainly not go this far.
 
 ```cpp

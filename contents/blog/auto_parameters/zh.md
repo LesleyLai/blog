@@ -2,18 +2,18 @@
 id: auto-parameters
 title: "在C++中，不要不假思索地使用auto参数"
 lang: zh
-create: '2021-03-09' 
-lastModify: '2021-03-09'
-categories:
-- code
-- cpp
-- opinion
+created: "2021-03-09"
+modified: "2021-03-09"
+tags:
+  - code
+  - cpp
+  - opinion
 ---
 
-从C++14开始，我们可以创建带`auto`参数的lambda表达式。
-到了C++20，我们甚至可以在正常的函数中使用`auto`参数。
+从 C++14 开始，我们可以创建带`auto`参数的 lambda 表达式。
+到了 C++20，我们甚至可以在正常的函数中使用`auto`参数。
 随着这一特性的出现，
-在一些C++程序员开始流行了把所有的参数都使用`auto`的风气。
+在一些 C++程序员开始流行了把所有的参数都使用`auto`的风气。
 然而，我认为除非我们不得已，我们不应该使用`auto`参数。
 
 <!-- end -->
@@ -73,11 +73,11 @@ std::ranges::transform(v1, v2, std::back_inserter(smaller_ones),
 
 ## `auto`参数会生成模板
 
-在如[ML](https://zh.wikipedia.org/wiki/ML%E8%AF%AD%E8%A8%80)或Rust的一些一些编程语言中，
-类型系统可以通过定义推断出一个函数或lambda表达式的确切类型。
-这些语言也有不同的类型注释（type annotation）语法从而使得这些语言的程序员习惯省略lambda表达式具体的参数类型。
-在写过这些语言后，这些人回到了C++并且开始使用相同的代码规范。
-但是，因为C++拥有模板、重载（overloading）、以及[实参依赖查找](https://zh.cppreference.com/w/cpp/language/adl)（argument-dependent lookup）这些复杂特性，C++编译器无法实现这样的类型推断。
+在如[ML](https://zh.wikipedia.org/wiki/ML%E8%AF%AD%E8%A8%80)或 Rust 的一些一些编程语言中，
+类型系统可以通过定义推断出一个函数或 lambda 表达式的确切类型。
+这些语言也有不同的类型注释（type annotation）语法从而使得这些语言的程序员习惯省略 lambda 表达式具体的参数类型。
+在写过这些语言后，这些人回到了 C++并且开始使用相同的代码规范。
+但是，因为 C++拥有模板、重载（overloading）、以及[实参依赖查找](https://zh.cppreference.com/w/cpp/language/adl)（argument-dependent lookup）这些复杂特性，C++编译器无法实现这样的类型推断。
 因此，当我们使用`auto`参数时，编译器会生成不受约束的模板。
 例如，我们可以使用[cppinsights](https://cppinsights.io/)网站来看编译器对`[](auto x, auto y) { return x * y + 42; });`表达式所做的变换：
 
@@ -100,13 +100,13 @@ class __lambda_5_2
   } __lambda_5_2{};
 ```
 
-当我们开始写超过单行的lambda表达式时，这个问题就变得更加突出了
-甚至当我们开始在C++20中为普通函数使用自动参数时，这个问题就更加突出了。
+当我们开始写超过单行的 lambda 表达式时，这个问题就变得更加突出了
+甚至当我们开始在 C++20 中为普通函数使用自动参数时，这个问题就更加突出了。
 
 问题是，模板编程与平常编程的体验并不相同。
 在模板编程中，类型错误比我们想要的更晚被发现。
-而且我们的IDE自动补全以及错误检测功能在模板中一般都没有办法发挥最好的效果。
-当我们开始写较长的lambda表达式时或者甚至我们开始把`auto`参数应用到普通函数时，这个问题就变得更加突出。
+而且我们的 IDE 自动补全以及错误检测功能在模板中一般都没有办法发挥最好的效果。
+当我们开始写较长的 lambda 表达式时或者甚至我们开始把`auto`参数应用到普通函数时，这个问题就变得更加突出。
 
 ## 不受约束的模板是危险的
 
@@ -144,20 +144,20 @@ struct Vec4 {
 dot(Vec4{1, 2, 3, 4}, Vec4{1, 2, 3, 4}); // 我们想要30，但结果我们得到了14
 ```
 
-The C++ Core Guidelines也提到了在高度可见的范围内使用不受约束的模板是非常危险的，尤其是考虑到实参依赖查找。[^2]
+The C++ Core Guidelines 也提到了在高度可见的范围内使用不受约束的模板是非常危险的，尤其是考虑到实参依赖查找。[^2]
 
 [^2]: [T.47: Avoid highly visible unconstrained templates with common names](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md#Rt-visible)
 
 ## 明确的类型注释提供了文档价值
 
-即使在上述的C++特有问题的其它语言中，
+即使在上述的 C++特有问题的其它语言中，
 显式的参数类型同时起到了文档的目的。
 并且，在重构过程中，显式的参数类型可以使得类型检查的工作更加得轻松。
-这就是为什么在各种ML变种和以及Haskell中，
+这就是为什么在各种 ML 变种和以及 Haskell 中，
 没有显式类型注释的顶级函数被认为是不好的风格。
-而Rust规定所有的顶级函数都必须提供显式类型。
+而 Rust 规定所有的顶级函数都必须提供显式类型。
 
-当我们在任何静态类型的编程语言中使用一个不熟悉的API时，
+当我们在任何静态类型的编程语言中使用一个不熟悉的 API 时，
 我们通常会通过类型注解来帮助理解一个函数做了些什么。
 如果我们使用`auto`参数的话，
 我们将不会给其他人或者未来的自己留下关于这些参数性质的提示。
@@ -165,7 +165,7 @@ The C++ Core Guidelines也提到了在高度可见的范围内使用不受约束
 ## 结论
 
 我们并不是总是能避免`auto`参数。
-在C++20之前，没有办法可以为lambda表达式使用[概念](https://zh.cppreference.com/w/cpp/language/constraints)（Concept）或显式模板。
+在 C++20 之前，没有办法可以为 lambda 表达式使用[概念](https://zh.cppreference.com/w/cpp/language/constraints)（Concept）或显式模板。
 另外，在某些情况下，使用`auto`参数的便利性和生产力的提高可能超过了它的缺点。
 然而，我认为其弊端严重到足以将自动参数视为一种代码异味（code smell）。
 当遇到带有`auto`参数的代码时，我们应该总是问："这里有可能使用一个具体的类型吗？"

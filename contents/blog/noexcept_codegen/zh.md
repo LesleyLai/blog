@@ -2,14 +2,14 @@
 id: noexcept-codegen
 title: "noexcept对代码生成的影响"
 lang: zh
-create: '2020-03-02'
-lastModify: '2020-09-20'
-categories:
-- code
-- cpp
+created: "2020-03-02"
+modified: "2020-09-20"
+tags:
+  - code
+  - cpp
 ---
 
-在C++代码中，如果我们把每个函数声明都加上`noexcept`，我们的代码会变得更高效吗？
+在 C++代码中，如果我们把每个函数声明都加上`noexcept`，我们的代码会变得更高效吗？
 事情不是这么地简单。
 考虑以下代码片段:
 
@@ -22,7 +22,7 @@ int f() {
 ```
 
 我故意不在此翻译单元（translation unit）中定义`g`，否则的话编译器会有足够的信息来内联（inline）`g`的所有内容。
-尽管如此，所有主要的C++编译器都能弄清楚`f`仅包含对`g`的尾调用，并生成如下代码：
+尽管如此，所有主要的 C++编译器都能弄清楚`f`仅包含对`g`的尾调用，并生成如下代码：
 
 ```nasm
 f():
@@ -86,7 +86,7 @@ __clang_call_terminate:
         call    std::terminate()
 ```
 
-## 如何处理C函数
+## 如何处理 C 函数
 
 现在我们知道，在`noexcept`函数中调用非`noexcept`的函数会产生低效的代码
 我们如何处理某些保证不会抛出异常却没有被标记为`noexcept`的函数呢？
@@ -94,7 +94,7 @@ __clang_call_terminate:
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Did you ever get an suboptimal code, because you were calling external C function in your noexcept code?<br/><br/>Suffer no more:<a href="https://t.co/LA7C76a063">https://t.co/LA7C76a063</a></p>&mdash; Hana Dusíková 🍊 (@hankadusikova) <a href="https://twitter.com/hankadusikova/status/1276828584179642368?ref_src=twsrc%5Etfw">June 27, 2020</a></blockquote>
 
-你可以通过将`noexcept_cast`函数标记为强迫内联（force inline），这样的话即使在debug mode下`noexcept_cast`函数也不会造成性能损失。
+你可以通过将`noexcept_cast`函数标记为强迫内联（force inline），这样的话即使在 debug mode 下`noexcept_cast`函数也不会造成性能损失。
 
 ## 结论
 

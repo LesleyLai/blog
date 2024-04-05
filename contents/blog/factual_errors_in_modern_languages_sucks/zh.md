@@ -1,13 +1,13 @@
 ---
 id: factual-errors-in-modern-language-sucks
-title: "Factual errors in \"These Modern Programming Languages Will Make You Suffer\", and why it is a suffer to read（暂未翻译）"
+title: 'Factual errors in "These Modern Programming Languages Will Make You Suffer", and why it is a suffer to read（暂未翻译）'
 lang: zh
-create: '2020-12-08'
-lastModify: '2020-12-08'
-categories:
-- code
-- functional
-- opinion
+created: "2020-12-08"
+modified: "2020-12-08"
+tags:
+  - code
+  - functional
+  - opinion
 ---
 
 Today I stumble upon an article <a href="https://medium.com/better-programming/modern-languages-suck-ad21cbc8a57c" rel="nofollow" target="_blank">These Modern Programming Languages Will Make You Suffer</a>
@@ -25,11 +25,11 @@ Also, it is hard to criticize objectively on buzzwords such as "bad" or "a mess.
 Instead, let's focus on the misleading factual errors.
 Though I am sure that there are still many more factual errors in the section I missed or in languages where I don't have experience.
 
-
 ## Pure functions
-> Functions that do not mutate(change) any state are called *pure*
 
-Pure functions are *deterministic* and have *no side-effect*.
+> Functions that do not mutate(change) any state are called _pure_
+
+Pure functions are _deterministic_ and have _no side-effect_.
 "Do not mutate" is way not enough to make a function "pure."
 
 Surprisingly, the author has a correct description of pure function later in the post,
@@ -37,6 +37,7 @@ and similar discrepancy also happened more than once,
 which made me wonder whether a large chunk of the article is "borrowed" from elsewhere.
 
 ## C++
+
 C++ is the perfect punch bag for a lot of reasons,
 but still, you shouldn't bash on a language if you have no understanding of it.
 
@@ -52,14 +53,15 @@ Let me reply with a tweet from Bryce Lelbach.
 
 > In C++, all references are nullable.
 
-In C++, *no* references are nullable 😉.
+In C++, _no_ references are nullable 😉.
 
 ## JAVA & C#
+
 > since the early versions of C# were a Microsoft implementation of Java
 
 C# was an imitation of Java. But it was a new language and never intended as an implementation of Java.
 
->  In particular, C# claims to support functional programming. I must disagree... What functional features should a language have? At the very least, built-in support for immutable data structures, pattern matching, pipe operator for function composition, Algebraic Datatypes.
+> In particular, C# claims to support functional programming. I must disagree... What functional features should a language have? At the very least, built-in support for immutable data structures, pattern matching, pipe operator for function composition, Algebraic Datatypes.
 
 Those are all great features, but none of them are the essence of functional programming.
 The first functional language, Lisp, supports none of those features.
@@ -70,7 +72,6 @@ The first functional language, Lisp, supports none of those features.
 That being said, even in [Standard ML'97](https://en.wikipedia.org/wiki/Standard_ML), a language probably considered more "functional" by some, there is no support for the pipe operator.
 The standard library has only minimum support for persistent data structures (it didn't even have an immutable map/dictionary type).
 Lambda calculus, the holy grail of functional programming, also has none of the above mentioned features.
-
 
 </aside>
 
@@ -87,6 +88,7 @@ C# is the language that makes the async/await paradigm popular.
 Except that there are [nullable-references](https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references) support and references can be made not-null by default.
 
 ## Python
+
 > Language family: C
 
 What does "The C family languages" even mean?
@@ -105,6 +107,7 @@ and most language implementations these days are in the middle ground.
 A Python VM usually boots up in less than 100ms.
 
 ## Rust
+
 Rust also suffers from a lot of unfair ranting for its "low productivity" in this article, and to be honest all the criticism for Rust in this article looks like from a quick Google search.
 
 > The runtime performance of Rust programs is a little faster than Go.
@@ -133,25 +136,28 @@ Totally not true[^4].
 Both immutable.js and Rambda, the Javascript libraries that the author mentioned, provide typescript type definitions, and they are not harder to use compared to using them in JS.
 
 ## Functional languages
+
 As a person who tries to promote functional languages,
 the author should know better about those languages.
 Unfortunately, the author seems to have more errors in those languages,
 probably because they change from "opinionated rant mode" into actually talking about language features in this section.
 
 ### Haskell
+
 > There's no type system more powerful than Haskell.
 
 No type system can be considered the most "powerful."
 By the way, what about dependent type languages [^4]?
 
 ### OCaml
+
 > There're three package managers — Opam, Dune, and Esy.
 
 Dune is not a package manager, but instead a build system. It is often used in combination with Opam.
 
 > The go-to book for learning OCaml is Real World OCaml. The book hasn't been updated since 2013, and many of the examples are outdated.
 
-The [2nd edition](http://dev.realworldocaml.org/) of *Real World OCaml* is up-to-date and also available freely online.
+The [2nd edition](http://dev.realworldocaml.org/) of _Real World OCaml_ is up-to-date and also available freely online.
 
 ### Scala
 
@@ -179,6 +185,7 @@ You can make a React component a custom element.
 Evan is still doing work on Elm and interacts with the community regularly.
 
 ### Reason ML
+
 > Just like TypeScript, ReasonML has access to the entire JavaScript ecosystem.
 
 Using Javascript libraries in Reason requires some boilerplates (`external`), just like in Elm.
@@ -209,7 +216,6 @@ For example, here is one comment on Medium to the article:
 > I can stop reading now. I read enough flawed examples, dubious comparisons and more from articles written by your kind."
 
 Rest assured that most people in the functional programming community are friendly and don't have that kind of bias against your favorite language.
-
 
 [^1]: https://docs.microsoft.com/en-us/dotnet/csharp/pattern-matching
 [^2]: https://en.cppreference.com/w/cpp/utility/optional

@@ -1,10 +1,10 @@
 ---
 id: from-vs-to
-title: "Small Naming Tip: Use \"from\" Instead of \"to\" in Function and Variable Names"
+title: 'Small Naming Tip: Use "from" Instead of "to" in Function and Variable Names'
 lang: en
-create: "2024-02-10"
-lastModify: "2024-03-07"
-categories:
+created: "2024-02-10"
+modified: "2024-03-07"
+tags:
   - code
   - opinion
 ---

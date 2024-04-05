@@ -2,11 +2,11 @@
 id: temporaries
 title: "When does a C++ temporary object die?"
 lang: en
-create: '2019-03-28'
-lastModify: '2019-03-28'
-categories:
-- cpp
-- code
+created: "2019-03-28"
+modified: "2019-03-28"
+tags:
+  - cpp
+  - code
 ---
 
 A lot of operations of C++ require temporary values. Using them before their destruction is imperative. However, not all C++ programmers I met have a solid understanding of when a temporary expire. This situation often leads to over-conservative estimations, which will not cause any harm. Nevertheless, sometimes it will cause programmers to assume guarantees that the language does not provide, which leads to insidious bugs.
@@ -52,7 +52,7 @@ int main() {
 }
 ```
 
-In the above code, the destructor of the temporary returned by `greet` gets called after evaluating the full-expression. Thus, the pointer `greeting` gets dangled. I got bite by expired temporary strings when dealing with OpenGL shaders before. Such code may even *appear* to work for some cases [^3] because of *Small String Optimization*. Anyway, if an undefined behavior *guarantee* to break the program in a certain way, it is no longer undefined.
+In the above code, the destructor of the temporary returned by `greet` gets called after evaluating the full-expression. Thus, the pointer `greeting` gets dangled. I got bite by expired temporary strings when dealing with OpenGL shaders before. Such code may even _appear_ to work for some cases [^3] because of _Small String Optimization_. Anyway, if an undefined behavior _guarantee_ to break the program in a certain way, it is no longer undefined.
 
 [^3]: for instance, in your unit tests
 

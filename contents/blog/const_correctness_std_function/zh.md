@@ -2,18 +2,19 @@
 id: const-correcness-std-function
 title: "std::function的Const正确性问题"
 lang: zh
-create: '2019-12-31'
-lastModify: '2019-12-31'
-categories:
-- code
-- cpp
+created: "2019-12-31"
+modified: "2019-12-31"
+tags:
+  - code
+  - cpp
 ---
 
-`const`类型限定符（type qualifier）是C++语言设计的一大亮点。我们围绕着这个语言特性使用“`const`正确性” （const correctness）的实践来防止`const`对象遭到改变。“`const`正确性”的规则对大多数的类的实现都不难被遵守。但是对使用到类型擦除（type erasure）的类，“`const`正确性”更难被遵守。不幸的是，因为短见，C++标准库中的[`std::function`](https://zh.cppreference.com/w/cpp/utility/functional/function)类就成了一个“`const`正确性”不被遵守的例子。
+`const`类型限定符（type qualifier）是 C++语言设计的一大亮点。我们围绕着这个语言特性使用“`const`正确性” （const correctness）的实践来防止`const`对象遭到改变。“`const`正确性”的规则对大多数的类的实现都不难被遵守。但是对使用到类型擦除（type erasure）的类，“`const`正确性”更难被遵守。不幸的是，因为短见，C++标准库中的[`std::function`](https://zh.cppreference.com/w/cpp/utility/functional/function)类就成了一个“`const`正确性”不被遵守的例子。
 
 <!-- end -->
 
 ## 问题根源
+
 `std::function`的成员函数`operator()`被标记为`const`却可以改变内在的函数对象。比如说：
 
 ```cpp
@@ -22,7 +23,7 @@ f(); // returns 1
 f(); // returns 2
 ```
 
-文档N4348[^1]第一次指出这个问题。并且直言
+文档 N4348[^1]第一次指出这个问题。并且直言
 
 > This violates not only basic tenets of `const-`correctness, but also the data race avoidance guarantees in [res.on.data.races]/p3, which states that "A C++ standard library function shall not directly or indirectly modify objects accessible by threads other than the current thread unless the objects are accessed directly or indirectly via the function's non-`const` arguments, including `this`".
 
@@ -31,6 +32,7 @@ f(); // returns 2
 大意是说`operator()`的语义不仅仅违法了“`const`正确性”基本原则，更破坏了标准库无数据争用(data race)的保证。
 
 ## 解决办法
+
 类似于`function`的类需要争对`const`以及非`const`有分别的模板特化（template specializations）：
 
 ```cpp
@@ -63,6 +65,7 @@ f2(); // 无法编译
 ```
 
 ## 展望未来
-我并不期望`std::function`会做出破坏向后兼容的更改。截至本文发表时，我把希望放在已被提议的`std::unique_function`[^2]上。它不仅修复`std::function`中“`const`正确性”的bug，而且还带来了其他的改善。如果C++标准中有了`std::function`替代品，我们就可以弃用(deprecate)`std::function`如同当年的`std::auto_ptr`。与此同时，我们也可以自己实现`unique_function`，[我的Github](https://github.com/Beyond-Engine/functions)就有一个库实现了这个功能。
+
+我并不期望`std::function`会做出破坏向后兼容的更改。截至本文发表时，我把希望放在已被提议的`std::unique_function`[^2]上。它不仅修复`std::function`中“`const`正确性”的 bug，而且还带来了其他的改善。如果 C++标准中有了`std::function`替代品，我们就可以弃用(deprecate)`std::function`如同当年的`std::auto_ptr`。与此同时，我们也可以自己实现`unique_function`，[我的 Github](https://github.com/Beyond-Engine/functions)就有一个库实现了这个功能。
 
 [^2]: [P0228R3 unique_function: a move-only std::function](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p0228r3.html)

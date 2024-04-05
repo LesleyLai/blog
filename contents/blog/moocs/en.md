@@ -2,9 +2,9 @@
 id: moocs
 title: "Online Courses that I Recommend"
 lang: en
-create: "2024-03-17"
-lastModify: "2024-03-17"
-categories:
+created: "2024-03-17"
+modified: "2024-03-17"
+tags:
   - learning
   - personal
 ---
@@ -62,6 +62,7 @@ Do note that some courses that I recommend below are not [MOOCs](https://en.wiki
 - [Nand2Tetris](https://www.nand2tetris.org/) — If you want a single survey course that covers from logic gate, computer architecture, assembly, and OS, then this is a course for you. Of course, it covers none of the topics in depth, but still an awesome course nonetheless.
 
 ### Miscs
+
 - [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/) — talks about the usage of various important tools for software engineering
 
 ## Psychology
