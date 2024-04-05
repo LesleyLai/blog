@@ -2,46 +2,47 @@
 id: bilingual-blog
 title: "用Typescript来实现中英文博客"
 lang: zh
-create: '2022-01-02'
-lastModify: '2022-01-24'
-categories:
-- code
-- i18n
-- typescript
-- react
+created: "2022-01-02"
+modified: "2022-01-24"
+tags:
+  - code
+  - i18n
+  - typescript
+  - react
 ---
 
-各位2022年新年快乐！
-今天我想谈谈与我大多数博客文章不同的东西：我是如何用Typescript来实现我的双语博客的。
+各位 2022 年新年快乐！
+今天我想谈谈与我大多数博客文章不同的东西：我是如何用 Typescript 来实现我的双语博客的。
 
-自从我在2015年创建这个博客以来，我一直想把它变成中英文的来吸引更多的国内受众，而我终于在2019年底终于实现了这一点。
+自从我在 2015 年创建这个博客以来，我一直想把它变成中英文的来吸引更多的国内受众，而我终于在 2019 年底终于实现了这一点。
 我的博客的国际化实现可能与大多数人不同，因为我没有使用任何例如[i18next](https://www.i18next.com/)的第三方库，
-而主要依靠Typescript强大的类型系统。
+而主要依靠 Typescript 强大的类型系统。
 
 我的方法可能不是最“正确”与可扩展的方式，
 但是我认为对于个人博客网站来说，我的方法是一个非常合适的方案。
 它提供了几个重要的优势：
-- Typescript的类型系统保证了我不会忘记翻译任何一个条目
+
+- Typescript 的类型系统保证了我不会忘记翻译任何一个条目
 - 我可以简单地对不同语言的界面采用不同的排版
 - 我不需要单单为了我的博客网站而学习使用一个国际化库
 
 因此，如果你想创建一个多语种的个人网站，我建议你使用类似的方法。
 
 我的博客使用了[GatsbyJS](https://www.gatsbyjs.com/)静态网页生成器。
-静态网页生成器可以在模板的帮助下将Markdown文件转换为Html网页[^1]。
+静态网页生成器可以在模板的帮助下将 Markdown 文件转换为 Html 网页[^1]。
 
-[^1]: GatsbyJS比较特殊，它并不完全按照我所说的静态网页生成器的方法工作。但你可以访问他们的网站了解更多。
+[^1]: GatsbyJS 比较特殊，它并不完全按照我所说的静态网页生成器的方法工作。但你可以访问他们的网站了解更多。
 
-对于博客文章来说，我只需要为每篇文章每种语言都准备单独的markdown文件就可以了。
-比如说，你现在所看到中文文字以及这篇文章的英文版就会被储存在不同markdown文件中。
-另一方面，在模板UI中仍然有很多文字需要翻译，
+对于博客文章来说，我只需要为每篇文章每种语言都准备单独的 markdown 文件就可以了。
+比如说，你现在所看到中文文字以及这篇文章的英文版就会被储存在不同 markdown 文件中。
+另一方面，在模板 UI 中仍然有很多文字需要翻译，
 例如我在右边栏的自我介绍、不同的菜单选项、以及博客文章的标签。
 
-GatsbyJS使用Javascript作为模板的语言，
-所有GatsbyJS的模板都是React组件。
-我选择了可以转译为Javascript的Typescript作为我这个博客主要的开发语言。
-因此，我很自然地为国际化问题开发了一个Typescript的解决方案，而Gatsby会把所有的React组件以及翻译逻辑都会自动变为静态的HTML。
-反过来说，假设你使用一个使用Python的静态网站生成器，那么在理想情况下你应该在Python中实现国际化，这样在载入你的网站时无需再动态加载翻译。
+GatsbyJS 使用 Javascript 作为模板的语言，
+所有 GatsbyJS 的模板都是 React 组件。
+我选择了可以转译为 Javascript 的 Typescript 作为我这个博客主要的开发语言。
+因此，我很自然地为国际化问题开发了一个 Typescript 的解决方案，而 Gatsby 会把所有的 React 组件以及翻译逻辑都会自动变为静态的 HTML。
+反过来说，假设你使用一个使用 Python 的静态网站生成器，那么在理想情况下你应该在 Python 中实现国际化，这样在载入你的网站时无需再动态加载翻译。
 
 我把大部分国际化逻辑的实现都放在了[translation.tsx](https://github.com/LesleyLai/blog/blob/9500c49f22e886fe5aa706967e5dc4391a20ea15/src/utils/translations.tsx)文件中：
 
@@ -56,7 +57,7 @@ const en = {
 };
 ```
 
-由于`en`只是一个普通的对象，我在其中可以储存任意的数据作为条目，例如jsx对象甚至是函数：
+由于`en`只是一个普通的对象，我在其中可以储存任意的数据作为条目，例如 jsx 对象甚至是函数：
 
 ```typescript
   all_n_posts: (n: number) => (
@@ -88,7 +89,7 @@ const zh: Translations = {
 这样类型系统会确保我不会忘记翻译任何条目。
 
 然后，我们可以把所有语言的翻译都放到一个对象中。
-在Javascript组件中，我们会使用这个对象来查询特定的翻译条目：
+在 Javascript 组件中，我们会使用这个对象来查询特定的翻译条目：
 
 ```typescript
 export const translations = {
@@ -99,7 +100,7 @@ export const translations = {
 
 然后我们使用`keyof`操作符来获得包含各种语言的联合类型（union type）。
 在我的情况下我会得到`"en" | "zh"`。
-`keyof`可以说是另一个Typescript中非常有意思的反射特性。
+`keyof`可以说是另一个 Typescript 中非常有意思的反射特性。
 由于 `keyof` 期望的是一个类型而不是一个对象，我们需要在使用 `keyof` 之前加上另一个 `typeof` 操作符：
 
 ```typescript

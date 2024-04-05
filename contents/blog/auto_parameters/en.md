@@ -2,12 +2,12 @@
 id: auto-parameters
 title: "Don't automatically use auto parameters in C++"
 lang: en
-create: '2021-03-09'
-lastModify: '2021-03-09'
-categories:
-- code
-- cpp
-- opinion
+created: "2021-03-09"
+modified: "2021-03-09"
+tags:
+  - code
+  - cpp
+  - opinion
 ---
 
 Since the advent of C++14, we can create lambda expressions that take `auto` parameters.
@@ -78,7 +78,7 @@ std::ranges::transform(v1, v2, std::back_inserter(smaller_ones),
 
 ## Auto parameters generate templates
 
-In some programming languages such as [ML](https://en.wikipedia.org/wiki/ML_(programming_language)) or Rust,
+In some programming languages such as [ML](<https://en.wikipedia.org/wiki/ML_(programming_language)>) or Rust,
 the type system can infer the exact type of a function or a lambda expression based by their definitions.
 Those languages also have different type annotation syntax, which makes type annotations in parameters optional.
 Thus, writing lambda expressions without parameter types in those languages is ergonomic and idiomatic.

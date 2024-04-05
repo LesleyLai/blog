@@ -2,10 +2,10 @@
 id: 2023-life-update
 title: "What happened to Lesley in the last couple of years"
 lang: en
-create: "2023-12-17"
-lastModify: "2023-01-03"
-categories:
-- personal
+created: "2023-12-17"
+modified: "2023-01-03"
+tags:
+  - personal
 ---
 
 TL;DR: I was forced to leave university without completing my degree due to unfortunate circumstances, and returning has proven unexpectedly challenging.

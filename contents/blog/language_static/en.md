@@ -2,21 +2,21 @@
 id: statics
 title: "Concepts in Programming Languages, Part II: Statics"
 lang: en
-create: '2020-03-02'
-lastModify: '2020-03-02'
-categories:
-- pl
+created: "2020-03-02"
+modified: "2020-03-02"
+tags:
+  - pl
 ---
 
-What are the *statics* of a programming language?
-Most programming languages exhibit a *phase distinction* between *static* and *dynamic* phase of processing.
-People sometime loosey say *static* of a language happened at "compile-time," and *dynamic* of a language occurred at "run-time."
+What are the _statics_ of a programming language?
+Most programming languages exhibit a _phase distinction_ between _static_ and _dynamic_ phase of processing.
+People sometime loosey say _static_ of a language happened at "compile-time," and _dynamic_ of a language occurred at "run-time."
 The static phase of a language contains lexing, parsing, and in the case of static-typed languages, type-checking, and name resolution.
 And the dynamic phase consists of the execution of a program.
 We will only focus on static-typed languages in this post since the statics of dynamically-typed languages are trivial.
 
 In the static phase, we consider what the valid operations of a program are.
-We construct a set of rules on the *typing judgments* to state if an expression is well-formed for certain types.
+We construct a set of rules on the _typing judgments_ to state if an expression is well-formed for certain types.
 
 ## Static of a small expression language
 

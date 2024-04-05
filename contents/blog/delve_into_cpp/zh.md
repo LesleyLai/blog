@@ -2,9 +2,9 @@
 id: delve_into_cpp
 title: "这些资源帮助你深入学习C++"
 lang: zh
-create: "2021-01-15"
-lastModify: "2021-01-15"
-categories:
+created: "2021-01-15"
+modified: "2021-01-15"
+tags:
   - code
   - cpp
   - learning

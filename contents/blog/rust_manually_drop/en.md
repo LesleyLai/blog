@@ -2,9 +2,9 @@
 id: rust-manually-drop
 title: "Use ManuallyDrop in Rust to control drop order of structure fields"
 lang: en
-create: "2023-02-06"
-lastModify: "2023-02-06"
-categories:
+created: "2023-02-06"
+modified: "2023-02-06"
+tags:
   - code
   - rust
 ---

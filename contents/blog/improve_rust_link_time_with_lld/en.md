@@ -2,11 +2,11 @@
 id: improve-rust-link-time-with-lld
 title: "Improve Rust Link Time with lld"
 lang: en
-create: '2020-11-01'
-lastModify: '2020-11-01'
-categories:
-- code
-- rust
+created: "2020-11-01"
+modified: "2020-11-01"
+tags:
+  - code
+  - rust
 ---
 
 Today I start to experiment with the WebGPU API, and I choose to use the [wgpu-rs](https://github.com/gfx-rs/wgpu-rs) implementation in Rust.

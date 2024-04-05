@@ -2,10 +2,10 @@
 id: judgement-inference-rules
 title: "Concepts in Programming Languages, Part I: Judgements and Inference Rules"
 lang: en
-create: '2020-01-26'
-lastModify: '2020-01-26'
-categories:
-- pl
+created: "2020-01-26"
+modified: "2020-01-26"
+tags:
+  - pl
 ---
 
 From a layman's perspective, the field of programming language research is full of jargon, greek letters, and weird symbols.
@@ -22,14 +22,14 @@ I also need to make a disclaimer that many ideas of those posts come from the cl
 I would cite writing texts when apply, but it is impossible to cite in class discussions.
 Of course, all errors are my own, and please contact me for anything wrong.
 
-A lot of the mathematical concepts in the programming language field comes from the branch of [propositional logic](https://en.wikipedia.org/wiki/Propositional_calculus). Thus, this first post focuses on the formal language of *Judgements*, and *Inference Rules*.
+A lot of the mathematical concepts in the programming language field comes from the branch of [propositional logic](https://en.wikipedia.org/wiki/Propositional_calculus). Thus, this first post focuses on the formal language of _Judgements_, and _Inference Rules_.
 
 ## Judgements
 
 A judgment is a statement or an assertion on a given abstract syntax tree.
 Below are some standard notations we use for the judgments [^1]:
 
-[^1]: Robert Harper. *Practical Foundations for Programming Languages*. Cambridge University Press, Cambridge, England, Second edition, 2016.
+[^1]: Robert Harper. _Practical Foundations for Programming Languages_. Cambridge University Press, Cambridge, England, Second edition, 2016.
 
 $$
 \begin{aligned}
@@ -43,8 +43,8 @@ $$
 
 Notice in the above examples such as $n \ \text{nat}$,
 $n$ is an unknown variable.
-We call those *judgement forms*
-And we can plug in actual values into the variables of judgement forms to get a *judgement*:
+We call those _judgement forms_
+And we can plug in actual values into the variables of judgement forms to get a _judgement_:
 
 $$
 \begin{aligned}
@@ -81,12 +81,12 @@ $$
 
 In this inference rule, we state that a natural number is either zero
 or a succession of another natural number.
-A rule without any premise, such as the first one, is called an *axiom*.
+A rule without any premise, such as the first one, is called an _axiom_.
 
 Because using inference rule to describe syntax is verbose,
 a common way to describe syntax is by [grammar](https://en.wikipedia.org/wiki/Context-free_grammar) notation
 like the [Backus normal form](https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form) (BNF).
-A grammar of a programming language is a set of inductively defined *terms*.
+A grammar of a programming language is a set of inductively defined _terms_.
 For example, for natural numbers, we can describe them as
 
 $$
@@ -111,7 +111,7 @@ $$
 $$
 
 This grammar means that a $\text{\textbf{list}}$ is either $\text{Nil}$ or a $\text{Cons}$-cell of natural number and another $\text{\textbf{list}}$.
-A  $\text{Nil}$ is an empty list, and a $\text{Cons}$ is a "node" of the singly linked-list that contains an individual element and points to a sub-list.
+A $\text{Nil}$ is an empty list, and a $\text{Cons}$ is a "node" of the singly linked-list that contains an individual element and points to a sub-list.
 
 <aside style="margin-top: -100px;">
 
@@ -134,7 +134,7 @@ Notice our version of `head` is a [partial function](https://en.wikipedia.org/wi
 which means not all the list has a mapping to a natural number through `head`.
 In this particular case, we have not defined the meaning of `head(Nil)`.
 We have several choices of dealing with such partial functions,
-one is to leave the operation as [*undefined*](https://en.wikipedia.org/wiki/Undefined_behavior).
+one is to leave the operation as [_undefined_](https://en.wikipedia.org/wiki/Undefined_behavior).
 This approach is what the C programming language takes, and it is the best for optimization,
 though it impairs the [type safety](https://en.wikipedia.org/wiki/Type_safety).
 
@@ -149,6 +149,7 @@ And a third approach is to transform this operation to a total function:
 $$
 \frac{}{\text{head}(\text{Nil}) \Downarrow \text{Nothing}} (\text{head-Nil})
 $$
+
 $$
 \frac{l = \text{Cons}(\text{hd}, \text{tl})}{\text{head}(l) \Downarrow \text{Something(hd)}} (\text{head-Cons})
 $$
@@ -159,9 +160,10 @@ For certain operations, it not only offers a default "safe" version either with 
 but also an "unsafe" version with the first approach.
 
 ## Derivation
+
 You can easily create nonsense such as $\text{Succ(Zero)} \Downarrow \text{Zero}$,
 so how to prove a judgment is correct?
-To prove a judgment, you write *derivation* (also called *derivation tree* or *proof tree*).
+To prove a judgment, you write _derivation_ (also called _derivation tree_ or _proof tree_).
 
 A derivation always starts from axioms and ends at the judgment we want to prove.
 For each step, we apply an inference rule to the previous judgment (s).
@@ -172,18 +174,18 @@ For example, to prove "1 + 1 = 2" with our definition of nat, we have
 
 Reading from bottom to top, you can find that the derivation is analogous of the execution of a program:
 
-``` ocaml
+```ocaml
 Succ(Zero) + Succ(Zero)
 = Zero + Succ(Succ(Zero))
 = Succ(Succ(Zero))
 ```
 
-We can trace the execution of the `+` operation by substitution easily because it is a *pure function*.
+We can trace the execution of the `+` operation by substitution easily because it is a _pure function_.
 In other words, `+` is deterministic and side-effect free, at least at the level that we concern.
 
 <aside style="margin-top: -60px;">
 
-If you consider the *implementation details* such as the mutation of registers and stack memory,
+If you consider the _implementation details_ such as the mutation of registers and stack memory,
 then there is no pure function,
 although that does not help with our discussion.
 A certain level of abstraction not only helps you,
@@ -191,19 +193,20 @@ but also the compilers to optimize for pure functions.
 
 </aside>
 
-
 ## Analogy to programming
+
 All of the mathematical notations that we talked about have programming counterparts.
 Below is a table comparison between math notation and programming:
 
-| Mathematical Notation | Implementation                                        |
-|-----------------------|-------------------------------------------------------|
+| Mathematical Notation | Implementation                                         |
+| --------------------- | ------------------------------------------------------ |
 | Judgement form        | A function signature of a function that returns `bool` |
-| Judgement             | Function application                                  |
-| Inference Rules       | Function body                                         |
-| Derivation            | Evaluation/Execution                                  |
+| Judgement             | Function application                                   |
+| Inference Rules       | Function body                                          |
+| Derivation            | Evaluation/Execution                                   |
 
 Let's say that we have the judgement form $l \Downarrow e$, we can write it as a function signature
+
 ```ocaml
 val head : (l: nat list, e: option(nat)) -> bool
 ```
@@ -213,6 +216,7 @@ The inference rule of `head` can be view as the function body.
 $$
 \frac{}{\text{head}(\text{Nil}) \Downarrow \text{Nothing}} (\text{head-Nil})
 $$
+
 $$
 \frac{l = \text{Cons}(\text{hd}, \text{tl})}{\text{head}(l) \Downarrow \text{Something(hd)}} (\text{head-Cons})
 $$
@@ -225,6 +229,7 @@ let head (l : nat list, e: option(nat)) =
 ```
 
 And the judgement such as $\text{head(Cons(Succ(Zero), Nil))} \ \text{Succ(Zero)}$ is analogous to function application such as
+
 ```ocaml
 head Cons(Succ(Zero), Nil) Succ(Zero)  (*true*)
 ```
@@ -245,6 +250,7 @@ let head (l : nat list) =
 Nevertheless, it is still useful conceptually to see the connection between the mathematical notation and the actual programming.
 
 ### "Type error" in judgements
+
 It is easy to make "type error" when writing judgments and inference rules.
 For example, the following inference rule is incorrect as `+` is not a natural number, so we cannot put it inside a `Succ`.
 
@@ -258,6 +264,7 @@ On the contrary, when writing judgment and inference rules, you are on your own,
 so building a mental "type checker" helps tremendously in writing judgments correctly.
 
 ## Summary
+
 Judgments and inference rules are the fundamental building block of the formal definition of programming languages,
 and it is hard to find a programming language paper without them.
 Thus, it is crucial to understand how to read and write in such notations.

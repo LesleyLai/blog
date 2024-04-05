@@ -1,13 +1,13 @@
 ---
 id: raii
-title: "Resource management and RAII in C++" 
+title: "Resource management and RAII in C++"
 lang: en
-create: '2016-10-26'
-lastModify: '2016-10-26'
-categories:
-- cpp
-- code
-- opinion
+created: "2016-10-26"
+modified: "2016-10-26"
+tags:
+  - cpp
+  - code
+  - opinion
 ---
 
 Recently, I have encountered a legacy code base at work. There are several tremendous class written like this:
@@ -56,7 +56,6 @@ void calculate ()
 
 The problem is that now all parts of our software need to be compiled by the same compiler which builds legacy shared libraries (In our case, it is Visual Studio 2008, which is quite ancient). The reason is that we destroy memory outside the dll while allocate memory inside the dynamic libraries. Since different compilers may call different memory management functions, the program will crash at the destructor of `data`. This situation is like what happens when we combine `malloc()` and `delete`, but it is a lot more insidious.
 
-
 ### Qt library: example
 
 It is surprised to me that some otherwise well-designed code bases suffer similar problem. For instance, the [Qt Library](http://www.qt-project.org)'s parent-child relationship is a similar resource management strategy. If you have used QT, you must have written code like this:
@@ -77,7 +76,7 @@ As a consequence, Qt, unlike most libraries, cannot be linked by different compi
 
 ### Exception safety problem
 
-If you are programmers develop software solely for POSIX platforms, you may think it is not your business. But I have another point relate to you, too. The point is, those *ad hoc* resource management strategies are innately exception-unsafe. Consider what will happen if `setName` or `setFont` can throw exceptions. An innocuous order change by clients will introduce leak:
+If you are programmers develop software solely for POSIX platforms, you may think it is not your business. But I have another point relate to you, too. The point is, those _ad hoc_ resource management strategies are innately exception-unsafe. Consider what will happen if `setName` or `setFont` can throw exceptions. An innocuous order change by clients will introduce leak:
 
 ```cpp
 child.setName(name);
@@ -94,7 +93,6 @@ child.setFont(font);
 if (!child.valid()) throw Exception{"Invalid tab"}; // May cause leak
 parent.addTab(child);
 ```
-
 
 ## RAII to rescue
 

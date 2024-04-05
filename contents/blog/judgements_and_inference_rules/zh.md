@@ -2,10 +2,10 @@
 id: judgement-inference-rules
 title: "编程语言基础概念（1）：判断(Judgement）与推理规则(Inference Rules)"
 lang: zh
-create: '2020-01-27'
-lastModify: '2020-01-27'
-categories:
-- pl
+created: "2020-01-27"
+modified: "2020-01-27"
+tags:
+  - pl
 ---
 
 在编程语言研究领域中似乎充满了行话、希腊字母和怪异的符号。
@@ -19,7 +19,7 @@ categories:
 
 我们使用判断来断言某个命题的真假。以下是我们在判断中常用的一些符号[^1]：
 
-[^1]: Robert Harper. *Practical Foundations for Programming Languages*. Cambridge University Press, Cambridge, England, Second edition, 2016.
+[^1]: Robert Harper. _Practical Foundations for Programming Languages_. Cambridge University Press, Cambridge, England, Second edition, 2016.
 
 $$
 \begin{aligned}
@@ -75,7 +75,7 @@ $$
 
 <aside style="margin-top: -60px;">
 
-如果你可以流畅的阅读英文，看英文版的技术书籍会更有优势。至少你不用面对如此奇葩的翻译（语法vs文法 😂）。
+如果你可以流畅的阅读英文，看英文版的技术书籍会更有优势。至少你不用面对如此奇葩的翻译（语法 vs 文法 😂）。
 
 </aside>
 
@@ -106,8 +106,8 @@ $$
 <aside style="margin-top: -50px;">
 
 编程语言[Lisp](https://zh.wikipedia.org/wiki/LISP)发明了使用“cons”一词的传统。
-在Lisp中，`cons`可以被理解为构造函数。
-因为List动态类型的特点，`cons`在Lisp中的用途比我们的定义要广阔得多。
+在 Lisp 中，`cons`可以被理解为构造函数。
+因为 List 动态类型的特点，`cons`在 Lisp 中的用途比我们的定义要广阔得多。
 
 </aside>
 
@@ -119,6 +119,7 @@ $$
 $$
 
 ## 导出树（Derivation)
+
 我们可以轻易地给出错误的判断，例如$\text{Succ(Zero)} \Downarrow \text{Zero}$。
 因此，我们需要一种办法来证明判断的正确性，
 ，而**导出树**就是一种证明判断方法。
@@ -132,7 +133,7 @@ $$
 
 如果从下到上阅读导出树，你会发现导出树与程序的运行过程非常类似：
 
-``` ocaml
+```ocaml
 Succ(Zero) + Succ(Zero)
 = Zero + Succ(Succ(Zero))
 = Succ(Succ(Zero))
@@ -140,6 +141,7 @@ Succ(Zero) + Succ(Zero)
 
 因为`+`运算是一个**纯函数（pure function）**,我们可以通过替换法来追溯`+`运算的运行。
 纯函数的意思是
+
 - 在同样的输入下，`+`总是产生同样的输出
 - `+`语义上没有可观察的函数副作用（side effect）
 
@@ -154,15 +156,16 @@ Succ(Zero) + Succ(Zero)
 </aside>
 
 ## 数学概念与编程的联系
+
 我们讨论的所有数学符号都有相应的在编程语言中的构造。
 下表是数学符号和编程之间的一个比较：
 
-| 数学语言 | 编程语言中的实现                                        |
-|-----------------------|-------------------------------------------------------|
-| 判断形式       | 一个返回`bool`的函数声明 |
-| 判断             | 函数调用                                  |
-| 推理规则       | 函数体                                         |
-| 导出树            | 程序运行                                 |
+| 数学语言 | 编程语言中的实现         |
+| -------- | ------------------------ |
+| 判断形式 | 一个返回`bool`的函数声明 |
+| 判断     | 函数调用                 |
+| 推理规则 | 函数体                   |
+| 导出树   | 程序运行                 |
 
 假设我们有一个判断形式$l \Downarrow e$，我们可以把它写作函数声明
 
@@ -175,6 +178,7 @@ val head : (l: nat list, e: option(nat)) -> bool
 $$
 \frac{}{\text{head}(\text{Nil}) \Downarrow \text{Nothing}} (\text{head-Nil})
 $$
+
 $$
 \frac{l = \text{Cons}(\text{hd}, \text{tl})}{\text{head}(l) \Downarrow \text{Something(hd)}} (\text{head-Cons})
 $$
@@ -192,7 +196,7 @@ let head (l : nat list, e: option(nat)) =
 head Cons(Succ(Zero), Nil) Succ(Zero)  (*true*)
 ```
 
-在如上我使用[OCaml](https://ocaml.org/)作为例子，但是这种比较适用于任何编程语言。使用OCaml这样的ML系列语言的优势在于对例如`nat`或者`list`这种归纳定义类型的支持。
+在如上我使用[OCaml](https://ocaml.org/)作为例子，但是这种比较适用于任何编程语言。使用 OCaml 这样的 ML 系列语言的优势在于对例如`nat`或者`list`这种归纳定义类型的支持。
 
 对数学定义的字面翻译会产生非常低效的代码。在一个实际的解释器程序中，你可能会将`head`函数写为：
 
@@ -220,6 +224,7 @@ $$
 因此，建立一个自己心中的“类型检查器”有助于正确地编写推理规则。
 
 ## 总结
+
 判断与推理规则是编程语言正式定义的基本组成部分，
 几乎所有的编程语言相关的论文都离不开它们。
 因此，可以读懂、书写、证明这种形式语言的能力是非常重要的。

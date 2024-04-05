@@ -2,11 +2,11 @@
 id: std-function
 title: "What is std::function in C++, and why do we need them?"
 lang: en
-create: '2021-01-18'
-lastModify: '2021-12-19'
-categories:
-- cpp
-- code
+created: "2021-01-18"
+modified: "2021-12-19"
+tags:
+  - cpp
+  - code
 ---
 
 Yesterday, someone in the [#include<C++>](https://www.includecpp.org/discord/) discord server asked the following question:
@@ -85,11 +85,11 @@ struct TaskQueue {
 
 To make `func` accepts both `lambda` and `lambda2`,
 `std::function` needs to have constructors that take any function object or plain function that satisfies its signature.
-And we need to perform *type erasure* to achieve this behavior.
+And we need to perform _type erasure_ to achieve this behavior.
 
 There are various techniques to implement type erasure in C++,
 and it is not a topic I can fit into this post.
 But the high-level idea is that `std::function` needs some function pointer that can invoke the invocable and some storage space to store lambda captures (or data members of a function object).
 The data need to be allocated on the heap since lambda expressions (or invocable classes) can have arbitrary sized capture.
-However, all major `std::function` implementations also perform *small buffer optimization* if your lambda is small enough to fit into a predefined capacity.
+However, all major `std::function` implementations also perform _small buffer optimization_ if your lambda is small enough to fit into a predefined capacity.
 In that case, all data can be allocated directly inside the `std::function` object itself, and no additional heap allocation is performed.

@@ -2,12 +2,12 @@
 id: tail-recursion
 title: "Tail Recursion Explanation"
 lang: en
-create: '2019-01-22'
-lastModify: '2019-01-22'
-categories:
-- functional
-- code
-- elm
+created: "2019-01-22"
+modified: "2019-01-22"
+tags:
+  - functional
+  - code
+  - elm
 ---
 
 [Tail-recursion](https://en.wikipedia.org/wiki/Tail_call) is an important concept to understand before we can analyse the behavior of a functional program. I will try to illustrate what tail recursion is with an [Elm](https://elm-lang.org/)-like pseudocode. Though you don't need to know any Elm to understand this post.
@@ -16,7 +16,7 @@ categories:
 
 Consider the following function:
 
-``` elm
+```elm
 factorial: Int -> Int
 factorial n =
     if n == 0
@@ -43,9 +43,10 @@ Because we multiply numbers to the inner-function call result, we need a place t
 Tail recursion is a space optimization for the recursive calls. Unlike most optimizations, it changes the asymptotic behavior of the memory usage from $\mathcal{O}(n)$ to $\mathcal{O}(1)$. The idea is that if a recursive call itself is the last action in another function call, the function's stack frame can be reused. Function calls in the tail position of another function call are called tail call.
 
 ## Accumulators - Technique for implement tail recursive functions
+
 A nice technique to transform naive recursive functions to tail recursive counterparts is using accumulators. For example, here is a tail recursive version of `factorial`:
 
-``` elm
+```elm
 factorial: Int -> Int
 factorial n =
     let helper acc n =
@@ -57,6 +58,7 @@ factorial n =
 Using accumulators implies an iterative process that we use all the times with loops. Indeed, tail recursions will always transform into the same kind of low-level code as the loops by a compiler.
 
 ## Continuation-passing style
+
 Accumulators are not always working. There is another technique called [continuation-passing style](https://en.wikipedia.org/wiki/Continuation-passing_style) (abbreviate as CPS) to transform more complex recursive functions. Here is our `factorial()` function in continuation-passing style:
 
 ```elm
@@ -77,4 +79,5 @@ As you see, there is a lot of boilerplate with no apparent benefit. Writing code
 Note that the Elm compiler cannot compile code like this at all and would generate infinite recursion at the time of writing, but you can try this function in some other languages.
 
 ## Afterthought
+
 Since tail recursion is an optimization, not all implementations of all programming language will implement them. For example, there is no mandatory tail-call elimination in the C++ Standard at the time of writing, though all the mainstream compilers (MSVC, Clang, and GCC) will do it anyway. The story is different in functional programming languages. Those languages usually will mandate tail-call elimination if you write a tail-recursive function. The reason is that those languages usually discourage loop or have no loop at all, so tail-call elimination is necessary to achieve a decent performance in a lot of cases. To be a good citizen in those languages, you should try to write recursive functions tail-recursive (at least on the easy cases where you can transform them with accumulators.)

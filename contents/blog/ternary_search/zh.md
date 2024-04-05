@@ -2,10 +2,10 @@
 id: ternary-search
 title: "Fun with Ternary Search（暂未翻译）"
 lang: zh
-create: '2021-12-07'
-lastModify: '2021-12-07'
-categories:
-- algorithms
+created: "2021-12-07"
+modified: "2021-12-07"
+tags:
+  - algorithms
 ---
 
 This year is my first year doing the [Advent of Code](https://adventofcode.com/2021) challenge, and today (2021 Day 7)'s challenge is a fun one.
@@ -31,8 +31,10 @@ and a slightly better way is to evaluate the function until we find where the re
 Both strategies requires `O(n)` time, but since our data are nicely "sorted," we can do better.
 
 ## Ternary Search
+
 Ternary Search, similar to binary search, expliots our data's pattern, and can achieve `O(log n)` asymptotic time.
 Wikipedia describe it as a technique for "finding the minimum or maximum of a unimodal function," which is exactly the function we want to solve. The basic idea is simple: if we partition our domain into three segment by two point: `left` and `right`, then we can evaluate the function at `left` and `right` and get several cases:
+
 - `f(left) < f(right)`
 - `f(left) > f(right)`
 - `f(left) == f(right)`

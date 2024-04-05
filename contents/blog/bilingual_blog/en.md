@@ -2,13 +2,13 @@
 id: bilingual-blog
 title: "How I create bilingual functionality of this blog in plain Typescript"
 lang: en
-create: '2022-01-01'
-lastModify: '2022-01-24'
-categories:
-- code
-- i18n
-- typescript
-- react
+created: "2022-01-01"
+modified: "2022-01-24"
+tags:
+  - code
+  - i18n
+  - typescript
+  - react
 ---
 
 Happy new year 2022, everyone!
@@ -23,6 +23,7 @@ And I heavily rely on Typescript's remarkable features in its type system for my
 My solution is probably not the most "proper" or scalable by professional standard,
 but I think it fits the particular use case of a personal blog well.
 It provides several significant advantages:
+
 - The type system guarantees that it is impossible to forget to translate an entry
 - It is very flexible as I can have arbitrarily different Javascript for different languages (Since this website is implemented in React, I can use arbitrary JSX [^1]). This is a useful property when I only want to render certain UI elements in a selected language (for example, Twitter is banned in China, so I removed my Twitter link on the Chinese version of this site.)
 - I don't need to learn an i18n library just for my blog

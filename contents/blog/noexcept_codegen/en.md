@@ -2,11 +2,11 @@
 id: noexcept-codegen
 title: "The surprising codegen impact of noexcept"
 lang: en
-create: '2020-03-02'
-lastModify: '2020-09-20'
-categories:
-- code
-- cpp
+created: "2020-03-02"
+modified: "2020-09-20"
+tags:
+  - code
+  - cpp
 ---
 
 Would spamming the `noexcept` keyword make your code faster? Sometimes. But not always. Consider the following snippet of code:

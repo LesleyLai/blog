@@ -2,16 +2,16 @@
 id: vk-khr-dynamic-rendering
 title: "Vulkan动态渲染（dynamic rendering）教程"
 lang: zh
-create: '2022-01-18'
-lastModify: '2022-01-18'
-categories:
-- code
-- graphics
-- vulkan
+created: "2022-01-18"
+modified: "2022-01-18"
+tags:
+  - code
+  - graphics
+  - vulkan
 ---
 
-[动态渲染（dynamic rendering）](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VK_KHR_dynamic_rendering.html)是[两个月前被刚刚推出](https://www.khronos.org/blog/streamlining-render-passes)的一个新的Vulkan扩展。
-有了它，我们在Vulkan中可以省去创建渲染通道对象（`VkRenderPass`）以及帧缓冲存储器对象（`VkFramebuffer`）的代码。
+[动态渲染（dynamic rendering）](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VK_KHR_dynamic_rendering.html)是[两个月前被刚刚推出](https://www.khronos.org/blog/streamlining-render-passes)的一个新的 Vulkan 扩展。
+有了它，我们在 Vulkan 中可以省去创建渲染通道对象（`VkRenderPass`）以及帧缓冲存储器对象（`VkFramebuffer`）的代码。
 
 <!-- end -->
 
@@ -19,31 +19,31 @@ categories:
   <img src="renderpass_in_trash.jpg" alt="A trashbin that contains VkRenderPass and VkFramebuffer" />
 </div>
 
-在动态渲染被推出以前，为了写一个Vulkan渲染器，我们总是需要创建渲染通道对象。
-渲染通道的API并不容易使用，我们也通常不需要使用多个子通道（subpasses）或者是多个输入附件（input attachments）。
-相比之下，DirectX 12 API将渲染通道作为一个可选项。只有当程序员需要对某些特定移动设备进行优化时才会使用。
+在动态渲染被推出以前，为了写一个 Vulkan 渲染器，我们总是需要创建渲染通道对象。
+渲染通道的 API 并不容易使用，我们也通常不需要使用多个子通道（subpasses）或者是多个输入附件（input attachments）。
+相比之下，DirectX 12 API 将渲染通道作为一个可选项。只有当程序员需要对某些特定移动设备进行优化时才会使用。
 
-最近，我开始在Rust中使用[ash crate](https://github.com/MaikKlein/ash)从头开始编写一个新的Vulkan渲染器，
+最近，我开始在 Rust 中使用[ash crate](https://github.com/MaikKlein/ash)从头开始编写一个新的 Vulkan 渲染器，
 我也很自然地想要试试这个新的动态渲染扩展。
 现在关于这个扩展的在线资源还很少，也没有关于使用它的教程。
 我最后选择直接阅读[动态渲染扩展的技术规范](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VK_KHR_dynamic_rendering.html)。
 
 我写这篇教程，希望能够让这个扩展被更多的人所了解与掌握。
-为了使文章有更广泛的受众，我使用了Vulkan C API而不是Rust binding来写这篇教程。
-我使用的Rust `ash` crate和Vulkan C API有非常明确的一一对应关系，
-但是尽管如此，如果我在“翻译”Rust代码到C++的过程中犯了什么错误，请联系我让我知道。
+为了使文章有更广泛的受众，我使用了 Vulkan C API 而不是 Rust binding 来写这篇教程。
+我使用的 Rust `ash` crate 和 Vulkan C API 有非常明确的一一对应关系，
+但是尽管如此，如果我在“翻译”Rust 代码到 C++的过程中犯了什么错误，请联系我让我知道。
 
 ## 初始化动态渲染
 
-VK_KHR_dynamic_rendering是一个设备（device）扩展，所以我们在创建设备时需要把它和其他诸如`VK_KHR_swapchain`的设备扩展一起开启。
+VK_KHR_dynamic_rendering 是一个设备（device）扩展，所以我们在创建设备时需要把它和其他诸如`VK_KHR_swapchain`的设备扩展一起开启。
 
-### 检查在你的GPU是否支持动态渲染扩展
+### 检查在你的 GPU 是否支持动态渲染扩展
 
 像所有其他扩展一样，我们可以通过`vkEnumerateDeviceExtensionProperties`检查我们的物理设备是否支持`VK_KHR_dynamic_rendering`。
-如果我们从`vkEnumerateDeviceExtensionProperties`得到的结果不包含`VK_KHR_dynamic_rendering`，我们需要更新显卡驱动程序以及[Vulkan SDK和运行时库（runtime）](https://vulkan.lunarg.com/sdk/home)。
+如果我们从`vkEnumerateDeviceExtensionProperties`得到的结果不包含`VK_KHR_dynamic_rendering`，我们需要更新显卡驱动程序以及[Vulkan SDK 和运行时库（runtime）](https://vulkan.lunarg.com/sdk/home)。
 
-**注意**：在我写这篇文章的时候（2021年1月），`VK_KHR_dynamic_rendering`才刚刚被发表没多久，所以有可能你显卡上的最新驱动仍然不支持它。
-当我写这篇文章时，我甚至需要为我的Nvidia显卡安装一个[“Vulkan测试版驱动”](https://developer.nvidia.com/vulkan-driver)，不过现在已经不需要了。
+**注意**：在我写这篇文章的时候（2021 年 1 月），`VK_KHR_dynamic_rendering`才刚刚被发表没多久，所以有可能你显卡上的最新驱动仍然不支持它。
+当我写这篇文章时，我甚至需要为我的 Nvidia 显卡安装一个[“Vulkan 测试版驱动”](https://developer.nvidia.com/vulkan-driver)，不过现在已经不需要了。
 
 ### 加载动态渲染扩展
 
@@ -75,14 +75,14 @@ const VkDeviceCreateInfo device_create_info = {
 
 <aside style="margin-top: -70px;">
 
-如果你使用C++来学习Vulkan的话，你可以试试使用[vk-bootstrap](https://github.com/charles-lunarg/vk-bootstrap)库。
-它会让Vulkan初始化的过程简单许多。
+如果你使用 C++来学习 Vulkan 的话，你可以试试使用[vk-bootstrap](https://github.com/charles-lunarg/vk-bootstrap)库。
+它会让 Vulkan 初始化的过程简单许多。
 
 </aside>
 
 ## 在命令缓冲区（command buffer）中使用动态渲染
 
-在你的Vulkan渲染器中，你的命令缓冲区录制中很可能有类似以下的代码：
+在你的 Vulkan 渲染器中，你的命令缓冲区录制中很可能有类似以下的代码：
 
 ```cpp
 VK_CHECK(vkBeginCommandBuffer(command_buffer, &command_buffer_begin_info));
@@ -193,7 +193,7 @@ const VkGraphicsPipelineCreateInfo pipeline_create_info {
 ## 图像布局转换 (Image layout transition)
 
 如果一切都那么简单，我就会对这个扩展非常满意。
-但是事实上render pass对象的确为我们做了一些有用的事。
+但是事实上 render pass 对象的确为我们做了一些有用的事。
 
 在我们现在的代码下，每帧验证层（validation layer）都会产生如下的警报：
 
@@ -277,16 +277,17 @@ vkCmdPipelineBarrier(
 // draw calls
 ```
 
-几乎所有的Vulkan渲染器都有辅助函数来简化这些图像布局转换代码，但即便如此要指定所有的图像转换参数还是挺麻烦的。
+几乎所有的 Vulkan 渲染器都有辅助函数来简化这些图像布局转换代码，但即便如此要指定所有的图像转换参数还是挺麻烦的。
 对于深度缓冲（depth buffer）以及模版缓冲（stencil buffer），我们也需要进行类似的图像布局转换。
 
 ## 最后的话
 
 在这个简单的情况下，动态渲染扩展似乎和创建渲染通道以及帧缓冲存储器对象一样繁琐。
-不过在multi-pass渲染中，因为同步（Synchronization）的复杂度，动态渲染可能会变得更有价值。
-Khronos也可能在未来将动态渲染扩展改善地更容易使用。
+不过在 multi-pass 渲染中，因为同步（Synchronization）的复杂度，动态渲染可能会变得更有价值。
+Khronos 也可能在未来将动态渲染扩展改善地更容易使用。
 
 ## 致谢
+
 特别感谢我的朋友[Charles Giessen](https://github.com/cdgiessen)对这篇文章的校对和编辑!
 
 除此之外，在这篇文章发布后，许多资深图形程序员也提供了宝贵的见解和反馈。

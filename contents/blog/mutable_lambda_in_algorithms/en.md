@@ -2,12 +2,12 @@
 id: mutable-lambda-in-algorithms
 title: "Beware passing mutable lambda to STL algorithms."
 lang: en
-create: '2020-09-30'
-lastModify: '2020-09-30'
-categories:
-- cpp
-- code
-- opinion
+created: "2020-09-30"
+modified: "2020-09-30"
+tags:
+  - cpp
+  - code
+  - opinion
 ---
 
 Recently, I have seen some people passing complex mutable lambdas to standard algorithms.
@@ -20,8 +20,8 @@ First, "no raw-loop" should be treated as an ideal instead of dogma.
 Second, even though STL algorithms cannot cover every use case,
 we can always write algorithms to fit our needs.
 
-
 I expressed this thoughts in the following tweet:
+
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Random thought: if you want to pass a complicated mutable lambda to a C++ standard algorithm, you are using the wrong algorithm.</p>&mdash; Lesley Lai (@LesleyLai6) <a href="https://twitter.com/LesleyLai6/status/1307897166455648258?ref_src=twsrc%5Etfw">September 21, 2020</a></blockquote>
 
 And this post tries to expend this thought a little bit.
@@ -29,7 +29,7 @@ And this post tries to expend this thought a little bit.
 ## Mutable Lambdas destroy the beauty of `<algorithms>`
 
 Why we use `<algorithm>`? Is it because it is "elegant" or "modern?"
-Or is it because "*Some experts said so*?"
+Or is it because "_Some experts said so_?"
 Both are horrible reasons to prefer `<algorithm>` over loops.
 For me,
 `<algorithm>` provides the following benefits:
@@ -41,7 +41,7 @@ For me,
 
 Mutable lambda destroys all of them.
 First, STL algorithms encapsulate mutable states into small functions.
-Nevertheless, we only need *mutable* lambda when our algorithm fails to encapsulate all mutable logics.
+Nevertheless, we only need _mutable_ lambda when our algorithm fails to encapsulate all mutable logics.
 Second,
 since the mutable states and complex control flow are back,
 we can no longer call our implementation declarative.
@@ -51,11 +51,11 @@ the algorithm does not express our intent.
 Fourth,
 since the algorithm does not express our intent,
 even though the algorithm itself is correct,
-there can still be bugs lure in our own *hard-to-understand* code.
+there can still be bugs lure in our own _hard-to-understand_ code.
 
 ## A LeetCode example
 
-Let's look at the following C++ solution to the [LeetCode Two Sum problem](https://leetcode.com/problems/two-sum/) by [Yacob Cohen-Arazi](https://twitter.com/kobi_ca). The problem is worded as follows: "*Given an array of integers `nums` and an integer `target`, return indices of the two numbers such that they add up to target.*" and LeetCode provides the type signature of the `twoSum` function that we cannot change.
+Let's look at the following C++ solution to the [LeetCode Two Sum problem](https://leetcode.com/problems/two-sum/) by [Yacob Cohen-Arazi](https://twitter.com/kobi_ca). The problem is worded as follows: "_Given an array of integers `nums` and an integer `target`, return indices of the two numbers such that they add up to target._" and LeetCode provides the type signature of the `twoSum` function that we cannot change.
 
 ```cpp
 std::vector<int> twoSum(std::vector<int>& nums, int target) {
@@ -106,7 +106,7 @@ std::vector<int> twoSum(std::vector<int>& nums, int target) {
 This loop version is shorter, easier to understand, and only contains two mutable states: the map `nums_map` and index `i`.
 
 The `<algorithm>` version lands badly here because `std::find_if` does not match this problem's intent.
-`std::find_if` finds a *single* element that matches a predicator,
+`std::find_if` finds a _single_ element that matches a predicator,
 but our situation requires to find two elements that match a predicator together.
 As a result,
 it does not provide enough useful functionalities for this problem
@@ -177,7 +177,7 @@ with this kind of lambda-heavy style of programming:
 ```cpp
 template <std::input_iterator Itr, std::input_iterator Itr2, class T>
 auto inner_product_till(
-        Itr first1, Itr last1, Itr2 first2, const T upper_bound) 
+        Itr first1, Itr last1, Itr2 first2, const T upper_bound)
    -> std::size_t
 {
   std::size_t i = 0;
