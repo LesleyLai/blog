@@ -1,25 +1,32 @@
 ---
 interface Props {
   title: string;
+  lang: string;
 }
 
-const { title } = Astro.props;
+const { title, lang } = Astro.props;
 
 import "../styles/global.css";
+
+function get_site_name(lang: string) {
+  return lang == "zh" ? "赖思理的个人网站" : "Lesley Lai";
+}
+
+// Is home page if title is empty
+const isHome = title == "";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
+    <meta name="author" content="Lesley Lai" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+    <title>{isHome ? get_site_name(lang) : `${title} | ${get_site_name(lang)}`}</title>
   </head>
   <body>
     <slot />
   </body>
 </html>
-<style is:global></style>
