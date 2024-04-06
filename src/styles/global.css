@@ -52,37 +52,36 @@ html {
   text-size-adjust: none;
 }
 
+/* more opinionated resets */
+body {
+  /* base font size */
+  font-size: 100%;
+}
 
-/*
- * Global Styles
- */
+ul, ol {
+  list-style: none;
+  padding: 0;
+}
 
-/* 
+
+a {
+  text-decoration: none;
+}
+
+/* global variables */
 :root {
-  --accent: 136, 58, 234;
-  --accent-light: 224, 204, 250;
-  --accent-dark: 49, 10, 101;
-  --accent-gradient: linear-gradient(45deg,
-      rgb(var(--accent)),
-      rgb(var(--accent-light)) 30%,
-      white 60%);
+  --max-width: 1440px;
 }
 
-html {
-  font-family: system-ui, sans-serif;
-  background: #13151a;
-  background-size: 224px;
+/* theme: default is light theme */
+:root {
+  --fg-color: #000000;
+  --highlight-color: #b509ac;
+  --divider-color: rgba(0, 0, 0, 0.1);
 }
 
-code {
-  font-family:
-    Menlo,
-    Monaco,
-    Lucida Console,
-    Liberation Mono,
-    DejaVu Sans Mono,
-    Bitstream Vera Sans Mono,
-    Courier New,
-    monospace;
+.darkMode {
+  --fg-color: #ffffff;
+  --highlight-color: #00aaaa;
+  --divider-color: #424246;
 }
-*/

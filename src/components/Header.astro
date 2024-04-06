@@ -1,0 +1,78 @@
+---
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+---
+
+<header>
+  <div class="container">
+    <nav aria-label="Main menu">
+      <div class="home">
+        <a href="/">Lesley Lai <span lang="zh">赖思理</span></a>
+      </div>
+      <ul>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Projects</a></li>
+        <li><a href="#">Notes</a></li>
+        <li><a href="#">Talks</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </nav>
+    <div class="header-right">
+      <div>Light Mode</div>
+      <div>English</div>
+    </div>
+  </div>
+</header>
+
+<style>
+  header {
+    border-bottom: 1px solid var(--divider-color);
+  }
+
+  .container {
+    max-width: var(--max-width);
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-between;
+  }
+
+  nav {
+    display: flex;
+  }
+
+  .home {
+    font-size: 2em;
+    margin-right: 1.5rem;
+  }
+
+  .home > a {
+    color: var(--fg-color);
+    font-weight: bold;
+  }
+
+  ul {
+    display: flex;
+    margin: auto;
+  }
+
+  ul > li > a {
+    transition: 0.35s;
+    padding: 0.5rem 1rem;
+    color: var(--fg-color);
+  }
+
+  ul > li > a:hover {
+    color: var(--highlight-color);
+  }
+
+  .header-right {
+    display: flex;
+  }
+
+  .header-right > div {
+    margin: auto 5px;
+  }
+</style>
