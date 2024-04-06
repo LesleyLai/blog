@@ -1,0 +1,31 @@
+---
+// Layout for "normal" pages that are not blog posts or notes such as index or about
+
+import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+  title: string;
+  lang: string;
+}
+
+const { title, lang } = Astro.props;
+---
+
+<BaseLayout lang={lang} title={title}>
+  <main>
+    <slot />
+  </main>
+</BaseLayout>
+
+<style>
+  main {
+    max-width: var(--content-width);
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  main :global(p) {
+    margin-bottom: 1rem;
+  }
+</style>

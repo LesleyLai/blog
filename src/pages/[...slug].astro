@@ -16,7 +16,7 @@ const { Content } = await entry.render();
 
 export const langFromSlug = (slug: CollectionEntry<"blog">["slug"]) => slug.split("/")[0];
 
-import Layout from "../layouts/Layout.astro";
+import Layout from "../layouts/BaseLayout.astro";
 ---
 
 <Layout title={entry.data.title} lang={langFromSlug(entry.slug)}>

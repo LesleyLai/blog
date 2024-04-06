@@ -63,14 +63,31 @@ ul, ol {
   padding: 0;
 }
 
-
 a {
   text-decoration: none;
 }
 
+html {
+  font-size: 16px;
+}
+
+
+@media (min-width: 48em) {
+  html {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 64em) {
+  html {
+    font-size: 20px;
+  }
+}
+
 /* global variables */
 :root {
-  --max-width: 1440px;
+  --max-width: 1200px;
+  --content-width: 769px;
 }
 
 /* theme: default is light theme */
