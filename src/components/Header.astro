@@ -1,4 +1,6 @@
 ---
+import ThemeToggle from "./ThemeToggle.astro";
+
 interface Props {
   lang: string;
 }
@@ -21,7 +23,7 @@ const { lang } = Astro.props;
       </ul>
     </nav>
     <div class="header-right">
-      <div>Light Mode</div>
+      <ThemeToggle />
       <div>English</div>
     </div>
   </div>
@@ -59,7 +61,7 @@ const { lang } = Astro.props;
   }
 
   ul > li > a {
-    transition: 0.35s;
+    transition: color 0.35s;
     padding: 0.5rem 1rem;
     color: var(--fg-color);
   }
