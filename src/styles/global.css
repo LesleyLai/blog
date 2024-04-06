@@ -22,6 +22,8 @@
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  background-color: var(--bg-color);
+  color: var(--fg-color);
 }
 
 /* Improve media defaults */
@@ -93,12 +95,14 @@ html {
 /* theme: default is light theme */
 :root {
   --fg-color: #000000;
+  --bg-color: #ffffff;
   --highlight-color: #b509ac;
   --divider-color: rgba(0, 0, 0, 0.1);
 }
 
-.darkMode {
+.dark {
   --fg-color: #ffffff;
+  --bg-color: #000000;
   --highlight-color: #00aaaa;
   --divider-color: #424246;
 }
