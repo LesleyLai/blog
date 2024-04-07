@@ -53,22 +53,9 @@ html {
 }
 
 /* more opinionated resets */
-body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-}
-
-ul, ol {
-  list-style: none;
-  padding: 0;
-}
-
-a {
-  text-decoration: none;
-}
-
 html {
   font-size: 16px;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 
@@ -84,6 +71,26 @@ html {
   }
 }
 
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+ul, ol {
+  list-style: none;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: var(--link-color);
+}
+
+a:hover {
+  color: var(--link-hover-color);
+}
+
 /* global variables */
 :root {
   --max-width: 1200px;
@@ -96,6 +103,9 @@ html {
   --bg-color: #ffffff;
   --highlight-color: #b509ac;
   --divider-color: rgba(0, 0, 0, 0.1);
+
+  --link-color: #4183c4;
+  --link-hover-color: #0af;
 }
 
 .dark {
@@ -103,4 +113,12 @@ html {
   --bg-color: #1c1c1c;
   --highlight-color: #00aaaa;
   --divider-color: #424246;
+
+  --link-color: #87cefa;
+  --link-hover-color: #a7eefb;
+}
+
+/* lower image brightness in dark mode */
+.dark img {
+  filter: brightness(.9) contrast(1.1);
 }

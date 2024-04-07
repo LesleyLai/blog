@@ -12,14 +12,14 @@ const { lang } = Astro.props;
   <div class="container">
     <nav aria-label="Main menu">
       <div class="home">
-        <a href="/">Lesley Lai <span lang="zh">赖思理</span></a>
+        <a href="/" data-astro-prefetch="load">Lesley Lai <span lang="zh">赖思理</span></a>
       </div>
       <ul>
         <li><a href="#">Blog</a></li>
         <li><a href="#">Projects</a></li>
         <li><a href="#">Notes</a></li>
         <li><a href="#">Talks</a></li>
-        <li><a href=`/${lang}/about`>About</a></li>
+        <li><a href=`/${lang}/about` data-astro-prefetch="load">About</a></li>
       </ul>
     </nav>
     <div class="header-right">
