@@ -1,5 +1,6 @@
 ---
 import ThemeToggle from "./ThemeToggle.astro";
+import HeaderLink from "./HeaderLink.astro";
 
 interface Props {
   lang: string;
@@ -15,11 +16,13 @@ const { lang } = Astro.props;
         <a href="/" data-astro-prefetch="load">Lesley Lai <span lang="zh">赖思理</span></a>
       </div>
       <ul>
-        <li><a href="#">Blog</a></li>
-        <li><a href="#">Projects</a></li>
-        <li><a href="#">Notes</a></li>
-        <li><a href="#">Talks</a></li>
-        <li><a href=`/${lang}/about` data-astro-prefetch="load">About</a></li>
+        <li><HeaderLink href="#">Blog</HeaderLink></li>
+        <li><HeaderLink href="#">Projects</HeaderLink></li>
+        <li><HeaderLink href="#">Notes</HeaderLink></li>
+        <li><HeaderLink href="#">Talks</HeaderLink></li>
+        <li>
+          <HeaderLink href=`/${lang}/about`>About</HeaderLink>
+        </li>
       </ul>
     </nav>
     <div class="header-right">
@@ -58,16 +61,6 @@ const { lang } = Astro.props;
   ul {
     display: flex;
     margin: auto;
-  }
-
-  ul > li > a {
-    transition: color 0.35s;
-    padding: 0.5rem 1rem;
-    color: var(--text-color);
-  }
-
-  ul > li > a:hover {
-    color: var(--highlight-color);
   }
 
   .header-right {

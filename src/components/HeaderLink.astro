@@ -1,0 +1,34 @@
+---
+interface Props {
+  href: string;
+  children: unknown;
+}
+
+const current_path = Astro.url.pathname;
+
+const { href } = Astro.props;
+
+const linking_to_current_path = current_path == href;
+---
+
+<a class={linking_to_current_path ? "highlight" : undefined} href={href} data-astro-prefetch="load"
+  ><slot /></a
+>
+
+<style>
+  a {
+    transition: color 0.35s;
+    padding: 0.5rem 1rem;
+    color: var(--text-color);
+  }
+
+  a:hover {
+    color: var(--highlight-color);
+  }
+
+  a.highlight {
+    color: var(--highlight-color);
+    border-bottom: 2px solid;
+    border-color: var(--highlight-color);
+  }
+</style>
