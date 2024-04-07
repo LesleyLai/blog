@@ -22,8 +22,6 @@
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  background-color: var(--bg-color);
-  color: var(--fg-color);
 }
 
 /* Improve media defaults */
@@ -56,8 +54,8 @@ html {
 
 /* more opinionated resets */
 body {
-  /* base font size */
-  font-size: 100%;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 ul, ol {
@@ -94,15 +92,15 @@ html {
 
 /* theme: default is light theme */
 :root {
-  --fg-color: #000000;
+  --text-color: #000000;
   --bg-color: #ffffff;
   --highlight-color: #b509ac;
   --divider-color: rgba(0, 0, 0, 0.1);
 }
 
 .dark {
-  --fg-color: #ffffff;
-  --bg-color: #000000;
+  --text-color: #e8e8e8;
+  --bg-color: #1c1c1c;
   --highlight-color: #00aaaa;
   --divider-color: #424246;
 }
