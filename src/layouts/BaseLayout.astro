@@ -2,6 +2,7 @@
 interface Props {
   title: string;
   lang: string;
+  children: unknown;
 }
 
 const { title, lang } = Astro.props;
@@ -9,6 +10,7 @@ const { title, lang } = Astro.props;
 import Header from "../components/Header.astro";
 import "../styles/global.css";
 
+// TODO: temporary hack
 function get_site_name(lang: string) {
   return lang == "zh" ? "赖思理的个人网站" : "Lesley Lai";
 }
