@@ -2,10 +2,11 @@
 // Layout for "normal" pages that are not blog posts or notes such as index or about
 
 import BaseLayout from "./BaseLayout.astro";
+import type { Language } from "../i18n/i18n";
 
 interface Props {
   title: string;
-  lang: string;
+  lang: Language;
   children: unknown;
 }
 

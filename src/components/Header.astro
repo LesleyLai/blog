@@ -2,8 +2,10 @@
 import ThemeToggle from "./ThemeToggle.astro";
 import HeaderLink from "./HeaderLink.astro";
 
+import type { Language } from "../i18n/i18n";
+
 interface Props {
-  lang: string;
+  lang: Language;
 }
 
 const { lang } = Astro.props;
