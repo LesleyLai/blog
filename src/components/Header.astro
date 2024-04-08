@@ -13,7 +13,9 @@ const { lang } = Astro.props;
   <div class="container">
     <nav aria-label="Main menu">
       <div class="home">
-        <a href="/" data-astro-prefetch="load">Lesley Lai <span lang="zh">赖思理</span></a>
+        <a href="/" data-astro-prefetch="load"
+          ><span class="english-name">Lesley Lai</span> <span lang="zh">赖思理</span></a
+        >
       </div>
       <ul>
         <li><HeaderLink href="#">Blog</HeaderLink></li>
@@ -34,6 +36,7 @@ const { lang } = Astro.props;
 
 <style>
   header {
+    background-color: var(--header-bg-color);
     border-bottom: 1px solid var(--divider-color);
   }
 
@@ -49,12 +52,17 @@ const { lang } = Astro.props;
   }
 
   .home {
-    font-size: 2em;
+    font-size: 1.6em;
+    margin-bottom: 0.2rem;
+    margin-top: 0.2rem;
     margin-right: 1.5rem;
   }
 
   .home > a {
     color: var(--text-color);
+  }
+
+  .home .english-name {
     font-weight: bold;
   }
 
