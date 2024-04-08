@@ -1,0 +1,47 @@
+---
+// Latest posts shown on the home page
+
+import { getCollection } from "astro:content";
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+
+const blogPosts = await getCollection("blog");
+const blogPostsThisLang = blogPosts.filter((post) => post.slug.startsWith(`en`));
+blogPostsThisLang.sort((lhs, rhs) => rhs.data.created.getTime() - lhs.data.created.getTime());
+
+const mostRencentPosts = blogPostsThisLang.slice(0, 3);
+
+const options: Intl.DateTimeFormatOptions = {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+};
+const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
+---
+
+<table>
+  <tbody>
+    {
+      mostRencentPosts.map((post) => (
+        <tr>
+          <th scope="row">{formatDate(post.data.created)}</th>
+          <td>
+            <a href={post.slug} data-astro-prefetch>
+              {post.data.title}
+            </a>
+          </td>
+        </tr>
+      ))
+    }
+  </tbody>
+</table>
+
+<style>
+  th {
+    width: 20%;
+  }
+</style>

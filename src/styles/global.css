@@ -55,8 +55,9 @@ html {
 /* more opinionated resets */
 html {
   font-size: 16px;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
 }
+
 
 
 @media (min-width: 48em) {
@@ -82,40 +83,46 @@ ul, ol {
   padding: 0;
 }
 
+p {
+  margin-bottom: 1rem;
+}
+
 a {
   text-decoration: none;
   color: var(--link-color);
 }
 
 a:hover {
-  color: var(--link-hover-color);
+  color: var(--highlight-color);
 }
 
 /* global variables */
 :root {
   --max-width: 1200px;
-  --content-width: 769px;
+  --content-width: 850px;
 }
 
 /* theme: default is light theme */
 :root {
-  --text-color: #000000;
-  --bg-color: #ffffff;
-  --highlight-color: #b509ac;
+  --text-color: #000;
+  --bg-color: #fbfaf7;
+  --header-bg-color: #fff;
+  --content-bg-color: #fff;
+  --highlight-color: #0af;
   --divider-color: rgba(0, 0, 0, 0.1);
 
   --link-color: #4183c4;
-  --link-hover-color: #0af;
 }
 
 .dark {
   --text-color: #e8e8e8;
-  --bg-color: #1c1c1c;
-  --highlight-color: #00aaaa;
+  --bg-color: #0b0b0b;
+  --header-bg-color: #0b0b0b;
+  --content-bg-color: #1c1c1c;
+  --highlight-color: #0cc;
   --divider-color: #424246;
 
-  --link-color: #87cefa;
-  --link-hover-color: #a7eefb;
+  --link-color: #0aa;
 }
 
 /* lower image brightness in dark mode */

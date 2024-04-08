@@ -11,9 +11,9 @@ const { href } = Astro.props;
 const linking_to_current_path = current_path == href;
 ---
 
-<a class={linking_to_current_path ? "highlight" : undefined} href={href} data-astro-prefetch="load"
-  ><slot /></a
->
+<a class={linking_to_current_path ? "highlight" : undefined} href={href} data-astro-prefetch="load">
+  <slot />
+</a>
 
 <style>
   a {
