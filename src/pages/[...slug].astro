@@ -14,9 +14,18 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await entry.render();
 
-export const langFromSlug = (slug: CollectionEntry<"blog">["slug"]) => slug.split("/")[0];
-
 import Layout from "../layouts/BaseLayout.astro";
+import type { Language } from "../i18n/i18n";
+import { isLanguage } from "../i18n/i18n";
+
+export const langFromSlug = (slug: CollectionEntry<"blog">["slug"]): Language => {
+  let lang = slug.split("/")[0];
+  if (!isLanguage(lang)) {
+    throw new Error(`Unknown language contained in slug ${slug}`);
+  }
+
+  return lang;
+};
 ---
 
 <Layout title={entry.data.title} lang={langFromSlug(entry.slug)}>

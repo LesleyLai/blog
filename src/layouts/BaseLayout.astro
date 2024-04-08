@@ -1,7 +1,9 @@
 ---
+import type { Language } from "../i18n/i18n";
+
 interface Props {
   title: string;
-  lang: string;
+  lang: Language;
   children: unknown;
 }
 
@@ -11,7 +13,7 @@ import Header from "../components/Header.astro";
 import "../styles/global.css";
 
 // TODO: temporary hack
-function get_site_name(lang: string) {
+function get_site_name(lang: Language) {
   return lang == "zh" ? "赖思理的个人网站" : "Lesley Lai";
 }
 

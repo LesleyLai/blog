@@ -3,8 +3,10 @@
 
 import { getCollection } from "astro:content";
 
+import type { Language } from "../i18n/i18n";
+
 interface Props {
-  lang: string;
+  lang: Language;
 }
 
 const { lang } = Astro.props;
