@@ -2,6 +2,7 @@
 // Layout for "normal" pages that are not blog posts or notes such as index or about
 
 import BaseLayout from "./BaseLayout.astro";
+import MainContent from "../components/MainContent.astro";
 import type { Language } from "../i18n/i18n";
 
 interface Props {
@@ -14,18 +15,7 @@ const { title, lang } = Astro.props;
 ---
 
 <BaseLayout lang={lang} title={title}>
-  <main>
+  <MainContent>
     <slot />
-  </main>
+  </MainContent>
 </BaseLayout>
-
-<style>
-  main {
-    max-width: var(--content-width);
-    margin-left: auto;
-    margin-right: auto;
-    padding: 1rem;
-
-    background-color: var(--content-bg-color);
-  }
-</style>

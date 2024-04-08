@@ -58,17 +58,15 @@ html {
   font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
 }
 
-
-
 @media (min-width: 48em) {
   html {
-    font-size: 18px;
+    font-size: 17px;
   }
 }
 
 @media (min-width: 64em) {
   html {
-    font-size: 20px;
+    font-size: 18px;
   }
 }
 
@@ -84,7 +82,11 @@ ul, ol {
 }
 
 p {
-  margin-bottom: 1rem;
+  margin: 0.5em 0;
+}
+
+p+p {
+  margin: 0.75em 0;
 }
 
 a {
@@ -99,7 +101,7 @@ a:hover {
 /* global variables */
 :root {
   --max-width: 1200px;
-  --content-width: 850px;
+  --content-width: 950px;
 }
 
 /* theme: default is light theme */
