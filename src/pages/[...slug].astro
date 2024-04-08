@@ -2,6 +2,12 @@
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 
+import Layout from "../layouts/BaseLayout.astro";
+import MainContent from "../components/MainContent.astro";
+
+import type { Language } from "../i18n/i18n";
+import { isLanguage } from "../i18n/i18n";
+
 export async function getStaticPaths() {
   const blogEntries = await getCollection("blog");
 
@@ -14,10 +20,6 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await entry.render();
 
-import Layout from "../layouts/BaseLayout.astro";
-import type { Language } from "../i18n/i18n";
-import { isLanguage } from "../i18n/i18n";
-
 export const langFromSlug = (slug: CollectionEntry<"blog">["slug"]): Language => {
   let lang = slug.split("/")[0];
   if (!isLanguage(lang)) {
@@ -26,11 +28,50 @@ export const langFromSlug = (slug: CollectionEntry<"blog">["slug"]): Language =>
 
   return lang;
 };
+const lang = langFromSlug(entry.slug);
+
+const options: Intl.DateTimeFormatOptions = {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+};
+const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
+
+const modified = entry.data.created.getTime() < entry.data.modified.getTime();
 ---
 
-<Layout title={entry.data.title} lang={langFromSlug(entry.slug)}>
-  <h1>{entry.data.title}</h1>
-  <main>
+<Layout title={entry.data.title} lang={lang}>
+  <MainContent>
+    <h1>{entry.data.title}</h1>
+    <div class="info">
+      <span class="date">
+        {modified ? `last modify: ${formatDate(entry.data.modified)} | ` : undefined}
+        create: {formatDate(entry.data.created)}
+      </span>
+    </div>
     <Content />
-  </main>
+  </MainContent>
 </Layout>
+
+<style>
+  h1 {
+    font-size: max(36px, 2em);
+    line-height: 48px;
+    font-weight: 400;
+    margin: 100px 0;
+  }
+
+  .info {
+    border-bottom: 1px solid var(--divider-color);
+    padding-bottom: 4px;
+    margin-bottom: 1rem;
+
+    font-size: 13px;
+  }
+
+  .date {
+    color: #797979;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+</style>
