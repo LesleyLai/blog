@@ -127,7 +127,7 @@ $$
 
 比方说如果你要证明我们对自然数的定义满足“1 + 1 = 2”，你可以按照如下来写：
 
-![Derivation of 1 + 1 = 2](derivation1.PNG)
+![Derivation of 1 + 1 = 2](../../../assets/derivation1.PNG)
 
 如果从下到上阅读导出树，你会发现导出树与程序的运行过程非常类似：
 

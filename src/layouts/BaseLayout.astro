@@ -34,15 +34,6 @@ const isHome = title == "";
   </head>
   <body>
     <Header lang={lang} />
-    <div class="container">
-      <slot />
-    </div>
+    <slot />
   </body>
-
-  <style>
-    .container {
-      max-width: var(--max-width);
-      margin: 0 auto;
-    }
-  </style>
 </html>

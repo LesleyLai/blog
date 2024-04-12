@@ -10,7 +10,7 @@ tags:
 
 During the [last meeting](https://www.meetup.com/North-Denver-Metro-C-Meetup/events/261292867/) of the North Denver C++ Meetup, some people mentioned that the x86 `lea` is more confusing than other instructions. `lea` is an acronym for "load effective address." The usual explanation is "to put a memory address from the source into the destination." The syntax of `lea` in the Intel Syntax is the following:
 
-```nasm
+```asm
 lea destination, source
 ```
 
@@ -27,25 +27,25 @@ struct Point
 
 The compiler may generate the following line for `int x = points[i].y;`
 
-```nasm
+```asm
 mov  eax, [rbx+rcx*4 + 4]
 ```
 
 In this case, the register `rbx` points to the array `points`, `rcx` is the index variable `i`, and `eax` is the register that holds `x`. Similarly, for `int* x = &points[i].y;`, compilers can generate
 
-```nasm
+```asm
 lea  eax, [rbx+rcx*4 + 4]
 ```
 
 However, besides using it for address operations, compilers seem to prefer using `lea` to other arithmetic instructions as well for efficiency reason. For example, `int y = x * 5;` may generate
 
-```nasm
+```asm
 lea  eax, [rdi + 4*rdi]
 ```
 
 instead of the more intuitive version of
 
-```nasm
+```asm
 imul  eax, [rdi], 5
 ```
 

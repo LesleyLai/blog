@@ -1,6 +1,8 @@
 ---
-import ThemeToggle from "./ThemeToggle.astro";
 import HeaderLink from "./HeaderLink.astro";
+
+import ThemeToggle from "./ThemeToggle.astro";
+import LanguageToggle from "./LanguageToggle.astro";
 
 import type { Language } from "../i18n/i18n";
 
@@ -31,7 +33,7 @@ const { lang } = Astro.props;
     </nav>
     <div class="header-right">
       <ThemeToggle />
-      <div>English</div>
+      <LanguageToggle lang={lang} />
     </div>
   </div>
 </header>
@@ -43,7 +45,7 @@ const { lang } = Astro.props;
   }
 
   .container {
-    max-width: var(--max-width);
+    max-width: var(--header-width);
     display: flex;
     margin: 0 auto;
     justify-content: space-between;

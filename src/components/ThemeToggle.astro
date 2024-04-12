@@ -37,8 +37,8 @@
   }
 
   /* Overright css transition for everything temporarily */
-  :global(.transition *) {
-    transition: all 0.5s !important;
+  :global(.theme-transition *) {
+    transition: all 0.3s !important;
   }
 </style>
 
@@ -69,10 +69,10 @@
     localStorage.setItem("theme", isDark ? "dark" : "light");
 
     // Use for smooth transition
-    element.classList.add("transition");
+    element.classList.add("theme-transition");
     setTimeout(function () {
-      element.classList.remove("transition");
-    }, 1000);
+      element.classList.remove("theme-transition");
+    }, 300);
   };
 
   document.getElementById("theme-toggle").addEventListener("click", handleToggleClick);

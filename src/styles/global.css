@@ -74,6 +74,9 @@ html {
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 ul, ol {
@@ -100,13 +103,14 @@ a:hover {
 
 /* global variables */
 :root {
-  --max-width: 1200px;
+  --header-width: 1200px;
   --content-width: 950px;
 }
 
 /* theme: default is light theme */
 :root {
   --text-color: #000;
+  --secondary-color: #797979;
   --bg-color: #fbfaf7;
   --header-bg-color: #fff;
   --content-bg-color: #fff;
@@ -114,10 +118,12 @@ a:hover {
   --divider-color: rgba(0, 0, 0, 0.1);
 
   --link-color: #4183c4;
+  --tag-color: #2dabf9;
 }
 
 .dark {
   --text-color: #e8e8e8;
+  --secondary-color: #b3b3b3;
   --bg-color: #0b0b0b;
   --header-bg-color: #0b0b0b;
   --content-bg-color: #1c1c1c;
@@ -125,6 +131,7 @@ a:hover {
   --divider-color: #424246;
 
   --link-color: #0aa;
+  --tag-color: #5f9fc7;
 }
 
 /* lower image brightness in dark mode */
