@@ -11,8 +11,10 @@ interface Props {
 
 const { lang } = Astro.props;
 
+console.log(lang);
+
 const blogPosts = await getCollection("blog");
-const blogPostsThisLang = blogPosts.filter((post) => post.slug.startsWith(`en`));
+const blogPostsThisLang = blogPosts.filter((post) => post.slug.startsWith(lang));
 blogPostsThisLang.sort((lhs, rhs) => rhs.data.created.getTime() - lhs.data.created.getTime());
 
 const mostRencentPosts = blogPostsThisLang.slice(0, 3);
@@ -32,7 +34,7 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
         <tr>
           <th scope="row">{formatDate(post.data.created)}</th>
           <td>
-            <a href={post.slug} data-astro-prefetch>
+            <a href={`/${post.slug}`} data-astro-prefetch>
               {post.data.title}
             </a>
           </td>
