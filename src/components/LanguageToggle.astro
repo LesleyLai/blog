@@ -1,0 +1,61 @@
+---
+import { Translate } from "@emotion-icons/material";
+import { oppositeLang, langName, type Language } from "../i18n/i18n";
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+
+const current_path = Astro.url.pathname;
+
+// strip language
+const slug = current_path.replace(`\/${lang}`, "");
+
+const otherLang = oppositeLang[lang];
+
+const otherLangUrl = getRelativeLocaleUrl(otherLang, slug);
+---
+
+<a class="lang-toggle" href={otherLangUrl}>
+  <Translate className="lang-toggle-icon" size="16" title="Translations" />
+  <span>{langName[otherLang]}</span>
+</a>
+
+<style>
+  .lang-toggle {
+    display: flex;
+    height: fit-content;
+    margin: auto 0;
+    transition: color 0.2s;
+    color: var(--text-color);
+  }
+
+  .lang-toggle::before {
+    margin-right: 8px;
+    margin-left: 8px;
+    width: 1px;
+    height: 24px;
+    background-color: var(--divider-color);
+    content: "";
+  }
+
+  .lang-toggle:hover {
+    color: var(--highlight-color);
+  }
+
+  .lang-toggle-icon {
+    margin: auto 0.25em auto 0;
+  }
+
+  .lang-toggle ::global(span) {
+    font-size: 0.8em;
+    margin: auto 0;
+  }
+
+  .drop-down-arrow-icon {
+    margin: 4px 0 auto 0;
+  }
+</style>
