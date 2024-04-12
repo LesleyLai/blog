@@ -16,10 +16,13 @@ const slug = current_path.replace(`\/${lang}`, "");
 
 const otherLang = oppositeLang[lang];
 
-const otherLangUrl = getRelativeLocaleUrl(otherLang, slug);
+let otherLangUrl = getRelativeLocaleUrl(otherLang, slug);
+if (otherLangUrl == "/en" || otherLangUrl == "/en/") {
+  otherLangUrl = "/";
+}
 ---
 
-<a class="lang-toggle" href={otherLangUrl}>
+<a class="lang-toggle" rel="alternate" hreflang={otherLang} href={otherLangUrl}>
   <Translate className="lang-toggle-icon" size="16" title="Translations" />
   <span>{langName[otherLang]}</span>
 </a>

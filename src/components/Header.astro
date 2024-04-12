@@ -17,7 +17,7 @@ const { lang } = Astro.props;
   <div class="container">
     <nav aria-label="Main menu">
       <div class="home">
-        <a href="/" data-astro-prefetch="load"
+        <a href={lang == "en" ? "/" : `/${lang}`} data-astro-prefetch="load"
           ><span class="english-name">Lesley Lai</span> <span lang="zh">赖思理</span></a
         >
       </div>
