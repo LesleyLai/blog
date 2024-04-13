@@ -47,7 +47,7 @@ const translate_tags = (tag: string): unknown => {
 ---
 
 <Layout title={entry.data.title} lang={lang}>
-  <MainContent>
+  <MainContent class="post">
     <h1>{entry.data.title}</h1>
     <div class="info">
       <span class="date">
@@ -103,5 +103,39 @@ const translate_tags = (tag: string): unknown => {
     color: var(--secondary-color);
     text-transform: uppercase;
     letter-spacing: 0.5px;
+  }
+</style>
+
+<style is:global>
+  /* sidenotes */
+  .post aside {
+    color: var(--aside-text-color);
+    padding: 5px 10px;
+    font-size: 13px;
+
+    margin-bottom: 20px;
+    background: var(--aside-sm-bg-color);
+    border: solid 1px var(--aside-sm-border-color);
+    border-bottom: solid 1px var(--aside-sm-border-bottom-color);
+    border-radius: 10px;
+  }
+
+  @media only screen and (max-width: 1439px) {
+    .post aside {
+      margin-top: 0 !important;
+    }
+  }
+
+  @media only screen and (min-width: 1440px) {
+    .post aside {
+      position: absolute;
+      width: 240px;
+      background: none;
+      padding: 0 0 0 16px;
+      border-radius: 0;
+      border: none;
+      border-left: 8px solid var(--aside-lg-border-color);
+      right: calc((100% - var(--content-width)) / 2 - 237px);
+    }
   }
 </style>

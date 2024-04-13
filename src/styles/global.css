@@ -58,19 +58,6 @@ html {
   font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
 }
 
-@media (min-width: 48em) {
-  html {
-    font-size: 17px;
-  }
-}
-
-@media (min-width: 64em) {
-  html {
-    font-size: 18px;
-  }
-}
-
-
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
@@ -119,6 +106,12 @@ a:hover {
 
   --link-color: #4183c4;
   --tag-color: #2dabf9;
+
+  --aside-text-color: #868279;
+  --aside-sm-bg-color: #faf8f5;
+  --aside-sm-border-color: #f7f4ed;
+  --aside-sm-border-bottom-color: #f0e9db;
+  --aside-lg-border-color: #f0e9db;
 }
 
 .dark {
@@ -132,6 +125,13 @@ a:hover {
 
   --link-color: #0aa;
   --tag-color: #5f9fc7;
+
+  --aside-text-color: #d7d5d0;
+  --aside-sm-bg-color: #444;
+  --aside-sm-border-color: #666;
+  --aside-sm-border-bottom-color: #444;
+  --aside-lg-border-color: #615f58;
+
 }
 
 /* lower image brightness in dark mode */
