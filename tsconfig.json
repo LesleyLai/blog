@@ -1,12 +1,16 @@
 {
   "extends": "astro/tsconfigs/strict",
-  "exclude": [
-    "node_modules",
-    "public",
-    "dist"
-  ],
+  "exclude": ["node_modules", "public", "dist"],
   "compilerOptions": {
     "jsx": "react-jsx",
-    "jsxImportSource": "react"
+    "jsxImportSource": "react",
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@assets/*": ["src/assets/*"],
+      "@layouts/*": ["src/layouts/*"],
+      "@i18n/*": ["src/i18n/*"],
+      "@styles/*": ["src/styles/*"]
+    }
   }
 }
