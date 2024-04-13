@@ -3,15 +3,13 @@
 
 import { getCollection } from "astro:content";
 
-import type { Language } from "../i18n/i18n";
+import type { Language } from "@i18n/i18n";
 
 interface Props {
   lang: Language;
 }
 
 const { lang } = Astro.props;
-
-console.log(lang);
 
 const blogPosts = await getCollection("blog");
 const blogPostsThisLang = blogPosts.filter((post) => post.slug.startsWith(lang));

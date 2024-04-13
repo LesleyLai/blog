@@ -4,6 +4,8 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import Layout from "@layouts/BaseLayout.astro";
 import MainContent from "@components/MainContent.astro";
 import { isLanguage, type Language } from "@i18n/i18n";
+import { translations } from "@i18n/translations";
+import type { TranslationKey } from "@i18n/translations";
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection("blog");
@@ -35,6 +37,13 @@ const options: Intl.DateTimeFormatOptions = {
 const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
 
 const modified = entry.data.created.getTime() < entry.data.modified.getTime();
+
+const translate_tags = (tag: string): unknown => {
+  if (tag in translations.en) {
+    return translations[lang][tag as TranslationKey];
+  }
+  throw Error(`Failed to translate tag: ${tag}`);
+};
 ---
 
 <Layout title={entry.data.title} lang={lang}>
@@ -46,7 +55,7 @@ const modified = entry.data.created.getTime() < entry.data.modified.getTime();
         create: {formatDate(entry.data.created)}
       </span>
       <span class="tags">
-        <ul class="tagList">{entry.data.tags.map((tag) => <li>{tag}</li>)}</ul>
+        <ul class="tagList">{entry.data.tags.map((tag) => <li>{translate_tags(tag)}</li>)}</ul>
       </span>
     </div>
     <Content />
