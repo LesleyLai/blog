@@ -1,16 +1,19 @@
 ---
 interface Props {
   children: unknown;
+  class: string;
 }
+
+const className = Astro.props.class;
 ---
 
-<main>
+<main class={className}>
   <slot />
 </main>
 
 <style>
   main {
-    width: var(--content-width);
+    max-width: var(--content-width);
     margin-left: auto;
     margin-right: auto;
     padding: 1rem;
@@ -18,6 +21,12 @@ interface Props {
     background-color: var(--content-bg-color);
 
     flex-grow: 1;
+  }
+
+  @media only screen and (min-width: 1440px) {
+    main {
+      width: var(--content-width);
+    }
   }
 
   main :global(h2) {
