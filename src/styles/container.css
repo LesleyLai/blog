@@ -1,0 +1,18 @@
+.container {
+    margin: 0 auto;
+    max-width: var(--container-width);
+    flex-grow: 1;
+    display: flex;
+}
+
+@media only screen and (min-width: 1200px) {
+    .container {
+        width: var(--container-width);
+    }
+}
+
+.container-shadow:not(.dark) {
+    /* clip-path makes box-shadow only appear on left and right */
+    box-shadow: 0 0 40px rgba(71, 51, 31, 0.2);
+    clip-path: inset(0px -40px 0px -40px);
+}
