@@ -2,10 +2,10 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 
 import Layout from "@layouts/BaseLayout.astro";
-import MainContent from "@components/MainContent.astro";
 import { isLanguage, type Language } from "@i18n/i18n";
 import { translations } from "@i18n/translations";
 import type { TranslationKey } from "@i18n/translations";
+import "@styles/container.css";
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection("blog");
@@ -22,7 +22,7 @@ const { Content } = await entry.render();
 export const langFromSlug = (slug: CollectionEntry<"blog">["slug"]): Language => {
   let lang = slug.split("/")[0];
   if (!isLanguage(lang)) {
-    throw new Error(`Unknown language contained in slug ${slug}`);
+    throw new Error(`Unknown language contained in url ${slug}`);
   }
 
   return lang;
@@ -47,22 +47,34 @@ const translate_tags = (tag: string): unknown => {
 ---
 
 <Layout title={entry.data.title} lang={lang}>
-  <MainContent class="post">
-    <h1>{entry.data.title}</h1>
-    <div class="info">
-      <span class="date">
-        {modified ? `last modify: ${formatDate(entry.data.modified)} | ` : undefined}
-        create: {formatDate(entry.data.created)}
-      </span>
-      <span class="tags">
-        <ul class="tagList">{entry.data.tags.map((tag) => <li>{translate_tags(tag)}</li>)}</ul>
-      </span>
-    </div>
-    <Content />
-  </MainContent>
+  <div class="container container-shadow">
+    <main class="post-main">
+      <h1>{entry.data.title}</h1>
+      <div class="info">
+        <span class="date">
+          {modified ? `last modify: ${formatDate(entry.data.modified)} | ` : undefined}
+          create: {formatDate(entry.data.created)}
+        </span>
+        <span class="tags">
+          <ul class="tagList">{entry.data.tags.map((tag) => <li>{translate_tags(tag)}</li>)}</ul>
+        </span>
+      </div>
+      <Content />
+    </main>
+  </div>
 </Layout>
 
 <style>
+  .container {
+    background-color: var(--sidenote-bg-color);
+  }
+
+  @media only screen and (min-width: 1088px) {
+    main {
+      max-width: var(--blog-content-width);
+    }
+  }
+
   h1 {
     font-size: max(36px, 2em);
     line-height: 48px;
@@ -104,11 +116,9 @@ const translate_tags = (tag: string): unknown => {
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
-</style>
 
-<style is:global>
   /* sidenotes */
-  .post aside {
+  main :global(aside) {
     color: var(--aside-text-color);
     padding: 5px 10px;
     font-size: 13px;
@@ -120,22 +130,22 @@ const translate_tags = (tag: string): unknown => {
     border-radius: 10px;
   }
 
-  @media only screen and (max-width: 1439px) {
-    .post aside {
+  @media only screen and (max-width: 1087px) {
+    main :global(aside) {
       margin-top: 0 !important;
     }
   }
 
-  @media only screen and (min-width: 1440px) {
-    .post aside {
+  @media only screen and (min-width: 1088px) {
+    main :global(aside) {
       position: absolute;
-      width: 240px;
+      width: calc(var(--container-width) - var(--blog-content-width) - 11px);
       background: none;
       padding: 0 0 0 16px;
       border-radius: 0;
       border: none;
       border-left: 8px solid var(--aside-lg-border-color);
-      right: calc((100% - var(--content-width)) / 2 - 237px);
+      right: calc((100% - var(--container-width)) / 2 + 14px);
     }
   }
 </style>

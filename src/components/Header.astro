@@ -12,11 +12,13 @@ interface Props {
 }
 
 const { lang } = Astro.props;
+
+import "@styles/container.css";
 ---
 
 <header>
   <div class="container">
-    <nav aria-label="Main menu">
+    <nav aria-label="main menu">
       <div class="home">
         <a href={lang == "en" ? "/" : `/${lang}`} data-astro-prefetch="load"
           ><span class="english-name">Lesley Lai</span> <span lang="zh">赖思理</span></a
@@ -43,12 +45,10 @@ const { lang } = Astro.props;
   header {
     background-color: var(--header-bg-color);
     border-bottom: 1px solid var(--divider-color);
+    padding: 4px 0;
   }
 
   .container {
-    max-width: var(--header-width);
-    display: flex;
-    margin: 0 auto;
     justify-content: space-between;
   }
 

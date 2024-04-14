@@ -88,19 +88,55 @@ a:hover {
   color: var(--highlight-color);
 }
 
+
+main {
+  padding: 1rem;
+  flex-grow: 1;
+  background-color: var(--content-bg-color);
+}
+
+main h2 {
+  font-size: 1.5em;
+  padding: 24px 0 12px;
+  font-weight: 400;
+  margin: 0;
+}
+
+main h3 {
+  font-style: italic;
+  font-size: 1.2em;
+  font-weight: 400;
+  line-height: 1.5em;
+  padding: 24px 0 12px;
+  margin: 0;
+}
+
+main ul,
+main ol {
+  margin-left: 1.666rem;
+  list-style-type: disc;
+}
+
+main li {
+  margin-bottom: 0.5rem;
+}
+
 /* global variables */
 :root {
-  --header-width: 1200px;
-  --content-width: 950px;
+  /* max width of a page */
+  --container-width: 1088px;
+  /* max width of blog post main (content without sidenote) */
+  --blog-content-width: 800px;
 }
 
 /* theme: default is light theme */
 :root {
   --text-color: #000;
   --secondary-color: #797979;
-  --bg-color: #fbfaf7;
+  --bg-color: #f4f2ea;
   --header-bg-color: #fff;
   --content-bg-color: #fff;
+  --sidenote-bg-color: #fbfaf7;
   --highlight-color: #0af;
   --divider-color: rgba(0, 0, 0, 0.1);
 
@@ -119,12 +155,13 @@ a:hover {
   --secondary-color: #b3b3b3;
   --bg-color: #0b0b0b;
   --header-bg-color: #0b0b0b;
-  --content-bg-color: #1c1c1c;
+  --content-bg-color: #2a2a2a;
+  --sidenote-bg-color: #1c1c1c;
   --highlight-color: #0cc;
   --divider-color: #424246;
 
   --link-color: #0aa;
-  --tag-color: #5f9fc7;
+  --tag-color: #066;
 
   --aside-text-color: #d7d5d0;
   --aside-sm-bg-color: #444;

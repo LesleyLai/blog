@@ -86,7 +86,9 @@ VkRenderPassBeginInfo render_pass_begin_info = {
     // ...
 };
 
-vkCmdBeginRenderPass(command_buffer, &render_pass_begin_info, VK_SUBPASS_CONTENTS_INLINE);
+vkCmdBeginRenderPass(command_buffer, &render_pass_begin_info,
+                     VK_SUBPASS_CONTENTS_INLINE);
+
 
 // Draw calls here
 
