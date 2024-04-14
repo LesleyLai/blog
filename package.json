@@ -11,17 +11,13 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.5.10",
-    "@astrojs/react": "^3.3.0",
-    "@emotion-icons/material": "^3.14.0",
+    "@iconify-json/mdi": "^1.1.66",
     "astro": "^4.5.16",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "astro-icon": "^1.1.0",
     "typescript": "^5.4.4"
   },
   "devDependencies": {
     "eslint": "^8.57.0",
-    "prettier": "^3.2.5",
-    "@types/react": "^18.2.77",
-    "@types/react-dom": "^18.2.25"
+    "prettier": "^3.2.5"
   }
 }

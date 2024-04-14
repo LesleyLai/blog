@@ -1,5 +1,5 @@
 ---
-import { Translate } from "@emotion-icons/material";
+import { Icon } from "astro-icon/components";
 import type { Language } from "@i18n/i18n";
 import { translations } from "@i18n/translations";
 import { getRelativeLocaleUrl } from "astro:i18n";
@@ -24,7 +24,7 @@ if (otherLangUrl == "/en" || otherLangUrl == "/en/") {
 ---
 
 <a class="lang-toggle" rel="alternate" hreflang={otherLang} href={otherLangUrl}>
-  <Translate className="lang-toggle-icon" size="16" title="Translations" />
+  <Icon name="mdi:translate" size={16} class="lang-toggle-icon" title="Translations" />
   <span>{translations[otherLang].langName}</span>
 </a>
 
@@ -50,16 +50,12 @@ if (otherLangUrl == "/en" || otherLangUrl == "/en/") {
     color: var(--highlight-color);
   }
 
-  .lang-toggle-icon {
+  [data-icon="mdi:translate"] {
     margin: auto 0.25em auto 0;
   }
 
   .lang-toggle ::global(span) {
     font-size: 0.8em;
     margin: auto 0;
-  }
-
-  .drop-down-arrow-icon {
-    margin: 4px 0 auto 0;
   }
 </style>
