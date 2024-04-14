@@ -129,7 +129,7 @@ const zh: Translations = {
   talks: "演讲",
   test: "软件测试",
   typescript: en.typescript,
-  untranslated: "（未翻译）",
+  untranslated: "（未译）",
   vulkan: en.vulkan,
   web: en.web,
   webgpu: en.webgpu,
