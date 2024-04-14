@@ -1,5 +1,10 @@
 ---
-import { getCollection, type CollectionEntry } from "astro:content";
+import {
+  getCollection,
+  type CollectionEntry,
+  type Render,
+  type InferEntrySchema,
+} from "astro:content";
 
 import Layout from "@layouts/BaseLayout.astro";
 import { isLanguage, type Language } from "@i18n/i18n";
@@ -7,19 +12,7 @@ import { translations } from "@i18n/translations";
 import type { TranslationKey } from "@i18n/translations";
 import "@styles/container.css";
 
-export async function getStaticPaths() {
-  const blogEntries = await getCollection("blog");
-
-  return blogEntries.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { entry },
-  }));
-}
-
-const { entry } = Astro.props;
-const { Content } = await entry.render();
-
-export const langFromSlug = (slug: CollectionEntry<"blog">["slug"]): Language => {
+export const langFromSlug = (slug: string): Language => {
   let lang = slug.split("/")[0];
   if (!isLanguage(lang)) {
     throw new Error(`Unknown language contained in url ${slug}`);
@@ -27,6 +20,77 @@ export const langFromSlug = (slug: CollectionEntry<"blog">["slug"]): Language =>
 
   return lang;
 };
+
+interface BlogPostEntry {
+  body: string;
+  slug: string;
+  data: InferEntrySchema<"blog">;
+  untranslated?: boolean;
+  render(): Render[".md"];
+}
+
+type MultiLangEntries = {
+  en?: BlogPostEntry;
+  zh?: BlogPostEntry;
+};
+
+export const groupEntriesById = (blogEntries: CollectionEntry<"blog">[]) => {
+  const byId = new Map<string, MultiLangEntries>();
+  for (const entry of blogEntries) {
+    const lang = langFromSlug(entry.slug);
+    const id = entry.slug.replace(`${lang}\/`, "");
+    if (!byId.has(id)) {
+      byId.set(id, {});
+    }
+    byId.get(id)![lang] = entry;
+  }
+
+  return byId;
+};
+
+type GetStaticPathsResult = {
+  params: {
+    slug: string;
+  };
+  props: {
+    entry: BlogPostEntry;
+  };
+};
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection("blog");
+
+  const blogEntriesById = groupEntriesById(blogEntries);
+
+  blogEntriesById.forEach((entries: MultiLangEntries, id: string) => {
+    if (!entries.zh) {
+      const en = entries.en!;
+      entries.zh = {
+        body: en.body,
+        data: en.data,
+        untranslated: true,
+        render: en.render,
+        slug: `zh/${id}`,
+      };
+    }
+  });
+
+  const result: GetStaticPathsResult[] = [];
+  blogEntriesById.forEach((entries: MultiLangEntries, id: string) => {
+    for (let [lang, entry] of Object.entries(entries)) {
+      result.push({
+        params: { slug: `/${lang}/${id}` },
+        props: { entry },
+      });
+    }
+  });
+
+  return result;
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
 const lang = langFromSlug(entry.slug);
 
 const options: Intl.DateTimeFormatOptions = {
@@ -49,7 +113,10 @@ const translate_tags = (tag: string): unknown => {
 <Layout title={entry.data.title} lang={lang}>
   <div class="container container-shadow">
     <main class="post-main">
-      <h1>{entry.data.title}</h1>
+      <h1>
+        {entry.data.title}
+        {entry.untranslated && <span class="untranslated">{translations[lang].untranslated}</span>}
+      </h1>
       <div class="info">
         <span class="date">
           {modified ? `last modify: ${formatDate(entry.data.modified)} | ` : undefined}
@@ -80,6 +147,10 @@ const translate_tags = (tag: string): unknown => {
     line-height: 48px;
     font-weight: 400;
     margin: 100px 0;
+  }
+
+  .untranslated {
+    font-size: 0.8em;
   }
 
   .info {
