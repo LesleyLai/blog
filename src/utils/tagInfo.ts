@@ -40,6 +40,7 @@ export const tagInfos = {
   personal: { color: colors.grey },
   physics: { color: colors.black },
   pl: { color: colors.teal },
+  pldev: { color: colors.grey },
   python: { color: colors.blue },
   racket: { color: colors.darkRed },
   rasterizer: { color: colors.darkRed },
