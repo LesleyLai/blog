@@ -4,14 +4,10 @@ import HeaderLink from "./HeaderLink.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 import LanguageToggle from "./LanguageToggle.astro";
 
-import type { Language } from "@i18n/i18n";
+import { getCurrentLanguage } from "@i18n/i18n";
 import { translations } from "@i18n/translations";
 
-interface Props {
-  lang: Language;
-}
-
-const { lang } = Astro.props;
+const lang = getCurrentLanguage(Astro);
 
 import "@styles/container.css";
 ---
@@ -20,12 +16,13 @@ import "@styles/container.css";
   <div class="container">
     <nav aria-label="main menu">
       <div class="home">
-        <a href={lang == "en" ? "/" : `/${lang}`} data-astro-prefetch="load"
-          ><span class="english-name">Lesley Lai</span> <span lang="zh">赖思理</span></a
-        >
+        <a href={lang == "en" ? "/" : `/${lang}`} data-astro-prefetch="load">
+          <span class="english-name">Lesley Lai</span>
+          <span lang="zh">赖思理</span>
+        </a>
       </div>
       <ul>
-        <li><HeaderLink href="#">{translations[lang].blog}</HeaderLink></li>
+        <li><HeaderLink href=`/${lang}/blog`>{translations[lang].blog}</HeaderLink></li>
         <li><HeaderLink href="#">{translations[lang].portfolio}</HeaderLink></li>
         <li><HeaderLink href="#">{translations[lang].notes}</HeaderLink></li>
         <li><HeaderLink href="#">{translations[lang].talks}</HeaderLink></li>
@@ -36,7 +33,7 @@ import "@styles/container.css";
     </nav>
     <div class="header-right">
       <ThemeToggle />
-      <LanguageToggle lang={lang} />
+      <LanguageToggle />
     </div>
   </div>
 </header>

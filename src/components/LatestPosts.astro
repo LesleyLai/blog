@@ -3,13 +3,9 @@
 
 import { getCollection } from "astro:content";
 
-import type { Language } from "@i18n/i18n";
+import { getCurrentLanguage } from "@i18n/i18n";
 
-interface Props {
-  lang: Language;
-}
-
-const { lang } = Astro.props;
+const lang = getCurrentLanguage(Astro);
 
 const blogPosts = await getCollection("blog");
 const blogPostsThisLang = blogPosts.filter((post) => post.slug.startsWith(lang));
@@ -43,7 +39,12 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
 </table>
 
 <style>
+  table {
+    width: 100%;
+  }
+
   th {
-    width: 20%;
+    width: 15%;
+    min-width: 130px;
   }
 </style>

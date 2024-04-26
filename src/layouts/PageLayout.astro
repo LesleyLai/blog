@@ -7,14 +7,13 @@ import "@styles/container.css";
 
 interface Props {
   title: string;
-  lang: Language;
   children: unknown;
 }
 
-const { title, lang } = Astro.props;
+const { title } = Astro.props;
 ---
 
-<BaseLayout lang={lang} title={title}>
+<BaseLayout title={title}>
   <div class="container container-shadow">
     <main>
       <slot />

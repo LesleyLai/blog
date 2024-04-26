@@ -1,14 +1,10 @@
 ---
 import { Icon } from "astro-icon/components";
-import type { Language } from "@i18n/i18n";
+import { getCurrentLanguage } from "@i18n/i18n";
 import { translations } from "@i18n/translations";
 import { getRelativeLocaleUrl } from "astro:i18n";
 
-interface Props {
-  lang: Language;
-}
-
-const { lang } = Astro.props;
+const lang = getCurrentLanguage(Astro);
 
 const current_path = Astro.url.pathname;
 
@@ -23,7 +19,13 @@ if (otherLangUrl == "/en" || otherLangUrl == "/en/") {
 }
 ---
 
-<a class="lang-toggle" rel="alternate" hreflang={otherLang} href={otherLangUrl}>
+<a
+  class="lang-toggle"
+  rel="alternate"
+  hreflang={otherLang}
+  href={otherLangUrl}
+  title="Toggle Language"
+>
   <Icon name="mdi:translate" size={16} class="lang-toggle-icon" title="Translations" />
   <span>{translations[otherLang].langName}</span>
 </a>
