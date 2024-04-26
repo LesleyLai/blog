@@ -2,19 +2,13 @@
 import PageLayout from "@layouts/PageLayout.astro";
 
 import LatestPosts from "@components/LatestPosts.astro";
-import type { Language } from "@i18n/i18n";
+import { getCurrentLanguage } from "@i18n/i18n";
 import { translations } from "@i18n/translations";
 
-let lang = (() => {
-  let lang = Astro.currentLocale;
-  if (lang == undefined) {
-    lang = "en";
-  }
-  return lang as Language;
-})();
+let lang = getCurrentLanguage(Astro);
 ---
 
-<PageLayout lang={lang} title="">
+<PageLayout title="">
   <slot />
   <h2>{translations[lang].latestPosts}</h2>
   <LatestPosts lang={lang} />

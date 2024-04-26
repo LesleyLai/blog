@@ -1,24 +1,22 @@
 ---
-import type { Language } from "@i18n/i18n";
+import { getCurrentLanguage } from "@i18n/i18n";
 
 interface Props {
   title: string;
-  lang: Language;
   children: unknown;
 }
 
-const { title, lang } = Astro.props;
+const { title } = Astro.props;
+const lang = getCurrentLanguage(Astro);
 
 import Header from "@components/Header.astro";
 import "@styles/global.css";
-
-// TODO: temporary hack
-function get_site_name(lang: Language) {
-  return lang == "zh" ? "赖思理的个人网站" : "Lesley Lai";
-}
+import { translations } from "@i18n/translations";
 
 // Is home page if title is empty
 const isHome = title == "";
+
+const siteName = translations[lang].siteName;
 ---
 
 <!doctype html>
@@ -30,10 +28,10 @@ const isHome = title == "";
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <meta name="generator" content={Astro.generator} />
-    <title>{isHome ? get_site_name(lang) : `${title} | ${get_site_name(lang)}`}</title>
+    <title>{isHome ? siteName : `${title} | ${siteName}`}</title>
   </head>
   <body>
-    <Header lang={lang} />
+    <Header />
     <slot />
   </body>
 </html>

@@ -24,7 +24,7 @@ Do note that some courses that I recommend below are not [MOOCs](https://en.wiki
 - Calculus: Single Variable by Robert Ghrist [[part 1](https://www.coursera.org/learn/single-variable-calculus)] [[part 2](https://www.coursera.org/learn/differentiation-calculus)] [[part 3](https://www.coursera.org/learn/integration-calculus)] [[part 4](https://www.coursera.org/learn/applications-calculus)] — A multi parts course on single variable calculus
 - MIT OCW [Multivariable Calculus](https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/) as main course and things below as supports
   - [Calculus Blue](https://www2.math.upenn.edu/~ghrist/BLUE.html) — Again by Professor Ghrist. The [matrix calculus](https://en.wikipedia.org/wiki/Matrix_calculus) perspective is refreshing, but the pace is too fast to use as a standalone material imo
-  - [Khan Acedemy](https://www.khanacademy.org/math/multivariable-calculus)
+  - [Khan Acedemy](https://www.khanacademy.org/math/multivariable-calculus) — I love the explaination of "intuition" behind certain concepts
 
 ### Linear algebra
 

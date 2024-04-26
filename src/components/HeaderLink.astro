@@ -4,11 +4,15 @@ interface Props {
   children: unknown;
 }
 
-const current_path = Astro.url.pathname;
+const currentPath = Astro.url.pathname;
 
 const { href } = Astro.props;
 
-const linking_to_current_path = current_path == href;
+function removeTrailingSlash(path: string) {
+  return path.replace(/\/+$/, "");
+}
+
+const linking_to_current_path = removeTrailingSlash(currentPath) == removeTrailingSlash(href);
 ---
 
 <a class={linking_to_current_path ? "highlight" : undefined} href={href} data-astro-prefetch="load">

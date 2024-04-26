@@ -1,3 +1,6 @@
+/*eslint sort-keys: "warn"*/
+/*eslint "@typescript-eslint/camelcase": "off"*/
+
 import type { Language } from "./i18n";
 
 const en = {
@@ -54,6 +57,7 @@ const en = {
   react: "React",
   rust: "Rust",
   scheme: "Scheme",
+  siteName: "Lesley Lai",
   tags: "Tags",
   talks: "Talks",
   test: "Testing",
@@ -125,6 +129,7 @@ const zh: Translations = {
   react: en.react,
   rust: en.rust,
   scheme: en.scheme,
+  siteName: "赖思理的个人网站",
   tags: "标签",
   talks: "演讲",
   test: "软件测试",
