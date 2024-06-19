@@ -15,3 +15,12 @@ export const getCurrentLanguage = (astro: AstroGlobal): Language => {
   }
   return lang;
 };
+
+export const langFromSlug = (slug: string): Language => {
+  let lang = slug.split("/")[0];
+  if (!isLanguage(lang)) {
+    throw new Error(`Unknown language contained in url ${slug}`);
+  }
+
+  return lang;
+};

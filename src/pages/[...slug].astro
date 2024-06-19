@@ -1,91 +1,15 @@
 ---
-import {
-  getCollection,
-  type CollectionEntry,
-  type Render,
-  type InferEntrySchema,
-} from "astro:content";
-
 import Layout from "@layouts/BaseLayout.astro";
-import { isLanguage, type Language } from "@i18n/i18n";
-import { translations } from "@i18n/translations";
-import type { TranslationKey } from "@i18n/translations";
+import { translations, type TranslationKey } from "@i18n/translations";
+import { langFromSlug } from "@i18n/i18n";
+import { BLOG_POSTS } from "@content/blog";
 import "@styles/container.css";
 
-export const langFromSlug = (slug: string): Language => {
-  let lang = slug.split("/")[0];
-  if (!isLanguage(lang)) {
-    throw new Error(`Unknown language contained in url ${slug}`);
-  }
-
-  return lang;
-};
-
-interface BlogPostEntry {
-  body: string;
-  slug: string;
-  data: InferEntrySchema<"blog">;
-  untranslated?: boolean;
-  render(): Render[".md"];
-}
-
-type MultiLangEntries = {
-  en?: BlogPostEntry;
-  zh?: BlogPostEntry;
-};
-
-export const groupEntriesById = (blogEntries: CollectionEntry<"blog">[]) => {
-  const byId = new Map<string, MultiLangEntries>();
-  for (const entry of blogEntries) {
-    const lang = langFromSlug(entry.slug);
-    const id = entry.slug.replace(`${lang}\/`, "");
-    if (!byId.has(id)) {
-      byId.set(id, {});
-    }
-    byId.get(id)![lang] = entry;
-  }
-
-  return byId;
-};
-
-type GetStaticPathsResult = {
-  params: {
-    slug: string;
-  };
-  props: {
-    entry: BlogPostEntry;
-  };
-};
-
 export async function getStaticPaths() {
-  const blogEntries = await getCollection("blog");
-
-  const blogEntriesById = groupEntriesById(blogEntries);
-
-  blogEntriesById.forEach((entries: MultiLangEntries, id: string) => {
-    if (!entries.zh) {
-      const en = entries.en!;
-      entries.zh = {
-        body: en.body,
-        data: en.data,
-        untranslated: true,
-        render: en.render,
-        slug: `zh/${id}`,
-      };
-    }
-  });
-
-  const result: GetStaticPathsResult[] = [];
-  blogEntriesById.forEach((entries: MultiLangEntries, id: string) => {
-    for (let [lang, entry] of Object.entries(entries)) {
-      result.push({
-        params: { slug: `/${lang}/${id}` },
-        props: { entry },
-      });
-    }
-  });
-
-  return result;
+  return BLOG_POSTS.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
 }
 
 const { entry } = Astro.props;
