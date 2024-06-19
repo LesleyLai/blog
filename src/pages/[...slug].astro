@@ -3,10 +3,11 @@ import Layout from "@layouts/BaseLayout.astro";
 import { translations, type TranslationKey } from "@i18n/translations";
 import { langFromSlug } from "@i18n/i18n";
 import { BLOG_POSTS } from "@content/blog";
+import TagList from "@components/TagList.astro";
 import "@styles/container.css";
 
 export async function getStaticPaths() {
-  return BLOG_POSTS.map((entry) => ({
+  return BLOG_POSTS.all.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },
   }));
@@ -26,7 +27,7 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
 
 const modified = entry.data.created.getTime() < entry.data.modified.getTime();
 
-const translate_tags = (tag: string): unknown => {
+const translate_tags = (tag: string): string => {
   if (tag in translations.en) {
     return translations[lang][tag as TranslationKey];
   }
@@ -47,7 +48,7 @@ const translate_tags = (tag: string): unknown => {
           create: {formatDate(entry.data.created)}
         </span>
         <span class="tags">
-          <ul class="tagList">{entry.data.tags.map((tag) => <li>{translate_tags(tag)}</li>)}</ul>
+          <TagList tags={entry.data.tags} />
         </span>
       </div>
       <Content />
@@ -85,25 +86,6 @@ const translate_tags = (tag: string): unknown => {
 
     display: flex;
     justify-content: space-between;
-  }
-
-  .tagList {
-    /* TODO: shouldn't need to reset list */
-    list-style: none;
-    margin: 0;
-
-    display: flex;
-  }
-
-  .tagList li {
-    margin: 0.2em 0.5em 0.2em 0px;
-
-    padding: 0.4em 0.5em;
-    font-weight: 700;
-    font-size: 10px;
-    border-radius: 0.285714rem;
-    color: #fff;
-    background-color: var(--tag-color);
   }
 
   .date {

@@ -5,13 +5,13 @@ import { getCollection } from "astro:content";
 
 import { getCurrentLanguage } from "@i18n/i18n";
 
+import { BLOG_POSTS, sortByDate } from "@content/blog";
+
 const lang = getCurrentLanguage(Astro);
 
-const blogPosts = await getCollection("blog");
-const blogPostsThisLang = blogPosts.filter((post) => post.slug.startsWith(lang));
-blogPostsThisLang.sort((lhs, rhs) => rhs.data.created.getTime() - lhs.data.created.getTime());
-
-const mostRencentPosts = blogPostsThisLang.slice(0, 3);
+const posts = BLOG_POSTS.byLang(lang).filter((post) => !post.untranslated);
+sortByDate(posts);
+const mostRencentPosts = posts.slice(0, 3);
 
 const options: Intl.DateTimeFormatOptions = {
   year: "numeric",

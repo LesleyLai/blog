@@ -3,6 +3,7 @@ import "@styles/container.css";
 import PageLayout from "./PageLayout.astro";
 import { translations } from "@i18n/translations";
 import { getCurrentLanguage } from "@i18n/i18n";
+import { BLOG_POSTS } from "@content/blog";
 
 const lang = getCurrentLanguage(Astro);
 
@@ -11,5 +12,5 @@ const title = translations[lang].blog;
 
 <PageLayout title={title}>
   <h1>{title}</h1>
-  <p>Visit <a href={`/${lang}/archive`}>archive</a> for all X posts</p>
+  <p>Visit <a href={`/${lang}/archive`}>archive</a> for all {BLOG_POSTS.size} posts</p>
 </PageLayout>

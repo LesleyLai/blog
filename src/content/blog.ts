@@ -4,7 +4,7 @@ import {
   type InferEntrySchema,
   getCollection,
 } from "astro:content";
-import { langFromSlug } from "@i18n/i18n";
+import { langFromSlug, type Language } from "@i18n/i18n";
 
 export interface BlogPost {
   body: string;
@@ -52,25 +52,52 @@ const populateMissingChineseEntries = (
 const blogEntries = await getCollection("blog");
 
 class BlogPosts {
-  entriesById: Map<string, MultiLangBlogPost>;
+  byId: Map<string, MultiLangBlogPost>;
 
   constructor() {
     const blogEntriesById = groupEntriesById(blogEntries);
     populateMissingChineseEntries(blogEntriesById);
-    this.entriesById = blogEntriesById as Map<string, MultiLangBlogPost>;
+
+    // validate
+    blogEntriesById.forEach((multiLangBlogPost) => {
+      if (!multiLangBlogPost.en || !multiLangBlogPost.zh) {
+        throw new Error(`Missing language version in one blog post!`);
+      }
+    });
+
+    this.byId = blogEntriesById as Map<string, MultiLangBlogPost>;
   }
 
-  // Map all blog posts regardless of languages
-  map<T>(func: (entry: BlogPost) => T): T[] {
-    const result: T[] = [];
-    for (let blogPost of BLOG_POSTS.entriesById.values()) {
-      for (let entry of Object.values(blogPost)) {
-        result.push(func(entry));
+  // all blog posts regardless of languages
+  get all(): BlogPost[] {
+    const result: BlogPost[] = [];
+    for (let multiLangBlogPost of BLOG_POSTS.byId.values()) {
+      for (let post of Object.values(multiLangBlogPost)) {
+        result.push(post);
       }
     }
 
     return result;
   }
+
+  // Gets the number of posts
+  get size(): number {
+    return this.byId.size;
+  }
+
+  // Filter By Language
+  byLang(lang: Language): BlogPost[] {
+    const result: BlogPost[] = [];
+    BLOG_POSTS.byId.forEach((multiLangBlogPost) => {
+      result.push(multiLangBlogPost[lang]);
+    });
+    return result;
+  }
 }
+
+// Sort blog posts by date in descending order (newest to oldest)
+export const sortByDate = (posts: BlogPost[]) => {
+  posts.sort((lhs, rhs) => rhs.data.created.getTime() - lhs.data.created.getTime());
+};
 
 export const BLOG_POSTS = new BlogPosts();

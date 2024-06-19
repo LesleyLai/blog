@@ -1,0 +1,41 @@
+---
+import { translations, type TranslationKey } from "@i18n/translations";
+import { type Language, getCurrentLanguage } from "@i18n/i18n";
+
+interface Props {
+  tags: string[];
+}
+
+const translateTags = (lang: Language, tag: string): string => {
+  if (tag in translations.en) {
+    return translations[lang][tag as TranslationKey];
+  }
+  throw Error(`Failed to translate tag: ${tag}`);
+};
+
+const lang = getCurrentLanguage(Astro);
+const { tags } = Astro.props;
+---
+
+<ul class="tagList">{tags.map((tag) => <li>{translateTags(lang, tag)}</li>)}</ul>
+
+<style>
+  .tagList {
+    /* TODO: shouldn't need to reset list */
+    list-style: none;
+    margin: 0;
+
+    display: flex;
+  }
+
+  .tagList li {
+    margin: 0.2em 0.5em 0.2em 0px;
+
+    padding: 0.4em 0.5em;
+    font-weight: 700;
+    font-size: 10px;
+    border-radius: 0.285714rem;
+    color: #fff;
+    background-color: var(--tag-color);
+  }
+</style>
