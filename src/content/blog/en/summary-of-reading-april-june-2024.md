@@ -1,10 +1,8 @@
 ---
-id: summary-of-reading-april-june-2024
 title: "Summary of reading: April - June 2024"
-lang: en
-create: "2024-07-07"
-lastModify: "2024-07-07"
-categories:
+created: 2024-07-07
+modified: 2024-07-07
+tags:
   - books
 ---
 

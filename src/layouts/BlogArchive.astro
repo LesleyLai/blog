@@ -51,8 +51,8 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
             <li>
               <a href={`/${post.slug}`} data-astro-prefetch>
                 {post.data.title}{" "}
-                {post.untranslated && <span>{translations[lang].untranslated}</span>}
               </a>
+              {post.untranslated && <span>{translations[lang].untranslated}</span>}
               <span>— {formatDate(post.data.created)}</span>
               <span class="tags">
                 <TagList tags={post.data.tags} />

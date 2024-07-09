@@ -1,10 +1,8 @@
 ---
-id: ast-in-cpp-part-1-variant
 title: "Representing an Abstract Syntax Tree in C++: Part 1 - Variants"
-lang: en
-create: "2024-04-22"
-lastModify: "2024-04-22"
-categories:
+created: 2024-04-22
+modified: 2024-04-22
+tags:
   - code
   - cpp
   - pldev
