@@ -101,3 +101,25 @@ export const sortByDate = (posts: BlogPost[]) => {
 };
 
 export const BLOG_POSTS = new BlogPosts();
+
+// All blog post tags and post count
+export const ALL_TAGS = (() => {
+  let tags = new Map<string, number>();
+  for (const entry of BLOG_POSTS.byLang("en")) {
+    for (const tag of entry.data.tags) {
+      if (tags.has(tag)) {
+        tags.set(tag, tags.get(tag)! + 1);
+      } else {
+        tags.set(tag, 1);
+      }
+    }
+  }
+
+  const array = Array.from(tags);
+
+  array.sort(([_tag1, a], [_tag2, b]) => b - a);
+  return array.map(([tag, count]) => ({
+    tag: tag,
+    count: count,
+  }));
+})();

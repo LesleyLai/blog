@@ -44,7 +44,7 @@ const translate_tags = (tag: string): string => {
       </h1>
       <div class="info">
         <span class="date">
-          {modified ? `last modify: ${formatDate(entry.data.modified)} | ` : undefined}
+          {modified ? `modify: ${formatDate(entry.data.modified)} | ` : undefined}
           create: {formatDate(entry.data.created)}
         </span>
         <span class="tags">

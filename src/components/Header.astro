@@ -10,9 +10,10 @@ import { translations } from "@i18n/translations";
 const lang = getCurrentLanguage(Astro);
 
 import "@styles/container.css";
+import "@styles/utilities.css";
 ---
 
-<header>
+<header class="border-bottom-solid">
   <div class="container">
     <nav aria-label="main menu">
       <div class="home">
@@ -41,7 +42,6 @@ import "@styles/container.css";
 <style>
   header {
     background-color: var(--header-bg-color);
-    border-bottom: 1px solid var(--divider-color);
     padding: 4px 0;
   }
 

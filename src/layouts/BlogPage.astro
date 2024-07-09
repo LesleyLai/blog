@@ -1,16 +1,127 @@
 ---
 import "@styles/container.css";
+import "@styles/utilities.css";
+
+import { Icon } from "astro-icon/components";
 import PageLayout from "./PageLayout.astro";
-import { translations } from "@i18n/translations";
-import { getCurrentLanguage } from "@i18n/i18n";
-import { BLOG_POSTS } from "@content/blog";
+import { translations, type TranslationKey } from "@i18n/translations";
+import { type Language, getCurrentLanguage } from "@i18n/i18n";
+import { BLOG_POSTS, ALL_TAGS, sortByDate } from "@content/blog";
+import TagList from "@components/TagList.astro";
 
 const lang = getCurrentLanguage(Astro);
 
+const translateTags = (lang: Language, tag: string): string => {
+  if (tag in translations.en) {
+    return translations[lang][tag as TranslationKey];
+  }
+  throw Error(`Failed to translate tag: ${tag}`);
+};
+
 const title = translations[lang].blog;
+
+const posts = BLOG_POSTS.byLang(lang).filter((post) => !post.untranslated);
+sortByDate(posts);
+const mostRencentPosts = posts.slice(0, 5);
+
+const options: Intl.DateTimeFormatOptions = {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+};
+const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
 ---
 
 <PageLayout title={title}>
   <h1>{title}</h1>
   <p>Visit <a href={`/${lang}/archive`}>archive</a> for all {BLOG_POSTS.size} posts</p>
+
+  <ul class="tag-list border-bottom-solid">
+    {
+      ALL_TAGS.filter(({ count }) => count >= 3).map(({ tag, count }) => (
+        <>
+          <li>
+            <Icon name="mdi:tag" size={16} title="tag" class="tag-icon" />
+            {translateTags(lang, tag)}
+            {count}
+          </li>
+          <li>•</li>
+        </>
+      ))
+    }
+    <li>
+      <Icon name="mdi:tag-multiple-outline" size={16} title="tag" class="tag-icon" /> All Tags
+    </li>
+  </ul>
+
+  {
+    mostRencentPosts.map((post) => {
+      const modified = post.data.created.getTime() < post.data.modified.getTime();
+
+      return (
+        <article class="post-article border-bottom-solid">
+          <h3>
+            <a href={`/${post.slug}`} data-astro-prefetch>
+              {post.data.title}
+            </a>
+          </h3>
+          <p class="post-article-meta">
+            <Icon name="mdi:calendar" title="calandar" />
+            {modified ? `modify: ${formatDate(post.data.modified)} | ` : undefined}
+            create: {formatDate(post.data.created)}
+          </p>
+          <TagList tags={post.data.tags} />
+        </article>
+      );
+    })
+  }
 </PageLayout>
+
+<style>
+  .tag-list {
+    /* TODO: shouldn't need to reset list */
+    list-style: none;
+    margin: 0;
+    padding-bottom: 2rem;
+
+    display: flow-root;
+  }
+
+  .tag-list li {
+    display: inline-flex;
+    margin: 0.2em 0.1em;
+
+    padding: 0 0.5em;
+  }
+
+  .tag-list li .tag-icon {
+    margin: 6px 3px 0 0;
+  }
+
+  .post-article {
+    padding: 2rem 0;
+  }
+
+  .post-article h3 {
+    padding: 0;
+    font-style: normal;
+  }
+
+  .post-article h3 a {
+    color: var(--text-color);
+    transition: all 0.2s ease-in-out;
+  }
+
+  .post-article h3 a:hover {
+    color: var(--highlight-color);
+  }
+
+  .post-article-meta {
+    display: flex;
+  }
+
+  .post-article-meta svg {
+    margin-top: 5px;
+    margin-right: 4px;
+  }
+</style>
