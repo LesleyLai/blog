@@ -1,0 +1,30 @@
+---
+import PageLayout from "../PageLayout.astro";
+
+import { Image } from "astro:assets";
+import portraitImage from "@assets/portrait.jpg";
+
+import { getCurrentLanguage } from "@i18n/i18n";
+import { translations } from "@i18n/translations";
+
+let lang = getCurrentLanguage(Astro);
+---
+
+<PageLayout title="About">
+  <h1>{translations[lang].aboutme}</h1>
+  <Image class="portrait" src={portraitImage} alt="A portrait of Lesley Lai" width={200} />
+  <article>
+    <slot />
+  </article>
+</PageLayout>
+
+<style>
+  .portrait {
+    float: right;
+    margin-left: 1rem;
+    border-radius: 0.25rem;
+    box-shadow:
+      0 2px 5px 0 rgba(0, 0, 0, 0.16),
+      0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  }
+</style>

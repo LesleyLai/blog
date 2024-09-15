@@ -5,6 +5,7 @@ import type { Language } from "./i18n";
 
 const en = {
   about: "About",
+  aboutme: "About Me",
   ai: "AI",
   algorithms: "Algorithms",
   all: "All",
@@ -78,6 +79,7 @@ export type TranslationKey = keyof Translations;
 
 const zh: Translations = {
   about: "关于",
+  aboutme: "关于我",
   ai: en.ai,
   algorithms: "算法",
   all: "所有",
