@@ -21,21 +21,33 @@
   #theme-toggle {
     border: 0;
     background: none;
+    cursor: pointer;
   }
+  #theme-toggle:hover .sun {
+    fill: var(--highlight-color);
+  }
+
   .sun {
     fill: black;
+    transition: fill 0.2s;
   }
   .moon {
     fill: transparent;
+    transition: fill 0.2s;
   }
 
   :global(.dark) .sun {
     fill: transparent;
   }
+  :global(.dark) #theme-toggle:hover .sun {
+    fill: transparent;
+  }
   :global(.dark) .moon {
     fill: white;
   }
-
+  :global(.dark) #theme-toggle:hover .moon {
+    fill: var(--highlight-color);
+  }
   /* Overright css transition for everything temporarily */
   :global(.theme-transition *) {
     transition: all 0.3s !important;
