@@ -148,6 +148,8 @@ main li {
   --link-color: #4183c4;
   --tag-color: #2dabf9;
 
+  --blog-list-meta-color: rgba(0, 0, 0, 0.8);
+
   --aside-text-color: #868279;
   --aside-sm-bg-color: #faf8f5;
   --aside-sm-border-color: #f7f4ed;
@@ -167,6 +169,8 @@ main li {
 
   --link-color: #0aa;
   --tag-color: #066;
+
+  --blog-list-meta-color: rgb(232, 232, 232, 0.7);
 
   --aside-text-color: #d7d5d0;
   --aside-sm-bg-color: #444;

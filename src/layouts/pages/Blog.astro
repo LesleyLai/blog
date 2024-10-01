@@ -65,12 +65,21 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
               {post.data.title}
             </a>
           </h3>
-          <p class="post-article-meta">
-            <Icon name="mdi:calendar" title="calandar" />
-            {modified ? `modify: ${formatDate(post.data.modified)} | ` : undefined}
-            create: {formatDate(post.data.created)}
-          </p>
-          <TagList tags={post.data.tags} />
+          <div class="post-article-meta">
+            <div class="post-article-date">
+              <Icon name="mdi:calendar" title="calandar" />
+              <span>
+                {`${translations[lang].createTime}${formatDate(post.data.created)}`}
+                {modified
+                  ? ` | ${translations[lang].lastModified}${formatDate(post.data.modified)}`
+                  : undefined}
+              </span>
+            </div>
+            <div class="post-article-tags">
+              <Icon name="mdi:tags" title="tags" />
+              <TagList tags={post.data.tags} />
+            </div>
+          </div>
         </article>
       );
     })
@@ -105,6 +114,24 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
   .post-article h3 {
     padding: 0;
     font-style: normal;
+    font-size: 22px;
+    margin-bottom: 0.2em;
+  }
+
+  @media (min-width: 48em) {
+    .post-article h3 {
+      font-size: 24px;
+    }
+  }
+  @media (min-width: 64em) {
+    .post-article h3 {
+      font-size: 25px;
+    }
+  }
+  @media (min-width: 80em) {
+    .post-article h3 {
+      font-size: 26px;
+    }
   }
 
   .post-article h3 a {
@@ -118,10 +145,27 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
 
   .post-article-meta {
     display: flex;
+    color: var(--blog-list-meta-color);
+    font-size: 14px;
+  }
+  @media (min-width: 64em) {
+    .post-article-meta {
+      font-size: 16px;
+    }
   }
 
-  .post-article-meta svg {
-    margin-top: 5px;
+  .post-article-date {
+    display: flex;
+    margin-right: 1em;
+  }
+
+  .post-article-date svg,
+  .post-article-tags svg {
+    margin-top: 3px;
     margin-right: 4px;
+  }
+
+  .post-article-tags {
+    display: flex;
   }
 </style>
