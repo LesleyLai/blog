@@ -3,7 +3,7 @@ id: moocs
 title: "Online Courses that I Recommend"
 lang: en
 create: "2024-03-17"
-lastModify: "2024-03-17"
+lastModify: "2024-11-18"
 categories:
   - learning
   - personal
@@ -33,9 +33,21 @@ Do note that some courses that I recommend below are not [MOOCs](https://en.wiki
 - MIT OCW [Linear Algebra](https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/) by Prof. Gilbert Strang as main course — If you spend some time doing online learning for math, it is likely you already heard the name of Prof. Strang.
   - [Essense of linear algebra](https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab) by 3Blue1Brown
 
+### Differential Equations
+- MIT OCW [Differential Equations](https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/) — My only complaint is the low resolution of the video lecture
+- [Khan Academy Differential Equations](https://www.khanacademy.org/math/differential-equations) — Accessible though very incomplete
+
 ### Discrete Math
 
 - MIT OCW [Mathematics for Computer Science](https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/)
+
+### Signal Processing
+Wikipedia says that signal processing is an electrical engineering subfield, but in reality the same technique is used in various other fields as well.
+
+- MIT OCW [6.003 Signals and Systems](https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/) — I enjoy the inereactive teaching style.
+
+## Logic
+- [Stanford Introduction to Logic](http://intrologic.stanford.edu/homepage/index.html) — I took a solid introductory logic course at university, but this course still introduces many new concepts or explains familiar ones from a fresh perspective.
 
 ## Computer Science and Programming
 
@@ -85,3 +97,4 @@ Similar to university courses, the majority of online courses I've enrolled in h
 - [Social Psychology](https://www.coursera.org/learn/social-psychology) by Wesleyan University — Presented lots of exaggerated claims and falsified theories such as "video game causes violence." Also quoating controversial studies such as [Stanford Prison](https://en.wikipedia.org/wiki/Stanford_prison_experiment) and [Milgram experiments](https://en.wikipedia.org/wiki/Milgram_experiment). I guess this course can serve as a cautious tale of scientific [progress](https://en.wikipedia.org/wiki/Replication_crisis) and not everything your learn is true. Though since I took it in 2015, I am not sure if this course changes now.
 
 - [Fundamentals of Music Theory](https://www.coursera.org/learn/edinburgh-music-theory) By the University of Edinburgh — Rudimentary lectures followed by extremely hard quizzes that are impossible to complete without a lot of extra googling
+
