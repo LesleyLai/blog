@@ -11,6 +11,9 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.3",
+    "@fontsource-variable/noto-sans-sc": "^5.2.5",
+    "@fontsource/pt-sans": "^5.2.5",
+    "@fontsource/pt-serif": "^5.2.5",
     "@iconify-json/mdi": "^1.1.66",
     "astro": "^5.5.3",
     "astro-icon": "^1.1.0",

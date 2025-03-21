@@ -49,7 +49,7 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
         <ul>
           {posts.map((post) => (
             <li>
-              <a href={`/${transformSlug(post.slug)}`} data-astro-prefetch>
+              <a class="title" href={`/${transformSlug(post.slug)}`} data-astro-prefetch>
                 {post.data.title}{" "}
               </a>
               {post.untranslated && <span>{translations[lang].untranslated}</span>}
@@ -72,7 +72,11 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
     margin-bottom: 0.5rem;
   }
 
-  .tags {
-    display: inline-block;
-  }
+ .title {
+     font-family: 'PT Serif', 'Noto Sans SC Variable', serif;
+ }
+
+ .tags {
+     display: inline-block;
+ }
 </style>
