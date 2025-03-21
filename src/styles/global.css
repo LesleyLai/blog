@@ -5,7 +5,9 @@
 */
 
 /* Box sizing rules */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -25,23 +27,37 @@ body {
 }
 
 /* Improve media defaults */
-img, picture, video, canvas, svg {
+img,
+picture,
+video,
+canvas,
+svg {
   display: block;
   max-width: 100%;
 }
 
 /* Remove built-in form typography styles */
-input, button, textarea, select {
+input,
+button,
+textarea,
+select {
   font: inherit;
 }
 
 /* Avoid text overflows */
-p, h1, h2, h3, h4, h5, h6 {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   overflow-wrap: break-word;
 }
 
 /* Create a root stacking context */
-#root, #__next {
+#root,
+#__next {
   isolation: isolate;
 }
 
@@ -52,7 +68,6 @@ html {
   text-size-adjust: none;
 }
 
-
 body {
   background-color: var(--bg-color);
   background-image: url(/background.png);
@@ -62,18 +77,24 @@ body {
   min-height: 100vh;
 
   font-size: 16px;
-  font-family: 'PT Sans', 'Noto Sans SC Variable', sans-serif;
+  font-family: "PT Sans", "Noto Sans SC Variable", sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'PT Serif', 'Noto Sans SC Variable', serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "PT Serif", "Noto Sans SC Variable", serif;
 }
 
 .dark body {
   background-image: none;
 }
 
-ul, ol {
+ul,
+ol {
   list-style: none;
   padding: 0;
 }
@@ -82,7 +103,7 @@ p {
   margin: 0.5em 0;
 }
 
-p+p {
+p + p {
   margin: 0.75em 0;
 }
 
@@ -94,7 +115,6 @@ a {
 a:hover {
   color: var(--highlight-color);
 }
-
 
 main {
   padding: 1rem;
@@ -179,10 +199,9 @@ main li {
   --aside-sm-border-color: #666;
   --aside-sm-border-bottom-color: #444;
   --aside-lg-border-color: #615f58;
-
 }
 
 /* lower image brightness in dark mode */
 .dark img {
-  filter: brightness(.9) contrast(1.1);
+  filter: brightness(0.9) contrast(1.1);
 }

@@ -218,9 +218,15 @@ For example, here is one comment on Medium to the article:
 Rest assured that most people in the functional programming community are friendly and don't have that kind of bias against your favorite language.
 
 [^1]: https://docs.microsoft.com/en-us/dotnet/csharp/pattern-matching
+
 [^2]: https://en.cppreference.com/w/cpp/utility/optional
+
 [^3]: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Optional.html
+
 [^4]: https://babeljs.io/docs/en/babel-preset-typescript
+
 [^5]: https://en.wikipedia.org/wiki/Dependent_type
+
 [^6]: https://guide.elm-lang.org/interop/custom_elements.html
+
 [^7]: https://guide.elm-lang.org/interop/ports.html

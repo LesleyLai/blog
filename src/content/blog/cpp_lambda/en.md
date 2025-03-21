@@ -99,6 +99,7 @@ Functional programming languages utilized this concept for their language constr
 </aside>
 
 [^2]: [Wikipedia: Functor](https://en.wikipedia.org/wiki/Functor)
+
 [^3]: See [p0798R3: Monadic operations for std::optional](https://wg21.link/p0798)
 
 ### Function Object
