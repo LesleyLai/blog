@@ -55,7 +55,7 @@ html {
 
 body {
   background-color: var(--bg-color);
-  background-image: url(/bg.png);
+  background-image: url(/background.png);
   color: var(--text-color);
   display: flex;
   flex-direction: column;
