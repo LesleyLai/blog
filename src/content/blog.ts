@@ -39,7 +39,8 @@ const populateMissingChineseEntries = (
 ) => {
   blogEntriesById.forEach((entries: Partial<MultiLangBlogPost>, id: string) => {
     if (!entries.zh) {
-      let { slug, untranslated, ...rest } = entries.en!;
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { slug, untranslated, ...rest } = entries.en!;
       entries.zh = {
         ...rest,
         untranslated: true,
@@ -71,8 +72,8 @@ class BlogPosts {
   // all blog posts regardless of languages
   get all(): BlogPost[] {
     const result: BlogPost[] = [];
-    for (let multiLangBlogPost of BLOG_POSTS.byId.values()) {
-      for (let post of Object.values(multiLangBlogPost)) {
+    for (const multiLangBlogPost of BLOG_POSTS.byId.values()) {
+      for (const post of Object.values(multiLangBlogPost)) {
         result.push(post);
       }
     }
@@ -104,7 +105,7 @@ export const BLOG_POSTS = new BlogPosts();
 
 // All blog post tags and post count
 export const ALL_TAGS = (() => {
-  let tags = new Map<string, number>();
+  const tags = new Map<string, number>();
   for (const entry of BLOG_POSTS.byLang("en")) {
     for (const tag of entry.data.tags) {
       if (tags.has(tag)) {

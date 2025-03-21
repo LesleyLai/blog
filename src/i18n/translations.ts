@@ -1,5 +1,4 @@
 /*eslint sort-keys: "warn"*/
-/*eslint "@typescript-eslint/camelcase": "off"*/
 
 import type { Language } from "./i18n";
 

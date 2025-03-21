@@ -9,7 +9,7 @@ export const isLanguage = (str: string): str is Language => (languages as string
 
 // Get the language code for the current page
 export const getCurrentLanguage = (astro: AstroGlobal): Language => {
-  let lang = astro.currentLocale ?? "en";
+  const lang = astro.currentLocale ?? "en";
   if (!isLanguage(lang)) {
     throw new Error(`${lang} is not a recognized language`);
   }
@@ -17,7 +17,7 @@ export const getCurrentLanguage = (astro: AstroGlobal): Language => {
 };
 
 export const langFromSlug = (slug: string): Language => {
-  let lang = slug.split("/")[1];
+  const lang = slug.split("/")[1];
   if (!isLanguage(lang)) {
     throw new Error(`Unknown language contained in url ${slug}`);
   }

@@ -1,6 +1,6 @@
 ---
 import Layout from "@layouts/BaseLayout.astro";
-import { translations, type TranslationKey } from "@i18n/translations";
+import { translations } from "@i18n/translations";
 import { langFromSlug, transformSlug } from "@i18n/i18n";
 import { BLOG_POSTS } from "@content/blog";
 import TagList from "@components/TagList.astro";
@@ -28,13 +28,6 @@ const options: Intl.DateTimeFormatOptions = {
   day: "numeric",
 };
 const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
-
-const translate_tags = (tag: string): string => {
-  if (tag in translations.en) {
-    return translations[lang][tag as TranslationKey];
-  }
-  throw Error(`Failed to translate tag: ${tag}`);
-};
 ---
 
 <Layout title={entry.data.title}>
