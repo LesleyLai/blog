@@ -1,16 +1,20 @@
 ---
 import Layout from "@layouts/BaseLayout.astro";
 import { translations, type TranslationKey } from "@i18n/translations";
-import { langFromSlug } from "@i18n/i18n";
+import { langFromSlug, transformSlug } from "@i18n/i18n";
 import { BLOG_POSTS } from "@content/blog";
 import TagList from "@components/TagList.astro";
 import "@styles/container.css";
 
 export async function getStaticPaths() {
-  return BLOG_POSTS.all.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { entry },
-  }));
+  return BLOG_POSTS.all.map((entry) => {
+    const slug = transformSlug(entry.slug);
+
+    return {
+      params: { slug },
+      props: { entry },
+    };
+  });
 }
 
 const { entry } = Astro.props;
@@ -24,8 +28,6 @@ const options: Intl.DateTimeFormatOptions = {
   day: "numeric",
 };
 const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
-
-const modified = entry.data.created.getTime() < entry.data.modified.getTime();
 
 const translate_tags = (tag: string): string => {
   if (tag in translations.en) {
@@ -44,7 +46,7 @@ const translate_tags = (tag: string): string => {
       </h1>
       <div class="info">
         <span class="date">
-          {modified ? `modify: ${formatDate(entry.data.modified)} | ` : undefined}
+          {entry.data.modified && `modify: ${formatDate(entry.data.modified)}`}
           create: {formatDate(entry.data.created)}
         </span>
         <span class="tags">

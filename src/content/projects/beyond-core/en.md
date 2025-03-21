@@ -1,6 +1,6 @@
 ---
 name: "beyond::core"
-created: "2020-02-11"
+created: 2020-02-11
 github: https://github.com/Beyond-Engine/Core
 tags:
   - cpp

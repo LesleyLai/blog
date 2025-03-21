@@ -1,7 +1,7 @@
 ---
 name: "CUDA Flocking"
 image: boid
-created: "2020-11-26"
+created: 2020-11-26
 github: https://github.com/LesleyLai/CUDA-flocking-boid
 tags:
   - cpp

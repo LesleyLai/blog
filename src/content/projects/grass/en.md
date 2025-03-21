@@ -1,7 +1,7 @@
 ---
 name: "OpenGL Grass Renderer"
 image: grass
-created: "2019-12-14"
+created: 2019-12-14
 github: https://github.com/LesleyLai/GLGrassRenderer
 tags:
   - cpp

@@ -1,6 +1,6 @@
 ---
 name: "beyond::functions"
-created: "2019-09-15"
+created: 2019-09-15
 website: https://beyond-engine.github.io/functions/
 github: https://github.com/Beyond-Engine/functions
 tags:

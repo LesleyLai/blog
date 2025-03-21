@@ -1,7 +1,7 @@
 ---
 name: "Galaxy Renderer"
 image: galaxy-renderer
-created: "2022-06-20"
+created: 2022-06-20
 github: https://github.com/LesleyLai/galaxy-renderer
 tags:
   - rust

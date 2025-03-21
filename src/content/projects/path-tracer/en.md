@@ -1,7 +1,7 @@
 ---
 name: "Path Tracer"
 image: pathtracing
-created: "2018-04-13"
+created: 2018-04-13
 github: https://github.com/LesleyLai/Path-Tracer
 tags:
   - cpp

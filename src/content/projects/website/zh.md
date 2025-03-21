@@ -1,8 +1,8 @@
 ---
 name: "个人网站"
 image: blog
-created: "2016-05-06"
-modified: "2022-01-15"
+created: 2016-05-06
+modified: 2022-01-15
 tags:
   - i18n
   - typescript

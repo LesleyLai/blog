@@ -1,8 +1,8 @@
 ---
 name: "Reversi Elm"
 image: reversi
-created: "2018-02-24"
-modified: "2019-04-08"
+created: 2018-02-24
+modified: 2019-04-08
 github: https://github.com/LesleyLai/Reversi-Elm-V2
 demo: https://lesleylai.github.io/Reversi-Elm-V2/
 tags:

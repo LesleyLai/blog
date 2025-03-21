@@ -23,7 +23,7 @@ const groupEntriesById = (blogEntries: CollectionEntry<"blog">[]) => {
   const byId = new Map<string, Partial<MultiLangBlogPost>>();
   for (const entry of blogEntries) {
     const lang = langFromSlug(entry.slug);
-    const id = entry.slug.replace(`${lang}\/`, "");
+    const id = entry.slug.replace(`\/${lang}`, "");
     if (!byId.has(id)) {
       byId.set(id, {});
     }
@@ -43,7 +43,7 @@ const populateMissingChineseEntries = (
       entries.zh = {
         ...rest,
         untranslated: true,
-        slug: `zh/${id}`,
+        slug: `${id}/zh`,
       };
     }
   });

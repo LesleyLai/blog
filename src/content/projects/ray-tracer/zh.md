@@ -1,7 +1,7 @@
 ---
 name: "光线追踪器"
 image: raytracer
-created: "2016-05-12"
+created: 2016-05-12
 github: https://github.com/LesleyLai/RayTracer
 tags:
   - cpp

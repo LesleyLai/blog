@@ -1,7 +1,7 @@
 ---
 name: "Ocamlpt"
 image: ocamlpt
-created: "2020-04-05"
+created: 2020-04-05
 github: https://github.com/LesleyLai/ocamlpt
 tags:
   - functional
