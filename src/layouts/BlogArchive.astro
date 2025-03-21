@@ -2,7 +2,7 @@
 import "@styles/container.css";
 import PageLayout from "./PageLayout.astro";
 import { translations } from "@i18n/translations";
-import { getCurrentLanguage } from "@i18n/i18n";
+import { getCurrentLanguage, transformSlug } from "@i18n/i18n";
 import { BLOG_POSTS, sortByDate, type BlogPost } from "@content/blog";
 import TagList from "@components/TagList.astro";
 
@@ -49,7 +49,7 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
         <ul>
           {posts.map((post) => (
             <li>
-              <a href={`/${post.slug}`} data-astro-prefetch>
+              <a href={`/${transformSlug(post.slug)}`} data-astro-prefetch>
                 {post.data.title}{" "}
               </a>
               {post.untranslated && <span>{translations[lang].untranslated}</span>}
