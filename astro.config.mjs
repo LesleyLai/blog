@@ -16,4 +16,12 @@ export default defineConfig({
     },
   },
   integrations: [icon()],
+  markdown: {
+    shikiConfig: {
+      themes: {
+        light: "light-plus",
+        dark: "github-dark",
+      },
+    },
+  },
 });

@@ -56,14 +56,8 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
     background-color: var(--sidenote-bg-color);
   }
 
-  @media only screen and (min-width: 1088px) {
-    main {
-      max-width: var(--blog-content-width);
-    }
-  }
-
   h1 {
-    font-size: max(36px, 2em);
+    font-size: 36px;
     line-height: 48px;
     font-weight: 400;
     margin: 100px 0;
@@ -87,6 +81,8 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
     color: var(--secondary-color);
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    font-size: 12px;
+    line-height: 24px;
   }
 
   /* sidenotes */
@@ -95,6 +91,7 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
     padding: 5px 10px;
     font-size: 13px;
 
+    margin-top: 0;
     margin-bottom: 20px;
     background: var(--aside-sm-bg-color);
     border: solid 1px var(--aside-sm-border-color);
@@ -108,7 +105,20 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
     }
   }
 
+  /* Tablets */
+  @media only screen and (min-width: 481px) and (max-width: 768px) {
+  }
+
+  /* Larger tablets/small desktops */
+  @media only screen and (min-width: 769px) and (max-width: 1087px) {
+  }
+
+  /* Desktops */
   @media only screen and (min-width: 1088px) {
+    main {
+      max-width: var(--blog-content-width);
+    }
+
     main :global(aside) {
       position: absolute;
       width: calc(var(--container-width) - var(--blog-content-width) - 11px);
