@@ -5,6 +5,8 @@ import "@fontsource-variable/noto-sans-sc";
 
 import { getCurrentLanguage } from "@i18n/i18n";
 
+import { ClientRouter } from "astro:transitions";
+
 interface Props {
   title: string;
   children: unknown;
@@ -39,3 +41,5 @@ const siteName = translations[lang].siteName;
     <slot />
   </body>
 </html>
+
+<ClientRouter />
