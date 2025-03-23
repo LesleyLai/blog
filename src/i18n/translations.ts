@@ -1,6 +1,7 @@
 /*eslint sort-keys: "warn"*/
 
 import type { Language } from "./i18n";
+import { ALL_TAGS } from "@content/blog";
 
 const en = {
   about: "About",
@@ -59,7 +60,7 @@ const en = {
   rust: "Rust",
   scheme: "Scheme",
   siteName: "Lesley Lai",
-  stuffIWroteAbout: (tag: string) => `Stuff I wrote about ${en[tag]}`,
+  stuffIWroteAbout: (tag: string) => `Stuff I wrote about ${en[tag as TranslationKey]}`,
   tags: "Tags",
   talks: "Talks",
   test: "Testing",
@@ -72,6 +73,13 @@ const en = {
   wgpu: "wgpu",
   x86: "x86",
 };
+
+// Make sure that all the tags are transla
+for (const tag of ALL_TAGS) {
+  if (!Object.keys(en).includes(tag)) {
+    throw new Error(`Untranslated tag: ${tag}!`);
+  }
+}
 
 export type Translations = typeof en;
 
@@ -134,7 +142,7 @@ const zh: Translations = {
   rust: en.rust,
   scheme: en.scheme,
   siteName: "赖思理的个人网站",
-  stuffIWroteAbout: (tag) => `关于${zh[tag]}的博文`,
+  stuffIWroteAbout: (tag) => `关于${zh[tag as TranslationKey]}的博文`,
   tags: "标签",
   talks: "演讲",
   test: "软件测试",
