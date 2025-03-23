@@ -23,7 +23,7 @@ import "@styles/utilities.css";
       </a>
     </div>
     <!-- Hamburger icon -->
-    <input class="menu-icon" type="checkbox" id="menu-icon" />
+    <input class="menu-icon" type="checkbox" id="menu-icon" transition:persist />
     <label class="hamb" for="menu-icon"><span class="hamb-line"></span></label>
     <!-- Menu -->
     <nav aria-label="main menu">
@@ -146,7 +146,7 @@ import "@styles/utilities.css";
 
   .menu-icon:checked ~ nav {
     /* CSS can't perform transition on percentiles like 100%, so we just use a value larger than the nav can be */
-    max-height: 300px;
+    max-height: 400px;
   }
   .menu-icon:checked ~ .hamb .hamb-line {
     background: transparent;
