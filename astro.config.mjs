@@ -2,6 +2,9 @@ import { defineConfig } from "astro/config";
 
 import icon from "astro-icon";
 
+import remarkMath from "remark-math";
+import rehypeMathJax from "rehype-mathjax";
+
 // https://astro.build/config
 export default defineConfig({
   prefetch: {
@@ -23,5 +26,7 @@ export default defineConfig({
         dark: "github-dark",
       },
     },
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [rehypeMathJax],
   },
 });

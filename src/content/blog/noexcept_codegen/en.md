@@ -22,7 +22,7 @@ int f() {
 I intentionally do not define `g` in this translation unit since otherwise, the compiler will be too smart and inline everything.
 Nevertheless, all the major C++ compilers can figure out that `f` only contains a tail-call to `g` and generate codes like this:
 
-```nasm
+```asm
 f():
         jmp     g()
 ```
@@ -42,7 +42,7 @@ Here is the result codegen from various compilers:
 
 msvc
 
-```nasm
+```asm
 $ip2state$int f(void) DB 02H
         DB      08H
         DB      00H
@@ -61,7 +61,7 @@ int f(void) ENDP                                      ; f
 
 gcc
 
-```nasm
+```asm
 f():
         sub     rsp, 8
         call    g()
@@ -71,7 +71,7 @@ f():
 
 clang
 
-```nasm
+```asm
 f():
         push    rax
         call    g()

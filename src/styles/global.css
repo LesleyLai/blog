@@ -230,3 +230,9 @@ html.dark .astro-code span {
   font-weight: var(--shiki-dark-font-weight) !important;
   text-decoration: var(--shiki-dark-text-decoration) !important;
 }
+
+/* math */
+mjx-container[jax="SVG"] {
+  display: inline-block;
+  vertical-align: middle;
+}

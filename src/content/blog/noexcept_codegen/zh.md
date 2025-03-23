@@ -24,7 +24,7 @@ int f() {
 我故意不在此翻译单元（translation unit）中定义`g`，否则的话编译器会有足够的信息来内联（inline）`g`的所有内容。
 尽管如此，所有主要的C++编译器都能弄清楚`f`仅包含对`g`的尾调用，并生成如下代码：
 
-```nasm
+```asm
 f():
         jmp     g()
 ```
@@ -43,7 +43,7 @@ int f() noexcept {
 
 msvc
 
-```nasm
+```asm
 $ip2state$int f(void) DB 02H
         DB      08H
         DB      00H
@@ -62,7 +62,7 @@ int f(void) ENDP                                      ; f
 
 gcc
 
-```nasm
+```asm
 f():
         sub     rsp, 8
         call    g()
@@ -72,7 +72,7 @@ f():
 
 clang
 
-```nasm
+```asm
 f():
         push    rax
         call    g()
