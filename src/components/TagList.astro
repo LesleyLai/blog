@@ -4,20 +4,27 @@ import { type Language, getCurrentLanguage } from "@i18n/i18n";
 
 interface Props {
   tags: string[];
+  exclude?: string;
 }
 
 const translateTags = (lang: Language, tag: string): string => {
   if (tag in translations.en) {
-    return translations[lang][tag as TranslationKey];
+    return translations[lang][tag as TranslationKey] as string;
   }
   throw Error(`Failed to translate tag: ${tag}`);
 };
 
 const lang = getCurrentLanguage(Astro);
-const { tags } = Astro.props;
+const { tags, exclude } = Astro.props;
 ---
 
-<ul class="tagList">{tags.map((tag) => <li>{translateTags(lang, tag)}</li>)}</ul>
+<ul class="tagList">
+  {
+    tags
+      .filter((tag) => tag != exclude)
+      .map((tag) => <li>{<a href={`/${lang}/tags/${tag}`}>{translateTags(lang, tag)}</a>}</li>)
+  }
+</ul>
 
 <style>
   .tagList {
@@ -28,14 +35,18 @@ const { tags } = Astro.props;
     display: flex;
   }
 
-  .tagList li {
+  .tagList li a {
     margin: 0.2em 0.5em 0.2em 0px;
-
     padding: 0.4em 0.5em;
-    font-weight: 700;
-    font-size: 10px;
+    font-weight: 800;
+    font-size: 12px;
     border-radius: 0.285714rem;
+
     color: #fff;
     background-color: var(--tag-color);
+  }
+
+  .tagList li a:hover {
+    background-color: var(--tag-highlight-color);
   }
 </style>

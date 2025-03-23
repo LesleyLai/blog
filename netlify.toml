@@ -1,0 +1,4 @@
+[context.astro-migration]
+  command = "npm run build"
+  environment = { NODE_VERSION = "22" }
+  publish = "dist/"

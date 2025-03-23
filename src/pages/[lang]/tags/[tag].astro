@@ -1,0 +1,31 @@
+---
+import { ALL_TAGS } from "@content/blog";
+import Layout from "@layouts/PageLayout.astro";
+import { translations } from "@i18n/translations";
+import { type Language } from "@i18n/i18n";
+
+import BlogArchive from "@components/BlogArchive.astro";
+
+interface Params {
+  params: {
+    lang: Language;
+    tag: string;
+  };
+}
+
+export function getStaticPaths(): Params[] {
+  return ALL_TAGS.flatMap((tag) => [
+    { params: { lang: "en", tag: tag } },
+    { params: { lang: "zh", tag: tag } },
+  ]);
+}
+
+const { lang, tag } = Astro.params;
+
+const title = translations[lang].stuffIWroteAbout(tag);
+---
+
+<Layout title={title}>
+  <h1>{title}</h1>
+  <BlogArchive tag={tag} />
+</Layout>

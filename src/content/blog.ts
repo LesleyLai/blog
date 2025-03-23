@@ -104,7 +104,7 @@ export const sortByDate = (posts: BlogPost[]) => {
 export const BLOG_POSTS = new BlogPosts();
 
 // All blog post tags and post count
-export const ALL_TAGS = (() => {
+export const POST_COUNT_BY_TAGS = (() => {
   const tags = new Map<string, number>();
   for (const entry of BLOG_POSTS.byLang("en")) {
     for (const tag of entry.data.tags) {
@@ -124,3 +124,5 @@ export const ALL_TAGS = (() => {
     count: count,
   }));
 })();
+
+export const ALL_TAGS = POST_COUNT_BY_TAGS.map(({ tag }) => tag);

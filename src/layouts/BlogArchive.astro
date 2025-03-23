@@ -2,67 +2,17 @@
 import "@styles/container.css";
 import PageLayout from "./PageLayout.astro";
 import { translations } from "@i18n/translations";
-import { getCurrentLanguage, transformSlug } from "@i18n/i18n";
-import { BLOG_POSTS, sortByDate, type BlogPost } from "@content/blog";
-import TagList from "@components/TagList.astro";
+import { getCurrentLanguage } from "@i18n/i18n";
+import Archive from "@components/BlogArchive.astro";
 
 const lang = getCurrentLanguage(Astro);
 
 const title = translations[lang].archive;
-
-const posts = BLOG_POSTS.byLang(lang);
-
-const postsByYear = (function () {
-  const byYearMap: Map<number, BlogPost[]> = new Map();
-  for (const post of posts) {
-    const year = post.data.created.getFullYear();
-    if (byYearMap.has(year)) {
-      byYearMap.get(year)?.push(post);
-    } else {
-      byYearMap.set(year, [post]);
-    }
-  }
-
-  const result: { year: number; posts: BlogPost[] }[] = [];
-  for (const [year, posts] of byYearMap.entries()) {
-    sortByDate(posts);
-    result.push({ year, posts });
-  }
-  result.sort((lhs, rhs) => rhs.year - lhs.year); // inverse sort year
-  return result;
-})();
-
-const options: Intl.DateTimeFormatOptions = {
-  month: "long",
-  day: "numeric",
-};
-const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
 ---
 
 <PageLayout title={title}>
   <h1>{title}</h1>
-  <p>{posts.length} {translations[lang].posts}</p>
-  {
-    postsByYear.map(({ year, posts }) => (
-      <article>
-        <h2 class="year">{year}</h2>
-        <ul>
-          {posts.map((post) => (
-            <li>
-              <a class="title" href={`/${transformSlug(post.slug)}`} data-astro-prefetch>
-                {post.data.title}{" "}
-              </a>
-              {post.untranslated && <span>{translations[lang].untranslated}</span>}
-              <span>— {formatDate(post.data.created)}</span>
-              <span class="tags">
-                <TagList tags={post.data.tags} />
-              </span>
-            </li>
-          ))}
-        </ul>
-      </article>
-    ))
-  }
+  <Archive />
 </PageLayout>
 
 <style>

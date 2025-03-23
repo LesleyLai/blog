@@ -168,7 +168,9 @@ main li {
   --divider-color: rgba(0, 0, 0, 0.1);
 
   --link-color: #4183c4;
+
   --tag-color: #2dabf9;
+  --tag-highlight-color: rgb(6, 136, 250);
 
   --blog-list-meta-color: rgba(0, 0, 0, 0.8);
 
@@ -191,6 +193,7 @@ main li {
 
   --link-color: #0aa;
   --tag-color: #066;
+  --tag-highlight-color: #0cc;
 
   --blog-list-meta-color: rgb(232, 232, 232, 0.7);
 
