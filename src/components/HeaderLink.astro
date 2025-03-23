@@ -1,6 +1,9 @@
 ---
+import { Icon } from "astro-icon/components";
+
 interface Props {
   href: string;
+  is_external?: boolean;
   children: unknown;
 }
 
@@ -12,11 +15,14 @@ function removeTrailingSlash(path: string) {
   return path.replace(/\/+$/, "");
 }
 
+const isExternalURL = href.match(/http[s]?\:\/\//i);
+
 const linking_to_current_path = removeTrailingSlash(currentPath) == removeTrailingSlash(href);
 ---
 
 <a class={linking_to_current_path ? "highlight" : undefined} href={href} data-astro-prefetch="load">
   <slot />
+  {isExternalURL && <Icon name="mdi:open-in-new" size={14} class="external-icon" />}
 </a>
 
 <style>
@@ -24,6 +30,8 @@ const linking_to_current_path = removeTrailingSlash(currentPath) == removeTraili
     transition: color 0.35s;
     padding: 0.5rem 1rem;
     color: var(--text-color);
+
+    display: flex;
   }
 
   a:hover {
@@ -34,5 +42,11 @@ const linking_to_current_path = removeTrailingSlash(currentPath) == removeTraili
     color: var(--highlight-color);
     border-bottom: 2px solid;
     border-color: var(--highlight-color);
+  }
+
+  .external-icon {
+    margin: auto 0 auto 0.2em;
+    position: relative;
+    top: 2px;
   }
 </style>

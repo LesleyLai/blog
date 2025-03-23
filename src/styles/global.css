@@ -154,6 +154,8 @@ main li {
   --container-width: 1088px;
   /* max width of blog post main (content without sidenote) */
   --blog-content-width: 800px;
+
+  --mobile-left-padding: 1rem;
 }
 
 /* theme: default is light theme */
