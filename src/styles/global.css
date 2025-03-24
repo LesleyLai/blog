@@ -117,7 +117,7 @@ a:hover {
 }
 
 main {
-  padding: var(--content-padding);
+  padding: 0 var(--content-padding);
   flex-grow: 1;
   background-color: var(--content-bg-color);
 }
@@ -155,7 +155,13 @@ main li {
   /* max width of blog post main (content without sidenote) */
   --blog-content-width: 800px;
 
-  --content-padding: 2rem;
+  --content-padding: 1rem;
+}
+
+@media only screen and (min-width: 769px) {
+  :root {
+    --content-padding: 2rem;
+  }
 }
 
 /* theme: default is light theme */

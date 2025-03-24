@@ -85,6 +85,10 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
     line-height: 24px;
   }
 
+  main {
+    max-width: 100%;
+  }
+
   /* sidenotes */
   main :global(aside) {
     color: var(--aside-text-color);
@@ -101,7 +105,7 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
 
   @media only screen and (max-width: 1087px) {
     main :global(aside) {
-      margin-top: 0 !important;
+      margin-top: 20px;
     }
   }
 
