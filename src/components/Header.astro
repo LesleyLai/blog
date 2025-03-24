@@ -60,7 +60,7 @@ import "@styles/utilities.css";
 
   .home {
     font-size: 2em;
-    padding: 0.2rem var(--mobile-left-padding);
+    padding: 0.2rem var(--content-padding);
     border-bottom: 1px solid var(--divider-color);
     white-space: nowrap;
   }
@@ -101,7 +101,7 @@ import "@styles/utilities.css";
 
   .header-right {
     display: flex;
-    padding: 10px var(--mobile-left-padding);
+    padding: 10px var(--content-padding);
   }
 
   .header-right > div {
@@ -193,6 +193,17 @@ import "@styles/utilities.css";
 
     .hamb {
       display: none;
+    }
+  }
+
+  /* Desktops*/
+  @media only screen and (min-width: 1088px) {
+    .home {
+      padding-left: 0;
+    }
+
+    .header-right {
+      padding-right: 0;
     }
   }
 </style>

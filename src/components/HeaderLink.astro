@@ -28,7 +28,7 @@ const linking_to_current_path = removeTrailingSlash(currentPath) == removeTraili
 <style>
   a {
     transition: color 0.35s;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem var(--content-padding);
     color: var(--text-color);
 
     display: flex;
@@ -48,5 +48,12 @@ const linking_to_current_path = removeTrailingSlash(currentPath) == removeTraili
     margin: auto 0 auto 0.2em;
     position: relative;
     top: 2px;
+  }
+
+  /* Desktops*/
+  @media only screen and (min-width: 1088px) {
+    a {
+      padding: 0.5rem 1rem;
+    }
   }
 </style>
