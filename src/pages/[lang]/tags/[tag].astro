@@ -2,7 +2,7 @@
 import { ALL_TAGS } from "@content/blog";
 import Layout from "@layouts/PageLayout.astro";
 import { translations } from "@i18n/translations";
-import { type Language } from "@i18n/i18n";
+import { type Language, languages } from "@i18n/i18n";
 
 import BlogArchive from "@components/BlogArchive.astro";
 
@@ -14,10 +14,7 @@ interface Params {
 }
 
 export function getStaticPaths(): Params[] {
-  return ALL_TAGS.flatMap((tag) => [
-    { params: { lang: "en", tag: tag } },
-    { params: { lang: "zh", tag: tag } },
-  ]);
+  return ALL_TAGS.flatMap((tag) => languages.map((lang) => ({ params: { lang, tag } })));
 }
 
 const { lang, tag } = Astro.params;

@@ -1,0 +1,21 @@
+---
+import PageLayout from "@layouts/PageLayout.astro";
+import { translations } from "@i18n/translations";
+import { type Language, languages } from "@i18n/i18n";
+
+interface Params {
+  params: {
+    lang: Language;
+  };
+}
+
+export function getStaticPaths(): Params[] {
+  return languages.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+---
+
+<PageLayout title={translations[lang].talks}>
+  <h1>{translations[lang].talks}</h1>
+</PageLayout>

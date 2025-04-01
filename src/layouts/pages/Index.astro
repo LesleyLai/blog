@@ -9,6 +9,7 @@ let lang = getCurrentLanguage(Astro);
 ---
 
 <PageLayout title="">
+  <h1>{translations[lang].home}</h1>
   <slot />
   <h2>{translations[lang].latestPosts}</h2>
   <LatestPosts lang={lang} />
