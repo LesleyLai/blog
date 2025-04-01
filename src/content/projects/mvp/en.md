@@ -1,6 +1,6 @@
 ---
 name: "Minimal Visual Pedagogical Interpreter"
-image: mvp
+image: "./mvp.png"
 created: 2020-09-12
 github: https://github.com/LesleyLai/mvp
 demo: https://mvp-interpreter.netlify.app/

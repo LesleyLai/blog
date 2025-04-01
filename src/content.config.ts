@@ -13,11 +13,16 @@ const blogPostsCollection = defineCollection({
 
 const projectsCollection = defineCollection({
   type: "content",
-  schema: z.object({
-    name: z.string(),
-    created: z.date(),
-    modified: z.date().optional(),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      name: z.string(),
+      created: z.date(),
+      modified: z.date().optional(),
+      image: image().optional(),
+      github: z.string().optional(),
+      demo: z.string().optional(),
+      tags: z.array(z.string()),
+    }),
 });
 
 export const collections = {

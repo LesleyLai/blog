@@ -1,6 +1,6 @@
 ---
 name: "光线追踪器"
-image: raytracer
+image: "./raytracer.png"
 created: 2016-05-12
 github: https://github.com/LesleyLai/RayTracer
 tags:

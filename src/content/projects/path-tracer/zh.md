@@ -1,6 +1,6 @@
 ---
 name: "路径追踪器"
-image: pathtracing
+image: "./pathtracing.png"
 created: 2018-04-13
 github: https://github.com/LesleyLai/Path-Tracer
 tags:

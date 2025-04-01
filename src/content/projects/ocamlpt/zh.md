@@ -1,6 +1,6 @@
 ---
 name: "OCaml路径追踪器"
-image: ocamlpt
+image: "./ocamlpt.jpg"
 created: 2020-04-05
 github: https://github.com/LesleyLai/ocamlpt
 tags:

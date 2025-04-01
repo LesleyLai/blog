@@ -2,7 +2,7 @@
 name: "Embedded ML"
 created: 2018-09-14
 github: https://github.com/LesleyLai/eml
-image: eml
+image: "./eml.png"
 tags:
   - cpp
   - pl

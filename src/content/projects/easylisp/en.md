@@ -1,6 +1,6 @@
 ---
 name: "EasyLisp"
-image: easylisp
+image: "./easylisp.png"
 created: 2021-05-06
 github: https://github.com/LesleyLai/easylisp
 tags:

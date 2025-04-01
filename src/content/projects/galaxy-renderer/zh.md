@@ -1,6 +1,6 @@
 ---
 name: "Galaxy Renderer"
-image: galaxy-renderer
+image: "./galaxy-renderer.png"
 created: 2022-06-20
 github: https://github.com/LesleyLai/galaxy-renderer
 tags:

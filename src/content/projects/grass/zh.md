@@ -1,6 +1,6 @@
 ---
 name: "OpenGL草地渲染器"
-image: grass
+image: "./grass.gif"
 created: 2019-12-14
 github: https://github.com/LesleyLai/GLGrassRenderer
 tags:

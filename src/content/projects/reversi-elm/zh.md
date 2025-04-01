@@ -1,6 +1,6 @@
 ---
 name: "Elm黑白棋"
-image: reversi
+image: "./reversi.png"
 created: 2018-02-24
 modified: 2019-04-08
 github: https://github.com/LesleyLai/Reversi-Elm-V2

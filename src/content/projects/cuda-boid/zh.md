@@ -1,6 +1,6 @@
 ---
 name: "CUDA Flocking"
-image: boid
+image: "./boid.gif"
 created: 2020-11-26
 github: https://github.com/LesleyLai/CUDA-flocking-boid
 tags:
