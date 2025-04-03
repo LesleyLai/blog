@@ -22,6 +22,7 @@
     "@fontsource/pt-serif": "^5.2.5",
     "@iconify-json/mdi": "^1.1.66",
     "astro": "^5.5.3",
+    "astro-expressive-code": "^0.40.2",
     "astro-icon": "^1.1.0",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-mathjax": "^7.1.0",

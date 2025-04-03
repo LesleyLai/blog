@@ -387,35 +387,35 @@ struct ExprPrinter : ExprVisitor {
 
 Another problem with visitor pattern is const-correctness. Although I believe that a mutable AST isn't necessarily the best approach and [there are superior alternatives](https://btmc.substack.com/p/how-to-store-types-after-semantic), if you do need to mutate your AST, you need to define _yet_ another mutable visitor base class to achieve that. Also don't forget about all those `accept` member functions:
 
-```cpp
-+struct ExprMutableVisitor {
-+  ExprMutableVisitor() = default;
-+  virtual ~ExprMutableVisitor() = default;
-+
-+  virtual void visit(LiteralExpr&) = 0;
-+  virtual void visit(VariableExpr&) = 0;
-+  virtual void visit(UnaryExpr&) = 0;
-+  virtual void visit(BinaryExpr&) = 0;
-+  virtual void visit(IfExpr&) = 0;
-+};
+```cpp ins={1-10,14,21,28}
+struct ExprMutableVisitor {
+  ExprMutableVisitor() = default;
+  virtual ~ExprMutableVisitor() = default;
+
+  virtual void visit(LiteralExpr&) = 0;
+  virtual void visit(VariableExpr&) = 0;
+  virtual void visit(UnaryExpr&) = 0;
+  virtual void visit(BinaryExpr&) = 0;
+  virtual void visit(IfExpr&) = 0;
+};
 
 struct Expr {
   virtual void accept(ExprVisitor& visitor) const = 0;
-+ virtual void accept(ExprMutableVisitor& visitor) = 0;
+  virtual void accept(ExprMutableVisitor& visitor) = 0;
 };
 
 struct LiteralExpr : Expr {
   double value;
 
   void accept(ExprVisitor& visitor) const override { visitor.visit(*this); }
-+ void accept(ExprMutableVisitor& visitor) override { visitor.visit(*this); }
+  void accept(ExprMutableVisitor& visitor) override { visitor.visit(*this); }
 };
 
 struct VariableExpr : Expr {
   std::string id;
 
   void accept(ExprVisitor& visitor) const override { visitor.visit(*this); }
-+ void accept(ExprMutableVisitor& visitor) override { visitor.visit(*this); }
+  void accept(ExprMutableVisitor& visitor) override { visitor.visit(*this); }
 };
 ```
 

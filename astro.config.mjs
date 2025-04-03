@@ -7,6 +7,8 @@ import rehypeMathJax from "rehype-mathjax";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import { rehypeHeadingIds } from "@astrojs/markdown-remark";
 
+import expressiveCode from "astro-expressive-code";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://lesleylai.info",
@@ -21,14 +23,15 @@ export default defineConfig({
       redirectToDefaultLocale: false,
     },
   },
-  integrations: [icon()],
+  integrations: [
+    icon(),
+    expressiveCode({
+      themes: ["light-plus", "github-dark"],
+      themeCssRoot: "html",
+      themeCssSelector: (theme) => `.${theme.type}`,
+    }),
+  ],
   markdown: {
-    shikiConfig: {
-      themes: {
-        light: "light-plus",
-        dark: "github-dark",
-      },
-    },
     remarkPlugins: [remarkMath],
     rehypePlugins: [
       rehypeHeadingIds,

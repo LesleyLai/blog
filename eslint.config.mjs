@@ -7,7 +7,7 @@ import eslintPluginAstro from "eslint-plugin-astro";
 import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 
 export default defineConfig([
-  globalIgnores(["public/*", ".astro/*"]),
+  globalIgnores(["node_modules/*", "public/*", ".astro/*", ".git/*", "dist/*"]),
   { files: ["**/*.{js,mjs,cjs,ts,astro}"] },
   { languageOptions: { globals: { ...globals.browser, ...globals.node } } },
   pluginJs.configs.recommended,
