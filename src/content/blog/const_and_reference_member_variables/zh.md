@@ -106,12 +106,12 @@ public:
 };
 ```
 
-<aside style={{marginTop: "-210px"}}>
+<span class="side-note">
 
 如果你想的话，也可以给这个`const_wrapper`类模板加上一个变参模板（variadic template）的构造函数。
 这样使用起这个模板会更加方便。
-
-</aside>
+    
+</span>
 
 那么你就可以按照如下的方式来使用这个模板：
 

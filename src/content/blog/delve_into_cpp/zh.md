@@ -78,11 +78,11 @@ C++专家 Kate Gregory 在 Pluralsight 网站上提供了不少的视频教程�
 并觉得您对 C++基本概念有相当的了解。
 接下来该做什么？
 
-<aside style={{marginTop: "-40px"}}>
+<span class="side-note">
 
 如果您是资深 C++程序员，你可能会注意到我用了“概念”一词。不过我并没有在讨论 C++20 的*[概念](https://zh.cppreference.com/w/cpp/language/constraints)*（concept）语言特性 😃.
 
-</aside>
+</span>
 
 如果您达到了这个阶段，那么您应该对下列的多数话题有相当的熟悉程度：
 
@@ -201,11 +201,11 @@ C++被用于许多不同的用途，
 - [Video Cortex](http://videocortex.io/)
 - [Shafik Yaghmour](https://shafik.github.io/)
 
-<aside style={{marginTop: "-540px"}}>
+<span class="side-note">
 
 这个博客同样有一个[RSS 源](https://lesleylai.info/zh/rss.xml).
 
-</aside>
+</span>
 
 需要注意的是某些博文会讨论非常高深的话题，因此您并不一定需要读懂每一篇博文。
 

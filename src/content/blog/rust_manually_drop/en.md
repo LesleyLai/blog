@@ -73,11 +73,11 @@ Even though non-idiomatic in Rust, ash's approach is fine with me. RAII combines
 
 [^3]: In Vulkan, we don't deleting an object until we are sure that the GPU is not using it. Deleting objects out-of-order is a big issue, and it may even crash your driver.
 
-<aside style={{marginTop: "-100px"}}>
+<span class="side-note">
 
 All examples that `gpu_allocator` provides write all code in the `main` function.
 
-</aside>
+</span>
 
 In C++, we just manually call the destructors when meeting such a situation, and everything will work fine. Can we do that in Rust? Here is a try:
 
@@ -198,3 +198,11 @@ This slightly annoying syntax is only a minor issue, but it does break the illus
 ## Conclusion
 
 `ManuallyDrop` is a seldom necessary utility in normal Rust code. Nevertheless, it is currently the ideal solution when we want explicit control of how structure fields get dropped.
+
+<span class="side-note">
+
+The `ManuallyDrop` type is a wrapper around a value that disables the automatic dropping of the contained value when it goes out of scope.
+The only way to drop a `ManuallyDrop` is to call `ManuallyDrop::drop` explicitly.
+This is useful when implementing custom drop behavior.
+
+</span>

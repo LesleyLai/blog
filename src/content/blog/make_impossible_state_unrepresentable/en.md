@@ -85,7 +85,7 @@ std::optional<QueueFamilyIndices> findQueueFamilies(/*...*/) {
 
 The memory footprint of `QueueFamilyIndices` gets reduced from 16 bytes to 8 bytes. The reason is partly that we no longer store unnecessary information, and partly because of the inefficient alignments of multiple `std::optional` from the first `struct`.
 
-<aside style={{marginTop: "-70px"}}>
+<span class="side-note"> 
 
 ```cpp
 struct A {
@@ -103,7 +103,7 @@ struct B {
 
 In the above snippet, the `sizeof(A)` is 16 bytes while the `sizeof(B)` is only 12 bytes.
 
-</aside>
+</span>
 
 We also reduced the need for assertions or runtime checking. Notice the `isComplete` function goes away for the second case, as we don't need to call this logic multiple times. In the first case, we would no be that confident, since we can have a bug that left `QueueFamilyIndices` uninitialized.
 
@@ -132,19 +132,17 @@ This implementation faithfully represents the data used by each state. For examp
 
 ### Inheritance Hierarchy vs. Sum Type
 
-Both sum types and inheritance are used for _runtime polymorphism_. In other words, only use them when you need runtime polymorphism. Sum types add one major constraint over inheritance. Virtual inheritance is [open to extension](https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle), while sum types are closed. The constraint is not necessarily a bad thing. For example, because as the compiler knows maximum size information statically, it can put the whole `variant` object on the stack.
+Both sum types and inheritance are used for _runtime polymorphism_. In other words, only use them when you need runtime polymorphism. Sum types add one major constraint over inheritance. Inheritance is [open to extension](https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle), while sum types are closed. The constraint is not necessarily a bad thing. For example, because as the compiler knows maximum size information statically, it can put the whole `variant` object on the stack.
 
-<aside style={{marginTop: "-100px"}}>
+<span class="side-note">
 
 When I talk about "inheritance hierarchy" here, the only focus is the virtual-dispatch enabled inheritance. Notably, I do not include [CRTP](https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern) or other usages of inheritances without any virtual functions that aim to reuse code instead of enabling subtyping polymorphism.
 
-</aside>
+</span>
 
 In theory, dispatch over `variant` can be faster than the virtual dispatch, though none of the current implementations of `std::visit` are faster than virtual. However, in a potential future C++ version with language variant and pattern matching, there is evidence [^1] that variant would provide an advantage.
 
-[^1]:
-
-[Mach7: Pattern Matching for C++](https://github.com/solodon4/Mach7)
+[^1]: [Mach7: Pattern Matching for C++](https://github.com/solodon4/Mach7)
 
 However, the "open to extension" property of inheritance does prove useful from time to time. For example, consider that you are working on a compiler, you may represent your expression in a traditional OO-way like this:
 
@@ -167,17 +165,11 @@ This approach forces us to handle `TypeErrorExpr` in the _parser_. Another optio
 
 Another type of polymorphism is [row polymorphism](<https://en.wikipedia.org/wiki/Polymorphism_(computer_science)#Row_polymorphism>). Row polymorphism only considers features and structures of a type. Like inheritance, row polymorphism is also open to extension, so it shares many advantages as inheritance. Row polymorphism is arguably a better alternative to virtual inheritance [^2][^3][^4][^5][^6]. Though row polymorphism is exactly what C++ [concept](https://en.cppreference.com/w/cpp/language/constraints) achieves, C++ lacks support build-in support of it for runtime polymorphism. [Go](https://gobyexample.com/interfaces) and [Typescript](https://www.typescriptlang.org/docs/handbook/interfaces.html) interfaces and [Rust trait](https://doc.rust-lang.org/rust-by-example/trait.html) are examples of such language features. In C++, runtime row polymorphism can be implemented by doing [type-erasure](https://quuxplusone.github.io/blog/2019/03/18/what-is-type-erasure/) manually.
 
-[^2]:
-
-[Better Code: Runtime Polymorphism - Sean Parent](https://www.youtube.com/watch?v=QGcVXgEVMJg&feature=youtu.be)
-[^3]:
-[Simon Brand: "How Rust gets polymorphism right"](https://www.youtube.com/watch?v=VSlBhAOLtFA)
-[^4]:
-[CppCon 2017: Louis Dionne “Runtime Polymorphism: Back to the Basics”](https://www.youtube.com/watch?v=gVGtNFg4ay0)
-[^5]:
-[Mathieu Ropert: Polymorphic ducks](https://mropert.github.io/2017/11/30/polymorphic_ducks/)
-[^6]:
-[CppCon 2018: Borislav Stanimirov “DynaMix: A New Take on Polymorphism”](https://www.youtube.com/watch?v=ckY7Pc-A9Xc)
+[^2]: [Better Code: Runtime Polymorphism - Sean Parent](https://www.youtube.com/watch?v=QGcVXgEVMJg&feature=youtu.be)
+[^3]: [Simon Brand: "How Rust gets polymorphism right"](https://www.youtube.com/watch?v=VSlBhAOLtFA)
+[^4]: [CppCon 2017: Louis Dionne “Runtime Polymorphism: Back to the Basics”](https://www.youtube.com/watch?v=gVGtNFg4ay0)
+[^5]: [Mathieu Ropert: Polymorphic ducks](https://mropert.github.io/2017/11/30/polymorphic_ducks/)
+[^6]: [CppCon 2018: Borislav Stanimirov “DynaMix: A New Take on Polymorphism”](https://www.youtube.com/watch?v=ckY7Pc-A9Xc)
 
 ## Data Modeling
 
@@ -206,11 +198,11 @@ private:
 
 Each `Triangle` need to store a back pointer to operate on itself. Moreover, there is no guarantee that the pointer `v` is not dangled. In this particular example, programmers make sure that `v` always points to memory managed by `TriangleMesh`.
 
-<aside style={{marginTop: "-160px"}}>
+<span class="side-note">
 
 Aside from valid use cases on shared ownership, `std::shared_ptr` is often misused to represent "vague ownership."
 
-</aside>
+</span>
 
 If we abandon the idea that triangles must know how to operates on themselves, then the triangles become just indices to the vertices:
 
@@ -312,11 +304,11 @@ private:
 
 We introduced move semantics to make it movable. However, to enable move semantics for our resource handle, we created a pointer-like object. The reason is that the after move states must be valid; to have a valid after-move state, we are forced to represent the empty state in our class. That is why we have `unique_ptr` but no `unique_reference` in the C++ standard library. And it is also partly why people repeatedly propose _[destructive move](http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2014/n4034.pdf)_.
 
-<aside style={{marginTop: "-30px"}}>
+<span class="side-note">
 
 Another reason for _destructive move_ is performance. The performance improvements of move can be accomplished by [Arthur O'Dwyer](https://quuxplusone.github.io/blog/) 's great but less ambitious _trivially relocatable_ \[[P1144](https://rawgit.com/Quuxplusone/draft/gh-pages/d1144-object-relocation.html)\] proposal.
 
-</aside>
+</span>
 
 ```cpp
 class Window {

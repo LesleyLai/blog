@@ -134,11 +134,11 @@ std::vector<int> filter_above(const std::vector<int>& v, int threshold) {
 }
 ```
 
-<aside style={{marginTop: "-140px"}}>
+<span class="side-note">
 
 在以上的代码中我使用了C++17的[类模板实参推导(CTAD)](https://zh.cppreference.com/w/cpp/language/class_template_argument_deduction)特性。在之前的C++版本中，我们需要显式写明`GreaterThan<int>{threshold}`。
 
-</aside>
+</span>
 
 ### 从函数对象到lambda表达式
 

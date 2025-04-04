@@ -71,12 +71,12 @@ const VkDeviceCreateInfo device_create_info = {
 };
 ```
 
-<aside style={{marginTop: "-70px"}}>
+<span class="side-note">
 
 如果你使用C++来学习Vulkan的话，你可以试试使用[vk-bootstrap](https://github.com/charles-lunarg/vk-bootstrap)库。
 它会让Vulkan初始化的过程简单许多。
 
-</aside>
+</span>
 
 ## 在命令缓冲区（command buffer）中使用动态渲染
 

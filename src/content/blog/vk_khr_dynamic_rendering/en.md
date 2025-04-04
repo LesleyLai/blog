@@ -68,12 +68,12 @@ const VkDeviceCreateInfo device_create_info = {
 };
 ```
 
-<aside style={{marginTop: "-90px"}}>
+<span class="side-note">
 
 If you are using C++, I recommend giving [vk-bootstrap](https://github.com/charles-lunarg/vk-bootstrap) library a try.
 It will make the initialization process a bit smoother.
 
-</aside>
+</span>
 
 ## Use dynamic rendering in command buffer
 

@@ -66,14 +66,14 @@ C# was an imitation of Java. But it was a new language and never intended as an 
 Those are all great features, but none of them are the essence of functional programming.
 The first functional language, Lisp, supports none of those features.
 
-<aside style={{marginTop: "-60px"}}>
+<span class="side-note">
 
 [Jonathan Frech](https://www.jfrech.com/blog/) had a great comment about that some do not consider Lisp as a functional language.
 That being said, even in [Standard ML'97](https://en.wikipedia.org/wiki/Standard_ML), a language probably considered more "functional" by some, there is no support for the pipe operator.
 The standard library has only minimum support for persistent data structures (it didn't even have an immutable map/dictionary type).
 Lambda calculus, the holy grail of functional programming, also has none of the above mentioned features.
 
-</aside>
+</span>
 
 By the way, C# does support pattern matching. [^1]
 The author seems to acknowledge this fact earlier and forget later,

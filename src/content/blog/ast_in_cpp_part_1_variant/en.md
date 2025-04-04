@@ -69,11 +69,11 @@ struct IfExpr {
 };
 ```
 
-<aside>
+<span class="side-note">
 
 I used `unique_ptr` here, and in the second part of the post I will explain alternative options.
 
-</aside>
+</span>
 
 Forward declaring everything is annoying, and we also probably want to put some common fields, such as the source location, into an AST node. This prompts the following adjustment:
 
@@ -89,11 +89,11 @@ struct Expr {
 };
 ```
 
-<aside>
+<small class="side-note">
 
 Alternatively, you can inherit from `std::variant`, which used to be broken in C++17 but [was fixed since C++20](https://wg21.link/p2162r2).
 
-</aside>
+</small>
 
 The above code looks alright, but the main ergonomics problem of the `std::variant` is how to visit them. C++ doesn't have pattern matching, and we are given a companion funciton called `std::visit`, which accept a visitor as argument.
 

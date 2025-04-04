@@ -81,12 +81,12 @@ int main() {
 }
 ```
 
-<aside style={{marginTop: "-60px"}}>
+<span class="side-note">
 
 Notice that this line of sorting by getter is exactly the same as the sorting by member variable above.
 C++20 ranges projection is a great feature.
 
-</aside>
+</span>
 
 It is quite a bit of boilerplate.
 And to be honest, I will stick with aggregate with none-constant fields in this particular case.
@@ -117,13 +117,13 @@ public:
 };
 ```
 
-<aside style={{marginTop: "-210px"}}>
+<span class="side-note">
 
 Making this `const_wrapper` class template more useful,
 for example, by adding a variadic template constructor with type constraint,
 is an exercise left for readers who really want to use this class 😉.
 
-</aside>
+</span>
 
 Then you can use this template as following:
 

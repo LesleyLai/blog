@@ -45,13 +45,13 @@ The downside of the arena is that you can only free all the allocated memory at 
 Nevertheless, it is helpful in situations where we have a lot of heterogeneous allocations that only need to be freed together,
 and is widely used in application domains from compilers to video games.
 
-<aside style={{marginTop: "-120px"}}>
+<span class="side-note" style={{marginTop: "-120px"}}>
 
 There are some confusions between an arena allocator and a _stack allocator_.
 Stack allocator is a natural evolution of the arena allocator,
 where allocation in a stack allocator can be freed in a LIFO (last in, first out) order.
 
-</aside>
+</span>
 
 ## A minimum implementation of an arena
 
@@ -109,12 +109,12 @@ Starting the lifetime of objects on unaligned locations is undefined behavior.
 Depending on different architectures,
 you may get slow memory access or even a mysterious crash if you try to access a misaligned object.
 
-<aside style={{marginTop: "-65px"}}>
+<span class="side-note" style={{marginTop: "-65px"}}>
 
 See how easy it is to get undefined behavior, one of the most dreaded things among our C++ programmers When we play with raw memory?
 There is a reason why we want to encapsulate memory allocations.
 
-</aside>
+</span>
 
 We usually don't care about alignment that much since the compiler can figure it out for us,
 and standard library functions such as `malloc` automatically provides sufficient alignment (`alignof(std::max_aligned_t)`) for all allocations.
@@ -153,9 +153,9 @@ we first need to have a helper function `align_forward` that bump a given pointe
 }
 ```
 
-<aside style={{marginTop: "-110px"}}>
+<span class="side-note" style={{marginTop: "-110px"}}>
 <a href="https://en.cppreference.com/w/cpp/numeric/bit_cast"><code>std::bit_cast</code></a> is a C++20 feature. Before C++20, you need <code>reinterpret_cast</code>.
-</aside>
+</span>
 
 We first cast our pointer into an integer and then round up our (integer) address to the alignment boundary with the expression `(addr + (alignment - 1)) & -alignment`.
 

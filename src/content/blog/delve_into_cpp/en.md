@@ -74,11 +74,11 @@ The book is also very thick, so if you want a shorter introduction, try ["A Tour
 So you spend months with the above materials,
 and feel that you have a decent grasp of basic C++ concepts.
 
-<aside style={{marginTop: "-40px"}}>
+<span class="side-note">
 
 For experienced C++ folks, no, I am not talking about _that [concept](https://en.cppreference.com/w/cpp/language/constraints)_ 😃.
 
-</aside>
+</span>
 
 A sanity check to make sure about your understanding of C++ is whether you are familiar with the following topics,
 to name a few:
@@ -222,11 +222,11 @@ Here are some of the best C++ ones that pops into my head:
 - [Video Cortex](http://videocortex.io/)
 - [Shafik Yaghmour](https://shafik.github.io/)
 
-<aside style={{marginTop: "-540px"}}>
+<span class="side-note">
 
 This blog also has an [RSS feed](https://lesleylai.info/rss.xml).
 
-</aside>
+</span>
 
 [^4]: If you want to see all the blogs I follow, visit [this gist](https://gist.github.com/LesleyLai/549f45fb0dfdf6ab31e6ffadaeaddb10).
 

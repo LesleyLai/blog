@@ -90,7 +90,7 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
   }
 
   /* sidenotes */
-  main :global(aside) {
+  main :global(.side-note) {
     color: var(--aside-text-color);
     padding: 5px 10px;
     font-size: 13px;
@@ -104,7 +104,7 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
   }
 
   @media only screen and (max-width: 1087px) {
-    main :global(aside) {
+    main :global(.side-note) {
       margin-top: 20px;
     }
   }
@@ -123,7 +123,7 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
       max-width: var(--blog-content-width);
     }
 
-    main :global(aside) {
+    main :global(.side-note) {
       position: absolute;
       width: calc(var(--container-width) - var(--blog-content-width) - 11px);
       background: none;

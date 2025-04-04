@@ -73,11 +73,11 @@ $$
 
 因为使用推理规则来定义语法（syntax）过于冗长，我们会使用简化的[**文法（grammar）**](https://zh.wikipedia.org/wiki/%E5%BD%A2%E5%BC%8F%E6%96%87%E6%B3%95)格式来描述语法。例如，对于自然数，我们可以将其描述为
 
-<aside style={{marginTop: "-60px"}}>
+<span class="side-note">
 
 如果你可以流畅的阅读英文，看英文版的技术书籍会更有优势。至少你不用面对如此奇葩的翻译（语法vs文法 😂）。
 
-</aside>
+</span>
 
 $$
 \text{\textbf{nat}} ::= \text{Zero} | \text{Succ}(\textbf{nat})
@@ -103,13 +103,13 @@ $$
 
 以上的文法的意思是，我们的链表$\text{\textbf{list}}$要么是$\text{Nil}$，要么是一个拥有单个元素以及对子链表的引用的$\text{Cons}$单元。
 
-<aside style={{marginTop: "-50px"}}>
+<span class="side-note">
 
 编程语言[Lisp](https://zh.wikipedia.org/wiki/LISP)发明了使用“cons”一词的传统。
 在Lisp中，`cons`可以被理解为构造函数。
 因为List动态类型的特点，`cons`在Lisp中的用途比我们的定义要广阔得多。
 
-</aside>
+</span>
 
 现在我们可以用推理规则来给我们的链表$\text{\textbf{list}}$定义操作。
 例如，我们可以定义一个`head`函数来获取链表的第一个元素：
@@ -145,7 +145,7 @@ Succ(Zero) + Succ(Zero)
 - 在同样的输入下，`+`总是产生同样的输出
 - `+`语义上没有可观察的函数副作用（side effect）
 
-<aside style={{marginTop: "-60px"}}>
+<span class="side-note">
 
 如果您考虑“实现细节”（例如寄存器以及内存的变动），
 那么没有任何的在机器上运行的“函数”是纯函数。
@@ -153,7 +153,7 @@ Succ(Zero) + Succ(Zero)
 一定程度的抽象不仅可以帮助你的理解，
 而且还有助于编译器针对纯函数进行优化。
 
-</aside>
+</span>
 
 ## 数学概念与编程的联系
 

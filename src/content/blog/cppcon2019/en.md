@@ -43,11 +43,11 @@ There are so many great talks in this year's CppCon, so I can only mention some 
 
 - [Mathieu Ropert](https://mropert.github.io/)'s _This Videogame Programmer Used the STL and You Will Never Guess What Happened Next_ \[[slides](https://github.com/CppCon/CppCon2019/blob/master/Presentations/this_videogame_programmer_used_the_stl/this_videogame_programmer_used_the_stl__mathieu_ropert__cppcon_2019.pdf)\] demystifies some common myth against C++ standard library, including the common concern of "debugging performance." It also explains when should you (not) use STL.
 
-<aside style={{marginTop: "-77px"}}>
+<span class="side-note">
 
 Seriously, this name is tooooo long.
 
-</aside>
+</span>
 
 - [Matt Godbolt](https://xania.org/)'s "Path Tracing Three Ways" \[[slides](https://mattgodbolt.github.io/pt-three-ways-pres/#/)\] implements a same primitive path tracer in three C++ styles-- object-oriented, functional, and data-oriented design. He analyze the performance and compares their strengths and weaknesses. One interesting detour is that a naively designed data-oriented code without dynamic polymorphism can be even slower than its OO counterpart because of branch misprediction (which DOD tries to avoid). The fix he applied not only improved the data-oriented version but also significantly increase the speed of the functional version. One thing I wonder is that in the particular case of path tracing, how much performance advantage of data-oriented design can be preserved when adding acceleration data-structures.
 

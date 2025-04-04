@@ -271,13 +271,13 @@ A lot of usages of `std::generate` use mutable lambdas as a "generator" function
 For example, the following code generates the first 20 numbers of
 the recurrence relationship $x_0 = 0, x_n = 2x_{n-1} + 1$.
 
-<aside style={{marginTop: "-40px"}}>
+<span class="side-note">
 
 This recurrence relationship has a simple close form $x_n = 2^n-1$,
 though in more complicated problems,
 using mutables may be necessary.
 
-</aside>
+</span>
 
 ```cpp
 int seq[20];
