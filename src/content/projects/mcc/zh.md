@@ -4,7 +4,7 @@ image: "./mcc.png"
 created: 2024-11-12
 modified: 2025-04-04
 github: "https://github.com/LesleyLai/mcc"
-pinned: true
+featured: true
 tags:
   - c
   - compiler

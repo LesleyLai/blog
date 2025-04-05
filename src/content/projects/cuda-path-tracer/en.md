@@ -4,7 +4,7 @@ image: "./cudapt.png"
 created: 2021-09-28
 modified: 2023-07-14
 github: "https://github.com/LesleyLai/cuda-path-tracer"
-pinned: true
+featured: true
 tags:
   - cpp
   - cuda

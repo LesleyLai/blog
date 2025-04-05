@@ -22,6 +22,7 @@ const projectsCollection = defineCollection({
       github: z.string().optional(),
       demo: z.string().optional(),
       tags: z.array(z.string()),
+      featured: z.boolean().optional(),
     }),
 });
 

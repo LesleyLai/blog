@@ -4,7 +4,7 @@ image: "./charlie3d.png"
 created: 2021-05-09
 modified: 2025-03-18
 github: "https://github.com/LesleyLai/Charlie3D"
-pinned: true
+featured: true
 tags:
   - cpp
   - graphics

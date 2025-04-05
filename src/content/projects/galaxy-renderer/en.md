@@ -8,6 +8,7 @@ tags:
   - graphics
   - wgpu
   - webgpu
+featured: true
 ---
 
 A galaxy renderer created with Rust and [wgpu](https://wgpu.rs/).
