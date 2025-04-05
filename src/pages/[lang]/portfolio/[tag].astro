@@ -1,39 +1,44 @@
 ---
-import PageLayout from "@layouts/PageLayout.astro";
 import { translations } from "@i18n/translations";
-import { type Language, languages } from "@i18n/i18n";
+import { type Language } from "@i18n/i18n";
 import ProjectGrid from "@components/ProjectGrid.astro";
 import ProjectTagList from "@components/ProjectTagList.astro";
+import PageLayout from "@layouts/PageLayout.astro";
 import { PROJECT_BY_LANG } from "@content/projects";
 
 interface Params {
   params: {
     lang: Language;
+    tag: string;
   };
 }
 
 export function getStaticPaths(): Params[] {
-  return languages.map((lang) => ({ params: { lang } }));
+  return Object.entries(PROJECT_BY_LANG).flatMap(([lang, projects]) =>
+    projects.tags.map((tag) => ({ params: { lang: lang as Language, tag } }))
+  );
 }
 
-const { lang } = Astro.params;
+const { lang, tag } = Astro.params;
 
-const projects = PROJECT_BY_LANG[lang].projects;
-
-const featuredProjects = projects.filter((project) => project.data.featured);
-const otherProjects = projects.filter((project) => !project.data.featured);
+const projects = PROJECT_BY_LANG[lang].projects.filter((project) => {
+  return project.data.tags.includes(tag);
+});
 ---
 
 <PageLayout title={translations[lang].portfolio}>
   <h1>{translations[lang].portfolio}</h1>
   <p>{translations[lang].portfolioDescription}</p>
   <ProjectTagList />
-  <p class="filter-hint">{translations[lang].portfolioFilterHint}</p>
-
-  <h2>{translations[lang].featuredProjects}</h2>
-  <ProjectGrid projects={featuredProjects} />
-  <h2>{translations[lang].otherProjects}</h2>
-  <ProjectGrid projects={otherProjects} />
+  <p class="filter-hint">
+    {
+      translations[lang].portfolioFilterHintTag(
+        tag,
+        PROJECT_BY_LANG[lang].projectCountByTags.get(tag) ?? 0
+      )
+    }
+  </p>
+  <ProjectGrid projects={projects} />
 </PageLayout>
 
 <style>

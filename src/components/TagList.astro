@@ -1,18 +1,13 @@
 ---
-import { translations, type TranslationKey } from "@i18n/translations";
-import { type Language, getCurrentLanguage } from "@i18n/i18n";
+import { translateTag } from "@i18n/translations";
+import { getCurrentLanguage } from "@i18n/i18n";
+
+import Tag from "./Tag.astro";
 
 interface Props {
   tags: string[];
   exclude?: string;
 }
-
-const translateTags = (lang: Language, tag: string): string => {
-  if (tag in translations.en) {
-    return translations[lang][tag as TranslationKey] as string;
-  }
-  throw Error(`Failed to translate tag: ${tag}`);
-};
 
 const lang = getCurrentLanguage(Astro);
 const { tags, exclude } = Astro.props;
@@ -22,7 +17,7 @@ const { tags, exclude } = Astro.props;
   {
     tags
       .filter((tag) => tag != exclude)
-      .map((tag) => <li>{<a href={`/${lang}/tags/${tag}`}>{translateTags(lang, tag)}</a>}</li>)
+      .map((tag) => <Tag href={`/${lang}/tags/${tag}`}>{translateTag(lang, tag)}</Tag>)
   }
 </ul>
 
@@ -33,20 +28,5 @@ const { tags, exclude } = Astro.props;
     margin: 0;
 
     display: flex;
-  }
-
-  ul li a {
-    margin: 0.2em 0.5em 0.2em 0px;
-    padding: 0.4em 0.5em;
-    font-weight: 800;
-    font-size: 12px;
-    border-radius: 0.285714rem;
-
-    color: #fff;
-    background-color: var(--tag-color);
-  }
-
-  ul li a:hover {
-    background-color: var(--tag-highlight-color);
   }
 </style>

@@ -1,6 +1,6 @@
 ---
-import { translations, type TranslationKey } from "@i18n/translations";
-import { type Language, getCurrentLanguage } from "@i18n/i18n";
+import { translateTag } from "@i18n/translations";
+import { getCurrentLanguage } from "@i18n/i18n";
 import { type CollectionEntry } from "astro:content";
 
 import { Icon } from "astro-icon/components";
@@ -13,13 +13,6 @@ interface Props {
 
 const lang = getCurrentLanguage(Astro);
 const { projects } = Astro.props;
-
-const translateTags = (lang: Language, tag: string): string => {
-  if (tag in translations.en) {
-    return translations[lang][tag as TranslationKey] as string;
-  }
-  throw Error(`Failed to translate tag: ${tag}`);
-};
 
 const currentYear = new Date().getFullYear();
 ---
@@ -93,7 +86,7 @@ const currentYear = new Date().getFullYear();
             <div class="project-tags">
               <ul class="project-tag-list">
                 {project.data.tags.map((tag) => (
-                  <li>{translateTags(lang, tag)}</li>
+                  <li>{translateTag(lang, tag)}</li>
                 ))}
               </ul>
             </div>

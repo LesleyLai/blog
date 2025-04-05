@@ -1,0 +1,27 @@
+---
+// A tag button
+interface Props {
+  href: string;
+}
+
+const { href } = Astro.props;
+---
+
+<li><a href={href}><slot /></a></li>
+
+<style>
+  li a {
+    margin: 0.2em 0.5em 0.2em 0px;
+    padding: 0.4em 0.5em;
+    font-weight: 800;
+    font-size: 12px;
+    border-radius: 0.285714rem;
+
+    color: #fff;
+    background-color: var(--tag-color);
+  }
+
+  li a:hover {
+    background-color: var(--tag-highlight-color);
+  }
+</style>

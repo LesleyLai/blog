@@ -54,6 +54,9 @@ const en = {
   pl: "Programming Languages",
   pldev: "Programming Language Development",
   portfolio: "Portfolio",
+  portfolioDescription: "Check out all my personal projects below.",
+  portfolioFilterHint: "Showing all projects. Click tags to filter by topic.",
+  portfolioFilterHintTag: (tag: string, count: number) => `Show ${count} projects filtered by ${translateTag("en", tag)}`,
   posts: "posts",
   python: "Python",
   racket: "Racket",
@@ -62,6 +65,7 @@ const en = {
   rt: "Ray Tracing",
   rust: "Rust",
   scheme: "Scheme",
+  showAll: "Show All",
   siteName: "Lesley Lai",
   stuffIWroteAbout: (tag: string) => `Stuff I wrote about ${en[tag as TranslationKey]}`,
   tags: "Tags",
@@ -139,6 +143,9 @@ const zh: Translations = {
   pl: "编程语言",
   pldev: "编程语言开发",
   portfolio: "个人项目",
+  portfolioDescription: "下列是我的一些个人项目",
+  portfolioFilterHint: "正在显示所有项目。您可以通过标签来限定显示包含指定标签的项目。",
+  portfolioFilterHintTag: (tag: string, count: number) => `显示${count}个关于${translateTag("zh", tag)}的项目`,
   posts: "篇博文",
   python: en.python,
   racket: en.racket,
@@ -147,6 +154,7 @@ const zh: Translations = {
   rt: "光线追踪",
   rust: en.rust,
   scheme: en.scheme,
+  showAll: "显示所有",
   siteName: "赖思理的个人网站",
   stuffIWroteAbout: (tag) => `关于${zh[tag as TranslationKey]}的博文`,
   tags: "标签",
@@ -165,4 +173,11 @@ const zh: Translations = {
 export const translations: Record<Language, typeof en> = {
   en: en,
   zh: zh,
+};
+
+export const translateTag = (lang: Language, tag: string): string => {
+  if (tag in translations.en) {
+    return translations[lang][tag as TranslationKey] as string;
+  }
+  throw Error(`Failed to translate tag: ${tag}`);
 };

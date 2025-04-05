@@ -1,3 +1,5 @@
+// Helpers to process blog post data
+
 import {
   type CollectionEntry,
   type Render,
@@ -5,6 +7,7 @@ import {
   getCollection,
 } from "astro:content";
 import { langFromSlug, type Language } from "@i18n/i18n";
+
 
 export interface BlogPost {
   body: string;
