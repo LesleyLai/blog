@@ -25,6 +25,8 @@ import { translations } from "@i18n/translations";
 const isHome = title == "";
 
 const siteName = translations[lang].siteName;
+
+const rssRoute = lang === "en" ? "/rss.xml" : `/zh/rss.xml`;
 ---
 
 <!doctype html>
@@ -37,6 +39,13 @@ const siteName = translations[lang].siteName;
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <meta name="generator" content={Astro.generator} />
     <title>{isHome ? siteName : `${title} | ${siteName}`}</title>
+
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={siteName}
+      href={new URL(rssRoute, Astro.site)}
+    />
   </head>
   <body>
     <Header />
