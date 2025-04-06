@@ -85,7 +85,7 @@ std::optional<QueueFamilyIndices> findQueueFamilies(/*...*/) {
 
 The memory footprint of `QueueFamilyIndices` gets reduced from 16 bytes to 8 bytes. The reason is partly that we no longer store unnecessary information, and partly because of the inefficient alignments of multiple `std::optional` from the first `struct`.
 
-<span class="side-note"> 
+<span class="side-note">
 
 ```cpp
 struct A {
@@ -166,9 +166,13 @@ This approach forces us to handle `TypeErrorExpr` in the _parser_. Another optio
 Another type of polymorphism is [row polymorphism](<https://en.wikipedia.org/wiki/Polymorphism_(computer_science)#Row_polymorphism>). Row polymorphism only considers features and structures of a type. Like inheritance, row polymorphism is also open to extension, so it shares many advantages as inheritance. Row polymorphism is arguably a better alternative to virtual inheritance [^2][^3][^4][^5][^6]. Though row polymorphism is exactly what C++ [concept](https://en.cppreference.com/w/cpp/language/constraints) achieves, C++ lacks support build-in support of it for runtime polymorphism. [Go](https://gobyexample.com/interfaces) and [Typescript](https://www.typescriptlang.org/docs/handbook/interfaces.html) interfaces and [Rust trait](https://doc.rust-lang.org/rust-by-example/trait.html) are examples of such language features. In C++, runtime row polymorphism can be implemented by doing [type-erasure](https://quuxplusone.github.io/blog/2019/03/18/what-is-type-erasure/) manually.
 
 [^2]: [Better Code: Runtime Polymorphism - Sean Parent](https://www.youtube.com/watch?v=QGcVXgEVMJg&feature=youtu.be)
+
 [^3]: [Simon Brand: "How Rust gets polymorphism right"](https://www.youtube.com/watch?v=VSlBhAOLtFA)
+
 [^4]: [CppCon 2017: Louis Dionne “Runtime Polymorphism: Back to the Basics”](https://www.youtube.com/watch?v=gVGtNFg4ay0)
+
 [^5]: [Mathieu Ropert: Polymorphic ducks](https://mropert.github.io/2017/11/30/polymorphic_ducks/)
+
 [^6]: [CppCon 2018: Borislav Stanimirov “DynaMix: A New Take on Polymorphism”](https://www.youtube.com/watch?v=ckY7Pc-A9Xc)
 
 ## Data Modeling

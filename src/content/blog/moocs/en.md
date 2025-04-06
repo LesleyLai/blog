@@ -33,9 +33,24 @@ Do note that some courses that I recommend below are not [MOOCs](https://en.wiki
 - MIT OCW [Linear Algebra](https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/) by Prof. Gilbert Strang as main course — If you spend some time doing online learning for math, it is likely you already heard the name of Prof. Strang.
   - [Essense of linear algebra](https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab) by 3Blue1Brown
 
+### Differential Equations
+
+- MIT OCW [Differential Equations](https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/) — My only complaint is the low resolution of the video lecture
+- [Khan Academy Differential Equations](https://www.khanacademy.org/math/differential-equations) — Accessible though very incomplete
+
 ### Discrete Math
 
 - MIT OCW [Mathematics for Computer Science](https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/)
+
+### Signal Processing
+
+Wikipedia says that signal processing is an electrical engineering subfield, but in reality the same technique is used in various other fields as well.
+
+- MIT OCW [6.003 Signals and Systems](https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/) — I enjoy the inereactive teaching style.
+
+## Logic
+
+- [Stanford Introduction to Logic](http://intrologic.stanford.edu/homepage/index.html) — I took a solid introductory logic course at university, but this course still introduces many new concepts or explains familiar ones from a fresh perspective.
 
 ## Computer Science and Programming
 

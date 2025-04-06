@@ -56,7 +56,8 @@ const en = {
   portfolio: "Portfolio",
   portfolioDescription: "Check out all my personal projects below.",
   portfolioFilterHint: "Showing all projects. Click tags to filter by topic.",
-  portfolioFilterHintTag: (tag: string, count: number) => `Show ${count} projects filtered by ${translateTag("en", tag)}`,
+  portfolioFilterHintTag: (tag: string, count: number) =>
+    `Show ${count} projects filtered by ${translateTag("en", tag)}`,
   posts: "posts",
   python: "Python",
   racket: "Racket",
@@ -145,7 +146,8 @@ const zh: Translations = {
   portfolio: "个人项目",
   portfolioDescription: "下列是我的一些个人项目",
   portfolioFilterHint: "正在显示所有项目。您可以通过标签来限定显示包含指定标签的项目。",
-  portfolioFilterHintTag: (tag: string, count: number) => `显示${count}个关于${translateTag("zh", tag)}的项目`,
+  portfolioFilterHintTag: (tag: string, count: number) =>
+    `显示${count}个关于${translateTag("zh", tag)}的项目`,
   posts: "篇博文",
   python: en.python,
   racket: en.racket,

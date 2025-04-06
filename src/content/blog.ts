@@ -8,7 +8,6 @@ import {
 } from "astro:content";
 import { langFromSlug, type Language } from "@i18n/i18n";
 
-
 export interface BlogPost {
   body: string;
   slug: string;

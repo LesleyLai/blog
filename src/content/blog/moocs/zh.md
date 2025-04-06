@@ -35,9 +35,22 @@ tags:
 - MIT OCW [线性代数](https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/)作为主要课程 — 如果你花了一些时间在线学习数学，那么很可能你已经听过 Gilbert Strang 教授的鼎鼎大名。
   - [Essense of linear algebra](https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab) 3Blue1Brown 的线性代数
 
+### 微分方程
+
+- MIT OCW [Differential Equations](https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/) - My only complaint is the low resolution of the video lecture
+- [Khan Academy Differential Equations](https://www.khanacademy.org/math/differential-equations) - Accessible though very incomplete
+
 ### 离散数学
 
 - MIT OCW 的[计算机科学中的数学](https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/)
+
+### 信号处理
+
+- MIT OCW [6.003 Signals and Systems](https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/) — 我很喜欢这种互动式的教学风格
+
+## 逻辑学
+
+- 斯坦福大学的[Introduction to Logic](http://intrologic.stanford.edu/homepage/index.html) — 我在大时修过一门扎实的逻辑学入门课程，但这门课仍然介绍了许多新概念，或者从全新的角度解释了熟悉的内容。
 
 ## 计算机科学以及编程
 
