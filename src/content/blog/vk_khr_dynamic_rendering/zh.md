@@ -13,9 +13,7 @@ tags:
 [动态渲染（dynamic rendering）](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VK_KHR_dynamic_rendering.html)是[两个月前被刚刚推出](https://www.khronos.org/blog/streamlining-render-passes)的一个新的Vulkan扩展。
 有了它，我们在Vulkan中可以省去创建渲染通道对象（`VkRenderPass`）以及帧缓冲存储器对象（`VkFramebuffer`）的代码。
 
-<div class="right-image-container">
-  <img src="renderpass_in_trash.jpg" alt="A trashbin that contains VkRenderPass and VkFramebuffer" />
-</div>
+![A trashbin that contains VkRenderPass and VkFramebuffer](renderpass_in_trash.jpg)
 
 在动态渲染被推出以前，为了写一个Vulkan渲染器，我们总是需要创建渲染通道对象。
 渲染通道的API并不容易使用，我们也通常不需要使用多个子通道（subpasses）或者是多个输入附件（input attachments）。

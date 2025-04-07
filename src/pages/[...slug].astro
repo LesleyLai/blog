@@ -39,8 +39,11 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
       </h1>
       <div class="info">
         <span class="date">
-          {entry.data.modified && `modify: ${formatDate(entry.data.modified)}`}
-          create: {formatDate(entry.data.created)}
+          {
+            entry.data.modified &&
+              `${translations[lang].lastModified}${formatDate(entry.data.modified)}`
+          }
+          {`${translations[lang].createTime}${formatDate(entry.data.created)}`}
         </span>
         <span class="tags">
           <TagList tags={entry.data.tags} />
@@ -95,6 +98,7 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
     padding: 5px 10px;
     font-size: 13px;
 
+    display: block;
     margin-top: 0;
     margin-bottom: 20px;
     background: var(--aside-sm-bg-color);

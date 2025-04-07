@@ -12,9 +12,7 @@ tags:
 
 [Announced two months ago](https://www.khronos.org/blog/streamlining-render-passes), the [dynamic rendering](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VK_KHR_dynamic_rendering.html) Vulkan extension promises to get rid of the `VkRenderPass` and `VkFramebuffer` objects, which were parts of Vulkan that I "don't understand and don't really care about."
 
-<div class="right-image-container">
-  <img src="renderpass_in_trash.jpg" alt="A trashbin that contains VkRenderPass and VkFramebuffer" />
-</div>
+![A trashbin that contains VkRenderPass and VkFramebuffer](renderpass_in_trash.jpg)
 
 To write a Vulkan renderer before the advent of dynamic rendering, we always needed to write a lot of boilerplate renderpass code.
 It is not an ergonomic API, nor is it often that we need the flexibility of multiple subpasses or input attachments.

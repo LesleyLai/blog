@@ -144,7 +144,7 @@ std::vector<int> filter_above(const std::vector<int>& v, int threshold) {
 }
 ```
 
-<span class="side-note">
+<span class="side-note" style="margin-top: -140px">
 
 I am using [Class template argument deduction (CTAD)](https://en.cppreference.com/w/cpp/language/class_template_argument_deduction) in this snippet. CTAD is a C++17 feature. In the previous versions, we need to write `GreaterThan<int>{threshold}` with the template parameter `int` specified.
 

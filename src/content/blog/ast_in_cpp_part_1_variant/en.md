@@ -1,9 +1,9 @@
 ---
 id: ast-in-cpp-part-1-variant
-title: "Representing an Abstract Syntax Tree in C++: Part 1 - Variants"
+title: "Representing an Abstract Syntax Tree in C++: Variants"
 lang: en
 created: 2024-04-22
-modified: 2024-04-22
+modified: 2025-04-07
 tags:
   - code
   - cpp
@@ -19,7 +19,7 @@ Before delving further, it's worth noting that the question of "how to represent
 - How to represent a variant
 - How to represent recursive data structure
 
-In this post, we will focus on the first issue. And in the nest post, we will talk about the other issue.
+In this post, we will mainly focus on the first issue.
 
 ## What Do I Mean by Variant?
 
@@ -69,12 +69,6 @@ struct IfExpr {
 };
 ```
 
-<span class="side-note">
-
-I used `unique_ptr` here, and in the second part of the post I will explain alternative options.
-
-</span>
-
 Forward declaring everything is annoying, and we also probably want to put some common fields, such as the source location, into an AST node. This prompts the following adjustment:
 
 ```cpp
@@ -89,7 +83,7 @@ struct Expr {
 };
 ```
 
-<small class="side-note">
+<small class="side-note" style="margin-top: -100px">
 
 Alternatively, you can inherit from `std::variant`, which used to be broken in C++17 but [was fixed since C++20](https://wg21.link/p2162r2).
 
