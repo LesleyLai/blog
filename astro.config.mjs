@@ -38,9 +38,10 @@ export default defineConfig({
       [
         rehypeAutolinkHeadings,
         {
-          properties: {
+          properties: (e) => ({
             className: ["anchor"],
-          },
+            ariaLabel: `${e.properties.id} permalink`,
+          }),
         },
       ],
       rehypeMathJax,
