@@ -27,6 +27,7 @@ const en = {
   featuredProjects: "Featured Projects",
   functional: "Functional Programming",
   game: "Game",
+  git: "Git",
   graphics: "Graphics",
   graphql: "GraphQL",
   home: "Home",
@@ -82,6 +83,8 @@ const en = {
   x86: "x86",
 };
 
+
+
 // Make sure that all the tags are transla
 for (const tag of ALL_TAGS) {
   if (!Object.keys(en).includes(tag)) {
@@ -117,6 +120,7 @@ const zh: Translations = {
   featuredProjects: "代表作",
   functional: "函数式编程",
   game: "游戏",
+  git: en.git,
   graphics: "图形学",
   graphql: en.graphql,
   home: "主页",

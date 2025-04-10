@@ -6,6 +6,7 @@ import { type CollectionEntry } from "astro:content";
 import { Icon } from "astro-icon/components";
 
 import { Picture, Image } from "astro:assets";
+import Tag from "./Tag.astro";
 
 interface Props {
   projects: CollectionEntry<"projects">[];
@@ -86,7 +87,7 @@ const currentYear = new Date().getFullYear();
             <div class="project-tags">
               <ul class="project-tag-list">
                 {project.data.tags.map((tag) => (
-                  <li>{translateTag(lang, tag)}</li>
+                  <Tag href={`/${lang}/portfolio/${tag}`}>{translateTag(lang, tag)}</Tag>
                 ))}
               </ul>
             </div>
@@ -224,18 +225,6 @@ const currentYear = new Date().getFullYear();
 
     display: flex;
     flex-wrap: wrap;
-  }
-
-  .project-tag-list li {
-    margin: 0.2em 0.5em 0.2em 0px;
-    padding: 0.4em 0.5em;
-    font-weight: 800;
-    font-size: 12px;
-    border-radius: 0.285714rem;
-
-    color: #fff;
-    user-select: none;
-    background-color: var(--tag-color);
   }
 
   .project-description {
