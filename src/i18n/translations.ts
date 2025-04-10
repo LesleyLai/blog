@@ -119,6 +119,18 @@ const tagTranslations = {
   zh: zhTagTranslations,
 };
 
+const assertTagTranslated = (tags: string[]) => {
+  for (const tag of tags) {
+    if (!Object.keys(enTagTranslations).includes(tag)) {
+      throw new Error(`Untranslated tag: ${tag}!`);
+    }
+  }
+};
+
+// Make sure that all the tags are translated
+assertTagTranslated(ALL_BLOG_POST_TAGS);
+assertTagTranslated(ALL_PROJECT_TAGS);
+
 const en = {
   about: "About",
   aboutme: "About Me",
@@ -148,21 +160,10 @@ const en = {
   stuffIWroteAbout: (tag: string) => `Stuff I wrote about ${translateTag("en", tag, true)}`,
   tags: "Tags",
   talks: "Talks",
+  talksDescription: "Here are the talks that I gave in various events.",
   untranslated: "(untranslated)",
   website: "Website",
 };
-
-const assertTagTranslated = (tags: string[]) => {
-  for (const tag of tags) {
-    if (!Object.keys(enTagTranslations).includes(tag)) {
-      throw new Error(`Untranslated tag: ${tag}!`);
-    }
-  }
-};
-
-// Make sure that all the tags are translated
-assertTagTranslated(ALL_BLOG_POST_TAGS);
-assertTagTranslated(ALL_PROJECT_TAGS);
 
 export type Translations = typeof en;
 
@@ -197,6 +198,7 @@ const zh: Translations = {
   stuffIWroteAbout: (tag) => `关于${translateTag("zh", tag, true)}的博文`,
   tags: "标签",
   talks: "演讲",
+  talksDescription: "以下为我在不同场所的一些讲话：",
   untranslated: "（未译）",
   website: "网站",
 };

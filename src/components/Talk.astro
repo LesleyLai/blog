@@ -1,0 +1,60 @@
+---
+interface Props {
+  title: string;
+  date: Date;
+
+  videoLink?: string;
+  slidesLinkInteractive?: string;
+  slidesLinkPDF?: string;
+}
+
+const { title, date, videoLink, slidesLinkInteractive, slidesLinkPDF } = Astro.props;
+
+const formattedDate = date.toISOString().split("T")[0];
+---
+
+<article>
+  <h2>{title}</h2>
+  <slot />
+
+  <ul>
+    {
+      videoLink && (
+        <li>
+          <a href={videoLink} target="_blank" rel="noopener noreferrer">
+            Video
+          </a>
+        </li>
+      )
+    }
+    {
+      (slidesLinkInteractive || slidesLinkPDF) && (
+        <li>
+          Slides
+          {slidesLinkInteractive && <a href={slidesLinkInteractive}>[Interactive]</a>}
+          {slidesLinkPDF && <a href={slidesLinkPDF}>[PDF]</a>}
+        </li>
+      )
+    }
+  </ul>
+  <p class="date">Date: {formattedDate}</p>
+</article>
+
+<style>
+  article {
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid var(--divider-color);
+  }
+
+  h2 {
+    padding: 12px 0 6px;
+  }
+
+  li {
+    margin: 0.5rem 0;
+  }
+
+  .date {
+    font-size: 0.9em;
+  }
+</style>
