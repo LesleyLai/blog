@@ -14,12 +14,12 @@ const TagWithCountList = (() => {
 
 <ul class="project-tag-list">
   <li>
-    <a href={`/${lang}/portfolio`}>{translations[lang].showAll}</a>
+    <a href={`/${lang}/projects`}>{translations[lang].showAll}</a>
   </li>
   {
     TagWithCountList.map(({ tag, count }) => (
       <li>
-        <a href={`/${lang}/portfolio/${tag}`}>
+        <a href={`/${lang}/projects/${tag}`}>
           {translateTag(lang, tag)} {count}
         </a>
       </li>

@@ -48,5 +48,5 @@ export default defineConfig({
   },
   redirects: {
     "/en": "/",
-  }
+  },
 });

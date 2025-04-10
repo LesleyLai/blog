@@ -18,7 +18,7 @@ const { projects } = Astro.props;
 const currentYear = new Date().getFullYear();
 ---
 
-<div class="portfolio-grid">
+<div class="projects-grid">
   {
     projects.map(async (project) => {
       const { Content } = await project.render();
@@ -87,7 +87,7 @@ const currentYear = new Date().getFullYear();
             <div class="project-tags">
               <ul class="project-tag-list">
                 {project.data.tags.map((tag) => (
-                  <Tag href={`/${lang}/portfolio/${tag}`}>{translateTag(lang, tag)}</Tag>
+                  <Tag href={`/${lang}/projects/${tag}`}>{translateTag(lang, tag)}</Tag>
                 ))}
               </ul>
             </div>
@@ -102,7 +102,7 @@ const currentYear = new Date().getFullYear();
 </div>
 
 <style>
-  .portfolio-grid {
+  .projects-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -110,13 +110,13 @@ const currentYear = new Date().getFullYear();
   }
 
   @media (min-width: 768px) {
-    .portfolio-grid {
+    .projects-grid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
   @media (min-width: 1024px) {
-    .portfolio-grid {
+    .projects-grid {
       grid-template-columns: repeat(3, 1fr);
     }
   }

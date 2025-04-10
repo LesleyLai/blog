@@ -137,10 +137,10 @@ const en = {
   notes: "Notes",
   oppositeLang: "zh" as Language,
   otherProjects: "Other Projects",
-  portfolio: "Portfolio",
-  portfolioDescription: "Check out all my personal projects below.",
-  portfolioFilterHint: "Showing all projects. Click tags to filter by topic.",
-  portfolioFilterHintTag: (tag: string, count: number) =>
+  projects: "Projects",
+  projectsDescription: "Check out all my personal projects below.",
+  projectsFilterHint: "Showing all projects. Click tags to filter by topic.",
+  projectsFilterHintTag: (tag: string, count: number) =>
     `Show ${count} projects filtered by ${translateTag("en", tag, true)}`,
   posts: "posts",
   showAll: "Show All",
@@ -186,10 +186,10 @@ const zh: Translations = {
   notes: "笔记",
   oppositeLang: "en" as Language,
   otherProjects: "其他项目",
-  portfolio: "个人项目",
-  portfolioDescription: "下列是我的一些个人项目",
-  portfolioFilterHint: "正在显示所有项目。您可以通过标签来限定显示包含指定标签的项目。",
-  portfolioFilterHintTag: (tag: string, count: number) =>
+  projects: "项目",
+  projectsDescription: "下列是我的一些个人项目",
+  projectsFilterHint: "正在显示所有项目。您可以通过标签来限定显示包含指定标签的项目。",
+  projectsFilterHintTag: (tag: string, count: number) =>
     `显示${count}个关于${translateTag("zh", tag, true)}的项目`,
   posts: "篇博文",
   showAll: "显示所有",
