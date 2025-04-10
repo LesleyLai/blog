@@ -127,4 +127,4 @@ export const POST_COUNT_BY_TAGS = (() => {
   }));
 })();
 
-export const ALL_TAGS = POST_COUNT_BY_TAGS.map(({ tag }) => tag);
+export const ALL_BLOG_POST_TAGS = POST_COUNT_BY_TAGS.map(({ tag }) => tag);

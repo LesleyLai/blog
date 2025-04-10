@@ -1,96 +1,170 @@
-/*eslint sort-keys: "warn"*/
-
 import type { Language } from "./i18n";
-import { ALL_TAGS } from "@content/blog";
+import { ALL_BLOG_POST_TAGS } from "@content/blog";
+import { ALL_PROJECT_TAGS } from "@content/projects";
+
+interface TagTranslation {
+  shortName: string;
+  longName?: string;
+}
+
+interface TagTranslations {
+  [tagId: string]: TagTranslation;
+}
+
+// Enforcing that all tag translation entries has the TagTranslation interface
+const createTagTranslations = <M extends TagTranslations>(map: M) => map;
+
+const enTagTranslations = createTagTranslations({
+  ai: { shortName: "AI" },
+  algorithms: { shortName: "Algorithms" },
+  books: { shortName: "Books", longName: "Book Review" },
+  c: { shortName: "C", longName: "C Programming Language" },
+  cmake: { shortName: "CMake" },
+  code: { shortName: "Coding" },
+  compiler: { shortName: "Compiler" },
+  cpp: { shortName: "C++" },
+  csharp: { shortName: "C#" },
+  cuda: { shortName: "CUDA" },
+  designpattern: { shortName: "Design Patterns" },
+  dod: { shortName: "DOD", longName: "Data-Oriented Design" },
+  elm: { shortName: "Elm" },
+  event: { shortName: "Event" },
+  functional: { shortName: "FP", longName: "Functional Programming" },
+  game: { shortName: "Game" },
+  git: { shortName: "Git" },
+  graphics: { shortName: "Graphics", longName: "Computer Graphics" },
+  graphql: { shortName: "GraphQL" },
+  i18n: { shortName: "i18n", longName: "Internationalization" },
+  java: { shortName: "Java" },
+  javascript: { shortName: "Javascript" },
+  learning: { shortName: "Learning" },
+  library: { shortName: "library" },
+  logic: { shortName: "Logic" },
+  math: { shortName: "Math", longName: "Mathematics" },
+  ocaml: { shortName: "OCaml" },
+  oop: { shortName: "OOP", longName: "Object-Oriented Programming" },
+  opengl: { shortName: "OpenGL" },
+  opinion: { shortName: "Opinion" },
+  personal: { shortName: "Personal" },
+  physics: { shortName: "Physics" },
+  pl: { shortName: "PL", longName: "Programming Languages" },
+  pldev: { shortName: "PLDev", longName: "Programming Language Development" },
+  python: { shortName: "Python" },
+  racket: { shortName: "Racket" },
+  rasterizer: { shortName: "Rasterization" },
+  react: { shortName: "React" },
+  rt: { shortName: "Ray Tracing", longName: "Ray Tracing" },
+  rust: { shortName: "Rust" },
+  scheme: { shortName: "Scheme" },
+  test: { shortName: "Testing", longName: "Software Testing" },
+  typescript: { shortName: "TypeScript" },
+  vulkan: { shortName: "Vulkan" },
+  web: { shortName: "Web", longName: "Web Development" },
+  webgpu: { shortName: "WebGPU" },
+  wgpu: { shortName: "WGPU" },
+  x86: { shortName: "X86", longName: "X86 Assembly" },
+});
+
+const zhTagTranslations: typeof enTagTranslations = createTagTranslations({
+  ai: enTagTranslations.ai,
+  algorithms: { shortName: "算法" },
+  books: { shortName: "书评", longName: "书评" },
+  c: { shortName: "C", longName: "C语言" },
+  cmake: enTagTranslations.cmake,
+  code: { shortName: "编程" },
+  compiler: { shortName: "编译器" },
+  cpp: enTagTranslations.cpp,
+  csharp: enTagTranslations.csharp,
+  cuda: enTagTranslations.cuda,
+  designpattern: { shortName: "设计模式" },
+  dod: { shortName: "面向数据设计", longName: "面向数据设计" },
+  elm: enTagTranslations.elm,
+  event: { shortName: "活动" },
+  functional: { shortName: "函数式编程", longName: "函数式编程" },
+  game: { shortName: "游戏" },
+  git: enTagTranslations.git,
+  graphics: { shortName: "图形学", longName: "计算机图形学" },
+  graphql: enTagTranslations.graphql,
+  i18n: { shortName: "国际化", longName: "国际化" },
+  java: enTagTranslations.java,
+  javascript: enTagTranslations.javascript,
+  learning: enTagTranslations.learning,
+  library: { shortName: "程序库" },
+  logic: enTagTranslations.logic,
+  math: { shortName: "数学", longName: "数学" },
+  ocaml: enTagTranslations.ocaml,
+  oop: { shortName: "OOP", longName: "面向对象编程" },
+  opengl: enTagTranslations.opengl,
+  opinion: { shortName: "观点" },
+  personal: { shortName: "个人相关" },
+  physics: { shortName: "物理" },
+  pl: { shortName: "编程语言", longName: "编程语言" },
+  pldev: { shortName: "编程语言开发", longName: "编程语言开发" },
+  python: enTagTranslations.python,
+  racket: enTagTranslations.racket,
+  rasterizer: { shortName: "光栅化" },
+  react: enTagTranslations.react,
+  rt: { shortName: "光线追踪", longName: "光线追踪" },
+  rust: enTagTranslations.rust,
+  scheme: enTagTranslations.scheme,
+  test: { shortName: "测试", longName: "软件测试" },
+  typescript: enTagTranslations.typescript,
+  vulkan: enTagTranslations.vulkan,
+  web: { shortName: "Web", longName: "Web开发" },
+  webgpu: enTagTranslations.webgpu,
+  wgpu: enTagTranslations.wgpu,
+  x86: { shortName: "X86", longName: "X86汇编语言" },
+});
+
+const tagTranslations = {
+  en: enTagTranslations,
+  zh: zhTagTranslations,
+};
 
 const en = {
   about: "About",
   aboutme: "About Me",
-  ai: "AI",
-  algorithms: "Algorithms",
   all: "All",
   archive: "Blog Archive",
   blog: "Blog",
-  books: "Book Review",
-  c: "C",
-  cmake: "CMake",
-  code: "Coding",
-  compiler: "Compiler",
-  cpp: "C++",
   createTime: "Created: ",
-  csharp: "C#",
-  cuda: "CUDA",
-  designpattern: "Design Patterns",
-  dod: "Data-Oriented Design",
-  elm: "Elm",
-  event: "Event",
   featuredProjects: "Featured Projects",
-  functional: "Functional Programming",
-  game: "Game",
-  git: "Git",
-  graphics: "Graphics",
-  graphql: "GraphQL",
   home: "Home",
-  i18n: "Internationalization",
-  java: "Java",
-  javascript: "Javascript",
   langName: "English",
   lastModified: "Last Modified: ",
   latestPosts: "Latest Posts",
   learning: "Learning",
-  library: "Library",
-  logic: "Logic",
-  math: "Mathematics",
   myname: "Lesley Lai",
   notFound: "404 Not Found",
   notes: "Notes",
-  ocaml: "OCaml",
-  oop: "OOP",
-  opengl: "OpenGL",
-  opinion: "Opinion",
   oppositeLang: "zh" as Language,
   otherProjects: "Other Projects",
-  personal: "Personal",
-  physics: "Physics",
-  pl: "Programming Languages",
-  pldev: "Programming Language Development",
   portfolio: "Portfolio",
   portfolioDescription: "Check out all my personal projects below.",
   portfolioFilterHint: "Showing all projects. Click tags to filter by topic.",
   portfolioFilterHintTag: (tag: string, count: number) =>
-    `Show ${count} projects filtered by ${translateTag("en", tag)}`,
+    `Show ${count} projects filtered by ${translateTag("en", tag, true)}`,
   posts: "posts",
-  python: "Python",
-  racket: "Racket",
-  rasterizer: "Rasterization",
-  react: "React",
-  rt: "Ray Tracing",
-  rust: "Rust",
-  scheme: "Scheme",
   showAll: "Show All",
   siteName: "Lesley Lai",
-  stuffIWroteAbout: (tag: string) => `Stuff I wrote about ${en[tag as TranslationKey]}`,
+  stuffIWroteAbout: (tag: string) => `Stuff I wrote about ${translateTag("en", tag, true)}`,
   tags: "Tags",
   talks: "Talks",
-  test: "Testing",
-  typescript: "Typescript",
   untranslated: "(untranslated)",
-  vulkan: "Vulkan",
-  web: "Web",
-  webgpu: "WebGPU",
   website: "Website",
-  wgpu: "wgpu",
-  x86: "x86",
 };
 
-
-
-// Make sure that all the tags are transla
-for (const tag of ALL_TAGS) {
-  if (!Object.keys(en).includes(tag)) {
-    throw new Error(`Untranslated tag: ${tag}!`);
+const assertTagTranslated = (tags: string[]) => {
+  for (const tag of tags) {
+    if (!Object.keys(enTagTranslations).includes(tag)) {
+      throw new Error(`Untranslated tag: ${tag}!`);
+    }
   }
-}
+};
+
+// Make sure that all the tags are translated
+assertTagTranslated(ALL_BLOG_POST_TAGS);
+assertTagTranslated(ALL_PROJECT_TAGS);
 
 export type Translations = typeof en;
 
@@ -99,81 +173,34 @@ export type TranslationKey = keyof Translations;
 const zh: Translations = {
   about: "关于",
   aboutme: "关于我",
-  ai: en.ai,
-  algorithms: "算法",
   all: "所有",
   archive: "博文存档",
   blog: "博客",
-  books: "书评",
-  c: en.c,
-  cmake: en.cmake,
-  code: "编程",
-  compiler: "编译器",
-  cpp: en.cpp,
   createTime: "创建时间：",
-  csharp: en.csharp,
-  cuda: en.cuda,
-  designpattern: "设计模式",
-  dod: "面向数据设计",
-  elm: en.elm,
-  event: "活动",
   featuredProjects: "代表作",
-  functional: "函数式编程",
-  game: "游戏",
-  git: en.git,
-  graphics: "图形学",
-  graphql: en.graphql,
   home: "主页",
-  i18n: "国际化",
-  java: en.java,
-  javascript: en.javascript,
   langName: "中文",
   lastModified: "最近修改时间：",
   latestPosts: "最新文章",
   learning: "学习",
-  library: "软件库",
-  logic: "逻辑学",
-  math: "数学",
   myname: "赖思理",
   notFound: "找不到页面",
   notes: "笔记",
-  ocaml: en.ocaml,
-  oop: "面向对象编程",
-  opengl: en.opengl,
-  opinion: "观点",
   oppositeLang: "en" as Language,
   otherProjects: "其他项目",
-  personal: "个人相关",
-  physics: "物理",
-  pl: "编程语言",
-  pldev: "编程语言开发",
   portfolio: "个人项目",
   portfolioDescription: "下列是我的一些个人项目",
   portfolioFilterHint: "正在显示所有项目。您可以通过标签来限定显示包含指定标签的项目。",
   portfolioFilterHintTag: (tag: string, count: number) =>
-    `显示${count}个关于${translateTag("zh", tag)}的项目`,
+    `显示${count}个关于${translateTag("zh", tag, true)}的项目`,
   posts: "篇博文",
-  python: en.python,
-  racket: en.racket,
-  rasterizer: "光栅化",
-  react: en.react,
-  rt: "光线追踪",
-  rust: en.rust,
-  scheme: en.scheme,
   showAll: "显示所有",
   siteName: "赖思理的个人网站",
-  stuffIWroteAbout: (tag) => `关于${zh[tag as TranslationKey]}的博文`,
+  stuffIWroteAbout: (tag) => `关于${translateTag("zh", tag, true)}的博文`,
   tags: "标签",
   talks: "演讲",
-  test: "软件测试",
-  typescript: en.typescript,
   untranslated: "（未译）",
-  vulkan: en.vulkan,
-  web: en.web,
-  webgpu: en.webgpu,
   website: "网站",
-  wgpu: en.web,
-  x86: en.x86,
 };
 
 export const translations: Record<Language, typeof en> = {
@@ -181,9 +208,22 @@ export const translations: Record<Language, typeof en> = {
   zh: zh,
 };
 
-export const translateTag = (lang: Language, tag: string): string => {
-  if (tag in translations.en) {
-    return translations[lang][tag as TranslationKey] as string;
+export const tagHasLongName = (lang: Language, tag: string): boolean => {
+  if (tag in enTagTranslations) {
+    const translation = tagTranslations[lang][tag as keyof typeof enTagTranslations];
+    return "longName" in translation;
+  }
+  throw Error(`Failed to translate tag: ${tag}`);
+};
+
+export const translateTag = (lang: Language, tag: string, longName = false): string => {
+  if (tag in enTagTranslations) {
+    const translation = tagTranslations[lang][tag as keyof typeof enTagTranslations];
+    if (!longName || !("longName" in translation)) {
+      return translation.shortName;
+    }
+
+    return translation.longName;
   }
   throw Error(`Failed to translate tag: ${tag}`);
 };
