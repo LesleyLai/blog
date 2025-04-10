@@ -8,6 +8,7 @@ featured: true
 tags:
   - c
   - compiler
+  - pldev
   - rust
 ---
 

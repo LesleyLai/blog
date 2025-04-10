@@ -38,7 +38,7 @@ const enTagTranslations = createTagTranslations({
   java: { shortName: "Java" },
   javascript: { shortName: "Javascript" },
   learning: { shortName: "Learning" },
-  library: { shortName: "library" },
+  library: { shortName: "Library", longName: "Software Library" },
   logic: { shortName: "Logic" },
   math: { shortName: "Math", longName: "Mathematics" },
   ocaml: { shortName: "OCaml" },
@@ -61,7 +61,6 @@ const enTagTranslations = createTagTranslations({
   vulkan: { shortName: "Vulkan" },
   web: { shortName: "Web", longName: "Web Development" },
   webgpu: { shortName: "WebGPU" },
-  wgpu: { shortName: "WGPU" },
   x86: { shortName: "X86", longName: "X86 Assembly" },
 });
 
@@ -89,7 +88,7 @@ const zhTagTranslations: typeof enTagTranslations = createTagTranslations({
   java: enTagTranslations.java,
   javascript: enTagTranslations.javascript,
   learning: enTagTranslations.learning,
-  library: { shortName: "程序库" },
+  library: { shortName: "软件库", longName: "软件库" },
   logic: enTagTranslations.logic,
   math: { shortName: "数学", longName: "数学" },
   ocaml: enTagTranslations.ocaml,
@@ -112,7 +111,6 @@ const zhTagTranslations: typeof enTagTranslations = createTagTranslations({
   vulkan: enTagTranslations.vulkan,
   web: { shortName: "Web", longName: "Web开发" },
   webgpu: enTagTranslations.webgpu,
-  wgpu: enTagTranslations.wgpu,
   x86: { shortName: "X86", longName: "X86汇编语言" },
 });
 

@@ -7,8 +7,7 @@ demo: https://mvp-interpreter.netlify.app/
 tags:
   - elm
   - functional
-  - javascript
-  - pl
+  - pldev
   - web
 ---
 

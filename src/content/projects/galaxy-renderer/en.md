@@ -6,7 +6,6 @@ github: https://github.com/LesleyLai/galaxy-renderer
 tags:
   - rust
   - graphics
-  - wgpu
   - webgpu
 featured: true
 ---

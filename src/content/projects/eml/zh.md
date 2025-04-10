@@ -5,7 +5,7 @@ github: https://github.com/LesleyLai/eml
 image: "./eml.png"
 tags:
   - cpp
-  - pl
+  - pldev
   - functional
 ---
 
