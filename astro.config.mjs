@@ -31,6 +31,15 @@ export default defineConfig({
       themes: ["light-plus", "github-dark"],
       themeCssRoot: "html",
       themeCssSelector: (theme) => `.${theme.type}`,
+      styleOverrides: {
+        borderRadius: 0,
+        borderWidth: "1px",
+        borderColor: "var(--divider-color)",
+        codeFontFamily: '"PT Mono", monospace',
+        frames: {
+          frameBoxShadowCssValue: "none",
+        },
+      },
     }),
     mdx(),
   ],

@@ -176,6 +176,7 @@ main li {
   --text-color: #000;
   --secondary-color: #797979;
   --bg-color: #f4f2ea;
+  --blockquote-bg-color: #fafaf8;
   --header-bg-color: #fafaf8;
   --content-bg-color: #fff;
   --sidenote-bg-color: #fbfaf7;
@@ -210,6 +211,7 @@ main li {
   --text-color: #e8e8e8;
   --secondary-color: #b3b3b3;
   --bg-color: #0b0b0b;
+  --blockquote-bg-color: #3a3a3a;
   --header-bg-color: #0b0b0b;
   --content-bg-color: #2a2a2a;
   --sidenote-bg-color: #1c1c1c;
@@ -339,4 +341,16 @@ a[data-footnote-ref]:hover,
 .data-footnote-backref:hover {
   color: var(--footnote-hover-color);
   background-color: var(--footnote-hover-bg-color);
+}
+
+/* Blockquote */
+blockquote {
+  padding: 10px 1rem;
+  border-left: 4px solid var(--secondary-color);
+  background-color: var(--blockquote-bg-color);
+  font-style: italic;
+}
+
+blockquote p {
+  margin: 0;
 }
