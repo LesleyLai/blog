@@ -160,11 +160,7 @@ import "@styles/utilities.css";
     top: 0;
   }
 
-  /* Larger tablets/small desktops or above */
-  @media only screen and (min-width: 769px) {
-  }
-
-  /* Desktops*/
+  /* Large Desktops */
   @media only screen and (min-width: 1088px) {
     header {
       /* Header is not sticky on desktops */
@@ -174,16 +170,11 @@ import "@styles/utilities.css";
     }
 
     .home {
-      padding-left: 0;
       border-bottom: unset;
     }
 
     .container {
       flex-direction: row;
-    }
-
-    .header-right {
-      padding-right: 0;
     }
 
     nav {
@@ -201,6 +192,17 @@ import "@styles/utilities.css";
 
     .hamb {
       display: none;
+    }
+  }
+
+  /* Extra Large Desktops */
+  @media only screen and (min-width: 1200px) {
+    .home {
+      padding-left: 0;
+    }
+
+    .header-right {
+      padding-right: 0;
     }
   }
 </style>

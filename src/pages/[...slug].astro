@@ -108,22 +108,16 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
     border-radius: 10px;
   }
 
-  @media only screen and (max-width: 1087px) {
+  /* Less than extra large desktop */
+  @media only screen and (max-width: 1199px) {
+    /* Supress custom sidenote margin-top on smaller devices */
     main :global(.side-note) {
-      margin-top: 20px;
+      margin-top: 20px !important;
     }
   }
 
-  /* Tablets */
-  @media only screen and (min-width: 481px) and (max-width: 768px) {
-  }
-
-  /* Larger tablets/small desktops */
-  @media only screen and (min-width: 769px) and (max-width: 1087px) {
-  }
-
-  /* Desktops */
-  @media only screen and (min-width: 1088px) {
+  /* Extra Large Desktops */
+  @media only screen and (min-width: 1200px) {
     main {
       max-width: var(--blog-content-width);
     }

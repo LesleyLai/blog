@@ -17,9 +17,7 @@ C++11引入了lambda表达式，而之后的语言版本不断的对lambda表达
 
 与此同时，非常多的编程语言支持“匿名函数”功能。在C++11之前，C++使用元编程来模拟这个特性。例如Boost库就包含了[boost.lambda](http://www.boost.org/libs/lambda)库。因为当时语言自身的局限性，这些元编程的技术都存在各种问题，例如缓慢的编译速度和古怪的语法。因此，C++11在核心语言中加入了lambda表达式。C++标准中有一个把lambda表达式使用在`sort`算法上的例子：[^1]
 
-[^1]:
-
-见[**\[expr.prim.lambda\]**](http://eel.is/c%2B%2Bdraft/expr.prim.lambda#1)
+[^1]: 见[**\[expr.prim.lambda\]**](http://eel.is/c%2B%2Bdraft/expr.prim.lambda#1)
 
 ```cpp
 #include <algorithm>
@@ -134,9 +132,9 @@ std::vector<int> filter_above(const std::vector<int>& v, int threshold) {
 }
 ```
 
-<span class="side-note">
+<span class="side-note"  style="margin-top: -140px">
 
-在以上的代码中我使用了C++17的[类模板实参推导(CTAD)](https://zh.cppreference.com/w/cpp/language/class_template_argument_deduction)特性。在之前的C++版本中，我们需要显式写明`GreaterThan<int>{threshold}`。
+在这片代码中我使用了C++17的[类模板实参推导(CTAD)](https://zh.cppreference.com/w/cpp/language/class_template_argument_deduction)特性。在之前的C++版本中，我们需要显式写明`GreaterThan<int>{threshold}`。
 
 </span>
 
@@ -184,6 +182,8 @@ decltype(f) g = f;
 
 现在你理解了lambda表达式的本质不过是一个函数对象，你也许会期望lambda表达式能够储存任意的值而不仅仅是被捕获的本地变量。幸运的是C++14加入了通用捕获功能[^3]。你在C++14中可以使用初始化器来为lambda表达式引入新的变量。
 
+[^3]: [C++14 Language Extensions: Generalized lambda captures](https://isocpp.org/wiki/faq/cpp14-language#lambda-captures)
+
 ```cpp
 [x = 1]{ return x; // 1 }
 ```
@@ -202,10 +202,6 @@ go.run([u=move(u)] {
   do_something_with( u );
 });
 ```
-
-[^3]:
-
-[C++14 Language Extensions: Generalized lambda captures](https://isocpp.org/wiki/faq/cpp14-language#lambda-captures)
 
 ## 立即调用lambda (Immediately Invoked Lambda)
 

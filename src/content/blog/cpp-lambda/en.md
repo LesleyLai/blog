@@ -90,7 +90,7 @@ The implicit capture strategy works in garbage-collected languages. [Rust](https
 
 We discussed quite a lot of usage of lambda so far. However, curious readers may start to wonder, what _exactly_ is a C++ lambda expression? Is it a primitive language construct like closures in functional languages? Before I talk about the internal of lambda, I will first talk about a construct date back to the C++98 era, **function objects**.
 
-<span class="side-note">
+<span class="side-note" style="margin-top: -90px">
 
 Some C++ programmers call the function objects "functors." It is a misnomer that we should avoid. In [category theory](https://en.wikipedia.org/wiki/Category_theory), a functor is a map between categories[^2]" and satisfy specific "functor laws."
 
