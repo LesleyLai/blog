@@ -26,13 +26,13 @@ const projects = PROJECT_BY_LANG[lang].projects.filter((project) => {
 });
 ---
 
-<PageLayout title={translations[lang].portfolio}>
-  <h1>{translations[lang].portfolio}</h1>
-  <p>{translations[lang].portfolioDescription}</p>
+<PageLayout title={translations[lang].projects}>
+  <h1>{translations[lang].projects}</h1>
+  <p>{translations[lang].projectsDescription}</p>
   <ProjectTagList />
   <p class="filter-hint">
     {
-      translations[lang].portfolioFilterHintTag(
+      translations[lang].projectsFilterHintTag(
         tag,
         PROJECT_BY_LANG[lang].projectCountByTags.get(tag) ?? 0
       )

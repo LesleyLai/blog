@@ -3,13 +3,15 @@ id: bilingual-blog
 title: "How I create bilingual functionality of this blog in plain Typescript"
 lang: en
 created: 2022-01-01
-modified: 2022-01-24
+modified: 2025-04-11
 tags:
   - code
   - i18n
   - typescript
   - react
 ---
+
+**Update 2025**: *I've since migrated this blog to [Astro](https://astro.build/), but the implementation strategy of the translation remains largely unchanged.*
 
 Happy new year 2022, everyone!
 Today I want to talk about something different from most of my blog posts: how I implement my bilingual blog in pure Typescript.

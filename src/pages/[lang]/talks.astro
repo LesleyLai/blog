@@ -2,6 +2,7 @@
 import PageLayout from "@layouts/PageLayout.astro";
 import { translations } from "@i18n/translations";
 import { type Language, languages } from "@i18n/i18n";
+import Talk from "@components/Talk.astro";
 
 interface Params {
   params: {
@@ -18,4 +19,67 @@ const { lang } = Astro.params;
 
 <PageLayout title={translations[lang].talks}>
   <h1>{translations[lang].talks}</h1>
+  <p>{translations[lang].talksDescription}</p>
+
+  <Talk
+    title="CppCon 2021: Required Field for Designated Initialization"
+    date={new Date("2021-08-29")}
+    videoLink="https://www.youtube.com/watch?v=EwC8JIJqlMc"
+  >
+    Designated initialization provides us with a way to mimic "named parameter" in C++. However, by
+    doing so, we lost the ability to enforce the client code to provide a value for specific fields.
+    And this talk gives a way to recover that ability.
+  </Talk>
+
+  <Talk
+    title="CUDA Boid"
+    date={new Date("2021-01-06")}
+    videoLink="https://www.youtube.com/watch?v=PPsP1unDkSg"
+    slidesLinkInteractive="/talks/slides_cuda-boid/index.html"
+    slidesLinkPDF="/talks/slides_cuda-boid.pdf"
+  >
+    This talk focuses on flocking simulation in CUDA. It starts with the three rules of boid
+    simulation and then delves into how to optimize such a GPU simulation.
+  </Talk>
+
+  <Talk
+    title="Type Erasure: Concept and Implementation"
+    date={new Date("2020-02-13")}
+    videoLink="https://www.youtube.com/watch?v=2-QZTVzgAGM"
+  >
+    This talk explains the idea of type erasure in the C++ context and how it gets implemented. It
+    first explores C style type erasure with the cast and void* and OOP style type-erasure with
+    inheritance and virtual dispatch. And then, It explains more advanced type erasure techniques
+    used in standard library types such as std::function. And the talk then spend the majority of
+    time gave a case study on how to implement the proposed unique_function type.
+  </Talk>
+
+  <Talk
+    title="Understanding Persistent Data Structures"
+    date={new Date("2020-01-08")}
+    slidesLinkInteractive="/talks/slides_understanding-persistent-data-structures/index.html"
+    slidesLinkPDF="/talks/understanding-persistent-data-structures.pdf"
+  >
+    <p>
+      An hour long talk on the basic idea of persistent data structures at{" "}
+      <a href="https://www.meetup.com/denverfp/">Denver FP</a>. Covers basic principles of
+      persistent data structures with case studies of immutable array, list,{" "}
+      <a href="https://dl.acm.org/doi/pdf/10.1145/2784731.2784739?download=true">
+        Relaxed Radix-Balanced Trees
+      </a>
+      , and{" "}
+      <a href="https://lampwww.epfl.ch/papers/idealhashtrees.pdf">Hash Array Mapped Tries</a>.
+    </p>
+  </Talk>
+
+  <Talk
+    title="CppCon 2019: “Make impossible state unrepresentable”"
+    date={new Date("2019-09-18")}
+    videoLink="https://www.youtube.com/watch?v=hYyRrYwfy3k"
+    slidesLinkInteractive="/talks/make_impossible_state_unrepresentable/index.html"
+    slidesLinkPDF="/talks/make_impossible_state_unrepresentable.pdf"
+  >
+    A lighting talk on how to design data and types in C++ to leverage the static type system so
+    that invariants breaking becomes impossible in certain instances.
+  </Talk>
 </PageLayout>

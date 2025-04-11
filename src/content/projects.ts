@@ -45,3 +45,5 @@ export const PROJECT_BY_LANG: Record<Language, Projects> = Object.fromEntries(
     return [lang, new Projects(projects)];
   })
 ) as Record<Language, Projects>;
+
+export const ALL_PROJECT_TAGS = PROJECT_BY_LANG["en"].tags;

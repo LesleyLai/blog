@@ -24,11 +24,11 @@ const featuredProjects = projects.filter((project) => project.data.featured);
 const otherProjects = projects.filter((project) => !project.data.featured);
 ---
 
-<PageLayout title={translations[lang].portfolio}>
-  <h1>{translations[lang].portfolio}</h1>
-  <p>{translations[lang].portfolioDescription}</p>
+<PageLayout title={translations[lang].projects}>
+  <h1>{translations[lang].projects}</h1>
+  <p>{translations[lang].projectsDescription}</p>
   <ProjectTagList />
-  <p class="filter-hint">{translations[lang].portfolioFilterHint}</p>
+  <p class="filter-hint">{translations[lang].projectsFilterHint}</p>
 
   <h2>{translations[lang].featuredProjects}</h2>
   <ProjectGrid projects={featuredProjects} />
