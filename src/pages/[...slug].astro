@@ -5,10 +5,11 @@ import { langFromSlug, transformSlug } from "@i18n/i18n";
 import { BLOG_POSTS } from "@content/blog";
 import TagList from "@components/TagList.astro";
 import "@styles/container.css";
+import { render } from "astro:content";
 
 export async function getStaticPaths() {
   return BLOG_POSTS.all.map((entry) => {
-    const slug = transformSlug(entry.slug);
+    const slug = transformSlug(entry.id);
 
     return {
       params: { slug },
@@ -18,9 +19,9 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 
-const lang = langFromSlug(entry.slug);
+const lang = langFromSlug(entry.id);
 
 const options: Intl.DateTimeFormatOptions = {
   year: "numeric",

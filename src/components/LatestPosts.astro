@@ -26,7 +26,7 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
         <tr>
           <th scope="row">{formatDate(post.data.created)}</th>
           <td>
-            <a href={`/${transformSlug(post.slug)}`} data-astro-prefetch>
+            <a href={`/${transformSlug(post.id)}`} data-astro-prefetch>
               {post.data.title}
             </a>
           </td>

@@ -11,10 +11,13 @@ tags:
   - functional
 ---
 
+import { Image } from "astro:assets";
+import bookCover from "./book_cover.jpg";
+
 _[Functional Programming in C++](https://www.manning.com/books/functional-programming-in-c-plus-plus)_ by Ivan Čukić is a new book about applying functional programming principles in C++. This book is for people who already have a decent understanding of C++. It is written in an idiomatic style that a C++ programmer should feel welcome.
 
-<div class="right-image-container">
-  <img src="book_cover.jpg" alt="Functional Programming in C++ Book Cover" />
+<div className="float-right-sticky p-10">
+  <Image src={bookCover} alt="Functional Programming in C++ Book Cover" width={300} />
 </div>
 
 If you just start to learn C++, this book may not be the best starting point. I will recommend [A Tour of C++](http://www.stroustrup.com/tour2.html) instead. On the other hand, the book does not require any functional programming knowledge. The book spends its first six chapters to build basic functional programming concepts like pure functions, higher order functions, partial applications.

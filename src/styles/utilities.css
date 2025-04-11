@@ -1,3 +1,14 @@
 .border-bottom-solid {
   border-bottom: 1px solid var(--divider-color);
 }
+
+/* Images */
+.float-right-sticky {
+  position: sticky;
+  float: right;
+}
+
+/* padding */
+.p-10 {
+  padding: 10px;
+}

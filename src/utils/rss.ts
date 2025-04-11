@@ -27,8 +27,8 @@ export function getRSSFeed(context: APIContext, lang: Language) {
       //description: post.data.description,
       author: translations[lang].myname,
       pubDate: post.data.created,
-      link: transformSlug(post.slug),
-      content: sanitizeHtml(parser.render(post.body), {
+      link: transformSlug(post.id),
+      content: sanitizeHtml(parser.render(post.body ?? ""), {
         allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
       }),
       categories: post.data.tags,

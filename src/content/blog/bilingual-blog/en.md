@@ -11,7 +11,7 @@ tags:
   - react
 ---
 
-**Update 2025**: *I've since migrated this blog to [Astro](https://astro.build/), but the implementation strategy of the translation remains largely unchanged.*
+**Update 2025**: _I've since migrated this blog to [Astro](https://astro.build/), but the implementation strategy of the translation remains largely unchanged._
 
 Happy new year 2022, everyone!
 Today I want to talk about something different from most of my blog posts: how I implement my bilingual blog in pure Typescript.

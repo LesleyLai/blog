@@ -1,19 +1,10 @@
 // Helpers to process blog post data
 
-import {
-  type CollectionEntry,
-  type Render,
-  type InferEntrySchema,
-  getCollection,
-} from "astro:content";
+import { type CollectionEntry, getCollection } from "astro:content";
 import { langFromSlug, type Language } from "@i18n/i18n";
 
-export interface BlogPost {
-  body: string;
-  slug: string;
-  data: InferEntrySchema<"blog">;
+export interface BlogPost extends CollectionEntry<"blog"> {
   untranslated?: boolean;
-  render(): Render[".md"];
 }
 
 export type MultiLangBlogPost = {
@@ -24,8 +15,8 @@ export type MultiLangBlogPost = {
 const groupEntriesById = (blogEntries: CollectionEntry<"blog">[]) => {
   const byId = new Map<string, Partial<MultiLangBlogPost>>();
   for (const entry of blogEntries) {
-    const lang = langFromSlug(entry.slug);
-    const id = entry.slug.replace(`\/${lang}`, "");
+    const lang = langFromSlug(entry.id);
+    const id = entry.id.replace(`\/${lang}`, "");
     if (!byId.has(id)) {
       byId.set(id, {});
     }
@@ -39,14 +30,14 @@ const groupEntriesById = (blogEntries: CollectionEntry<"blog">[]) => {
 const populateMissingChineseEntries = (
   blogEntriesById: Map<string, Partial<MultiLangBlogPost>>
 ) => {
-  blogEntriesById.forEach((entries: Partial<MultiLangBlogPost>, id: string) => {
+  blogEntriesById.forEach((entries: Partial<MultiLangBlogPost>) => {
     if (!entries.zh) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { slug, untranslated, ...rest } = entries.en!;
+      const { id, untranslated: _untranslated, ...rest } = entries.en!;
+      const [idWithoutLang, _] = id.split("/");
       entries.zh = {
         ...rest,
         untranslated: true,
-        slug: `${id}/zh`,
+        id: `${idWithoutLang}/zh`,
       };
     }
   });

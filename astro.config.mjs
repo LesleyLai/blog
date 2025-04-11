@@ -9,6 +9,8 @@ import { rehypeHeadingIds } from "@astrojs/markdown-remark";
 
 import expressiveCode from "astro-expressive-code";
 
+import mdx from "@astrojs/mdx";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://lesleylai.info",
@@ -30,6 +32,7 @@ export default defineConfig({
       themeCssRoot: "html",
       themeCssSelector: (theme) => `.${theme.type}`,
     }),
+    mdx(),
   ],
   markdown: {
     remarkPlugins: [remarkMath],

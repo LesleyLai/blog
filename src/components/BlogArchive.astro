@@ -56,7 +56,7 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
       <ul>
         {posts.map((post) => (
           <li class="list">
-            <a class="title" href={`/${transformSlug(post.slug)}`} data-astro-prefetch>
+            <a class="title" href={`/${transformSlug(post.id)}`} data-astro-prefetch>
               {post.data.title}{" "}
             </a>
             {post.untranslated && <span>{translations[lang].untranslated}</span>}
