@@ -141,7 +141,14 @@ main h3 {
 main ul,
 main ol {
   margin-left: 1.666rem;
+}
+
+main ul {
   list-style-type: disc;
+}
+
+main ol {
+  list-style-type: decimal;
 }
 
 main li {
@@ -191,7 +198,13 @@ main li {
   --aside-sm-border-color: #f7f4ed;
   --aside-sm-border-bottom-color: #f0e9db;
   --aside-lg-border-color: #f0e9db;
+
+  --footnote-text-color: #777;
+  --footnote-bg-color: #e3e3e3;
+  --footnote-hover-color: #fff;
+  --footnote-hover-bg-color: #8f6d3d;
 }
+
 
 .dark {
   --text-color: #e8e8e8;
@@ -219,6 +232,11 @@ main li {
   --aside-sm-border-color: #666;
   --aside-sm-border-bottom-color: #444;
   --aside-lg-border-color: #615f58;
+
+  --footnote-text-color: #e0e0e0;
+  --footnote-bg-color: #4a4a4a;
+  --footnote-hover-color: #ffffff;
+  --footnote-hover-bg-color: #666666;
 }
 
 /* lower image brightness in dark mode */
@@ -294,4 +312,31 @@ mjx-container[jax="SVG"] {
 :hover>.anchor {
   visibility: visible;
   opacity: 1;
+}
+
+/* Footnotes */
+a[data-footnote-ref] {
+  padding: .2em .5em;
+}
+
+.data-footnote-backref {
+  padding: .1em .4em;
+}
+
+a[data-footnote-ref],
+.data-footnote-backref {
+  border-radius: 50%;
+
+
+  position: relative;
+  font-size: 0.8em;
+  font-weight: 700;
+  color: var(--footnote-text-color);
+  background-color: var(--footnote-bg-color);
+}
+
+a[data-footnote-ref]:hover,
+.data-footnote-backref:hover {
+  color: var(--footnote-hover-color);
+  background-color: var(--footnote-hover-bg-color);
 }
