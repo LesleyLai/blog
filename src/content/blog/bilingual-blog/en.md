@@ -27,19 +27,20 @@ but I think it fits the particular use case of a personal blog well.
 It provides several significant advantages:
 
 - The type system guarantees that it is impossible to forget to translate an entry
-- It is very flexible as I can have arbitrarily different Javascript for different languages (Since this website is implemented in React, I can use arbitrary JSX [^1]). This is a useful property when I only want to render certain UI elements in a selected language (for example, Twitter is banned in China, so I removed my Twitter link on the Chinese version of this site.)
+- It is very flexible as I can have arbitrarily different Javascript for different languages (Since this website is implemented in React, I can use arbitrary JSX). This is a useful property when I only want to render certain UI elements in a selected language.
 - I don't need to learn an i18n library just for my blog
 
-And thus, I recommend you use a similar approach if you want to create a multilingual personal website.
+<span class="side-note" style="margin-top: -110px">
+For people not familiar with JSX, it is a syntax extension of Javascript that enables us to write HTML-like UI code easily. It is designed to work together with React.js, but people also use it with other technologies such as Vue.js. [Here](https://reactjs.org/docs/introducing-jsx.html) is an introduction to JSX.
+</span>
 
-[^1]: For people not familiar with JSX, it is a syntax extension of Javascript that enables us to write HTML-like UI code easily. It is designed to work together with React.js, but people also use it with other technologies such as Vue.js. [Here](https://reactjs.org/docs/introducing-jsx.html) is an introduction to JSX.
+
+And thus, I recommend you use a similar approach if you want to create a multilingual personal website.
 
 This blog uses the static-site generator [GatsbyJS](https://www.gatsbyjs.com/).
 If you are not familiar with static-site generators,
 one cool thing they can perform is to transform contents in formats such as Markdown into proper HTML pages
-with the help of a "template." [^2]
-
-[^2]: In the particular case of GatsbyJS, the actual situation is more complicated, but you can visit their website to learn more.
+with the help of a "template."
 
 For blog posts,
 I have separate markdown files for different languages.

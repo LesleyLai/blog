@@ -9,10 +9,14 @@ tags:
   - event
 ---
 
+import { Image } from "astro:assets";
+import exhibition from "./exhibition.jpg";
+import pierSunset from "./pier-sunset.jpg";
+
 This year, several of the coworkers and I at [Trimble SketchUp](https://www.sketchup.com/) attended ACM [Special Interest Group in Graphics (Siggraph) conference](https://s2019.siggraph.org/). It is my first time attending such a big gathering. The week is exciting, exhaustion, and also extremely rewarding for me.
 
-<div class="right-image-container">
-  <img src="pier-sunset.jpg" alt="Sunset at the Santa Monica pier" />
+<div class="float-right-sticky p-10">
+  <Image src={pierSunset} alt="Sunset at the Santa Monica pier" width={300} />
 </div>
 
 This year the conference location is Los Angeles, so we had the chance to have a tour to the pier, taste different seafood, and watch the sunset. We also had nerdy jokes about the pier floor is just a displacement map, and the sunset can be rendered by some [shader hack](https://www.shadertoy.com/view/Ml2cWG).
@@ -43,8 +47,8 @@ I have an ambition of making the [CU Computer Graphics Group](https://cu-compute
 
 ## Exhibition
 
-<div class="right-image-container">
-  <img src="exhibition.jpg" alt="Siggraph 2019 Exhibition" />
+<div class="float-right-sticky p-10">
+  <Image src={exhibition} alt="Siggraph 2019 Exhibition" width={300} />
 </div>
 
 Various companies have exhibitions and live demos in Siggraph. As with everything else, a lot of excitement around the exhibition is related to real-time ray-tracing. There were a lot of companies that demonstrated their motion capture techniques and streamed the results into a game engine. One of the particularly striking shops implemented a VR avatar that will always have eye contact with you after you move.

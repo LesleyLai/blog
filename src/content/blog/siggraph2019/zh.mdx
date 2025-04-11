@@ -9,10 +9,14 @@ tags:
   - event
 ---
 
+import { Image } from "astro:assets";
+import exhibition from "./exhibition.jpg";
+import pierSunset from "./pier-sunset.jpg";
+
 今年几个在[Trimble SketchUp](https://www.sketchup.com/)的同事与我一起去参加了ACM [Siggraph 大会](https://s2019.siggraph.org/)。这是我第一次参加这种规模的大会。这一周虽然非常辛苦，但我也开阔了眼界并且学到了很多东西。
 
-<div class="right-image-container">
-  <img src="pier-sunset.jpg" alt="Sunset at the Santa Monica pier" />
+<div class="float-right-sticky p-10">
+  <Image src={pierSunset} alt="Sunset at the Santa Monica pier" width={300} />
 </div>
 
 今年大会的地点在洛杉矶，所以我们有机会去参观渔人码头，品味不同的海鲜，并且欣赏海上的日落。我们也开了一些图形学有关的玩笑， 诸如渔人码头的木头地板是一张置换贴图(displacement map)，而日落场景可以用[着色器](https://www.shadertoy.com/view/Ml2cWG)来渲染。
@@ -41,8 +45,8 @@ tags:
 
 ## 展出
 
-<div class="right-image-container">
-  <img src="exhibition.jpg" alt="Siggraph 2019 Exhibition" />
+<div class="float-right-sticky p-10">
+  <Image src={exhibition} alt="Siggraph 2019 Exhibition" width={300} />
 </div>
 
 很多公司都在Siggraph展出。实时光线追踪作为热点，在展出中包括了许多对其的运用。我们注意到有许多动作捕捉的展出。有一个让人眼前一亮的展出是一个VR应用，其中无论你走到哪里，里面的VR人物会一直与你对视。

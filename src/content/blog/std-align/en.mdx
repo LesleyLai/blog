@@ -9,6 +9,12 @@ tags:
   - cpp
 ---
 
+import { Image } from "astro:assets";
+import arena1 from "./arena_1.svg";
+import arena2 from "./arena_2.svg";
+import arena3 from "./arena_3.svg";
+import arena4 from "./arena_4.svg";
+
 I recently learned about `std::align`,
 one of the lesser-known functions in the C++ standard library due to its limited use cases.
 Since it is hard to describe without a specific use case,
@@ -22,19 +28,17 @@ It is so widely used that even the C++ standard library has an arena implementat
 With arena, we start with a large chunk of pre-allocated memory coming from either the stack or another allocator such as `malloc`.
 Afterward, we allocate memory from that chunk by bumping a pointer offset.
 
-```html
 <figure>
-  <img style="width: 500px;" class="center-image" src="arena_1.svg" alt="Arena before allocation" />
+  <Image src={arena1} width="500" alt="Arena before allocation" class="block m-20-auto" />
   <figcaption style="text-align: center">Figure.1 - Arena before allocation</figcaption>
 </figure>
 
 <figure>
-  <img style="width: 500px;" class="center-image" src="arena_2.svg" alt="Arena after allocation" />
+  <Image src={arena2} width="500" alt="Arena after allocation" class="block m-20-auto"/>
   <figcaption style="text-align: center">Figure.2 - Arena after allocation</figcaption>
 </figure>
-```
 
-Arena allocator has exceptional performance characteristics, especially when compared to complicated beasts like `malloc`.
+Arena allocator has exceptional performance characteristics, especially when compared to complicated beasts like `mmap`.
 Each allocation only requires a pointer bump, and the deallocation is almost free as long as the objects allocated are _trivially destructible_[^1].
 If we need to call destructors, we must maintain a list of objects to destroy.
 Supporting destructors complicates arena implementation considerably and is beyond the scope of this post.
@@ -99,7 +103,7 @@ Without placement new, doing assignments like `*ptr = 42` directly is technicall
 
 ## Alignment
 
-The simple solution above would be perfect if we don't forget about _alignment_.
+The simple solution above would be perfect if _alignment_ doesn't exist.
 However, in the real world,
 the pointer returned by `alloc` may not be appropriately aligned for the object we want to create at that memory location.
 
@@ -111,8 +115,7 @@ you may get slow memory access or even a mysterious crash if you try to access a
 
 <span class="side-note" style={{marginTop: "-65px"}}>
 
-See how easy it is to get undefined behavior, one of the most dreaded things among our C++ programmers When we play with raw memory?
-There is a reason why we want to encapsulate memory allocations.
+See how easily undefined behavior, one of the most dreaded things among our C++ programmers, can creep in when we mess with raw memory? There is a reason why we want to encapsulate memory allocations.
 
 </span>
 
@@ -124,17 +127,10 @@ Consider what our previous usage of the arena does. At first, our arena is empty
 Then we allocate a byte of memory and construct a `std::uint8_t` on it, and everything seems totally fine.
 However, when we allocate 4 bytes now, we will allocate it at the place off by one byte of the 4-bytes alignment boundary that required by `std::uint32_t`:
 
-```html
 <figure>
-  <img
-    style="width: 500px;"
-    class="center-image"
-    src="arena_3.svg"
-    alt="Arena after allocating one uint8_t and one uint32_t"
-  />
+  <Image src={arena3} alt="Arena after allocating one uint8_t and one uint32_t" class="block m-20-auto" />
   <figcaption style="text-align: center">Figure.3 - Arena after two allocations</figcaption>
 </figure>
-```
 
 The above example should convince you the importance of alignment when we start to get adventurous and come up with custom memory allocation strategies.
 
@@ -212,12 +208,10 @@ You can see that our client-side code becomes a bit more nuisance to write.
 However, in practice, we can hide calls to `aligned_alloc` behind a templated function.
 The important thing is that our allocations will be properly aligned:
 
-```
 <figure>
-  <img style="width: 500px;" class="center-image" src="arena_4.svg" alt="Alignment-aware arena after allocating one uint8_t and one uint32_t" />
+  <Image src={arena4} alt="Alignment-aware arena after allocating one uint8_t and one uint32_t" class="block m-20-auto" />
   <figcaption style="text-align: center">Figure.4 - Alignment-aware arena after two allocations</figcaption>
 </figure>
-```
 
 If you still want the old `alloc` member function that doesn't consider alignment,
 we can write it as a wrapper of `aligned_alloc` that takes the alignment of `std::max_align_t`:

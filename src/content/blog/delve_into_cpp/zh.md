@@ -146,9 +146,9 @@ C++被用于许多不同的用途，
 
 加入编程社群有非常多的好处，你可以向专家提问，知道他人的动态，讨论有关工作的信息，甚至交到一些好朋友。
 
-#### #include{'<'}C++{'>'}
+#### #include<C++>
 
-[#include{'<'}C++{'>'}](https://www.includecpp.org/)是一个非常不错的 C++社群，
+[#include<C++>](https://www.includecpp.org/)是一个非常不错的 C++社群，
 它提供了一个友好的讨论环境，并且你在里面可以找到多个在 C++界知名的人物。
 您可以加入[它的 discord 服务器](https://www.includecpp.org/discord/)并且和大家一起讨论 C++。
 
@@ -201,9 +201,9 @@ C++被用于许多不同的用途，
 - [Video Cortex](http://videocortex.io/)
 - [Shafik Yaghmour](https://shafik.github.io/)
 
-<span class="side-note">
+<span class="side-note" style="margin-top: -440px">
 
-这个博客同样有一个[RSS 源](https://lesleylai.info/zh/rss.xml).
+我的这个博客同样有一个[RSS 源](https://lesleylai.info/zh/rss.xml).
 
 </span>
 

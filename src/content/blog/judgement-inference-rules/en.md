@@ -8,7 +8,7 @@ tags:
   - pl
 ---
 
-From a layman's perspective, the field of programming language research is full of jargon, greek letters, and weird symbols.
+From a layperson's perspective, the field of programming language research is full of jargon, greek letters, and weird symbols.
 On the one hand, Those common parlances make the programming language papers concise.
 On the other hand, you need not only mathematical maturity but also domain knowledge to understand them.
 
@@ -113,7 +113,7 @@ $$
 This grammar means that a $\text{\textbf{list}}$ is either $\text{Nil}$ or a $\text{Cons}$-cell of natural number and another $\text{\textbf{list}}$.
 A $\text{Nil}$ is an empty list, and a $\text{Cons}$ is a "node" of the singly linked-list that contains an individual element and points to a sub-list.
 
-<span class="side-note">
+<span class="side-note" style="margin-top: -80px">
 
 The convention of using the word "cons" comes from the programming language [Lisp](https://en.wikipedia.org/wiki/Lisp_programming_language),
 where `cons` can be interpreted as "construct" or "constructor."
@@ -183,7 +183,7 @@ Succ(Zero) + Succ(Zero)
 We can trace the execution of the `+` operation by substitution easily because it is a _pure function_.
 In other words, `+` is deterministic and side-effect free, at least at the level that we concern.
 
-<span class="side-note">
+<span class="side-note" style="margin-top: -140px">
 
 If you consider the _implementation details_ such as the mutation of registers and stack memory,
 then there is no pure function,

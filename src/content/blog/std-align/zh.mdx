@@ -9,6 +9,12 @@ tags:
   - cpp
 ---
 
+import { Image } from "astro:assets";
+import arena1 from "./arena_1.svg";
+import arena2 from "./arena_2.svg";
+import arena3 from "./arena_3.svg";
+import arena4 from "./arena_4.svg";
+
 今天我想来讲述一下C++标准库中的 `std::align`函数。
 因其用途有限，它可能是C++标准库中最鲜为人知的函数之一。
 在下文中，我将用*arena allocator*来作为使用 `std::align` 的例子。
@@ -19,20 +25,18 @@ Arena allocator 可能是最简单的自定义内存管理策略。在一些文�
 尽管它简单，arena allocator 是一种经常被使用的内存管理策略，以至于C++标准库中都有一个 arena allocator 的实现，虽然标准库叫它[std::pmr::monotonic_buffer_resource](https://zh.cppreference.com/w/cpp/memory/monotonic_buffer_resource)。
 
 Arena allocator 的原理是我们先预分配一块很大的内存。
-这一块内存既可以来自栈中，也可以是在堆中被 `malloc` 一次性分配。
+这一块内存既可以来自栈中，也可以是在堆中被 `mmap` 一次性分配。
 之后当我们每次需要内存时，我们都从这块内存中分配一小块内存，而每次分配时我们所需要做的工作仅仅是增加一个指针的值。
 
-```
 <figure>
-<img style="width: 500px;" class="center-image" src="arena_1.svg" alt="Arena before allocation" />
-<figcaption style="text-align: center">图1 - 分配内存前的 Arena</figcaption>
+  <Image src={arena1} width="500" alt="Arena before allocation" class="block m-20-auto" />
+  <figcaption style="text-align: center">图1 - 分配内存前的 Arena</figcaption>
 </figure>
 
 <figure>
-<img style="width: 500px;" class="center-image" src="arena_2.svg" alt="Arena after allocation" />
-<figcaption style="text-align: center">图2 - 分配内存后的 Arena</figcaption>
+  <Image src={arena2} width="500" alt="Arena after allocation" class="block m-20-auto"/>
+  <figcaption style="text-align: center">图2 - 分配内存后的 Arena</figcaption>
 </figure>
-```
 
 Arena allocator 的速度非常快，尤其是和 `malloc` 这种原理复杂的函数相比较。
 每次分配内存时我们只需要修改一个指针的值，而如果我们只分配可被平凡析构（trivially destructible）的对象，那么释放内存几乎是免费的。
@@ -109,12 +113,10 @@ ptr2 = new(ptr2) std::uint32_t{1729};
 但是接着我们再分配了4个字节，然后构造了 `std::uint32_t`。
 `std::uint32_t` 需要4个字节的对齐要求，但是我们分配这4个字节的位置正好离对齐点有1个字节的错位：
 
-```
 <figure>
-<img style="width: 500px;" class="center-image" src="arena_3.svg" alt="Arena after allocating one uint8_t and one uint32_t" />
-<figcaption style="text-align: center">图3 - Arena 在分配两块内存后的状态</figcaption>
+  <Image src={arena3} alt="Arena after allocating one uint8_t and one uint32_t" class="block m-20-auto" />
+  <figcaption style="text-align: center">图3 - Arena 在分配两块内存后的状态</figcaption>
 </figure>
-```
 
 ## 改进的Arena allocator
 
@@ -200,12 +202,10 @@ ptr2 = new(ptr2) std::uint32_t{1729};
 但在实际应用中，我们可以用模板函数来封装对 `aligned_alloc` 的调用。
 重要的是，我们分配的内存将正确对齐：
 
-```
 <figure>
-<img style="width: 500px;" class="center-image" src="arena_4.svg" alt="Alignment-aware arena after allocating one uint8_t and one uint32_t" />
-<figcaption style="text-align: center">图4 - 考虑对齐的 Arena 在分配两块内存后的状态</figcaption>
+  <Image src={arena4} alt="Alignment-aware arena after allocating one uint8_t and one uint32_t" class="block m-20-auto" />
+  <figcaption style="text-align: center">图4 - 考虑对齐的 Arena 在分配两块内存后的状态</figcaption>
 </figure>
-```
 
 如果你仍然想要之前不需要显式提供对齐要求的 `alloc` 成员函数，
 我们可以在其中调用 `aligned_alloc`并把对齐要求设置为`std::max_align_t`（一个平台上所以类型最大可能的对齐要求）：

@@ -9,7 +9,7 @@ tags:
   - code
 ---
 
-昨天，有人在[#include{'<'}C++{'>'}](https://www.includecpp.org/discord/)的discord服务器上问了关于为社么我们需要`std::function`的问题。
+昨天，有人在[#include<C++>](https://www.includecpp.org/discord/)的discord服务器上问了关于为社么我们需要`std::function`的问题。
 下面是我对这个问题的回答。
 
 ## 即使参数类型以及返回类型都完全相同，C++中的可以被当作函数一样被调用的对象也可以有不同的类型

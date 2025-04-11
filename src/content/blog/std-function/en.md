@@ -9,7 +9,7 @@ tags:
   - code
 ---
 
-Yesterday, someone in the [#include{'<'}C++{'>'}](https://www.includecpp.org/discord/) discord server asked the following question:
+Yesterday, someone in the [#include<C++>](https://www.includecpp.org/discord/) discord server asked the following question:
 
 > how `std::function` works with lambda captures and functions handling I still don't understand
 

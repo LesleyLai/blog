@@ -13,7 +13,7 @@ tags:
 由于我正在学习[编程语言基础](https://csci5535.cs.colorado.edu/s20/)的课程，
 我想在一系列博客文章中分享我学到的关键概念。
 
-编程语言领域中的许多数学概念都源自[命题逻辑](https://zh.wikipedia.org/wiki/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91)的领域，而今天我们的主题是**判断(Judgement）**与**推理规则(Inference Rules)**的形式语言。
+编程语言领域中的许多数学概念都源自[命题逻辑](https://zh.wikipedia.org/wiki/%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91)的领域，而今天我们的主题是判断(Judgement）与推理规则(Inference Rules)的形式语言。
 
 ## 判断（Judgements）
 
@@ -73,7 +73,7 @@ $$
 
 因为使用推理规则来定义语法（syntax）过于冗长，我们会使用简化的[**文法（grammar）**](https://zh.wikipedia.org/wiki/%E5%BD%A2%E5%BC%8F%E6%96%87%E6%B3%95)格式来描述语法。例如，对于自然数，我们可以将其描述为
 
-<span class="side-note">
+<span class="side-note" style="margin-top: -70px">
 
 如果你可以流畅的阅读英文，看英文版的技术书籍会更有优势。至少你不用面对如此奇葩的翻译（语法vs文法 😂）。
 
@@ -103,7 +103,7 @@ $$
 
 以上的文法的意思是，我们的链表$\text{\textbf{list}}$要么是$\text{Nil}$，要么是一个拥有单个元素以及对子链表的引用的$\text{Cons}$单元。
 
-<span class="side-note">
+<span class="side-note" style="margin-top: -70px">
 
 编程语言[Lisp](https://zh.wikipedia.org/wiki/LISP)发明了使用“cons”一词的传统。
 在Lisp中，`cons`可以被理解为构造函数。
@@ -145,7 +145,7 @@ Succ(Zero) + Succ(Zero)
 - 在同样的输入下，`+`总是产生同样的输出
 - `+`语义上没有可观察的函数副作用（side effect）
 
-<span class="side-note">
+<span class="side-note" style="margin-top: -100px">
 
 如果您考虑“实现细节”（例如寄存器以及内存的变动），
 那么没有任何的在机器上运行的“函数”是纯函数。

@@ -12,3 +12,16 @@
 .p-10 {
   padding: 10px;
 }
+
+/* */
+
+/* display */
+.block {
+  display: block;
+}
+
+
+/* margin */
+.m-20-auto {
+  margin: 20px auto;
+}

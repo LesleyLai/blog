@@ -11,7 +11,7 @@ tags:
 
 _First, for some context: I wrote this blog post more than a year ago but have yet to make it public since my mental health greatly degraded while I was still editing it. Now that I want to go back into blogging, I decide to release this post in its current form, though I lost interest in editing it._
 
-As programmers, "clean-up" always feels like the boring part of our code. Fortunately, in Rust, we destructors that help us to automatically write correct, ergonomic clean-up code. However, in the rare case where the order of destruction matters, compiler-generated destructor calls can be a hindrance.
+As programmers, "clean-up" always feels like the boring part of our code. Fortunately, in Rust, we have destructors that help us to automatically write correct, ergonomic clean-up code. However, in the rare case where the order of destruction matters, compiler-generated destructor calls can be a hindrance.
 
 In this post, I will show you how to use the Rust standard library `ManuallyDrop` type to explicitly control how and when structure fields get dropped.
 
@@ -69,11 +69,11 @@ unsafe {
 }
 ```
 
-Even though non-idiomatic in Rust, ash's approach is fine with me. RAII combines with the Vulkan API pretty poorly for multiple reasons [^3]. However, `gpu_allocator`, despite depending on the ash crate, decide to implement the `Drop` trait for its `Allocator`. And we are in a situation where we must call the destructor of the `allocator` in the middle of a chain of calls to `ash`'s clean-up functions.
+Even though non-idiomatic in Rust, ash's approach is fine with me. RAII combines with the Vulkan API pretty poorly for multiple reasons [^3]. However, [`gpu_allocator`](https://github.com/Traverse-Research/gpu-allocator), despite depending on the ash crate, decide to implement the `Drop` trait for its `Allocator`. And we are in a situation where we must call the destructor of the `allocator` in the middle of a chain of calls to `ash`'s clean-up functions.
 
 [^3]: In Vulkan, we don't deleting an object until we are sure that the GPU is not using it. Deleting objects out-of-order is a big issue, and it may even crash your driver.
 
-<span class="side-note">
+<span class="side-note" style="margin-top: -80px">
 
 All examples that `gpu_allocator` provides write all code in the `main` function.
 
@@ -198,11 +198,3 @@ This slightly annoying syntax is only a minor issue, but it does break the illus
 ## Conclusion
 
 `ManuallyDrop` is a seldom necessary utility in normal Rust code. Nevertheless, it is currently the ideal solution when we want explicit control of how structure fields get dropped.
-
-<span class="side-note">
-
-The `ManuallyDrop` type is a wrapper around a value that disables the automatic dropping of the contained value when it goes out of scope.
-The only way to drop a `ManuallyDrop` is to call `ManuallyDrop::drop` explicitly.
-This is useful when implementing custom drop behavior.
-
-</span>

@@ -85,7 +85,7 @@ std::optional<QueueFamilyIndices> findQueueFamilies(/*...*/) {
 
 The memory footprint of `QueueFamilyIndices` gets reduced from 16 bytes to 8 bytes. The reason is partly that we no longer store unnecessary information, and partly because of the inefficient alignments of multiple `std::optional` from the first `struct`.
 
-<span class="side-note">
+<span class="side-note" style="margin-top: -100px">
 
 ```cpp
 struct A {
@@ -134,7 +134,7 @@ This implementation faithfully represents the data used by each state. For examp
 
 Both sum types and inheritance are used for _runtime polymorphism_. In other words, only use them when you need runtime polymorphism. Sum types add one major constraint over inheritance. Inheritance is [open to extension](https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle), while sum types are closed. The constraint is not necessarily a bad thing. For example, because as the compiler knows maximum size information statically, it can put the whole `variant` object on the stack.
 
-<span class="side-note">
+<span class="side-note" style="margin-top: -110px">
 
 When I talk about "inheritance hierarchy" here, the only focus is the virtual-dispatch enabled inheritance. Notably, I do not include [CRTP](https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern) or other usages of inheritances without any virtual functions that aim to reuse code instead of enabling subtyping polymorphism.
 

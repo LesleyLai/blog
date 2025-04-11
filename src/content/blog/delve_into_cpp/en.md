@@ -3,16 +3,18 @@ id: delve_into_cpp
 title: "Resources that help you to delve into C++"
 lang: en
 created: 2021-01-15
-modified: 2021-03-29
+modified: 2021-04-11
 tags:
   - code
   - cpp
   - learning
 ---
 
-_I already received some great feedback [^1] for this post, and any further feedbacks, error-correction, and resource recommendation are welcome. One way to contact me is to direct message me ([@Lesleylai6](https://twitter.com/LesleyLai6)) on Twitter_.
+_I already received some great feedback for this post, and any further feedbacks, error-correction, and resource recommendation are welcome. One way to contact me is to direct message me ([@lesley@mastodon.gamedev.place](https://mastodon.gamedev.place/@lesley)) on Mastodon_.
 
-[^1]: Thanks to [Shafik Yaghmour](https://twitter.com/shafikyaghmour), [Kate Greogory](https://twitter.com/gregcons), and [Dwight Browne](https://twitter.com/dwightb2).
+<span class="side-note" style="margin-top: -80px">
+Thanks to Shafik Yaghmour, Kate Greogory, and Dwight Browne
+</span>
 
 _Update 2021-03-29: Add a bunch of resources._
 
@@ -39,12 +41,12 @@ so spending time on coding projects helps.
 
 For beginners, it is important to only "learn from the best" since it is hard to discern if your tutorial is making mistakes or encouraging bad practices.
 
-For books, I recommend Bjarne Stroustrup (the creator of C++) 's ["Programming: Principles and Practice Using C++ 2nd edition"](https://www.amazon.com/Programming-Principles-Practice-Using-2nd/dp/0321992784) as a starting point.
+For books, I recommend Bjarne Stroustrup (the creator of C++) 's ["Programming: Principles and Practice Using C++ 3rd edition"](https://www.amazon.com/Programming-Principles-Practice-Using-C/dp/0138308683) as a starting point.
 The book is thick, so don't feel guilty if you cannot finish the whole book.
 
 If you are more inclined toward tutorial videos,
 look at Kate Gregory's [Learn to Program with C++](https://www.pluralsight.com/courses/learn-program-cplusplus).
-If you join the [#include{'<'}c++{'>'} discord server](https://www.includecpp.org/discord/),
+If you join the [#include<C++> discord server](https://www.includecpp.org/discord/),
 You can also message her there to get a trial code.
 
 ## What if I already learned some C++ before and want to delve in deeper?
@@ -56,8 +58,8 @@ From my personal experiences and what I heard,
 most university programming courses or those online tutorials teach problematic practices, and the instructors often do not have a good grasp of the language.
 Thus, "learn from the best materials" is especially important for you to offset prior misconceptions on C++.
 
-For books, I will still recommend either Bjarne Stroustrup's ["Programming: Principles and Practice Using C++ 2nd edition"](https://www.amazon.com/Programming-Principles-Practice-Using-2nd/dp/0321992784).
-And for video tutorials, you can try Kate Gregory's [C++ Fundamentals Including C++ 17](https://www.pluralsight.com/courses/cplusplus-fundamentals-c17).
+For books, I will still recommend either Bjarne Stroustrup's ["Programming: Principles and Practice Using C++ 3rd edition"](https://www.amazon.com/Programming-Principles-Practice-Using-C/dp/0138308683).
+And for video tutorials, you can try Kate Gregory's [C++ Foundations](https://www.pluralsight.com/courses/c-plus-plus-foundations).
 
 ## What if I am a veteran in another language and want to delve into C++?
 
@@ -67,14 +69,14 @@ you can choose materials with faster pace.
 As for book recommendations,
 Bjarne Stroustrup's ["The C++ Programming Language (4th Edition)"](https://www.stroustrup.com/4th.html) was one of the best-written books I ever read,
 though do notice that this book was written with C++11 and misses some of the later developments.
-The book is also very thick, so if you want a shorter introduction, try ["A Tour of C++ (Second edition)"](https://www.stroustrup.com/tour2.html).
+The book is also very thick, so if you want a newer and shorter introduction, try [")"](https://www.stroustrup.com/tour3.html).
 
 ## I think that I have a decent grasp of C++. What's next?
 
 So you spend months with the above materials,
 and feel that you have a decent grasp of basic C++ concepts.
 
-<span class="side-note">
+<span class="side-note" style="margin-top: -30px">
 
 For experienced C++ folks, no, I am not talking about _that [concept](https://en.cppreference.com/w/cpp/language/constraints)_ 😃.
 
@@ -151,9 +153,9 @@ and then you can ask questions in public and get a response from multiple people
 
 Being active in programming communities also has numerous other benefits, including getting job information and having more social support.
 
-#### #include{'<'}C++{'>'}
+#### #include<C++>
 
-[#include{'<'}C++{'>'}](https://www.includecpp.org/) is a wonderful community to join.
+[#include<C++>](https://www.includecpp.org/) is a wonderful community to join.
 Its mission includes providing conference scholarship to people in need,
 but for most people,
 you can join [its discord server](https://www.includecpp.org/discord/) to hang out and talk about C++.
@@ -174,17 +176,16 @@ There are C++ conferences around the globe.
 Same as meetups, one difficulty at the time of writing is that most C++ conferences are hosted online, but they are still worthwhile to consider.
 Here are some of the recurring C++ conferences or conferences that heavily feature C++, with their Twitter handle and Youtube Channel:
 
-- [CppCon](https://cppcon.org/) ([@CppCon](https://twitter.com/CppCon)) [[Youtube](https://www.youtube.com/user/CppCon)] (U.S.-based)
-- [C++Now](https://cppnow.org/) ([@cppnow](https://twitter.com/cppnow)) [[Youtube](https://www.youtube.com/user/BoostCon)] (U.S.-based, tuned toward a more advanced audience)
-- [ACCU](https://accu.org/conf-main/main/) ([@ACCUConf](https://twitter.com/ACCUConf)) [[Youtube](https://www.youtube.com/channel/UCJhay24LTpO1s4bIZxuIqKw)] (UK-based, different programming languages, but has a lot of C++ contents)
-- [Meeting C++](https://meetingcpp.com/) ([@meetingcpp](https://twitter.com/meetingcpp)) [[Youtube](https://www.youtube.com/user/MeetingCPP)] (German-based)
-- [emBO++](https://www.embo.io) ([@emBO++](https://twitter.com/emboconference)) [[Youtube](https://www.youtube.com/channel/UCg2JbpJ-PGdFUEZEiNr0GWg)] (German-based)
-- [Pacific++](https://pacificplusplus.com/) ([@pacificplusplus](https://twitter.com/pacificplusplus)) [[Youtube](https://www.youtube.com/channel/UCrRR5mU5aqvtZAuEGYfdTjw)] (Australia-based)
-- [C++ on Sea](https://cpponsea.uk/) ([@cpponsea](https://twitter.com/cpponsea)) [[Youtube](https://www.youtube.com/channel/UCAczr0j6ZuiVaiGFZ4qxApw)] (UK-based)
-- [Core C++](https://corecpp.org/) ([@corecpp](https://twitter.com/corecpp)) [[Youtube](https://www.youtube.com/channel/UCE14XYFaK1fDTnOTqlOFrrQ)] (Israel-based)
-- [Code::Dive](http://www.codedive.pl) ([@code_dive_pl](https://twitter.com/code_dive_pl)) [[Youtube](https://www.youtube.com/channel/UCU0Rt8VHO5-YNQXwIjkf-1g/videos)] (Poland-based)
-- [Code Europe](https://www.codeeurope.pl/) ([@code_europe](https://twitter.com/code_europe)) [[Youtube](https://www.youtube.com/channel/UChdVVEAilVHULlycMbqRpdg/)] (Poland-based, different programming languages)
-- [NDC Conferences](http://ndcconferences.com/) ([@NDC_Conferences](https://twitter.com/ndc_conferences)) [[Youtube](https://www.youtube.com/channel/UCTdw38Cw6jcm0atBPA39a0Q/)] (Multiple locations, different programming languages) [^3]
+- [CppCon](https://cppcon.org/) [[Youtube](https://www.youtube.com/user/CppCon)] (U.S.-based)
+- [C++Now](https://cppnow.org/) [[Youtube](https://www.youtube.com/user/BoostCon)] (U.S.-based, tuned toward a more advanced audience)
+- [ACCU](https://accu.org/conf-main/main/) [[Youtube](https://www.youtube.com/channel/UCJhay24LTpO1s4bIZxuIqKw)] (UK-based, different programming languages, but has a lot of C++ contents)
+- [Meeting C++](https://meetingcpp.com/) [[Youtube](https://www.youtube.com/user/MeetingCPP)] (German-based)
+- [emBO++](https://www.embo.io) [[Youtube](https://www.youtube.com/channel/UCg2JbpJ-PGdFUEZEiNr0GWg)] (German-based)
+- [C++ on Sea](https://cpponsea.uk/) [[Youtube](https://www.youtube.com/channel/UCAczr0j6ZuiVaiGFZ4qxApw)] (UK-based)
+- [Core C++](https://corecpp.org/) [[Youtube](https://www.youtube.com/channel/UCE14XYFaK1fDTnOTqlOFrrQ)] (Israel-based)
+- [Code::Dive](http://www.codedive.pl) [[Youtube](https://www.youtube.com/channel/UCU0Rt8VHO5-YNQXwIjkf-1g/videos)] (Poland-based)
+- [Code Europe](https://www.codeeurope.pl/) [[Youtube](https://www.youtube.com/channel/UChdVVEAilVHULlycMbqRpdg/)] (Poland-based, different programming languages)
+- [NDC Conferences](http://ndcconferences.com/) [[Youtube](https://www.youtube.com/channel/UCTdw38Cw6jcm0atBPA39a0Q/)] (Multiple locations, different programming languages) [^3]
 
 [^3]: Some of the links above are collected from [shafik/cpp_youtube_channels](https://github.com/shafik/cpp_youtube_channels/blob/master/README.md)
 
@@ -210,7 +211,6 @@ I follow hundreds of blogs [^4], including C++ and various other topics.
 Here are some of the best C++ ones that pops into my head:
 
 - [Fluent C++](https://www.fluentcpp.com/)
-- [Arthur O’Dwyer](https://quuxplusone.github.io/blog/)
 - [Sutter’s Mill](https://herbsutter.com/)
 - [Modernes C++](https://www.modernescpp.com/)
 - [The Pasture](https://thephd.github.io/)
@@ -222,7 +222,7 @@ Here are some of the best C++ ones that pops into my head:
 - [Video Cortex](http://videocortex.io/)
 - [Shafik Yaghmour](https://shafik.github.io/)
 
-<span class="side-note">
+<span class="side-note" style="margin-top: -410px">
 
 This blog also has an [RSS feed](https://lesleylai.info/rss.xml).
 
@@ -231,17 +231,6 @@ This blog also has an [RSS feed](https://lesleylai.info/rss.xml).
 [^4]: If you want to see all the blogs I follow, visit [this gist](https://gist.github.com/LesleyLai/549f45fb0dfdf6ab31e6ffadaeaddb10).
 
 Do notice that blogs sometimes can talk about very advanced topics.
-
-#### Twitter
-
-It is your personal preference on whether to join Twitter or not.
-On the one hand, Twitter is a great platform to directly communicate with the programming communities and know what other people are up to.
-And personally, Twitter is the platform that I know so many exciting developers worldwide.
-On the other hand, Twitter has its downside with all the procrastinating and doomscrolling.
-Some tweets you see can also make you upset.
-My suggestion is to try Twitter out at least, and you can quit if it doesn't work for you.
-
-If you are new to the C++ Twitterverse, [Shafik Yaghmour](https://twitter.com/shafikyaghmour) has a [list of C++ developers](https://twitter.com/i/lists/866902696053231616) and you can use it as a starting point to find people to follow.
 
 ### Misc resources
 

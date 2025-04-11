@@ -89,7 +89,7 @@ const zhTagTranslations: typeof enTagTranslations = createTagTranslations({
   javascript: enTagTranslations.javascript,
   learning: enTagTranslations.learning,
   library: { shortName: "软件库", longName: "软件库" },
-  logic: enTagTranslations.logic,
+  logic: { shortName: "逻辑学" },
   math: { shortName: "数学", longName: "数学" },
   ocaml: enTagTranslations.ocaml,
   oop: { shortName: "OOP", longName: "面向对象编程" },
