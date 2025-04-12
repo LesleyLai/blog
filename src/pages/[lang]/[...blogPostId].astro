@@ -1,27 +1,25 @@
 ---
 import Layout from "@layouts/BaseLayout.astro";
 import { translations } from "@i18n/translations";
-import { langFromSlug, transformSlug } from "@i18n/i18n";
 import { BLOG_POSTS } from "@content/blog";
 import TagList from "@components/TagList.astro";
 import "@styles/container.css";
 import { render } from "astro:content";
+import type { Language } from "@i18n/i18n";
 
 export async function getStaticPaths() {
   return BLOG_POSTS.all.map((entry) => {
-    const slug = transformSlug(entry.id);
+    const [blogPostId, lang] = entry.id.split("/");
 
     return {
-      params: { slug },
-      props: { entry },
+      params: { blogPostId, lang },
+      props: { entry, lang: lang as Language },
     };
   });
 }
 
-const { entry } = Astro.props;
+const { entry, lang } = Astro.props;
 const { Content } = await render(entry);
-
-const lang = langFromSlug(entry.id);
 
 const options: Intl.DateTimeFormatOptions = {
   year: "numeric",
