@@ -2,7 +2,7 @@
 import { Icon } from "astro-icon/components";
 import { getCurrentLanguage } from "@i18n/i18n";
 import { translations } from "@i18n/translations";
-import { getRelativeLocaleUrl } from "astro:i18n";
+import { getOtherLangSlug } from "@i18n/i18n";
 
 const lang = getCurrentLanguage(Astro);
 
@@ -13,10 +13,7 @@ const slug = current_path.replace(`\/${lang}`, "");
 
 const otherLang = translations[lang].oppositeLang;
 
-let otherLangUrl = getRelativeLocaleUrl(otherLang, slug);
-if (otherLangUrl == "/en" || otherLangUrl == "/en/") {
-  otherLangUrl = "/";
-}
+let otherLangUrl = getOtherLangSlug(lang, otherLang, slug);
 
 const title = translations[lang].langToggleHint;
 ---

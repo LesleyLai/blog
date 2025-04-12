@@ -3,16 +3,14 @@
 
 import BaseLayout from "./BaseLayout.astro";
 import "@styles/container.css";
+import { type Props as HeadProps } from "@components/Head.astro";
 
-interface Props {
-  title: string;
+interface Props extends HeadProps {
   children: unknown;
 }
-
-const { title } = Astro.props;
 ---
 
-<BaseLayout title={title}>
+<BaseLayout {...Astro.props}>
   <div class="container container-shadow">
     <main>
       <slot />

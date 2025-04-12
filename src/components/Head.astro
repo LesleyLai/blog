@@ -1,0 +1,74 @@
+---
+import { getCurrentLanguage } from "@i18n/i18n";
+import { translations } from "@i18n/translations";
+import { getOtherLangSlug } from "@i18n/i18n";
+
+export interface Props {
+  title: string;
+
+  description?: string;
+
+  image?: {
+    url: string;
+    alt: string;
+  };
+}
+
+const { title, description = "Personal website of Lesley Lai", image } = Astro.props;
+
+const isHome = title == "";
+
+const lang = getCurrentLanguage(Astro);
+
+const siteName = translations[lang].siteName;
+
+const rssRoute = lang === "en" ? "/rss.xml" : `/zh/rss.xml`;
+
+const pageTitle = isHome ? siteName : `${title} | ${siteName}`;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const otherLangSlug = getOtherLangSlug(lang, translations[lang].oppositeLang, Astro.url.pathname);
+---
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="author" content="Lesley Lai" />
+  <meta name="viewport" content="width=device-width" />
+  <meta name="generator" content={Astro.generator} />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+
+  <!-- Title -->
+  <title>{pageTitle}</title>
+  <meta property="title" content={pageTitle} />
+  <meta property="og:title" content={pageTitle} />
+
+  <!-- Descriptions -->
+  <meta name="description" content={description} />
+  <meta property="og:description" content={description} />
+  <meta name="twitter:description" content={description} />
+
+  <meta property="og:locale" content={lang} />
+
+  <!-- RSS Feed -->
+  <link rel="alternate" type="application/rss+xml" title={siteName} href={rssRoute} />
+  <!-- Alt in the other language -->
+  <link rel="alternate" hreflang={translations[lang].oppositeLang} href={otherLangSlug} />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL} />
+
+  <!-- Image -->
+  {
+    image && (
+      <>
+        <meta property="image" content={image.url} />
+        <meta property="og:image" content={image.url} />
+        <meta property="og:image:alt" content={image.alt} />
+      </>
+    )
+  }
+</head>

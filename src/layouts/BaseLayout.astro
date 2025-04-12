@@ -9,44 +9,21 @@ import { getCurrentLanguage } from "@i18n/i18n";
 
 import { ClientRouter } from "astro:transitions";
 
-interface Props {
-  title: string;
+import Header from "@components/Header.astro";
+import "@styles/global.css";
+
+import Head, { type Props as HeadProps } from "@components/Head.astro";
+
+interface Props extends HeadProps {
   children: unknown;
 }
 
-const { title } = Astro.props;
 const lang = getCurrentLanguage(Astro);
-
-import Header from "@components/Header.astro";
-import "@styles/global.css";
-import { translations } from "@i18n/translations";
-
-// Is home page if title is empty
-const isHome = title == "";
-
-const siteName = translations[lang].siteName;
-
-const rssRoute = lang === "en" ? "/rss.xml" : `/zh/rss.xml`;
 ---
 
 <!doctype html>
 <html lang={lang}>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="author" content="Lesley Lai" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{isHome ? siteName : `${title} | ${siteName}`}</title>
-
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title={siteName}
-      href={new URL(rssRoute, Astro.site)}
-    />
-  </head>
+  <Head {...Astro.props} />
   <body>
     <Header />
     <slot />

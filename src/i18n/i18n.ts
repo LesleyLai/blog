@@ -1,4 +1,5 @@
 import type { AstroGlobal } from "astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
 
 export type Language = "en" | "zh";
 
@@ -29,4 +30,18 @@ export const langFromSlug = (slug: string): Language => {
 export const transformSlug = (slug: string): string => {
   const [id, lang] = slug.split("/");
   return `${lang}/${id}`;
+};
+
+
+// Given a slug (e.g. /en/hello-world), returns the version in the other language (e.g. /zh/hello-world)
+export const getOtherLangSlug = (lang: Language, otherLang: Language, slug: string): string => {
+  const path = slug.replace(`\/${lang}`, "");
+
+
+  let otherLangSlug = getRelativeLocaleUrl(otherLang, path);
+  if (otherLangSlug == "/en" || otherLangSlug == "/en/") {
+    otherLangSlug = "/";
+  }
+
+  return otherLangSlug;
 };

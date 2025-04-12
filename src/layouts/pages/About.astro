@@ -7,7 +7,7 @@ import portraitImage from "@assets/portrait.jpg";
 import { getCurrentLanguage } from "@i18n/i18n";
 import { translations } from "@i18n/translations";
 
-let lang = getCurrentLanguage(Astro);
+const lang = getCurrentLanguage(Astro);
 ---
 
 <PageLayout title="About">
@@ -16,6 +16,13 @@ let lang = getCurrentLanguage(Astro);
   <article>
     <slot />
   </article>
+  <h2>{translations[lang].elsewhere}</h2>
+  <ul>
+    <li><a href="https://github.com/LesleyLai">Github</a></li>
+    <li><a href="https://mastodon.gamedev.place/@lesley">Mastodon</a></li>
+    <li><a href="https://bluesky.social/@lesleylai">Bluesky</a></li>
+    <li><a href="https://www.shadertoy.com/user/lesleylai">ShaderToy</a></li>
+  </ul>
 </PageLayout>
 
 <style>
