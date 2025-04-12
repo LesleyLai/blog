@@ -32,11 +32,9 @@ export const transformSlug = (slug: string): string => {
   return `${lang}/${id}`;
 };
 
-
 // Given a slug (e.g. /en/hello-world), returns the version in the other language (e.g. /zh/hello-world)
 export const getOtherLangSlug = (lang: Language, otherLang: Language, slug: string): string => {
   const path = slug.replace(`\/${lang}`, "");
-
 
   let otherLangSlug = getRelativeLocaleUrl(otherLang, path);
   if (otherLangSlug == "/en" || otherLangSlug == "/en/") {

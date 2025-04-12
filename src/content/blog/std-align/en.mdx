@@ -34,7 +34,7 @@ Afterward, we allocate memory from that chunk by bumping a pointer offset.
 </figure>
 
 <figure>
-  <Image src={arena2} width="500" alt="Arena after allocation" class="block m-20-auto"/>
+  <Image src={arena2} width="500" alt="Arena after allocation" class="block m-20-auto" />
   <figcaption style="text-align: center">Figure.2 - Arena after allocation</figcaption>
 </figure>
 
@@ -128,7 +128,11 @@ Then we allocate a byte of memory and construct a `std::uint8_t` on it, and ever
 However, when we allocate 4 bytes now, we will allocate it at the place off by one byte of the 4-bytes alignment boundary that required by `std::uint32_t`:
 
 <figure>
-  <Image src={arena3} alt="Arena after allocating one uint8_t and one uint32_t" class="block m-20-auto" />
+  <Image
+    src={arena3}
+    alt="Arena after allocating one uint8_t and one uint32_t"
+    class="block m-20-auto"
+  />
   <figcaption style="text-align: center">Figure.3 - Arena after two allocations</figcaption>
 </figure>
 
@@ -149,8 +153,11 @@ we first need to have a helper function `align_forward` that bump a given pointe
 }
 ```
 
-<span class="side-note" style={{marginTop: "-110px"}}>
-<a href="https://en.cppreference.com/w/cpp/numeric/bit_cast"><code>std::bit_cast</code></a> is a C++20 feature. Before C++20, you need <code>reinterpret_cast</code>.
+<span class="side-note" style={{ marginTop: "-110px" }}>
+  <a href="https://en.cppreference.com/w/cpp/numeric/bit_cast">
+    <code>std::bit_cast</code>
+  </a>{" "}
+  is a C++20 feature. Before C++20, you need <code>reinterpret_cast</code>.
 </span>
 
 We first cast our pointer into an integer and then round up our (integer) address to the alignment boundary with the expression `(addr + (alignment - 1)) & -alignment`.
@@ -209,8 +216,14 @@ However, in practice, we can hide calls to `aligned_alloc` behind a templated fu
 The important thing is that our allocations will be properly aligned:
 
 <figure>
-  <Image src={arena4} alt="Alignment-aware arena after allocating one uint8_t and one uint32_t" class="block m-20-auto" />
-  <figcaption style="text-align: center">Figure.4 - Alignment-aware arena after two allocations</figcaption>
+  <Image
+    src={arena4}
+    alt="Alignment-aware arena after allocating one uint8_t and one uint32_t"
+    class="block m-20-auto"
+  />
+  <figcaption style="text-align: center">
+    Figure.4 - Alignment-aware arena after two allocations
+  </figcaption>
 </figure>
 
 If you still want the old `alloc` member function that doesn't consider alignment,

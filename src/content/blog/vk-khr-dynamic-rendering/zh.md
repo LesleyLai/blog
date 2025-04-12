@@ -8,6 +8,7 @@ tags:
   - code
   - graphics
   - vulkan
+description: "本教程展示了如何在 Vulkan 中使用 VK_KHR_dynamic_rendering 扩展。它讲解了加载该扩展、使用该扩展的步骤，以及该扩展如何影响诸如管线创建等其他代码。"
 ---
 
 [动态渲染（dynamic rendering）](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VK_KHR_dynamic_rendering.html)是[两个月前被刚刚推出](https://www.khronos.org/blog/streamlining-render-passes)的一个新的Vulkan扩展。

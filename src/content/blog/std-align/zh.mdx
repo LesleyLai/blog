@@ -34,7 +34,7 @@ Arena allocator 的原理是我们先预分配一块很大的内存。
 </figure>
 
 <figure>
-  <Image src={arena2} width="500" alt="Arena after allocation" class="block m-20-auto"/>
+  <Image src={arena2} width="500" alt="Arena after allocation" class="block m-20-auto" />
   <figcaption style="text-align: center">图2 - 分配内存后的 Arena</figcaption>
 </figure>
 
@@ -114,7 +114,11 @@ ptr2 = new(ptr2) std::uint32_t{1729};
 `std::uint32_t` 需要4个字节的对齐要求，但是我们分配这4个字节的位置正好离对齐点有1个字节的错位：
 
 <figure>
-  <Image src={arena3} alt="Arena after allocating one uint8_t and one uint32_t" class="block m-20-auto" />
+  <Image
+    src={arena3}
+    alt="Arena after allocating one uint8_t and one uint32_t"
+    class="block m-20-auto"
+  />
   <figcaption style="text-align: center">图3 - Arena 在分配两块内存后的状态</figcaption>
 </figure>
 
@@ -136,7 +140,10 @@ ptr2 = new(ptr2) std::uint32_t{1729};
 
 <span class="side-note" style={{marginTop: "-110px"}}>
 
-<a href="https://en.cppreference.com/w/cpp/numeric/bit_cast"><code>std::bit_cast</code></a> 是一个 C++20 的特性。在 C++20 之前，你需要使用 <code>reinterpret_cast</code>。
+<a href="https://en.cppreference.com/w/cpp/numeric/bit_cast">
+  <code>std::bit_cast</code>
+</a>
+是一个 C++20 的特性。在 C++20 之前，你需要使用 <code>reinterpret_cast</code>。
 
 </span>
 
@@ -203,7 +210,11 @@ ptr2 = new(ptr2) std::uint32_t{1729};
 重要的是，我们分配的内存将正确对齐：
 
 <figure>
-  <Image src={arena4} alt="Alignment-aware arena after allocating one uint8_t and one uint32_t" class="block m-20-auto" />
+  <Image
+    src={arena4}
+    alt="Alignment-aware arena after allocating one uint8_t and one uint32_t"
+    class="block m-20-auto"
+  />
   <figcaption style="text-align: center">图4 - 考虑对齐的 Arena 在分配两块内存后的状态</figcaption>
 </figure>
 

@@ -19,12 +19,12 @@ export function getRSSFeed(context: APIContext, lang: Language) {
 
   return rss({
     title: translations[lang].siteName,
-    description: "A personal website and blog for Lesley Lai",
+    description: translations[lang].descriptions.default,
     site: context.site!,
     trailingSlash: false,
     items: posts.map((post) => ({
       title: post.data.title,
-      //description: post.data.description,
+      description: post.data.description,
       author: translations[lang].myname,
       pubDate: post.data.created,
       link: transformSlug(post.id),

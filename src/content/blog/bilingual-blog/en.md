@@ -34,7 +34,6 @@ It provides several significant advantages:
 For people not familiar with JSX, it is a syntax extension of Javascript that enables us to write HTML-like UI code easily. It is designed to work together with React.js, but people also use it with other technologies such as Vue.js. [Here](https://reactjs.org/docs/introducing-jsx.html) is an introduction to JSX.
 </span>
 
-
 And thus, I recommend you use a similar approach if you want to create a multilingual personal website.
 
 This blog uses the static-site generator [GatsbyJS](https://www.gatsbyjs.com/).

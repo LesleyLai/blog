@@ -8,6 +8,7 @@ tags:
   - code
   - graphics
   - vulkan
+description: "This tutorial shows how to use the VK_KHR_dynamic_rendering extension in Vulkan. It shows the steps required to load the extension, use it, and how it affects related components such as pipeline creation"
 ---
 
 [Announced two months ago](https://www.khronos.org/blog/streamlining-render-passes), the [dynamic rendering](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VK_KHR_dynamic_rendering.html) Vulkan extension promises to get rid of the `VkRenderPass` and `VkFramebuffer` objects, which were parts of Vulkan that I "don't understand and don't really care about."

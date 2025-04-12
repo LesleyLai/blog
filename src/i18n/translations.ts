@@ -1,4 +1,3 @@
-import BlogArchive from "@components/BlogArchive.astro";
 import type { Language } from "./i18n";
 import { ALL_BLOG_POST_TAGS } from "@content/blog";
 import { ALL_PROJECT_TAGS } from "@content/projects";
@@ -140,9 +139,11 @@ const en = {
   blog: "Blog",
   createTime: "Created: ",
   descriptions: {
-    default: "Personal website of Lesley Lai, featuring a blog, public notes, and a portfolio of personal projects",
+    default:
+      "Personal website of Lesley Lai, featuring a blog, public notes, and a portfolio of personal projects",
     BlogArchivePage: "The blog archive organized by year and listed from newest to oldest posts",
-    ProjectPage: "Lesley Lai's portfolio of personal programming projects, spanning diverse areas like computer graphics and compilers.",
+    ProjectPage:
+      "Lesley Lai's portfolio of personal programming projects, spanning diverse areas like computer graphics and compilers.",
     talksPage: "A list of talks that Lesley Lai gave in various events",
   },
   elsewhere: "Elsewhere",
