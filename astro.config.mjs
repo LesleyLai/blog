@@ -11,6 +11,8 @@ import expressiveCode from "astro-expressive-code";
 
 import mdx from "@astrojs/mdx";
 
+import sitemap from "@astrojs/sitemap";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://lesleylai.info",
@@ -42,6 +44,7 @@ export default defineConfig({
       },
     }),
     mdx(),
+    sitemap(),
   ],
   markdown: {
     remarkPlugins: [remarkMath],
