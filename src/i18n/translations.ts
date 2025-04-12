@@ -1,3 +1,4 @@
+import BlogArchive from "@components/BlogArchive.astro";
 import type { Language } from "./i18n";
 import { ALL_BLOG_POST_TAGS } from "@content/blog";
 import { ALL_PROJECT_TAGS } from "@content/projects";
@@ -138,6 +139,12 @@ const en = {
   archive: "Blog Archive",
   blog: "Blog",
   createTime: "Created: ",
+  descriptions: {
+    default: "Personal website of Lesley Lai, featuring a blog, public notes, and a portfolio of personal projects",
+    BlogArchivePage: "The blog archive organized by year and listed from newest to oldest posts",
+    ProjectPage: "Lesley Lai's portfolio of personal programming projects, spanning diverse areas like computer graphics and compilers.",
+    talksPage: "A list of talks that Lesley Lai gave in various events",
+  },
   elsewhere: "Elsewhere",
   featuredProjects: "Featured Projects",
   home: "Home",
@@ -181,6 +188,12 @@ const zh: Translations = {
   archive: "博文存档",
   blog: "博客",
   createTime: "创建时间：",
+  descriptions: {
+    default: "赖思理的个人网站，内容包含博客、笔记和项目集锦",
+    BlogArchivePage: "按年份组织，从新到旧排列的博客归档",
+    ProjectPage: "赖思理的个人编程项目作品集，涵盖计算机图形学、编译器设计等多个领域。",
+    talksPage: "赖思理在各种活动上发表的讲话",
+  },
   elsewhere: "我的其他在线足迹",
   featuredProjects: "代表作",
   home: "主页",

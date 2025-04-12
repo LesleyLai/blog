@@ -22,7 +22,7 @@ const { lang, tag } = Astro.params;
 const title = translations[lang].stuffIWroteAbout(tag);
 ---
 
-<Layout title={title}>
+<Layout title={title} description={translations[lang].descriptions.BlogArchivePage}>
   <h1>{title}</h1>
   <BlogArchive tag={tag} />
 </Layout>

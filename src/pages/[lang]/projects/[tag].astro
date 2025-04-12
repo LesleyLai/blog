@@ -26,7 +26,10 @@ const projects = PROJECT_BY_LANG[lang].projects.filter((project) => {
 });
 ---
 
-<PageLayout title={translations[lang].projects}>
+<PageLayout
+  title={translations[lang].projects}
+  description={translations[lang].descriptions.ProjectPage}
+>
   <h1>{translations[lang].projects}</h1>
   <p>{translations[lang].projectsDescription}</p>
   <ProjectTagList />

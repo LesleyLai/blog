@@ -14,11 +14,11 @@ export interface Props {
   };
 }
 
-const { title, description = "Personal website of Lesley Lai", image } = Astro.props;
+const lang = getCurrentLanguage(Astro);
+
+const { title, description = translations[lang].descriptions.default, image } = Astro.props;
 
 const isHome = title == "";
-
-const lang = getCurrentLanguage(Astro);
 
 const siteName = translations[lang].siteName;
 
@@ -49,7 +49,6 @@ const otherLangSlug = getOtherLangSlug(lang, translations[lang].oppositeLang, As
   <!-- Descriptions -->
   <meta name="description" content={description} />
   <meta property="og:description" content={description} />
-  <meta name="twitter:description" content={description} />
 
   <meta property="og:locale" content={lang} />
 

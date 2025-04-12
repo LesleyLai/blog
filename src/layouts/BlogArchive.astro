@@ -10,7 +10,7 @@ const lang = getCurrentLanguage(Astro);
 const title = translations[lang].archive;
 ---
 
-<PageLayout title={title}>
+<PageLayout title={title} description={translations[lang].descriptions.BlogArchivePage}>
   <h1>{title}</h1>
   <Archive />
 </PageLayout>
