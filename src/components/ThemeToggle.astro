@@ -1,9 +1,14 @@
 ---
+import { getCurrentLanguage } from "@i18n/i18n";
+import { translations } from "@i18n/translations";
 
+const lang = getCurrentLanguage(Astro);
+
+const title = translations[lang].themeToggleHint;
 ---
 
-<button id="theme-toggle" title="Toggle Site Theme">
-  <svg width="30px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<button id="theme-toggle" title={title} data-lang={lang}>
+  <svg width="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
     <path
       class="sun"
       fill-rule="evenodd"
@@ -15,6 +20,10 @@
       d="M16.5 6A10.5 10.5 0 0 1 4.7 16.4 8.5 8.5 0 1 0 16.4 4.7l.1 1.3zm-1.7-2a9 9 0 0 1 .2 2 9 9 0 0 1-11 8.8 9.4 9.4 0 0 1-.8-.3c-.4 0-.8.3-.7.7a10 10 0 0 0 .3.8 10 10 0 0 0 9.2 6 10 10 0 0 0 4-19.2 9.7 9.7 0 0 0-.9-.3c-.3-.1-.7.3-.6.7a9 9 0 0 1 .3.8z"
     ></path>
   </svg>
+  <span class="theme-text">
+    <span class="theme-text-light">{translations[lang].themeLight}</span>
+    <span class="theme-text-dark">{translations[lang].themeDark}</span>
+  </span>
 </button>
 
 <style>
@@ -22,6 +31,9 @@
     border: 0;
     background: none;
     cursor: pointer;
+    display: flex;
+    height: fit-content;
+    margin: auto 0;
   }
   #theme-toggle:hover .sun {
     fill: var(--highlight-color);
@@ -52,9 +64,34 @@
   :global(.theme-transition *) {
     transition: all 0.3s !important;
   }
+
+  /* Text for the theme toggle */
+  .theme-text {
+    padding-left: 4px;
+    font-size: 0.8em;
+    margin: auto 0;
+    transition: color 0.2s;
+    color: var(--text-color);
+  }
+
+  #theme-toggle:hover .theme-text {
+    color: var(--highlight-color);
+  }
+
+  :global(.dark) .theme-text-light {
+    display: none;
+  }
+
+  .theme-text-dark {
+    display: none;
+  }
+
+  :global(.dark) .theme-text-dark {
+    display: inline;
+  }
 </style>
 
-<script is:inline>
+<script>
   const theme = (() => {
     if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
       return localStorage.getItem("theme");
@@ -63,7 +100,7 @@
       return "dark";
     }
     return "light";
-  })();
+  })() as string;
   window.localStorage.setItem("theme", theme);
 
   const handleToggleClick = () => {
@@ -81,7 +118,7 @@
   };
 
   document.addEventListener("astro:page-load", () => {
-    document.getElementById("theme-toggle").addEventListener("click", handleToggleClick);
+    document.getElementById("theme-toggle")!.addEventListener("click", handleToggleClick);
   });
 
   function applyTheme() {

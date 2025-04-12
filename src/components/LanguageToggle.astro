@@ -17,16 +17,12 @@ let otherLangUrl = getRelativeLocaleUrl(otherLang, slug);
 if (otherLangUrl == "/en" || otherLangUrl == "/en/") {
   otherLangUrl = "/";
 }
+
+const title = translations[lang].langToggleHint;
 ---
 
-<a
-  class="lang-toggle"
-  rel="alternate"
-  hreflang={otherLang}
-  href={otherLangUrl}
-  title="Toggle Language"
->
-  <Icon name="mdi:translate" size={16} class="lang-toggle-icon" title="Translations" />
+<a class="lang-toggle" rel="alternate" hreflang={otherLang} href={otherLangUrl} title={title}>
+  <Icon name="mdi:translate" size={16} class="lang-toggle-icon" title={title} />
   <span>{translations[otherLang].langName}</span>
 </a>
 
