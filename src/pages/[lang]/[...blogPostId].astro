@@ -45,7 +45,7 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
           {`${translations[lang].createTime}${formatDate(entry.data.created)}`}
         </span>
         <span class="tags">
-          <TagList tags={entry.data.tags} />
+          <TagList tags={entry.data.tags} type="blogpost" />
         </span>
       </div>
       <Content />

@@ -5,8 +5,9 @@
 import "@styles/container.css";
 import { translations } from "@i18n/translations";
 import { getCurrentLanguage, transformSlug } from "@i18n/i18n";
-import { BLOG_POSTS, sortByDate, type BlogPost } from "@content/blog";
+import { BLOG_POSTS, POST_COUNT_BY_TAGS, sortByDate, type BlogPost } from "@content/blog";
 import TagList from "@components/TagList.astro";
+import { translateTag } from "@i18n/translations";
 
 interface Props {
   tag?: string;
@@ -48,7 +49,12 @@ const options: Intl.DateTimeFormatOptions = {
 const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
 ---
 
-<p>{posts.length} {translations[lang].posts}</p>
+<TagList tags={POST_COUNT_BY_TAGS} type="blogpost" showall={`/${lang}/blog`} />
+<p class="filter-hint">
+  {posts.length}
+  {translations[lang].posts}
+  {tag && `filtered by ${translateTag(lang, tag, true)}`}
+</p>
 {
   postsByYear.map(({ year, posts }) => (
     <article>
@@ -62,7 +68,7 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
             {post.untranslated && <span>{translations[lang].untranslated}</span>}
             <span>— {formatDate(post.data.created)}</span>
             <span class="tags">
-              <TagList tags={post.data.tags} exclude={tag} />
+              <TagList tags={post.data.tags} exclude={tag} type="blogpost" />
             </span>
           </li>
         ))}
@@ -85,6 +91,11 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
 
   .title:hover {
     color: var(--highlight-color);
+  }
+
+  .filter-hint {
+    padding-bottom: 1rem;
+    font-size: 16px;
   }
 
   .tags {

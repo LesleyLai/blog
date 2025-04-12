@@ -144,9 +144,9 @@ export const POST_COUNT_BY_TAGS = (() => {
 
   array.sort(([_tag1, a], [_tag2, b]) => b - a);
   return array.map(([tag, count]) => ({
-    tag: tag,
+    id: tag,
     count: count,
   }));
 })();
 
-export const ALL_BLOG_POST_TAGS = POST_COUNT_BY_TAGS.map(({ tag }) => tag);
+export const ALL_BLOG_POST_TAGS = POST_COUNT_BY_TAGS.map(({ id }) => id);

@@ -1,54 +1,15 @@
 ---
 import { getCurrentLanguage } from "@i18n/i18n";
-import { translations, translateTag } from "@i18n/translations";
 import { PROJECT_BY_LANG } from "@content/projects";
+import TagList from "./TagList.astro";
 
 const lang = getCurrentLanguage(Astro);
 
 const TagWithCountList = (() => {
   const array = Array.from(PROJECT_BY_LANG[lang].projectCountByTags);
   array.sort(([_tag1, a], [_tag2, b]) => b - a);
-  return array.map(([tag, count]) => ({ tag, count }));
+  return array.map(([tag, count]) => ({ id: tag, count }));
 })();
 ---
 
-<ul class="project-tag-list">
-  <li>
-    <a href={`/${lang}/projects`}>{translations[lang].showAll}</a>
-  </li>
-  {
-    TagWithCountList.map(({ tag, count }) => (
-      <li>
-        <a href={`/${lang}/projects/${tag}`}>
-          {translateTag(lang, tag)} {count}
-        </a>
-      </li>
-    ))
-  }
-</ul>
-
-<style>
-  .project-tag-list {
-    /* TODO: shouldn't need to reset list */
-    list-style: none;
-    margin: 0;
-
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .project-tag-list li a {
-    margin: 0.2em 0.5em 0.2em 0px;
-    padding: 0.4em 0.5em;
-    font-weight: 800;
-    font-size: 12px;
-    border-radius: 0.285714rem;
-
-    color: #fff;
-    background-color: var(--tag-color);
-  }
-
-  .project-tag-list li a:hover {
-    background-color: var(--tag-highlight-color);
-  }
-</style>
+<TagList tags={TagWithCountList} type="project" showall={`/${lang}/projects`} />

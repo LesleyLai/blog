@@ -36,7 +36,7 @@ export default defineConfig({
       styleOverrides: {
         borderRadius: 0,
         borderWidth: "1px",
-        borderColor: "var(--divider-color)",
+        borderColor: "var(--border-color)",
         codeFontFamily: '"PT Mono", monospace',
         frames: {
           frameBoxShadowCssValue: "none",

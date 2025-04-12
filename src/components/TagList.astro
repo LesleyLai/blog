@@ -1,23 +1,54 @@
 ---
 import { translateTag } from "@i18n/translations";
 import { getCurrentLanguage } from "@i18n/i18n";
+import { translations } from "@i18n/translations";
 
 import Tag from "./Tag.astro";
 
 interface Props {
-  tags: string[];
+  // Tags can optionally have a count, which is used as the number of blog post or number of projects under this tag
+  tags: string[] | { id: string; count: number }[];
+
+  // To exclude a tag from the tag list
   exclude?: string;
+
+  // Whether this tag list is for blog posts or projects
+  type: "blogpost" | "project";
+
+  // Whether having a "show all" button and its URL
+  showall?: string;
 }
 
 const lang = getCurrentLanguage(Astro);
-const { tags, exclude } = Astro.props;
+const { tags, exclude, type, showall } = Astro.props;
+
+const getTagId = (tag: string | { id: string; count: number }) => {
+  if (typeof tag === "string") return tag;
+  return tag.id;
+};
+
+const getTagUrl = (tag: string | { id: string; count: number }) => {
+  return `/${lang}/${type === "blogpost" ? "tags" : "projects"}/${getTagId(tag)}`;
+};
 ---
 
 <ul>
   {
+    showall && (
+      <li>
+        <Tag href={showall}>{translations[lang].showAll}</Tag>
+      </li>
+    )
+  }
+  {
     tags
-      .filter((tag) => tag != exclude)
-      .map((tag) => <Tag href={`/${lang}/tags/${tag}`}>{translateTag(lang, tag)}</Tag>)
+      .filter((tag) => getTagId(tag) != exclude)
+      .map((tag) => (
+        <Tag href={getTagUrl(tag)}>
+          {translateTag(lang, getTagId(tag))}
+          {typeof tag != "string" && ` ${tag.count}`}
+        </Tag>
+      ))
   }
 </ul>
 
@@ -28,5 +59,6 @@ const { tags, exclude } = Astro.props;
     margin: 0;
 
     display: flex;
+    flex-wrap: wrap;
   }
 </style>
