@@ -30,6 +30,8 @@ const pageTitle = isHome ? siteName : `${title} | ${siteName}`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const otherLangSlug = getOtherLangSlug(lang, translations[lang].oppositeLang, Astro.url.pathname);
+
+const hrefLang = translations[lang].oppositeLang === "en" ? "en-US" : "zh-Hans";
 ---
 
 <head>
@@ -38,30 +40,24 @@ const otherLangSlug = getOtherLangSlug(lang, translations[lang].oppositeLang, As
   <meta name="viewport" content="width=device-width" />
   <meta name="generator" content={Astro.generator} />
 
-  <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 
-  <!-- Title -->
   <title>{pageTitle}</title>
   <meta property="title" content={pageTitle} />
   <meta property="og:title" content={pageTitle} />
 
-  <!-- Descriptions -->
   <meta name="description" content={description} />
   <meta property="og:description" content={description} />
 
   <meta property="og:locale" content={lang} />
 
-  <!-- RSS Feed -->
   <link rel="alternate" type="application/rss+xml" title={siteName} href={rssRoute} />
-  <!-- Alt in the other language -->
-  <link rel="alternate" hreflang={translations[lang].oppositeLang} href={otherLangSlug} />
+  <link rel="alternate" hreflang={hrefLang} href={new URL(otherLangSlug, Astro.site)} />
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content={canonicalURL} />
 
-  <!-- Image -->
   {
     image && (
       <>
@@ -72,7 +68,6 @@ const otherLangSlug = getOtherLangSlug(lang, translations[lang].oppositeLang, As
     )
   }
 
-  <!-- Fediverse Author attribution -->
   <meta name="fediverse:creator" content="@lesley@mastodon.gamedev.place" />
 
   <link rel="sitemap" href="/sitemap-index.xml" />
