@@ -1,9 +1,11 @@
 ---
+import { Icon } from "astro-icon/components";
 import Layout from "@layouts/PageLayout.astro";
 import { translations } from "@i18n/translations";
 import { type Language, languages } from "@i18n/i18n";
 
 import BlogArchive from "@components/BlogArchive.astro";
+import { getRSSRoute } from "@utils/rss";
 
 interface Params {
   params: {
@@ -18,9 +20,30 @@ export function getStaticPaths(): Params[] {
 const { lang } = Astro.params;
 
 const title = translations[lang].archive;
+
+const rssRoute = getRSSRoute(lang);
 ---
 
 <Layout title={title} description={translations[lang].descriptions.BlogArchivePage}>
-  <h1>{title}</h1>
+  <h1>{title} <a href={rssRoute} title="RSS"> <Icon name="mdi:rss" size={28} title="RSS" /></a></h1>
   <BlogArchive />
 </Layout>
+
+<style>
+  h1 {
+    display: flex;
+    align-items: center;
+  }
+
+  a {
+    padding-left: 8px;
+    margin-top: auto;
+    margin-bottom: 9px;
+
+    color: var(--text-color);
+  }
+
+  a:hover {
+    color: var(--highlight-color);
+  }
+</style>

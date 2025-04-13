@@ -37,3 +37,5 @@ export function getRSSFeed(context: APIContext, lang: Language) {
     stylesheet: "/rss/styles.xsl",
   });
 }
+
+export const getRSSRoute = (lang: Language): string => (lang === "en" ? "/rss.xml" : `/zh/rss.xml`);

@@ -2,6 +2,7 @@
 import { getCurrentLanguage } from "@i18n/i18n";
 import { translations } from "@i18n/translations";
 import { getOtherLangSlug } from "@i18n/i18n";
+import { getRSSRoute } from "@utils/rss";
 
 export interface Props {
   title: string;
@@ -22,7 +23,7 @@ const isHome = title == "";
 
 const siteName = translations[lang].siteName;
 
-const rssRoute = lang === "en" ? "/rss.xml" : `/zh/rss.xml`;
+const rssRoute = getRSSRoute(lang);
 
 const pageTitle = isHome ? siteName : `${title} | ${siteName}`;
 
