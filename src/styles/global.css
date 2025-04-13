@@ -70,7 +70,7 @@ html {
 
 body {
   background-color: var(--bg-color);
-  background-image: url(/background.png);
+  background-image: url(/background.webp);
   color: var(--text-color);
   display: flex;
   flex-direction: column;
