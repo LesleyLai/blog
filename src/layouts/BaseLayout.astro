@@ -7,8 +7,6 @@ import "@fontsource-variable/noto-sans-sc";
 
 import { getCurrentLanguage } from "@i18n/i18n";
 
-import { ClientRouter } from "astro:transitions";
-
 import Header from "@components/Header.astro";
 import "@styles/global.css";
 
@@ -29,5 +27,3 @@ const lang = getCurrentLanguage(Astro);
     <slot />
   </body>
 </html>
-
-<ClientRouter />

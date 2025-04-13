@@ -101,6 +101,13 @@ const title = translations[lang].themeToggleHint;
     }
     return "light";
   })() as string;
+
+  if (theme === "light") {
+    document.documentElement.classList.remove("dark");
+  } else {
+    document.documentElement.classList.add("dark");
+  }
+
   window.localStorage.setItem("theme", theme);
 
   const handleToggleClick = () => {
@@ -117,19 +124,5 @@ const title = translations[lang].themeToggleHint;
     }, 300);
   };
 
-  document.addEventListener("astro:page-load", () => {
-    document.getElementById("theme-toggle")!.addEventListener("click", handleToggleClick);
-  });
-
-  function applyTheme() {
-    const element = document.documentElement;
-    if (localStorage.theme === "dark") {
-      element.classList.add("dark");
-    } else {
-      element.classList.remove("dark");
-    }
-  }
-
-  document.addEventListener("astro:after-swap", applyTheme);
-  applyTheme();
+  document.getElementById("theme-toggle")?.addEventListener("click", handleToggleClick);
 </script>
