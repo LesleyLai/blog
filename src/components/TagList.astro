@@ -33,21 +33,17 @@ const getTagUrl = (tag: string | { id: string; count: number }) => {
 ---
 
 <ul>
-  {
-    showall && (
-      <li>
-        <Tag href={showall}>{translations[lang].showAll}</Tag>
-      </li>
-    )
-  }
+  {showall && <Tag href={showall}>{translations[lang].showAll}</Tag>}
   {
     tags
       .filter((tag) => getTagId(tag) != exclude)
       .map((tag) => (
-        <Tag href={getTagUrl(tag)}>
-          {translateTag(lang, getTagId(tag))}
-          {typeof tag != "string" && ` ${tag.count}`}
-        </Tag>
+        <li>
+          <Tag href={getTagUrl(tag)}>
+            {translateTag(lang, getTagId(tag))}
+            {typeof tag != "string" && ` ${tag.count}`}
+          </Tag>
+        </li>
       ))
   }
 </ul>
@@ -60,5 +56,10 @@ const getTagUrl = (tag: string | { id: string; count: number }) => {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    gap: 0.4em;
+  }
+
+  li {
+    margin-bottom: 0;
   }
 </style>

@@ -115,11 +115,11 @@ const currentYear = new Date().getFullYear();
   .project-card {
     border: 1px solid var(--border-color);
     border-radius: 0.5rem;
-    overflow: hidden;
     transition:
       box-shadow 0.3s ease,
       transform 0.3s ease;
     background: var(--content-bg-color);
+    min-height: 600px;
   }
 
   .project-image-container {
@@ -209,6 +209,7 @@ const currentYear = new Date().getFullYear();
     color: var(--text-color);
     font-size: 0.9375rem;
     line-height: 1.6;
+    margin-top: 1em;
   }
 
   .project-description :global(p) {
