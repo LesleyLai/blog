@@ -1,18 +1,15 @@
 ---
-import { translateTag } from "@i18n/translations";
-import { getCurrentLanguage } from "@i18n/i18n";
 import { type CollectionEntry } from "astro:content";
 
 import { Icon } from "astro-icon/components";
 
 import { Picture, Image } from "astro:assets";
-import Tag from "./Tag.astro";
+import TagList from "./TagList.astro";
 
 interface Props {
   projects: CollectionEntry<"projects">[];
 }
 
-const lang = getCurrentLanguage(Astro);
 const { projects } = Astro.props;
 
 const currentYear = new Date().getFullYear();
@@ -84,13 +81,8 @@ const currentYear = new Date().getFullYear();
               )}
             </span>
 
-            <div class="project-tags">
-              <ul class="project-tag-list">
-                {project.data.tags.map((tag) => (
-                  <Tag href={`/${lang}/projects/${tag}`}>{translateTag(lang, tag)}</Tag>
-                ))}
-              </ul>
-            </div>
+            <TagList type="project" tags={project.data.tags} />
+
             <div class="project-description">
               <Content />
             </div>
@@ -212,19 +204,6 @@ const currentYear = new Date().getFullYear();
     color: var(--secondary-color);
     font-size: 0.875rem;
     margin-bottom: 0.25rem;
-  }
-
-  .project-tags {
-    margin-bottom: 1rem;
-  }
-
-  .project-tag-list {
-    /* TODO: shouldn't need to reset list */
-    list-style: none;
-    margin: 0;
-
-    display: flex;
-    flex-wrap: wrap;
   }
 
   .project-description {

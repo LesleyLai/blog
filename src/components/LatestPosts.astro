@@ -5,6 +5,10 @@ import { getCurrentLanguage, transformSlug } from "@i18n/i18n";
 
 import { BLOG_POSTS, sortByDate } from "@content/blog";
 
+import { translations } from "@i18n/translations";
+import { Icon } from "astro-icon/components";
+import TagList from "./TagList.astro";
+
 const lang = getCurrentLanguage(Astro);
 
 const posts = BLOG_POSTS.byLang(lang).filter((post) => !post.untranslated);
@@ -19,34 +23,68 @@ const options: Intl.DateTimeFormatOptions = {
 const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
 ---
 
-<table>
-  <tbody>
-    {
-      mostRecentPosts.map((post) => (
-        <tr>
-          <th scope="row">{formatDate(post.data.created)}</th>
-          <td>
-            <a href={`/${transformSlug(post.id)}`} data-astro-prefetch>
-              {post.data.title}
-            </a>
-          </td>
-        </tr>
-      ))
-    }
-  </tbody>
-</table>
+{
+  mostRecentPosts.map((post) => (
+    <article class="post-card">
+      <h3>
+        <a href={`/${transformSlug(post.id)}`} data-astro-prefetch>
+          {post.data.title}
+        </a>
+      </h3>
+      <div class="post-meta">
+        <span class="post-meta-item">
+          <Icon name="mdi:calendar" size={16} /> {formatDate(post.data.created)}
+        </span>
+
+        <span class="post-meta-item">
+          <Icon name="mdi:tag" size={16} />
+          <TagList tags={post.data.tags} type="blogpost" />
+        </span>
+      </div>
+
+      <p class="post-description">{post.data.description}</p>
+    </article>
+  ))
+}
+<p>{translations[lang].view}<a href={`/${lang}/blog`}>{translations[lang].allPosts}</a></p>
 
 <style>
-  table {
-    width: 100%;
+  .post-card {
+    border-bottom: 1px solid var(--divider-color);
+    padding-bottom: 0.2rem;
+    margin-bottom: 1rem;
   }
 
-  th {
-    width: 15%;
-    min-width: 130px;
+  h3 {
+    font-style: normal;
+    padding: 0;
+    margin-bottom: 0.25rem;
   }
 
-  td {
-    font-family: "PT Serif", "Noto Sans SC Variable", serif;
+  h3 a {
+    color: var(--text-color);
+  }
+
+  h3 a:hover {
+    color: var(--highlight-color);
+  }
+
+  .post-meta {
+    color: var(--secondary-color);
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+
+    display: flex;
+    gap: 1rem;
+  }
+
+  .post-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .post-description {
+    font-size: 0.875em;
   }
 </style>

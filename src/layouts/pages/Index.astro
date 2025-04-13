@@ -4,8 +4,12 @@ import PageLayout from "@layouts/PageLayout.astro";
 import LatestPosts from "@components/LatestPosts.astro";
 import { getCurrentLanguage } from "@i18n/i18n";
 import { translations } from "@i18n/translations";
+import { getRSSRoute } from "@utils/rss";
+import { Icon } from "astro-icon/components";
 
 let lang = getCurrentLanguage(Astro);
+
+const rssRoute = getRSSRoute(lang);
 ---
 
 <PageLayout title="">
@@ -13,4 +17,39 @@ let lang = getCurrentLanguage(Astro);
   <slot />
   <h2>{translations[lang].latestPosts}</h2>
   <LatestPosts lang={lang} />
+
+  <div class="social-icons">
+    <ul>
+      <li><a href={rssRoute} title="RSS"> <Icon name="mdi:rss" size={32} title="RSS" /></a></li>
+      <li>
+        <a href="https://github.com/LesleyLai" title="GitHub">
+          <Icon name="mdi:github" size={32} title="GitHub" /></a
+        >
+      </li>
+      <li>
+        <a rel="me" href="https://mastodon.gamedev.place/@lesley"
+          ><Icon name="mdi:mastodon" size={32} title="Mastodon" /></a
+        >
+      </li>
+    </ul>
+  </div>
 </PageLayout>
+
+<style>
+  .social-icons ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .social-icons a {
+    color: var(--secondary-color);
+  }
+
+  .social-icons a:hover {
+    color: var(--highlight-color);
+  }
+</style>

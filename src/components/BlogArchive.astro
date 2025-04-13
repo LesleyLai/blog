@@ -7,7 +7,6 @@ import { translations } from "@i18n/translations";
 import { getCurrentLanguage, transformSlug } from "@i18n/i18n";
 import { BLOG_POSTS, POST_COUNT_BY_TAGS, sortByDate, type BlogPost } from "@content/blog";
 import TagList from "@components/TagList.astro";
-import { translateTag } from "@i18n/translations";
 
 interface Props {
   tag?: string;
@@ -51,9 +50,7 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
 
 <TagList tags={POST_COUNT_BY_TAGS} type="blogpost" showall={`/${lang}/blog`} />
 <p class="filter-hint">
-  {posts.length}
-  {translations[lang].posts}
-  {tag && `filtered by ${translateTag(lang, tag, true)}`}
+  {tag && translations[lang].blogPostsFilterHintTag(tag, posts.length)}
 </p>
 {
   postsByYear.map(({ year, posts }) => (
@@ -61,7 +58,7 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
       <h2 class="year">{year}</h2>
       <ul>
         {posts.map((post) => (
-          <li class="list">
+          <li>
             <a class="title" href={`/${transformSlug(post.id)}`} data-astro-prefetch>
               {post.data.title}{" "}
             </a>
@@ -102,7 +99,7 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
     display: inline-block;
   }
 
-  .list {
-    margin-bottom: 0;
+  li {
+    margin-bottom: 5px;
   }
 </style>

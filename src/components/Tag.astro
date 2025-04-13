@@ -10,9 +10,13 @@ const { href } = Astro.props;
 <li><a href={href}><slot /></a></li>
 
 <style>
+  li {
+    margin-bottom: 0;
+  }
+
   li a {
-    margin: 0.2em 0.5em 0.2em 0px;
-    padding: 0.4em 0.5em;
+    margin: 0.2em 0.4em 0.2em 0px;
+    padding: 0.3em 0.4em;
     font-weight: 800;
     font-size: 12px;
     border-radius: 0.285714rem;

@@ -135,8 +135,11 @@ const en = {
   about: "About",
   aboutme: "About Me",
   all: "All",
+  allPosts: "all posts",
   archive: "Blog Archive",
   blog: "Blog",
+  blogPostsFilterHintTag: (tag: string, count: number) =>
+    `${count} posts filtered by ${translateTag("en", tag, true)}`,
   createTime: "Created: ",
   descriptions: {
     default:
@@ -164,7 +167,6 @@ const en = {
   projectsFilterHint: "Showing all projects. Click tags to filter by topic.",
   projectsFilterHintTag: (tag: string, count: number) =>
     `Show ${count} projects filtered by ${translateTag("en", tag, true)}`,
-  posts: "posts",
   showAll: "Show All",
   siteName: "Lesley Lai",
   stuffIWroteAbout: (tag: string) => `Stuff I wrote about ${translateTag("en", tag, true)}`,
@@ -175,6 +177,7 @@ const en = {
   themeLight: "Light",
   themeToggleHint: "Toggle Appearance (Dark/Light)",
   untranslated: "(untranslated)",
+  view: "View ",
   website: "Website",
 };
 
@@ -186,8 +189,11 @@ const zh: Translations = {
   about: "关于",
   aboutme: "关于我",
   all: "所有",
+  allPosts: "所有博文",
   archive: "博文存档",
   blog: "博客",
+  blogPostsFilterHintTag: (tag: string, count: number) =>
+    `按${translateTag("zh", tag, true)}筛选：${count}篇博文`,
   createTime: "创建时间：",
   descriptions: {
     default: "赖思理的个人网站，内容包含博客、笔记和项目集锦",
@@ -213,7 +219,6 @@ const zh: Translations = {
   projectsFilterHint: "正在显示所有项目。您可以通过标签来限定显示包含指定标签的项目。",
   projectsFilterHintTag: (tag: string, count: number) =>
     `显示${count}个关于${translateTag("zh", tag, true)}的项目`,
-  posts: "篇博文",
   showAll: "显示所有",
   siteName: "赖思理的个人网站",
   stuffIWroteAbout: (tag) => `关于${translateTag("zh", tag, true)}的博文`,
@@ -224,6 +229,7 @@ const zh: Translations = {
   themeLight: "浅色",
   themeToggleHint: "切换外观（深色/浅色）",
   untranslated: "（未译）",
+  view: "查看",
   website: "网站",
 };
 
