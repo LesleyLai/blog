@@ -71,4 +71,25 @@ const hrefLang = translations[lang].oppositeLang === "en" ? "en-US" : "zh-Hans";
   <meta name="fediverse:creator" content="@lesley@mastodon.gamedev.place" />
 
   <link rel="sitemap" href="/sitemap-index.xml" />
+
+  <script is:inline>
+    // Puts the theme detecting code inline in head to prevent theme flicker
+    const theme = (() => {
+      if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+        return localStorage.getItem("theme");
+      }
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        return "dark";
+      }
+      return "light";
+    })();
+
+    if (theme === "light") {
+      document.documentElement.classList.remove("dark");
+    } else {
+      document.documentElement.classList.add("dark");
+    }
+
+    window.localStorage.setItem("theme", theme);
+  </script>
 </head>
