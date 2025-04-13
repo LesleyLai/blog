@@ -91,7 +91,7 @@ const title = translations[lang].themeToggleHint;
   }
 </style>
 
-<script>
+<script is:inline>
   const theme = (() => {
     if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
       return localStorage.getItem("theme");
@@ -100,7 +100,7 @@ const title = translations[lang].themeToggleHint;
       return "dark";
     }
     return "light";
-  })() as string;
+  })();
 
   if (theme === "light") {
     document.documentElement.classList.remove("dark");
@@ -124,5 +124,5 @@ const title = translations[lang].themeToggleHint;
     }, 300);
   };
 
-  document.getElementById("theme-toggle")?.addEventListener("click", handleToggleClick);
+  document.getElementById("theme-toggle").addEventListener("click", handleToggleClick);
 </script>
