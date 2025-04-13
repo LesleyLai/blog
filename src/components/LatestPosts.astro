@@ -9,7 +9,7 @@ const lang = getCurrentLanguage(Astro);
 
 const posts = BLOG_POSTS.byLang(lang).filter((post) => !post.untranslated);
 sortByDate(posts);
-const mostRencentPosts = posts.slice(0, 5);
+const mostRecentPosts = posts.slice(0, 5);
 
 const options: Intl.DateTimeFormatOptions = {
   year: "numeric",
@@ -22,7 +22,7 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
 <table>
   <tbody>
     {
-      mostRencentPosts.map((post) => (
+      mostRecentPosts.map((post) => (
         <tr>
           <th scope="row">{formatDate(post.data.created)}</th>
           <td>
