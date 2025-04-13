@@ -33,7 +33,13 @@ const getTagUrl = (tag: string | { id: string; count: number }) => {
 ---
 
 <ul>
-  {showall && <Tag href={showall}>{translations[lang].showAll}</Tag>}
+  {
+    showall && (
+      <li>
+        <Tag href={showall}>{translations[lang].showAll}</Tag>
+      </li>
+    )
+  }
   {
     tags
       .filter((tag) => getTagId(tag) != exclude)
