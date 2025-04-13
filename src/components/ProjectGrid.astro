@@ -30,13 +30,12 @@ const currentYear = new Date().getFullYear();
           <div class="project-image-container">
             {image ? (
               image.format === "gif" ? (
-                <Image src={image} alt={project.data.name} loading="lazy" class="project-image" />
+                <Image src={image} alt={project.data.name} class="project-image" />
               ) : (
                 <Picture
                   src={image}
                   alt={project.data.name}
                   formats={["avif", "webp"]}
-                  loading="lazy"
                   class="project-image"
                 />
               )
