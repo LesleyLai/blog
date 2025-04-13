@@ -7,6 +7,7 @@ modified: 2024-03-07
 tags:
   - code
   - opinion
+description: "This post offers a practical tip for naming variables and functions: use 'from' instead of 'to' to make code more intuitive and readable."
 ---
 
 Today, I'm tackling a piece of code involving several mappings. Like many others, I typically label such maps as `x_to_y`, and that's also what I've done here:

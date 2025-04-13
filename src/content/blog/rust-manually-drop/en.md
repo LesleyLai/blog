@@ -7,6 +7,7 @@ modified: 2023-02-06
 tags:
   - code
   - rust
+description: "This post explains Rust's ManuallyDrop construct, and how it helps control the order of destructor calls."
 ---
 
 _First, for some context: I wrote this blog post more than a year ago but have yet to make it public since my mental health greatly degraded while I was still editing it. Now that I want to go back into blogging, I decide to release this post in its current form, though I lost interest in editing it._

@@ -9,6 +9,7 @@ tags:
   - i18n
   - typescript
   - react
+description: "这篇文章讲解了我如何使用纯TypeScript实现本博客的双语功能。"
 ---
 
 **Update 2025**: _我今年把博客迁移到了 [Astro](https://astro.build/)，但翻译功能的实现原理基本保持不变。_

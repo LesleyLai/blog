@@ -6,6 +6,7 @@ created: 2023-12-17
 modified: 2024-01-03
 tags:
   - personal
+description: "A cathartic post on what happened to Lesley as of 2023. It includes why I left college, what kept me from returning, and what my life has been like since."
 ---
 
 TL;DR: I was forced to leave university without completing my degree due to unfortunate circumstances, and returning has proven unexpectedly challenging.

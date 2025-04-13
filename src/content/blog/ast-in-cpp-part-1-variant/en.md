@@ -8,6 +8,7 @@ tags:
   - code
   - cpp
   - pldev
+description: "This post explores various ways to implement an abstract syntax tree (AST) in C++. In particular, it focuses on representing \"variant\" structures that can hold values from a fixed set of alternatives."
 ---
 
 Exploring the representation of abstract syntax trees in C++ has been a long-standing fascination of mine. Over time, I've developed several interpreters/compilers in C++, each utilizing different approaches to representation. In this post, I aim to share the insights I wish I had when I start building language implementations in C++.

@@ -9,6 +9,7 @@ tags:
   - i18n
   - typescript
   - react
+description: "This post explains how I implemented the bilingual functionality of this blog in plain Typescript."
 ---
 
 **Update 2025**: _I've since migrated this blog to [Astro](https://astro.build/), but the implementation strategy of the translation remains largely unchanged._

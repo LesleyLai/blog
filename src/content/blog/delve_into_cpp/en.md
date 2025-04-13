@@ -8,6 +8,7 @@ tags:
   - code
   - cpp
   - learning
+description: "This post offers practical tips and curated resources for learning C++, tailored to different backgrounds and experience levels."
 ---
 
 _I already received some great feedback for this post, and any further feedbacks, error-correction, and resource recommendation are welcome. One way to contact me is to direct message me ([@lesley@mastodon.gamedev.place](https://mastodon.gamedev.place/@lesley)) on Mastodon_.

@@ -7,6 +7,7 @@ modified: 2024-03-26
 tags:
   - learning
   - personal
+description: "In this post, I share a curated list of online courses that I found both enjoyable and insightful."
 ---
 
 My journey of learning from online courses started in 2013, and over the years I took a lot of them, abandoning even more along the way. Nevertheless, I've found online courses to be far more accommodating for self-study compared to traditional books.
