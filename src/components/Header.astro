@@ -215,24 +215,20 @@ import "@styles/utilities.css";
 
 <script>
   // This script hide the header when scrolling down on mobile devices
-  document.addEventListener("astro:page-load", () => {
-    const header = document.querySelector("header");
-    if (!header) return;
-    const headerHiddenClass = "header-hidden";
+  const header = document.querySelector("header")!;
+  const headerHiddenClass = "header-hidden";
+  const menuCheckbox = document.getElementById("menu-icon")! as HTMLInputElement;
 
-    const menuCheckbox = document.getElementById("menu-icon") as HTMLInputElement;
+  let prevScrollpos = window.scrollY;
+  window.addEventListener("scroll", () => {
+    const currentScrollPos = window.scrollY;
 
-    let prevScrollpos = window.scrollY;
-    window.addEventListener("scroll", () => {
-      const currentScrollPos = window.scrollY;
-
-      // if scrolling down and the mobile menu is not opened, hide header
-      if (currentScrollPos > prevScrollpos && !menuCheckbox.checked) {
-        header.classList.add(headerHiddenClass);
-      } else {
-        header.classList.remove(headerHiddenClass);
-      }
-      prevScrollpos = currentScrollPos;
-    });
+    // if scrolling down and the mobile menu is not opened, hide header
+    if (currentScrollPos > prevScrollpos && !menuCheckbox.checked) {
+      header.classList.add(headerHiddenClass);
+    } else {
+      header.classList.remove(headerHiddenClass);
+    }
+    prevScrollpos = currentScrollPos;
   });
 </script>
