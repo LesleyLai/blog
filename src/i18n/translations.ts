@@ -87,7 +87,7 @@ const zhTagTranslations: typeof enTagTranslations = createTagTranslations({
   i18n: { shortName: "国际化", longName: "国际化" },
   java: enTagTranslations.java,
   javascript: enTagTranslations.javascript,
-  learning: enTagTranslations.learning,
+  learning: { shortName: "学习" },
   library: { shortName: "软件库", longName: "软件库" },
   logic: { shortName: "逻辑学" },
   math: { shortName: "数学", longName: "数学" },
@@ -167,6 +167,10 @@ const en = {
   projectsFilterHint: "Showing all projects. Click tags to filter by topic.",
   projectsFilterHintTag: (tag: string, count: number) =>
     `Show ${count} projects filtered by ${translateTag("en", tag, true)}`,
+  rssFeed: {
+    blogName: "Lesley Lai's Blog",
+    blogDescription: "Lesley Lai's personal blog on software development",
+  },
   showAll: "Show All",
   siteName: "Lesley Lai",
   stuffIWroteAbout: (tag: string) => `Stuff I wrote about ${translateTag("en", tag, true)}`,
@@ -219,6 +223,10 @@ const zh: Translations = {
   projectsFilterHint: "正在显示所有项目。您可以通过标签来限定显示包含指定标签的项目。",
   projectsFilterHintTag: (tag: string, count: number) =>
     `显示${count}个关于${translateTag("zh", tag, true)}的项目`,
+  rssFeed: {
+    blogName: "赖思理的的博客",
+    blogDescription: "赖思理的的个人软件开发博客",
+  },
   showAll: "显示所有",
   siteName: "赖思理的个人网站",
   stuffIWroteAbout: (tag) => `关于${translateTag("zh", tag, true)}的博文`,
