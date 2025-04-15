@@ -138,6 +138,10 @@ const en = {
   allPosts: "all posts",
   archive: "Blog Archive",
   blog: "Blog",
+  blogPost: {
+    rss: "RSS feed",
+    rssInfo: "Interested in my articles? You can follow the ",
+  },
   blogPostsFilterHintTag: (tag: string, count: number) =>
     `${count} posts filtered by ${translateTag("en", tag, true)}`,
   createTime: "Created: ",
@@ -196,6 +200,10 @@ const zh: Translations = {
   allPosts: "所有博文",
   archive: "博文存档",
   blog: "博客",
+  blogPost: {
+    rss: "RSS订阅源",
+    rssInfo: "对我的文章感兴趣？你可以订阅我的",
+  },
   blogPostsFilterHintTag: (tag: string, count: number) =>
     `按${translateTag("zh", tag, true)}筛选：${count}篇博文`,
   createTime: "创建时间：",

@@ -103,7 +103,7 @@ p {
   margin: 0.5em 0;
 }
 
-p+p {
+p + p {
   margin: 0.75em 0;
 }
 
@@ -114,12 +114,6 @@ a {
 
 a:hover {
   color: var(--highlight-color);
-}
-
-main {
-  padding: 20px var(--content-padding);
-  flex-grow: 1;
-  background-color: var(--content-bg-color);
 }
 
 main h2 {
@@ -204,6 +198,10 @@ main li {
   --footnote-bg-color: #e3e3e3;
   --footnote-hover-color: #fff;
   --footnote-hover-bg-color: #8f6d3d;
+
+  --shadow:
+    0px 8px 4px hsla(0, 0%, 0%, 0.08), 0px 5px 2px hsla(0, 0%, 0%, 0.08),
+    0px 3px 2px hsla(0, 0%, 0%, 0.12), 0px 1px 1px hsla(0, 0%, 0%, 0.15);
 }
 
 .dark {
@@ -238,6 +236,10 @@ main li {
   --footnote-bg-color: #4a4a4a;
   --footnote-hover-color: #ffffff;
   --footnote-hover-bg-color: #666666;
+
+  --shadow:
+    0px 8px 4px hsla(0, 0%, 0%, 0.03), 0px 5px 2px hsla(0, 0%, 0%, 0.03),
+    0px 3px 2px hsla(0, 0%, 0%, 0.06), 0px 1px 1px hsla(0, 0%, 0%, 0.06);
 }
 
 /* lower image brightness in dark mode */
@@ -246,7 +248,7 @@ main li {
 }
 
 /* inline code */
-:not(pre)>code {
+:not(pre) > code {
   margin: 0 0.1em;
   padding: 0.1em;
   border-radius: 0.3em;
@@ -283,18 +285,18 @@ mjx-container[jax="SVG"] {
   }
 }
 
-.anchor>span {
+.anchor > span {
   margin: auto 0;
   display: block;
   width: 18px;
   content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' width='18' aria-hidden='true'%3E%3Cpath fill='%23000' d='m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z'%3E%3C/path%3E%3C/svg%3E");
 }
 
-.dark .anchor>span {
+.dark .anchor > span {
   filter: invert(99%) sepia(4%) saturate(733%) hue-rotate(263deg) brightness(113%) contrast(100%);
 }
 
-:hover>.anchor {
+:hover > .anchor {
   visibility: visible;
   opacity: 1;
 }

@@ -1,24 +1,38 @@
 ---
 import Layout from "@layouts/BaseLayout.astro";
 import { translations } from "@i18n/translations";
-import { BLOG_POSTS } from "@content/blog";
+import { BLOG_POSTS, sortByDate } from "@content/blog";
 import TagList from "@components/TagList.astro";
 import "@styles/container.css";
 import { render } from "astro:content";
-import type { Language } from "@i18n/i18n";
+import { type Language, languages } from "@i18n/i18n";
+import BlogPostNextPrevious from "@components/BlogPostNextPrevious.astro";
+import { getRSSRoute } from "@utils/rss";
 
 export async function getStaticPaths() {
-  return BLOG_POSTS.all.map((entry) => {
-    const [blogPostId, lang] = entry.id.split("/");
+  return languages
+    .map((lang) => {
+      return BLOG_POSTS.byLang(lang);
+    })
+    .flatMap((posts) => {
+      sortByDate(posts);
 
-    return {
-      params: { blogPostId, lang },
-      props: { entry, lang: lang as Language },
-    };
-  });
+      return posts.map((entry, i) => {
+        const [blogPostId, lang] = entry.id.split("/");
+
+        // Compute the next and previous posts
+        const previousPost = i + 1 === posts.length ? undefined : posts[i + 1];
+        const nextPost = i === 0 ? undefined : posts[i - 1];
+
+        return {
+          params: { blogPostId, lang },
+          props: { entry, lang: lang as Language, previousPost, nextPost },
+        };
+      });
+    });
 }
 
-const { entry, lang } = Astro.props;
+const { entry, lang, previousPost, nextPost } = Astro.props;
 const { Content } = await render(entry);
 
 const options: Intl.DateTimeFormatOptions = {
@@ -31,109 +45,148 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
 
 <Layout title={entry.data.title} description={entry.data.description}>
   <div class="container container-shadow">
-    <main class="post-main">
-      <h1>
-        {entry.data.title}
-        {entry.untranslated && <span class="untranslated">{translations[lang].untranslated}</span>}
-      </h1>
-      <div class="info">
-        <span class="date">
+    <div class="post-center">
+      <main>
+        <h1>
+          {entry.data.title}
           {
-            entry.data.modified &&
-              `${translations[lang].lastModified}${formatDate(entry.data.modified)}`
+            entry.untranslated && (
+              <span class="untranslated">{translations[lang].untranslated}</span>
+            )
           }
-          {`${translations[lang].createTime}${formatDate(entry.data.created)}`}
-        </span>
-        <span class="tags">
-          <TagList tags={entry.data.tags} type="blogpost" />
-        </span>
-      </div>
-      <Content />
-    </main>
+        </h1>
+        <div class="info">
+          <span class="date">
+            {
+              entry.data.modified &&
+                `${translations[lang].lastModified}${formatDate(entry.data.modified)}`
+            }
+            {`${translations[lang].createTime}${formatDate(entry.data.created)}`}
+          </span>
+          <span class="tags">
+            <TagList tags={entry.data.tags} type="blogpost" />
+          </span>
+        </div>
+        <Content />
+      </main>
+
+      <footer>
+        <p class="rss-info">
+          {translations[lang].blogPost.rssInfo}
+          <a href={getRSSRoute(lang)}>{translations[lang].blogPost.rss}</a>
+        </p>
+
+        {
+          (previousPost || nextPost) && (
+            <BlogPostNextPrevious previousPost={previousPost} nextPost={nextPost} />
+          )
+        }
+      </footer>
+    </div>
   </div>
+
+  <style>
+    .container {
+      background-color: var(--sidenote-bg-color);
+    }
+
+    .post-center {
+      padding: 20px var(--content-padding);
+      flex-grow: 1;
+      background-color: var(--content-bg-color);
+    }
+
+    h1 {
+      font-size: 36px;
+      line-height: 48px;
+      font-weight: 400;
+      margin: 100px 0;
+    }
+
+    .untranslated {
+      font-size: 0.8em;
+    }
+
+    .info {
+      border-bottom: 1px solid var(--divider-color);
+      padding-bottom: 4px;
+      margin-bottom: 1rem;
+      font-size: 11px;
+      flex-wrap: wrap;
+      display: flex;
+      justify-content: space-between;
+      gap: 0.4em;
+    }
+
+    .date {
+      color: var(--secondary-color);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-size: 12px;
+      line-height: 24px;
+    }
+
+    .tags {
+      margin-bottom: 10px;
+    }
+
+    .post-center {
+      max-width: 100%;
+    }
+
+    /* sidenotes */
+    .post-center :global(.side-note) {
+      color: var(--aside-text-color);
+      padding: 5px 10px;
+      font-size: 13px;
+
+      display: block;
+      margin-top: 0;
+      margin-bottom: 20px;
+      background: var(--aside-sm-bg-color);
+      border: solid 1px var(--aside-sm-border-color);
+      border-bottom: solid 1px var(--aside-sm-border-bottom-color);
+      border-radius: 10px;
+    }
+
+    /* Less than extra large desktop */
+    @media only screen and (max-width: 1199px) {
+      /* Supress custom sidenote margin-top on smaller devices */
+      .post-center :global(.side-note) {
+        margin-top: 20px !important;
+      }
+    }
+
+    /* Extra Large Desktops */
+    @media only screen and (min-width: 1200px) {
+      .post-center {
+        max-width: var(--blog-content-width);
+      }
+
+      .post-center :global(.side-note) {
+        position: absolute;
+        width: calc(var(--container-width) - var(--blog-content-width) - 11px);
+        background: none;
+        padding: 0 0 0 16px;
+        border-radius: 0;
+        border: none;
+        border-left: 8px solid var(--aside-lg-border-color);
+        right: calc((100% - var(--container-width)) / 2 + 14px);
+      }
+    }
+
+    footer {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 1rem 0 0.5rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid var(--divider-color);
+    }
+
+    .rss-info {
+      font-size: 0.9rem;
+      font-style: italic;
+    }
+  </style>
 </Layout>
-
-<style>
-  .container {
-    background-color: var(--sidenote-bg-color);
-  }
-
-  h1 {
-    font-size: 36px;
-    line-height: 48px;
-    font-weight: 400;
-    margin: 100px 0;
-  }
-
-  .untranslated {
-    font-size: 0.8em;
-  }
-
-  .info {
-    border-bottom: 1px solid var(--divider-color);
-    padding-bottom: 4px;
-    margin-bottom: 1rem;
-    font-size: 11px;
-    flex-wrap: wrap;
-    display: flex;
-    justify-content: space-between;
-    gap: 0.4em;
-  }
-
-  .date {
-    color: var(--secondary-color);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    font-size: 12px;
-    line-height: 24px;
-  }
-
-  .tags {
-    margin-bottom: 10px;
-  }
-
-  main {
-    max-width: 100%;
-  }
-
-  /* sidenotes */
-  main :global(.side-note) {
-    color: var(--aside-text-color);
-    padding: 5px 10px;
-    font-size: 13px;
-
-    display: block;
-    margin-top: 0;
-    margin-bottom: 20px;
-    background: var(--aside-sm-bg-color);
-    border: solid 1px var(--aside-sm-border-color);
-    border-bottom: solid 1px var(--aside-sm-border-bottom-color);
-    border-radius: 10px;
-  }
-
-  /* Less than extra large desktop */
-  @media only screen and (max-width: 1199px) {
-    /* Supress custom sidenote margin-top on smaller devices */
-    main :global(.side-note) {
-      margin-top: 20px !important;
-    }
-  }
-
-  /* Extra Large Desktops */
-  @media only screen and (min-width: 1200px) {
-    main {
-      max-width: var(--blog-content-width);
-    }
-
-    main :global(.side-note) {
-      position: absolute;
-      width: calc(var(--container-width) - var(--blog-content-width) - 11px);
-      background: none;
-      padding: 0 0 0 16px;
-      border-radius: 0;
-      border: none;
-      border-left: 8px solid var(--aside-lg-border-color);
-      right: calc((100% - var(--container-width)) / 2 + 14px);
-    }
-  }
-</style>

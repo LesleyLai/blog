@@ -1,0 +1,83 @@
+---
+import { Icon } from "astro-icon/components";
+import { transformSlug } from "@i18n/i18n";
+import type { BlogPost } from "@content/blog";
+import { getCurrentLanguage } from "@i18n/i18n";
+import { translations } from "@i18n/translations";
+
+interface Props {
+  previousPost?: BlogPost;
+  nextPost?: BlogPost;
+}
+
+const { previousPost, nextPost } = Astro.props;
+
+const lang = getCurrentLanguage(Astro);
+---
+
+<nav class="next-previous">
+  {
+    previousPost && (
+      <a href={`/${transformSlug(previousPost.id)}`}>
+        <Icon name="mdi:arrow-left" size={24} />
+        <span>
+          {previousPost.data.title}
+          {previousPost.untranslated && (
+            <span class="untranslated">{translations[lang].untranslated}</span>
+          )}
+        </span>
+      </a>
+    )
+  }
+  {
+    nextPost && (
+      <a href={`/${transformSlug(nextPost.id)}`}>
+        <span>
+          {nextPost.data.title}{" "}
+          {nextPost.untranslated && (
+            <span class="untranslated">{translations[lang].untranslated}</span>
+          )}
+        </span>
+        <Icon name="mdi:arrow-right" size={24} />
+      </a>
+    )
+  }
+</nav>
+
+<style>
+  .next-previous {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
+    gap: 1rem;
+    font-size: 1.2rem;
+  }
+
+  .next-previous a {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    width: 100%;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    text-decoration: none;
+    color: var(--text-color);
+    box-shadow: var(--shadow);
+    overflow-wrap: anywhere;
+    transition: border-color 0.3s ease;
+  }
+
+  .next-previous a:hover {
+    border-color: var(--highlight-color);
+  }
+
+  /* Prevent the svg item got shrinked */
+  .next-previous a svg {
+    flex: none;
+  }
+
+  .untranslated {
+    font-size: 0.8em;
+  }
+</style>
