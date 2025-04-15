@@ -91,7 +91,7 @@ Wikipedia says that signal processing is an electrical engineering subfield, but
 
 ## Tips on finding good courses
 
-My observation is that traditional university courses (such as the ones from MIT OCW) have higher quality on average than MOOCs. Unfortunately, most university courses lack lecture videos, which I consider indispensable. On the other hand, while lecture videos are invaluable, courses relying solely on videos—a common occurrence on YouTube—are not enough. Prefer courses with a lot of supplementary materials and homework.
+My observation is that traditional university courses (such as the ones from [MIT OCW](https://ocw.mit.edu/)) have higher quality on average than MOOCs. Unfortunately, most university courses lack lecture videos, which I consider indispensable. On the other hand, while lecture videos are invaluable, courses relying solely on videos—a common occurrence on YouTube—are not enough. Prefer courses with a lot of supplementary materials and homework.
 
 Among Mooc platforms, I think [Coursera](https://www.coursera.org/) and [Edx](https://www.edx.org/) are still the two major platforms that contain higher-quality courses on average. Where there are still tons of good stuff on other platforms, it can be more of a hit-or-miss experience.
 
