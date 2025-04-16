@@ -1,4 +1,10 @@
-[context.astro-migration]
+[build]
   command = "npm run build"
   environment = { NODE_VERSION = "22" }
   publish = "dist/"
+
+
+[[redirects]]
+from = "/zh/*"
+to = "/zh/404.html"
+status = 404

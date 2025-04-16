@@ -1,0 +1,15 @@
+---
+import PageLayout from "../PageLayout.astro";
+
+import { getCurrentLanguage } from "@i18n/i18n";
+import { translations } from "@i18n/translations";
+
+const lang = getCurrentLanguage(Astro);
+---
+
+<PageLayout title={translations[lang].notFound}>
+  <h1>{translations[lang].notFound}</h1>
+  <article>
+    <slot />
+  </article>
+</PageLayout>

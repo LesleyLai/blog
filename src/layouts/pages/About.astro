@@ -10,7 +10,7 @@ import { translations } from "@i18n/translations";
 const lang = getCurrentLanguage(Astro);
 ---
 
-<PageLayout title="About">
+<PageLayout title={translations[lang].aboutme}>
   <h1>{translations[lang].aboutme}</h1>
   <Image class="portrait" src={portraitImage} alt="A portrait of Lesley Lai" width={200} />
   <article>

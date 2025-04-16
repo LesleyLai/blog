@@ -39,6 +39,8 @@ export const getOtherLangSlug = (lang: Language, otherLang: Language, slug: stri
   let otherLangSlug = getRelativeLocaleUrl(otherLang, path);
   if (otherLangSlug == "/en" || otherLangSlug == "/en/") {
     otherLangSlug = "/";
+  } else if (otherLangSlug == "/en/404" || otherLangSlug == "/en/404/") {
+    otherLangSlug = "/404";
   }
 
   return otherLangSlug;
