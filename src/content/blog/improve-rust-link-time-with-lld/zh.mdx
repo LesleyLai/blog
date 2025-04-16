@@ -1,0 +1,51 @@
+---
+id: improve-rust-link-time-with-lld
+title: "使用 lld 来缩短 Rust 链接时间"
+lang: zh
+created: 2020-11-01
+modified: 2025-04-16
+tags:
+  - code
+  - rust
+description: "本文讨论了 Rust 中链接时间较慢的问题，以及如何通过将默认链接器切换为 LLD 来改善这个问题。"
+---
+
+import { Image } from "astro:assets";
+import compiling from "./compiling.png";
+
+**2025 更新：Rust 现在在 [x86-64 Linux 的 nightly 版本中](https://blog.rust-lang.org/2024/05/17/enabling-rust-lld-on-linux/)已经开始默认使用 lld 作为链接器。一些 Rust 的 wasm 和 aarch64 目标也已经默认使用 `lld`。另外，在进行快速迭代开发的时候，[mold](https://github.com/rui314/mold) 和 [wild](https://github.com/davidlattimore/wild) 也值得考虑。**
+ 
+今天我开始尝试 WebGPU API，并选择使用 Rust 的[wgpu-rs](https://github.com/gfx-rs/wgpu-rs)库。
+
+我对整体的开发体验基本满意，但遇到了一个困难：迭代编译时间过长。
+
+<div class="float-right-sticky p-10">
+  <figure>
+    <Image src={compiling} alt="Code is compiling meme" width={300} />
+    <figcaption>
+      Compiling<br/>
+      Source: <a href="https://xkcd.com/303/">xkcd</a>
+    </figcaption>
+  </figure>
+</div>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">The compile-time of my webgpu project is ridiculously slow (about 10s for this single file), any #Rust expert know how to improve that?</p>&mdash; Lesley Lai (@LesleyLai6) November 2, 2020</blockquote>
+
+对于某些应用来说，编译时间慢是可以接受的。 编写一些复杂算法需要大量思考。而且只要它们能够编译通过并通过单元测试， 通常就说明代码是正确的。
+
+但相比之下，对于图形和游戏编程来说，迭代速度至关重要。 很多时候，问题并没有明确的对错， 而是需要大量的小幅度调整和尝试。
+
+幸运的是，在 [Graphics Programming Discord](https://discord.gg/6mgNGk7) 上，一位用户（Rukai）提供了解决方案。
+
+我需要做的是创建一个配置文件 `~/.cargo/config`，内容如下：
+
+```toml
+[build]
+rustflags = [
+  "-C", "link-arg=-fuse-ld=lld",
+]
+```
+
+这个选项将链接器设置为 lld，它的速度远远快于 Rust 默认的链接器。 当然我需要在电脑上安装lld才可以用它。
+
+这个简单的改动把我的迭代编译时间从10秒压缩到了3秒以内。 虽然从我的角度看这还不是理想状态，但至少我可以重新享受开发这个项目的过程了。
