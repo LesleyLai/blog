@@ -29,16 +29,30 @@ const currentYear = new Date().getFullYear();
         <article class="project-card">
           <div class="project-image-container">
             {image ? (
-              image.format === "gif" ? (
-                <Image src={image} alt={project.data.name} class="project-image" />
-              ) : (
-                <Picture
-                  src={image}
-                  alt={project.data.name}
-                  formats={["avif", "webp"]}
-                  class="project-image"
-                />
-              )
+              (() => {
+                switch (image.format) {
+                  case "gif":
+                    return <Image src={image} alt={project.data.name} class="project-image" />;
+                  case "webp":
+                    return (
+                      <Picture
+                        src={image}
+                        alt={project.data.name}
+                        formats={["webp"]}
+                        class="project-image"
+                      />
+                    );
+                  default:
+                    return (
+                      <Picture
+                        src={image}
+                        alt={project.data.name}
+                        formats={["avif", "webp"]}
+                        class="project-image"
+                      />
+                    );
+                }
+              })()
             ) : (
               <div class="project-image-placeholder">
                 <div class="project-image-placeholder-text">{project.data.name}</div>
