@@ -232,8 +232,8 @@ const zh: Translations = {
   projectsFilterHintTag: (tag: string, count: number) =>
     `显示${count}个关于${translateTag("zh", tag, true)}的项目`,
   rssFeed: {
-    blogName: "赖思理的的博客",
-    blogDescription: "赖思理的的个人软件开发博客",
+    blogName: "赖思理的博客",
+    blogDescription: "赖思理的个人软件开发博客",
   },
   showAll: "显示所有",
   siteName: "赖思理的个人网站",
