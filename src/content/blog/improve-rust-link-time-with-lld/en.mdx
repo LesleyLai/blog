@@ -3,17 +3,23 @@ id: improve-rust-link-time-with-lld
 title: "Improve Rust Link Time with lld"
 lang: en
 created: 2020-11-01
-modified: 2025-04-16
+modified: 2025-04-20
 tags:
   - code
   - rust
-description: "This post talks about the issue of slow link time in Rust and how to improve it by switching the default linker to LLD."
+description: "This post talks about the issue of slow link time in Rust and how to improve it by switching the default linker to lld - the LLVM linker."
 ---
 
 import { Image } from "astro:assets";
 import compiling from "./compiling.png";
 
-**Update 2025: Rust now uses `lld` as the default linker [on x86-64 Linux in nightly](https://blog.rust-lang.org/2024/05/17/enabling-rust-lld-on-linux/). Some Rust's wasm and aarch64 targets also already use `lld` by default. For faster iterative development, alternatives like [mold](https://github.com/rui314/mold) and [wild](https://github.com/davidlattimore/wild) are also worth considering.**
+**Update 2025: Rust now uses `lld` as the default linker [on x86-64 Linux in nightly](https://blog.rust-lang.org/2024/05/17/enabling-rust-lld-on-linux/). Some Rust's wasm and aarch64 targets also already use `lld` by default.**
+
+<span class="side-note">
+
+For faster iterative development, alternatives like [mold](https://github.com/rui314/mold) and [wild](https://github.com/davidlattimore/wild) are also worth considering.
+
+</span>
 
 Today I start to experiment with the WebGPU API, and I choose to use the [wgpu-rs](https://github.com/gfx-rs/wgpu-rs) implementation in Rust.
 I am happy with the experience overall, but one difficulty I met is the long iterative compilation time:

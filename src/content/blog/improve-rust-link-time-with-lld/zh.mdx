@@ -3,7 +3,7 @@ id: improve-rust-link-time-with-lld
 title: "使用 lld 来缩短 Rust 链接时间"
 lang: zh
 created: 2020-11-01
-modified: 2025-04-16
+modified: 2025-04-20
 tags:
   - code
   - rust
@@ -13,18 +13,23 @@ description: "本文讨论了 Rust 中链接时间较慢的问题，以及如何
 import { Image } from "astro:assets";
 import compiling from "./compiling.png";
 
-**2025 更新：Rust 现在在 [x86-64 Linux 的 nightly 版本中](https://blog.rust-lang.org/2024/05/17/enabling-rust-lld-on-linux/)已经开始默认使用 lld 作为链接器。一些 Rust 的 wasm 和 aarch64 目标也已经默认使用 `lld`。另外，在进行快速迭代开发的时候，[mold](https://github.com/rui314/mold) 和 [wild](https://github.com/davidlattimore/wild) 也值得考虑。**
- 
+**2025 更新：Rust 现在在 [x86-64 Linux 的 nightly 版本中](https://blog.rust-lang.org/2024/05/17/enabling-rust-lld-on-linux/)已经开始默认使用 lld 作为链接器。一些 Rust 的 wasm 和 aarch64 目标也已经默认使用 `lld`。**
+
+<span class="side-note">
+
+在进行快速迭代开发的时候，[mold](https://github.com/rui314/mold) 和 [wild](https://github.com/davidlattimore/wild) 也是值得考虑的链接器。
+
+</span>
+
 今天我开始尝试 WebGPU API，并选择使用 Rust 的[wgpu-rs](https://github.com/gfx-rs/wgpu-rs)库。
 
-我对整体的开发体验基本满意，但遇到了一个困难：迭代编译时间过长。
+我对整体的开发体验基本满意，但遇到了一个困难：迭代编译时间过长：
 
 <div class="float-right-sticky p-10">
   <figure>
     <Image src={compiling} alt="Code is compiling meme" width={300} />
     <figcaption>
-      Compiling<br/>
-      Source: <a href="https://xkcd.com/303/">xkcd</a>
+      编译中。来源：<a href="https://xkcd.com/303/">xkcd</a>
     </figcaption>
   </figure>
 </div>
