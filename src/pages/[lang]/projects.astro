@@ -34,9 +34,9 @@ const otherProjects = projects.filter((project) => !project.data.featured);
   <p class="filter-hint">{translations[lang].projectsFilterHint}</p>
 
   <h2>{translations[lang].featuredProjects}</h2>
-  <ProjectGrid projects={featuredProjects} />
+  <ProjectGrid projects={featuredProjects} enableSearch />
   <h2>{translations[lang].otherProjects}</h2>
-  <ProjectGrid projects={otherProjects} />
+  <ProjectGrid projects={otherProjects} enableSearch />
 </PageLayout>
 
 <style>

@@ -41,12 +41,15 @@ const options: Intl.DateTimeFormatOptions = {
   day: "numeric",
 };
 const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
+
+const created = formatDate(entry.data.created);
+const modified = entry.data.modified ? formatDate(entry.data.modified) : undefined;
 ---
 
 <Layout title={entry.data.title} description={entry.data.description}>
   <div class="container container-shadow">
     <div class="post-center">
-      <main>
+      <main data-pagefind-body data-pagefind-filter="type:Blog Post">
         <h1>
           {entry.data.title}
           {
@@ -57,14 +60,15 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
         </h1>
         <div class="info">
           <span class="date">
-            {
-              entry.data.modified &&
-                `${translations[lang].lastModified}${formatDate(entry.data.modified)}`
-            }
-            {`${translations[lang].createTime}${formatDate(entry.data.created)}`}
+            <span data-pagefind-meta={`created:${created}`}
+              >{`${translations[lang].createTime}${created}`}</span
+            >
+            <span {...modified && { "data-pagefind-meta": `modified:${modified}` }}
+              >{modified && `${translations[lang].lastModified}${modified}`}</span
+            >
           </span>
           <span class="tags">
-            <TagList tags={entry.data.tags} type="blogpost" />
+            <TagList tags={entry.data.tags} type="blogpost" enableSearch />
           </span>
         </div>
         <Content />
@@ -124,6 +128,8 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
       letter-spacing: 0.5px;
       font-size: 12px;
       line-height: 24px;
+      gap: 10px;
+      display: flex;
     }
 
     .tags {

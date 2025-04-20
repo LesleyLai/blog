@@ -5,14 +5,43 @@ import BaseLayout from "./BaseLayout.astro";
 import "@styles/container.css";
 import { type Props as HeadProps } from "@components/Head.astro";
 
+interface PageSearchConfig {
+  // type of the page used by search filter (default to "Other Pages")
+  type: string;
+}
+
 interface Props extends HeadProps {
   children: unknown;
+
+  // Whether the main content is indexed by search (default off) and the configurations
+  // Using "true" means default
+  search?: true | Partial<PageSearchConfig>;
 }
+
+let { search: searchConfigInput } = Astro.props;
+
+const defaultSearchConfig: PageSearchConfig = { type: "Other Pages" };
+
+const searchConfig = (() => {
+  if (searchConfigInput === true) {
+    return defaultSearchConfig;
+  } else if (searchConfigInput) {
+    return { ...defaultSearchConfig, ...searchConfigInput };
+  }
+  return undefined;
+})();
+
+const mainAttrs = {
+  ...(searchConfig && {
+    "data-pagefind-body": true,
+    "data-pagefind-filter": `type:${searchConfig.type}`,
+  }),
+};
 ---
 
 <BaseLayout {...Astro.props}>
   <div class="container container-shadow">
-    <main>
+    <main {...mainAttrs}>
       <slot />
     </main>
   </div>

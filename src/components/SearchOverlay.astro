@@ -1,0 +1,186 @@
+---
+import Search from "astro-pagefind/components/Search";
+import { Icon } from "astro-icon/components";
+import { getCurrentLanguage } from "@i18n/i18n";
+import { translations } from "@i18n/translations";
+
+const lang = getCurrentLanguage(Astro);
+
+const searchText = translations[lang].search;
+---
+
+<button id="search-overlay-toggle" title={searchText} onclick="openSearch()">
+  <Icon name="mdi:search" size={16} title={searchText} />
+  <span>{searchText}</span>
+</button>
+
+<div id="search-overlay" class="search-overlay">
+  <div class="search-overlay-content">
+    <h2>{translations[lang].searchOverlay.title}</h2>
+    <Search
+      id="search"
+      className="pagefind-ui"
+      uiOptions={{ showImages: false, showSubResults: true }}
+    />
+
+    <button
+      id="search-overlay-close"
+      class="search-close"
+      title={translations[lang].searchOverlay.close}
+      onclick="closeSearch()"
+    >
+      <Icon name="mdi:window-close" size={24} />
+      <div>{translations[lang].searchOverlay.esc}</div>
+    </button>
+  </div>
+</div>
+
+<style is:global>
+  .pagefind-ui {
+    --pagefind-ui-scale: 0.75;
+    --pagefind-ui-primary: var(--text-color);
+    --pagefind-ui-text: var(--text-color);
+    --pagefind-ui-background: var(--content-bg-color);
+    --pagefind-ui-border: var(--border-color);
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-border-radius: 0.25rem;
+    --pagefind-ui-font: var(--font-family-sans);
+    --pagefind-ui-tag: var(--bg-muted-color);
+  }
+
+  @media only screen and (min-width: 769px) {
+    .pagefind-ui {
+      --pagefind-ui-scale: 0.9;
+    }
+  }
+
+  @media only screen and (min-width: 992px) {
+    .pagefind-ui {
+      --pagefind-ui-scale: 1;
+    }
+  }
+</style>
+
+<style>
+  #search-overlay-toggle {
+    border: 0;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    height: fit-content;
+    margin: auto 0;
+
+    color: var(--text-color);
+  }
+
+  #search-overlay-toggle:hover {
+    color: var(--highlight-color);
+  }
+
+  #search-overlay-toggle svg {
+    margin: auto 0.25em auto 0;
+  }
+
+  .search-overlay {
+    height: 100%;
+    width: 100%;
+    display: none;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: var(--content-bg-color);
+    overflow-y: auto;
+  }
+
+  /* The content */
+  .search-overlay-content {
+    position: relative;
+    top: 3em;
+    padding: 2rem;
+    margin-top: 30px;
+    margin: auto;
+    max-width: 1136px;
+  }
+
+  h2 {
+    font-size: 20pt;
+    margin-bottom: 0.5em;
+  }
+
+  @media only screen and (min-width: 768px) {
+    .search-overlay-content {
+      max-width: 1136px;
+    }
+
+    h2 {
+      font-size: 25pt;
+    }
+  }
+
+  /* Close button */
+  .search-close {
+    color: var(--text-color);
+    display: block;
+    position: fixed;
+    bottom: 5%;
+    z-index: 9999;
+    right: 45%;
+    cursor: pointer;
+    padding: 10px;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+
+    background-color: var(--tag-color);
+  }
+
+  .search-close:hover {
+    background-color: var(--highlight-color);
+  }
+
+  .search-close div {
+    display: none;
+  }
+
+  @media only screen and (min-width: 769px) {
+    .search-close {
+      position: absolute;
+      right: 5%;
+      top: 20px;
+      border: unset;
+      border-radius: 0;
+      bottom: unset;
+      background-color: unset;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .search-close:hover {
+      background-color: unset;
+    }
+
+    .search-close svg {
+      color: var(--border-color);
+    }
+
+    .search-close div {
+      display: block;
+      font-size: 18px;
+      color: var(--secondary-color);
+    }
+  }
+</style>
+
+<script is:inline>
+  function openSearch() {
+    document.body.style.overflow = "hidden";
+    document.getElementById("search-overlay").style.display = "block";
+  }
+
+  // Close the full screen search box
+  function closeSearch() {
+    document.body.style.overflow = "auto";
+    document.getElementById("search-overlay").style.display = "none";
+  }
+</script>

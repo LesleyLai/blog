@@ -17,10 +17,13 @@ interface Props {
 
   // Whether having a "show all" button and its URL
   showall?: string;
+
+  // Whether to enable search filter
+  enableSearch?: boolean;
 }
 
 const lang = getCurrentLanguage(Astro);
-const { tags, exclude, type, showall } = Astro.props;
+const { tags, exclude, type, showall, enableSearch } = Astro.props;
 
 const getTagId = (tag: string | { id: string; count: number }) => {
   if (typeof tag === "string") return tag;
@@ -43,14 +46,21 @@ const getTagUrl = (tag: string | { id: string; count: number }) => {
   {
     tags
       .filter((tag) => getTagId(tag) != exclude)
-      .map((tag) => (
-        <li>
-          <Tag href={getTagUrl(tag)}>
-            {translateTag(lang, getTagId(tag))}
-            {typeof tag != "string" && ` ${tag.count}`}
-          </Tag>
-        </li>
-      ))
+      .map((tag) => {
+        const tagId = getTagId(tag);
+        return (
+          <li
+            {...(enableSearch && {
+              "data-pagefind-filter": `tag:${translateTag(lang, tagId, true)}`,
+            })}
+          >
+            <Tag href={getTagUrl(tag)}>
+              {translateTag(lang, tagId)}
+              {typeof tag != "string" && ` ${tag.count}`}
+            </Tag>
+          </li>
+        );
+      })
   }
 </ul>
 

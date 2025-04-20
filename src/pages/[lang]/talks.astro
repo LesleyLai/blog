@@ -20,6 +20,7 @@ const { lang } = Astro.params;
 <PageLayout
   title={translations[lang].talks}
   description={translations[lang].descriptions.talksPage}
+  search={{ type: "Talk" }}
 >
   <h1>{translations[lang].talks}</h1>
   <p>{translations[lang].talksDescription}</p>

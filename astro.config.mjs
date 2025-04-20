@@ -1,17 +1,15 @@
 import { defineConfig } from "astro/config";
 
 import icon from "astro-icon";
+import mdx from "@astrojs/mdx";
+import sitemap from "@astrojs/sitemap";
+import pagefind from "astro-pagefind";
 
 import remarkMath from "remark-math";
 import rehypeMathJax from "rehype-mathjax";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import { rehypeHeadingIds } from "@astrojs/markdown-remark";
-
 import expressiveCode from "astro-expressive-code";
-
-import mdx from "@astrojs/mdx";
-
-import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
@@ -45,6 +43,7 @@ export default defineConfig({
     }),
     mdx(),
     sitemap(),
+    pagefind()
   ],
   markdown: {
     remarkPlugins: [remarkMath],

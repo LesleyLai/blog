@@ -175,6 +175,12 @@ const en = {
     blogName: "Lesley Lai's Blog",
     blogDescription: "Lesley Lai's personal blog on software development",
   },
+  search: "Search",
+  searchOverlay: {
+    title: "Search Lesley's Website",
+    esc: "esc",
+    close: "Close search overlay",
+  },
   showAll: "Show All",
   siteName: "Lesley Lai",
   stuffIWroteAbout: (tag: string) => `Stuff I wrote about ${translateTag("en", tag, true)}`,
@@ -234,6 +240,12 @@ const zh: Translations = {
   rssFeed: {
     blogName: "赖思理的博客",
     blogDescription: "赖思理的个人软件开发博客",
+  },
+  search: "搜索",
+  searchOverlay: {
+    title: "搜索赖思理的个人网站",
+    esc: "退出",
+    close: "关闭搜索",
   },
   showAll: "显示所有",
   siteName: "赖思理的个人网站",

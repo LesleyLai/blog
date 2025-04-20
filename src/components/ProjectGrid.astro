@@ -8,14 +8,22 @@ import TagList from "./TagList.astro";
 
 interface Props {
   projects: CollectionEntry<"projects">[];
+  enableSearch?: boolean;
 }
 
-const { projects } = Astro.props;
+const { projects, enableSearch } = Astro.props;
 
 const currentYear = new Date().getFullYear();
+
+const attrs = {
+  ...(enableSearch && {
+    "data-pagefind-body": true,
+    "data-pagefind-filter": `type:Project`,
+  }),
+};
 ---
 
-<div class="projects-grid">
+<div class="projects-grid" {...attrs}>
   {
     projects.map(async (project) => {
       const { Content } = await project.render();
@@ -61,7 +69,9 @@ const currentYear = new Date().getFullYear();
           </div>
           <div class="project-content">
             <header class="project-header">
-              <h2 class="project-title">{project.data.name}</h2>
+              <h2 class="project-title" id={project.id}>
+                {project.data.name}
+              </h2>
               <div class="project-links">
                 {project.data.github && (
                   <a

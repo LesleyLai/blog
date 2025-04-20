@@ -77,7 +77,7 @@ body {
   min-height: 100vh;
 
   font-size: 16px;
-  font-family: "PT Sans", "Noto Sans SC Variable", sans-serif;
+  font-family: var(--font-family-sans);
 }
 
 h1,
@@ -86,7 +86,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "PT Serif", "Noto Sans SC Variable", serif;
+  font-family: var(--font-family-serif);
 }
 
 .dark body {
@@ -168,7 +168,7 @@ main li {
 /* theme: default is light theme */
 :root {
   --text-color: #000;
-  --secondary-color: #797979;
+  --secondary-color: #696969;
   --bg-color: #f4f2ea;
   --blockquote-bg-color: #fafaf8;
   --header-bg-color: #fafaf8;
@@ -176,9 +176,9 @@ main li {
   --sidenote-bg-color: #fbfaf7;
   --image-placeholder-bg-color: #f4f4f4;
   --highlight-color: #0af;
-  --divider-color: rgba(0, 0, 0, 0.1);
+  --divider-color: rgba(0, 0, 0, 0.2);
 
-  --bg-muted: rgba(129, 139, 152, 0.12);
+  --bg-muted-color: rgba(129, 139, 152, 0.12);
   --border-color: #999;
 
   --link-color: #4183c4;
@@ -202,11 +202,15 @@ main li {
   --shadow:
     0px 8px 4px hsla(0, 0%, 0%, 0.08), 0px 5px 2px hsla(0, 0%, 0%, 0.08),
     0px 3px 2px hsla(0, 0%, 0%, 0.12), 0px 1px 1px hsla(0, 0%, 0%, 0.15);
+
+  --font-family-sans: "PT Sans", "Noto Sans SC Variable", sans-serif;
+  --font-family-serif: "PT Serif", "Noto Sans SC Variable", serif;
+  --font-family-mono: "PT Mono", monospace;
 }
 
 .dark {
   --text-color: #e8e8e8;
-  --secondary-color: #b3b3b3;
+  --secondary-color: #c3c3c3;
   --bg-color: #0b0b0b;
   --blockquote-bg-color: #3a3a3a;
   --header-bg-color: #0b0b0b;
@@ -254,7 +258,7 @@ main li {
   border-radius: 0.3em;
   background-color: var(--bg-muted-color);
   box-shadow: 0 0 0 1px var(--border-color);
-  font-family: "PT Mono", monospace;
+  font-family: var(--font-family-mono);
   font-size: 0.9em;
 }
 
