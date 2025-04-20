@@ -173,6 +173,7 @@ const searchText = translations[lang].search;
 </style>
 
 <script is:inline>
+  /* eslint-disable @typescript-eslint/no-unused-vars */
   function openSearch() {
     document.body.style.overflow = "hidden";
     document.getElementById("search-overlay").style.display = "block";
@@ -183,4 +184,6 @@ const searchText = translations[lang].search;
     document.body.style.overflow = "auto";
     document.getElementById("search-overlay").style.display = "none";
   }
+
+  /* eslint-enable @typescript-eslint/no-unused-vars */
 </script>

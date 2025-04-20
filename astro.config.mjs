@@ -43,7 +43,7 @@ export default defineConfig({
     }),
     mdx(),
     sitemap(),
-    pagefind()
+    pagefind(),
   ],
   markdown: {
     remarkPlugins: [remarkMath],
