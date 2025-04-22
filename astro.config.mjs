@@ -9,7 +9,40 @@ import remarkMath from "remark-math";
 import rehypeMathJax from "rehype-mathjax";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import { rehypeHeadingIds } from "@astrojs/markdown-remark";
+import rehypeExternalLinks from "rehype-external-links";
 import expressiveCode from "astro-expressive-code";
+
+const externalLinkIcon = {
+  type: "element",
+  tagName: "svg",
+  children: [
+    {
+      type: "element",
+      tagName: "symbol",
+      properties: {
+        id: "ai:mdi:open-in-new",
+        viewBox: "0 0 24 24",
+      },
+      children: [
+        {
+          type: "element",
+          tagName: "path",
+          properties: {
+            fill: "currentColor",
+            d: "M14 3v2h3.59l-9.83 9.83l1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2z",
+          },
+        },
+      ],
+    },
+    {
+      type: "element",
+      tagName: "use",
+      properties: {
+        href: "#ai:mdi:open-in-new",
+      },
+    },
+  ],
+};
 
 // https://astro.build/config
 export default defineConfig({
@@ -59,6 +92,15 @@ export default defineConfig({
         },
       ],
       rehypeMathJax,
+      [
+        rehypeExternalLinks,
+        {
+          content: externalLinkIcon,
+          contentProperties: { className: ["external-link-icon"] },
+          rel: ["noopener"],
+          target: "_blank",
+        },
+      ],
     ],
   },
   redirects: {
