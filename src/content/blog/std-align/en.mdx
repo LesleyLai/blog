@@ -26,8 +26,16 @@ I will use a simple implementation of an _arena allocator_ as a motivating examp
 Arena, also called _bump allocator_ or _region-based allocator_, is probably the most straightforward allocation strategy.
 It is so widely used that even the C++ standard library has an arena implementation called [std::pmr::monotonic_buffer_resource](https://en.cppreference.com/w/cpp/memory/monotonic_buffer_resource).
 
-With arena, we start with a large chunk of pre-allocated memory coming from either the stack or another allocator such as `malloc`.
+With arena, we start with a large chunk of pre-allocated memory coming from either the stack or another allocator such as `mmap` or `malloc`.
 Afterward, we allocate memory from that chunk by bumping a pointer offset.
+
+<span class="side-note" style={{marginTop: "-130px"}}>
+
+There are some confusions between an arena allocator and a _stack allocator_.
+Stack allocator is a natural evolution of the arena allocator,
+where allocation in a stack allocator can be freed in a LIFO (last in, first out) order.
+
+</span>
 
 <figure>
   <Image src={arena1} width="500" alt="Arena before allocation" class="block m-20-auto" />
@@ -39,24 +47,22 @@ Afterward, we allocate memory from that chunk by bumping a pointer offset.
   <figcaption style="text-align: center">Figure.2 - Arena after allocation</figcaption>
 </figure>
 
-Arena allocator has exceptional performance characteristics, especially when compared to complicated beasts like `mmap`.
-Each allocation only requires a pointer bump, and the deallocation is almost free as long as the objects allocated are _trivially destructible_[^1].
+Arena allocator has exceptional performance characteristics, especially when compared to complicated beasts like `malloc`.
+Each allocation only requires a pointer bump, and the deallocation is almost free as long as the objects allocated are _trivially destructible_.
 If we need to call destructors, we must maintain a list of objects to destroy.
 Supporting destructors complicates arena implementation considerably and is beyond the scope of this post.
 
-[^1]: In C++, a type is _trivially destructible_ if it doesn't have a destructor that performs actions. For example, `std::string` and `std::vector` are not trivially destructible since their destructors free memory. Everything that contains non-trivially destructible types are also not trivially destructible.
+<span class="side-note" style={{marginTop: "-110px"}}>
+
+In C++, a type is _trivially destructible_ if it doesn't have a destructor that performs actions. For example, `std::string` and `std::vector` are not trivially destructible since their destructors free memory. Everything that contains non-trivially destructible types are also not trivially destructible.
+
+</span>
+
 
 The downside of the arena is that you can only free all the allocated memory at once since the arena doesn't track each individual allocation.
 Nevertheless, it is helpful in situations where we have a lot of heterogeneous allocations that only need to be freed together,
 and is widely used in application domains from compilers to video games.
 
-<span class="side-note" style={{marginTop: "-120px"}}>
-
-There are some confusions between an arena allocator and a _stack allocator_.
-Stack allocator is a natural evolution of the arena allocator,
-where allocation in a stack allocator can be freed in a LIFO (last in, first out) order.
-
-</span>
 
 ## A minimum implementation of an arena
 
