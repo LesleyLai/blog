@@ -49,7 +49,7 @@ Do you know what [RAII](https://en.wikipedia.org/wiki/Resource_acquisition_is_in
 
 Let me reply with a tweet from Bryce Lelbach.
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Almost everything in this article is patently wrong, like the claim that &quot;[C++] only rudimentary concurrency mechanisms&quot;. C++ has a formally verified memory and execution model, which is the defacto industry standard, and a rich library of concurrency primitives. <a href="https://t.co/idtcg7gRCy">https://t.co/idtcg7gRCy</a></p>&mdash; Bryce Adelstein Lelbach (@blelbach) <a href="https://twitter.com/blelbach/status/1336406428412604416?ref_src=twsrc%5Etfw">December 8, 2020</a></blockquote>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Almost everything in this article is patently wrong, like the claim that &quot;[C++] only rudimentary concurrency mechanisms&quot;. C++ has a formally verified memory and execution model, which is the defacto industry standard, and a rich library of concurrency primitives.</p>&mdash; Bryce Adelstein Lelbach (@blelbach) December 8, 2020</blockquote>
 
 > In C++, all references are nullable.
 

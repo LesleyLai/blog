@@ -7,6 +7,7 @@ modified: 2020-09-20
 tags:
   - code
   - cpp
+description: "Would spamming the noexcept keyword make your C++ code faster? Sometimes. But not always. This post talks about the suprising downside when adding noexcept to functions."
 ---
 
 Would spamming the `noexcept` keyword make your code faster? Sometimes. But not always. Consider the following snippet of code:
@@ -87,9 +88,9 @@ __clang_call_terminate:
 
 ## How to deal with C functions?
 
-Now we know that `noexcept` can cause overhead if we call a non-noexcept function inside, how do we deal with functions that will not throw but are not mark as `noexcept`? Fortunately, the venerable [Hana Dusíková](https://twitter.com/hankadusikova?s=20) came up with a clever solution:
+Now we know that `noexcept` can cause overhead if we call a non-noexcept function inside, how do we deal with functions that will not throw but are not mark as `noexcept`? Fortunately, the venerable [Hana Dusíková](https://bsky.app/profile/hanicka.net) came up with a clever solution:
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Did you ever get an suboptimal code, because you were calling external C function in your noexcept code?<br/><br/>Suffer no more:<a href="https://t.co/LA7C76a063">https://t.co/LA7C76a063</a></p>&mdash; Hana Dusíková 🍊 (@hankadusikova) <a href="https://twitter.com/hankadusikova/status/1276828584179642368?ref_src=twsrc%5Etfw">June 27, 2020</a></blockquote>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Did you ever get an suboptimal code, because you were calling external C function in your noexcept code?<br/><br/>Suffer no more: <a href="https://compiler-explorer.com/z/zyyAeW">https://compiler-explorer.com/z/zyyAeW</a></p>&mdash; Hana Dusíková 🍊 (@hankadusikova) June 27, 2020</blockquote>
 
 You can mark the `noexcept_cast` function force inline by compiler-specific extensions so it will not decrease performance in debug mode.
 

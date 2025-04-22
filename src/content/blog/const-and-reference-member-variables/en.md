@@ -21,7 +21,7 @@ And they can occasionally still find some uses.
 ## Const members
 
 If you are familiar with any programming languages, such as Rust, that treat `const` as default and mutable as second class citizens, you may have the temptation to mark everything `const` if you don't need to modify them.
-This practice provides a lot of benifits even in C++, as countless [Jason Turner](https://twitter.com/lefticus) and [Kate Gregory](https://twitter.com/gregcons) talks show.
+This practice provides a lot of benifits even in C++, as countless [Jason Turner](https://bsky.app/profile/lefticus.bsky.social) and [Kate Gregory](https://bsky.app/profile/gregcons.bsky.social) talks show.
 Alas, in C++, every best practice has a twist, such as "`const` everything _except_ member variables."
 
 `const` member variables disables _assignment_ and _move semantics_ for a class.

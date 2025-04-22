@@ -1,6 +1,6 @@
 ---
 id: mutable-lambda-in-algorithms
-title: "Beware passing mutable lambda to STL algorithms."
+title: "Beware passing mutable lambda to STL algorithms"
 lang: en
 created: 2020-09-30
 modified: 2020-09-30
@@ -8,6 +8,7 @@ tags:
   - cpp
   - code
   - opinion
+description: "Passing complex mutable lambdas to C++ STL algorithms often leads to code that's hard to read and maintain. This article argues against treating 'no raw-loop' as dogma, and explores how using mutable lambdas undermine the benefits of <algorithm>. It also provides detailed case study on LeetCode's Two Sum and a predicate-based inner product."
 ---
 
 Recently, I have seen some people passing complex mutable lambdas to standard algorithms.
@@ -22,7 +23,7 @@ we can always write algorithms to fit our needs.
 
 I expressed this thoughts in the following tweet:
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Random thought: if you want to pass a complicated mutable lambda to a C++ standard algorithm, you are using the wrong algorithm.</p>&mdash; Lesley Lai (@LesleyLai6) <a href="https://twitter.com/LesleyLai6/status/1307897166455648258?ref_src=twsrc%5Etfw">September 21, 2020</a></blockquote>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Random thought: if you want to pass a complicated mutable lambda to a C++ standard algorithm, you are using the wrong algorithm.</p>&mdash; Lesley Lai (@LesleyLai6) September 21, 2020</blockquote>
 
 And this post tries to expend this thought a little bit.
 
@@ -55,7 +56,7 @@ there can still be bugs lure in our own _hard-to-understand_ code.
 
 ## A LeetCode example
 
-Let's look at the following C++ solution to the [LeetCode Two Sum problem](https://leetcode.com/problems/two-sum/) by [Yacob Cohen-Arazi](https://twitter.com/kobi_ca). The problem is worded as follows: "_Given an array of integers `nums` and an integer `target`, return indices of the two numbers such that they add up to target._" and LeetCode provides the type signature of the `twoSum` function that we cannot change.
+Let's look at the following C++ solution to the [LeetCode Two Sum problem](https://leetcode.com/problems/two-sum/) by Yacob Cohen-Arazi. The problem is worded as follows: "_Given an array of integers `nums` and an integer `target`, return indices of the two numbers such that they add up to target._" and LeetCode provides the type signature of the `twoSum` function that we cannot change.
 
 ```cpp
 std::vector<int> twoSum(std::vector<int>& nums, int target) {
@@ -122,9 +123,9 @@ we somehow land us in a situation worse than the loop counterparts of our functi
 
 ## Another Example: Calculates inner product until it satisfies a predicate
 
-[Dima Savin](https://twitter.com/dima_savin) gives me a tricky problem:
+Dima Savin gives me a tricky problem:
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Ok, which algorithm should I use to calculate the inner product until it exceeds a value and get the index when it happened? Didn&#39;t find find just the right thing in a table by <a href="https://twitter.com/code_report?ref_src=twsrc%5Etfw">@code_report</a> that doesn&#39;t require a mutable lambda.</p>&mdash; Dima Savin (@dima_savin) <a href="https://twitter.com/dima_savin/status/1307962236346957825?ref_src=twsrc%5Etfw">September 21, 2020</a></blockquote>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Ok, which algorithm should I use to calculate the inner product until it exceeds a value and get the index when it happened? Didn&#39;t find find just the right thing in a table by @code_report that doesn&#39;t require a mutable lambda.</p>&mdash; Dima Savin (@dima_savin) September 21, 2020</blockquote>
 
 This problem is tricky to solve with STL algorithms
 since STL algorithms are designed to compose sequentially,
@@ -248,15 +249,19 @@ Nevertheless, the [range-v3](https://github.com/ericniebler/range-v3) library in
 
 ## Don't be afraid of writing your own algorithm
 
-Another way to solve this problem is to write your own algorithm.
+Another way to solve this problem is to write your own STL-style algorithm.
 For example, in the above example,
 we can write our own `view::partial_sum` view adapter.
 
 Our algorithm often does not need to be very generic in practice,
 as you can always enhance it later when you need to reuse this piece of code.
-The starting point of an algorithm can merely be "extracting a loop into a function."[^2]
+The starting point of an algorithm can merely be "extracting a loop into a function."
 
-[^2]: Writing your algorithm is not rocket science, but the more generic an algorithm is, the more factors we need to consider. [Ben Deane](https://twitter.com/ben_deane)'s talk [Constructing Generic Algorithms: Principles and Practice](https://www.youtube.com/watch?v=InMh3JxbiTs) is an excellent resource on this topic.
+<span class="side-note" style="margin-top: -120px;">
+
+Writing your own algorithm is not rocket science, but the more generic an algorithm is, the more factors we need to consider. [Ben Deane](https://www.elbeno.com/blog/)'s talk [Constructing Generic Algorithms: Principles and Practice](https://www.youtube.com/watch?v=InMh3JxbiTs) is an excellent resource on this topic.
+
+</span>
 
 Also, the interesting thing is that
 the above `inner_product_till` is an STL-compatible algorithm.

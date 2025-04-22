@@ -282,10 +282,10 @@ Khronos may also improve the ergonomics of dynamic rendering somehow in the futu
 
 ## Acknowledgements
 
-Special thanks to my friend [Charles Giessen](https://twitter.com/charlesgiessen) for proofreading and editing this post!
+Special thanks to my friend [Charles Giessen](https://bsky.app/profile/cdgiessen.bsky.social) for proofreading and editing this post!
 
 After this post was initially released, many experienced graphics programmers provided valuable insight and feedback.
-[Jeremy Ong](https://www.jeremyong.com/) provides insightful [Twitter](https://twitter.com/m_ninepoints/status/1482620618549776389) feedback on this post that I very much recommend reading.
-[Karn Kaul](https://github.com/karnkaul) mentioned that it would be more precise if I said that image layout transition for depth buffer is slightly different from color buffers. And he also noted that on some hardware and drivers, using the automatic image layout transition provided by render pass causes artifacts, and manual image layout transition is the only way anyway.
-[Leon Brands](https://leonbrands.software/) points out that the initial post didn't talk about pipelines, so I added a section about the change in pipeline creation.
-And [Timmy](https://twitter.com/rex_timmy) on Twitter noted that Nvidia is now shipping VK_KHR_dynamic_rendering in their game-ready drivers.
+- [Jeremy Ong](https://www.jeremyong.com/) provides insightful Twitter feedback on this post.
+- [Karn Kaul](https://github.com/karnkaul) mentioned that it would be more precise if I said that image layout transition for depth buffer is slightly different from color buffers. And he also noted that on some hardware and drivers, using the automatic image layout transition provided by render pass causes artifacts, and manual image layout transition is the only way anyway.
+- [Leon Brands](https://leonbrands.software/) points out that the initial post didn't talk about pipelines, so I added a section about the change in pipeline creation.
+- Timmy on Twitter noted that Nvidia is now shipping VK_KHR_dynamic_rendering in their game-ready drivers.
