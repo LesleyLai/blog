@@ -3,6 +3,7 @@ id: site-update-2025
 title: "网站更新（2025年4月）"
 lang: zh
 created: 2025-04-22
+modified: 2025-04-25
 description: "本文介绍了我对本站的彻底重写，包括从 Gatsby.js 迁移到 Astro。"
 tags:
   - meta
@@ -23,3 +24,5 @@ tags:
 重建这个网站确实花了不少功夫。[旧版本的网站](https://web.archive.org/web/20250327200036/https://lesleylai.info/)随着时间的推移积累了许多小功能，要重新实现这些细节花了我不少时间。而且，虽然这个新网站的设计在风格上与旧版相似，但我对其布局和样式进行了大量改动。我还添加了一些新功能，比如[项目页面](/en/projects)的网格布局和深浅主题切换功能。
 
 目前还有两件重要的事情尚未完成。首先，我还没有设置评论系统。之前我使用的是托管版的 [Commento](https://commento.io)，但我计划迁移到自托管 [Comentario](https://comentario.app)。其次，我的笔记目前仍是一个位于子域名 [notes.lesleylai.info](https://notes.lesleylai.info) 下的独立网站，将它迁移到本站将是一项不小的工作，但这个在我的计划内。
+
+更新 2025-04-25：本站的评论系统又上线了！有时间我会写一篇文章介绍我的配置。
