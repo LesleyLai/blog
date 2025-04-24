@@ -1,0 +1,17 @@
+---
+import { getCurrentLanguage } from "@i18n/i18n";
+
+import "../styles/comentario.css";
+
+const lang = getCurrentLanguage(Astro);
+---
+
+<script is:inline defer src="https://comments.lesleylai.info/comentario.js"></script>
+
+<comentario-comments lang={lang} css-override="false"></comentario-comments>
+
+<style is:inline>
+  .comentario-root {
+    padding: 10px var(--content-padding) 20px;
+  }
+</style>

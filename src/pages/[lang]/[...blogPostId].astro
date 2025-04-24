@@ -8,6 +8,7 @@ import { render } from "astro:content";
 import { type Language, languages } from "@i18n/i18n";
 import BlogPostNextPrevious from "@components/BlogPostNextPrevious.astro";
 import { getRSSRoute } from "@utils/rss";
+import Comments from "@components/comments.astro";
 
 export async function getStaticPaths() {
   return languages
@@ -74,7 +75,7 @@ const modified = entry.data.modified ? formatDate(entry.data.modified) : undefin
         <Content />
       </main>
 
-      <footer>
+      <nav>
         <p class="rss-info">
           {translations[lang].blogPost.rssInfo}
           <a href={getRSSRoute(lang)}>{translations[lang].blogPost.rss}</a>
@@ -85,7 +86,9 @@ const modified = entry.data.modified ? formatDate(entry.data.modified) : undefin
             <BlogPostNextPrevious previousPost={previousPost} nextPost={nextPost} />
           )
         }
-      </footer>
+      </nav>
+
+      <Comments />
     </div>
   </div>
 
@@ -94,8 +97,16 @@ const modified = entry.data.modified ? formatDate(entry.data.modified) : undefin
       background-color: var(--sidenote-bg-color);
     }
 
+    main {
+      padding: 20px var(--content-padding) 0;
+    }
+
+    nav {
+      padding: 0 var(--content-padding) 20px;
+    }
+
     .post-center {
-      padding: 20px var(--content-padding);
+      max-width: 100%;
       flex-grow: 1;
       background-color: var(--content-bg-color);
     }
@@ -136,10 +147,6 @@ const modified = entry.data.modified ? formatDate(entry.data.modified) : undefin
 
     .tags {
       margin-bottom: 10px;
-    }
-
-    .post-center {
-      max-width: 100%;
     }
 
     /* sidenotes */
@@ -183,7 +190,7 @@ const modified = entry.data.modified ? formatDate(entry.data.modified) : undefin
       }
     }
 
-    footer {
+    nav {
       display: flex;
       flex-direction: column;
       gap: 1rem;
