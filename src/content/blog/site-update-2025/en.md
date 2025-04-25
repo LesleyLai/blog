@@ -3,7 +3,7 @@ id: site-update-2025
 title: "Site Update (April 2025)"
 lang: en
 created: 2025-04-21
-modified: 2025-04-25
+modified: 2025-04-26
 description: "This post talks about me completely rebuilding this website, moving from Gatsby.js to Astro due to build issues and Gatsby's decline."
 tags:
   - meta
@@ -24,4 +24,4 @@ Rebuilding this site was definitely a lot of work. The [previous version](https:
 
 There are still two major things I need to take care of. First, I don’t have comments set up yet. I previously used the cloud-hosted version of [Commento](https://commento.io/), but I plan to migrate to self-hosting using [Comentario](https://comentario.app). Second, my notes are still a seperate website under the subdomain [notes.lesleylai.info](https://notes.lesleylai.info/). Migrating them over to this site will be a significant task, but I plan to do it in the future.
 
-**Update 2025-04-25**: The comment system is alive again! I will write about my setup when I have time.
+**Update 2025-04-25**: The comment system is alive again! I write about my setup in [the following post](/en/self-host-comentario).
