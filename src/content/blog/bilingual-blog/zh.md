@@ -7,8 +7,10 @@ modified: 2022-01-24
 tags:
   - code
   - i18n
+  - meta
   - typescript
   - react
+  - web
 description: "这篇文章讲解了我如何使用纯TypeScript实现本博客的双语功能。"
 ---
 

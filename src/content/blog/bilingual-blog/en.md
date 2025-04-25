@@ -7,8 +7,10 @@ modified: 2025-04-11
 tags:
   - code
   - i18n
+  - meta
   - typescript
   - react
+  - web
 description: "This post explains how I implemented the bilingual functionality of this blog in plain Typescript."
 ---
 
