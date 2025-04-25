@@ -110,7 +110,6 @@ p+p {
 a {
   text-decoration: none;
   color: var(--link-color);
-  display: inline-flex;
 }
 
 a:hover {
@@ -346,10 +345,9 @@ blockquote p {
 
 /* external link */
 .external-link-icon {
-  display: inline;
-  position: relative;
-  top: 0.45em;
+  display: inline-block;
   margin-left: 0.2em;
+  vertical-align: -0.12em;
 }
 
 .external-link-icon svg {

@@ -81,6 +81,9 @@ comentario-comments {
     line-height: 1.5;
     color: var(--cmntr-color);
     background-color: var(--comment-root-bg);
+
+    display: block;
+    min-height: 500px;
 }
 
 .comentario-root.comentario-root-font * {
