@@ -96,7 +96,7 @@ export default defineConfig({
         rehypeExternalLinks,
         {
           content: externalLinkIcon,
-          contentProperties: { className: ["external-link-icon"] },
+          contentProperties: { className: ["external-link-icon"], "aria-hidden": "true" },
           rel: ["noopener"],
           target: "_blank",
         },
