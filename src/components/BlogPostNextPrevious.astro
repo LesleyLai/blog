@@ -18,26 +18,32 @@ const lang = getCurrentLanguage(Astro);
 <nav class="next-previous">
   {
     previousPost && (
-      <a href={`/${transformSlug(previousPost.id)}`}>
+      <a href={`/${transformSlug(previousPost.id)}`} class="previous">
         <Icon name="mdi:arrow-left" size={24} />
-        <span>
-          {previousPost.data.title}
-          {previousPost.untranslated && (
-            <span class="untranslated">{translations[lang].untranslated}</span>
-          )}
-        </span>
+        <div class="nav-content">
+          <div class="nav-label">{translations[lang].blogPost.previous}</div>
+          <span class="nav-title">
+            {previousPost.data.title}
+            {previousPost.untranslated && (
+              <span class="untranslated">{translations[lang].untranslated}</span>
+            )}
+          </span>
+        </div>
       </a>
     )
   }
   {
     nextPost && (
-      <a href={`/${transformSlug(nextPost.id)}`}>
-        <span>
-          {nextPost.data.title}{" "}
-          {nextPost.untranslated && (
-            <span class="untranslated">{translations[lang].untranslated}</span>
-          )}
-        </span>
+      <a href={`/${transformSlug(nextPost.id)}`} class="next">
+        <div class="nav-content">
+          <div class="nav-label">{translations[lang].blogPost.next}</div>
+          <span class="nav-title">
+            {nextPost.data.title}{" "}
+            {nextPost.untranslated && (
+              <span class="untranslated">{translations[lang].untranslated}</span>
+            )}
+          </span>
+        </div>
         <Icon name="mdi:arrow-right" size={24} />
       </a>
     )
@@ -49,13 +55,27 @@ const lang = getCurrentLanguage(Astro);
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
     gap: 1rem;
-    font-size: 1.2rem;
+  }
+
+  /* On larger screens, let next/previous button take up only half width even if there is only one button */
+  @media (min-width: 768px) {
+    .next-previous {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .previous {
+      grid-column: 1;
+    }
+
+    .next {
+      grid-column: 2;
+    }
   }
 
   .next-previous a {
     display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
     gap: 0.5rem;
     width: 100%;
     border: 1px solid var(--border-color);
@@ -75,6 +95,34 @@ const lang = getCurrentLanguage(Astro);
   /* Prevent the svg item got shrinked */
   .next-previous a svg {
     flex: none;
+  }
+
+  .previous {
+    justify-content: flex-start;
+  }
+
+  .next {
+    justify-content: flex-end;
+    text-align: right;
+  }
+
+  .nav-content {
+    display: flex;
+    flex-direction: column;
+    min-height: 3.5rem; /* Provide consistent height */
+    height: 100%;
+  }
+
+  .nav-label {
+    font-size: 0.8rem;
+    color: var(--secondary-color);
+    margin-bottom: 0.25rem;
+    flex: none;
+  }
+
+  .nav-title {
+    font-size: 1.2rem;
+    flex: 1;
   }
 
   .untranslated {

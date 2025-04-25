@@ -143,6 +143,8 @@ const en = {
   archive: "Blog Archive",
   blog: "Blog",
   blogPost: {
+    next: "Next",
+    previous: "Previous",
     rss: "RSS feed",
     rssInfo: "Interested in my articles? You can follow the ",
   },
@@ -211,6 +213,8 @@ const zh: Translations = {
   archive: "博文存档",
   blog: "博客",
   blogPost: {
+    next: "下一篇",
+    previous: "上一篇",
     rss: "RSS订阅源",
     rssInfo: "对我的文章感兴趣？你可以订阅我的",
   },
