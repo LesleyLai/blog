@@ -26,7 +26,7 @@ It's easy to overlook how much advertising and tracking Disqus includes when you
 
 For years, I used the cloud-hosted version of [Commento](https://commento.io/). However, Commento had been unmaintained for a long time, and the $99 annual fee always feels too expensive. I’d been wanting to switch to something else for a while but never quite had the motivation. That changed this year when the cloud service start to fail sporadically, and I even thought I had lost all the past comments. I also happened to be [redesigning my website](/en/site-update-2025) around the same time, so it felt like a natural moment to make the switch.
 
-Compare to years ago, nowadays there are much more options for comments, but I settled with [Comentario](https://comentario.app), a fork of Commento, as it is easy to migrate and has all the features that I already used. The only issue is that Comentario only supports self-hosting, which is something I've never done before.
+Compare to years ago, nowadays there are much more options for comments, but I settled with [Comentario](https://comentario.app), a fork of Commento, as it is easy to migrate and has all the features that I already used. The only issue is that Comentario only supports self-hosting, which is something I don't have experience with.
 
 ## Self-Hosting Setup
 

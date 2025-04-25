@@ -25,4 +25,4 @@ tags:
 
 目前还有两件重要的事情尚未完成。首先，我还没有设置评论系统。之前我使用的是托管版的 [Commento](https://commento.io)，但我计划迁移到自托管 [Comentario](https://comentario.app)。其次，我的笔记目前仍是一个位于子域名 [notes.lesleylai.info](https://notes.lesleylai.info) 下的独立网站，将它迁移到本站将是一项不小的工作，但这个在我的计划内。
 
-更新 2025-04-25：本站的评论系统又上线了！有时间我会写一篇文章介绍我的配置。
+更新 2025-04-25：本站的评论系统又上线了！我在[之后的文章](/zh/self-host-comentario)中分享了我的配置。
