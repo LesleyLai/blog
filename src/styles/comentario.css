@@ -83,7 +83,6 @@ comentario-comments {
     background-color: var(--comment-root-bg);
 
     display: block;
-    min-height: 500px;
 }
 
 .comentario-root.comentario-root-font * {
@@ -766,6 +765,7 @@ comentario-comments {
     border: 1px solid var(--cmntr-dlg-border);
     box-shadow: 0 0 20px rgba(153, 153, 153, 0.5);
 }
+
 
 .comentario-root .comentario-dialog hr {
     border: none;
