@@ -2,8 +2,6 @@
 
 import { type CollectionEntry, getCollection } from "astro:content";
 import { langFromSlug, type Language } from "@i18n/i18n";
-import MarkdownIt from "markdown-it";
-import { convert } from "html-to-text";
 
 export interface BlogPost extends CollectionEntry<"blog"> {
   untranslated?: boolean;
@@ -45,36 +43,7 @@ const populateMissingChineseEntries = (
   });
 };
 
-// Populate blog posts without description with excerpts
-const populateDescriptionIfMissing = (blogEntry: CollectionEntry<"blog">) => {
-  const excerptLength = 300;
-  if (!blogEntry.data.description) {
-    // See https://chenhuijing.com/blog/creating-excerpts-in-astro/
-    const parser = new MarkdownIt();
-    const html = parser.render(blogEntry.body ?? "");
-
-    const options = {
-      wordwrap: null,
-      selectors: [
-        { selector: "a", options: { ignoreHref: true } },
-        { selector: "img", format: "skip" },
-        { selector: "figure", format: "skip" },
-      ],
-    };
-
-    const text = convert(html, options);
-    const distilled = convert(text, options);
-
-    const excerpt = `${distilled.substring(0, excerptLength)}..`;
-
-    blogEntry.data.description = excerpt;
-  }
-};
-
 const blogEntries = await getCollection("blog");
-for (const entry of blogEntries) {
-  populateDescriptionIfMissing(entry);
-}
 
 class BlogPosts {
   byId: Map<string, MultiLangBlogPost>;
