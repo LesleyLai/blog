@@ -132,11 +132,11 @@ std::vector<int> filter_above(const std::vector<int>& v, int threshold) {
 }
 ```
 
-<span class="side-note"  style="margin-top: -140px">
+<aside class="side-note"  style="margin-top: -140px">
 
 在这片代码中我使用了C++17的[类模板实参推导(CTAD)](https://zh.cppreference.com/w/cpp/language/class_template_argument_deduction)特性。在之前的C++版本中，我们需要显式写明`GreaterThan<int>{threshold}`。
 
-</span>
+</aside>
 
 ### 从函数对象到lambda表达式
 

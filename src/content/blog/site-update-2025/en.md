@@ -14,11 +14,11 @@ tags:
 
  Since Gatsby is pretty much abandoned, I choosed a new static-site generator [Astro](https://astro.build/).
  
-<span class="side-note" style="margin-top: -50px">
+<aside class="side-note" style="margin-top: -50px">
 
  I do worry that Astro might end up like Gatsby since it is yet another VC-funded “open source” project. But so far, I’m happy with it.
 
- </span>
+ </aside>
 
 Rebuilding this site was definitely a lot of work. The [previous version](https://web.archive.org/web/20250327200036/https://lesleylai.info/) had accumulated many small features over time, and reimplementing all those little details took quite a bit of effort. And while the design of this site is similar to the previous one, I still made extensive change to its layout and style. I also added some new things, such as the grid layout of the [project](/en/projects) page and a theme toggle.
 

@@ -84,11 +84,11 @@ struct Expr {
 };
 ```
 
-<small class="side-note" style="margin-top: -100px">
+<aside class="side-note" style="margin-top: -100px">
 
 Alternatively, you can inherit from `std::variant`, which used to be broken in C++17 but [was fixed since C++20](https://wg21.link/p2162r2).
 
-</small>
+</aside>
 
 The above code looks alright, but the main ergonomics problem of the `std::variant` is how to visit them. C++ doesn't have pattern matching, and we are given a companion funciton called `std::visit`, which accept a visitor as argument.
 

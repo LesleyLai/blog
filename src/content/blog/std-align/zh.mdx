@@ -139,14 +139,14 @@ ptr2 = new(ptr2) std::uint32_t{1729};
 }
 ```
 
-<span class="side-note" style={{marginTop: "-110px"}}>
+<aside class="side-note" style={{marginTop: "-110px"}}>
 
 <a href="https://en.cppreference.com/w/cpp/numeric/bit_cast">
   <code>std::bit_cast</code>
 </a>
 是一个 C++20 的特性。在 C++20 之前，你需要使用 <code>reinterpret_cast</code>。
 
-</span>
+</aside>
 
 我们首先将我们的指针转换为一个整数，然后使用表达式 `(addr + (alignment - 1)) & -alignment` 将我们的地址四舍五入到对齐边界。
 

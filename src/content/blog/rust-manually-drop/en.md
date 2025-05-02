@@ -74,11 +74,11 @@ Even though non-idiomatic in Rust, ash's approach is fine with me. RAII combines
 
 [^3]: In Vulkan, we don't deleting an object until we are sure that the GPU is not using it. Deleting objects out-of-order is a big issue, and it may even crash your driver.
 
-<span class="side-note" style="margin-top: -80px">
+<aside class="side-note" style="margin-top: -80px">
 
 All examples that `gpu_allocator` provides write all code in the `main` function.
 
-</span>
+</aside>
 
 In C++, we just manually call the destructors when meeting such a situation, and everything will work fine. Can we do that in Rust? Here is a try:
 

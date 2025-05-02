@@ -257,11 +257,11 @@ Our algorithm often does not need to be very generic in practice,
 as you can always enhance it later when you need to reuse this piece of code.
 The starting point of an algorithm can merely be "extracting a loop into a function."
 
-<span class="side-note" style="margin-top: -120px;">
+<aside class="side-note" style="margin-top: -120px;">
 
 Writing your own algorithm is not rocket science, but the more generic an algorithm is, the more factors we need to consider. [Ben Deane](https://www.elbeno.com/blog/)'s talk [Constructing Generic Algorithms: Principles and Practice](https://www.youtube.com/watch?v=InMh3JxbiTs) is an excellent resource on this topic.
 
-</span>
+</aside>
 
 Also, the interesting thing is that
 the above `inner_product_till` is an STL-compatible algorithm.
@@ -276,13 +276,13 @@ A lot of usages of `std::generate` use mutable lambdas as a "generator" function
 For example, the following code generates the first 20 numbers of
 the recurrence relationship $x_0 = 0, x_n = 2x_{n-1} + 1$.
 
-<span class="side-note">
+<aside class="side-note">
 
 This recurrence relationship has a simple close form $x_n = 2^n-1$,
 though in more complicated problems,
 using mutables may be necessary.
 
-</span>
+</aside>
 
 ```cpp
 int seq[20];

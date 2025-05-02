@@ -29,13 +29,13 @@ It is so widely used that even the C++ standard library has an arena implementat
 With arena, we start with a large chunk of pre-allocated memory coming from either the stack or another allocator such as `mmap` or `malloc`.
 Afterward, we allocate memory from that chunk by bumping a pointer offset.
 
-<span class="side-note" style={{marginTop: "-130px"}}>
+<aside class="side-note" style={{marginTop: "-130px"}}>
 
 There are some confusions between an arena allocator and a _stack allocator_.
 Stack allocator is a natural evolution of the arena allocator,
 where allocation in a stack allocator can be freed in a LIFO (last in, first out) order.
 
-</span>
+</aside>
 
 <figure>
   <Image src={arena1} width="500" alt="Arena before allocation" class="block m-20-auto" />
@@ -52,11 +52,11 @@ Each allocation only requires a pointer bump, and the deallocation is almost fre
 If we need to call destructors, we must maintain a list of objects to destroy.
 Supporting destructors complicates arena implementation considerably and is beyond the scope of this post.
 
-<span class="side-note" style={{marginTop: "-110px"}}>
+<aside class="side-note" style={{marginTop: "-110px"}}>
 
 In C++, a type is _trivially destructible_ if it doesn't have a destructor that performs actions. For example, `std::string` and `std::vector` are not trivially destructible since their destructors free memory. Everything that contains non-trivially destructible types are also not trivially destructible.
 
-</span>
+</aside>
 
 
 The downside of the arena is that you can only free all the allocated memory at once since the arena doesn't track each individual allocation.
@@ -120,11 +120,11 @@ Starting the lifetime of objects on unaligned locations is undefined behavior.
 Depending on different architectures,
 you may get slow memory access or even a mysterious crash if you try to access a misaligned object.
 
-<span class="side-note" style={{marginTop: "-65px"}}>
+<aside class="side-note" style={{marginTop: "-65px"}}>
 
 See how easily undefined behavior, one of the most dreaded things among our C++ programmers, can creep in when we mess with raw memory? There is a reason why we want to encapsulate memory allocations.
 
-</span>
+</aside>
 
 We usually don't care about alignment that much since the compiler can figure it out for us,
 and standard library functions such as `malloc` automatically provides sufficient alignment (`alignof(std::max_aligned_t)`) for all allocations.
@@ -160,12 +160,12 @@ we first need to have a helper function `align_forward` that bump a given pointe
 }
 ```
 
-<span class="side-note" style={{ marginTop: "-110px" }}>
+<aside class="side-note" style={{ marginTop: "-110px" }}>
   <a href="https://en.cppreference.com/w/cpp/numeric/bit_cast">
     <code>std::bit_cast</code>
   </a>{" "}
   is a C++20 feature. Before C++20, you need <code>reinterpret_cast</code>.
-</span>
+</aside>
 
 We first cast our pointer into an integer and then round up our (integer) address to the alignment boundary with the expression `(addr + (alignment - 1)) & -alignment`.
 

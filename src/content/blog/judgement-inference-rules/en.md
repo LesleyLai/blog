@@ -113,13 +113,13 @@ $$
 This grammar means that a $\text{\textbf{list}}$ is either $\text{Nil}$ or a $\text{Cons}$-cell of natural number and another $\text{\textbf{list}}$.
 A $\text{Nil}$ is an empty list, and a $\text{Cons}$ is a "node" of the singly linked-list that contains an individual element and points to a sub-list.
 
-<span class="side-note" style="margin-top: -80px">
+<aside class="side-note" style="margin-top: -80px">
 
 The convention of using the word "cons" comes from the programming language [Lisp](https://en.wikipedia.org/wiki/Lisp_programming_language),
 where `cons` can be interpreted as "construct" or "constructor."
 `cons` in Lisp is much more flexible than our definition because of the dynamic-typing nature of the language.
 
-</span>
+</aside>
 
 Now we can start to define operations on $\text{\textbf{list}}$ with inference rules.
 For example, we can define a `head` function that gets the first element of the list:
@@ -183,7 +183,7 @@ Succ(Zero) + Succ(Zero)
 We can trace the execution of the `+` operation by substitution easily because it is a _pure function_.
 In other words, `+` is deterministic and side-effect free, at least at the level that we concern.
 
-<span class="side-note" style="margin-top: -140px">
+<aside class="side-note" style="margin-top: -140px">
 
 If you consider the _implementation details_ such as the mutation of registers and stack memory,
 then there is no pure function,
@@ -191,7 +191,7 @@ although that does not help with our discussion.
 A certain level of abstraction not only helps you,
 but also the compilers to optimize for pure functions.
 
-</span>
+</aside>
 
 ## Analogy to programming
 

@@ -85,7 +85,7 @@ std::optional<QueueFamilyIndices> findQueueFamilies(/*...*/) {
 
 The memory footprint of `QueueFamilyIndices` gets reduced from 16 bytes to 8 bytes. The reason is partly that we no longer store unnecessary information, and partly because of the inefficient alignments of multiple `std::optional` from the first `struct`.
 
-<span class="side-note" style="margin-top: -100px">
+<aside class="side-note" style="margin-top: -100px">
 
 ```cpp
 struct A {
@@ -103,7 +103,7 @@ struct B {
 
 In the above snippet, the `sizeof(A)` is 16 bytes while the `sizeof(B)` is only 12 bytes.
 
-</span>
+</aside>
 
 We also reduced the need for assertions or runtime checking. Notice the `isComplete` function goes away for the second case, as we don't need to call this logic multiple times. In the first case, we would no be that confident, since we can have a bug that left `QueueFamilyIndices` uninitialized.
 
@@ -134,11 +134,11 @@ This implementation faithfully represents the data used by each state. For examp
 
 Both sum types and inheritance are used for _runtime polymorphism_. In other words, only use them when you need runtime polymorphism. Sum types add one major constraint over inheritance. Inheritance is [open to extension](https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle), while sum types are closed. The constraint is not necessarily a bad thing. For example, because as the compiler knows maximum size information statically, it can put the whole `variant` object on the stack.
 
-<span class="side-note" style="margin-top: -110px">
+<aside class="side-note" style="margin-top: -110px">
 
 When I talk about "inheritance hierarchy" here, the only focus is the virtual-dispatch enabled inheritance. Notably, I do not include [CRTP](https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern) or other usages of inheritances without any virtual functions that aim to reuse code instead of enabling subtyping polymorphism.
 
-</span>
+</aside>
 
 In theory, dispatch over `variant` can be faster than the virtual dispatch, though none of the current implementations of `std::visit` are faster than virtual. However, in a potential future C++ version with language variant and pattern matching, there is evidence [^1] that variant would provide an advantage.
 
@@ -202,11 +202,11 @@ private:
 
 Each `Triangle` need to store a back pointer to operate on itself. Moreover, there is no guarantee that the pointer `v` is not dangled. In this particular example, programmers make sure that `v` always points to memory managed by `TriangleMesh`.
 
-<span class="side-note">
+<aside class="side-note">
 
 Aside from valid use cases on shared ownership, `std::shared_ptr` is often misused to represent "vague ownership."
 
-</span>
+</aside>
 
 If we abandon the idea that triangles must know how to operates on themselves, then the triangles become just indices to the vertices:
 
@@ -308,11 +308,11 @@ private:
 
 We introduced move semantics to make it movable. However, to enable move semantics for our resource handle, we created a pointer-like object. The reason is that the after move states must be valid; to have a valid after-move state, we are forced to represent the empty state in our class. That is why we have `unique_ptr` but no `unique_reference` in the C++ standard library. And it is also partly why people repeatedly propose _[destructive move](http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2014/n4034.pdf)_.
 
-<span class="side-note">
+<aside class="side-note">
 
 Another reason for _destructive move_ is performance. The performance improvements of move can be accomplished by [Arthur O'Dwyer](https://quuxplusone.github.io/blog/) 's great but less ambitious _trivially relocatable_ \[[P1144](https://rawgit.com/Quuxplusone/draft/gh-pages/d1144-object-relocation.html)\] proposal.
 
-</span>
+</aside>
 
 ```cpp
 class Window {

@@ -90,13 +90,13 @@ The implicit capture strategy works in garbage-collected languages. [Rust](https
 
 We discussed quite a lot of usage of lambda so far. However, curious readers may start to wonder, what _exactly_ is a C++ lambda expression? Is it a primitive language construct like closures in functional languages? Before I talk about the internal of lambda, I will first talk about a construct date back to the C++98 era, **function objects**.
 
-<span class="side-note" style="margin-top: -90px">
+<aside class="side-note" style="margin-top: -90px">
 
 Some C++ programmers call the function objects "functors." It is a misnomer that we should avoid. In [category theory](https://en.wikipedia.org/wiki/Category_theory), a functor is a map between categories[^2]" and satisfy specific "functor laws."
 
 Functional programming languages utilized this concept for their language constructs, though they too overloaded this terminology. In [Standard ML](https://en.wikipedia.org/wiki/Standard_ML) and [OCaml](https://en.wikipedia.org/wiki/OCaml), a functor is a higher-order module. You can think of it as a meta-function that maps a module to another module. A more prevalent usage comes from Haskell and various inspired languages and libraries, where functor is a type class that defines mapping operation. The Haskell definition of a functor is also useful in C++. For example, the standard [range adaptors](https://en.cppreference.com/w/cpp/ranges#Range_adaptors) can be considered functors that map ranges. Also, if the types `std::optional` and`expected` support a "map" operations, then they become functors. Various libraries already implemented that, and some standard proposals are working in this direction [^3].
 
-</span>
+</aside>
 
 [^2]: [Wikipedia: Functor](https://en.wikipedia.org/wiki/Functor)
 
@@ -144,11 +144,11 @@ std::vector<int> filter_above(const std::vector<int>& v, int threshold) {
 }
 ```
 
-<span class="side-note" style="margin-top: -140px">
+<aside class="side-note" style="margin-top: -140px">
 
 I am using [Class template argument deduction (CTAD)](https://en.cppreference.com/w/cpp/language/class_template_argument_deduction) in this snippet. CTAD is a C++17 feature. In the previous versions, we need to write `GreaterThan<int>{threshold}` with the template parameter `int` specified.
 
-</span>
+</aside>
 
 ### Going back to lambda expressions
 

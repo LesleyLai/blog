@@ -33,9 +33,9 @@ It provides several significant advantages:
 - It is very flexible as I can have arbitrarily different Javascript for different languages (Since this website is implemented in React, I can use arbitrary JSX). This is a useful property when I only want to render certain UI elements in a selected language.
 - I don't need to learn an i18n library just for my blog
 
-<span class="side-note" style="margin-top: -110px">
+<aside class="side-note" style="margin-top: -110px">
 For people not familiar with JSX, it is a syntax extension of Javascript that enables us to write HTML-like UI code easily. It is designed to work together with React.js, but people also use it with other technologies such as Vue.js. [Here](https://reactjs.org/docs/introducing-jsx.html) is an introduction to JSX.
-</span>
+</aside>
 
 And thus, I recommend you use a similar approach if you want to create a multilingual personal website.
 

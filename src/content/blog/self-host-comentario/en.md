@@ -18,11 +18,11 @@ One of the challenges of running a static-site blog is enabling comments. This b
 - Custom user avatars
 - Markdown
 
-<span class="side-note" style="margin-top: -270px">
+<aside class="side-note" style="margin-top: -270px">
 
 It's easy to overlook how much advertising and tracking Disqus includes when you always use ad-blockers, but even their bloated script alone is something I definitely don't want on my website.
 
-</span>
+</aside>
 
 For years, I used the cloud-hosted version of [Commento](https://commento.io/). However, Commento had been unmaintained for a long time, and the $99 annual fee always feels too expensive. I’d been wanting to switch to something else for a while but never quite had the motivation. That changed this year when the cloud service start to fail sporadically, and I even thought I had lost all the past comments. I also happened to be [redesigning my website](/en/site-update-2025) around the same time, so it felt like a natural moment to make the switch.
 
@@ -32,13 +32,13 @@ Compare to years ago, nowadays there are much more options for comments, but I s
 
 I am a self-hosting noob, who dreaded it so much that I even chosed a $99 annual solution a few years ago. Along the way to setting this thing up, I definitely learned a few things.
 
-<span class="side-note" style="margin-top: -60px">
+<aside class="side-note" style="margin-top: -60px">
 
 It's not quite accurate to say I'm a complete noob. A long time ago, I self-hosted a [MediaWiki](https://www.mediawiki.org/wiki/MediaWiki) instance for my math and science notes on a DigitalOcean Droplet. I vaguely remember something called "[Apache](https://httpd.apache.org/)", and another thing called "[nginx](https://nginx.org/)."
 
 I definitely didn't know what I was doing, though, and whatever knowledge I picked up back then is now long forgotten. Eventually, I gave up, since the friction of both writing notes and maintaining the software in that workflow was too high.
 
-</span>
+</aside>
 
 First, I picked a [VPS](https://en.wikipedia.org/wiki/Virtual_private_server) service. There are a lot of cheap or even free options available online nowadays. Nowadays it is pretty common to use Docker to self-host, and [Comentario supports Docker Compose out of the box](https://docs.comentario.app/en/getting-started/docker-compose/). Below are my docker configurations:
 
@@ -66,11 +66,11 @@ services:
     restart: always
 ```
 
-<span class="side-note" style="margin-top: -200px">
+<aside class="side-note" style="margin-top: -200px">
 
 Yes, you could find the `<redacted domain>` by reading the source code of this page. I'll not save you this trouble, though.
 
-</span>
+</aside>
 
 
 Comentario stores "secrets" in a separate file:

@@ -14,11 +14,11 @@ tags:
 
 鉴于 Gatsby 几乎已经被放弃，我选择了 [Astro](https://astro.build/) 作为了我的新的静态网站生成器。
 
-<span class="side-note" style="margin-top: -50px">
+<aside class="side-note" style="margin-top: -50px">
 
 我有些担心 Astro 最终也会变成像 Gatsby 一样的下场，毕竟它也是一个风投资助的“开源”项目。但目前为止，我对它还是满意的。
 
- </span>
+ </aside>
 
 
 重建这个网站确实花了不少功夫。[旧版本的网站](https://web.archive.org/web/20250327200036/https://lesleylai.info/)随着时间的推移积累了许多小功能，要重新实现这些细节花了我不少时间。而且，虽然这个新网站的设计在风格上与旧版相似，但我对其布局和样式进行了大量改动。我还添加了一些新功能，比如[项目页面](/en/projects)的网格布局和深浅主题切换功能。

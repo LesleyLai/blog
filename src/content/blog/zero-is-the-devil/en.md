@@ -52,9 +52,9 @@ $$
 
 where $\text{Pow}(S)$ is the power set of the set $S$, which is defined by all subsets of $S$, and $|X|$ means the cardinality (elements count) of $X$.
 
-<span class="side-note" style="margin-top: -70px">
+<aside class="side-note" style="margin-top: -70px">
 Pause for a moment and understand what this definition means, as we will use it in the following "proof."
-</span>
+</aside>
 
 We want to prove that $\forall n > 1, P(n)$. And we will prove that by mathematical induction on $n$.
 
@@ -82,8 +82,8 @@ $|Y \cup Y'|$ can well be zero, so we cannot just "pick" an element from it.
 If you are from a more programming background,
 it is no coincidence that dividing by zero or getting an element from a collection of zero-elements will cause horrible run-time errors.
 
-<span class="side-note" style="margin-top: -60px">
+<aside class="side-note" style="margin-top: -60px">
 And most type systems will not save you (except dependent-typed ones, which have their own limitations.)
-</span>
+</aside>
 
 I hope you have fun reading this post, just as me having fun writing it.

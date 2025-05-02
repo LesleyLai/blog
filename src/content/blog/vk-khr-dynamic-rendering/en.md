@@ -67,12 +67,12 @@ const VkDeviceCreateInfo device_create_info = {
 };
 ```
 
-<span class="side-note">
+<aside class="side-note">
 
 If you are using C++, I recommend giving [vk-bootstrap](https://github.com/charles-lunarg/vk-bootstrap) library a try.
 It will make the initialization process a bit smoother.
 
-</span>
+</aside>
 
 ## Use dynamic rendering in command buffer
 

@@ -13,9 +13,9 @@ description: "This post offers practical tips and curated resources for learning
 
 _I already received some great feedback for this post, and any further feedbacks, error-correction, and resource recommendation are welcome. One way to contact me is to direct message me ([@lesley@mastodon.gamedev.place](https://mastodon.gamedev.place/@lesley)) on Mastodon_.
 
-<span class="side-note" style="margin-top: -80px">
+<aside class="side-note" style="margin-top: -80px">
 Thanks to Shafik Yaghmour, Kate Greogory, and Dwight Browne
-</span>
+</aside>
 
 _Update 2021-03-29: Add a bunch of resources._
 
@@ -77,11 +77,11 @@ The book is also very thick, so if you want a newer and shorter introduction, tr
 So you spend months with the above materials,
 and feel that you have a decent grasp of basic C++ concepts.
 
-<span class="side-note" style="margin-top: -30px">
+<aside class="side-note" style="margin-top: -30px">
 
 For experienced C++ folks, no, I am not talking about _that [concept](https://en.cppreference.com/w/cpp/language/constraints)_ 😃.
 
-</span>
+</aside>
 
 A sanity check to make sure about your understanding of C++ is whether you are familiar with the following topics,
 to name a few:
@@ -223,11 +223,11 @@ Here are some of the best C++ ones that pops into my head:
 - [Video Cortex](http://videocortex.io/)
 - [Shafik Yaghmour](https://shafik.github.io/)
 
-<span class="side-note" style="margin-top: -410px">
+<aside class="side-note" style="margin-top: -410px">
 
 This blog also has an [RSS feed](https://lesleylai.info/rss.xml).
 
-</span>
+</aside>
 
 [^4]: If you want to see all the blogs I follow, visit [this gist](https://gist.github.com/LesleyLai/549f45fb0dfdf6ab31e6ffadaeaddb10).
 
