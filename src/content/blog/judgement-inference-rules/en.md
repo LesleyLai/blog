@@ -5,7 +5,7 @@ lang: en
 created: 2020-01-26
 modified: 2020-01-26
 tags:
-  - pl
+  - plt
 ---
 
 From a layperson's perspective, the field of programming language research is full of jargon, greek letters, and weird symbols.

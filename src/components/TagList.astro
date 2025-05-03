@@ -39,7 +39,9 @@ const getTagUrl = (tag: string | { id: string; count: number }) => {
   {
     showall && (
       <li>
-        <Tag href={showall}>{translations[lang].showAll}</Tag>
+        <Tag title={translations[lang].showAll} href={showall}>
+          {translations[lang].showAll}
+        </Tag>
       </li>
     )
   }
@@ -48,13 +50,14 @@ const getTagUrl = (tag: string | { id: string; count: number }) => {
       .filter((tag) => getTagId(tag) != exclude)
       .map((tag) => {
         const tagId = getTagId(tag);
+        const longName = translateTag(lang, tagId, true);
         return (
           <li
             {...(enableSearch && {
-              "data-pagefind-filter": `tag:${translateTag(lang, tagId, true)}`,
+              "data-pagefind-filter": `tag:${longName}`,
             })}
           >
-            <Tag href={getTagUrl(tag)}>
+            <Tag title={longName} href={getTagUrl(tag)}>
               {translateTag(lang, tagId)}
               {typeof tag != "string" && ` ${tag.count}`}
             </Tag>

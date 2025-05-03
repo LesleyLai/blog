@@ -1,13 +1,14 @@
 ---
 // A tag button
 interface Props {
+  title: string;
   href: string;
 }
 
-const { href } = Astro.props;
+const { title, href } = Astro.props;
 ---
 
-<a href={href}><slot /></a>
+<a href={href} title={title}><slot /></a>
 
 <style>
   a {

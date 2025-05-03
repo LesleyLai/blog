@@ -5,7 +5,7 @@ lang: en
 created: 2020-03-02
 modified: 2020-03-02
 tags:
-  - pl
+  - plt
 ---
 
 What are the _statics_ of a programming language?

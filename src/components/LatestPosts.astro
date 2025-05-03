@@ -33,11 +33,11 @@ const formatDate = (date: Date) => date.toLocaleDateString(lang, options);
       </h3>
       <div class="post-meta">
         <span class="post-meta-item">
-          <Icon name="mdi:calendar" size={16} /> {formatDate(post.data.created)}
+          <Icon name="mdi:calendar" size={16} aria-hidden="true" /> {formatDate(post.data.created)}
         </span>
 
         <span class="post-meta-item">
-          <Icon name="mdi:tag" size={16} />
+          <Icon name="mdi:tag" size={16} aria-hidden="true" />
           <TagList tags={post.data.tags} type="blogpost" />
         </span>
       </div>
