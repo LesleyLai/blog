@@ -16,6 +16,10 @@ const lang = getCurrentLanguage(Astro);
   <article>
     <slot />
   </article>
+  <h2>{translations[lang].otherPages}</h2>
+  <ul>
+    <li><a href="/blogroll">{translations[lang].blogroll}</a></li>
+  </ul>
   <h2>{translations[lang].elsewhere}</h2>
   <ul>
     <li><a href="https://github.com/LesleyLai">Github</a></li>

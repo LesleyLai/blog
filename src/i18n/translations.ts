@@ -150,6 +150,7 @@ const en = {
   },
   blogPostsFilterHintTag: (tag: string, count: number) =>
     `${count} posts filtered by ${translateTag("en", tag, true)}`,
+  blogroll: "Blogroll",
   createTime: "Created: ",
   descriptions: {
     default:
@@ -171,6 +172,7 @@ const en = {
   notFound: "404 Not Found",
   notes: "Notes",
   oppositeLang: "zh" as Language,
+  otherPages: "More from This Site",
   otherProjects: "Other Projects",
   projects: "Projects",
   projectsDescription: "Check out all my personal projects below.",
@@ -220,6 +222,7 @@ const zh: Translations = {
   },
   blogPostsFilterHintTag: (tag: string, count: number) =>
     `按${translateTag("zh", tag, true)}筛选：${count}篇博文`,
+  blogroll: "友情连接",
   createTime: "创建时间：",
   descriptions: {
     default: "赖思理的个人网站，内容包含博客、笔记和项目集锦",
@@ -239,6 +242,7 @@ const zh: Translations = {
   notFound: "找不到页面",
   notes: "笔记",
   oppositeLang: "en" as Language,
+  otherPages: "本站更多内容",
   otherProjects: "其他项目",
   projects: "项目",
   projectsDescription: "下列是我的一些个人项目",

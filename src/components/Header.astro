@@ -10,6 +10,11 @@ import { translations } from "@i18n/translations";
 
 const lang = getCurrentLanguage(Astro);
 
+const currentPath = Astro.url.pathname;
+
+const hasTranslation =
+  currentPath.startsWith(`/${lang}`) || currentPath == "/" || currentPath == "/404";
+
 import "@styles/container.css";
 import "@styles/utilities.css";
 ---
@@ -44,7 +49,13 @@ import "@styles/utilities.css";
     <ul class="menu header-right">
       <li><SearchOverlay /></li>
       <li><ThemeToggle /></li>
-      <li><LanguageToggle /></li>
+      {
+        hasTranslation && (
+          <li>
+            <LanguageToggle />
+          </li>
+        )
+      }
     </ul>
   </div>
 </header>
