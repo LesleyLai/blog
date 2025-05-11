@@ -35,8 +35,10 @@ Note: People tend to talk exclusively in a single area and interests shift over 
 
 - [Bob Nystrom](https://journal.stuffwithstuff.com/) [[RSS](https://journal.stuffwithstuff.com/rss.xml)]
   - PLDev, Gamedev
+  - One of my favorate tech writers
+  - Author of [Game Programming Patterns](https://gameprogrammingpatterns.com/) and [Crafting Interpreters](http://www.craftinginterpreters.com/)
   - Highlight: [What Color is Your Function?](https://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function/)
-- [matklad](https://matklad.github.io/) [[RSS](https://matklad.github.io/feed.xml)]
+- [Alex Kladov (matklad)](https://matklad.github.io/) [[RSS](https://matklad.github.io/feed.xml)]
   - Parsing, Language Tools, Rust, Zig
   - Highlight: [Simple but Powerful Pratt Parsing](https://matklad.github.io/2020/04/13/simple-but-powerful-pratt-parsing.html)
 - [Evan Ovadia](https://verdagon.dev) [[RSS](https://verdagon.dev/rss.xml)]
