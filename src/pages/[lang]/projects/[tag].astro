@@ -1,8 +1,8 @@
 ---
 import { translations } from "@i18n/translations";
 import { type Language } from "@i18n/i18n";
-import ProjectGrid from "@components/ProjectGrid.astro";
-import ProjectTagList from "@components/ProjectTagList.astro";
+import ProjectGrid from "@components/project/ProjectGrid.astro";
+import ProjectTagList from "@components/project/ProjectTagList.astro";
 import PageLayout from "@layouts/PageLayout.astro";
 import { PROJECT_BY_LANG } from "@content/projects";
 
@@ -27,15 +27,15 @@ const projects = PROJECT_BY_LANG[lang].projects.filter((project) => {
 ---
 
 <PageLayout
-  title={translations[lang].projects}
+  title={translations[lang].projects.title}
   description={translations[lang].descriptions.ProjectPage}
 >
-  <h1>{translations[lang].projects}</h1>
-  <p>{translations[lang].projectsDescription}</p>
+  <h1>{translations[lang].projects.title}</h1>
+  <p>{translations[lang].projects.description}</p>
   <ProjectTagList />
   <p class="filter-hint">
     {
-      translations[lang].projectsFilterHintTag(
+      translations[lang].projects.filterHintTag(
         tag,
         PROJECT_BY_LANG[lang].projectCountByTags.get(tag) ?? 0
       )

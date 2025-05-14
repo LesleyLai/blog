@@ -1,10 +1,14 @@
 ---
 import { type CollectionEntry } from "astro:content";
+import { getCurrentLanguage } from "@i18n/i18n";
 
 import { Icon } from "astro-icon/components";
 
 import { Picture, Image } from "astro:assets";
-import TagList from "./TagList.astro";
+import TagList from "../TagList.astro";
+import { translations } from "@i18n/translations";
+
+const lang = getCurrentLanguage(Astro);
 
 interface Props {
   projects: CollectionEntry<"projects">[];
@@ -79,9 +83,9 @@ const attrs = {
                     class="icon-link"
                     target="_blank"
                     rel="noopener noreferrer"
-                    title="GitHub Repository"
+                    title={translations[lang].projects.github}
                   >
-                    <Icon name="mdi:github" size={24} title="GitHub Repository" />
+                    <Icon name="mdi:github" size={24} title={translations[lang].projects.github} />
                   </a>
                 )}
                 {project.data.codeberg && (
@@ -90,7 +94,7 @@ const attrs = {
                     class="icon-link"
                     target="_blank"
                     rel="noopener noreferrer"
-                    title="Codeberg Repository"
+                    title={translations[lang].projects.codeberg}
                   >
                     <svg
                       stroke="currentColor"
@@ -102,7 +106,7 @@ const attrs = {
                       width="1em"
                       xmlns="http://www.w3.org/2000/svg"
                     >
-                      <title>Codeberg Repository</title>
+                      <title>{translations[lang].projects.codeberg}</title>
                       <path d="M11.955.49A12 12 0 0 0 0 12.49a12 12 0 0 0 1.832 6.373L11.838 5.928a.187.14 0 0 1 .324 0l10.006 12.935A12 12 0 0 0 24 12.49a12 12 0 0 0-12-12 12 12 0 0 0-.045 0zm.375 6.467l4.416 16.553a12 12 0 0 0 5.137-4.213z" />
                     </svg>
                   </a>
@@ -161,12 +165,13 @@ const attrs = {
 
   .project-card {
     border: 1px solid var(--border-color);
-    border-radius: 0.5rem;
+    border-radius: 1rem;
+    overflow: hidden;
     transition:
       box-shadow 0.3s ease,
       transform 0.3s ease;
     background: var(--content-bg-color);
-    min-height: 600px;
+    min-height: 500px;
   }
 
   .project-image-container {

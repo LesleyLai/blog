@@ -174,11 +174,15 @@ const en = {
   oppositeLang: "zh" as Language,
   otherPages: "More from This Site",
   otherProjects: "Other Projects",
-  projects: "Projects",
-  projectsDescription: "Check out all my personal projects below.",
-  projectsFilterHint: "Showing all projects. Click tags to filter by topic.",
-  projectsFilterHintTag: (tag: string, count: number) =>
-    `Show ${count} projects filtered by ${translateTag("en", tag, true)}`,
+  projects: {
+    codeberg: "Codeberg Repository",
+    description: "Check out all my personal projects below.",
+    filterHint: "Showing all projects. Click tags to filter by topic.",
+    filterHintTag: (tag: string, count: number) =>
+      `Show ${count} projects filtered by ${translateTag("en", tag, true)}`,
+    github: "Github Repository",
+    title: "Projects",
+  },
   rssFeed: {
     blogName: "Lesley Lai's Blog",
     blogDescription: "Lesley Lai's personal blog on software development",
@@ -244,11 +248,15 @@ const zh: Translations = {
   oppositeLang: "en" as Language,
   otherPages: "本站更多内容",
   otherProjects: "其他项目",
-  projects: "项目",
-  projectsDescription: "下列是我的一些个人项目",
-  projectsFilterHint: "正在显示所有项目。您可以通过标签来限定显示包含指定标签的项目。",
-  projectsFilterHintTag: (tag: string, count: number) =>
-    `显示${count}个关于${translateTag("zh", tag, true)}的项目`,
+  projects: {
+    codeberg: "Codeberg仓库",
+    description: "下列是我的一些个人项目",
+    filterHint: "正在显示所有项目。您可以通过标签来限定显示包含指定标签的项目。",
+    filterHintTag: (tag: string, count: number) =>
+      `显示${count}个关于${translateTag("zh", tag, true)}的项目`,
+    github: "Github仓库",
+    title: "项目",
+  },
   rssFeed: {
     blogName: "赖思理的博客",
     blogDescription: "赖思理的个人软件开发博客",

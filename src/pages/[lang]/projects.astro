@@ -2,8 +2,8 @@
 import PageLayout from "@layouts/PageLayout.astro";
 import { translations } from "@i18n/translations";
 import { type Language, languages } from "@i18n/i18n";
-import ProjectGrid from "@components/ProjectGrid.astro";
-import ProjectTagList from "@components/ProjectTagList.astro";
+import ProjectGrid from "@components/project/ProjectGrid.astro";
+import ProjectTagList from "@components/project/ProjectTagList.astro";
 import { PROJECT_BY_LANG } from "@content/projects";
 
 interface Params {
@@ -25,13 +25,13 @@ const otherProjects = projects.filter((project) => !project.data.featured);
 ---
 
 <PageLayout
-  title={translations[lang].projects}
+  title={translations[lang].projects.title}
   description={translations[lang].descriptions.ProjectPage}
 >
-  <h1>{translations[lang].projects}</h1>
-  <p>{translations[lang].projectsDescription}</p>
+  <h1>{translations[lang].projects.title}</h1>
+  <p>{translations[lang].projects.description}</p>
   <ProjectTagList />
-  <p class="filter-hint">{translations[lang].projectsFilterHint}</p>
+  <p class="filter-hint">{translations[lang].projects.filterHint}</p>
 
   <h2>{translations[lang].featuredProjects}</h2>
   <ProjectGrid projects={featuredProjects} enableSearch />
