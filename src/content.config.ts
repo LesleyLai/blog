@@ -21,6 +21,7 @@ const projectsCollection = defineCollection({
       modified: z.date().optional(),
       image: image().optional(),
       github: z.string().optional(),
+      codeberg: z.string().optional(),
       demo: z.string().optional(),
       tags: z.array(z.string()),
       featured: z.boolean().optional(),
